@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>What was added, and what is still open</title>
+<style>body{font-family:Palatino,Georgia,serif;max-width:42rem;margin:2.5rem auto;padding:0 1.2rem 3rem;line-height:1.55}h1{font-size:1.55rem}h2{font-size:1.15rem;margin-top:1.6rem}</style></head>
+<body>
+<p>Draft. Not a submission.</p>
+<h1>What was added, and what is still open</h1>
+<p>This page adds the items that were not in the first certificate, and says which of them are theorems.</p>
+<h2>Now checked</h2>
+<ul>
+<li>General finite alphabets. <code>lean/Gaps.lean</code>, theorem <code>process_disagreement_alphabet</code>, Lean 4.34.1, exit status 0. For any number of parties and any alphabet size, a process function cannot have two distinct output strings that agree in <code>w</code> wherever they differ.</li>
+<li>Unnormalized Hadamard rows. <code>hadamard_rows</code>: the integer rows (1, 1) and (1, −1) have dot product 0. The normalized Hadamard, with a factor of one over square root two, is not in this scalar field.</li>
+<li>A finite trace identity. <code>trace_identity_ancilla</code> is the statement that the two basis weights of an identity on a system, with a traced ancilla in the trivial case, sum to 1. It is not Stinespring.</li>
+</ul>
+<h2>Still not checked</h2>
+<ul>
+<li>The gram contraction of the permutation unitary against a general complex local unitary.</li>
+<li>Stinespring as a theorem about completely positive maps.</li>
+<li>Embeddability in a spacetime. <code>SpacetimeEmbeddingClaim</code> is defined as false in the file so that it cannot be used as a theorem. The wormhole billiard has the wrong multiplicity. No Hamiltonian embedding is claimed.</li>
+</ul>
+<p>The bit-case bijection remains <a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/Full.lean">lean/Full.lean</a>. The status note is <a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/paper/proved.html">paper/proved.html</a>.</p>
+</body></html>
