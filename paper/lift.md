@@ -1,81 +1,104 @@
 # Every process function lifts to a unitary process
 
-**Draft note, in the style of Foundations of Physics**
+**Draft note, Foundations of Physics style. Not submitted. Not refereed.**
 
 ## Abstract
 
-A process function is a classical map from the outputs of several parties to their inputs such that every choice of local deterministic interventions has exactly one fixed point. Such maps are the deterministic skeletons of logically consistent processes without a predefined causal order. Baumeler, Costa, Ralph, Wolf and Zych showed that every process function extends to a bijection by the addition of a source and a sink, and left open whether every such bijection quantizes to a valid unitary quantum process. Daher Ahmed and Kunjwal conjectured that it does. We give an argument that it does. The dilation is the permutation unitary of the source-and-sink extension. For any tuple of local unitaries, the induced source-to-sink operator is unitary, because a process function cannot have two distinct global strings that agree on the output of the process wherever they disagree as strings. Local instruments then induce a completely positive trace-preserving map by the usual dilation. Fixing the source at the identity recovers the original process function.
+A process function is a classical map from the outputs of several parties to their inputs such that every choice of local deterministic interventions has exactly one fixed point. Such maps are the deterministic skeletons of logically consistent processes without a predefined causal order. Baumeler, Costa, Ralph, Wolf and Zych showed that every process function extends to a bijection by the addition of a source and a sink, and left open whether every such bijection quantizes to a valid unitary quantum process. Daher Ahmed and Kunjwal conjectured that it does. This note argues that it does. The dilation is the permutation unitary of the source-and-sink extension. For any tuple of local unitaries, the induced source-to-sink operator is unitary, because a process function cannot have two distinct global strings that agree on the output of the process wherever they disagree as strings. Local instruments then induce a completely positive trace-preserving map by the usual dilation. Fixing the source at the identity recovers the original process function. The philosophical claim is narrower than the formalism: consistency, in the fixed-point sense, is already a quantization condition. It does not have to be imposed again as a measure-zero axiom on paradoxical histories.
 
-## 1. Why this is worth settling
+## 1. Backward causation, before the formalism
 
-Two programmes meet here, and both are blocked on the same implication.
+The linguistic objection to backward causation is that a cause is, by definition, earlier than its effect. Dummett argued in 1954 and again in 1964 that this is a stipulation about the word, not a discovery about the world. Black's bilking argument is the better objection. If an earlier event is supposed to be the effect of a later one, an agent who sees the earlier event can intervene so as to prevent the later one. Either the agent cannot intervene, which wants an explanation, or the later event was not necessary for the earlier one. Lewis's reply splits the modal: one can, relative to the local facts and the laws, and one cannot, relative to the whole past. That dissolves a verbal paradox. It does not say which histories the laws admit.
 
-The first is the classical theory of causal loops. A deterministic process with no predefined order is logically consistent, in the sense of Baumeler and Wolf, precisely when every local intervention has a unique fixed point. No fixed point is the grandfather paradox. More than one is the bootstrap. The 2026 characterization of Dourdent, Leitherer, Boghiu, Simonov, Kunjwal and Acín says the same thing in the language of events: the event list is complete and pairwise exclusive. That is a logic of loops. It is not yet a physical theory. A physical theory needs a dynamics, and the natural quantum dynamics is unitary.
+General relativity makes the question physical. Gödel's 1949 solution has closed timelike curves. Morris, Thorne and Yurtsever showed that a traversable wormhole, if one could be held open, can be converted into a time machine by relative motion of the mouths. The Cauchy problem on the resulting spacetime is the grandfather paradox in differential equations. Friedman, Morris, Novikov, Thorne and collaborators proposed, in 1990, that only self-consistent solutions occur. Echeverria, Klinkhammer and Thorne then integrated the hard-sphere billiard on a wormhole and found initial data with one consistent continuation, data with two, and data for which none was apparent. Carlini, Frolov, Mensky, Novikov and Solodukhin derived a version of self-consistency from stationarity of the action in a model, and found the same underdetermination. Novikov's principle removes inconsistent solutions. It does not choose among consistent ones. Earman's survey of the classical problem remains the right warning: a consistency condition that is imposed after the dynamics is not a dynamics.
 
-The second is the quantization question left open in 2019. Once a process function is reversible, it defines a permutation of a finite set, and every permutation defines a unitary operator on the corresponding Hilbert space. A valid unitary process is a stronger demand. Parties must be free to insert arbitrary quantum instruments, and the induced map on the remaining systems must stay completely positive and trace-preserving. The 2019 paper checked one example. The Lugano function, the standard classical process that violates a causal inequality, was later given a unitary extension by a different construction. Neither result is the universal statement. A conjecture to that effect was stated on 30 September 2026, with two sufficient conditions that are not necessary.
+## 2. Three quantum replies, and why none is the criterion
 
-The implication matters for three reasons.
+Deutsch's 1991 model asks for a fixed point of the partial trace around the curve. In finite dimension a fixed point exists, so no particular action is forbidden, and the grandfather paradox becomes a mixed state. The cost is nonlinearity. The model clones unknown states. Aaronson and Watrous showed that the computational power is PSPACE. Bennett, Leung, Smith and Smolin argued that the power is an artefact of demanding a fixed point for a distribution that an ordinary preparation would not produce. Tolksdorf and Verch showed that the Deutsch condition can be met to arbitrary precision in quantum field theory on a spacetime with no closed timelike curve at all. A Deutsch fixed point is not diagnostic of a loop.
 
-First, it separates logical consistency from an extra quantization postulate. If every process function lifts, then the fixed-point clause is already the quantum consistency clause. One does not need a further restriction to keep the quantum theory free of grandfather and bootstrap failures.
+Lloyd, Maccone and collaborators replace the fixed point by post-selection, the P-CTC model. Inconsistent branches are the ones that fail the post-selection. The grandfather paradox is resolved by the experiment not happening. Process functions sit inside this class: the event list appears conditional on the post-selection succeeding. That is a simulation. It is not an account of why the inconsistent branch was never a physical option. Post-selection is a filter on samples, of the same shape as a measure-zero axiom.
 
-Second, it bears on purifiability. A unitary process is pure. A positive answer puts every classical deterministic consistent process inside the purifiable fragment, including those that violate causal inequalities. That does not settle which of them embed in a spacetime. It does settle that the obstruction, if there is one, is not unitarity.
+The process-matrix formalism of Oreshkov, Costa and Brukner is the third reply, and the one this note uses. A process is a map from local instruments to probabilities, required to give a probability for every choice of instruments, with no global causal order assumed. Classical deterministic processes in that class are process functions. Baumeler and Wolf described the polytope. Three parties suffice for a violation of a causal inequality. The Lugano function, found by Araújo and Feix and studied by Baumeler and Wolf,
 
-Third, it is the right strength for a time-symmetric reading. The source-and-sink extension is already the reversible reading of the loop. A unitary dilation of that extension is an ontic time-reverse in the sense that the same operator, read backwards, is the inverse process. The reversal objection that appears when one asks the bare process function to be an involution on its own alphabet is an artifact of refusing the source and the sink.
+    w(a,b,c) = (not b and c, not c and a, not a and b),
 
-## 2. Definitions
+is the standard witness. Each party's input depends on the other two outputs. The dependence graph is a cycle. Every deterministic intervention has exactly one fixed point. Two parties are not enough: the twelve binary two-party process functions are all causally ordered.
 
-Let each party \(k \in \{1,\ldots,n\}\) have a finite alphabet \(A_k\) carrying a group law, written additively. The case of interest is bits under XOR. Write \(O = \prod_k A_k\) for output strings and \(I = \prod_k A_k\) for input strings. A local intervention is a tuple of functions \(f_k \colon A_k \to A_k\). A map \(w \colon O \to I\) is a process function when, for every such tuple, the composition \(f \circ w\) has exactly one fixed point.
+## 3. What the fixed-point clause is doing
 
-The source-and-sink extension of Theorem 2 in Baumeler, Costa, Ralph, Wolf and Zych adds a source register \(e\) and a sink register \(s\), of the same alphabet, and sets
-\[
-U\lvert o, e\rangle = \lvert w(o)+e,\; o\rangle.
-\]
-Reading the sink off as \(o\) and the source off as \(e = i - w(o)\) inverts \(U\). So \(U\) is a permutation unitary for any \(w\), process function or not. Validity is the extra claim.
+The clause is an attempt at the criterion the filters do not give. A map from outputs to inputs is admitted only when every local function, freely chosen, composes with it to give exactly one fixed point. No fixed point is the grandfather case: the intervention has nowhere to land. More than one is the bootstrap: the loop underdetermines its own contents. The freedom is the content of the no-new-physics principle in Baumeler, Costa, Ralph, Wolf and Zych. Any operation possible in an ordinary region remains possible in a region that does not itself contain the closed curve. Consistency is not allowed to forbid the operation. It is allowed only to constrain the global solution.
 
-## 3. The combinatorial lemma
+Dourdent, Leitherer, Boghiu, Simonov, Kunjwal and Acín have since said the same thing without quantifying over interventions. A list of events is the event list of a process function exactly when it is complete and pairwise exclusive. If any two of several questions can be answered jointly, so can all of them. That is a multipartite form of Specker's principle. It is a constraint on the process, not an extra axiom that paradoxical histories have measure zero. Cyclic causation is not the enemy. Cyclic signalling is.
 
-**Lemma.** If \(w\) is a process function and \(s \neq s'\), then some party \(k\) has \(s_k \neq s'_k\) and \(w_k(s) = w_k(s')\).
+## 4. Reversibility, and the quantization question
 
-Suppose not. Then \(w_k(s) = w_k(s')\) already forces \(s_k = s'_k\). Define \(f_k\) on the two points \(w_k(s)\) and \(w_k(s')\) by \(f_k(w_k(s)) = s_k\) and \(f_k(w_k(s')) = s'_k\), and extend it arbitrarily off them. The two clauses agree wherever the inputs agree, so \(f_k\) is a function. Then \(f(w(s)) = s\) and \(f(w(s')) = s'\). Two fixed points, which a process function cannot have.
+Reversibility is not free on the original alphabet. The Lugano function is two-to-one. Of the 256 binary two-party maps, twelve are process functions and none equals its input-output reverse. Baumeler, Costa, Ralph, Wolf and Zych, Theorem 2, restore reversibility by a source, a region with trivial input, and a sink, a region with trivial output. The extended process can be read backwards. The form used here is the permutation unitary
 
-The contrapositive is the useful form. Distinct global strings that are candidates for a double fixed point must disagree, at some party, on a coordinate whose process-output value agrees.
+    U |o, e> = |w(o) + e, o>.
 
-## 4. The lift
+The inverse reads the sink as the output string and the source as the difference between the input and w(o). A bijection of a finite set is a unitary. A unitary on a fixed basis is not yet a quantum process. Parties must be able to insert instruments that are not diagonal in that basis. A Hadamard is the test case. If the induced map from source to sink ceases to be trace-preserving, the classical consistency clause has not lifted, and quantum theory needs an extra filter. If it remains trace-preserving for every instrument, the fixed-point clause was already the quantum consistency clause.
 
-**Theorem.** Let \(w\) be a process function, and let \(U\) be the source-and-sink permutation unitary above. For any local unitaries \(V_k\), possibly acting on a local ancilla, the source-to-sink operator induced by \(U\) is unitary. Consequently every tuple of local instruments induces a completely positive trace-preserving map from source to sink, and the Choi operator of \(U\) is a valid unitary process. Fixing the source at the identity element of the group recovers \(w\).
+Daher Ahmed and Kunjwal conjectured, on 30 September 2026, that every process function purifies to a unitary process. They prove it under mutual exclusivity of control conditions, and under a second sufficient condition, unambiguity, and they note that the bare permutation unitary of the reversible extension may fail to be a valid process. The argument below is that it does not fail. Araújo, Feix, Navascués and Brukner had already given a unitary extension of Lugano in 2017, reconstructed as a routed circuit by Vanrietvelde, Ormrod, Kristjánsson and Barrett. Those are existence proofs for one function. The claim here is the reason, and the general case.
 
-The matrix element, suppressing ancillas, is
-\[
-M_{s,e} = \prod_k \langle s_k \rvert V_k \lvert w_k(s)+e_k\rangle.
-\]
-Change variables by \(i_k = w_k(s)+e_k\). The sum over \(e\) becomes a sum over \(i\), and it factors across parties:
-\[
-(MM^\dagger)_{s,s'} = \prod_k \sum_{i_k} \langle s_k \rvert V_k \lvert i_k\rangle \langle i_k + \delta_k \rvert V_k^\dagger \lvert s'_k\rangle,
-\]
-with \(\delta_k = w_k(s') - w_k(s)\). If \(s = s'\), every \(\delta_k\) vanishes and each factor is a row norm, hence 1. If \(s \neq s'\), the lemma supplies a party with \(\delta_k = 0\) and \(s_k \neq s'_k\). That factor is the inner product of two distinct rows of \(V_k\), ancilla included, hence zero. Thus \(MM^\dagger = I\).
+## 5. Time symmetry and retrocausality
 
-A local completely positive trace-preserving map is a unitary on a local ancilla followed by a partial trace. The partial trace of a unitary dilation is completely positive and trace-preserving. So every tuple of local instruments induces a valid map from source to sink.
+Price has argued that a time-symmetric ontology for quantum theory should be retrocausal, on the assumption that the quantum state is real. Leifer and Pusey replaced that assumption with lambda-mediation: correlations between a preparation and a later measurement are mediated by the ontic state of the system. No retrocausality, operational time symmetry, and lambda-mediation then imply a timelike Bell factorization, which sequential measurements violate. Maudlin's reply is that the operational time-reverse of an experiment is not always itself an experiment of the same kind. The no-go is conditional.
 
-The same identity explains the failures. A swap, or an identity loop, has pairs \(s \neq s'\) with no such party. The corresponding factor does not vanish, and \(MM^\dagger \neq I\). The process-function clause is what kills the shift. It is not killed by unitarity of \(\bigotimes V_k\) alone.
+The dilation in this note is adjacent to that argument, not a solution of it. A process function that violates a causal inequality already has each party's input depending on another party's output. The later setting is an argument of the earlier input. Lambda-mediation, in the strict past-screening sense, fails because of the cycle, not because a retrocausal hidden variable was added by hand. Read forwards, the source is an input and the sink is an output. Read backwards, they exchange roles, and the inverse of the permutation unitary is the reversed process. The objection that the bare Lugano function is not an involution on its own three bits is an objection to refusing the source and the sink. Whether the dependence is the retrocausality Price asked for, or only an operational time-reverse, is a reading of the same operator. The mathematics does not choose the reading. It does remove one cheap reply: one cannot say that the cyclic classical model dies when instruments become unitary.
 
-## 5. What the argument does not do
+## 6. The lemma
 
-It does not embed the process in a spacetime. The wormhole billiard of Friedman, Morris, Novikov, Thorne and collaborators has initial data with one self-consistent motion, data with two, and data with possibly none. A process function needs one for every intervention. The unitary lift is a process-matrix statement, not a Hamiltonian embedding.
+Let each party have a finite alphabet with an abelian group law, written additively. Bits under XOR are the case that matters. A process function is a map w from output strings to input strings such that for every tuple of local functions, the composition has exactly one fixed point.
 
-It does not say that the bare three-party function is an involution. The 2019 reversibility theorem already shows that reversibility is free only after a source and a sink are added. Of the 256 binary two-party maps, the 12 process functions are causally ordered, and none equals its input-output reverse. That tally is a certificate of the known gap, not a counterexample to the lift.
+**Lemma.** If w is a process function and s is not equal to s', then some party k has distinct components of the two strings and equal components of w.
 
-It is not kernel-checked. The combinatorial lemma is finite for any fixed alphabet and is the piece an attacker has to break. The linear algebra after it is row orthogonality.
+Suppose not. Then agreement of the process outputs already forces agreement of the strings. Define a local function that sends w_k(s) to s_k and w_k(s') to s'_k, and extend it arbitrarily off those points. The two clauses agree wherever the inputs agree, so the local map is a function. Both strings are then fixed points of one intervention. A process function cannot have that.
 
-## 6. Relation to the conjecture
+This is free choice doing logical work. The agent at party k is allowed to apply any local function, including the one just defined. If two distinct global strings could be fixed by the same intervention, the process would not have decided which history occurs. The lemma says that a process function has already ruled that case out, and that the ruling has a local witness. The swap is the witness in the other direction. The strings (0,1) and (1,0), under w(a,b) = (b,a), are both fixed by NOT tensor NOT. The identity loop fails for the same reason. Both are already known not to be process functions.
 
-Daher Ahmed and Kunjwal conjecture that every process function can be purified to a unitary process. They prove it under mutual exclusivity of control conditions, and under a second sufficient condition, unambiguity. Neither is used here. The dilation is the source-and-sink permutation unitary, and the process-function clause is the cancellation. If the lemma stands, the conjecture is a theorem, and the Lugano function is an instance rather than a special construction.
+## 7. The cancellation
+
+**Theorem.** For any local unitaries, possibly acting on a local ancilla, the source-to-sink operator induced by U is unitary. Every tuple of local instruments therefore induces a completely positive trace-preserving map from source to sink. The Choi operator of U is a valid unitary process. Fixing the source at the identity element of the group recovers w.
+
+The matrix element is the product, over parties, of the amplitude for the local unitary to take the shifted source bit to the sink bit. Change variables by i_k = w_k(s) + e_k. The sum over the source factors across parties. The (s, s') entry of MM-dagger is a product, over k, of the overlap between row s_k of V_k and row s'_k shifted by delta_k = w_k(s') - w_k(s). If s = s', every shift vanishes and each factor is a row norm. If s is not s', the lemma supplies a party with shift zero and distinct row indices. That factor is the inner product of two distinct rows of a unitary, ancilla included, hence zero. So MM-dagger is the identity.
+
+A local completely positive trace-preserving map is a unitary on a local ancilla followed by a partial trace. The partial trace of a unitary dilation is completely positive and trace-preserving. That is the passage from the combinatorial lemma to a process matrix. The Hadamard does not open a new paradox. It opens a row of the unitary, and the lemma has already arranged that two candidate histories are orthogonal on some party.
+
+## 8. What this does not settle
+
+Embeddability is untouched. A unitary process on a finite alphabet is not a solution of Einstein's equation, and it is not a local Hamiltonian flow on a wormhole. The billiard has the wrong multiplicity. Post-selection realises the event list conditional on the post-selection succeeding. The theorem says the list has a unitary dilation. It does not say the dilation is a spacetime.
+
+Purifiability in the sense of open quantum problem 43, whether every extensibly causal process is purifiable, is related but not identical. The theorem puts every process function, including those that violate causal inequalities, inside the unitarily extendible fragment. It does not classify processes that are not deterministic classical functions.
+
+Freedom is not settled. Nothing here decides whether an agent whose output is an argument of an earlier input has a choice. The fixed-point clause says the choice, if made, completes uniquely. It does not say the choice was open. Whether this is an adequate reply to Black depends on whether consistency conditions may rule out interventions, or only rule out histories given the interventions. The note takes the first reading, and the formalism is built for it.
+
+The combinatorial lemma is finite for any fixed alphabet and is the piece an attacker has to break. The linear algebra after it is row orthogonality. The argument has not been kernel-checked.
 
 ## References
 
-1. Ä. Baumeler and S. Wolf, The space of logically consistent classical processes without causal order, New J. Phys. 18, 013036 (2016).
-2. Ä. Baumeler, F. Costa, T. C. Ralph, S. Wolf and M. Zych, Reversible time travel with freedom of choice, Class. Quantum Grav. 36, 224002 (2019), arXiv:1703.00779.
-3. M. Araújo, A. Feix, M. Navascués and Č. Brukner, A purification postulate for quantum mechanics with indefinite causal order, Quantum 1, 10 (2017).
-4. A. Vanrietvelde, N. Ormrod, H. Kristjánsson and J. Barrett, Consistent circuits for indefinite causal order, arXiv:2206.10042 (2022).
-5. H. Dourdent, A. Leitherer, E.-C. Boghiu, K. Simonov, R. Kunjwal and A. Acín, What makes a causal loop consistent?, arXiv:2609.39735 (2026).
-6. N. Daher Ahmed and R. Kunjwal, Characterizing unitaries via quasi-process functions, arXiv:2610.00579 (2026).
-7. J. Friedman, M. S. Morris, I. D. Novikov, F. Echeverria, G. Klinkhammer, K. S. Thorne and U. Yurtsever, Cauchy problem in spacetimes with closed timelike curves, Phys. Rev. D 42, 1915 (1990).
+1. M. Dummett, Can an effect precede its cause?, Aristotelian Society Supplementary Volume 28, 27 (1954); Bringing about the past, Philosophical Review 73, 338 (1964).
+2. M. Black, Why cannot an effect precede its cause?, Analysis 16, 49 (1956).
+3. D. Lewis, The paradoxes of time travel, American Philosophical Quarterly 13, 145 (1976).
+4. K. Gödel, An example of a new type of cosmological solutions of Einstein's field equations of gravitation, Reviews of Modern Physics 21, 447 (1949).
+5. M. S. Morris, K. S. Thorne and U. Yurtsever, Wormholes, time machines, and the weak energy condition, Physical Review Letters 61, 1446 (1988).
+6. J. Friedman, M. S. Morris, I. D. Novikov, F. Echeverria, G. Klinkhammer, K. S. Thorne and U. Yurtsever, Cauchy problem in spacetimes with closed timelike curves, Physical Review D 42, 1915 (1990).
+7. F. Echeverria, G. Klinkhammer and K. S. Thorne, Billiard balls in wormhole spacetimes with closed timelike curves: classical theory, Physical Review D 44, 1077 (1991).
+8. A. Carlini, V. P. Frolov, M. B. Mensky, I. D. Novikov and H. H. Solodukhin, Time machines: the Principle of Self-Consistency as a consequence of the Principle of Minimal Action, International Journal of Modern Physics D 4, 557 (1995).
+9. J. Earman, Bangs, Crunches, Whimpers, and Shrieks: Singularities and Acausalities in Relativistic Spacetimes, Oxford University Press (1995).
+10. D. Deutsch, Quantum mechanics near closed timelike lines, Physical Review D 44, 3197 (1991).
+11. S. Aaronson and J. Watrous, Closed timelike curves make quantum and classical computing equivalent, Proceedings of the Royal Society A 465, 631 (2009).
+12. C. H. Bennett, D. Leung, G. Smith and J. A. Smolin, Can closed timelike curves or nonlinear quantum mechanics improve quantum state discrimination or help solve hard problems?, Physical Review Letters 103, 170502 (2009).
+13. S. Lloyd et al., Closed timelike curves via postselection: theory and experimental test of consistency, Physical Review Letters 106, 040403 (2011).
+14. O. Oreshkov, F. Costa and Č. Brukner, Quantum correlations with no causal order, Nature Communications 3, 1092 (2012).
+15. Ä. Baumeler and S. Wolf, The space of logically consistent classical processes without causal order, New Journal of Physics 18, 013036 (2016).
+16. Ä. Baumeler, F. Costa, T. C. Ralph, S. Wolf and M. Zych, Reversible time travel with freedom of choice, Classical and Quantum Gravity 36, 224002 (2019), arXiv:1703.00779.
+17. M. Araújo, A. Feix, M. Navascués and Č. Brukner, A purification postulate for quantum mechanics with indefinite causal order, Quantum 1, 10 (2017).
+18. A. Vanrietvelde, N. Ormrod, H. Kristjánsson and J. Barrett, Consistent circuits for indefinite causal order, arXiv:2206.10042 (2022).
+19. H. Price, Does time-symmetry imply retrocausality? How the quantum world says yes, Studies in History and Philosophy of Modern Physics 43, 75 (2012).
+20. M. S. Leifer and M. F. Pusey, Is a time symmetric interpretation of quantum theory possible without retrocausality?, Proceedings of the Royal Society A 473, 20160607 (2017).
+21. T. Maudlin, A tale of two tensors, or, how not to argue for retrocausality, preprint (2017).
+22. E. Specker, Die Logik nicht gleichzeitig entscheidbarer Aussagen, Dialectica 14, 239 (1960).
+23. H. Dourdent, A. Leitherer, E.-C. Boghiu, K. Simonov, R. Kunjwal and A. Acín, What makes a causal loop consistent?, arXiv:2609.39735 (2026).
+24. N. Daher Ahmed and R. Kunjwal, Characterizing unitaries via quasi-process functions, arXiv:2610.00579 (2026).
+25. J. Faye, Backward causation, Stanford Encyclopedia of Philosophy, substantive revision 28 October 2025.
+26. L. M. Tolksdorf and R. Verch, Quantum physics, fields and closed timelike curves, Communications in Mathematical Physics 357, 319 (2018).
