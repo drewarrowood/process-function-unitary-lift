@@ -1,0 +1,62 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Times-Roman >>
+endobj
+2 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Times-Bold >>
+endobj
+3 0 obj
+<< /Length 1469 >>
+stream
+BT
+/F1 11 Tf
+/F2 14 Tf 72 740 Td (Long version) Tj
+0 -22 Td /F1 11 Tf
+(Every process function lifts to a unitary process) Tj
+0 -15 Td
+(Draft note. Foundations of Physics style. Not a submission.) Tj
+0 -15 Td
+() Tj
+0 -15 Td
+(Abstract. A process function is a classical map from the) Tj
+0 -15 Td
+(outputs of several parties to their inputs such that every) Tj
+0 -15 Td
+(choice of local deterministic interventions has exactly one) Tj
+0 -15 Td
+(fixed point. Baumeler, Costa, Ralph, Wolf and Zych showed) Tj
+0 -15 Td
+(that every process function extends to a bijection by adding) Tj
+0 -15 Td
+(a source and a sink, and left open whether that bijection) Tj
+0 -15 Td
+(quantizes. Daher Ahmed and Kunjwal conjectured that it does.) Tj
+0 -15 Td
+(This note argues that it does. The dilation is the permutation) Tj
+0 -15 Td
+(unitary of the source-and-sink extension. If two output strings) Tj
+0 -15 Td
+(differ, some party disagrees in the output bit and agrees in) Tj
+0 -15 Td
+(the function value. That party kills the off-diagonal of the) Tj
+0 -15 Td
+(source-to-sink gram matrix by row orthogonality. Local) Tj
+0 -15 Td
+(instruments then induce a completely positive trace-preserving) Tj
+0 -15 Td
+(map. Fixing the source at the identity recovers the function.) Tj
+0 -15 Td
+(Consistency, in the fixed-point sense, is already a quantization) Tj
+0 -15 Td
+(condition. It does not have to be imposed again as a measure-zero) Tj
+0 -15 Td
+(axiom on paradoxical histories.) Tj
+0 -15 Td
+ET
+endstream
+endobj
+trailer
+<< /Size 2 /Root 1 0 R >>
+startxref
+0
+%%EOF
