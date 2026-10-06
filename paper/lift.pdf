@@ -1,0 +1,146 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Count 2 /Kids [4 0 R 6 0 R] >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Times-Roman >>
+endobj
+4 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 5 0 R /Resources << /Font << /F1 3 0 R >> >> >>
+endobj
+5 0 obj
+<< /Length 3283 >>
+stream
+BT
+/F1 11 Tf
+54 740 Td
+14 TL
+(Every process function lifts to a unitary process) Tj
+T* (Draft note. Foundations of Physics style. Not a submission.) Tj
+T* () Tj
+T* (Abstract. A process function is a classical map from the outputs of) Tj
+T* (several parties to their inputs such that every local deterministic) Tj
+T* (intervention has exactly one fixed point. Baumeler, Costa, Ralph, Wolf) Tj
+T* (and Zych showed that every such map extends to a bijection by adding a) Tj
+T* (source and a sink, and left open whether the bijection quantizes to a) Tj
+T* (valid unitary process. Daher Ahmed and Kunjwal conjectured that it does.) Tj
+T* (This note argues that it does. The dilation is the permutation unitary) Tj
+T* (of the source-and-sink extension. A process function cannot have two) Tj
+T* (distinct strings that agree on the process output wherever they disagree) Tj
+T* (as strings. That pair is exactly the off-diagonal the contraction needs) Tj
+T* (to kill. Local instruments then induce a CPTP map by Stinespring.) Tj
+T* (Consistency, in the fixed-point sense, is already a quantization) Tj
+T* (condition. It does not have to be imposed again as a measure-zero axiom.) Tj
+T* () Tj
+T* (1. The philosophical problem) Tj
+T* (Backward causation has never been short of paradoxes. It has been short) Tj
+T* (of a criterion that says which loops are admissible without putting the) Tj
+T* (answer in by hand. Black's bilking argument, the grandfather paradox,) Tj
+T* (and the bootstrap are the standard cases. Lewis's contextual can,) Tj
+T* (Novikov's self-consistency principle, and the Greenberger-Svozil) Tj
+T* (cancellation all exclude the bad case. None derives the exclusion from) Tj
+T* (the structure of the loop. The process-function clause does. No fixed) Tj
+T* (point is the grandfather case. More than one is the bootstrap. Dourdent) Tj
+T* (et al. \(2026\) say the same thing as a complete pairwise-exclusive event) Tj
+T* (list. Cyclic causation is allowed. Cyclic signaling is not. The Lugano) Tj
+T* (function is the witness. The twelve binary two-party process functions) Tj
+T* (are all causally ordered.) Tj
+T* () Tj
+T* (2. Why quantization is the next question) Tj
+T* (Deutsch's density-operator fixed point always exists in finite dimension) Tj
+T* (and is not diagnostic of a loop. Post-selection simulates the event list) Tj
+T* (and is not an embedding. The good demand is unitarity of a dilation.) Tj
+T* (The 2019 extension is i = w\(o\) + e, s = o. A bijection is a permutation) Tj
+T* (unitary. The open question is whether parties may insert arbitrary) Tj
+T* (quantum instruments and still induce a CPTP map from source to sink.) Tj
+T* (If the lift holds, the fixed-point clause was already the quantum) Tj
+T* (condition. The source and the sink are the boundary of the loop.) Tj
+T* (Reversibility is the inverse reading, not the demand that w be an) Tj
+T* (involution on its own alphabet.) Tj
+T* () Tj
+T* (3. Time symmetry, and what this does not settle) Tj
+T* (Price, and Leifer and Pusey, argue that a time-symmetric ontology that) Tj
+T* (keeps lambda-mediation cannot refuse influences depending on later) Tj
+T* (settings, because sequential measurements violate a timelike Bell) Tj
+T* (inequality. This lift is adjacent to that no-go, not a solution of it.) Tj
+ET
+endstream
+endobj
+6 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 7 0 R /Resources << /Font << /F1 3 0 R >> >> >>
+endobj
+7 0 obj
+<< /Length 2770 >>
+stream
+BT
+/F1 11 Tf
+54 740 Td
+14 TL
+(A causal-inequality-violating process function already has each input) Tj
+T* (depending on another output. The dilation keeps that dependence. It does) Tj
+T* (not embed the process in a spacetime. The wormhole billiard has data of) Tj
+T* (multiplicity other than one. A process function needs multiplicity one) Tj
+T* (for every intervention. Freedom is also not settled: unique completion) Tj
+T* (is not openness of the choice.) Tj
+T* () Tj
+T* (4. The lemma) Tj
+T* (If w is a process function and s differs from s', some party k has) Tj
+T* (s_k different from s'_k and w_k\(s\) = w_k\(s'\). Otherwise a local) Tj
+T* (function can be defined that fixes both strings. A process function) Tj
+T* (cannot have two fixed points. The forbidden pair is the pair that would) Tj
+T* (make the quantum contraction fail.) Tj
+T* () Tj
+T* (5. The lift) Tj
+T* (U|o, e> = |w\(o\)+e, o>. For local unitaries, possibly on an ancilla, the) Tj
+T* (source-to-sink operator is unitary. Off the diagonal the lemma supplies) Tj
+T* (a party at which the shift vanishes and the sink bits differ, so that) Tj
+T* (factor is an inner product of distinct rows and vanishes. Instruments) Tj
+T* (follow by Stinespring. The swap and the identity loop fail the lemma,) Tj
+T* (and their dilations are not trace-preserving.) Tj
+T* () Tj
+T* (6. What is interesting if the lemma stands) Tj
+T* (The reason the function lifts is the same reason it was consistent. The) Tj
+T* (forbidden double fixed point is the forbidden off-diagonal. Only) Tj
+T* (consistent loops occur can mean a filter on solutions, a post-selection,) Tj
+T* (or a definition of the admitted set that is already closed under quantum) Tj
+T* (instruments. The third reading is the one this argument supports.) Tj
+T* () Tj
+T* (7. What the argument does not do) Tj
+T* (It does not embed the process in a spacetime. It does not say the bare) Tj
+T* (function is an involution. It is not kernel-checked. The combinatorial) Tj
+T* (lemma is the piece an attacker has to break.) Tj
+T* () Tj
+T* (References) Tj
+T* (Baumeler and Wolf, New J. Phys. 18, 013036 \(2016\).) Tj
+T* (Baumeler, Costa, Ralph, Wolf, Zych, Class. Quantum Grav. 36, 224002 \(2019\).) Tj
+T* (Araujo, Feix, Navascues, Brukner, Quantum 1, 10 \(2017\).) Tj
+T* (Vanrietvelde, Ormrod, Kristjansson, Barrett, arXiv:2206.10042.) Tj
+T* (Dourdent et al., arXiv:2609.39735 \(2026\).) Tj
+T* (Daher Ahmed and Kunjwal, arXiv:2610.00579 \(2026\).) Tj
+T* (Friedman et al., Phys. Rev. D 42, 1915 \(1990\).) Tj
+T* (Leifer and Pusey, Proc. R. Soc. A 473, 20160607 \(2017\).) Tj
+T* (Lewis, American Philosophical Quarterly 13, 145 \(1976\).) Tj
+T* (Black, Analysis 16, 49 \(1956\).) Tj
+T* () Tj
+T* (Repository: github.com/drewarrowood/process-function-unitary-lift) Tj
+ET
+endstream
+endobj
+xref
+0 8
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000121 00000 n 
+0000000193 00000 n 
+0000000319 00000 n 
+0000003654 00000 n 
+0000003780 00000 n 
+trailer
+<< /Size 8 /Root 1 0 R >>
+startxref
+6602
+%%EOF
