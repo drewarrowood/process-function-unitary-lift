@@ -1,62 +1,51 @@
 %PDF-1.4
 1 0 obj
-<< /Type /Font /Subtype /Type1 /BaseFont /Times-Roman >>
+<< /Type /Catalog /Pages 2 0 R >>
 endobj
 2 0 obj
-<< /Type /Font /Subtype /Type1 /BaseFont /Times-Bold >>
+<< /Type /Pages /Count 4 /Kids [3 0 R 5 0 R 7 0 R 9 0 R] >>
 endobj
 3 0 obj
-<< /Length 1469 >>
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 11 0 R /F2 12 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 3710 >>
 stream
 BT
-/F1 11 Tf
-/F2 14 Tf 72 740 Td (Long version) Tj
-0 -22 Td /F1 11 Tf
-(Every process function lifts to a unitary process) Tj
-0 -15 Td
-(Draft note. Foundations of Physics style. Not a submission.) Tj
-0 -15 Td
-() Tj
-0 -15 Td
-(Abstract. A process function is a classical map from the) Tj
-0 -15 Td
-(outputs of several parties to their inputs such that every) Tj
-0 -15 Td
-(choice of local deterministic interventions has exactly one) Tj
-0 -15 Td
-(fixed point. Baumeler, Costa, Ralph, Wolf and Zych showed) Tj
-0 -15 Td
-(that every process function extends to a bijection by adding) Tj
-0 -15 Td
-(a source and a sink, and left open whether that bijection) Tj
-0 -15 Td
-(quantizes. Daher Ahmed and Kunjwal conjectured that it does.) Tj
-0 -15 Td
-(This note argues that it does. The dilation is the permutation) Tj
-0 -15 Td
-(unitary of the source-and-sink extension. If two output strings) Tj
-0 -15 Td
-(differ, some party disagrees in the output bit and agrees in) Tj
-0 -15 Td
-(the function value. That party kills the off-diagonal of the) Tj
-0 -15 Td
-(source-to-sink gram matrix by row orthogonality. Local) Tj
-0 -15 Td
-(instruments then induce a completely positive trace-preserving) Tj
-0 -15 Td
-(map. Fixing the source at the identity recovers the function.) Tj
-0 -15 Td
-(Consistency, in the fixed-point sense, is already a quantization) Tj
-0 -15 Td
-(condition. It does not have to be imposed again as a measure-zero) Tj
-0 -15 Td
-(axiom on paradoxical histories.) Tj
-0 -15 Td
+/F2 12 Tf 1 0 0 1 54 750 Tm (Long version) Tj
+/F2 12 Tf 1 0 0 1 54 728 Tm (Every process function lifts to a unitary process) Tj
+/F1 10 Tf 1 0 0 1 54 706 Tm (Draft note. Foundations of Physics style. Not a submission.) Tj
+/F1 10 Tf 1 0 0 1 54 668 Tm (Abstract. A process function is a classical map from the outputs of several parties to) Tj
+/F1 10 Tf 1 0 0 1 54 654 Tm (their inputs such that every choice of local deterministic interventions has exactly) Tj
+/F1 10 Tf 1 0 0 1 54 640 Tm (one fixed point. Baumeler, Costa, Ralph, Wolf and Zych showed that every process) Tj
+/F1 10 Tf 1 0 0 1 54 626 Tm (function extends to a bijection by adding a source and a sink, and left open whether) Tj
+/F1 10 Tf 1 0 0 1 54 612 Tm (that bijection quantizes to a valid unitary process. Daher Ahmed and Kunjwal) Tj
+/F1 10 Tf 1 0 0 1 54 598 Tm (conjectured that it does. This note argues that it does. The dilation is the) Tj
+/F1 10 Tf 1 0 0 1 54 584 Tm (permutation unitary of the source-and-sink extension. If two output strings differ,) Tj
+/F1 10 Tf 1 0 0 1 54 570 Tm (some party disagrees in the output bit and agrees in the function value. That party) Tj
+/F1 10 Tf 1 0 0 1 54 556 Tm (kills the off-diagonal of the source-to-sink gram matrix by row orthogonality. Local) Tj
+/F1 10 Tf 1 0 0 1 54 542 Tm (instruments then induce a completely positive trace-preserving map. Fixing the source) Tj
+/F1 10 Tf 1 0 0 1 54 528 Tm (at the identity recovers the function. Consistency, in the fixed-point sense, is) Tj
+/F1 10 Tf 1 0 0 1 54 514 Tm (already a quantization condition. It does not have to be imposed again as a) Tj
+/F1 10 Tf 1 0 0 1 54 500 Tm (measure-zero axiom on paradoxical histories.) Tj
+/F2 12 Tf 1 0 0 1 54 478 Tm (1. Backward causation, before the formalism) Tj
+/F1 10 Tf 1 0 0 1 54 456 Tm (The linguistic objection is that a cause is earlier than its effect by definition.) Tj
+/F1 10 Tf 1 0 0 1 54 442 Tm (Dummett \(1954, 1964\) argued that this is a stipulation about the word, not a discovery) Tj
+/F1 10 Tf 1 0 0 1 54 428 Tm (about the world. Black's bilking argument \(1956\) is the better objection. If an) Tj
+/F1 10 Tf 1 0 0 1 54 414 Tm (earlier event is the effect of a later one, an agent who sees the earlier event can) Tj
+/F1 10 Tf 1 0 0 1 54 400 Tm (intervene to prevent the later one. Either the agent cannot intervene, which wants an) Tj
+/F1 10 Tf 1 0 0 1 54 386 Tm (explanation, or the later event was not necessary for the earlier one. Lewis \(1976\)) Tj
+/F1 10 Tf 1 0 0 1 54 372 Tm (splits the modal: one can, relative to the local facts and the laws, and one cannot,) Tj
+/F1 10 Tf 1 0 0 1 54 358 Tm (relative to the whole past. That dissolves a verbal paradox. It does not say which) Tj
+/F1 10 Tf 1 0 0 1 54 344 Tm (histories the laws admit.) Tj
+/F1 10 Tf 1 0 0 1 54 322 Tm (General relativity makes the question physical. Godel's 1949 solution has closed) Tj
+/F1 10 Tf 1 0 0 1 54 308 Tm (timelike curves. Morris, Thorne and Yurtsever \(1988\) showed that a traversable) Tj
+/F1 10 Tf 1 0 0 1 54 294 Tm (wormhole, if held open, can be converted into a time machine by relative motion of the) Tj
+/F1 10 Tf 1 0 0 1 54 280 Tm (mouths. Friedman, Morris, Novikov, Thorne and collaborators \(1990\) proposed that only) Tj
+/F1 10 Tf 1 0 0 1 54 266 Tm (self-consistent solutions occur. Echeverria, Klinkhammer and Thorne \(1991\) integrated) Tj
+/F1 10 Tf 1 0 0 1 54 252 Tm (the hard-sphere billiard and found data with one continuation, data with two, and data) Tj
+/F1 10 Tf 1 0 0 1 54 238 Tm (with none apparent. Carlini, Frolov, Mensky, Novikov and Solodukhin \(1995\) derived a) Tj
+/F1 10 Tf 1 0 0 1 54 224 Tm (version of self-consistency from stationarity of the action, and found the same) Tj
 ET
 endstream
 endobj
-trailer
-<< /Size 2 /Root 1 0 R >>
-startxref
-0
-%%EOF
