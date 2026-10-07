@@ -1,24 +1,16 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><title>Unique completion as a quantization condition</title>
-<style>body{font-family:Georgia,serif;max-width:42rem;margin:2rem auto;padding:0 1rem 3rem;line-height:1.55}a{color:#1a1a1a}h1{font-size:1.45rem}h2{font-size:1.1rem;margin-top:1.6rem}.eq{text-align:center;font-family:Times,serif}</style></head><body>
+<style>body{font-family:Georgia,serif;max-width:42rem;margin:2rem auto;padding:0 1rem 3rem;line-height:1.55}a{color:#1a1a1a}h1{font-size:1.4rem}h2{font-size:1.1rem;margin-top:1.5rem}.eq{text-align:center}</style></head><body>
 <p>Draft. Not a preprint.</p>
 <h1>Unique completion as a quantization condition</h1>
 <p>Process functions, a unitary lift, and what is not a metric.</p>
-<p><strong>Lean, the kernel-checked half:</strong> <a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/Full.lean">lean/Full.lean</a>. The disagreement lemma and the bit bijection are there. <a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/Cancel.lean">lean/Cancel.lean</a> is the cancellation on bits. <a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/Gaps.lean">lean/Gaps.lean</a> records what was not checked. Directory: <a href="https://github.com/drewarrowood/process-function-unitary-lift/tree/main/lean">lean/</a>.</p>
-<h2>What is shown</h2>
-<p>Shown, Lean 4.34.1: if a process function sends two distinct output strings, some party disagrees in the output and agrees in the function value. On bits the source-and-sink map is a bijection, both ways. Lugano has one fixed point for every binary intervention. The identity loop and the three-cycle do not.</p>
-<p>Written, not kernel-checked: the gram matrix of the source-to-sink operator is the identity against complex local unitaries. Instruments follow by Stinespring. Not claimed: a metric for Lugano.</p>
-<h2>The equations</h2>
+<p><strong>Lean:</strong> <a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/Full.lean">lean/Full.lean</a> (disagreement lemma and the bit bijection). <a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/Cancel.lean">lean/Cancel.lean</a>. <a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/Gaps.lean">lean/Gaps.lean</a> is what was not checked. Directory: <a href="https://github.com/drewarrowood/process-function-unitary-lift/tree/main/lean">lean/</a>.</p>
+<h2>Claim</h2>
+<p>Shown: if a process function sends two distinct output strings, some party disagrees in the output and agrees in the function value. On bits the source-and-sink map is a bijection. Written, not kernel-checked: the gram identity. Not claimed: a metric for Lugano.</p>
 <p class="eq">o = f(w(o)).</p>
-<p>No solution is the grandfather case. Two solutions is the bootstrap. The map is a process function when every intervention has exactly one solution. The clause can be failed. The identity loop fails it. The swap fails it. Faye's Stanford entry, revised 28 October 2025, still treats a stipulation that only consistent loops occur as not an answer. This clause can be failed from inside the theory.</p>
 <p class="eq">w(a, b, c) = (not b and c, not c and a, not a and b).</p>
-<p>Lugano. Each input depends on the other two outputs. The image has four elements out of eight, so the map is two-to-one.</p>
-<p class="eq">(o, e) maps to (w(o) XOR e, o).</p>
-<p class="eq">(i, s) maps to (s, i XOR w(s)).</p>
-<p>Both compositions are the identity on bits. That is the check in Full.lean. A finite bijection is a permutation unitary. That is representation, not yet a quantum process.</p>
-<h2>The contraction</h2>
-<p>If s differs from s', some party disagrees in the output and agrees in the function value. Otherwise one local function fixes both strings. The shift is delta_k = w_k(s') XOR w_k(s). The gram entry factors. On the diagonal every shift vanishes. Off the diagonal the witness party contributes the inner product of two distinct rows, which is zero. So M M-dagger = I. This identification is written. It is not in the Lean file.</p>
-<h2>Embeddability</h2>
-<p>Channels embed as free propagation. Lugano violates a causal inequality, so no mixture of definite orders embeds it if the settings are free. The billiard has the wrong multiplicity. A source and a sink are extra regions, not a throat.</p>
-<p>Repository: <a href="https://github.com/drewarrowood/process-function-unitary-lift">drewarrowood/process-function-unitary-lift</a>. Lean: <a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/Full.lean">https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/Full.lean</a>.</p>
+<p class="eq">(o, e) maps to (w(o) XOR e, o). The inverse sends (i, s) to (s, i XOR w(s)).</p>
+<p>Both compositions are the identity on bits. That is the check in Full.lean. The shift is delta_k = w_k(s') XOR w_k(s). The witness party kills the off-diagonal. So M M-dagger = I, written, not kernel-checked.</p>
+<p>Channels embed as free propagation. Lugano has no such wiring. The billiard has the wrong multiplicity.</p>
+<p>Repository: <a href="https://github.com/drewarrowood/process-function-unitary-lift">drewarrowood/process-function-unitary-lift</a>.</p>
 </body></html>
