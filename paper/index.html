@@ -1,16 +1,52 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><title>Unique completion as a quantization condition</title>
-<style>body{font-family:Georgia,serif;max-width:42rem;margin:2rem auto;padding:0 1rem 3rem;line-height:1.55}a{color:#1a1a1a}h1{font-size:1.4rem}h2{font-size:1.1rem;margin-top:1.5rem}.eq{text-align:center}</style></head><body>
+<style>
+body{font-family:Palatino,Georgia,serif;max-width:40rem;margin:2.2rem auto;padding:0 1.2rem 4rem;line-height:1.6;color:#1a1a1a;font-size:1.05rem}
+h1{font-size:1.55rem;line-height:1.25}h2{font-size:1.15rem;margin-top:1.8rem}
+.eq{margin:.9rem 0;text-align:center;font-family:Times,serif;font-size:1.08rem}
+a{color:#1a1a1a}
+</style></head><body>
 <p>Draft. Not a preprint.</p>
 <h1>Unique completion as a quantization condition</h1>
 <p>Process functions, a unitary lift, and what is not a metric.</p>
-<p><strong>Lean:</strong> <a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/Full.lean">lean/Full.lean</a> (disagreement lemma and the bit bijection). <a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/Cancel.lean">lean/Cancel.lean</a>. <a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/Gaps.lean">lean/Gaps.lean</a> is what was not checked. Directory: <a href="https://github.com/drewarrowood/process-function-unitary-lift/tree/main/lean">lean/</a>.</p>
-<h2>Claim</h2>
-<p>Shown: if a process function sends two distinct output strings, some party disagrees in the output and agrees in the function value. On bits the source-and-sink map is a bijection. Written, not kernel-checked: the gram identity. Not claimed: a metric for Lugano.</p>
+<p>The kernel-checked half is <a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/Full.lean">lean/Full.lean</a>. What was not checked is <a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/Gaps.lean">lean/Gaps.lean</a>. The repository is <a href="https://github.com/drewarrowood/process-function-unitary-lift">drewarrowood/process-function-unitary-lift</a>.</p>
+
+<h2>1. What is shown</h2>
+<p>Shown, in Lean 4.34.1. If a process function sends two distinct output strings, some party disagrees in the output and agrees in the function value. On bits, the source-and-sink map is a bijection, and both compositions with the inverse are the identity. Lugano has one fixed point for every binary intervention. The identity loop and the three-cycle do not.</p>
+<p>Written, and not kernel-checked. The gram matrix of the source-to-sink operator is the identity against local unitaries. Instruments follow by Stinespring, cited and not formalised.</p>
+<p>Not claimed. A metric for Lugano. An answer to Leifer and Pusey. A settlement of freedom.</p>
+
+<h2>2. Why the clause is not a stipulation</h2>
+<p>Dummett set the dictionary objection aside. A stipulation about the word cause is not a discovery. Black's bilking argument is the one that survives: an agent who has seen the earlier event can try to prevent the later one. Lewis splits the modal and does not select the histories. Horwich asks a theory to say what happens to the intervention. Faye's Stanford entry, revised 28 October 2025, still treats the consistency paradoxes as unresolved, because a logic of loops has to block the empty case and the overfull case without stipulating that only consistent loops occur.</p>
+<p>The empty case is the grandfather paradox. The overfull case is the bootstrap. Novikov's principle refuses the first after the fact and leaves the second as a multiplicity. A uniqueness clause blocks both, and it can be failed. The identity loop fails it. The swap fails it. A rider that assigns inconsistent solutions measure zero cannot be failed from inside the theory.</p>
+
+<h2>3. The objects</h2>
 <p class="eq">o = f(w(o)).</p>
+<p>The output string is what the parties emit when they receive the inputs the process returns. No solution is the grandfather case. Two solutions is the bootstrap. A process function is a map for which every local intervention has exactly one solution. Bilking is not forbidden as an action. It is constrained as a solution. That is the no-new-physics principle: an operation possible in an ordinary region remains possible.</p>
 <p class="eq">w(a, b, c) = (not b and c, not c and a, not a and b).</p>
-<p class="eq">(o, e) maps to (w(o) XOR e, o). The inverse sends (i, s) to (s, i XOR w(s)).</p>
-<p>Both compositions are the identity on bits. That is the check in Full.lean. The shift is delta_k = w_k(s') XOR w_k(s). The witness party kills the off-diagonal. So M M-dagger = I, written, not kernel-checked.</p>
-<p>Channels embed as free propagation. Lugano has no such wiring. The billiard has the wrong multiplicity.</p>
-<p>Repository: <a href="https://github.com/drewarrowood/process-function-unitary-lift">drewarrowood/process-function-unitary-lift</a>.</p>
+<p>Lugano. Each input depends on the other two outputs. All sixty-four binary interventions have one fixed point. The image has four elements out of eight, so the map is two-to-one. Of 256 binary two-party maps, twelve are process functions and none is a cycle. A classical violation of a causal inequality needs three parties, so every two-party process function is a channel.</p>
+<p class="eq">(o, e) maps to (w(o) XOR e, o).</p>
+<p class="eq">(i, s) maps to (s, i XOR w(s)).</p>
+<p>The source shifts the input the process would have returned. The sink records the output. On bits, exclusive or cancels, so both compositions are the identity. That is the check in Full.lean. The check does not use the process-function clause. Any function extends to a bijection in this way. A finite bijection is a permutation unitary. That is representation, not yet a quantum process. The 2019 paper of Baumeler, Costa, Ralph, Wolf and Zych is the general classical case. They left the quantum step open.</p>
+
+<h2>4. The lemma</h2>
+<p>If s differs from s', some party disagrees in the output and agrees in the function value. Otherwise the local function that sends w_k(s) to s_k and w_k(s') to s'_k is well defined, and both strings solve the fixed-point equation for that one intervention. The swap fails the lemma the other way: under exchange, negation fixes both (0, 1) and (1, 0). Lean accepted the construction for bits and for a general finite alphabet. Free choice is the licence for that function.</p>
+
+<h2>5. The contraction</h2>
+<p>Contract the extension with a local unitary at each party. The amplitude is the product, over parties, of the amplitude for that unitary to take the shifted source symbol to the sink symbol. Change variables by exclusive or with the function value. The shift is</p>
+<p class="eq">delta_k = w_k(s') XOR w_k(s).</p>
+<p>The gram entry factors. On the diagonal every shift vanishes and each factor is a row norm, hence 1. Off the diagonal the lemma supplies a party with shift zero and distinct rows. That factor is the inner product of two distinct rows of a unitary, and vanishes. So</p>
+<p class="eq">M M-dagger = I.</p>
+<p>Unitarity of the local operators keeps the diagonal. The process-function clause kills the off-diagonal. This identification was not kernel-checked. A local instrument is a unitary on an ancilla followed by a partial trace. Fixing the source at zero recovers w. If the identity stands, every classical deterministic process function purifies to a unitary process, and the dilation is the source-and-sink permutation itself. Daher Ahmed and Kunjwal conjectured the lift and proved it under two sufficient conditions that are not necessary. The written step does not use those conditions. Araujo, Feix, Navascues and Brukner quantized Lugano in 2017. That is one function. The sketch is a universal quantifier, conditional on the contraction.</p>
+
+<h2>6. What is not a metric</h2>
+<p>The billiard of Echeverria, Klinkhammer and Thorne is a local Hamiltonian and has the wrong multiplicity: one continuation, two, or none. It is not an embedding of Lugano. Post-selection makes the event list appear in the runs that survive. That is a simulation. The bijection is reversibility. A Lorentzian embedding would be a local flow on a fixed metric with one solution for every intervention. Only that is the gap.</p>
+<p>A channel embeds as free propagation: the later input is a function of the earlier output, and the earlier input does not depend on the later output. Lugano violates a causal inequality, so no mixture of definite orders embeds it if the settings are free. A source and a sink are extra regions, not a throat. Dourdent and collaborators leave the physical side open. This note does the same.</p>
+
+<h2>7. Adjacent</h2>
+<p>Price, Leifer and Pusey, and Maudlin are adjacent. A cycle drops an operational screening condition. It does not choose an ontology, and it does not answer the no-go. Freedom is assumed, as a quantification over local functions, and not derived. Unique completion is not an open choice.</p>
+
+<h2>References</h2>
+<p>Dummett, Aristotelian Society Supplementary Volume 28, 27 (1954); Philosophical Review 73, 338 (1964). Black, Analysis 16, 49 (1956). Lewis, American Philosophical Quarterly 13, 145 (1976). Horwich, Asymmetries in Time (MIT Press, 1987). Faye, Backward Causation, Stanford Encyclopedia of Philosophy, rev. 28 October 2025. Godel, Reviews of Modern Physics 21, 447 (1949). Morris, Thorne and Yurtsever, Physical Review Letters 61, 1446 (1988). Friedman et al., Physical Review D 42, 1915 (1990). Echeverria, Klinkhammer and Thorne, Physical Review D 44, 1077 (1991). Earman, Bangs, Crunches, Whimpers, and Shrieks (Oxford, 1995). Deutsch, Physical Review D 44, 3197 (1991). Lloyd et al., Physical Review Letters 106, 040403 (2011). Baumeler and Wolf, New Journal of Physics 18, 013036 (2016). Baumeler, Costa, Ralph, Wolf and Zych, Classical and Quantum Gravity 36, 224002 (2019). Araujo, Feix, Navascues and Brukner, Quantum 1, 10 (2017). Dourdent et al., arXiv:2609.39735 (2026). Daher Ahmed and Kunjwal, arXiv:2610.00579 (2026). Leifer and Pusey, Proceedings of the Royal Society A 473, 20160607 (2017). Stinespring, Proceedings of the American Mathematical Society 6, 211 (1955).</p>
+<p>Lean: <a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/Full.lean">https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/Full.lean</a></p>
 </body></html>
