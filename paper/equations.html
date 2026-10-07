@@ -1,35 +1,81 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8"><title>Every process function lifts to a unitary process</title>
-<style>body{font-family:Georgia,serif;max-width:44rem;margin:2rem auto;padding:0 1.2rem 4rem;line-height:1.58}h1{font-size:1.5rem}h2{font-size:1.12rem;margin-top:1.7rem}.eq{margin:1rem 0;text-align:center;font-family:Times,serif;font-size:1.12rem}.box{background:#f6f5f2;padding:.7rem 1rem}</style></head><body>
-<p>Draft. Equations match the notation of the paper: additive group law, fixed point in the output, source on the right.</p>
-<h1>Every process function lifts to a unitary process</h1>
-<p>The displays below are the equations of the proof sketch, not a second notation.</p>
-<h2>Fixed point</h2>
-<p>An intervention is a tuple of local functions. The fixed point is an output string.</p>
-<p class="eq">o = f(w(o)).</p>
-<p>The map w is a process function when every f has exactly one solution o.</p>
-<h2>Lugano</h2>
-<p class="eq">w(a, b, c) = (¬b ∧ c, &nbsp; ¬c ∧ a, &nbsp; ¬a ∧ b).</p>
-<p>As in the paper. On bits the image has four elements out of eight.</p>
-<h2>Extension</h2>
-<p>As in the paper. The sum is the group law. On bits it is exclusive or, and plus and minus agree.</p>
-<p class="eq">U |o, e⟩ = |w(o) + e, &nbsp; o⟩.</p>
-<p class="eq">U<sup>−1</sup> |i, s⟩ = |s, &nbsp; i − w(s)⟩.</p>
-<p>Both compositions are the identity on bits. That is the kernel check. The 2019 paper has the general classical case.</p>
-<h2>Lemma</h2>
-<div class="box"><p>If w is a process function and s ≠ s', some party k has s<sub>k</sub> ≠ s'<sub>k</sub> and w<sub>k</sub>(s) = w<sub>k</sub>(s').</p></div>
-<p>The local function used in the proof is the one in the paper:</p>
-<p class="eq">f<sub>k</sub>(w<sub>k</sub>(s)) = s<sub>k</sub>, &nbsp; f<sub>k</sub>(w<sub>k</sub>(s')) = s'<sub>k</sub>,</p>
-<p>and arbitrary off those symbols. Then f(w(s)) = s and f(w(s')) = s'.</p>
-<h2>Contraction</h2>
-<p>The amplitude in the paper, with the same shift:</p>
-<p class="eq">M<sub>s,e</sub> = ∏<sub>k</sub> ⟨s<sub>k</sub>| V<sub>k</sub> |w<sub>k</sub>(s) + e<sub>k</sub>⟩.</p>
-<p class="eq">δ<sub>k</sub> = w<sub>k</sub>(s') − w<sub>k</sub>(s).</p>
-<p class="eq">(MM†)<sub>s,s'</sub> = ∏<sub>k</sub> ∑<sub>i</sub> ⟨s<sub>k</sub>| V<sub>k</sub> |i⟩ ⟨i + δ<sub>k</sub>| V<sub>k</sub>† |s'<sub>k</sub>⟩.</p>
-<p class="eq">MM† = I.</p>
-<p>On the diagonal every δ<sub>k</sub> vanishes and each factor is a row norm. Off the diagonal the lemma supplies a party with δ<sub>k</sub> = 0 and s<sub>k</sub> ≠ s'<sub>k</sub>, so that factor is zero. This identification is written, not kernel-checked. Fixing the source at the identity recovers w.</p>
-<h2>Channel, the case that embeds</h2>
-<p class="eq">i<sub>B</sub> = w(o<sub>A</sub>), &nbsp; i<sub>A</sub> independent of o<sub>B</sub>.</p>
-<p>Or the reverse. This is the ordered case in the paper. Lugano has no such wiring.</p>
-<p>Rendered: <a href="https://htmlpreview.github.io/?https://github.com/drewarrowood/process-function-unitary-lift/blob/main/paper/equations.html">htmlpreview of paper/equations.html</a>. Paper: <a href="https://htmlpreview.github.io/?https://github.com/drewarrowood/process-function-unitary-lift/blob/main/paper/long.html">htmlpreview of paper/long.html</a>.</p>
-</body></html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Unique completion and the unitary lift</title>
+<style>
+body{font-family:Palatino,Georgia,serif;max-width:44rem;margin:2rem auto;padding:0 1.3rem 4rem;line-height:1.62;color:#1a1a1a;font-size:1.05rem}
+h1{font-size:1.7rem;line-height:1.25}h2{font-size:1.22rem;margin-top:2rem}
+.kicker{font-variant:small-caps;letter-spacing:.05em;font-size:.82rem}
+.eq{margin:1.15rem 1.5rem;text-align:center;font-family:Times,serif;font-size:1.15rem;line-height:1.5}
+.num{float:right;font-family:Palatino,Georgia,serif;font-size:.95rem}
+ol.refs{padding-left:1.2rem}ol.refs li{margin:.35rem 0;font-size:.95rem}
+.box{background:#f7f6f3;padding:.8rem 1rem;margin:1rem 0}p{text-align:justify}a{color:#1a1a1a}
+</style>
+</head>
+<body>
+<p class="kicker">Draft &middot; equations aligned with the proof sketch</p>
+<h1>Unique completion, the unitary lift, and what is not a metric</h1>
+<p>The displays use the notation of the sketch: exclusive or, the fixed point in the output, and the source-and-sink pair. No external script.</p>
+
+<h2>1. Register</h2>
+<p>Claim A is checked. On bits, a process function cannot send two distinct output strings that agree in the function wherever they differ, and the source-and-sink extension is a bijection. Lean 4.34.1 accepted both in <code>lean/Full.lean</code>.</p>
+<p>Claim B is written. That witness is the cancellation in the source-to-sink gram matrix. Instruments follow by Stinespring, cited and not formalised.</p>
+<p>Claim C is a split. Ordered process functions embed as channels. The cyclic case has a simulation and a reversible extension, and no known local Hamiltonian on a wormhole whose solutions are exactly its fixed points.</p>
+
+<h2>2. The objects, in the paper's notation</h2>
+<p>A process function <em>w</em> sends an output string to an input string. An intervention <em>f</em> is a tuple of local functions from a party's input to that party's output. The fixed point is in the output:</p>
+<p class="eq">o = f(w(o)). <span class="num">(1)</span></p>
+<p><em>w</em> is a process function when every <em>f</em> has exactly one solution of (1).</p>
+<p>The Lugano function, the three-party witness, is</p>
+<p class="eq">w(a, b, c) = (&not;b &and; c, &not;c &and; a, &not;a &and; b). <span class="num">(2)</span></p>
+<p>Each input depends on the other two outputs. The image has four elements out of eight, so (2) is two-to-one. Reversibility is not free on those three bits.</p>
+<p>The source-and-sink extension, the map Lean checked, is</p>
+<p class="eq">(o, e) &#8614; (w(o) XOR e, o). <span class="num">(3)</span></p>
+<p>The inverse, also checked, is</p>
+<p class="eq">(i, s) &#8614; (s, i XOR w(s)). <span class="num">(4)</span></p>
+<p>On bits, XOR cancels, so (4) after (3) and (3) after (4) are the identity. A finite bijection is a permutation unitary on the computational basis. That is representation, not yet a quantum process. The ket form U|o, e&#10217; = |w(o) &oplus; e, o&#10217; is the same map as (3), written on the basis.</p>
+
+<h2>3. Sketch of the proof, matching (1)&ndash;(4)</h2>
+<div class="box">
+<p><strong>Lemma.</strong> If <em>w</em> is a process function and <em>s</em> &ne; <em>s'</em>, some party <em>k</em> has</p>
+<p class="eq">s<sub>k</sub> &ne; s'<sub>k</sub> &nbsp; and &nbsp; w<sub>k</sub>(s) = w<sub>k</sub>(s'). <span class="num">(5)</span></p>
+</div>
+<p>Otherwise the local function that sends w<sub>k</sub>(s) to s<sub>k</sub> and w<sub>k</sub>(s') to s'<sub>k</sub> is well defined, and both strings solve (1) for that one intervention. The swap fails (5): under w(a, b) = (b, a), negation on each side fixes both (0, 1) and (1, 0). Lean accepted (5) as <code>process_disagreement</code>.</p>
+<p>Contract (3) with a local unitary V<sub>k</sub> at each party. The source-to-sink amplitude is</p>
+<p class="eq">M<sub>s,e</sub> = &prod;<sub>k</sub> &lang;s<sub>k</sub>| V<sub>k</sub> |w<sub>k</sub>(s) XOR e<sub>k</sub>&rang;. <span class="num">(6)</span></p>
+<p>Change variables by the party's source symbol,</p>
+<p class="eq">i<sub>k</sub> = w<sub>k</sub>(s) XOR e<sub>k</sub>. <span class="num">(7)</span></p>
+<p>The shift between the two output strings is</p>
+<p class="eq">&delta;<sub>k</sub> = w<sub>k</sub>(s') XOR w<sub>k</sub>(s). <span class="num">(8)</span></p>
+<p>The gram entry factors:</p>
+<p class="eq">(MM&dagger;)<sub>s,s'</sub> = &prod;<sub>k</sub> &lang;row s<sub>k</sub> | row s'<sub>k</sub> shifted by &delta;<sub>k</sub>&rang;. <span class="num">(9)</span></p>
+<p>If s = s', every shift in (8) vanishes and each factor in (9) is a row norm, hence 1. If s &ne; s', (5) supplies a party with &delta;<sub>k</sub> = 0 and distinct rows, so that factor is 0. Therefore</p>
+<p class="eq">MM&dagger; = I. <span class="num">(10)</span></p>
+<p>(10) is written, not kernel-checked. A local instrument is a unitary on an ancilla followed by a partial trace. Fixing the source at the zero string in (3) recovers w, because the input is then w(o) and the sink is o. The integer rows (1, 1) and (1, &minus;1) have dot product 0. A normalised Hadamard needs &radic;2 and is not in the file.</p>
+
+<h2>4. What would be new, and what is not a metric</h2>
+<p>The 2019 paper proves the classical extension and leaves the quantum step open. (3) and (4) are that extension on bits, checked. (5) through (10) are the candidate for the open step, written. Ara&uacute;jo, Feix, Navascu&eacute;s and Brukner quantize (2) only. Daher Ahmed and Kunjwal prove a sufficient condition this sketch does not use.</p>
+<p>A channel, the ordered case, is</p>
+<p class="eq">i<sub>B</sub> = w(o<sub>A</sub>), &nbsp; i<sub>A</sub> independent of o<sub>B</sub>, <span class="num">(11)</span></p>
+<p>or the reverse. (11) embeds as free propagation. (2) violates a causal inequality, so no wiring of that form embeds it. The billiard has the wrong multiplicity. (3) supplies two extra regions, not a metric.</p>
+
+<h2>References</h2>
+<ol class="refs">
+<li>J. Faye, Backward Causation, Stanford Encyclopedia of Philosophy, rev. 28 October 2025.</li>
+<li>F. Echeverria, G. Klinkhammer and K. S. Thorne, Physical Review D 44, 1077 (1991).</li>
+<li>&Auml;. Baumeler and S. Wolf, New Journal of Physics 18, 013036 (2016).</li>
+<li>&Auml;. Baumeler, F. Costa, T. C. Ralph, S. Wolf and M. Zych, Classical and Quantum Gravity 36, 224002 (2019).</li>
+<li>M. Ara&uacute;jo, A. Feix, M. Navascu&eacute;s and &#268;. Brukner, Quantum 1, 10 (2017).</li>
+<li>A. Vanrietvelde, N. Ormrod, H. Kristj&aacute;nsson and J. Barrett, arXiv:2206.10042 (2022).</li>
+<li>H. Dourdent et al., arXiv:2609.39735 (2026).</li>
+<li>N. Daher Ahmed and R. Kunjwal, arXiv:2610.00579 (2026).</li>
+<li>W. F. Stinespring, Proceedings of the American Mathematical Society 6, 211 (1955).</li>
+<li>M. S. Leifer and M. F. Pusey, Proceedings of the Royal Society A 473, 20160607 (2017).</li>
+</ol>
+<footer>
+<p>Rendered: <a href="https://htmlpreview.github.io/?https://github.com/drewarrowood/process-function-unitary-lift/blob/main/paper/equations.html">https://htmlpreview.github.io/?https://github.com/drewarrowood/process-function-unitary-lift/blob/main/paper/equations.html</a></p>
+<p>Source: <a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/paper/equations.html">https://github.com/drewarrowood/process-function-unitary-lift/blob/main/paper/equations.html</a></p>
+</footer>
+</body>
+</html>
