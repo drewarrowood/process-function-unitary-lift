@@ -1,28 +1,21 @@
 %PDF-1.4
-%    
-1 0 obj
-<<
-/Producer (pypdf)
->>
+1 0 obj<</Type/Catalog/Pages 2 0 R>>endobj
+2 0 obj<</Type/Pages/Count 1/Kids[3 0 R]>>endobj
+3 0 obj<</Type/Page/Parent 2 0 R/MediaBox[0 0 612 792]/Contents 4 0 R/Resources<</Font<</F1 5 0 R>>>>>>endobj
+4 0 obj<</Length 1028>>stream
+BT /F1 12 Tf 72 740 Td 14 TL (Unique completion as a quantization condition) Tj T* (Draft. Not submitted.) Tj T* () Tj T* (\(1\) o = f\(w\(o\)\).) Tj T* (No solution is the grandfather case. Two is the bootstrap.) Tj T* (\(2\) w\(a,b,c\) = \(not b and c, not c and a, not a and b\).) Tj T* (\(3\) \(o, e\) maps to \(w\(o\) XOR e, o\).) Tj T* (\(4\) \(i, s\) maps to \(s, i XOR w\(s\)\).) Tj T* (\(5\) some party disagrees in the output and agrees in w.) Tj T* (\(6\) M M-dagger = I. Written, not kernel-checked.) Tj T* () Tj T* (Ordered functions embed as channels. Lugano does not.) Tj T* (The billiard has one continuation, two, or none.) Tj T* (References: Dummett 1954, 1964; Black 1956; Lewis 1976;) Tj T* (Horwich 1987; Faye, SEP, 28 October 2025; Godel 1949;) Tj T* (Morris, Thorne, Yurtsever 1988; Friedman et al. 1990;) Tj T* (Echeverria, Klinkhammer, Thorne 1991; Earman 1995;) Tj T* (Deutsch 1991; Baumeler, Costa, Ralph, Wolf, Zych 2019;) Tj T* (Araujo et al. 2017; Leifer and Pusey 2017; Stinespring 1955.) Tj T* ET
+endstream
 endobj
-2 0 obj
-<<
-/Type /Pages
-/Count 10
-/Kids [ 4 0 R 11 0 R 13 0 R 15 0 R 17 0 R 19 0 R 21 0 R 23 0 R 25 0 R 31 0 R ]
->>
-endobj
-3 0 obj
-<<
-/Type /Catalog
-/Pages 2 0 R
->>
-endobj
-trailer
-<<
-/Size 4
-/Root 3 0 R
->>
+5 0 obj<</Type/Font/Subtype/Type1/BaseFont/Times-Roman>>endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000052 00000 n 
+0000000101 00000 n 
+0000000211 00000 n 
+0000001287 00000 n 
+trailer<</Size 6/Root 1 0 R>>
 startxref
-0
+1350
 %%EOF
