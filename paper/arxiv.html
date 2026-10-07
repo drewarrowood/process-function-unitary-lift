@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Unique completion as a quantization condition</title>
+<style>
+body{font-family:Palatino,Georgia,serif;max-width:40rem;margin:1.6rem auto 4rem;padding:0 1.2rem;line-height:1.55;color:#111;font-size:1.02rem}
+h1{font-size:1.45rem;text-align:center;line-height:1.3;margin-bottom:.3rem}
+.auth{text-align:center;font-size:.95rem;margin:.2rem 0 1.2rem}
+h2{font-size:1.12rem;margin-top:1.7rem}h3{font-size:1.02rem;margin-top:1.1rem}
+.kicker{text-align:center;font-variant:small-caps;letter-spacing:.06em;font-size:.78rem}
+.abs{margin:1rem 1.2rem;font-size:.98rem}
+.eq{margin:.9rem 0 .3rem;text-align:center;font-family:Times,serif;font-size:1.08rem}
+.num{float:right;font-size:.9rem}
+.thm{margin:.8rem 0;padding:.2rem 0 .2rem .6rem;border-left:2px solid #999}
+p{text-align:justify}ol.refs{padding-left:1.3rem}ol.refs li{margin:.4rem 0;font-size:.94rem}a{color:#111}
+</style>
+</head>
+<body>
+<p class="kicker">Draft &middot; arXiv layout &middot; not deposited</p>
+<h1>Unique completion as a quantization condition, and the embeddability gap</h1>
+<p class="auth">Drew Arrowood<br>Draft for discussion. Not a submission.</p>
+<div class="abs">
+<p><strong>Abstract.</strong> A process function is a classical map from outputs to inputs with exactly one fixed point under every local intervention. We separate three claims. The first is checked: distinct output strings leave a party who disagrees in the output and agrees in the function value, and the source-and-sink extension is a bijection on bits. The second is written: that witness is the off-diagonal of the gram matrix of the permutation unitary, so the induced source-to-sink map is unitary. The third is a split. Ordered process functions embed as channels. Cyclic ones, of which the Lugano function is the witness, have a reversible extension and a written purification, and no known local Hamiltonian on a wormhole whose solutions are exactly their fixed points. Post-selection simulates the list. It does not embed it. Unique completion answers the logical half of the demand left open in the October 2025 revision of the Stanford entry on backward causation. It does not answer the geometric half.</p>
+</div>
+
+<h2>1. Introduction</h2>
+<p>The cheapest objection to backward causation is lexical. A cause, it is said, is what comes before, so an effect that precedes its cause is a contradiction in terms. Dummett's paper to the Aristotelian Society in 1954, and the 1964 essay Bringing about the Past, treat that as a stipulation about English [1, 2]. One can reserve the word for the earlier relatum and still ask whether a later event is necessary for an earlier one. Faye's Stanford entry, substantively revised on 28 October 2025, still takes the temporal order of cause and effect to be contingent, and still treats the consistency paradoxes as unresolved [3]. That is the gap this draft is aimed at.</p>
+<p>Black's bilking argument is the objection that survives the lexical move [4]. Suppose an earlier event E is the effect of a later event C. An agent who observes E can, it seems, intervene so that C does not occur. If the intervention succeeds, C was not necessary for E. If it cannot succeed, the agent lacks an ability the local facts appear to leave open. Horwich later pressed the same point as a constraint: a theory that lets later events bear on earlier ones must say what happens to the intervention, not merely announce that paradoxical interventions do not arise [5]. Lewis's 1976 paper is a reply about modality, not about dynamics [6]. One can kill one's grandfather relative to the local facts. One cannot, relative to the whole past, because the past already contains the failure. The two uses of can are not in conflict once their contexts are distinguished. That dissolves a verbal paradox. It does not say which global histories the laws admit.</p>
+<p>The slogan that only consistent loops occur has the same defect until consistency is a property of the admitted maps. This draft treats unique completion as that property. It then asks, separately, whether the admitted maps embed in a spacetime. The answers are not the same.</p>
+
+<h2>2. The spacetime problem</h2>
+<p>G&ouml;del's 1949 solution of Einstein's equation has closed timelike curves through every event [7]. It removes the comfort that the field equation itself forbids loops. Morris, Thorne and Yurtsever showed in 1988 that a traversable wormhole, held open by stress-energy violating the averaged null energy condition, can be converted into a time machine by relative motion of the mouths [8]. Friedman, Morris, Novikov and collaborators stated the changed Cauchy problem in 1990 [9]. Data admissible on a partial Cauchy surface can fail to extend, or can extend in more than one way. Novikov's self-consistency principle assigns nonzero measure only to self-consistent solutions. Echeverria, Klinkhammer and Thorne integrated the hard-sphere billiard and found data with one continuation, data with two, and data with none apparent [10]. Carlini, Frolov, Mensky, Novikov and Solodukhin found the same ill-posedness from stationarity of the action [11]. Earman's summary still holds: a condition imposed after the dynamics is not a dynamics [12]. Hawking's chronology protection conjectures that the curve does not form [13]. That is a different question from the one asked here.</p>
+
+<h2>3. Three quantum replies</h2>
+<p>Deutsch's 1991 model asks for a fixed point of the partial trace [14]. Existence is a theorem in finite dimension. Uniqueness is not. The model is nonlinear. Aaronson and Watrous put the computational power at PSPACE [15]. Bennett, Leung, Smith and Smolin called the power an artefact of the fixed-point demand [16]. Tolksdorf and Verch met the Deutsch condition with no closed curve [17]. A Deutsch fixed point is not diagnostic of a loop. Lloyd, Maccone and collaborators replace the fixed point by post-selection [18]. Inconsistent branches fail the post-selection. Process functions sit inside that class. The event list appears conditional on success. That is a simulation. Oreshkov, Costa and Brukner drop global causal order and keep local quantum mechanics [19]. The quantum switch of Chiribella, D'Ariano, Perinotti and Valiron does not violate a causal inequality [20]. Some processes do.</p>
+
+<h2>4. Process functions</h2>
+<p>A process function is a map from output strings to input strings such that every local intervention has exactly one fixed point. The fixed-point equation is</p>
+<p class="eq">o = f(w(o)). <span class="num">(1)</span></p>
+<p>Here f is a tuple of local functions, each from a party's input to that party's output. No solution of (1) is the grandfather case. Two solutions is the bootstrap. The freedom in the quantifier is the no-new-physics principle of Baumeler, Costa, Ralph, Wolf and Zych: any operation possible in an ordinary region remains possible [21]. Baumeler and Wolf described the classical polytope [22]. Two parties are not enough for a classical causal inequality. Three are. The Lugano function, found in the search of Ara&uacute;jo and Feix, is</p>
+<p class="eq">w(a, b, c) = (&not;b &and; c, &not;c &and; a, &not;a &and; b). <span class="num">(2)</span></p>
+<p>Each input depends on the other two outputs. All 64 binary interventions have one solution of (1). The image has four elements out of eight, so (2) is two-to-one. The twelve binary two-party process functions are channels. Dourdent, Leitherer, Boghiu, Simonov, Kunjwal and Ac&iacute;n restate the clause as a complete pairwise-exclusive event list, a multipartite form of Specker's principle [23, 24]. It characterises logical consistency. It does not say which lists embed in a spacetime.</p>
+
+<h2>5. The reversible extension</h2>
+<p>Reversibility is not free on the original alphabet. Theorem 2 of [21] adds a source and a sink. The form used here is</p>
+<p class="eq">U |o, e&rang; = |w(o) + e, o&rang;, <span class="num">(3)</span></p>
+<p class="eq">U<sup>&minus;1</sup> |i, s&rang; = |s, i + w(s)&rang;. <span class="num">(4)</span></p>
+<p>On bits the sum is exclusive or, so (4) after (3) is the identity for every w. Lean 4.34.1 accepted both compositions, in lean/Full.lean, with no unfinished proof. A finite bijection is a permutation unitary on the computational basis. That is representation, not yet a quantum process. Parties must be allowed to insert instruments off that basis.</p>
+
+<h2>6. Sketch of the lift</h2>
+<div class="thm"><p><strong>Lemma.</strong> If w is a process function and s differs from s&prime;, some party k has</p>
+<p class="eq">s<sub>k</sub> &ne; s&prime;<sub>k</sub> and w<sub>k</sub>(s) = w<sub>k</sub>(s&prime;). <span class="num">(5)</span></p>
+</div>
+<p>Otherwise the local function that sends w<sub>k</sub>(s) to s<sub>k</sub> and w<sub>k</sub>(s&prime;) to s&prime;<sub>k</sub> fixes both strings in (1). The swap fails (5). Lean accepted (5) as process_disagreement. Contract (3) with a local unitary V<sub>k</sub> at each party. The amplitude is</p>
+<p class="eq">M<sub>s,e</sub> = &prod;<sub>k</sub> &lang;s<sub>k</sub>| V<sub>k</sub> |w<sub>k</sub>(s) + e<sub>k</sub>&rang;. <span class="num">(6)</span></p>
+<p>Change variables by i<sub>k</sub> = w<sub>k</sub>(s) + e<sub>k</sub>. The shift is</p>
+<p class="eq">&delta;<sub>k</sub> = w<sub>k</sub>(s&prime;) &minus; w<sub>k</sub>(s). <span class="num">(7)</span></p>
+<p>The gram entry factors into row overlaps against (7). On the diagonal every shift vanishes. Off it, (5) supplies a party with shift zero and distinct rows, so</p>
+<p class="eq">MM&dagger; = I. <span class="num">(8)</span></p>
+<p>Equation (8) is written, not kernel-checked. A local instrument is a unitary on an ancilla followed by a partial trace, in the sense of Stinespring [25]. Fixing the source at the identity in (3) recovers w. The integer rows (1, 1) and (1, &minus;1) have dot product 0. A normalised Hadamard needs the square root of 2 and is not in the file.</p>
+
+<h2>7. What would be new</h2>
+<p>Ara&uacute;jo, Feix, Navascu&eacute;s and Brukner quantized (2) in 2017 [26]. Vanrietvelde, Ormrod, Kristj&aacute;nsson and Barrett wrote that extension as a routed circuit [27]. Those are one function. The 2019 paper leaves the general quantum step open [21]. Daher Ahmed and Kunjwal conjectured the general lift on 30 September 2026 and proved it under mutual exclusivity of control conditions and under unambiguity [28]. The sketch does not use those conditions. The new step is that the forbidden double fixed point is the off-diagonal. The prohibition is checked. The identification is written.</p>
+<p>Price argued in 2012 that a time-symmetric ontology should be retrocausal if the quantum state is real [29]. Leifer and Pusey replaced that assumption with lambda-mediation and derived a timelike Bell factorization [30]. Maudlin replied that the operational reverse of an experiment need not be an experiment of the same kind [31]. The dilation is adjacent. It removes the reply that the cyclic model dies when instruments become unitary. It does not settle the ontology.</p>
+
+<h2>8. Embeddability</h2>
+<p>A process function is a list of events. A spacetime is a metric. Nothing in (8) turns one into the other. Post-selection is a simulation. Equations (3) and (4) are reversibility, not a throat. A Lorentzian embedding would be a local flow on a fixed metric with one solution of (1) for every intervention.</p>
+<p>The ordered case closes. A channel is</p>
+<p class="eq">i<sub>B</sub> = w(o<sub>A</sub>), i<sub>A</sub> independent of o<sub>B</sub>, <span class="num">(9)</span></p>
+<p>or the reverse. Equation (9) embeds as free propagation. No wormhole is required. The cyclic case does not. Equation (2) violates a causal inequality, so no definite order reproduces it if the settings are free. Vilasini and Renner show that indefinite causal order cannot be implemented with spacetime-localised systems in an acyclic spacetime without violating relativistic causality [32]. The billiard has the wrong multiplicity. No other local Hamiltonian is known. The purification does not supply one. The cyclic case stays open.</p>
+
+<h2>9. Conclusion</h2>
+<p>Unique completion answers the logical half of the demand in [3]. It does not answer the geometric half. The checked theorems are the lemma and the bit bijection. The gram identity is a written cancellation. Embeddability of (2) is not claimed.</p>
+
+<h2>References</h2>
+<ol class="refs">
+<li>M. Dummett, Can an effect precede its cause?, Aristotelian Society Supplementary Volume 28, 27&ndash;44 (1954).</li>
+<li>M. Dummett, Bringing about the past, Philosophical Review 73, 338&ndash;359 (1964).</li>
+<li>J. Faye, Backward causation, Stanford Encyclopedia of Philosophy, substantive revision 28 October 2025.</li>
+<li>M. Black, Why cannot an effect precede its cause?, Analysis 16, 49&ndash;58 (1956).</li>
+<li>P. Horwich, Asymmetries in Time, MIT Press, Cambridge, Mass. (1987).</li>
+<li>D. Lewis, The paradoxes of time travel, American Philosophical Quarterly 13, 145&ndash;152 (1976).</li>
+<li>K. G&ouml;del, An example of a new type of cosmological solutions of Einstein's field equations of gravitation, Reviews of Modern Physics 21, 447&ndash;450 (1949).</li>
+<li>M. S. Morris, K. S. Thorne and U. Yurtsever, Wormholes, time machines, and the weak energy condition, Physical Review Letters 61, 1446&ndash;1449 (1988).</li>
+<li>J. Friedman, M. S. Morris, I. D. Novikov, F. Echeverria, G. Klinkhammer, K. S. Thorne and U. Yurtsever, Cauchy problem in spacetimes with closed timelike curves, Physical Review D 42, 1915&ndash;1930 (1990).</li>
+<li>F. Echeverria, G. Klinkhammer and K. S. Thorne, Billiard balls in wormhole spacetimes with closed timelike curves: classical theory, Physical Review D 44, 1077&ndash;1099 (1991).</li>
+<li>A. Carlini, V. P. Frolov, M. B. Mensky, I. D. Novikov and H. H. Solodukhin, Time machines: the principle of self-consistency as a consequence of the principle of minimal action, International Journal of Modern Physics D 4, 557&ndash;580 (1995).</li>
+<li>J. Earman, Bangs, Crunches, Whimpers, and Shrieks: Singularities and Acausalities in Relativistic Spacetimes, Oxford University Press (1995).</li>
+<li>S. W. Hawking, Chronology protection conjecture, Physical Review D 46, 603&ndash;611 (1992).</li>
+<li>D. Deutsch, Quantum mechanics near closed timelike lines, Physical Review D 44, 3197&ndash;3217 (1991).</li>
+<li>S. Aaronson and J. Watrous, Closed timelike curves make quantum and classical computing equivalent, Proceedings of the Royal Society A 465, 631&ndash;647 (2009).</li>
+<li>C. H. Bennett, D. Leung, G. Smith and J. A. Smolin, Can closed timelike curves or nonlinear quantum mechanics improve quantum state discrimination or help solve hard problems?, Physical Review Letters 103, 170502 (2009).</li>
+<li>L. M. Tolksdorf and R. Verch, Quantum physics, fields and closed timelike curves: the D-CTC condition in quantum field theory, Communications in Mathematical Physics 357, 319&ndash;351 (2018).</li>
+<li>S. Lloyd, L. Maccone, R. Garcia-Patron, V. Giovannetti, Y. Shikano, S. Pirandola, L. A. Rozema, A. Darabi, Y. Soudagar, L. K. Shalm and A. M. Steinberg, Closed timelike curves via postselection: theory and experimental test of consistency, Physical Review Letters 106, 040403 (2011).</li>
+<li>O. Oreshkov, F. Costa and &#268;. Brukner, Quantum correlations with no causal order, Nature Communications 3, 1092 (2012).</li>
+<li>G. Chiribella, G. M. D'Ariano, P. Perinotti and B. Valiron, Quantum computations without definite causal structure, Physical Review A 88, 022318 (2013).</li>
+<li>&Auml;. Baumeler, F. Costa, T. C. Ralph, S. Wolf and M. Zych, Reversible time travel with freedom of choice, Classical and Quantum Gravity 36, 224002 (2019), arXiv:1703.00779.</li>
+<li>&Auml;. Baumeler and S. Wolf, The space of logically consistent classical processes without causal order, New Journal of Physics 18, 013036 (2016).</li>
+<li>E. Specker, Die Logik nicht gleichzeitig entscheidbarer Aussagen, Dialectica 14, 239&ndash;246 (1960).</li>
+<li>H. Dourdent, A. Leitherer, A. Boghiu, A. Simonov, R. Kunjwal and A. Ac&iacute;n, arXiv:2609.39735 (2026).</li>
+<li>W. F. Stinespring, Positive functions on C*-algebras, Proceedings of the American Mathematical Society 6, 211&ndash;216 (1955).</li>
+<li>M. Ara&uacute;jo, A. Feix, M. Navascu&eacute;s and &#268;. Brukner, Quantum processes with indefinite causal order, Quantum 1, 10 (2017).</li>
+<li>A. Vanrietvelde, N. Ormrod, H. Kristj&aacute;nsson and J. Barrett, Consistent circuits for indefinite causal order, arXiv:2206.10042 (2022).</li>
+<li>N. Daher Ahmed and R. Kunjwal, arXiv:2610.00579 (2026).</li>
+<li>H. Price, Does time-symmetry imply retrocausality? How the quantum world says &ldquo;maybe&rdquo;, Studies in History and Philosophy of Modern Physics 43, 75&ndash;83 (2012).</li>
+<li>M. S. Leifer and M. F. Pusey, Is a time symmetric interpretation of quantum theory possible without retrocausality?, Proceedings of the Royal Society A 473, 20160607 (2017).</li>
+<li>T. Maudlin, A tale of two tensors, or, how to make time-symmetric quantum theory consistent, arXiv:1707.08641 (2017).</li>
+<li>V. Vilasini and R. Renner, Embedding cyclic causal structures in acyclic spacetimes: no-go results for process matrices, arXiv:2203.11245 (2022).</li>
+</ol>
+<p>Rendered: <a href="https://htmlpreview.github.io/?https://github.com/drewarrowood/process-function-unitary-lift/blob/main/paper/arxiv.html">https://htmlpreview.github.io/?https://github.com/drewarrowood/process-function-unitary-lift/blob/main/paper/arxiv.html</a></p>
+<p>Source: <a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/paper/arxiv.html">https://github.com/drewarrowood/process-function-unitary-lift/blob/main/paper/arxiv.html</a></p>
+</body>
+</html>
