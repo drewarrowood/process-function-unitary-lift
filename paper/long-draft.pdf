@@ -1,0 +1,166 @@
+%PDF-1.3
+%     ReportLab Generated PDF document (opensource)
+1 0 obj
+<<
+/F1 2 0 R /F2 3 0 R
+>>
+endobj
+2 0 obj
+<<
+/BaseFont /Helvetica /Encoding /WinAnsiEncoding /Name /F1 /Subtype /Type1 /Type /Font
+>>
+endobj
+3 0 obj
+<<
+/BaseFont /Times-Roman /Encoding /WinAnsiEncoding /Name /F2 /Subtype /Type1 /Type /Font
+>>
+endobj
+4 0 obj
+<<
+/Contents 9 0 R /MediaBox [ 0 0 612 792 ] /Parent 8 0 R /Resources <<
+/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>> /Rotate 0 /Trans <<
+
+>> 
+  /Type /Page
+>>
+endobj
+5 0 obj
+<<
+/Contents 10 0 R /MediaBox [ 0 0 612 792 ] /Parent 8 0 R /Resources <<
+/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>> /Rotate 0 /Trans <<
+
+>> 
+  /Type /Page
+>>
+endobj
+6 0 obj
+<<
+/PageMode /UseNone /Pages 8 0 R /Type /Catalog
+>>
+endobj
+7 0 obj
+<<
+/Author (anonymous) /CreationDate (D:20261007022627+00'00') /Creator (anonymous) /Keywords () /ModDate (D:20261007022627+00'00') /Producer (ReportLab PDF Library - \(opensource\)) 
+  /Subject (unspecified) /Title (Unique completion long draft) /Trapped /False
+>>
+endobj
+8 0 obj
+<<
+/Count 2 /Kids [ 4 0 R 5 0 R ] /Type /Pages
+>>
+endobj
+9 0 obj
+<<
+/Length 4143
+>>
+stream
+1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
+BT /F2 11 Tf 13.2 TL ET
+BT 1 0 0 1 54 740 Tm (Unique completion, the lift, and the embeddability gap) Tj T* ET
+BT 1 0 0 1 54 725 Tm (Draft. Not a deposited preprint. Lean: lean/Full.lean) Tj T* ET
+BT 1 0 0 1 54 710 Tm  T* ET
+BT 1 0 0 1 54 695 Tm (Abstract. A process function has one fixed point for every local intervention.) Tj T* ET
+BT 1 0 0 1 54 680 Tm (Checked: distinct outputs leave a party who disagrees in the output and agrees in w,) Tj T* ET
+BT 1 0 0 1 54 665 Tm (and the source-and-sink extension is a bijection on bits.) Tj T* ET
+BT 1 0 0 1 54 650 Tm (Written: that witness kills the off-diagonal, so the induced map is unitary.) Tj T* ET
+BT 1 0 0 1 54 635 Tm (Not claimed: a metric, a wormhole Hamiltonian for Lugano, or the Leifer-Pusey no-go.) Tj T* ET
+BT 1 0 0 1 54 620 Tm  T* ET
+BT 1 0 0 1 54 605 Tm (1. The demand) Tj T* ET
+BT 1 0 0 1 54 590 Tm (Faye, Stanford Encyclopedia, revised 28 October 2025, leaves the paradoxes open.) Tj T* ET
+BT 1 0 0 1 54 575 Tm (Dummett, 1954 and 1964, set the lexical objection aside. A stipulation is not a discovery.) Tj T* ET
+BT 1 0 0 1 54 560 Tm (Black, Analysis 1956, asked what happens to the intervention.) Tj T* ET
+BT 1 0 0 1 54 545 Tm (Lewis, 1976, split the modal and did not select the histories.) Tj T* ET
+BT 1 0 0 1 54 530 Tm (Horwich asked the theory to say what the intervention does.) Tj T* ET
+BT 1 0 0 1 54 515 Tm (Earman said a filter after the dynamics is not a dynamics.) Tj T* ET
+BT 1 0 0 1 54 500 Tm (No fixed point is the grandfather case. Two fixed points is the bootstrap.) Tj T* ET
+BT 1 0 0 1 54 485 Tm (The identity loop fails the clause. The swap fails it. A measure-zero rider cannot be failed.) Tj T* ET
+BT 1 0 0 1 54 470 Tm  T* ET
+BT 1 0 0 1 54 455 Tm (2. Spacetime) Tj T* ET
+BT 1 0 0 1 54 440 Tm (Godel, 1949, has closed timelike curves. Morris, Thorne, Yurtsever, 1988, convert a wormhole.) Tj T* ET
+BT 1 0 0 1 54 425 Tm (Friedman et al., 1990, state the changed Cauchy problem.) Tj T* ET
+BT 1 0 0 1 54 410 Tm (Echeverria, Klinkhammer, Thorne, 1991, find one continuation, two, or none.) Tj T* ET
+BT 1 0 0 1 54 395 Tm (The billiard has the wrong multiplicity. Hawking's conjecture is a different question.) Tj T* ET
+BT 1 0 0 1 54 380 Tm  T* ET
+BT 1 0 0 1 54 365 Tm (3. Quantum replies) Tj T* ET
+BT 1 0 0 1 54 350 Tm (Deutsch, 1991, asks for a fixed point of the partial trace. Uniqueness is not a theorem.) Tj T* ET
+BT 1 0 0 1 54 335 Tm (Aaronson and Watrous put the power at PSPACE. Bennett et al. call it an artefact.) Tj T* ET
+BT 1 0 0 1 54 320 Tm (Lloyd et al. replace the fixed point by post-selection. That is a simulation.) Tj T* ET
+BT 1 0 0 1 54 305 Tm (Oreshkov, Costa, Brukner drop global order. The quantum switch does not violate an inequality.) Tj T* ET
+BT 1 0 0 1 54 290 Tm (Lugano does.) Tj T* ET
+BT 1 0 0 1 54 275 Tm  T* ET
+BT 1 0 0 1 54 260 Tm (4. Equations) Tj T* ET
+BT 1 0 0 1 54 245 Tm (\(1\) o = f\(w\(o\)\)) Tj T* ET
+BT 1 0 0 1 54 230 Tm (\(2\) w\(a,b,c\) = \(not b and c, not c and a, not a and b\)) Tj T* ET
+BT 1 0 0 1 54 215 Tm (All 64 binary interventions have one solution. The image has four elements out of eight.) Tj T* ET
+BT 1 0 0 1 54 200 Tm (\(3\) U sends \(o, e\) to \(w\(o\)+e, o\)) Tj T* ET
+BT 1 0 0 1 54 185 Tm (\(4\) the inverse sends \(i, s\) to \(s, i+w\(s\)\)) Tj T* ET
+BT 1 0 0 1 54 170 Tm (On bits the sum is exclusive or. Lean checked both compositions.) Tj T* ET
+BT 1 0 0 1 54 155 Tm (\(5\) if s differs from s-prime, some party disagrees in the output and agrees in w.) Tj T* ET
+BT 1 0 0 1 54 140 Tm (Otherwise one local function fixes both strings. Lean accepted this as process_disagreement.) Tj T* ET
+BT 1 0 0 1 54 125 Tm (\(6\) delta_k = w_k\(s-prime\) - w_k\(s\)) Tj T* ET
+BT 1 0 0 1 54 110 Tm (\(7\) the gram entry is the product of row overlaps against that shift.) Tj T* ET
+BT 1 0 0 1 54 95 Tm (\(8\) MM dagger = I. Written, not kernel-checked.) Tj T* ET
+BT 1 0 0 1 54 80 Tm (\(9\) a channel is i_B = w\(o_A\), i_A independent of o_B.) Tj T* ET
+BT 1 0 0 1 54 65 Tm (\(9\) embeds as free propagation. \(2\) has no such wiring. The cyclic case stays open.) Tj T* ET
+ 
+endstream
+endobj
+10 0 obj
+<<
+/Length 2025
+>>
+stream
+1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
+BT /F2 11 Tf 13.2 TL ET
+BT 1 0 0 1 54 740 Tm  T* ET
+BT 1 0 0 1 54 725 Tm (5. Lean) Tj T* ET
+BT 1 0 0 1 54 710 Tm (https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/Full.lean) Tj T* ET
+BT 1 0 0 1 54 695 Tm (Checked there: the lemma and the bit bijection. Not checked: the gram identity.) Tj T* ET
+BT 1 0 0 1 54 680 Tm  T* ET
+BT 1 0 0 1 54 665 Tm (6. References) Tj T* ET
+BT 1 0 0 1 54 650 Tm (Dummett, Aristotelian Society Supp. 28 \(1954\); Philosophical Review 73 \(1964\).) Tj T* ET
+BT 1 0 0 1 54 635 Tm (Black, Analysis 16 \(1956\). Lewis, American Philosophical Quarterly 13 \(1976\).) Tj T* ET
+BT 1 0 0 1 54 620 Tm (Horwich, Asymmetries in Time \(1987\). Earman, Bangs, Crunches, Whimpers, and Shrieks \(1995\).) Tj T* ET
+BT 1 0 0 1 54 605 Tm (Faye, Backward Causation, Stanford Encyclopedia, rev. 28 October 2025.) Tj T* ET
+BT 1 0 0 1 54 590 Tm (Godel, Reviews of Modern Physics 21 \(1949\).) Tj T* ET
+BT 1 0 0 1 54 575 Tm (Morris, Thorne, Yurtsever, Physical Review Letters 61 \(1988\).) Tj T* ET
+BT 1 0 0 1 54 560 Tm (Friedman et al., Physical Review D 42 \(1990\).) Tj T* ET
+BT 1 0 0 1 54 545 Tm (Echeverria, Klinkhammer, Thorne, Physical Review D 44 \(1991\).) Tj T* ET
+BT 1 0 0 1 54 530 Tm (Deutsch, Physical Review D 44 \(1991\). Aaronson and Watrous, Proc. R. Soc. A 465 \(2009\).) Tj T* ET
+BT 1 0 0 1 54 515 Tm (Bennett et al., Physical Review Letters 103 \(2009\). Lloyd et al., PRL 106 \(2011\).) Tj T* ET
+BT 1 0 0 1 54 500 Tm (Oreshkov, Costa, Brukner, Nature Communications 3 \(2012\).) Tj T* ET
+BT 1 0 0 1 54 485 Tm (Baumeler, Costa, Ralph, Wolf, Zych, Classical and Quantum Gravity 36 \(2019\).) Tj T* ET
+BT 1 0 0 1 54 470 Tm (Araujo et al., Quantum 1 \(2017\). Dourdent et al., arXiv:2609.39735.) Tj T* ET
+BT 1 0 0 1 54 455 Tm (Daher Ahmed and Kunjwal, arXiv:2610.00579. Leifer and Pusey, Proc. R. Soc. A 473 \(2017\).) Tj T* ET
+BT 1 0 0 1 54 440 Tm (Vilasini and Renner, arXiv:2203.11245. Stinespring, Proc. AMS 6 \(1955\).) Tj T* ET
+ 
+endstream
+endobj
+xref
+0 11
+0000000000 65535 f 
+0000000061 00000 n 
+0000000102 00000 n 
+0000000209 00000 n 
+0000000318 00000 n 
+0000000511 00000 n 
+0000000705 00000 n 
+0000000773 00000 n 
+0000001054 00000 n 
+0000001119 00000 n 
+0000005313 00000 n 
+trailer
+<<
+/ID 
+[<411adff04981d235c3fef51b69fe9aa5><411adff04981d235c3fef51b69fe9aa5>]
+% ReportLab generated PDF document -- digest (opensource)
+
+/Info 7 0 R
+/Root 6 0 R
+/Size 11
+>>
+startxref
+7390
+%%EOF
