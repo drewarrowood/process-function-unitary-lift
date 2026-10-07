@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Every process function lifts to a unitary process</title>
+<script>
+window.MathJax = { tex: { tags: "ams", inlineMath: [["\\(","\\)"]], displayMath: [["\\[","\\]"]] }, svg: { fontCache: "global" } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+<style>body{font-family:Palatino,Georgia,serif;max-width:740px;margin:2.5rem auto;padding:0 1.4rem 4rem;line-height:1.55;color:#1c1a17;background:#fbf8f3;font-size:18px}h1{font-size:1.85rem}h2{font-size:1.35rem;margin-top:2.4rem;border-top:1px solid #ddd4c6;padding-top:1.2rem}.story{background:#f3efe6;border-left:3px solid #8a6a3b;padding:0.6rem 1.1rem;margin:1.4rem 0}.note{font-size:0.92rem;color:#5c564c}</style>
+</head>
+<body>
+<h1>Every process function lifts to a unitary process</h1>
+<p class="note">Full essay. Not submitted. Not refereed. Disagreement is kernel-checked for every finite n. Identification and any-index unitarity are the integer list induction. Conjugation is an involution on the second factor. Stinespring and a spacetime embedding are not claimed.</p>
+<h2>Abstract</h2>
+<p>A causal loop is usually asked to do four jobs at once: not be a contradiction, not exclude contradictions by a rider about measure, be reversible if the laws are, and survive contact with quantum instruments. The grandfather case is an intervention with no fixed point. The bootstrap is an intervention with more than one. A process function is a map from outputs to inputs admitted only when every local intervention completes uniquely. The source-and-sink extension is the permutation unitary</p>
+\[ U\lvert o, e\rangle = \lvert w(o)\oplus e,\; o\rangle. \]
+<p>Contracting against local unitaries, \( M_{s,e}=\prod_k\langle s_k\rvert V_k\lvert w_k(s)\oplus e_k\rangle \). The gram entry factors, for every number of parties, into a product of shifted row overlaps. If two output strings differ, some party disagrees in the output and agrees in the function value. That factor is the inner product of two distinct rows, hence zero. So \( MM^\dagger = I \).</p>
+<div class="story"><h3>Story. Two letters and a closed afternoon</h3>
+<p>A clerk is told that the letter she writes at five is the letter that arrived at four, and that she may write whatever she likes. On Monday she writes the opposite of whatever arrived. No page is both the thing she received and the opposite of the thing she will send. No fixed point. On Tuesday she copies whatever arrived. A blank page and a page of ink both complete. Two fixed points. On Wednesday three desks share the afternoon, and each may still choose any policy. The question is whether the triple of policies has exactly one afternoon.</p></div>
+<h2>1. What the word cause is not doing</h2>
+<p>Dummett treats the lexical ban on backward causation as a stipulation about English. Black's bilking argument asks what happens to the intervention. Lewis's two cans dissolve a verbal paradox and do not say which histories the laws admit. The process-function clause is a criterion: every local policy completes exactly once, or the map is not admitted.</p>
+<h2>2. The spacetime problem</h2>
+<p>G\u00f6del's 1949 solution has closed timelike curves through every event. Morris, Thorne and Yurtsever convert a traversable wormhole into a time machine if the averaged null energy condition fails. Friedman and coauthors state Novikov's principle: inconsistent data have measure zero. The Echeverria-Klinkhammer-Thorne billiard has data with one continuation, two, or none. Earman: a selection rule is not a dynamics. A process function sorts those three cases before a measure is assigned. Embeddability in a metric is open.</p>
+<h2>3. Three quantum replies</h2>
+<p>Deutsch closes a state on the curve. The cost is nonlinearity, and Tolksdorf and Verch showed the fixed point can be mimicked with no curve. Lloyd and Maccone post-select matching runs. That filters samples. Oreshkov, Costa and Brukner write a process matrix. A process function closes a map. That is the quantization question this essay answers.</p>
+<h2>4. Process functions</h2>
+<p>A map \( w \) is a process function when for every local intervention \( f \) there is a unique string \( o \) with \( o = f(w(o)) \). The Lugano function is \( w(a,b,c)=((1-b)c,\, (1-c)a,\, (1-a)b) \).</p>
+<p><strong>Lemma.</strong> If \( w \) is a process function and \( s \neq s' \), some party \( k \), not necessarily the first, has \( s_k \neq s'_k \) and \( w_k(s)=w_k(s') \). Otherwise one local function would fix both strings. For Lugano the witness is not always party 0.</p>
+<div class="story"><h3>Story. The three desks</h3>
+<p>What A reads is the AND of B sending nothing and C sending something, and cyclically. Two closed afternoons would require a desk who sent different letters and was shown the same letter. A function cannot do that. The identity office has no such desk, and copying has two solutions. That office is not in the theorem.</p></div>
+<div class="story"><h3>Story. The ball that came back early</h3>
+<p>A billiard room has a far door that opens onto the near door a little earlier. Some strokes have one continuation, some two, some none. Being told that paradoxical strokes do not occur does not choose between the two speeds, and does not say what stops the cue. Change the ball into a bit and the stroke into a function. The office either has exactly one afternoon, or it is not the office the theorem is about. Nobody assigns the stroke measure zero.</p></div>
+<h2>5. Source, sink, identification, unitarity</h2>
+<p>The permutation unitary is \( U\lvert o,e\rangle=\lvert w(o)\oplus e,\, o\rangle \), with inverse \( U^\dagger\lvert i,o\rangle=\lvert o,\, i\oplus w(o)\rangle \). The contraction is a product. The sum of a product over a product group is the product of the sums, by induction on the party list. XOR with a fixed bit is an involution, \( b\oplus(b\oplus c)=c \). Hence</p>
+\[ (MM^\dagger)_{s,s'}=\prod_k\sum_i \langle s_k\rvert V_k\lvert i\rangle\,\overline{\langle s'_k\rvert V_k\lvert i\oplus\delta_k\rangle},\qquad \delta_k=w_k(s')\oplus w_k(s). \]
+<p>Orthonormal rows make a zero shift into \( \delta_{s_k,s'_k} \). The diagonal is 1. Off the diagonal the witness, at any index, is a zero factor. A head times zero is zero, so the index does not matter. Square dimensions give \( M^\dagger M=I \) as well.</p>
+<h2>6. Boundary</h2>
+<p>Not claimed: a spacetime embedding, agentive freedom, the Leifer-Pusey no-go, purifiability of every extensibly causal process, and Stinespring as a compiled theorem. A pinned ancilla makes the map rectangular. The square theorem is the one written here. The one-party flip is unitary by a column permutation; the disagreement factor is the reason that covers maps that are not bijective, Lugano among them.</p>
+<p class="note">Stories are illustrations. The proof is the lemma, the factoring, the reindexing, and the zero at an arbitrary index.</p>
+</body>
+</html>
