@@ -1,13 +1,11 @@
-# Every process function purifies to a unitary process
+# Process functions and a unitary lift
 
-Draft, 6 October 2026. Not submitted.
+Draft. Not a preprint.
 
-Long version: [paper/lift.html](paper/lift.html)
+The paper, rendered: https://cdn.jsdelivr.net/gh/drewarrowood/process-function-unitary-lift@main/paper/index.html
 
-Proof note, with what Lean 4.34.1 accepted: [paper/PROOF.md](paper/PROOF.md)
+The kernel-checked half is lean/Full.lean: https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/Full.lean
 
-Kernel-checked file: [lean/Cancellation.lean](lean/Cancellation.lean)
+Cancellation on bits: lean/Cancel.lean. What was not checked: lean/Gaps.lean.
 
-Shorter markdown: [paper/lift.md](paper/lift.md)
-
-The PDF at paper/lift.pdf is the short draft. The long version is the HTML.
+Shown: the disagreement lemma, and both compositions of the bit bijection. Written, not kernel-checked: the gram identity. Not claimed: a metric for Lugano.
