@@ -156,13 +156,11 @@ theorem gram_diag (V : List Row) (w : List Bool → List Bool) (s : List Bool)
   rw [gram_eq_shifted]
   exact overlaps_same V s (w s) hV
 
-theorem getD_zero (b : Bool) (t : List Bool) : (b :: t).getD 0 false = b := rfl
+theorem getD_head (xs : List Bool) : xs.getD 0 false = xs.headD false := by
+  cases xs <;> rfl
 
 theorem getD_succ (b : Bool) (t : List Bool) (k : Nat) :
     (b :: t).getD (k + 1) false = t.getD k false := rfl
-
-theorem getD_head (xs : List Bool) : xs.getD 0 false = xs.headD false := by
-  cases xs <;> rfl
 
 theorem overlaps_zero_at (V : List Row) (s ws ws2 s2 : List Bool)
     (hV : ∀ Vk, Vk ∈ V → RowOrtho Vk)
@@ -171,8 +169,7 @@ theorem overlaps_zero_at (V : List Row) (s ws ws2 s2 : List Bool)
     (hws : ws.getD k false = ws2.getD k false) :
     overlaps V s ws ws2 s2 = 0 := by
   induction V generalizing s ws ws2 s2 k with
-  | nil =>
-    simp at hk
+  | nil => simp at hk
   | cons Vk Vs ih =>
     unfold overlaps
     cases k with
