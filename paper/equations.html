@@ -3,24 +3,21 @@
 <head>
 <meta charset="utf-8">
 <title>Unique completion and the unitary lift</title>
-<script>
-window.MathJax = { tex: { inlineMath: [['$', '$']], displayMath: [['$$', '$$']] } };
-</script>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
 <style>
 body{font-family:Palatino,Georgia,serif;max-width:44rem;margin:2rem auto;padding:0 1.3rem 4rem;line-height:1.62;color:#1a1a1a;font-size:1.05rem}
 h1{font-size:1.7rem;line-height:1.25}h2{font-size:1.22rem;margin-top:2rem}
 .kicker{font-variant:small-caps;letter-spacing:.05em;font-size:.82rem}
-.eq{margin:1rem 0;text-align:center}
+.eq{margin:1.1rem 0;text-align:center;font-family:"Times New Roman",Times,serif;font-size:1.12rem;line-height:1.45}
 ol.refs{padding-left:1.2rem}ol.refs li{margin:.35rem 0;font-size:.95rem}
 .box{background:#f7f6f3;padding:.8rem 1rem;margin:1rem 0}
 p{text-align:justify}
+a{color:#1a1a1a}
 </style>
 </head>
 <body>
 <p class="kicker">Draft &middot; Foundations of Physics manner &middot; not submitted</p>
 <h1>Unique completion, the unitary lift, and what is not a metric</h1>
-<p>About half again as long as the previous note. Equations are displayed. The claims are not run together.</p>
+<p>Equations are set in the page, with no external script. The claims are not run together.</p>
 
 <h2>1. Register</h2>
 <p>Claim A is checked. On bits, a process function cannot send two distinct output strings that agree in the function wherever they differ, and the source-and-sink extension is a bijection. Lean 4.34.1 accepted both in <code>lean/Full.lean</code>.</p>
@@ -28,52 +25,49 @@ p{text-align:justify}
 <p>Claim C is a split. Ordered process functions embed as channels. The cyclic case has a post-selected simulation and a reversible extension, and no known local Hamiltonian on a wormhole whose solutions are exactly its fixed points.</p>
 
 <h2>2. The demand</h2>
-<p>Dummett set the dictionary objection aside in 1954 and again in 1964. A stipulation about the word <em>cause</em> is not a discovery. Faye's Stanford entry, revised 28 October 2025, still treats the temporal order as contingent and the consistency paradoxes as unresolved. Black's bilking argument is the objection that survives: an agent who has seen the earlier event can try to prevent the later one. Lewis splits the modal and does not select the histories. Horwich asks a theory to say what happens to the intervention.</p>
-<p>A process function answers by a restriction on the admitted maps. An intervention is a tuple of local functions. The map is admitted only when the composition has one fixed point. No fixed point is the grandfather case. Two is the bootstrap. The clause can be failed from inside the theory. The identity loop fails it. The swap fails it. A rider that assigns inconsistent solutions measure zero cannot be failed in that way.</p>
+<p>Dummett set the dictionary objection aside in 1954 and again in 1964. A stipulation about the word <em>cause</em> is not a discovery. Faye's Stanford entry, revised 28 October 2025, still treats the temporal order as contingent and the consistency paradoxes as unresolved. Black's bilking argument is the objection that survives. Lewis splits the modal and does not select the histories. Horwich asks a theory to say what happens to the intervention.</p>
+<p>A process function answers by a restriction on the admitted maps. An intervention is a tuple of local functions. The map is admitted only when the composition has one fixed point. No fixed point is the grandfather case. Two is the bootstrap. The clause can be failed from inside the theory.</p>
 
 <h2>3. The objects</h2>
-<p>Parties have finite alphabets. On bits the group law is exclusive or. A process function $w$ sends an output string to an input string. A local intervention $f$ is a tuple of maps from a party's input to that party's output. The fixed-point equation is</p>
-<div class="eq">$$ f\bigl(w(o)\bigr) = o. $$</div>
-<p>The map is a process function when every $f$ has exactly one solution $o$.</p>
-<p>The Lugano function, found by Ara&uacute;jo and Feix, is</p>
-<div class="eq">$$ w(a,b,c) = (\lnot b \land c,\ \lnot c \land a,\ \lnot a \land b). $$</div>
-<p>Each input depends on the other two outputs. All sixty-four binary interventions have one fixed point. The image has four elements out of eight, so $w$ is two-to-one. Reversibility is not free on the original alphabet.</p>
-<p>The source-and-sink extension of Baumeler, Costa, Ralph, Wolf and Zych is the bijection</p>
-<div class="eq">$$ U\lvert o, e\rangle = \lvert w(o)\oplus e,\ o\rangle, $$</div>
+<p>A process function <em>w</em> sends an output string to an input string. A local intervention <em>f</em> maps each party's input to that party's output. The fixed-point equation is</p>
+<p class="eq">f(w(o)) = o.</p>
+<p>The map is a process function when every <em>f</em> has exactly one solution <em>o</em>.</p>
+<p>The Lugano function is</p>
+<p class="eq">w(a, b, c) = (¬b ∧ c, ¬c ∧ a, ¬a ∧ b).</p>
+<p>Each input depends on the other two outputs. All sixty-four binary interventions have one fixed point. The image has four elements out of eight, so <em>w</em> is two-to-one.</p>
+<p>The source-and-sink extension is the bijection</p>
+<p class="eq">U |o, e⟩ = |w(o) ⊕ e, o⟩,</p>
 <p>with inverse</p>
-<div class="eq">$$ U^{-1}\lvert i, s\rangle = \lvert s,\ i\oplus w(s)\rangle. $$</div>
-<p>Both compositions are the identity for every $w$, process function or not. Lean checked them on bits. A bijection of a finite set is a permutation unitary on the computational basis. That is representation, not yet a quantum process.</p>
+<p class="eq">U<sup>−1</sup> |i, s⟩ = |s, i ⊕ w(s)⟩.</p>
+<p>Both compositions are the identity on bits. Lean checked them. A finite bijection is a permutation unitary on the computational basis. That is representation, not yet a quantum process.</p>
 
 <h2>4. Sketch of the proof</h2>
 <div class="box">
-<p><strong>Lemma.</strong> If $w$ is a process function and $s\neq s'$, then some party $k$ has $s_k\neq s'_k$ and $w_k(s)=w_k(s')$.</p>
+<p><strong>Lemma.</strong> If <em>w</em> is a process function and <em>s</em> ≠ <em>s'</em>, then some party <em>k</em> has <em>s<sub>k</sub></em> ≠ <em>s'<sub>k</sub></em> and <em>w<sub>k</sub></em>(<em>s</em>) = <em>w<sub>k</sub></em>(<em>s'</em>).</p>
 </div>
-<p>Suppose not. Agreement of the function values already forces agreement of the strings. Define</p>
-<div class="eq">$$ f_k(x) = \begin{cases} s_k & \text{if } x = w_k(s),\\ s'_k & \text{if } x = w_k(s'),\\ 0 & \text{otherwise.} \end{cases} $$</div>
-<p>The two clauses agree wherever the inputs agree, so $f_k$ is a function. Then $f(w(s))=s$ and $f(w(s'))=s'$. One intervention has two fixed points. A process function cannot have that. The swap is sharp the other way: under $w(a,b)=(b,a)$, negation on each side fixes both $(0,1)$ and $(1,0)$.</p>
-<p>This is the step the kernel accepted, as <code>process_disagreement</code>. Free choice does the logical work. The agent at party $k$ may apply any local function, including the one just defined.</p>
-<p>For the contraction, put a local unitary $V_k$ at each party, possibly on a local ancilla. The source-to-sink amplitude is</p>
-<div class="eq">$$ M_{s,e} = \prod_k \langle s_k\rvert V_k \lvert w_k(s)\oplus e_k\rangle. $$</div>
-<p>The gram entry is $\sum_e M_{s,e} M_{s',e}^{*}$. Change variables by $i_k = w_k(s)\oplus e_k$. Exclusive or with a fixed string is a bijection, so the sum is a product of local overlaps against the shift</p>
-<div class="eq">$$ \delta_k = w_k(s')\oplus w_k(s). $$</div>
-<p>Explicitly,</p>
-<div class="eq">$$ (MM^{\dagger})_{s,s'} = \prod_k \sum_{i_k} \langle s_k\rvert V_k\lvert i_k\rangle\, \langle i_k\oplus\delta_k\rvert V_k^{\dagger}\lvert s'_k\rangle. $$</div>
-<p>If $s=s'$, every shift vanishes and each factor is a row norm, hence $1$. If $s\neq s'$, the lemma supplies a party with $\delta_k=0$ and $s_k\neq s'_k$. That factor is the inner product of two distinct rows of a unitary, and vanishes. One zero factor kills the product, so $MM^{\dagger}=I$. The induced map is unitary.</p>
-<p>A local instrument is a unitary on an ancilla followed by a partial trace. The partial trace of a unitary dilation is completely positive and trace-preserving. Fixing the source at $0$ recovers $w$, because the input is then $w(o)$ and the sink records $o$. The purification is not a second consistency axiom.</p>
-<p>The kernel did not check the identification of the gram entry with this sum, nor row orthonormality as a theorem about $\mathbb{C}$. The integer rows $(1,1)$ and $(1,-1)$ have dot product $0$. A normalised Hadamard needs $\sqrt{2}$ and is not in the file.</p>
+<p>Otherwise define</p>
+<p class="eq">f<sub>k</sub>(x) = s<sub>k</sub> if x = w<sub>k</sub>(s), &nbsp; s'<sub>k</sub> if x = w<sub>k</sub>(s'), &nbsp; 0 otherwise.</p>
+<p>Then f(w(s)) = s and f(w(s')) = s'. One intervention has two fixed points. The swap fails the other way: under w(a, b) = (b, a), negation on each side fixes both (0, 1) and (1, 0). Lean accepted this as <code>process_disagreement</code>.</p>
+<p>The source-to-sink amplitude, with a local unitary V<sub>k</sub> at each party, is</p>
+<p class="eq">M<sub>s,e</sub> = ∏<sub>k</sub> ⟨s<sub>k</sub>| V<sub>k</sub> |w<sub>k</sub>(s) ⊕ e<sub>k</sub>⟩.</p>
+<p>The gram entry is the sum over e of M<sub>s,e</sub> times the conjugate of M<sub>s',e</sub>. Change variables by i<sub>k</sub> = w<sub>k</sub>(s) ⊕ e<sub>k</sub>. The shift is</p>
+<p class="eq">δ<sub>k</sub> = w<sub>k</sub>(s') ⊕ w<sub>k</sub>(s).</p>
+<p>The factored gram entry is</p>
+<p class="eq">(MM†)<sub>s,s'</sub> = ∏<sub>k</sub> ∑<sub>i</sub> ⟨s<sub>k</sub>|V<sub>k</sub>|i⟩ ⟨i ⊕ δ<sub>k</sub>| V<sub>k</sub>† |s'<sub>k</sub>⟩.</p>
+<p>If s = s', every shift vanishes and each factor is a row norm, hence 1. If s ≠ s', the lemma supplies a party with δ<sub>k</sub> = 0 and s<sub>k</sub> ≠ s'<sub>k</sub>. That factor is the inner product of two distinct rows, and vanishes. So</p>
+<p class="eq">MM† = I.</p>
+<p>A local instrument is a unitary on an ancilla followed by a partial trace. Fixing the source at 0 recovers w. The kernel did not check this sum, nor row orthonormality over the complex numbers. The integer rows (1, 1) and (1, −1) have dot product 0. A normalised Hadamard needs √2 and is not in the file.</p>
 
 <h2>5. What would be new</h2>
-<p>Baumeler, Costa, Ralph, Wolf and Zych prove the reversible extension and say the quantum step is open. They check one finite-dimensional case. Ara&uacute;jo, Feix, Navascu&eacute;s and Brukner quantize Lugano. Vanrietvelde, Ormrod, Kristj&aacute;nsson and Barrett rewrite that extension as a routed circuit. Those are one function. Daher Ahmed and Kunjwal conjecture the general lift and prove it under mutual exclusivity of control conditions and under unambiguity, noting that neither is necessary. The sketch does not use those conditions. The forbidden double fixed point is the forbidden off-diagonal. That identification is the novel step, and it is written.</p>
+<p>Baumeler, Costa, Ralph, Wolf and Zych prove the reversible extension and say the quantum step is open. Ara&uacute;jo, Feix, Navascu&eacute;s and Brukner quantize Lugano. Vanrietvelde, Ormrod, Kristj&aacute;nsson and Barrett rewrite that extension as a routed circuit. Those are one function. Daher Ahmed and Kunjwal conjecture the general lift and prove it under two sufficient conditions, neither necessary. The sketch does not use those conditions. The forbidden double fixed point is the forbidden off-diagonal. That identification is written, not kernel-checked.</p>
 
 <h2>6. Spacetime, and the split</h2>
-<p>G&ouml;del's solution has closed timelike curves. Morris, Thorne and Yurtsever convert a traversable wormhole into a time machine. Friedman and collaborators keep only self-consistent solutions. Echeverria, Klinkhammer and Thorne find billiard data with one continuation, two, or none. Carlini, Frolov, Mensky, Novikov and Solodukhin recover the same underdetermination from the action. Earman's warning is that a condition imposed after the dynamics is not a dynamics. Hawking's chronology protection conjectures that the curve does not form. That is a different question.</p>
-<p>Deutsch asks for a fixed point of the partial trace. Existence is a theorem. Uniqueness is not. Aaronson and Watrous place the power at PSPACE. Bennett, Leung, Smith and Smolin call the power an artefact. Tolksdorf and Verch show that the condition can be met on a spacetime with no closed curve. Lloyd and collaborators replace the fixed point by post-selection. Process functions sit in that class. The event list is conditional on success. That is a simulation.</p>
-<p>The process matrix of Oreshkov, Costa and Brukner gives a probability for every instrument. The quantum switch of Chiribella, D'Ariano, Perinotti and Valiron does not violate a causal inequality. Lugano does. Baumeler and Wolf proved that a classical violation needs three parties, so every two-party process function is a channel and embeds as free propagation. A channel is</p>
-<div class="eq">$$ i_B = w(o_A),\qquad i_A\ \text{independent of } o_B, $$</div>
-<p>or the reverse. No wormhole is required. Lugano has no such wiring if the settings are free. Dourdent, Leitherer, Boghiu, Simonov, Kunjwal and Ac&iacute;n leave the physical side open. The pairwise-exclusive event list does not say which lists are fixed points of a Hamiltonian flow. The billiard has the wrong multiplicity. No other local flow is known. The absence is not a proof that none exists.</p>
+<p>The billiard of Echeverria, Klinkhammer and Thorne has the wrong multiplicity. A channel embeds without a wormhole:</p>
+<p class="eq">i<sub>B</sub> = w(o<sub>A</sub>), &nbsp; i<sub>A</sub> independent of o<sub>B</sub>,</p>
+<p>or the reverse. Lugano has no such wiring if the settings are free. Dourdent and collaborators leave the physical side open. The absence of a known Hamiltonian is not a proof that none exists.</p>
 
 <h2>7. Adjacent, not answered</h2>
-<p>Price argued that a time-symmetric ontology should be retrocausal. Leifer and Pusey, under lambda-mediation, obtain a timelike Bell factorization, which sequential measurements violate. Maudlin replies that the operational reverse of an experiment need not be an experiment of the same kind. A cyclic dependence drops an operational screening condition. It does not choose an ontology. Specker's pairwise exclusivity is the shape of the event list, not a derivation of freedom. Unique completion is not an open choice.</p>
+<p>Price, Leifer and Pusey, and Maudlin are adjacent. A cycle drops an operational screening condition. It does not choose an ontology. Unique completion is not an open choice.</p>
 
 <h2>References</h2>
 <ol class="refs">
@@ -86,27 +80,31 @@ p{text-align:justify}
 <li>M. S. Morris, K. S. Thorne and U. Yurtsever, Physical Review Letters 61, 1446 (1988).</li>
 <li>J. Friedman et al., Physical Review D 42, 1915 (1990).</li>
 <li>F. Echeverria, G. Klinkhammer and K. S. Thorne, Physical Review D 44, 1077 (1991).</li>
-<li>A. Carlini, V. P. Frolov, M. B. Mensky, I. D. Novikov and H. H. Solodukhin, International Journal of Modern Physics D 4, 557 (1995).</li>
-<li>J. Earman, Bangs, Crunches, Whimpers, and Shrieks, Oxford University Press (1995).</li>
+<li>A. Carlini et al., International Journal of Modern Physics D 4, 557 (1995).</li>
+<li>J. Earman, Bangs, Crunches, Whimpers, and Shrieks, Oxford (1995).</li>
 <li>S. W. Hawking, Physical Review D 46, 603 (1992).</li>
 <li>D. Deutsch, Physical Review D 44, 3197 (1991).</li>
 <li>S. Aaronson and J. Watrous, Proceedings of the Royal Society A 465, 631 (2009).</li>
-<li>C. H. Bennett, D. Leung, G. Smith and J. A. Smolin, Physical Review Letters 103, 170502 (2009).</li>
+<li>C. H. Bennett et al., Physical Review Letters 103, 170502 (2009).</li>
 <li>L. M. Tolksdorf and R. Verch, Communications in Mathematical Physics 357, 319 (2018).</li>
 <li>S. Lloyd et al., Physical Review Letters 106, 040403 (2011).</li>
 <li>O. Oreshkov, F. Costa and &#268;. Brukner, Nature Communications 3, 1092 (2012).</li>
-<li>G. Chiribella, G. M. D'Ariano, P. Perinotti and B. Valiron, Physical Review A 88, 022318 (2013).</li>
-<li>&Auml;. Baumeler and S. Wolf, New Journal of Physics 18, 013036 (2016); Proceedings of the Royal Society A 474, 20170698 (2018).</li>
+<li>G. Chiribella et al., Physical Review A 88, 022318 (2013).</li>
+<li>&Auml;. Baumeler and S. Wolf, New Journal of Physics 18, 013036 (2016).</li>
 <li>&Auml;. Baumeler, F. Costa, T. C. Ralph, S. Wolf and M. Zych, Classical and Quantum Gravity 36, 224002 (2019).</li>
-<li>M. Ara&uacute;jo, A. Feix, M. Navascu&eacute;s and &#268;. Brukner, Quantum 1, 10 (2017).</li>
-<li>A. Vanrietvelde, N. Ormrod, H. Kristj&aacute;nsson and J. Barrett, arXiv:2206.10042 (2022).</li>
+<li>M. Ara&uacute;jo et al., Quantum 1, 10 (2017).</li>
+<li>A. Vanrietvelde et al., arXiv:2206.10042 (2022).</li>
 <li>H. Price, Studies in History and Philosophy of Modern Physics 43, 75 (2012).</li>
 <li>M. S. Leifer and M. F. Pusey, Proceedings of the Royal Society A 473, 20160607 (2017).</li>
-<li>T. Maudlin, A tale of two tensors (2017).</li>
+<li>T. Maudlin, arXiv:1707.08641.</li>
 <li>E. Specker, Dialectica 14, 239 (1960).</li>
 <li>H. Dourdent et al., arXiv:2609.39735 (2026).</li>
 <li>N. Daher Ahmed and R. Kunjwal, arXiv:2610.00579 (2026).</li>
+<li>W. F. Stinespring, Proceedings of the American Mathematical Society 6, 211 (1955).</li>
 </ol>
-<footer><p>Repository: drewarrowood/process-function-unitary-lift. This file: paper/equations.html. Equations need the MathJax script, which the preview loads.</p></footer>
+<footer>
+<p>Rendered: <a href="https://htmlpreview.github.io/?https://github.com/drewarrowood/process-function-unitary-lift/blob/main/paper/equations.html">https://htmlpreview.github.io/?https://github.com/drewarrowood/process-function-unitary-lift/blob/main/paper/equations.html</a></p>
+<p>Source: <a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/paper/equations.html">https://github.com/drewarrowood/process-function-unitary-lift/blob/main/paper/equations.html</a></p>
+</footer>
 </body>
 </html>
