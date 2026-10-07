@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Unique completion and the unitary lift</title>
+<style>
+body{font-family:Palatino,Georgia,serif;max-width:42rem;margin:2rem auto;padding:0 1.2rem 4rem;line-height:1.6;color:#111;font-size:1.05rem}
+h1{font-size:1.55rem;line-height:1.25}h2{font-size:1.15rem;margin-top:1.8rem}
+.eq{margin:1rem 0;text-align:center;font-family:Times,serif;font-size:1.12rem}
+a{color:#111}
+.box{background:#f6f5f2;padding:.8rem 1rem;margin:1rem 0}
+</style>
+</head>
+<body>
+<p>Draft. Not a deposited preprint.</p>
+<h1>Unique completion, the unitary lift, and the embeddability gap</h1>
+<div class="box">
+<p><strong>Lean file.</strong> The checked half is <a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/Full.lean">lean/Full.lean</a>. Lean 4.34.1 accepted the exclusivity lemma and the source-and-sink bijection on bits, with no unfinished proof. The gram identity is not in that file.</p>
+</div>
+<h2>What is shown</h2>
+<p>If a map has one fixed point for every local intervention, distinct output strings leave a party who disagrees in the output and agrees in the function value. On bits, the source-and-sink extension is a bijection. Both are in the Lean file linked above.</p>
+<p>Written, not checked: that witness kills the off-diagonal of the gram matrix, so the induced map is unitary. Instruments follow by a partial trace.</p>
+<p>Not claimed: a metric, a wormhole Hamiltonian for Lugano, the Leifer-Pusey no-go, or freedom.</p>
+<h2>The demand</h2>
+<p>Faye's Stanford entry, revised 28 October 2025, still treats the consistency paradoxes as unresolved. Dummett set the lexical objection aside. Black asked what happens to the intervention. Lewis split the modal and did not select the histories. Horwich asked the theory to say what the intervention does. Earman said a filter after the dynamics is not a dynamics. A process function answers by non-admission. No fixed point is the grandfather case. Two is the bootstrap.</p>
+<h2>Equations</h2>
+<p class="eq">o = f(w(o)). (1)</p>
+<p>No solution is the grandfather case. Two solutions is the bootstrap.</p>
+<p class="eq">w(a, b, c) = (not b and c, not c and a, not a and b). (2)</p>
+<p>Lugano. Each input depends on the other two outputs. All 64 binary interventions have one solution of (1). The image has four elements out of eight.</p>
+<p class="eq">U sends (o, e) to (w(o) + e, o). (3)</p>
+<p class="eq">The inverse sends (i, s) to (s, i + w(s)). (4)</p>
+<p>On bits the sum is exclusive or. The Lean file checks both compositions.</p>
+<p class="eq">If s differs from s', some party disagrees in the output and agrees in the function value. (5)</p>
+<p>This is process_disagreement in <a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/Full.lean">lean/Full.lean</a>. Otherwise one local function fixes both strings.</p>
+<p class="eq">The shift is delta_k = w_k(s') - w_k(s). (6)</p>
+<p class="eq">MM dagger = I. (7)</p>
+<p>(7) is written. On the diagonal the shift vanishes. Off it, (5) supplies a zero factor.</p>
+<p class="eq">A channel is i_B = w(o_A), with i_A independent of o_B. (8)</p>
+<p>(8) embeds as free propagation. (2) has no such wiring if the settings are free. Post-selection is a simulation. (3) and (4) are reversibility, not a metric. The cyclic case stays open.</p>
+<h2>References</h2>
+<p>Dummett 1954, 1964. Black, Analysis 16 (1956). Lewis 1976. Horwich 1987. Earman 1995. Faye, SEP, rev. 28 Oct 2025. Godel 1949. Morris, Thorne, Yurtsever, PRL 61 (1988). Echeverria, Klinkhammer, Thorne, PRD 44 (1991). Deutsch, PRD 44 (1991). Oreshkov, Costa, Brukner 2012. Baumeler, Costa, Ralph, Wolf, Zych, CQG 36 (2019). Araujo et al., Quantum 1 (2017). Dourdent et al., arXiv:2609.39735. Daher Ahmed and Kunjwal, arXiv:2610.00579. Leifer and Pusey 2017. Vilasini and Renner, arXiv:2203.11245. Stinespring 1955.</p>
+<p>Rendered: <a href="https://cdn.jsdelivr.net/gh/drewarrowood/process-function-unitary-lift@main/paper/paper.html">https://cdn.jsdelivr.net/gh/drewarrowood/process-function-unitary-lift@main/paper/paper.html</a></p>
+<p>Lean: <a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/Full.lean">https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/Full.lean</a></p>
+<p>Source: <a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/paper/paper.html">https://github.com/drewarrowood/process-function-unitary-lift/blob/main/paper/paper.html</a></p>
+</body>
+</html>
