@@ -60,3 +60,37 @@ deterministic ones. A proof of "purifiable => mixture of process functions" ther
 W lies in conv(PF), for example that purifiability implies every facet inequality of the PF polytope. It cannot go
 through a source-label decomposition. Status: the conjecture is open; D.3 is refuted; no counterexample to the
 conjecture itself.
+
+## D.5 The hull route (Oct 10 2026)
+
+**Proposition D.5 [proved]: validity under quantum-controlled interventions is automatic, so it cannot be the
+criterion.** Let W be any classical process, including E_ex1 and all 49 open orbits. Let the parties apply arbitrary
+local instruments, coherently controlled by a shared ancilla that may be entangled across parties. Then the
+probabilities are normalised. Reason: W is diagonal, so it dephases every party's input and output. The effective
+intervention is then a classical joint behaviour q(o|i) produced from a shared quantum state by local operations, so
+q is non-signalling. Every non-signalling behaviour is an affine (not necessarily convex) combination of local
+deterministic ones. The normalisation sum_{i,o} p(i|o) q(o|i) is affine in q and equals 1 on every local
+deterministic q (logical consistency), so it equals 1 for all such q. Positivity is termwise. So the proposed test
+"valid under quantum-controlled interventions" holds for every classical process. It cannot separate E_ex1 from PF
+mixtures, and step (3) of the plan is moot. Purifiability is strictly stronger only because of its unitarity
+(reversibility) requirement.
+
+**Proposition D.6 [proved, sketch]: classical-reversible purifiability <=> mixture of PFs.** Call W
+classically purifiable if it is the marginal, for a random source value lambda, of a classical reversible process: a
+bijection (lambda, o) -> (i, sink) that stays a bijection P -> F under every deterministic local intervention.
+For a fixed lambda this is a deterministic process. Bijectivity of the composite map under every intervention f
+forces exactly one consistent execution: zero leaves the source value with no image, and two collide by counting.
+So each w_lambda is a process function (Baumeler-Wolf 2016), and W = sum_lambda p(lambda) W_{w_lambda}. The converse
+is the source-sink construction with a random source. Hence **the conjecture is equivalent to: a classical process
+that is quantum-purifiable is already classically purifiable.** D.4 shows the quantum purification itself need not be
+classical (its labels are contextual), so this has to be argued at the level of W.
+
+**Facets of the PF hull [computation].** The 744 process functions (3 parties, binary) span a 37-dimensional affine
+space. Facet enumeration results are recorded below. Each facet that some open orbit violates is a candidate
+inequality that purifiability would have to imply.
+Full facet enumeration was not done: pycddlib does not build on the box, and 744 vertices in dimension 37 may have
+very many facets. Instead, sep.py finds by LP a separating inequality of the PF hull (box-normalised, |f| <= 1):
+E_ex1 and orbit 7 violate one by 6.0, orbit 8 by 4.0, and a PF mixture by 0, as expected. These inequalities are not
+reduced modulo the affine hull or by symmetry, so their supports carry no meaning yet. **No inequality has been
+derived from purifiability. The conjecture remains open.** Next steps: enumerate facets with lrs/normaliz or by
+symmetry-adapted LP, then try to derive one facet class from Theorem 4 (isotropy) together with Lemma D.1.
