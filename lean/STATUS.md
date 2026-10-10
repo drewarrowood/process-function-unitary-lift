@@ -30,7 +30,15 @@ Finitely many parties (`Fintype ι`); input alphabets `I k` arbitrary (any cardi
 - `PFUL.Countable.orthogonal_span_eq_bot` (PFUL/Assemble.lean): an orthonormal family is total if Parseval holds on a separating family (proof by Bessel's inequality on the family extended by a unit vector orthogonal to it).
 - `PFUL.Countable.induced_unitary_l2`: **the induced map is unitary on ℓ².** Hypotheses: finitely many parties; I k, X k, O k, Y k countable; each V k has square-summable orthonormal rows and unit-norm columns (a unitary kernel). Conclusion: there is a linear isometric *equivalence* `Φ : ℓ²(sources × ancillas) ≃ₗᵢ[ℂ] ℓ²(sinks × ancillas)` with `Φ v r = ∑' c, M r c * v c` (as a HasSum) and `Φ (single c 1) r = M r c`. So Φ is the induced operator, and it is unitary (isometric and surjective; M M† = 1 and M† M = 1).
 - Axioms for all of the above: `propext`, `Classical.choice`, `Quot.sound`.
-- Remaining limits: finitely many parties; continuous alphabets not covered; the step "unitary induced maps ⇒ valid process" (Stinespring, Appendix A) is not formalised in any case.
+- Remaining limits: finitely many parties; continuous alphabets not covered.
+
+## Appendix A, validity: PFUL/Validity.lean (finite dimensions)
+- `PFUL.ptrace` (partial trace over the second tensor factor), `PFUL.ptrace_posSemidef`, `PFUL.trace_ptrace`.
+- `PFUL.IsDensity ρ`: PSD and trace 1. `PFUL.density_of_isometry`: if Mᴴ M = 1 and σ is a density matrix, then M σ Mᴴ and its partial trace are density matrices.
+- `PFUL.ValidWith w X Y` (the AFNB-style validity condition used in Appendix A): for all local unitaries V k : I k × X k → O k × Y k (Stinespring dilations) and all joint density matrices σ of source and input ancillas (entanglement and shared ancillas allowed), the global output and the sink state (partial trace over output ancillas) are density matrices.
+- `PFUL.valid`: every process function satisfies `ValidWith w X Y` for all finite ancilla types X, Y.
+- Axioms: `propext`, `Classical.choice`, `Quot.sound`.
+- Not formalised: existence of Stinespring dilations for CPTP maps (taken as given); instruments with individual outcomes (Appendix A Step 4); equivalence with AFNB's Choi-operator formulation.
 
 ## Legacy Mathlib-free files (library `Legacy`)
 
@@ -46,7 +54,7 @@ Build: `cd lean && lake build`. Every file compiles. There is no `sorry`, `admit
 - Lift.lean `off_diagonal_cancels`, `diagonal_is_one`, and GramGeneral.lean `gram_unitary`. These are integer-valued (`Int`) "rows". Row orthonormality is a hypothesis, and in `gram_unitary` the witness party is also a hypothesis rather than being derived from the lemma. ComplexGram.lean contains only algebraic helper lemmas for a hand-rolled complex type.
 
 ## Not formalised
-- Stinespring dilation and process-matrix validity (paper Section 2).
+- Existence of Stinespring dilations; instruments; AFNB's Choi-operator form of validity (the density-matrix form is `PFUL.valid`).
 - Spacetime embedding (Gaps.lean defines `SpacetimeEmbeddingClaim : Prop := False` as a marker).
 
 Build: `lake exe cache get && lake build` (fetches the Mathlib cache).

@@ -454,7 +454,7 @@ So M M† = 1. M is also square: the source-plus-input-ancilla side has dimensio
 
 ### 34. From "unitary under unitaries" to "valid under everything"
 
-Agents in labs do not only apply unitaries. They measure, add noise, discard things, and use equipment entangled with other labs. Does the result survive all that? The note's Appendix A shows that it does, by a standard argument (**proved on paper; not formalised in Lean**).
+Agents in labs do not only apply unitaries. They measure, add noise, discard things, and use equipment entangled with other labs. Does the result survive all that? The note's Appendix A shows that it does, by a standard argument (**proved on paper; the core is now machine-checked in Lean as `PFUL.valid`**). The Lean theorem lets the labs' equipment start in any joint state, entangled with each other and with the source. It then checks that after the loop, what remains is always a genuine quantum state: positive, with total probability one.
 
 The key tool is **Stinespring dilation**. Any physically allowed operation, any "CPTP map" in the jargon (completely positive and trace preserving), can be written as three steps: add a fresh ancilla in a fixed state, apply a unitary to everything, then throw part of the result away. The throwing away is a *partial trace*: we average over what we can no longer see.
 
@@ -777,7 +777,7 @@ So consistency does double duty. It forbids interference between different histo
 > **Proved**
 >
 > - Every process function, with any finite alphabets, lifts to a pure unitary process: under any local unitaries with any finite ancillas, the source-to-sink map is unitary. *Machine-checked in Lean 4 (exclusivity lemma; M M† = 1 and M† M = 1; unitary-group membership), standard axioms only.*
-> - Validity under arbitrary local operations, entangled ancillas and instruments follows by Stinespring. *Standard paper argument, not formalised in Lean.*
+> - Validity under arbitrary local operations, entangled ancillas and instruments follows by Stinespring. *The density-matrix core (local Stinespring unitaries, any joint ancilla state, partial trace) is machine-checked in Lean (`PFUL.valid`). The existence of Stinespring dilations and the instrument step are taken from the literature.*
 > - Mixtures of process functions are purifiable (coherent random source, label recorded in the sink).
 > - Classical reversible purifiability holds exactly for mixtures of process functions (D.6). So the conjecture says quantum reversibility adds nothing here.
 > - E_ex1 and the vertex orbits 7 and 50 (one of which contains E_ex1) are not purifiable. *Exact rational certificates.*
