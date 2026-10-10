@@ -1,1 +1,2 @@
-{"rank": 15, "dimVW": 124, "nec_ok": true, "ncons": 1081, "iso_bound": 51, "ruled_out": false, "i": 0, "count": 56, "vals": [0.5, 1.0]}
+{"rank": 15, "dimVW": 124, "nec_ok": true, "iso_bound": 54, "ruled_out": false, "i": 0, "count": 56, "vals": [0.5, 1.0]}
+{"rank": 16, "dimVW": 176, "nec_ok": true, "iso_bound": 80, "ruled_out": false, "i": 1, "count": 9, "vals": [0.5]}
