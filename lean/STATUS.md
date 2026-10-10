@@ -12,6 +12,13 @@
 - `PFUL.induced_conjTranspose_mul` (ℂ): `Mᴴ * M = 1`. Together with `induced_mul_conjTranspose`, M is unitary on both sides.
 - All of the above depend only on `propext`, `Classical.choice` and `Quot.sound`.
 
+## Column side via logical consistency: PFUL/Column.lean (Appendix F.3)
+- `PFUL.Column.sum_prod_eq_one`: for a process function w (finite parties, finite alphabets, no group structure needed) and any family q k i : O k → R over a commutative ring with ∑ o, q k i o = 1, `∑ s, ∏ k, q k (w s k) (s k) = 1`. Proof: average the number of fixed points over the product measure on deterministic interventions (the finite-alphabet form of the Tonelli argument).
+- `PFUL.induced_colnorm` (ℂ): if (V k)ᴴ * V k = 1 for all k, every diagonal entry of Mᴴ M is 1 (unit columns).
+- `PFUL.induced_conjTranspose_mul_of_colnorm` (ℂ): if V k are unitary (both V Vᴴ = 1 and Vᴴ V = 1), then Mᴴ M = 1. The proof uses orthonormal rows (`induced_mul_conjTranspose`) and unit columns, so 1 - Mᴴ M is a projection with zero diagonal, hence 0. **No dimension count** (no `card_eq`, no square-matrix argument). Input and output sizes may differ, as long as each local V k is unitary.
+- Axioms: `propext`, `Classical.choice`, `Quot.sound` only.
+- Not formalised: the countable (infinite-alphabet) version (tsum/Tonelli and l^2 operators). Appendix F.3's countable argument is on paper only.
+
 ## Legacy Mathlib-free files (library `Legacy`)
 
 Build: `cd lean && lake build`. Every file compiles. There is no `sorry`, `admit` or `axiom` declaration. Files that use `native_decide` also depend on the compiler-trust axiom `Lean.ofReduceBool`: Full.lean (`hadamard_rows_orthogonal` only), Gaps.lean (`hadamard_rows`, `trace_identity_ancilla`), Cancel.lean (finite checks), and StinespringBoundary.lean (`closed_not_every_w`).

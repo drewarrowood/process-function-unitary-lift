@@ -760,6 +760,18 @@ Read forwards, the source is an input and the sink is an output. Read backwards,
 
 ---
 
+## Part X. Infinite alphabets, and a second proof
+
+What if a party's alphabet is infinite, say all the integers? The construction still makes sense: the source adds its value to w(o), and the sink copies o. That rule still shuffles basis states one-to-one, so the big map is unitary.
+
+The finite proof had two halves. The first half shows that different sink outcomes never interfere ("rows are orthogonal"). That uses only the exclusivity lemma, and it works for any alphabet size. The second half used a counting trick: a square matrix whose rows are orthonormal is automatically unitary. In infinite dimensions that trick fails. The "shift" operator has orthonormal rows but loses a dimension.
+
+The new proof replaces counting with probability. Read each party's unitary as a random rule: an input i produces output o with probability |amplitude|^2. Now pick a random deterministic rule for every party and every input independently. The total weight in each column of the big map equals the expected number of consistent histories. A process function has exactly one consistent history for every deterministic choice, so that expectation is exactly 1. Every column has length one, nothing leaks away, and the map is unitary.
+
+So consistency does double duty. It forbids interference between different histories, and it guarantees no probability is lost. For finite alphabets this second proof is machine-checked in Lean (`PFUL.induced_conjTranspose_mul_of_colnorm`). For countably infinite alphabets it is a short paper proof (Appendix F). Continuous alphabets are still open, because even defining the map needs care.
+
+---
+
 ## What is proved, what is evidence, what is open
 
 > **Proved**
@@ -772,6 +784,7 @@ Read forwards, the source is an input and the sink is an output. Read backwards,
 > - In any purification, the sink holds an orthogonal record of (outputs, inputs) (D.1). Constraints on the fixed source state alone are vacuous (D.2). Validity under quantum-controlled interventions holds for every classical process (D.5).
 > - The hidden-label strengthening D.3 is false. Counterexample: a causal circuit (D.4).
 > - No certificate that uses only the fixed source state can rule out purification of any classical process (D.8).
+> - The lift also works for countably infinite alphabets (Appendix F), by a probabilistic proof that needs no dimension count. *The finite-alphabet version of that proof is machine-checked in Lean.*
 > - The three-party binary process-function hull has exactly 29,344 facets in 93 orbits (exact computation with normaliz).
 >
 > **Evidence (not proof)**
@@ -786,6 +799,6 @@ Read forwards, the source is an input and the sink is an output. Read backwards,
 > - The conjecture: a classical process is purifiable if and only if it is a mixture of process functions. The "if" half is proved. The "only if" half is open.
 > - Deriving any facet inequality, for example orbit 82, from purifiability.
 > - Any proof must use the purifying unitary on source states orthogonal to the actual one. That is the non-convex isotropy condition of Araújo et al.'s Theorem 4, where every certificate attempt so far has stalled for the larger orbits.
-> - Spacetime embedding, continuous alphabets, and lifts built from bijections other than U are not addressed.
+> - Spacetime embedding, continuous alphabets (countable ones are done), and lifts built from bijections other than U are not addressed.
 
 *For definitions, full proofs, references and code pointers, see the technical note, [paper/lift.md](https://github.com/drewarrowood/process-function-unitary-lift/blob/main/paper/lift.md).*
