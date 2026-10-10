@@ -34,7 +34,7 @@ In the language of Araújo, Feix, Navascués and Brukner (2017, Definition 1), t
 
 ## 2. From unitarity to validity
 
-Section 1 shows that the lift is *pure* in the sense of Araújo et al. (unitaries in, unitary out). Appendix A derives full process validity from this (any local CPTP maps, local and shared/entangled ancillas, instruments) using Stinespring dilation. Appendix B covers input and output alphabets of different sizes.
+Section 1 shows that the lift is *pure* in the sense of Araújo et al. (unitaries in, unitary out). Appendix A derives full process validity from this (any local CPTP maps, local and shared/entangled ancillas, instruments) using Stinespring dilation. Appendix B covers input and output alphabets of different sizes. Appendix C treats stochastic classical processes: mixtures of process functions are purifiable, but a non-deterministic extremal point of the Baumeler–Wolf polytope numerically is not.
 
 ## 3. Backward causation, before the formalism
 
@@ -117,6 +117,38 @@ Nothing in Section 1 needs |I_k| = |O_k|.
 - A party with |I_k| != |O_k| cannot apply a unitary I_k -> O_k. Its most general deterministic operation is a CPTP map, or a unitary with ancillas, I_k X_k -> O_k Y_k with |I_k||X_k| = |O_k||Y_k|. The Theorem is stated in exactly that generality (and so is the Lean theorem, whose local types I k, O k, X k, Y k are independent). The Gram computation gives M M^dagger = 1, and M is square because dim(P X) = prod |I_k||X_k| = prod |O_k||Y_k| = dim(F Y). Appendix A then applies verbatim.
 
 **What holds.** For any finite input and output alphabets, with any sizes, the permutation lift of a process function is a pure and valid process. **What is not covered.** Infinite or continuous alphabets (Baumeler et al. 2019 also treat continuous variables), and lifts built from a different bijection than U.
+
+## Appendix C. Stochastic classical processes
+
+**Question.** Does every logically consistent classical process admit a unitary extension, in the sense of AFNB purifiability? The process may be stochastic, not just a deterministic process function.
+
+**What is known (verified sources).**
+- Baumeler and Wolf (NJP 18, 013036 (2016), https://arxiv.org/abs/1507.01714) show the classical processes form a polytope. With two binary parties it has 12 extremal points, all deterministic. With three binary parties it has 710,760 extremal points, of which only 744 are deterministic, i.e. process functions. The rest are "proper mixtures" of logically inconsistent deterministic processes. One explicit example is E_ex1 = (C + C̄)/2, the uniform mixture of the circular identity channel C (x_1 = a_3, x_2 = a_1, x_3 = a_2) and its bitwise negation C̄.
+- Araújo, Feix, Navascués and Brukner (Quantum 1, 10 (2017), https://arxiv.org/abs/1611.08535) define purifiability (their Definition 3). Their Theorem 4 is an exact criterion, and Section 5 gives a necessary condition, dim V_W ≥ rank W.
+- Baumeler, Gilani and Rashid (Quantum 6, 673 (2022), https://quantum-journal.org/papers/q-2022-03-31-673/) assert unitary extensibility for process functions only, via reversible embeddings, without a separate proof.
+- Daher Ahmed and Kunjwal (https://arxiv.org/abs/2610.00579) conjecture that process functions are purifiable. Tobar and Costa (CQG 37, 205011 (2020), https://arxiv.org/abs/2001.02511) treat reversible deterministic dynamics.
+- I found no source that claims to settle purifiability of the non-deterministic extremal points.
+
+**C.1 Proposition (proved).** Every convex mixture of process functions is purifiable.
+
+*Proof.* Let W = sum_j p_j W_{w_j}. Take source P' = C^J ⊗ P and sink F' = C^J ⊗ F, and define U|o, e, j> = |w_j(o) + e>_I |o, j>_F'. With local unitaries inserted, the induced operator is the block sum ⊕_j M_j. Each M_j is unitary by the Theorem of Section 1, so the process is pure. Feed sum_j sqrt(p_j)|j> ⊗ |0> into P'. This is a fixed pure state, equivalently |0> followed by a unitary that is absorbed into U. Then trace out F'. Because the sink keeps a copy of j, the cross terms vanish and the result is sum_j p_j W_{w_j} = W. ∎
+
+The control register must enter through the source and leave through the sink. If it is not handed to the sink, the coherence between branches survives, and the result is no longer the classical mixture. Hence the whole deterministic-extrema polytope of Baumeler and Wolf is purifiable. This covers every two-party classical process with binary inputs and outputs, since there all extremal points are deterministic.
+
+**C.2 Numerical result: E_ex1 appears not to be purifiable.** Scripts are in code/stochastic/.
+- E_ex1 is logically consistent and is a vertex of the three-party binary polytope (active-constraint rank 64 of 64). So it is not a mixture of process functions, and C.1 does not apply.
+- Its process matrix has rank 16, and dim V_W = 27 ≥ 16. AFNB's necessary condition therefore does not rule it out.
+- Applying their full Theorem 4: write the candidate vectors w_i in coordinates on V_W. The quadratic conditions then require a 16-dimensional subspace S of C^27 on which 46 explicit sesquilinear forms vanish.
+- For at least one form, the Hermitian part has inertia that allows totally isotropic subspaces of dimension at most 12 < 16. So no such S exists, and E_ex1 is not purifiable.
+- Control: the same pipeline applied to Lugano, which is purifiable, gives a bound of 29 ≥ 8.
+- Status: this is a floating-point computation with clean spectral gaps (about 1e-17 versus at least 5e-3). It is not an exact or symbolic certificate.
+
+**Answer (current status).** No, if the numerics are right. Not every logically consistent classical process admits a unitary extension. Mixtures of process functions do. The non-deterministic extremal point E_ex1 is numerically not purifiable.
+
+**Open.**
+- An exact certificate for E_ex1, e.g. rational arithmetic on the 46 forms.
+- Classifying which of the 709,936 non-deterministic extremal points are purifiable.
+- Whether purifiability of a classical process implies that it lies in the deterministic-extrema polytope.
 
 ## References
 
