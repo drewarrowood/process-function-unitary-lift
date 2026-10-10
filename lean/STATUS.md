@@ -7,7 +7,10 @@
 - `PFUL.induced_mul_conjTranspose`: if w is a process function and V k * (V k)ᴴ = 1 for every k, then M * Mᴴ = 1. This holds over any field with a star operation (`Field 𝕜`, `StarRing 𝕜`), for any finite set of parties `ι`, finite input groups `I k`, finite output sets `O k`, and finite local ancillas `X k`, `Y k`. Input and output sizes may differ.
 - `PFUL.induced_mul_conjTranspose_complex`: the same theorem with 𝕜 = ℂ.
 - `#print axioms` lists only `propext`, `Classical.choice` and `Quot.sound`: no `sorry`, no custom axioms, no `native_decide`.
-- Not in Lean: "M Mᴴ = 1 and M square ⇒ Mᴴ M = 1". The index types differ, so the theorem is stated as orthonormal rows. Squareness is the dimension count in paper Appendix B.
+- `PFUL.card_eq`: the dimension count. If |I k × X k| = |O k × Y k| for every k, the source⊗ancilla and sink⊗ancilla index types have the same cardinality.
+- `PFUL.induced_unitary` (ℂ): for any bijection `e` between those index types, `(induced ℂ w V).submatrix id e ∈ Matrix.unitaryGroup _ ℂ`.
+- `PFUL.induced_conjTranspose_mul` (ℂ): `Mᴴ * M = 1`. Together with `induced_mul_conjTranspose`, M is unitary on both sides.
+- All of the above depend only on `propext`, `Classical.choice` and `Quot.sound`.
 
 ## Legacy Mathlib-free files (library `Legacy`)
 

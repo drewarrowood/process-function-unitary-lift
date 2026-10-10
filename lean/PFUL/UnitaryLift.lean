@@ -4,6 +4,7 @@ import Mathlib.Algebra.BigOperators.Pi
 import Mathlib.Algebra.BigOperators.Ring.Finset
 import Mathlib.Data.Fintype.BigOperators
 import Mathlib.Data.Complex.Basic
+import Mathlib.LinearAlgebra.UnitaryGroup
 
 open Finset Matrix
 
@@ -104,3 +105,45 @@ theorem induced_mul_conjTranspose_complex (w : (∀ k, O k) → (∀ k, I k)) (h
   induced_mul_conjTranspose ℂ w hw V hV
 
 end PFUL
+
+namespace PFUL
+
+variable {ι : Type*} [Fintype ι] [DecidableEq ι]
+variable {I O X Y : ι → Type*}
+variable [∀ k, AddCommGroup (I k)] [∀ k, Fintype (I k)] [∀ k, DecidableEq (I k)]
+variable [∀ k, Fintype (O k)] [∀ k, DecidableEq (O k)]
+variable [∀ k, Fintype (X k)] [∀ k, DecidableEq (X k)]
+variable [∀ k, Fintype (Y k)] [∀ k, DecidableEq (Y k)]
+
+/-- The paper's dimension count: if each local operator is square
+(`|I k||X k| = |O k||Y k|`), the induced operator is square. -/
+lemma card_eq (hcard : ∀ k, Fintype.card (I k × X k) = Fintype.card (O k × Y k)) :
+    Fintype.card ((∀ k, O k) × (∀ k, Y k)) = Fintype.card ((∀ k, I k) × (∀ k, X k)) := by
+  simp only [Fintype.card_prod, Fintype.card_pi] at hcard ⊢
+  rw [← Finset.prod_mul_distrib, ← Finset.prod_mul_distrib]
+  exact Finset.prod_congr rfl (fun k _ => (hcard k).symm)
+
+/-- Complex case: after identifying source⊗ancilla with sink⊗ancilla by any bijection `e`
+(which exists by `card_eq`), the induced operator lies in the unitary group. -/
+theorem induced_unitary (w : (∀ k, O k) → (∀ k, I k)) (hw : IsProcessFunction w)
+    (V : ∀ k, Matrix (O k × Y k) (I k × X k) ℂ) (hV : ∀ k, V k * (V k)ᴴ = 1)
+    (hcard : ∀ k, Fintype.card (I k × X k) = Fintype.card (O k × Y k))
+    (e : ((∀ k, O k) × (∀ k, Y k)) ≃ ((∀ k, I k) × (∀ k, X k))) :
+    (induced ℂ w V).submatrix id e ∈ Matrix.unitaryGroup ((∀ k, O k) × (∀ k, Y k)) ℂ := by
+  rw [Matrix.mem_unitaryGroup_iff, Matrix.star_eq_conjTranspose, Matrix.conjTranspose_submatrix,
+    ← Matrix.submatrix_mul _ _ _ _ _ e.bijective, induced_mul_conjTranspose ℂ w hw V hV]
+  exact Matrix.submatrix_one_equiv (Equiv.refl _)
+
+/-- Two-sided unitarity in the complex case: `Mᴴ * M = 1`, using the dimension count `card_eq`
+(the paper's Appendix B) and `M * Mᴴ = 1`. -/
+theorem induced_conjTranspose_mul (w : (∀ k, O k) → (∀ k, I k)) (hw : IsProcessFunction w)
+    (V : ∀ k, Matrix (O k × Y k) (I k × X k) ℂ) (hV : ∀ k, V k * (V k)ᴴ = 1)
+    (hcard : ∀ k, Fintype.card (I k × X k) = Fintype.card (O k × Y k)) :
+    (induced ℂ w V)ᴴ * induced ℂ w V = 1 := by
+  let e := Fintype.equivOfCardEq (card_eq hcard)
+  have hu := (Matrix.mem_unitaryGroup_iff'.mp (induced_unitary w hw V hV hcard e))
+  rw [Matrix.star_eq_conjTranspose, Matrix.conjTranspose_submatrix,
+    ← Matrix.submatrix_mul _ _ _ _ _ Function.bijective_id] at hu
+  ext i j
+  have := congrFun (congrFun hu (e.symm i)) (e.symm j)
+  simpa [Matrix.one_apply] using this
