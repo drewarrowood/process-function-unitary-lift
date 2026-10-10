@@ -1,0 +1,18 @@
+{
+ "m": 82,
+ "r": 16,
+ "lambda_r_over_norm": 9.419476555194706e-05,
+ "kyfan_over_norm": 1.8759031295776367,
+ "inertia": [
+  62,
+  19,
+  1
+ ],
+ "iso_bound": 20,
+ "certified_float": false,
+ "steps": 300,
+ "batch": 4,
+ "seed": 2,
+ "secs": 29.5,
+ "name": "orbit20"
+}
