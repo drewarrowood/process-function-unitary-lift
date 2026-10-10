@@ -39,3 +39,24 @@ interventions restricted to the source state |lambda>, and by Baumeler-Wolf that
 D.3 holds for our source-sink lifts. It has not been tested on the non-permutation purifications found by the
 optimiser (Lugano, App. C); that test is the next step. A counterexample to D.3 that is still a mixture would refute
 only D.3, not the conjecture.
+
+## D.4 Conjecture D.3 is false (update, Oct 10 2026) [proved, exact counterexample]
+
+Write G_{i,o} = V_o^dagger (Pi_i (x) 1_F) V_o on P, where V_o|s> = V|s,o>. D.3 is equivalent to: all G_{i,o} are
+projectors that commute pairwise (their common eigenbasis is the label basis lambda). Counterexample: a causally
+ordered circuit (code/stochastic/physics/d3_counterexample.py). Party A has trivial input and output oA. The source is
+P = m (x) a. Apply H^{oA} to m, CNOT m -> a, send m to B's input, and route (oA, oB, a) to the sink. V is a
+permutation-and-Hadamard circuit of unitaries in a fixed causal order, so it is a valid unitary process. With
+psi = |00> the process is classical: p(iB|oA=0) = delta_{iB,0} and p(iB|oA=1) = 1/2. Lemma D.1 holds: W is diagonal.
+W is a mixture of process functions (w_lambda(oA) = lambda*oA). But the G's are Z-projectors for oA=0 and
+X-projectors for oA=1. They do not commute (commutator norm 1/2), so no source basis works. Restricting to psi does
+not help either: psi = |00> is an eigenvector of the oA=0 projectors only.
+
+Consequence. Gap (b) is real. Even for causal processes, the "which-function" randomness is generated contextually,
+by measuring the quantum source in a basis that depends on earlier outputs. So no argument that extracts a single
+classical label from the source can work, and unitarity under all local unitaries does not force one. The mixture
+conclusion still holds here for a different reason: every causally ordered classical process is a mixture of causal
+deterministic ones. A proof of "purifiable => mixture of process functions" therefore has to show directly that
+W lies in conv(PF), for example that purifiability implies every facet inequality of the PF polytope. It cannot go
+through a source-label decomposition. Status: the conjecture is open; D.3 is refuted; no counterexample to the
+conjecture itself.
