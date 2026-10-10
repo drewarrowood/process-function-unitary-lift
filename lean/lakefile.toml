@@ -1,0 +1,6 @@
+name = "PFUL"
+defaultTargets = ["PFUL"]
+
+[[lean_lib]]
+name = "PFUL"
+roots = ["Lift", "Full", "Gaps", "Cancel", "GramGeneral", "ComplexGram", "StinespringBoundary"]

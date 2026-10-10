@@ -1,1 +1,0 @@
-The long PDF is paper/lift-long.pdf. It is a 7-page ASCII rendering of the long article, including the kernel-check section and the reference list. The previous lift-long.pdf was a 1725-byte stub and should be ignored if this commit has not landed.
