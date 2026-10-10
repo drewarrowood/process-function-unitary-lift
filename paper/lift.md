@@ -151,15 +151,16 @@ The control register must enter through the source and leave through the sink. I
 *Conjecture.* A classical process is purifiable iff it is a mixture of process functions.
 
 *Evidence so far.*
-- 40,000 random LP vertices of the three-party binary polytope gave 39,354 deterministic vertices and 646 non-deterministic ones. These fall into 51 orbits under party permutations and local input/output relabellings (code/stochastic/reps.json). Their ranks are 15–23, and their entries are halves, or thirds and two-thirds.
-- AFNB's necessary condition holds for every orbit tested, so it never decides the question.
-- The random-form isotropy test is inconclusive for the larger V_W (e.g. rank 15 with dim V_W = 124, and rank 16 with 176).
-- Gradient searches on those orbits are running. Results go to code/stochastic/opt_results.jsonl. No purifiable non-mixture has been found.
-- All 744 mixtures (q + E_ex1)/2 and (q + 4 E_ex1)/5 with q a process function lie outside the process-function hull (LP check). They are candidates for non-extreme counterexamples, and are untested.
+- 40,000 random LP vertices of the three-party binary polytope gave 39,354 deterministic vertices and 646 non-deterministic ones. These fall into 51 orbits under party permutations and local input/output relabellings (code/stochastic/reps.json). Ranks are 15–23.
+- AFNB's necessary condition dim V_W ≥ rank W holds for all 51 orbits (nec_partial.json), so on its own it decides nothing. dim V_W ranges from 27 to 256.
+- Exact certificates of non-purifiability exist for the 2 orbits with dim V_W = 27, one of which contains E_ex1 (exact2.py, cert_phi_7.npy, cert_phi_50.npy).
+- For the other 49 orbits (dim V_W ≥ 82) the random-form isotropy test was inconclusive, and gradient searches did not finish within our compute budget. Their status is open.
+- No purifiable non-mixture has been found. That is weak evidence, because the large cases are untested.
+- All 1,488 mixtures (q + E_ex1)/2 and (q + 4 E_ex1)/5, with q one of the 744 process functions, lie outside the process-function hull (LP check). They are untested candidates for non-extreme counterexamples.
 
 *Proof idea for "only if" (not completed).* A purification U restricted to classical permutation instruments gives a unitary M for every reversible local classical operation. One would like to show that M's action on basis states then decomposes into permutations, giving a deterministic decomposition. We have not proved this. E_ex1 shows the classical consistency of W alone is not enough.
 
-**Answer.** Not every classical process admits a unitary extension: E_ex1 provably does not. Mixtures of process functions do. Whether those are the only ones is the open conjecture above.
+**Answer.** Not every classical process admits a unitary extension: E_ex1 (and one other vertex orbit) provably does not. Mixtures of process functions do. Whether those are the only ones is the open conjecture above.
 
 ## References
 
