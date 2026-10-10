@@ -154,9 +154,68 @@ The control register must enter through the source and leave through the sink. I
 - 40,000 random LP vertices of the three-party binary polytope gave 39,354 deterministic vertices and 646 non-deterministic ones. These fall into 51 orbits under party permutations and local input/output relabellings (code/stochastic/reps.json). Ranks are 15–23.
 - AFNB's necessary condition dim V_W ≥ rank W holds for all 51 orbits (nec_partial.json), so on its own it decides nothing. dim V_W ranges from 27 to 256.
 - Exact certificates of non-purifiability exist for the 2 orbits with dim V_W = 27, one of which contains E_ex1 (exact2.py, cert_phi_7.npy, cert_phi_50.npy).
-- For the other 49 orbits (dim V_W ≥ 82) the random-form isotropy test was inconclusive, and gradient searches did not finish within our compute budget. Their status is open.
+- For the other 49 orbits (dim V_W ≥ 82) the random-form isotropy test was inconclusive. The GPU gradient search of C.4 found no purification for any of them (best residual ≥ 12.97). This is numerical evidence only.
 - No purifiable non-mixture has been found. That is weak evidence, because the large cases are untested.
 - All 1,488 mixtures (q + E_ex1)/2 and (q + 4 E_ex1)/5, with q one of the 744 process functions, lie outside the process-function hull (LP check). They are untested candidates for non-extreme counterexamples.
+
+
+**C.4 GPU sweep over the 49 open orbits (numerical evidence, not proof).**
+- Method: code/stochastic/gpu/gpusearch.py ran on one RTX 3090. For each orbit it made 64 random restarts of batched L-BFGS in float32 on the reduced Theorem 4 residual, then polished in float64.
+- Validation: the same code finds Lugano's purification (residual 1.2e-16) and stalls at 79.676 on E_ex1, which is certified non-purifiable.
+- Result: no orbit reached the 1e-10 threshold. The best residuals range from 12.97 (orbit 40) to 59.35. Every orbit stalled far from zero.
+- Interpretation: this is consistent with the conjecture that none of the 49 non-deterministic vertex orbits is purifiable. But a local search can miss solutions, so it is not a proof. Only orbits 7 and 50 (C.2) have exact certificates.
+
+| orbit | rank | dim V_W | best residual (float64) | restarts |
+|---|---|---|---|---|
+| 0 | 15 | 124 | 20.12 | 64 |
+| 1 | 16 | 176 | 13.03 | 64 |
+| 2 | 15 | 156 | 15.62 | 64 |
+| 3 | 15 | 156 | 15.49 | 64 |
+| 4 | 16 | 128 | 21.93 | 64 |
+| 5 | 16 | 160 | 12.98 | 64 |
+| 6 | 16 | 144 | 18.48 | 64 |
+| 8 | 16 | 82 | 35.84 | 64 |
+| 9 | 16 | 112 | 27.06 | 64 |
+| 10 | 16 | 82 | 34.75 | 64 |
+| 11 | 16 | 128 | 21.72 | 64 |
+| 12 | 16 | 112 | 26.91 | 64 |
+| 13 | 16 | 196 | 12.97 | 64 |
+| 14 | 16 | 144 | 18.49 | 64 |
+| 15 | 16 | 168 | 13.02 | 64 |
+| 16 | 15 | 156 | 19.57 | 64 |
+| 17 | 15 | 164 | 15.82 | 64 |
+| 18 | 16 | 160 | 13.02 | 64 |
+| 19 | 16 | 160 | 12.97 | 64 |
+| 20 | 16 | 82 | 35.32 | 64 |
+| 21 | 16 | 128 | 21.73 | 64 |
+| 22 | 16 | 164 | 18.44 | 64 |
+| 23 | 16 | 172 | 12.99 | 64 |
+| 24 | 16 | 112 | 26.78 | 64 |
+| 25 | 16 | 136 | 21.76 | 64 |
+| 26 | 16 | 128 | 21.88 | 64 |
+| 27 | 16 | 144 | 18.5 | 64 |
+| 28 | 15 | 124 | 20.12 | 64 |
+| 29 | 16 | 144 | 18.51 | 64 |
+| 30 | 16 | 168 | 13.02 | 64 |
+| 31 | 16 | 160 | 13.02 | 64 |
+| 32 | 21 | 160 | 49.61 | 64 |
+| 33 | 16 | 164 | 18.46 | 64 |
+| 34 | 20 | 174 | 35.72 | 64 |
+| 35 | 16 | 160 | 13.02 | 64 |
+| 36 | 16 | 160 | 12.97 | 64 |
+| 37 | 16 | 160 | 12.98 | 64 |
+| 38 | 22 | 176 | 48.56 | 64 |
+| 39 | 21 | 146 | 59.35 | 64 |
+| 40 | 16 | 196 | 12.97 | 64 |
+| 41 | 16 | 204 | 13.01 | 64 |
+| 42 | 16 | 172 | 12.99 | 64 |
+| 43 | 22 | 224 | 25.58 | 64 |
+| 44 | 21 | 160 | 50.3 | 64 |
+| 45 | 21 | 174 | 41.12 | 64 |
+| 46 | 20 | 166 | 34.6 | 64 |
+| 47 | 23 | 248 | 42.74 | 64 |
+| 48 | 21 | 172 | 37.9 | 64 |
+| 49 | 23 | 256 | 29.02 | 64 |
 
 *Proof idea for "only if" (not completed).* A purification U restricted to classical permutation instruments gives a unitary M for every reversible local classical operation. One would like to show that M's action on basis states then decomposes into permutations, giving a deterministic decomposition. We have not proved this. E_ex1 shows the classical consistency of W alone is not enough.
 
