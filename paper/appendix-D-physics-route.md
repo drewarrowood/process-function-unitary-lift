@@ -94,3 +94,28 @@ E_ex1 and orbit 7 violate one by 6.0, orbit 8 by 4.0, and a PF mixture by 0, as 
 reduced modulo the affine hull or by symmetry, so their supports carry no meaning yet. **No inequality has been
 derived from purifiability. The conjecture remains open.** Next steps: enumerate facets with lrs/normaliz or by
 symmetry-adapted LP, then try to derive one facet class from Theorem 4 (isotropy) together with Lemma D.1.
+
+## D.7 Facets of the PF hull: partial (Oct 10 2026)
+
+Tools. lrslib 7.3 builds from source with gcc (no make, no GMP on the box; hybrid 64/128-bit plus built-in MP
+arithmetic). normaliz and PANDA were not installed: there is no make/cmake, conda or sudo on the box. The full
+enumeration with lrs (744 vertices in the 37-dim span, `facets/pf.ext`) produced no output in 5 minutes, not even
+from `estimates`, because the input is highly degenerate. **No facet count or runtime estimate yet.** A double
+description or symmetry-exploiting code (normaliz, PANDA with the 384-element symmetry group) on a rented
+multi-core CPU is the natural next step; its cost is unknown until a short benchmark is run.
+
+Facets found by polar LP (`facets/facetlp.py`). Each LP optimum was checked to be a facet: its tight PFs have affine
+rank 36. Facets are classified up to the 384 symmetries (party permutations and input/output relabelings; all 384
+preserve the PF set). Over E_ex1 and the 51 sampled non-deterministic vertex orbits, the optimal separating facets
+fall into **8 classes**. Class 0 (418 tight PFs) is violated by E_ex1 and 24 orbits, including orbit 8. Class 2 (418)
+covers orbits 7, 50 and 15 others; classes 1, 3-7 cover the rest. The class-0 facet, written with joint inputs i and
+outputs o (bits of parties A, B, C):
+
+    p(000|000) <= p(000|001) + p(010|001) + p(000|100) + p(010|110) + p(011|111)
+
+E_ex1 gives 1/2 > 0. Combinatorial content for a process function w: if w(000) = 000, then w(001) is 000 or 010,
+or w(100) = 000, or w(110) = 010, or w(111) = 011.
+
+**Derivation from purifiability: not achieved.** A natural attempt: use Lemma D.1 to read p(i|o) as squared norms of
+orthogonal sink vectors, then try to show the class-0 inequality follows from unitarity under suitable superpositions
+of the five interventions involved. This has not been carried through and is not claimed.
