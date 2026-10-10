@@ -17,7 +17,14 @@
 - `PFUL.induced_colnorm` (ℂ): if (V k)ᴴ * V k = 1 for all k, every diagonal entry of Mᴴ M is 1 (unit columns).
 - `PFUL.induced_conjTranspose_mul_of_colnorm` (ℂ): if V k are unitary (both V Vᴴ = 1 and Vᴴ V = 1), then Mᴴ M = 1. The proof uses orthonormal rows (`induced_mul_conjTranspose`) and unit columns, so 1 - Mᴴ M is a projection with zero diagonal, hence 0. **No dimension count** (no `card_eq`, no square-matrix argument). Input and output sizes may differ, as long as each local V k is unitary.
 - Axioms: `propext`, `Classical.choice`, `Quot.sound` only.
-- Not formalised: the countable (infinite-alphabet) version (tsum/Tonelli and l^2 operators). Appendix F.3's countable argument is on paper only.
+
+## Countable alphabets: PFUL/Countable.lean (Appendix F.3)
+Finitely many parties (`Fintype ι`); input alphabets `I k` arbitrary (any cardinality); output alphabets `O k` and sink ancillas `Y k` countable; values in `ℝ≥0∞` with `tsum`.
+- `PFUL.Countable.tsum_prod_eq_one`: if w is a process function and `∑' o, q k i o = 1` for all k, i, then `∑' s, ∏ k, q k (w s k) (s k) = 1`. Proof: product measure `Measure.infinitePi` of the PMFs on the space of all deterministic interventions `(Σ k, I k) → O`; the events "s is the fixed point" are disjoint cylinders covering the space.
+- `PFUL.Countable.tsum_prod_eq_one_anc`: the same with each output paired with a sink-ancilla label (`q k i` a probability vector on `O k × Y k`).
+- `PFUL.Countable.induced_colnorm`: for complex kernels `V k : O k × Y k → I k × X k → ℂ` with unit-norm columns (`∑' r, ‖V k r c‖₊² = 1`), every column of the induced map `∏ k, V k (f k, y k) (w f k + e k, x k)` has unit norm: `∑' (f,y), ‖M (f,y) (e,x)‖₊² = 1`.
+- Axioms: `propext`, `Classical.choice`, `Quot.sound` only.
+- **Not formalised (countable case):** row orthonormality (needs a tsum factorisation over finite products of countable index types, not in Mathlib), and the operator statement on `lp 2` (M bounded, M M† = 1, M† M = 1). So Lean has the column-norm half of unitarity for countable alphabets. The rows (pointwise exclusivity) and the assembly into a unitary on ℓ² are paper arguments (Appendix F.2-F.3).
 
 ## Legacy Mathlib-free files (library `Legacy`)
 
