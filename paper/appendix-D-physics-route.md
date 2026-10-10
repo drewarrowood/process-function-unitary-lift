@@ -119,3 +119,21 @@ or w(100) = 000, or w(110) = 010, or w(111) = 011.
 **Derivation from purifiability: not achieved.** A natural attempt: use Lemma D.1 to read p(i|o) as squared norms of
 orthogonal sink vectors, then try to show the class-0 inequality follows from unitarity under suitable superpositions
 of the five interventions involved. This has not been carried through and is not claimed.
+
+### D.7 update: complete facet list (normaliz, Oct 10 2026)
+
+Run: normaliz 3.8.9 (`-c -x=32`) on a rented 32-core vast.ai CPU instance, about 1.9 h, about $0.27 in total; the
+instance was then destroyed. Input `facets/pf.in` (744 PFs in 37 independent coordinates of p(i|o); all test points
+lie in the same affine span). Output `facets/pf.out.gz`.
+
+**The 3-party binary PF hull has exactly 29,344 facets, in 93 orbits** under the 384-element symmetry group
+(`facets/classify.py`, `classes_full.json`). Orbit sizes: 384 (66 orbits), 192 (17), 128 (2), 96 (5), 64 (3).
+The 8 LP classes of D.7 are all among them: LP classes 0, 1, 2 are full orbits 82, 83, 84 (418 tight PFs);
+classes 3-6 are orbits 42, 38, 37, 41 (238); class 7 is orbit 91 (436).
+
+Violations. E_ex1 violates 24 of the 93 facet orbits, orbit 7 violates 53, orbit 8 violates 41, and every test point
+violates at least one. **Facet orbit 82, the class-0 inequality of D.7
+p(000|000) <= p(000|001)+p(010|001)+p(000|100)+p(010|110)+p(011|111), is violated by E_ex1 and by all 51 sampled
+non-deterministic vertex orbits** (by some member of the facet's orbit). So this single inequality class separates
+every sampled non-deterministic vertex from the PF hull. Proving it from purifiability is the natural next target.
+Status: facet list exact (normaliz); the derivation from purifiability is open.
