@@ -106,7 +106,7 @@ Conjecture: a classical process (a point of the Baumeler-Wolf polytope) is purif
 - The process-function hull for 3 binary parties has exactly 29,344 facets in 93 orbits. A single orbit (82) is violated by E_ex1 and by all 51 sampled non-deterministic vertices (D.7).
 - Along the segment from Lugano to E_ex1, purifiability appears to stop exactly where the hull does (D.8).
 
-**Open.** The quantum case. Any proof must use the purifying unitary on source states orthogonal to the source state. That is the non-convex isotropy condition of AFNB Theorem 4, and it is where every attempted certificate (single-form inertia, block forms, SDP relaxations) has stalled for the larger orbits.
+**Open.** The quantum case. Any proof must use the purifying unitary on source states orthogonal to the source state. That is the non-convex isotropy condition of AFNB Theorem 4, and it is where every attempted certificate (single-form inertia, block forms, SDP relaxations) has stalled for the larger orbits. The degree-2 moment relaxation over P (x) P is even weaker than single-form inertia: it is feasible for E_ex1 (Appendix E).
 
 **Interpretation (philosophical, not a result).** Consistent time loops are the setting: a process function is a loop in which every local choice has exactly one consistent history. The conjecture asks whether chance inside such a loop can be fundamental, or only ignorance about which deterministic loop obtains. If it holds, every reversible quantum loop with classical statistics is a coherent ignorance mixture of deterministic consistent loops. Genuinely chancy loops like E_ex1 would then be classically consistent but not reversibly realisable. Reversibility, not consistency alone, would be the constraint that excludes basic chance from loops. D.4 adds a caveat: the "which-loop" variable can be contextual, so the ignorance reading is about W, not about any single hidden label.
 
@@ -405,6 +405,14 @@ left at t_h ~ 2e-7: Lugano is a vertex and this direction exits the hull at once
 t = 0.2 (60.1); the same code reaches about 1e-13 on Lugano itself. This is consistent with the conjecture, since the
 purifiable set appears to end where the PF hull does along this line. It is numerical evidence, not a proof.
 Generalisation to other facet orbits: not attempted, since no certificate exists to generalise.
+
+## Appendix E. Symmetry-reduced moment relaxation (negative result)
+
+**Stabilisers** in the 384-element group of party permutations and input/output relabelings: E_ex1 and orbit 50: 48; orbit 7: 16; orbits 8 and 20: 8; Lugano: 6; orbits 10 and 46: 4; 11 orbits: 2; 34 orbits: 1. Symmetry helps most where certificates already exist, and not at all for most open orbits.
+
+**Relaxation.** Variables P (m x m) and Y (m^2 x m^2), Hermitian, with Y standing for P (x) P and F the swap. A rank-r projector onto a totally isotropic subspace satisfies Y >= 0, 0 <= P <= I, tr P = r, Tr_2 Y = rP, Tr_2(YF) = P (from P^2 = P), P (x) I - Y >= 0 and Tr_1[(Q_t (x) 1)YF] = P Q_t P = 0 for every form. So infeasibility would certify non-purifiability, for complex subspaces. The constraints are covariant under the stabiliser, so symmetry reduction would be legitimate.
+
+**Result: too weak.** For E_ex1 (m = 27, r = 16) the unreduced problem is small enough to solve directly by cyclic projections (code/stochastic/rep/pocs.py). The solver was checked on controls: it reaches feasibility at r = 1, 2, 4, and a 4-dim isotropic subspace exists numerically. At r = 16 the relaxation is feasible with strict margins: min eig Y = 0.13, eig P in [0.58, 0.63], min eig of P (x) I - Y = 0.019. P is close to (16/27)·I. E_ex1 is non-purifiable and certified by single-form inertia, so this relaxation is strictly weaker than the inertia test. Symmetry-reducing it is pointless. Stronger convex certificates would need higher moment levels or must encode rank.
 
 ## References
 
