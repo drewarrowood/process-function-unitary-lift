@@ -414,6 +414,26 @@ Generalisation to other facet orbits: not attempted, since no certificate exists
 
 **Result: too weak.** For E_ex1 (m = 27, r = 16) the unreduced problem is small enough to solve directly by cyclic projections (code/stochastic/rep/pocs.py). The solver was checked on controls: it reaches feasibility at r = 1, 2, 4, and a 4-dim isotropic subspace exists numerically. At r = 16 the relaxation is feasible with strict margins: min eig Y = 0.13, eig P in [0.58, 0.63], min eig of P (x) I - Y = 0.019. P is close to (16/27)·I. E_ex1 is non-purifiable and certified by single-form inertia, so this relaxation is strictly weaker than the inertia test. Symmetry-reducing it is pointless. Stronger convex certificates would need higher moment levels or must encode rank.
 
+## Appendix F. Infinite and continuous alphabets (draft)
+
+**Literature (verified).** Giacomini, Castro-Ruiz and Brukner extend the process-matrix framework to continuous-variable systems. Naive infinite-dimensional process matrices are singular, and they use a phase-space (Wigner) representation instead (New J. Phys. 18, 113026 (2016); https://arxiv.org/abs/1510.06345). The Baumeler-Wolf polytope work is for finite alphabets (https://arxiv.org/abs/1507.01714). The fixed-point characterisation of logical consistency (Baumeler and Wolf, https://arxiv.org/abs/1511.05444) and the 2025 flow-of-causal-structures paper (Phys. Rev. Research, doi:10.1103/jsmm-tq72) work with discrete alphabets. We found no treatment of process functions on infinite alphabets, or of their unitary lifts.
+
+**Setting.** Finitely many parties. Each input alphabet I_k is a countable set carrying a group structure (e.g. Z), and the outputs O_k are countable. Hilbert spaces are l^2 of these sets. A process function has a unique fixed point for every choice of local functions, exactly as before.
+
+**F.1 [proved] The lift is unitary.** U|o,e> = |w(o)+e, o> is a bijection of basis states, with inverse (i,f) -> (f, i - w(f)). So it is a unitary on l^2, in any cardinality.
+
+**F.2 [proved] The induced map is always a co-isometry.** For local unitaries V = (x)_k V_k (ancillas can be absorbed as before), closing the loop gives matrix elements
+<f|M|e> = prod_k <f_k|V_k|w_k(f) + e_k>,  i.e.  <f|M = <f| V T_{w(f)}, with T_a the translation e -> e + a.
+Row f has norm 1 because V is unitary. For rows f != f', the inner product factorises into prod_k <f_k|V_k T_{d_k} V_k^dagger|f'_k> with d_k = w_k(f) - w_k(f'). By the exclusivity lemma, which is pointwise and holds for any alphabets, some k has f_k != f'_k and d_k = 0, so that factor is <f_k|f'_k> = 0. Hence M M^dagger = 1. M is a well-defined bounded operator, and M^dagger is an isometry.
+
+**F.3 [proved] Unitary in two cases.** (i) If the V_k are permutations, possibly with phases, M maps |e> to a phase times |f(e)>, where f(e) is the unique fixed point of o -> sigma(w(o) + e). That is a bijection, so M is unitary. (ii) If w is causally ordered (w_k depends only on outputs of earlier parties), M is a product of controlled unitaries, hence unitary.
+
+**F.4 [gap] The column side.** In finite dimensions, M M^dagger = 1 gives M^dagger M = 1 by the dimension count. In l^2 a co-isometry can be a proper one, like the backward shift. For non-causal process functions on infinite alphabets with general V, we have no proof that M is injective and no counterexample. The time-reversal idea does not close the gap. M^dagger is the induced map of the reversed bijection (i,f) -> (f, i - w(f)), but that object is not a valid comb (the parties' new inputs o are consumed and also needed by the sink), so it has no independent reason to be an isometry. Two-party process functions are causal for any cardinality (the two-fixed-point argument does not use finiteness), so a counterexample would need three or more parties with a non-causal w.
+
+**F.5 Continuous alphabets [partly definitional].** Take I_k a locally compact abelian group with Haar measure (R, U(1)), and w measurable. Then U is a measure-preserving bijection of O x P, so it is unitary on L^2 (F.1 carries over). The induced map, however, involves pointwise evaluation <f|V T_{w(f)}. That is undefined for general unitaries on L^2, so "unitary under all local unitaries" first needs a definition, for instance via the phase-space approach of Giacomini et al. For measure-preserving local bijections the induced map is the bijection e -> f(e). It is measure-preserving in the causal case (Fubini), but this is open in the non-causal case.
+
+**Status.** Proved: unitarity of the lift, the co-isometry property under all local unitaries (countable alphabets), and unitarity for permutation interventions and for causal process functions. Open: M^dagger M = 1 for non-causal process functions on infinite alphabets, and the continuous case beyond definitions. No counterexample is known.
+
 ## References
 
 1. M. Dummett, Can an effect precede its cause?, Aristotelian Society Supplementary Volume 28, 27 (1954); Bringing about the past, Philosophical Review 73, 338 (1964).
