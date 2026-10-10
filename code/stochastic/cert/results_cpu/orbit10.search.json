@@ -1,0 +1,18 @@
+{
+ "m": 82,
+ "r": 16,
+ "lambda_r_over_norm": 6.987933011259884e-05,
+ "kyfan_over_norm": 1.7331008911132812,
+ "inertia": [
+  61,
+  20,
+  1
+ ],
+ "iso_bound": 21,
+ "certified_float": false,
+ "steps": 300,
+ "batch": 4,
+ "seed": 2,
+ "secs": 30.4,
+ "name": "orbit10"
+}

@@ -1,0 +1,14 @@
+{
+ "r": 8,
+ "m": 56,
+ "inertia": [
+  9,
+  46,
+  1
+ ],
+ "iso_bound": 10,
+ "certified": false,
+ "complex": true,
+ "secs": 43.8,
+ "name": "lugano"
+}

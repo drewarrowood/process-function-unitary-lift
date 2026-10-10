@@ -1,0 +1,14 @@
+{
+ "r": 16,
+ "m": 27,
+ "inertia": [
+  13,
+  13,
+  1
+ ],
+ "iso_bound": 14,
+ "certified": true,
+ "complex": true,
+ "secs": 87.7,
+ "name": "orbit7"
+}
