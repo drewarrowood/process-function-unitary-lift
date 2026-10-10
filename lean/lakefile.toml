@@ -1,0 +1,17 @@
+name = "PFUL"
+defaultTargets = ["PFUL", "Legacy"]
+
+[[require]]
+name = "mathlib"
+git = "https://github.com/leanprover-community/mathlib4"
+rev = "v4.34.1"
+
+# Main result: complex / star-field Gram cancellation, M Mᴴ = 1 (uses Mathlib).
+[[lean_lib]]
+name = "PFUL"
+roots = ["PFUL.UnitaryLift"]
+
+# Earlier Mathlib-free files (combinatorial lemma, finite checks).
+[[lean_lib]]
+name = "Legacy"
+roots = ["Lift", "Full", "Gaps", "Cancel", "GramGeneral", "ComplexGram", "StinespringBoundary"]
