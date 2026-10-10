@@ -1,0 +1,12 @@
+{
+ "rank": 16,
+ "dimVW": 144,
+ "best_residual_f32": 18.48455047607422,
+ "best_residual_f64": 18.48453816136122,
+ "restarts": 64,
+ "secs": 66.6,
+ "name": "orbit6",
+ "status": "done",
+ "device": "cuda",
+ "found": false
+}
