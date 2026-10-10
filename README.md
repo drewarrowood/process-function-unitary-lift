@@ -4,7 +4,8 @@ Draft. Not a preprint. Not refereed.
 
 **Claim.** For every classical process function w, the source/sink permutation unitary U|o,e⟩ = |w(o)+e, o⟩ is a valid unitary quantum process. Composed with arbitrary local unitaries, it induces a unitary from source to sink.
 
-- **Web version (mobile, no JS):** https://drewarrowood.github.io/process-function-unitary-lift/ (built by `python3 docs/build_site.py`)
+- **Web version (mobile, no JS):** https://drewarrowood.github.io/process-function-unitary-lift/ (built by `python3 docs/build_site.py`, which also builds the gentle version)
+- **Gentle version:** https://drewarrowood.github.io/process-function-unitary-lift/graded.html, source [paper/graded.md](paper/graded.md). A graded, philosophically explained walk-through: time-loop stories first, then each symbol introduced with what it means and what it commits us to, building to the main theorem, purification, the random corners and the open conjecture. `paper/lift.md` remains the technical source of truth.
 - Paper (canonical source): [paper/lift.md](paper/lift.md). PDF built from it: [paper/lift.pdf](paper/lift.pdf) (`python3 paper/build_pdf.py`).
 - Lean: [lean/](lean/), main theorem `PFUL.induced_mul_conjTranspose` in [lean/PFUL/UnitaryLift.lean](lean/PFUL/UnitaryLift.lean), status in [lean/STATUS.md](lean/STATUS.md). That file states exactly what is machine-checked and what is assumed.
 - Numerics: [code/check.py](code/check.py). It enumerates all binary 2- and 3-party process functions, checks unitarity under Haar-random local unitaries (with ancillas, plus ternary examples), and checks that non-process functions fail.

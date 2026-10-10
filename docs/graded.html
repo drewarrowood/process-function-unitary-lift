@@ -1,0 +1,561 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Can every consistent time loop live in a reversible world? (Gentle version)</title>
+<meta name="description" content="A graded, philosophically explained version of &#x27;Every process function lifts to a unitary process&#x27;: from time-travel stories to the main theorem, purification, random corners and the open conjecture.">
+<link rel="canonical" href="https://drewarrowood.github.io/process-function-unitary-lift/graded.html">
+<meta property="og:title" content="Can every consistent time loop live in a reversible world? (Gentle version)"><meta property="og:description" content="A graded, philosophically explained version of &#x27;Every process function lifts to a unitary process&#x27;: from time-travel stories to the main theorem, purification, random corners and the open conjecture.">
+<meta property="og:type" content="article"><meta property="og:url" content="https://drewarrowood.github.io/process-function-unitary-lift/graded.html">
+<meta property="og:image" content="https://drewarrowood.github.io/process-function-unitary-lift/og-graded.png"><meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630"><meta property="og:image:type" content="image/png">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Can every consistent time loop live in a reversible world? (Gentle version)">
+<meta name="twitter:description" content="A graded, philosophically explained version of &#x27;Every process function lifts to a unitary process&#x27;: from time-travel stories to the main theorem, purification, random corners and the open conjecture."><meta name="twitter:image" content="https://drewarrowood.github.io/process-function-unitary-lift/og-graded.png">
+<style>
+body{font-family:Georgia,'Times New Roman',serif;line-height:1.55;margin:0;padding:1rem;color:#111;background:#fff}
+main{max-width:42rem;margin:0 auto} h1{font-size:1.6rem;line-height:1.25} h2{font-size:1.2rem;margin-top:2rem}
+h3{font-size:1.05rem;margin-top:1.6rem}
+pre{background:#f3f3f3;padding:.6rem;overflow-x:auto;font-size:.9rem;white-space:pre-wrap;word-break:break-word}
+code{font-family:'DejaVu Sans Mono',Menlo,monospace;font-size:.9em} a{color:#0645ad;word-break:break-word}
+li{margin:.3rem 0} footer{margin-top:3rem;font-size:.85rem;color:#555}
+blockquote{margin:1rem 0;padding:.6rem .9rem;border-left:4px solid #9fb8d8;background:#f5f8fc}
+blockquote p{margin:.4rem 0} nav.top{font-size:.92rem;margin:.2rem 0 1rem;padding:.5rem .7rem;background:#f3f3f3}
+hr{border:0;border-top:1px solid #ddd;margin:2rem 0}
+</style></head><body><main>
+<nav class="top">Gentle version. The technical source of truth is the <a href="https://drewarrowood.github.io/process-function-unitary-lift/">technical note</a> (<a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/paper/lift.md">paper/lift.md</a>).</nav>
+<h1>Can every consistent time loop live in a reversible world?</h1>
+<p><em>A gentle, graded version of &quot;Every process function lifts to a unitary process&quot;</em></p>
+<p><strong>Draft. Not refereed.</strong> This is a slow, explanatory retelling of the technical note <a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/paper/lift.md">paper/lift.md</a> (web version: <a href="https://drewarrowood.github.io/process-function-unitary-lift/">the technical note</a>). The technical note is the source of truth. If anything here seems to say more than the note does, the note wins, and the mismatch is a mistake in this version.</p>
+<h2>How to read this</h2>
+<p>The note proves one theorem, studies a harder question it cannot yet settle, and draws some philosophical lessons. This version takes the same path, but slowly. It begins with stories and no symbols at all. Then it brings in notation one piece at a time. Each time a new symbol appears, I try to say three things:</p>
+<ol>
+<li><strong>What it stands for.</strong> The plain meaning.</li>
+<li><strong>Why this choice.</strong> Why this piece of mathematics captures the idea, rather than some other piece.</li>
+<li><strong>What it commits us to.</strong> Every formalism takes sides on something. Choosing a symbol is often choosing a philosophy.</li>
+</ol>
+<p>Claims are marked by status, following Section 9 of the note:</p>
+<ul>
+<li><strong>Proved</strong> means there is a proof. In a few places it is also machine-checked.</li>
+<li><strong>Evidence</strong> means computer experiments or partial results that point one way but do not prove it.</li>
+<li><strong>Open</strong> means nobody knows yet.</li>
+<li><strong>Interpretation</strong> means philosophy. It is a reading of the mathematics, not a result.</li>
+</ul>
+<p>The final section is all interpretation. A summary box at the very end says what is proved, what is evidence, and what is open.</p>
+<hr />
+<h2>Part I. Stories, with no symbols</h2>
+<h3>1. The letter nobody wrote</h3>
+<p>A woman finds a letter in her attic. It contains the plans for a machine. She builds the machine, and it is a time machine. She goes back a few decades and leaves the letter in the attic, where she will find it.</p>
+<p>Nothing in this story is contradictory. Every event has a cause, and every event fits with every other event. Yet something is off. Who designed the machine? The plans were copied from the letter, and the letter was copied from the plans. The information came from nowhere.</p>
+<p>Philosophers call this a <em>bootstrap</em> (or &quot;ontological paradox&quot;). It is not a contradiction. The trouble is the opposite: the story is <em>underdetermined</em>. Physics and the past together do not tell us what the letter says. A letter with completely different plans would have been just as consistent. So would a blank letter, which she never acts on. The loop permits many histories and does nothing to choose between them.</p>
+<h3>2. The grandfather</h3>
+<p>The more famous story runs the other way. A man travels back and prevents his grandfather from meeting his grandmother. Then he is never born, so he never travels back, so the grandparents meet, so he is born, so he travels back...</p>
+<p>Here the trouble is the reverse of the bootstrap. There is no consistent history at all. Every candidate history contradicts itself.</p>
+<p>The two stories mark the two ways a time loop can fail:</p>
+<ul>
+<li><strong>Too many</strong> consistent histories (the bootstrap: underdetermination).</li>
+<li><strong>Too few</strong>, namely none (the grandfather: paradox).</li>
+</ul>
+<p>Keep this pair in mind. The whole note turns on asking for <em>exactly one</em>.</p>
+<h3>3. Lewis and Novikov: consistency</h3>
+<p>David Lewis, in &quot;The paradoxes of time travel&quot; (1976), dealt with the grandfather by splitting the word &quot;can&quot;. Can the traveller kill his grandfather? He <em>can</em>, relative to his own abilities, his gun, and the local facts. He <em>cannot</em>, relative to the whole past, which includes the fact that the grandfather survived. Something will stop him: a slip on a banana peel, a jammed gun. There is no contradiction in the world. There is only a contradiction in the wish.</p>
+<p>Physicists reached a similar view. Around 1990, Friedman, Morris, Novikov, Thorne and others proposed what is now called the <em>Novikov self-consistency principle</em>: only self-consistent histories occur. Echeverria, Klinkhammer and Thorne then studied billiard balls fired through a wormhole time machine. They found starting conditions with one consistent continuation, conditions with two, and conditions for which none was apparent.</p>
+<p>So consistency, by itself, has two gaps. It throws out the grandfather histories, but it does not pick among the bootstrap ones. And, as John Earman warned, a consistency condition stuck on after the laws of motion is not itself a law of motion. It tells you which films are allowed. It does not tell you how the film runs.</p>
+<h3>4. A better rule: exactly one history, whatever anyone does</h3>
+<p>Here is a stronger demand. Imagine several people, each in a closed laboratory. Each receives something from outside (a message, a reading, a ball) and sends something back out. Somewhere outside the labs, the world may route their outputs back into their own past inputs. That is the time loop.</p>
+<p>Now demand this:</p>
+<blockquote>
+<p><strong>However each person chooses to behave, there is exactly one consistent history.</strong></p>
+</blockquote>
+<p>This rules out the grandfather, because there is always at least one consistent history. It rules out the bootstrap, because there is never more than one. And it does both <em>without taking anybody's freedom away</em>. The people in the labs may adopt any strategy whatsoever: &quot;if I receive a 0, send a 1&quot;, &quot;always send 0&quot;, anything. The loop is not allowed to forbid an action. It may only settle how everything fits together once the actions are chosen.</p>
+<p>The note calls a loop with this property a <strong>process function</strong>. The idea comes from Baumeler and Wolf, and the &quot;you may still do anything you could do in an ordinary lab&quot; clause is the <em>no-new-physics</em> principle of Baumeler, Costa, Ralph, Wolf and Zych.</p>
+<p>Lewis would recognise the move. The local &quot;can&quot; is untouched: every strategy is available. The global facts adapt, and they always adapt in exactly one way.</p>
+<h3>5. A coin flip inside a loop</h3>
+<p>Now a stranger story, which will come back near the end.</p>
+<p>Three people sit in a ring of labs. Each holds one bit, a 0 or a 1. Before anything happens, a fair coin is tossed out of everyone's sight.</p>
+<ul>
+<li><strong>Heads</strong>, the loop is a <em>copier</em>: each person receives exactly the bit sent by the previous person in the ring.</li>
+<li><strong>Tails</strong>, the loop is a <em>negator</em>: each person receives the <em>opposite</em> of the bit sent by the previous person.</li>
+</ul>
+<p>Neither loop is consistent on its own. Suppose everyone simply passes on what they receive. In the copier world, &quot;all 0&quot; and &quot;all 1&quot; both work: two histories, a bootstrap. In the negator world, a bit flipped three times around the ring must equal its own opposite: no history, a grandfather.</p>
+<p>But look at the pair. Whenever the copier has two consistent histories, the negator has none. Whenever the negator has two, the copier has none. When someone ignores their input and sends a fixed bit, each loop has exactly one. Averaged over the coin, the number of consistent histories is always exactly one. The probabilities always add up to exactly 1, whatever anyone does.</p>
+<p>So this is a <em>consistent</em> loop in the probabilistic sense. Every strategy yields a well-defined probability distribution over what happens. But its randomness is strange. It is not the randomness of ignorance about which of several consistent loops we live in, since neither the copier nor the negator is a consistent loop. The chance seems to be woven into the loop itself.</p>
+<p>This loop is called <strong>E<sub>ex1</sub></strong> in the literature (Baumeler and Wolf). It is the central example of the second half of the note.</p>
+<h3>6. Reversibility</h3>
+<p>One more idea before the question. A process is <em>reversible</em> if from the way things end up you could, in principle, reconstruct exactly how they began. Nothing is forgotten. The fundamental laws of physics, as currently understood, are reversible in this sense. When information seems lost, as when an egg breaks or a message is burned, it has in fact been scattered into the environment.</p>
+<p>Many consistent loops are not reversible. In the most famous three-person loop (the &quot;Lugano&quot; loop, Section 14 below), two different sets of actions can lead to the same set of received messages. Looking only at what was received, you cannot tell which happened.</p>
+<p>But we can make any loop reversible by adding two things:</p>
+<ul>
+<li>a <strong>source</strong>: a place at the beginning that sends things in but receives nothing, and</li>
+<li>a <strong>sink</strong>: a place at the end that receives a record but sends nothing on.</li>
+</ul>
+<p>The source is like an unknown initial condition. The sink is like the rest of the universe, which keeps a record of what was done. Baumeler, Costa, Ralph, Wolf and Zych showed that every process function becomes a reversible bijection once a source and a sink are added.</p>
+<h3>7. The question</h3>
+<p>Now the question of the note can be put without symbols:</p>
+<blockquote>
+<p><strong>Can every consistent loop live inside a reversible world?</strong></p>
+</blockquote>
+<p>More precisely: take a consistent classical loop, made reversible with a source and a sink. Now let the people in the labs act in fully <em>quantum</em> ways. They may put their bits into superpositions, apply operations that have no classical counterpart, and entangle their labs with private equipment. Does the whole arrangement still behave sensibly, with probabilities that always add up to exactly one? Or does quantum freedom bring paradoxes back?</p>
+<p>The note's first answer, the <strong>main theorem</strong>, is: yes, for every process function. The second question, which is <strong>open</strong>, is about loops with chance in them, like the coin-flip loop. Can they be realised reversibly? The note proves that the coin-flip loop E<sub>ex1</sub> cannot be. It conjectures that the only chancy loops that can be are those whose chance is mere ignorance about which deterministic consistent loop obtains.</p>
+<p>The rest of this document builds the symbols needed to say all that exactly.</p>
+<hr />
+<h2>Part II. The first symbols: loops as functions</h2>
+<h3>8. Parties, inputs and outputs</h3>
+<p>We have <strong>parties</strong> numbered k = 1, 2, …, n. Think of each party as a closed laboratory with a person inside. Party k has:</p>
+<ul>
+<li>a set Iₖ of possible <strong>inputs</strong>, the things it might receive, and</li>
+<li>a set Oₖ of possible <strong>outputs</strong>, the things it might send out.</li>
+</ul>
+<p>In the small examples both sets are {0, 1}: one bit in, one bit out.</p>
+<p><strong>Why this choice.</strong> We describe agents only by what crosses the walls of their labs. What happens inside is the agent's own business. This is a deliberately thin picture of agency: a lab is a black box with one door in and one door out, each used once.</p>
+<p><strong>What it commits us to.</strong> Two things. First, <em>locality of agency</em>: each party acts only on what it receives. It cannot reach out and alter another lab directly. Second, <em>finiteness</em>: the sets are finite. The note's results are for finite alphabets. Continuous variables, which Baumeler and coauthors also study, are not covered (Appendix B of the note).</p>
+<p>When we write a whole list of outputs, one per party, we write o = (o₁, …, oₙ). The set of all such lists is the product O₁ × … × Oₙ, written ∏ Oₖ. Likewise i = (i₁, …, iₙ) is a list of inputs.</p>
+<h3>9. The environment as a map w: outputs → inputs</h3>
+<p>Here is the central object. The world outside the labs is described by a function</p>
+<pre><code>w : ∏ Oₖ → ∏ Iₖ
+</code></pre>
+<p>which takes the list of everything the parties sent out and returns the list of what each party receives. Its k-th component wₖ(o) is what party k receives when the parties' outputs are o.</p>
+<p><strong>Why a map from outputs to inputs?</strong> This direction is the heart of the formalism, so it deserves a slow explanation.</p>
+<p>In ordinary physics we write the world as a map from earlier states to later states. Here we have deliberately <em>not</em> said which party is earlier. Perhaps A acts before B. Perhaps B before A. Perhaps, in a loop, each is in some sense before the other. So we cannot write &quot;A's output causes B's input&quot; as a fixed arrangement. Instead we take the agents' actions as the free variables. The world's job is then: <em>given everything the agents did, say what each of them saw.</em></p>
+<p>The map w is this answer. It does not mention time at all. A party's input may depend on its &quot;future&quot; outputs as easily as on its &quot;past&quot; ones. That is exactly what allows loops.</p>
+<p><strong>What it commits us to.</strong></p>
+<ul>
+<li><em>No global time order is assumed.</em> Order, if there is one, has to be read off from the shape of w (who depends on whom). It is not built in.</li>
+<li><em>The environment is deterministic.</em> Given the outputs, the inputs are fixed. (Part VI relaxes this, allowing randomness.)</li>
+<li><em>Agents are the source of variation.</em> Everything &quot;free&quot; lives in the outputs. The world responds; it does not choose. This matches the no-new-physics stance of Section 4.</li>
+</ul>
+<p>Notice one more thing. The map w alone is not yet a history. It says what the parties <em>would</em> receive for each possible list of outputs. A history is a list of outputs together with the inputs that w assigns to it, and it is only <em>actual</em> if it also fits with what the parties do on receiving those inputs. That fit is the next idea.</p>
+<h3>10. Interventions: what the agents do</h3>
+<p>Each party follows a <strong>local intervention</strong>, also called a strategy:</p>
+<pre><code>fₖ : Iₖ → Oₖ
+</code></pre>
+<p>&quot;If I receive this, I send that.&quot; The list f = (f₁, …, fₙ) is a choice of strategy for everybody.</p>
+<p><strong>Why a function from input to output?</strong> It is the most general deterministic behaviour of a closed lab with one door in and one door out. Whatever goes on inside, from the outside it is a rule that turns what came in into what goes out. Randomised strategies come later. They turn out to be averages of deterministic ones.</p>
+<p><strong>What it commits us to.</strong> We will quantify over <em>all</em> such f. That universal quantifier <em>is</em> the formal expression of freedom. We are not allowed to say &quot;the loop is fine, provided nobody adopts strategy so-and-so.&quot; That would be the loop forbidding an action, which is the move Section 4 refused. (Whether the agents are free in some deeper metaphysical sense is another matter. The note says explicitly that it does not settle this. See Section 54.)</p>
+<h3>11. Fixed points: consistent histories</h3>
+<p>Put the two together. The agents send o. The world turns o into inputs w(o). Each agent turns its input into an output, fₖ(wₖ(o)). For the story to hang together, these outputs must be the very outputs o we started with:</p>
+<pre><code>oₖ = fₖ(wₖ(o))   for every party k.
+</code></pre>
+<p>A list o that satisfies this is a <strong>fixed point</strong> of the composite map o ↦ f(w(o)). It goes all the way round the loop and comes back unchanged.</p>
+<p><strong>Why a fixed point is the right notion.</strong> A fixed point is precisely a <em>consistent history</em>. Every event in it is explained by the others, and nothing contradicts anything. The grandfather story is a loop with no fixed point. The letter-nobody-wrote story is a loop with more than one.</p>
+<h3>12. Process functions: exactly one fixed point, for every intervention</h3>
+<p><strong>Definition (process function).</strong> A map w is a <em>process function</em> if, for every choice of local interventions f = (f₁, …, fₙ), the map o ↦ f(w(o)) has <strong>exactly one</strong> fixed point.</p>
+<p>Unpack the logical shape: <em>for every</em> f, <em>there exists exactly one</em> o.</p>
+<ul>
+<li>&quot;For every f&quot; is freedom: no strategy is forbidden.</li>
+<li>&quot;At least one o&quot; is <strong>no paradox</strong>: no grandfather.</li>
+<li>&quot;At most one o&quot; is <strong>no underdetermination</strong>: no letter that nobody wrote.</li>
+</ul>
+<p><strong>What it commits us to.</strong> The definition encodes Lewis's &quot;can&quot; in its first quantifier, Novikov's consistency in its second, and adds a demand Novikov's principle lacked: uniqueness. The world is never left to choose between equally consistent pasts. Given the agents' choices, the history is settled.</p>
+<h3>13. Worked example: two parties, two bits</h3>
+<p>Let Alice (A) and Bob (B) each send and receive one bit. Write a for Alice's output and b for Bob's.</p>
+<p><strong>A process function.</strong> Let w(a, b) = (0, a). Alice always receives 0. Bob receives whatever Alice sent. Pick any strategies f<sub>A</sub> and f<sub>B</sub>. Consistency demands a = f<sub>A</sub>(0) and b = f<sub>B</sub>(a). The first equation fixes a. The second then fixes b. Exactly one history, whatever they do. This is ordinary one-way communication, Alice before Bob.</p>
+<p><strong>Not a process function.</strong> Let w(a, b) = (b, a). Each receives what the other sent: a two-way loop.</p>
+<ul>
+<li>Suppose both use the identity strategy, &quot;send what you receive&quot;. Then a = b is all we need, so (0, 0) and (1, 1) are both consistent. <em>Two histories: a bootstrap.</em></li>
+<li>Suppose Alice flips and Bob copies: a = not b and b = a. No bit equals its own negation. <em>No history: a grandfather.</em></li>
+</ul>
+<p>The same loop produces both failures, depending on what the agents do. That is typical.</p>
+<p><strong>A fact about two parties.</strong> There are 4⁴ = 256 maps from two bits to two bits. Exactly 12 are process functions (the note's code/check.py confirms this by brute force), and all 12 are causally ordered. In each of them, at most one direction of influence is used. With two parties and bits, consistency forces a time order.</p>
+<h3>14. Worked example: three parties and the Lugano loop</h3>
+<p>With three parties, something new happens. The <strong>Lugano process function</strong> (found by Araújo and Feix, and studied by Baumeler and Wolf) is</p>
+<pre><code>w(a, b, c) = ( (not b) and c,   (not c) and a,   (not a) and b ).
+</code></pre>
+<p>Alice's input depends on Bob's and Charlie's outputs. Bob's depends on Charlie's and Alice's. Charlie's depends on Alice's and Bob's. If you draw an arrow from each party to the parties whose input it influences, you get a cycle. There is no first party.</p>
+<p>Yet every one of the 4³ = 64 deterministic strategy choices has exactly one fixed point. For instance:</p>
+<ul>
+<li>Everyone copies their input: the unique history is a = b = c = 0.</li>
+<li>Everyone negates their input: the unique history is a = b = c = 1.</li>
+<li>Alice negates and the others copy: the unique history is (a, b, c) = (1, 1, 0). Check: w(1, 1, 0) = (0, 1, 0). Alice receives 0 and sends not 0 = 1. Bob receives 1 and sends 1. Charlie receives 0 and sends 0. ✓</li>
+</ul>
+<p>So Lugano is a genuine causal loop with no paradox and no bootstrap. It is the standard example of a loop that violates a <em>causal inequality</em>, a statistical test passed by every arrangement with a definite time order.</p>
+<p>Note also that Lugano is two-to-one: its eight output lists go to only four input lists. Looking at the inputs alone, you cannot recover the outputs. Lugano is consistent but not reversible. Section 17 fixes this.</p>
+<h3>15. The key lemma: someone can tell any two histories apart</h3>
+<p>Here is the one combinatorial fact the main theorem needs. It deserves the most philosophical attention, because it is where consistency turns into something a quantum world can use.</p>
+<p><strong>Lemma (exclusivity).</strong> Let w be a process function. Let s and s′ be two different lists of outputs. Then there is some party k such that</p>
+<ul>
+<li>sₖ ≠ s′ₖ (party k sends different things in the two lists), <em>but</em></li>
+<li>wₖ(s) = wₖ(s′) (party k receives the same thing in both).</li>
+</ul>
+<p><strong>In words.</strong> Take any two different global scenarios. Some agent receives the same input in both, yet acts differently. That agent's own behaviour tells the two scenarios apart, using no information the agent did not have.</p>
+<p><strong>Proof, in words, then symbols.</strong> Suppose not. Then for every party, <em>receiving the same input in s and s′ means sending the same output</em>. Now build a strategy for each party:</p>
+<ul>
+<li>if you receive wₖ(s), send sₖ;</li>
+<li>if you receive wₖ(s′), send s′ₖ;</li>
+<li>otherwise do anything.</li>
+</ul>
+<p>This is a legitimate strategy. The only possible clash is if wₖ(s) = wₖ(s′), and then, by our supposition, sₖ = s′ₖ, so the two instructions agree. But with these strategies, s is a consistent history (each party receives wₖ(s) and sends sₖ) and so is s′. Two distinct fixed points for one intervention: a bootstrap. That contradicts w being a process function. ∎</p>
+<p><strong>Worked check.</strong> For w(a, b) = (0, a), take s = (0, 0) and s′ = (1, 0). They differ at Alice, and Alice receives 0 in both. Alice is the witness. For the swap w(a, b) = (b, a), take s = (0, 0) and s′ = (1, 1). Alice receives 0 in one and 1 in the other. So does Bob. Nobody receives the same thing while acting differently. The lemma fails, and the swap duly has a bootstrap.</p>
+<p><strong>Where this comes from, and what it commits us to.</strong> This is the forward direction of a recent theorem of Dourdent, Leitherer, Boghiu, Simonov, Kunjwal and Acín (2026). They show that a list of events comes from a process function exactly when it is complete and <em>pairwise exclusive</em>. The note connects this to a principle of Specker: if any two of several questions can be answered jointly, then all of them can. Philosophically, the lemma says that consistency is a constraint on <em>distinguishability by local agents</em>. Two global histories are never so alike that no agent placed identically in both could tell them apart by its own actions. The theorem will turn this into orthogonality. In quantum mechanics, orthogonal means perfectly distinguishable.</p>
+<hr />
+<h2>Part III. Making the loop reversible</h2>
+<h3>16. Bijections: the arithmetic of not forgetting</h3>
+<p>A function is a <strong>bijection</strong> if it is one-to-one and onto: every possible result comes from exactly one starting point. A bijection can be run backwards. From the result you recover the start. That is the mathematical form of &quot;no information is lost&quot;.</p>
+<p>Lugano is not a bijection, as Section 14 showed. Of the 256 two-bit two-party maps, twelve are process functions and none of them is its own input–output reverse (the note, Section 6). Consistency does not give reversibility for free on the original alphabet.</p>
+<h3>17. Source and sink</h3>
+<p>The fix, due to Baumeler, Costa, Ralph, Wolf and Zych, is to add two new regions.</p>
+<ul>
+<li>The <strong>source</strong> P is a region that only <em>sends</em>. It has no input. Its value e = (e₁, …, eₙ) holds one symbol for each party, drawn from that party's input alphabet, so P = ∏ Iₖ.</li>
+<li>The <strong>sink</strong> F is a region that only <em>receives</em>. It has no output. It records one symbol for each party, drawn from that party's output alphabet, so F = ∏ Oₖ.</li>
+</ul>
+<p><strong>What they represent.</strong> Metaphysically, the source is the <em>initial condition</em>: the part of the world that is simply given and depends on nothing the agents do. The sink is the <em>final record</em>: the rest of the universe, into which every action leaves a trace. Physicists' reversible laws always come with this pair, a state you start from and a state you end in. Adding them to the loop is asking what the loop looks like as part of a whole world with a beginning and an end, rather than as an isolated knot.</p>
+<h3>18. The permutation U</h3>
+<p>The reversible version of w is the map</p>
+<pre><code>U(o, e) = ( w(o) + e,  o ).
+</code></pre>
+<p>Read it slot by slot. It takes the parties' outputs o and the source value e. It returns two things:</p>
+<ul>
+<li>the parties' <strong>inputs</strong>, w(o) + e: what the loop would deliver, shifted by the source;</li>
+<li>the <strong>sink record</strong>, o: a copy of what the parties did.</li>
+</ul>
+<p><strong>Why the &quot;+&quot;.</strong> We label each input alphabet Iₖ by the numbers 0, 1, …, |Iₖ| − 1 and add modulo |Iₖ| (so for bits, + is exclusive-or: 1 + 1 = 0). In mathematical terms Iₖ is treated as the cyclic group ℤₙ, with n = |Iₖ|. All we need is that adding e can be <em>undone</em> by subtracting e. Any group would do; the cyclic one is simply the most convenient. The output alphabets Oₖ need no structure at all.</p>
+<p><strong>Why this is reversible.</strong> Given the result (i, o), recover the start: the outputs are o (the sink kept them), and the source value is e = i − w(o). Nothing is lost. So U is a bijection, and it is one <em>for every map w</em>, process function or not. The source shift and the sink copy have absorbed all the forgetfulness.</p>
+<p><strong>What it commits us to.</strong> The sink keeps a perfect copy of the outputs. This is the classical ancestor of a principle we will meet again. In a reversible world, whatever is done leaves a record somewhere. Lemma D.1 of the note (Section 47 below) shows that something like this is <em>forced</em> in any reversible realisation, not just this one.</p>
+<h3>19. Worked examples of U</h3>
+<p><strong>One party, constant loop.</strong> With a single party, the only process functions are constant maps (a lone party's input cannot depend on its own output, or it could contradict itself). Take w = 0. Then U(o, e) = (e, o). The source feeds the party's input, and the party's output goes to the sink. This is just an ordinary lab between a past and a future. Nothing loops.</p>
+<p><strong>Two parties, one-way.</strong> Take w(a, b) = (0, a). Then</p>
+<pre><code>U(a, b, e<sub>A</sub>, e<sub>B</sub>) = ( e<sub>A</sub>,  a + e<sub>B</sub>,  a, b ).
+</code></pre>
+<p>Alice receives the source bit e<sub>A</sub>. Bob receives Alice's output, shifted by the source bit e<sub>B</sub>. The sink records (a, b). This is a causal chain from the source to Alice, from Alice to Bob, and from both to the sink.</p>
+<p><strong>Lugano.</strong></p>
+<pre><code>U(a, b, c, e) = ( ((not b) and c) + e₁,  ((not c) and a) + e₂,  ((not a) and b) + e₃,   a, b, c ).
+</code></pre>
+<p>The two-to-one loop has become one-to-one.</p>
+<h3>20. Open versus closed</h3>
+<p>There is a subtlety worth stating clearly, because the whole note depends on it. U is a bijection of the <em>open</em> system: outputs and source in, inputs and sink out. But the parties are still inside the loop. They take their inputs and turn them into their outputs. When we plug the parties in, the loop <em>closes</em>, and what remains is a map from source to sink.</p>
+<p>Closing the loop is where consistency matters. For the swap w(a, b) = (b, a), U is still a perfectly good bijection. Close the loop with both parties copying, and source value e = (0, 0) has two consistent continuations, while e = (1, 0) has none (Section 25 computes this). The open bijection says nothing about the closed loop. The note's slogan: <strong>U is a bijection for every w; closing the loop is well behaved exactly when w is consistent.</strong> (The &quot;only when&quot; half of this is numerical evidence only, as Section 35 explains.)</p>
+<hr />
+<h2>Part IV. Quantum vocabulary, one word at a time</h2>
+<h3>21. Kets: |o⟩ as a perfectly distinguishable configuration</h3>
+<p>Quantum mechanics describes a system by a vector in a space of possibilities. The notation |o⟩, read &quot;ket o&quot;, is the vector that stands for &quot;the system is definitely in configuration o&quot;. Here o is one of our classical labels. The angle bracket marks it as a vector, not a number.</p>
+<p>The kets for different labels are <em>orthogonal</em>: at right angles to one another. Orthogonal means <em>perfectly distinguishable</em>. There is a measurement that tells |0⟩ and |1⟩ apart with certainty.</p>
+<p>What is new is that vectors can be added. For example,</p>
+<pre><code>(1/√2)(|0⟩ + |1⟩)
+</code></pre>
+<p>is a legitimate state, a <em>superposition</em>. It is neither 0 nor 1, and it is not a coin flip between them either. The numbers in front (here 1/√2 each) are <strong>amplitudes</strong>. They can be negative or complex. When you finally look, the probability of each label is the squared magnitude of its amplitude: here ½ and ½.</p>
+<p><strong>Why this notation.</strong> The ket keeps the classical label in view while placing it inside a larger space. The classical world is not thrown away. It survives as a special basis, the &quot;computational basis&quot;, of the quantum one.</p>
+<p><strong>What it commits us to.</strong> A wider space of possibilities than the classical one. Between &quot;definitely 0&quot; and &quot;definitely 1&quot; there are not just probabilities but superpositions with phases, and phases can <em>interfere</em>. Two routes to the same result may cancel. Any consistency condition that holds only for the classical labels might fail once we allow superpositions. That is the danger the note has to rule out.</p>
+<p>We also write ⟨o| (&quot;bra o&quot;) for the mirror image of |o⟩, and ⟨u|v⟩ for the inner product of two vectors. It is 1 when they are the same unit vector, 0 when they are orthogonal, and something in between otherwise.</p>
+<h3>22. Tensor products: independent agents</h3>
+<p>When two systems sit side by side, the space for both together is the <strong>tensor product</strong>, written ⊗. If Alice's bit lives in a two-dimensional space and Bob's in another, the pair lives in a 2 × 2 = 4-dimensional space with basis |0⟩⊗|0⟩, |0⟩⊗|1⟩, |1⟩⊗|0⟩, |1⟩⊗|1⟩. We usually write these as |00⟩, |01⟩, and so on.</p>
+<p>When Alice acts with V<sub>A</sub> on her system and Bob acts with V<sub>B</sub> on his, the joint operation is V<sub>A</sub> ⊗ V<sub>B</sub>. It acts on each factor separately.</p>
+<p><strong>Why this captures independence.</strong> The tensor product is built so that local operations compose without interfering. Alice's action does not depend on which basis Bob uses, and the amplitude of a joint event is the product of the local amplitudes. Dimensions multiply, just as the number of joint classical configurations does.</p>
+<p><strong>What it commits us to.</strong> Each lab is a separate factor, and each agent acts only on its own factor. This is the quantum version of the locality of agency from Section 8. It also allows <em>entanglement</em>, joint states that are not products. The note's validity argument has to handle entangled equipment too (Section 34).</p>
+<h3>23. Unitaries: reversible, nothing lost</h3>
+<p>A <strong>unitary</strong> is a linear map U on a space of states that preserves every inner product. Equivalently,</p>
+<pre><code>U U† = U† U = 1.
+</code></pre>
+<p>Here U† (&quot;U dagger&quot;) is the conjugate transpose: flip the matrix across its diagonal and take complex conjugates. The 1 is the identity map, which does nothing.</p>
+<p><strong>What this says.</strong> U† undoes U. Every unitary is reversible, and its reverse is U†. Because inner products are preserved, perfectly distinguishable states stay perfectly distinguishable. Total probability is conserved: a normalised state stays normalised.</p>
+<p><strong>Why unitary = reversible = no information lost.</strong> These are three faces of one property. &quot;Reversible&quot;: U† runs the process backwards. &quot;No information lost&quot;: distinguishable inputs remain distinguishable outputs, since orthogonal stays orthogonal. &quot;Probability conserved&quot;: lengths are preserved, so probabilities still sum to 1. In quantum theory the fundamental, closed-system dynamics is unitary. Anything else arises by ignoring part of a larger unitary story (Section 34).</p>
+<p><strong>Classical bijections are unitaries.</strong> A bijection of labels, extended to superpositions by linearity, is a <em>permutation matrix</em>. That is a matrix of 0s and 1s with exactly one 1 in each row and each column, and it is unitary. So U from Section 18 becomes the operator</p>
+<pre><code>U |o⟩<sub>O</sub> |e⟩<sub>P</sub> = |w(o) + e⟩<sub>I</sub> |o⟩<sub>F</sub>.
+</code></pre>
+<p>The subscripts say which system each ket lives in: the parties' outputs O, the source P, the parties' inputs I, and the sink F. This is exactly the classical table, written in kets. It is the starting point of the note (Section 1 there).</p>
+<p><strong>The Hadamard: a test with no classical analogue.</strong> The Hadamard gate is</p>
+<pre><code>H|0⟩ = (|0⟩ + |1⟩)/√2,   H|1⟩ = (|0⟩ − |1⟩)/√2.
+</code></pre>
+<p>It is unitary, but it is not a permutation. It turns definite bits into superpositions, with a minus sign that can cause cancellation. If a party inside the loop applies H, the loop sees something no classical strategy could produce. The note calls this &quot;the test case&quot;. If U only behaved well for classical strategies, a Hadamard inside the loop is where it would break.</p>
+<h3>24. Ancillas: private equipment</h3>
+<p>A real laboratory has more than one bit's worth of equipment. We allow party k a private input system Xₖ and a private output system Yₖ (an <strong>ancilla</strong>, from the Latin for &quot;servant&quot;). The party's most general reversible action is then a unitary</p>
+<pre><code>Vₖ : Iₖ ⊗ Xₖ → Oₖ ⊗ Yₖ,
+</code></pre>
+<p>which needs the dimensions to match: |Iₖ|·|Xₖ| = |Oₖ|·|Yₖ|. This also lets input and output alphabets have different sizes (Appendix B of the note).</p>
+<p><strong>What it commits us to.</strong> The agents are as powerful as quantum theory allows inside their labs. The theorem quantifies over <em>all</em> such Vₖ, with ancillas of any finite size. Again, the universal quantifier is the formal shape of freedom.</p>
+<h3>25. What &quot;the lift works&quot; means, and what failure looks like</h3>
+<p>Plug every party's Vₖ into U. Feed each input system Iₖ into Vₖ, and feed each output Oₖ back into U. What remains is a map from the source plus the parties' input ancillas to the sink plus their output ancillas:</p>
+<pre><code>M : P ⊗ X → F ⊗ Y.
+</code></pre>
+<p><strong>The lift works</strong> if M is unitary for every choice of local unitaries Vₖ. Araújo, Feix, Navascués and Brukner (2017, Definition 1) call such a process <strong>pure</strong>: unitaries in, unitary out.</p>
+<p><strong>Why this is the right test.</strong> If M were not unitary, some source state would come out with total probability more than 1 or less than 1. That would be a bootstrap or a grandfather appearing <em>in the quantum world</em>, even though the classical loop was fine.</p>
+<p><strong>Failure, worked out.</strong> Take the bad loop w(a, b) = (b, a), and let both parties do nothing (each Vₖ is the identity, &quot;send what you receive&quot;). The amplitude M[s, e], for sink record s given source value e, is 1 if s is consistent and 0 otherwise. Consistent means sₖ = wₖ(s) + eₖ for both parties. Notice that the source shift turns &quot;do nothing&quot; into the strategy &quot;subtract eₖ&quot;. So each column of M counts the consistent histories of one classical intervention. Computed:</p>
+<ul>
+<li>e = (0, 0): s = (0, 0) and s = (1, 1) both work. The column has squared length 2.</li>
+<li>e = (1, 0): s<sub>A</sub> = s<sub>B</sub> + 1 and s<sub>B</sub> = s<sub>A</sub>. No solution. The column has length 0.</li>
+<li>e = (0, 1): length 0. e = (1, 1): length 2.</li>
+</ul>
+<p>So M is not unitary. Probability is doubled for some source states and annihilated for others. The bootstrap and the grandfather reappear, as an excess and a deficit of probability.</p>
+<p>For a process function and identity Vₖ, every column has exactly one 1, which is the classical definition again. The real question is what happens when the Vₖ are Hadamards, or arbitrary unitaries, so that many histories interfere.</p>
+<hr />
+<h2>Part V. The main theorem, step by step</h2>
+<h3>26. Statement</h3>
+<blockquote>
+<p><strong>Theorem (proved).</strong> Let w be a process function with finite alphabets. Let each party k apply any unitary Vₖ : Iₖ ⊗ Xₖ → Oₖ ⊗ Yₖ, with private ancillas of any finite size. Then the induced source-to-sink operator M : P ⊗ X → F ⊗ Y is unitary.</p>
+</blockquote>
+<p>In plain words: <strong>every consistent deterministic loop, made reversible with a source and a sink, stays reversible however quantum the agents inside it act.</strong> Quantum freedom does not bring the paradoxes back.</p>
+<h3>27. The amplitude formula, read in words</h3>
+<p>The proof starts by writing down M explicitly. Its entries are</p>
+<pre><code>M[(s, y), (e, x)] = ∏ₖ Vₖ[(sₖ, yₖ), (wₖ(s) + eₖ, xₖ)].
+</code></pre>
+<p>Here is how to read this.</p>
+<ul>
+<li><strong>Left side.</strong> The amplitude for the world to go from source value e and input ancillas x to sink record s and output ancillas y.</li>
+<li><strong>Right side.</strong> The sink records s, and the sink holds the parties' outputs. So s <em>is</em> the list of what the parties sent. Given that, the loop delivers to party k the input wₖ(s), shifted by the source to wₖ(s) + eₖ. Party k then has to turn that input (with its ancilla xₖ) into its output sₖ (with ancilla yₖ). The amplitude for that is the matrix entry Vₖ[(sₖ, yₖ), (wₖ(s) + eₖ, xₖ)].</li>
+<li><strong>The product ∏ₖ.</strong> The parties act independently, so the joint amplitude is the product of the local amplitudes. This is the tensor product of Section 22 doing its job.</li>
+</ul>
+<p><strong>Philosophical point.</strong> Because the sink records the outputs, each entry of M corresponds to <em>a single</em> consistent assignment of inputs and outputs. There is no sum over alternative histories inside an entry. The sink's record has made the histories distinguishable, so they cannot interfere with each other on the way to the same final state. Whatever interference there is happens <em>between</em> entries, and that is what the next step controls.</p>
+<h3>28. The test: rows must be orthonormal</h3>
+<p>A square matrix is unitary when its rows are orthonormal. Each row must have length 1, and any two different rows must be orthogonal. In symbols, M M† = 1, which written out is</p>
+<pre><code>(M M†)[(s, y), (s′, y′)] = Σ over e, x of M[(s, y), (e, x)] · conj M[(s′, y′), (e, x)].
+</code></pre>
+<p>We need this to be 1 when (s, y) = (s′, y′) and 0 otherwise.</p>
+<p><strong>Meaning.</strong> The rows are labelled by final records. So the test asks whether <em>different final records are perfectly distinguishable</em>, and whether each one carries total weight 1. Reversibility, in this form, is a statement about the records the world keeps.</p>
+<h3>29. Step 1: the sum splits into one factor per party</h3>
+<p>Plug the product formula into the sum. The sum is over all source values e = (e₁, …, eₙ) and all ancillas x = (x₁, …, xₙ). Each party's factor involves only that party's own eₖ and xₖ. A sum of products of independent pieces is a product of sums:</p>
+<pre><code>(M M†)[(s, y), (s′, y′)] = ∏ₖ ( Σ over eₖ, xₖ of Vₖ[(sₖ, yₖ), (wₖ(s) + eₖ, xₖ)] · conj Vₖ[(s′ₖ, y′ₖ), (wₖ(s′) + eₖ, xₖ)] ).
+</code></pre>
+<p><strong>Meaning.</strong> The global question breaks into one local question per lab. This is where the source does its real work. Because each party has its own independent source symbol eₖ, summing over it lets each lab's input range over everything.</p>
+<h3>30. Step 2: a party that receives the same input contributes a clean 0 or 1</h3>
+<p>Look at party k's factor when wₖ(s) = wₖ(s′). Then both Vₖ entries have the <em>same</em> input slot, wₖ(s) + eₖ. As eₖ runs through all of Iₖ, so does that slot. Rename it i. The factor becomes</p>
+<pre><code>Σ over i, xₖ of Vₖ[(sₖ, yₖ), (i, xₖ)] · conj Vₖ[(s′ₖ, y′ₖ), (i, xₖ)],
+</code></pre>
+<p>which is just the inner product of two rows of Vₖ. Since Vₖ is unitary, it is 1 if (sₖ, yₖ) = (s′ₖ, y′ₖ) and 0 otherwise.</p>
+<p><strong>Meaning.</strong> For a party in the same situation in both scenarios, local reversibility settles the question. Its factor is 1 if it did the same thing in both, and 0 if it acted differently.</p>
+<h3>31. Step 3: equal records give length 1</h3>
+<p>If s = s′, then wₖ(s) = wₖ(s′) for every k trivially, so every factor is of the kind in Step 2. The product is 1 exactly when y = y′. So every row has length 1, and rows with the same s but different ancilla records are orthogonal.</p>
+<h3>32. Step 4: different records give 0, thanks to the lemma</h3>
+<p>If s ≠ s′, the factors of parties with wₖ(s) ≠ wₖ(s′) could be anything. Here is where consistency enters. The exclusivity lemma (Section 15) guarantees a party k with wₖ(s) = wₖ(s′) and sₖ ≠ s′ₖ. That party's factor is of the Step 2 kind, and since sₖ ≠ s′ₖ, it is 0. One zero factor makes the whole product 0.</p>
+<p><strong>Meaning.</strong> Two different final records are orthogonal because some agent, placed identically in both scenarios, acted differently. Its local unitarity forces the zero. Without a process function, there may be no such witness, and the other factors can conspire to make M M† ≠ 1. The swap of Section 25 shows them doing it.</p>
+<h3>33. Step 5: square, hence unitary</h3>
+<p>So M M† = 1. M is also square: the source-plus-input-ancilla side has dimension ∏ |Iₖ||Xₖ|, and the sink-plus-output-ancilla side has dimension ∏ |Oₖ||Yₖ|, which are equal because each |Iₖ||Xₖ| = |Oₖ||Yₖ|. For square matrices, M M† = 1 implies M† M = 1. So M is unitary. ∎</p>
+<p><strong>The whole proof in one sentence.</strong> Each final record picks out a single consistent history (the sink), each lab contributes independently (the tensor product), a lab in the same situation in two histories contributes a clean 0 or 1 (local unitarity), and consistency guarantees that any two different histories have such a lab that acted differently (exclusivity).</p>
+<p><strong>What is machine-checked.</strong> The exclusivity lemma and the identities M M† = 1 and M† M = 1 are formally verified in the Lean 4 proof assistant with Mathlib. They are stated for complex amplitudes, any finite number of parties, any finite alphabets, and any finite local ancillas, with input and output sizes allowed to differ. The note names the theorems PFUL.induced_mul_conjTranspose, PFUL.induced_conjTranspose_mul and PFUL.induced_unitary (the last stating membership in the unitary group). They depend only on Lean's standard axioms. The lemma is <em>derived</em> in Lean, not assumed. Details are in <a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/STATUS.md">lean/STATUS.md</a>.</p>
+<h3>34. From &quot;unitary under unitaries&quot; to &quot;valid under everything&quot;</h3>
+<p>Agents in labs do not only apply unitaries. They measure, add noise, discard things, and use equipment entangled with other labs. Does the result survive all that? The note's Appendix A shows that it does, by a standard argument (<strong>proved on paper; not formalised in Lean</strong>).</p>
+<p>The key tool is <strong>Stinespring dilation</strong>. Any physically allowed operation, any &quot;CPTP map&quot; in the jargon (completely positive and trace preserving), can be written as three steps: add a fresh ancilla in a fixed state, apply a unitary to everything, then throw part of the result away. The throwing away is a <em>partial trace</em>: we average over what we can no longer see.</p>
+<p><strong>Philosophical gloss.</strong> Every noisy or irreversible operation is a reversible one <em>seen partially</em>. Irreversibility is ignorance of a larger story in which nothing is lost. This is the first appearance of the idea of <strong>purification</strong>, which drives the second half of the note.</p>
+<p>With Stinespring in hand, the argument goes in four steps.</p>
+<ol>
+<li>Local unitaries give a unitary M (the theorem).</li>
+<li>A general local operation is a unitary on a larger lab followed by discarding. The extra systems never touch U, so the induced map is &quot;append a state, apply the unitary M, discard&quot;. Each of those is physically allowed, so the composite is too.</li>
+<li>Shared or entangled equipment is covered by <em>complete</em> positivity, which is exactly the property that an operation stays allowed when it acts on part of an entangled whole.</li>
+<li>Measurements with outcomes (&quot;instruments&quot;) give non-negative probabilities that add up to 1, by linearity.</li>
+</ol>
+<p>Fix the source in |0⟩ and discard the sink, and you get back the classical loop w: each output o yields input w(o) with certainty. So the quantum lift contains the original classical loop as a special case.</p>
+<h3>35. The converse: evidence only</h3>
+<p>What if w is <em>not</em> a process function? Then the exclusivity property fails (Dourdent et al.). The note does <em>not</em> prove that unitarity must then fail in general. But numerically, every non-process function in the two- and three-party binary cases fails unitarity for random local unitaries (code/check.py). That fits the slogan of Section 20, but the &quot;only if&quot; direction is <strong>evidence</strong>, not proof.</p>
+<p>The code also checks the theorem by brute force: all 12 two-party and 744 three-party binary process functions, under random local unitaries, with and without ancillas, plus three-symbol two-party examples. The deviation from unitarity stays below 10⁻¹³.</p>
+<p><strong>What has been shown, philosophically.</strong> Daher Ahmed and Kunjwal (2026) had conjectured this result and proved it for a subclass. They noted that the bare permutation unitary might fail to be a valid process. The note argues that it never fails. Araújo et al. (2017) had already written down this construction for Lugano, and Baumeler, Gilani and Rashid (2022) had remarked on unitary extensibility without a separate proof. The note's contribution is a short general proof for the coherent permutation unitary. Its philosophical reading is that <strong>classical fixed-point consistency is already a quantization condition</strong>. No extra quantum filter is needed.</p>
+<hr />
+<h2>Part VI. Chance in loops: mixtures and purification</h2>
+<h3>36. Classical processes: p(i | o)</h3>
+<p>Now let the environment be random. Instead of a function w, we have conditional probabilities</p>
+<pre><code>p(i | o) = the probability that the parties receive the inputs i, given that they send the outputs o.
+</code></pre>
+<p>The &quot;|&quot; here is the ordinary probability bar, read &quot;given&quot;. It is not part of a ket.</p>
+<p>A <strong>classical process</strong> is such a p that is <strong>logically consistent</strong>. For every choice of local interventions, the total probability of all consistent histories must be exactly 1. (The full definition also covers randomised interventions, but deterministic ones are the heart of it.) For a deterministic p, which is just a w, this is the process-function condition again. Exactly one consistent history, with probability 1.</p>
+<p><strong>What it commits us to.</strong> Chance is put in the <em>environment</em>, not in the agents. And consistency is demanded only &quot;on average&quot;. A random loop may be inconsistent in some of its deterministic pieces, as long as the probabilities always add up correctly. The coin-flip loop of Section 5 was exactly this.</p>
+<h3>37. The polytope: a map of all consistent loops</h3>
+<p>Collect all the numbers p(i | o) into one long list. Each classical process is then a point in a high-dimensional space. Logical consistency is a set of linear equations and inequalities (probabilities are non-negative, and certain sums equal 1). A region cut out by finitely many linear conditions like that is a <strong>polytope</strong>, a many-dimensional cousin of a polygon or a cut gemstone. This one is the <strong>Baumeler–Wolf polytope</strong>.</p>
+<p>Three features of a polytope carry philosophical meaning.</p>
+<ul>
+<li><strong>Points inside</strong> can be written as <em>mixtures</em>, that is, weighted averages, of other points. A mixture with weights p<sub>j</sub> is the situation &quot;with probability p<sub>j</sub>, we are in process number j&quot;. Mixing is the geometry of <em>ignorance</em>. You know the menu of possibilities, but not which one obtains.</li>
+<li><strong>Vertices</strong> (corners) are the points that are <em>not</em> mixtures of any other points. A vertex is a &quot;pure option&quot;. There is no way of reading it as ignorance over something more definite inside the polytope.</li>
+<li><strong>Facets</strong> are the flat outer walls. Each one is a linear inequality (&quot;this weighted sum of probabilities is at most that one&quot;), and the polytope is exactly the set of points satisfying all of them. Inequalities are how one <em>tests</em> membership. A facet violation is a certificate that a point is outside.</li>
+</ul>
+<p>Every process function is a vertex: a deterministic point cannot be a mixture of other points. The question is whether there are other vertices.</p>
+<ul>
+<li><strong>Two binary parties.</strong> The polytope has 12 vertices, and all of them are deterministic. They are the 12 process functions. Every two-party binary classical process is a mixture of process functions, so all its chance is ignorance about which deterministic consistent loop obtains.</li>
+<li><strong>Three binary parties.</strong> The polytope has 710,760 vertices. Only 744 of them are deterministic, that is, process functions. All the rest are <em>random corners</em>: genuinely chancy consistent loops that are not mixtures of anything else (Baumeler and Wolf 2016).</li>
+</ul>
+<p>Inside the big polytope sits a smaller one, the <strong>process-function hull</strong>, conv(PF). It is the set of all mixtures of the 744 process functions. For three binary parties, the random corners stick out beyond it.</p>
+<h3>38. Purification: randomness as ignorance of a hidden pure state</h3>
+<p>Can a chancy loop be realised in a reversible quantum world? The precise notion is <strong>purifiability</strong> (Araújo, Feix, Navascués and Brukner 2017, Definition 3).</p>
+<p>A classical process W is <em>purifiable</em> if there is</p>
+<ul>
+<li>a unitary V, with a source and a sink, that is <strong>pure</strong>: unitary to unitary for every choice of local unitaries, as in Section 25; and</li>
+<li>a fixed <strong>source state</strong> |ψ⟩ (ψ is Greek &quot;psi&quot;),</li>
+</ul>
+<p>such that preparing the source in |ψ⟩ and discarding the sink gives back exactly the probabilities of W.</p>
+<p><strong>Why the word &quot;purification&quot;.</strong> In quantum theory a &quot;pure&quot; state is one of maximal knowledge, a single vector. A &quot;mixed&quot; state expresses uncertainty. Every mixed state can be seen as part of a larger pure state, with the uncertainty arising from not looking at the rest. To <em>purify</em> a random process is to exhibit it as a fragment of a deterministic, reversible, pure whole, with the randomness coming entirely from our lack of access to the source and the sink.</p>
+<p><strong>What it commits us to.</strong> That chance can be <em>explained away</em> as ignorance about a hidden but perfectly definite state of the world, as long as the world, once fully described, is reversible. Purifiability asks whether a given chancy loop admits such an explanation.</p>
+<p>(The W here is the process written as a matrix, the &quot;process matrix&quot;. For classical processes it is diagonal, with the numbers p(i | o) on the diagonal. Nothing below needs more than that.)</p>
+<h3>39. Mixtures of process functions are purifiable (proved)</h3>
+<p><strong>Proposition (proved; note, C.1).</strong> Every mixture of process functions is purifiable.</p>
+<p><strong>Construction, in words.</strong> Suppose W is &quot;process function w<sub>j</sub> with probability p<sub>j</sub>&quot;. Add to the source a <em>label register</em> that says which j. Build one big unitary that reads the label and runs the lift of w<sub>j</sub>:</p>
+<pre><code>U |o, e, j⟩ = |w<sub>j</sub>(o) + e⟩<sub>I</sub>  |o, j⟩<sub>F</sub>.
+</code></pre>
+<p>Under local unitaries this acts as M<sub>j</sub> on the j-th block, and each M<sub>j</sub> is unitary by the main theorem. So the whole thing is pure. Now prepare the label in the superposition</p>
+<pre><code>Σ<sub>j</sub> √p<sub>j</sub> |j⟩.
+</code></pre>
+<p><strong>Why the square roots.</strong> Probabilities are squared amplitudes, so amplitude √p<sub>j</sub> gives probability p<sub>j</sub>.</p>
+<p><strong>Why the sink must keep a copy of j.</strong> If the sink records which j, the different branches are perfectly distinguishable at the end. When we discard the sink, the cross terms between branches vanish, and what remains is exactly Σ p<sub>j</sub> W<sub>w<sub>j</sub></sub> = W. If the label were <em>not</em> handed to the sink, the branches would still interfere, and the result would no longer be the classical mixture.</p>
+<p><strong>Meaning.</strong> This is randomness as ignorance, in its purest form. There is a definite fact about which loop we are in. It sits coherently in the source, and its trace is kept in the sink. We just do not see it.</p>
+<p>The same trick mixes <em>any</em> purifiable processes, so the purifiable classical processes form a convex set containing the whole process-function hull. In particular, every two-party binary classical process is purifiable.</p>
+<h3>40. The classical version settles itself (proved)</h3>
+<p>Before going quantum, ask the classical question. Call W <strong>classically purifiable</strong> if it is what you see, averaging over a random source value λ, of a classical reversible process. That is, a bijection that stays a bijection from source to sink under every deterministic local intervention.</p>
+<p><strong>Proposition (proved, sketch; note D.6).</strong> W is classically purifiable if and only if it is a mixture of process functions.</p>
+<p><strong>Why.</strong> Fix the source value λ. You get a deterministic loop w<sub>λ</sub>. For the source-to-sink map to stay a bijection under every intervention, each intervention must have exactly one consistent run. With zero runs, that source value would have no image. With two, two runs would collide in the sink, by counting. So each w<sub>λ</sub> is a process function, and W is the λ-average of them. The converse is the random-source construction of Section 39.</p>
+<p><strong>Meaning.</strong> In a <em>classical</em> reversible world, chance in a consistent loop is always ignorance about which deterministic consistent loop obtains. This is now a theorem.</p>
+<p>So the big question narrows sharply:</p>
+<blockquote>
+<p><strong>Does quantum reversibility allow anything that classical reversibility does not, for classical loops?</strong></p>
+</blockquote>
+<hr />
+<h2>Part VII. The random corners</h2>
+<h3>41. E<sub>ex1</sub>, formally</h3>
+<p>Recall the coin-flip loop of Section 5. Let C be the <em>circular identity</em>, in which each party receives the previous party's output:</p>
+<pre><code>x₁ = a₃,   x₂ = a₁,   x₃ = a₂
+</code></pre>
+<p>(here x is an input and a an output). Let C̄ be its bitwise negation: each party receives the opposite of the previous party's output. Then</p>
+<pre><code>E<sub>ex1</sub> = ½ C + ½ C̄.
+</code></pre>
+<p><strong>Facts (proved; note, Appendix C).</strong></p>
+<ul>
+<li>E<sub>ex1</sub> is logically consistent. Section 5 gave the idea: C's surplus histories match C̄'s missing ones.</li>
+<li>E<sub>ex1</sub> is a <em>vertex</em> of the three-party binary polytope (the active constraints have full rank, 64 of 64). So it is not a mixture of process functions, nor of anything else.</li>
+</ul>
+<p>So E<sub>ex1</sub> is a consistent loop whose chance is not ignorance over consistent deterministic loops. It averages two <em>inconsistent</em> deterministic loops. In the geometry of the polytope it is a corner: there is nothing more definite inside the polytope for its chance to be ignorance about.</p>
+<h3>42. Why E<sub>ex1</sub> cannot be purified: isotropic subspaces, gently</h3>
+<p><strong>Proposition (proved, exact certificate; note C.2).</strong> E<sub>ex1</sub> is not purifiable.</p>
+<p>The proof uses an exact criterion due to Araújo et al. (their Theorem 4). Here is its shape, without the full machinery.</p>
+<p><strong>Step A: turn the question into linear algebra.</strong> A purification would supply a set of vectors, one for each &quot;piece&quot; of W. There are r of them, where r is the <strong>rank</strong> of W (for E<sub>ex1</sub>, r = 16). Some constraints on these vectors are linear. They force the vectors to live in a certain subspace V<sub>W</sub>, whose dimension the note computes exactly: 27 for E<sub>ex1</sub>. Araújo et al. give a necessary condition: dim V<sub>W</sub> ≥ r. Intuitively, there must be room for 16 independent vectors. Here 27 ≥ 16, so this test does not rule anything out.</p>
+<p><strong>Step B: the quadratic constraints.</strong> The remaining constraints are <em>quadratic</em>. Certain quadratic forms must vanish identically on the whole r-dimensional span of the vectors. A subspace on which a quadratic form vanishes identically is called <strong>totally isotropic</strong> for that form.</p>
+<p><strong>A toy picture.</strong> Take the form q(x, y) = x² − y² on the plane. It vanishes on the line x = y and on the line x = −y. But there is no <em>plane</em> on which it vanishes, since the only plane available is the whole space, and q(1, 0) = 1. One plus direction and one minus direction allow at most a one-dimensional isotropic subspace. In general, a form with P positive directions, N negative directions and Z zero directions has totally isotropic subspaces of dimension at most Z + min(P, N). Each &quot;null&quot; direction has to pair a plus with a minus, and the zeros come for free.</p>
+<p><strong>Step C: the certificate.</strong> The note exhibits one explicit integer combination of the constraint forms. Its symmetric part, on the 27-dimensional space V<sub>W</sub>, has exactly 13 positive directions, 13 negative and 1 zero. This was computed in exact rational arithmetic. So any totally isotropic subspace has dimension at most 1 + min(13, 13) = 14. But a purification needs a 16-dimensional one. Since 14 &lt; 16, no purification exists. ∎</p>
+<p><strong>What isotropy encodes, philosophically.</strong> The linear conditions (Step A) say a purification has <em>enough room</em>. The quadratic conditions (Step B) say the room is <em>shaped right</em>. They ask that the hidden vectors fit together with no leftover interference: whatever cross terms appear between them must cancel. The certificate is a counting argument. There are not enough balanced plus/minus directions to host sixteen mutually cancelling directions. A coin flip inside a loop is too tightly wound to be unwound into a reversible whole.</p>
+<p><strong>A numerical cross-check.</strong> A gradient search for purifications drives the residual to about 10⁻¹³ for Lugano, which is purifiable, but stalls at 79.7 for E<sub>ex1</sub>. The search agrees with the certificate.</p>
+<h3>43. The other random corners</h3>
+<p>Sampling 40,000 random vertices of the three-party binary polytope gave 646 non-deterministic ones. Up to symmetry (swapping parties and relabelling inputs and outputs) these fall into <strong>51 orbits</strong>. For all 51, the simple room test dim V<sub>W</sub> ≥ rank W passes, so it decides nothing.</p>
+<ul>
+<li><strong>Proved (exact certificates):</strong> orbits 7 and 50, the two orbits with dim V<sub>W</sub> = 27. One of them contains E<sub>ex1</sub>.</li>
+<li><strong>Evidence only:</strong> for the other 49 orbits (dim V<sub>W</sub> from 82 to 256), the certificate method was inconclusive. A GPU search, with 64 random restarts per orbit, found no purification for any of them. Best residuals ranged from 12.97 to 59.35, far from zero, while the same code finds Lugano's purification and stalls on E<sub>ex1</sub> as expected. A local search can miss solutions, so this is not a proof.</li>
+</ul>
+<hr />
+<h2>Part VIII. The conjecture, and the evidence</h2>
+<h3>44. The conjecture</h3>
+<blockquote>
+<p><strong>Conjecture (open).</strong> A classical process is purifiable if and only if it is a mixture of process functions.</p>
+</blockquote>
+<p>The &quot;if&quot; direction is proved (Section 39). The &quot;only if&quot; direction is open. By Section 40, the conjecture is equivalent to:</p>
+<blockquote>
+<p><strong>A classical process that is quantum-purifiable is already classically purifiable.</strong></p>
+</blockquote>
+<p>In words: for loops with classical statistics, quantum reversibility buys nothing that classical reversibility did not already give. If the conjecture holds, every reversible quantum realisation of a chancy classical loop is, at the level of its statistics, a coherent ignorance-mixture of deterministic consistent loops.</p>
+<h3>45. The hidden-label idea (Conjecture D.3)</h3>
+<p>The most natural strategy for proving the conjecture goes like this. Take any purification. Look inside its source. Hope to find a classical label λ, &quot;which loop are we in?&quot;, such that for each value of λ the purification just runs one deterministic loop w<sub>λ</sub>. Then W would be the λ-average of the w<sub>λ</sub>. Each w<sub>λ</sub> would have to be a process function, because the purification stays unitary on each label alone. And the conjecture would follow.</p>
+<p>Stated precisely, the note's <strong>Conjecture D.3</strong> is: if V purifies a classical process, then there is an orthonormal basis {|λ⟩} of the source such that</p>
+<pre><code>V |λ, o⟩ = (phase) · |w<sub>λ</sub>(o)⟩ ⊗ |g<sub>λ</sub>(o)⟩,
+</code></pre>
+<p>for functions w<sub>λ</sub> (the loop for label λ) and g<sub>λ</sub>, with g<sub>λ</sub> one-to-one on outputs (the sink's record). The note shows that D.3 would imply the conjecture.</p>
+<p><strong>What D.3 encodes.</strong> It is a <em>hidden-variable</em> thesis. Underneath the quantum description there is a single classical fact, fixed in advance, about which deterministic loop is running. The fact is fixed independently of what the agents do.</p>
+<h3>46. The counterexample: contextual randomness (proved; note D.4)</h3>
+<p><strong>D.3 is false.</strong> The counterexample is not even a time loop. It is an ordinary, causally ordered circuit.</p>
+<p><strong>The story.</strong> Alice has no input; she just chooses a bit oA. Then Bob receives a bit and sends one. The source holds two qubits, m and a, both starting in |0⟩. The circuit:</p>
+<ol>
+<li>If oA = 1, apply a Hadamard to m. If oA = 0, leave m alone.</li>
+<li>Copy m into a, using a controlled-NOT, which flips a exactly when m is 1.</li>
+<li>Send m to Bob as his input.</li>
+<li>Route oA, Bob's output oB, and a to the sink.</li>
+</ol>
+<p>This is a circuit of unitaries in a fixed causal order, so it is a valid unitary process.</p>
+<p><strong>What the parties see.</strong></p>
+<ul>
+<li>If oA = 0: m stays |0⟩, so Bob always receives 0.</li>
+<li>If oA = 1: m becomes (|0⟩ + |1⟩)/√2, the copy into a makes the branches distinguishable, and Bob receives 0 or 1 with probability ½ each.</li>
+</ul>
+<p><strong>Is it a mixture of process functions? Yes.</strong> Let λ be a fair coin and w<sub>λ</sub>(oA) = λ·oA. With λ = 0, Bob always gets 0. With λ = 1, Bob gets Alice's bit. Average over λ: if oA = 0 Bob gets 0; if oA = 1, Bob gets 0 or 1 equally. That matches. The conjecture is not threatened.</p>
+<p><strong>But there is no hidden label in the source.</strong> Where, in the source, does the coin λ live? If Alice sends 0, the &quot;coin&quot; is read off the source in the ordinary 0/1 basis (the <strong>Z basis</strong>). If Alice sends 1, it is read off in the Hadamard-rotated basis (the <strong>X basis</strong>). These two bases are incompatible. Formally, for each input and output the note forms the operator</p>
+<pre><code>G<sub>i,o</sub> = V<sub>o</sub>† (Π<sub>i</sub> ⊗ 1<sub>F</sub>) V<sub>o</sub>
+</code></pre>
+<p>on the source. Here V<sub>o</sub> is the purification with the parties' outputs fixed at o, and Π<sub>i</sub> projects onto &quot;the parties received i&quot;. This operator asks: &quot;which source states lead to input i, given outputs o?&quot; D.3 holds exactly when all the G's are projectors that commute with one another, since their common eigenbasis would be the label basis. Here the G's are Z-projectors when oA = 0 and X-projectors when oA = 1. They do not commute (commutator norm ½). So no single basis of the source works. Restricting attention to the actual source state |00⟩ does not help either.</p>
+<p><strong>Philosophical meaning.</strong> The randomness here <em>is</em> ignorance about which deterministic loop obtains, since W is a mixture. But the &quot;which loop&quot; variable is <strong>contextual</strong>. Which question the source answers depends on what Alice did. There is no fact sitting in the source, fixed in advance and independent of the agents' choices, that says &quot;λ = 0&quot; or &quot;λ = 1&quot;. The ignorance reading survives as a claim about the <em>statistics</em> W. It fails as a claim about a single hidden label. (The resemblance to quantum contextuality in the Kochen–Specker sense is suggestive. That is an interpretive remark, not a result of the note.)</p>
+<p><strong>Consequence for proofs.</strong> No argument that tries to extract one classical label from the source can work. A proof of the conjecture must show <em>directly</em> that W lies in the process-function hull, for example by showing that purifiability implies every facet inequality of that hull.</p>
+<h3>47. Two things that cannot be the criterion</h3>
+<p>The note also proves two negative results. They say where the answer is <em>not</em>.</p>
+<p><strong>Quantum-controlled interventions do not help (proved; note D.5).</strong> One might hope that E<sub>ex1</sub> fails some weaker quantum test, such as letting the parties apply instruments coherently controlled by shared entangled equipment, and checking that probabilities still add to 1. They always do, for <em>every</em> classical process. Because W is classical (diagonal), it strips away all quantum coherence at the parties' doors. What remains is a classical joint behaviour that cannot be used to signal. Every such behaviour is an <em>affine</em> combination of local deterministic ones (signed weights allowed). The normalisation is linear and equals 1 on each deterministic strategy, so it equals 1 for all of them. So only the <em>unitarity</em> (reversibility) requirement can separate E<sub>ex1</sub> from mixtures. Consistency under quantum interventions is not enough.</p>
+<p><strong>The actual source state is not enough (proved; notes D.2 and D.8).</strong> Any test that looks only at what happens when the source is in its actual state |ψ⟩ is passed by every classical process, including E<sub>ex1</sub>. This holds even when the parties use arbitrary local unitaries and superpositions of strategies. So any proof must use how the purification would act on source states <em>orthogonal</em> to |ψ⟩, the ones that never actually occur. In Araújo et al.'s terms, that is exactly the non-convex isotropic-subspace condition of Section 42.</p>
+<p><strong>Philosophical gloss (interpretation).</strong> What rules out E<sub>ex1</sub> is not anything that happens. It is the <em>modal</em> structure of the reversible world: how it would have behaved had it started differently. Reversibility is a constraint on counterfactuals, not only on actual histories.</p>
+<p>A related structural fact (<strong>proved; note D.1</strong>): in any purification, the sink keeps a perfect record of the pair (outputs, inputs). The vectors it holds for different pairs are orthogonal, with squared lengths p(i | o). Reversibility forces a complete record, as Section 18 anticipated.</p>
+<h3>48. The facet evidence</h3>
+<p>If the conjecture is true, purifiability must imply every facet inequality of the process-function hull. So it helps to know those inequalities.</p>
+<p><strong>Computed exactly (note D.7).</strong> The 744 three-party binary process functions span a 37-dimensional space. Their hull has exactly <strong>29,344 facets</strong>, falling into <strong>93 orbits</strong> under the 384 symmetries (permuting parties and relabelling inputs and outputs). This was computed with the normaliz software on a rented 32-core machine in about 1.9 hours.</p>
+<p><strong>One inequality separates everything sampled.</strong> Facet orbit 82 contains the inequality</p>
+<pre><code>p(000 | 000) ≤ p(000 | 001) + p(010 | 001) + p(000 | 100) + p(010 | 110) + p(011 | 111),
+</code></pre>
+<p>where each string lists the three parties' bits, inputs before the bar and outputs after it.</p>
+<p><strong>Reading it.</strong> The left side is the probability that, when everyone sends 0, everyone receives 0. The inequality says that this cannot be likely unless certain neighbouring events are at least as likely in total. For a deterministic process function it says: if w(000) = 000, then w(001) is 000 or 010, or w(100) = 000, or w(110) = 010, or w(111) = 011. It is a piece of combinatorial bookkeeping that every consistent deterministic loop obeys, and that mixtures therefore obey too. E<sub>ex1</sub> violates it: the left side is ½ and the right side is 0. Here is why. When everyone sends 0, the copier branch delivers 000, and that branch has probability ½. In each of the four situations on the right, neither the copier nor the negator delivers the listed inputs. For instance, when the outputs are 111 the copier delivers 111 and the negator 000, never 011.</p>
+<p>Members of facet orbit 82 are violated by E<sub>ex1</sub> and by <strong>all 51</strong> sampled non-deterministic vertex orbits. So a single class of inequalities separates every sampled random corner from the hull. <strong>Deriving it from purifiability is the natural next target. It has not been done.</strong></p>
+<h3>49. Walking from Lugano to E<sub>ex1</sub></h3>
+<p>The note also tests the boundary numerically (evidence; note D.8). Walk along the straight line from Lugano (purifiable) toward E<sub>ex1</sub> (not):</p>
+<pre><code>x<sub>t</sub> = (1 − t) · Lugano + t · E<sub>ex1</sub>.
+</code></pre>
+<p>The process-function hull is left almost at once, at about t ≈ 2 × 10⁻⁷, because Lugano is a corner and this direction points straight out. The purification search finds nothing at t = 0.02 or t = 0.2, with best residuals 52.2 and 60.1. The same code reaches about 10⁻¹³ on Lugano itself. So along this line, purifiability appears to stop exactly where the hull does. That is consistent with the conjecture, but it is not proof.</p>
+<h3>50. Why the rest is hard</h3>
+<p>Three things make the open half of the conjecture difficult.</p>
+<ol>
+<li><strong>The constraint is non-convex.</strong> Whether a 16-dimensional (or larger) subspace exists on which many quadratic forms all vanish is not a convex question. Convex questions can usually be settled by duality: when no solution exists, there is a checkable certificate saying so. Non-convex questions offer no such guarantee. Single-form counting (Section 42) worked for the two smallest orbits. For the larger ones, single-form inertia, block forms and SDP relaxations (a standard convex approximation) have all stalled.</li>
+<li><strong>The easy information is useless.</strong> By D.2, D.5 and D.8, everything that can be read off from the actual source state is satisfied by every classical process. The proof must engage the unrealised source states, and that is exactly where the non-convexity lives.</li>
+<li><strong>No hidden label.</strong> By D.4, one cannot reduce the problem to finding a classical &quot;which loop&quot; variable. The argument has to work at the level of W itself, presumably facet by facet.</li>
+</ol>
+<p>So the conjecture is open. D.3 is refuted. No counterexample to the conjecture itself has been found. That last point is weak evidence, because the large cases are untested.</p>
+<hr />
+<h2>Part IX. Philosophical discussion</h2>
+<blockquote>
+<p><strong>Everything in this part is interpretation.</strong> It is a reading of the results above, following the note's own philosophical sections (3–8 and the end of 9). None of it is a theorem. Where a claim goes beyond the note's own wording, I say so.</p>
+</blockquote>
+<h3>51. Consistency is already a quantization condition</h3>
+<p>The classical demand &quot;exactly one consistent history, whatever anyone does&quot; was invented to dissolve the grandfather and the bootstrap. Nothing in it mentions amplitudes, phases or interference. Yet the main theorem shows that it is exactly strong enough to keep the quantum lift unitary. The proof makes the reason visible. Consistency guarantees that any two global histories are told apart by some agent who was in the same situation in both. Quantum mechanics turns &quot;told apart by a local agent&quot; into &quot;orthogonal&quot;, and orthogonality is all unitarity needs.</p>
+<p>So the note reads the result as saying that <strong>fixed-point consistency is already a quantization condition</strong>. The note surveys other quantum treatments of time loops. Deutsch's fixed-point model pays for its consistency with nonlinearity. Post-selection discards inconsistent branches, which the note calls a filter on samples, &quot;of the same shape as a measure-zero axiom&quot;. Neither, the note argues, supplies the criterion. For process functions, the theorem shows that no extra quantum filter is needed. The classical consistency condition, imposed for all interventions, already carries over.</p>
+<h3>52. Can chance be fundamental inside a loop?</h3>
+<p>Two pictures of chance are in play.</p>
+<ul>
+<li><strong>Chance as ignorance.</strong> The world is in a definite, deterministic state. Probabilities express what we do not know. In a loop, this means there is a definite consistent deterministic loop, and we are unsure which.</li>
+<li><strong>Chance as basic.</strong> The world itself is chancy. No more definite story underlies the probabilities.</li>
+</ul>
+<p>The polytope separates these pictures geometrically. Mixtures of process functions are ignorance. The random corners, such as E<sub>ex1</sub>, are consistent loops whose chance cannot be read as ignorance over consistent deterministic loops.</p>
+<p>The results so far:</p>
+<ul>
+<li>In a <em>classical</em> reversible world, only ignorance-chance is possible (D.6, proved).</li>
+<li>In a <em>quantum</em> reversible world, ignorance-chance is possible (C.1, proved), and at least some basic-chance loops are impossible (E<sub>ex1</sub>, and every vertex in orbits 7 and 50, one of which contains E<sub>ex1</sub>; proved).</li>
+<li>Whether <em>every</em> basic-chance loop is impossible in a quantum reversible world is the conjecture (open).</li>
+</ul>
+<p>If the conjecture holds, the note's reading is this. Every reversible quantum loop with classical statistics is a coherent ignorance-mixture of deterministic consistent loops. Genuinely chancy loops like E<sub>ex1</sub> would be classically consistent but not reversibly realisable. <strong>Reversibility, not consistency alone, would be the constraint that excludes basic chance from loops.</strong> D.5 sharpens this: consistency under all quantum interventions holds for every classical process, so it is precisely the reversibility requirement that does the excluding.</p>
+<h3>53. Ignorance without a hidden label</h3>
+<p>The D.4 counterexample adds a caveat the note insists on. Even where chance <em>is</em> ignorance, the ignorance need not be about a single hidden label carried in the source. In D.4 the statistics are a mixture of deterministic loops. But &quot;which loop&quot; is answered differently depending on what Alice does. The ignorance reading is therefore a claim about the process W, not about any one hidden variable.</p>
+<p>One might put it like this (this framing is mine, not the note's). The world may be &quot;as if&quot; one of several deterministic loops obtains, without there being a context-independent fact about which. That is a familiar pattern from the foundations of quantum mechanics. What is new here is only the setting.</p>
+<h3>54. Freedom, bilking and Lewis</h3>
+<p>Black's <em>bilking</em> argument against backward causation goes like this. If a later event causes an earlier one, an agent who sees the earlier event can act to prevent the later one. Either the agent cannot so act, which wants explaining, or the later event was not needed for the earlier one. Lewis answered that the agent can and cannot, in two senses of &quot;can&quot;.</p>
+<p>The process-function framework takes a definite side. It quantifies over <em>all</em> interventions, so no action is forbidden. The loop only constrains which global history results. The note is explicit that this does not settle whether the agent's choice was genuinely <em>open</em>. The fixed-point clause says the choice, if made, completes uniquely. Whether that answers Black depends on whether a consistency condition may rule out interventions, or only rule out histories given the interventions. The formalism is built for the view that consistency never forbids an intervention. As the note's Section 5 puts it, &quot;Consistency is not allowed to forbid the operation. It is allowed only to constrain the global solution.&quot;</p>
+<p>(A caution about wording. The note's Section 8 says it &quot;takes the first reading&quot;, and the readings there are listed in the order &quot;rule out interventions, or only rule out histories given the interventions&quot;. Read literally, that would be the opposite of its Section 5. I have followed Section 5 and the formalism, which quantifies over every intervention. The sentence in Section 8 of the technical note should be checked.)</p>
+<h3>55. Time symmetry and the reading of the source and sink</h3>
+<p>Read forwards, the source is an input and the sink is an output. Read backwards, using U†, they swap roles, and the reversed operator is the time-reversed process. In a loop like Lugano, an earlier input already depends on a later setting. Some authors, notably Price, argue that time symmetry pushes toward retrocausality. Leifer and Pusey made that argument precise under an assumption (&quot;λ-mediation&quot;), and Maudlin has objected to it. The note's position is modest. The mathematics does not choose between a retrocausal reading and a merely operational time-reverse. It does remove one cheap reply: one cannot say that the cyclic classical model dies as soon as the agents act quantumly.</p>
+<h3>56. What the theorem does not say</h3>
+<ul>
+<li><strong>It is not about spacetime.</strong> A unitary process on a finite alphabet is not a solution of Einstein's equations, and not a wormhole. The theorem says the event list has a unitary dilation. It does not say the dilation is a spacetime (see paper/EMBEDDING.md).</li>
+<li><strong>It does not classify all quantum processes.</strong> It places every process function, including ones that violate causal inequalities, among the unitarily extendible processes. It says nothing about processes that are not deterministic classical functions, beyond the stochastic results of Parts VI–VIII.</li>
+<li><strong>It does not settle freedom</strong> (Section 54).</li>
+<li><strong>The weak point is the lemma.</strong> The combinatorial lemma is the piece an attacker has to break. Everything after it is row orthogonality. In this case the lemma is also machine-checked.</li>
+</ul>
+<hr />
+<h2>What is proved, what is evidence, what is open</h2>
+<blockquote>
+<p><strong>Proved</strong></p>
+<ul>
+<li>Every process function, with any finite alphabets, lifts to a pure unitary process: under any local unitaries with any finite ancillas, the source-to-sink map is unitary. <em>Machine-checked in Lean 4 (exclusivity lemma; M M† = 1 and M† M = 1; unitary-group membership), standard axioms only.</em></li>
+<li>Validity under arbitrary local operations, entangled ancillas and instruments follows by Stinespring. <em>Standard paper argument, not formalised in Lean.</em></li>
+<li>Mixtures of process functions are purifiable (coherent random source, label recorded in the sink).</li>
+<li>Classical reversible purifiability holds exactly for mixtures of process functions (D.6). So the conjecture says quantum reversibility adds nothing here.</li>
+<li>E<sub>ex1</sub> and the vertex orbits 7 and 50 (one of which contains E<sub>ex1</sub>) are not purifiable. <em>Exact rational certificates.</em></li>
+<li>In any purification, the sink holds an orthogonal record of (outputs, inputs) (D.1). Constraints on the fixed source state alone are vacuous (D.2). Validity under quantum-controlled interventions holds for every classical process (D.5).</li>
+<li>The hidden-label strengthening D.3 is false. Counterexample: a causal circuit (D.4).</li>
+<li>No certificate that uses only the fixed source state can rule out purification of any classical process (D.8).</li>
+<li>The three-party binary process-function hull has exactly 29,344 facets in 93 orbits (exact computation with normaliz).</li>
+</ul>
+<p><strong>Evidence (not proof)</strong></p>
+<ul>
+<li>A GPU search found no purification for any of the 49 remaining sampled non-deterministic vertex orbits. Best residuals 12.97–59.35.</li>
+<li>A single facet orbit (82) is violated by E<sub>ex1</sub> and by all 51 sampled non-deterministic vertex orbits.</li>
+<li>Along the segment from Lugano to E<sub>ex1</sub>, purifiability appears to stop exactly where the hull does.</li>
+<li>Numerically, non-process functions fail unitarity under random local unitaries (2- and 3-party binary). The converse of the main theorem is not proved.</li>
+</ul>
+<p><strong>Open</strong></p>
+<ul>
+<li>The conjecture: a classical process is purifiable if and only if it is a mixture of process functions. The &quot;if&quot; half is proved. The &quot;only if&quot; half is open.</li>
+<li>Deriving any facet inequality, for example orbit 82, from purifiability.</li>
+<li>Any proof must use the purifying unitary on source states orthogonal to the actual one. That is the non-convex isotropy condition of Araújo et al.'s Theorem 4, where every certificate attempt so far has stalled for the larger orbits.</li>
+<li>Spacetime embedding, continuous alphabets, and lifts built from bijections other than U are not addressed.</li>
+</ul>
+</blockquote>
+<p><em>For definitions, full proofs, references and code pointers, see the technical note, <a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/paper/lift.md">paper/lift.md</a>.</em></p>
+
+<footer>Source: <a href="https://github.com/drewarrowood/process-function-unitary-lift">github.com/drewarrowood/process-function-unitary-lift</a> · <a href="https://github.com/drewarrowood/process-function-unitary-lift/raw/main/paper/lift.pdf">PDF</a> · <a href="https://drewarrowood.github.io/process-function-unitary-lift/">Technical note</a> · <a href="https://drewarrowood.github.io/process-function-unitary-lift/graded.html">Gentle version</a></footer>
+</main></body></html>
