@@ -137,3 +137,27 @@ p(000|000) <= p(000|001)+p(010|001)+p(000|100)+p(010|110)+p(011|111), is violate
 non-deterministic vertex orbits** (by some member of the facet's orbit). So this single inequality class separates
 every sampled non-deterministic vertex from the PF hull. Proving it from purifiability is the natural next target.
 Status: facet list exact (normaliz); the derivation from purifiability is open.
+
+## D.8 Toward deriving facet orbit 82 from purifiability (Oct 10 2026): not proved
+
+Sanity checks. Lugano and all PF mixtures satisfy every PF-hull facet, by construction. E_ex1 violates orbit 82
+(D.7).
+
+**Proposition D.8 [proved, negative]: no certificate built from the fixed source state alone can work.**
+The proposal was an SDP over Gram matrices of sink vectors, with the source in |psi> and parties applying arbitrary
+local unitaries (with ancillas, e.g. Hadamard superpositions of deterministic interventions). All such Gram data is a
+linear function of W. Inner products between outputs for ancilla inputs a, a' are Tr[W (M_a (x) M_a'^dagger ...)].
+Unitarity on the psi-sector (orthonormal outputs for orthonormal ancilla inputs) follows from validity of W under the
+local operations that prepare the ancilla in a, a', (a+a')/sqrt2 and (a+ia')/sqrt2. By D.5 every classical process,
+including E_ex1, is valid under all such operations. So these constraints are satisfiable by E_ex1, and any SDP over
+psi-sector Gram data is feasible for it: no dual certificate exists. (This strengthens D.2 from classical to
+arbitrary local interventions.) Any derivation of the facet must use V on source states orthogonal to psi. In AFNB
+Thm 4 terms, that is the non-convex isotropic-subspace condition, the same obstruction met in the certificate work
+(App. C). **The facet has not been derived; no certificate was found.**
+
+Numerical boundary test (`physics/boundary.py`, `boundary.json`). On x_t = (1-t) Lugano + t E_ex1, the PF hull is
+left at t_h ~ 2e-7: Lugano is a vertex and this direction exits the hull at once. The full purification search
+(gpusearch, float64, 8 restarts) finds no purification at t = 0.02 (best residual 52.2; rank 19, dim V_W 88) or at
+t = 0.2 (60.1); the same code reaches about 1e-13 on Lugano itself. This is consistent with the conjecture, since the
+purifiable set appears to end where the PF hull does along this line. It is numerical evidence, not a proof.
+Generalisation to other facet orbits: not attempted, since no certificate exists to generalise.
