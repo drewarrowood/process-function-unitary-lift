@@ -20,24 +20,25 @@ li{margin:.3rem 0} footer{margin-top:3rem;font-size:.85rem;color:#555}
 blockquote{margin:1rem 0;padding:.6rem .9rem;border-left:4px solid #9fb8d8;background:#f5f8fc}
 blockquote p{margin:.4rem 0} nav.top{font-size:.92rem;margin:.2rem 0 1rem;padding:.5rem .7rem;background:#f3f3f3}
 hr{border:0;border-top:1px solid #ddd;margin:2rem 0}
+table{border-collapse:collapse;font-size:.9rem;display:block;overflow-x:auto} th,td{border:1px solid #ccc;padding:.2rem .5rem;text-align:right}
 </style></head><body><main>
 <nav class="top"><strong>New:</strong> <a href="https://drewarrowood.github.io/process-function-unitary-lift/graded.html">Gentle version</a>, a graded walk-through that starts with time-travel stories and explains the philosophy behind every symbol.</nav>
 <h1>Every process function lifts to a unitary process</h1>
 <p><strong>Draft note. Not submitted. Not refereed.</strong> Canonical source of the paper; <code>lift.pdf</code> is built from this file.</p>
 <h2>Abstract</h2>
-<p>A process function is a classical map w from the outputs of several parties to their inputs such that every choice of local deterministic interventions has exactly one fixed point. Baumeler, Costa, Ralph, Wolf and Zych showed that every process function extends to a bijection by adding a source and a sink, and left open whether every such bijection quantizes to a valid unitary quantum process; Daher Ahmed and Kunjwal (2026) state this as a conjecture and prove it for a subclass. We give a short argument that it holds for every process function with finite alphabets: the permutation unitary U|o,e⟩ = |w(o)+e, o⟩ composed with arbitrary local unitaries induces a unitary from source to sink. The key combinatorial fact, that two distinct output strings always disagree at some party whose input w assigns equally, is the pairwise-exclusivity property of Dourdent et al. (2026). The philosophical sections read the result as saying that fixed-point consistency is already a quantization condition. The result is a draft: the exclusivity lemma and the identity M M† = 1 (complex amplitudes, any finite number of parties, any finite alphabets, local ancillas) are machine-checked in Lean 4 with Mathlib (theorems PFUL.induced_mul_conjTranspose, PFUL.induced_conjTranspose_mul and PFUL.induced_unitary, the last stating membership in the unitary group; standard axioms only). The step from &quot;unitary under local unitaries&quot; to &quot;valid process&quot; (Stinespring, Appendix A) is a standard paper argument and is not formalised. A second part studies stochastic classical processes. Mixtures of process functions are purifiable, and we conjecture that nothing else is. We give exact non-purifiability certificates for E_ex1 and two vertex orbits, several structural lemmas, a counterexample to a natural strengthening, a no-go for certificates that use only the fixed source state, the complete facet list of the 3-party binary process-function hull (29,344 facets in 93 symmetry orbits), and numerical evidence. The conjecture itself remains open; Section 9 states exactly what is proved.</p>
+<p>A process function is a classical map w from the outputs of several parties to their inputs such that every choice of local deterministic interventions has exactly one fixed point. Baumeler, Costa, Ralph, Wolf and Zych showed that every process function extends to a bijection by adding a source and a sink, and left open whether every such bijection quantizes to a valid unitary quantum process; Daher Ahmed and Kunjwal (2026) state this as a conjecture and prove it for a subclass. We give a short argument that it holds for every process function with finite alphabets: the permutation unitary U|o,e⟩ = |w(o)+e, o⟩ composed with arbitrary local unitaries induces a unitary from source to sink. The key combinatorial fact, that two distinct output strings always disagree at some party whose input w assigns equally, is the pairwise-exclusivity property of Dourdent et al. (2026). The philosophical sections read the result as saying that fixed-point consistency is already a quantization condition. The result is a draft: the exclusivity lemma and the identity M M† = 1 (complex amplitudes, any finite number of parties, any finite alphabets, local ancillas) are machine-checked in Lean 4 with Mathlib (theorems PFUL.induced_mul_conjTranspose, PFUL.induced_conjTranspose_mul and PFUL.induced_unitary, the last stating membership in the unitary group; standard axioms only). The step from &quot;unitary under local unitaries&quot; to &quot;valid process&quot; (Stinespring, Appendix A) is a standard paper argument and is not formalised. A second part studies stochastic classical processes. Mixtures of process functions are purifiable, and we conjecture that nothing else is. We give exact non-purifiability certificates for E<sub>ex1</sub> and two vertex orbits, several structural lemmas, a counterexample to a natural strengthening, a no-go for certificates that use only the fixed source state, the complete facet list of the 3-party binary process-function hull (29,344 facets in 93 symmetry orbits), and numerical evidence. The conjecture itself remains open; Section 9 states exactly what is proved.</p>
 <h2>1. Result and short proof</h2>
-<p><strong>Setting.</strong> Parties k = 1..n. Party k has a finite input alphabet I<sub>k</sub>, identified with the cyclic group Z<sub>|I<sub>k</sub>|</sub>, and a finite output alphabet O<sub>k</sub>. A process function is w = (w<sub>k</sub>): prod O<sub>k</sub> → prod I<sub>k</sub> such that for every tuple of local functions f<sub>k</sub> : I<sub>k</sub> → O<sub>k</sub> the map o → (f<sub>k</sub>(w<sub>k</sub>(o)))_k has exactly one fixed point. The source has output space P = prod I<sub>k</sub>, the sink has input space F = prod O<sub>k</sub>, and</p>
-<pre><code>U |o⟩_O |e⟩_P = |w(o) + e⟩_I |o⟩_F      (componentwise addition mod |I<sub>k</sub>|).
+<p><strong>Setting.</strong> Parties k = 1..n. Party k has a finite input alphabet I<sub>k</sub>, identified with the cyclic group Z<sub>|I<sub>k</sub>|</sub>, and a finite output alphabet O<sub>k</sub>. A process function is w = (w<sub>k</sub>): prod O<sub>k</sub> → prod I<sub>k</sub> such that for every tuple of local functions f<sub>k</sub> : I<sub>k</sub> → O<sub>k</sub> the map o → (f<sub>k</sub>(w<sub>k</sub>(o)))<sub>k</sub> has exactly one fixed point. The source has output space P = prod I<sub>k</sub>, the sink has input space F = prod O<sub>k</sub>, and</p>
+<pre><code>U |o⟩<sub>O</sub> |e⟩<sub>P</sub> = |w(o) + e⟩<sub>I</sub> |o⟩<sub>F</sub>      (componentwise addition mod |I<sub>k</sub>|).
 </code></pre>
 <p>U is a permutation of basis states, hence unitary, for every map w (Baumeler et al. 2019, Theorem 2).</p>
 <p><strong>Lemma (exclusivity).</strong> If w is a process function and s ≠ s' in prod O<sub>k</sub>, there is a party k with s<sub>k</sub> ≠ s'<sub>k</sub> and w<sub>k</sub>(s) = w<sub>k</sub>(s').</p>
-<p><em>Proof.</em> Otherwise, for every k, w<sub>k</sub>(s) = w<sub>k</sub>(s') implies s<sub>k</sub> = s'<sub>k</sub>. Define f<sub>k</sub>⊗ = s<sub>k</sub> if x = w<sub>k</sub>(s), f<sub>k</sub>⊗ = s'<sub>k</sub> if x = w<sub>k</sub>(s') (and arbitrary otherwise); the two clauses agree when w<sub>k</sub>(s) = w<sub>k</sub>(s'). Then s and s' are two distinct fixed points of the same intervention, a contradiction. (This is the forward direction of Dourdent et al. 2026, Theorem 7.)</p>
+<p><em>Proof.</em> Otherwise, for every k, w<sub>k</sub>(s) = w<sub>k</sub>(s') implies s<sub>k</sub> = s'<sub>k</sub>. Define f<sub>k</sub>(x) = s<sub>k</sub> if x = w<sub>k</sub>(s), f<sub>k</sub>(x) = s'<sub>k</sub> if x = w<sub>k</sub>(s') (and arbitrary otherwise); the two clauses agree when w<sub>k</sub>(s) = w<sub>k</sub>(s'). Then s and s' are two distinct fixed points of the same intervention, a contradiction. (This is the forward direction of Dourdent et al. 2026, Theorem 7.)</p>
 <p><strong>Theorem.</strong> Let V<sub>k</sub> be any unitary from I<sub>k</sub> ⊗ X<sub>k</sub> to O<sub>k</sub> ⊗ Y<sub>k</sub>, with local ancilla spaces X<sub>k</sub>, Y<sub>k</sub> (|I<sub>k</sub>||X<sub>k</sub>| = |O<sub>k</sub>||Y<sub>k</sub>|). Composing U with the V<sub>k</sub> (feeding each I<sub>k</sub> into V<sub>k</sub> and each O<sub>k</sub> back into U) gives the operator M from P ⊗ X to F ⊗ Y with entries</p>
 <pre><code>M[(s,y),(e,x)] = ∏<sub>k</sub> V<sub>k</sub>[(s<sub>k</sub>, y<sub>k</sub>), (w<sub>k</sub>(s) + e<sub>k</sub>, x<sub>k</sub>)].
 </code></pre>
 <p>M is unitary.</p>
-<p><em>Proof.</em> (M M†)[(s,y),(s',y')] = sum over e, x of the product over k, which factorises as ∏<sub>k</sub> ∑<sub>e</sub>_k, x<sub>k</sub>} V<sub>k</sub>[(s<sub>k</sub>,y<sub>k</sub>),(w<sub>k</sub>(s)+e<sub>k</sub>, x<sub>k</sub>)] conj V<sub>k</sub>[(s'<sub>k</sub>,y'<sub>k</sub>),(w<sub>k</sub>(s')+e<sub>k</sub>, x<sub>k</sub>)]. If w<sub>k</sub>(s) = w<sub>k</sub>(s'), substituting i = w<sub>k</sub>(s) + e<sub>k</sub> turns the k-th factor into the inner product of rows (s<sub>k</sub>,y<sub>k</sub>) and (s'<sub>k</sub>,y'<em>k) of the unitary V<sub>k</sub>, i.e. a Kronecker delta. If s = s' every factor is of this kind, giving delta</em>{y,y'}. If s ≠ s', the Lemma gives a party with w<sub>k</sub>(s) = w<sub>k</sub>(s') and s<sub>k</sub> ≠ s'<sub>k</sub>, whose factor is 0. So M M† = 1, and M is square, hence unitary.</p>
+<p><em>Proof.</em> (M M†)[(s,y),(s',y')] = sum over e, x of the product over k, which factorises as ∏<sub>k</sub> ∑<sub>e<sub>k</sub>, x<sub>k</sub></sub> V<sub>k</sub>[(s<sub>k</sub>,y<sub>k</sub>),(w<sub>k</sub>(s)+e<sub>k</sub>, x<sub>k</sub>)] conj V<sub>k</sub>[(s'<sub>k</sub>,y'<sub>k</sub>),(w<sub>k</sub>(s')+e<sub>k</sub>, x<sub>k</sub>)]. If w<sub>k</sub>(s) = w<sub>k</sub>(s'), substituting i = w<sub>k</sub>(s) + e<sub>k</sub> turns the k-th factor into the inner product of rows (s<sub>k</sub>,y<sub>k</sub>) and (s'<sub>k</sub>,y'<sub>k</sub>) of the unitary V<sub>k</sub>, i.e. a Kronecker delta. If s = s' every factor is of this kind, giving delta<sub>y,y'</sub>. If s ≠ s', the Lemma gives a party with w<sub>k</sub>(s) = w<sub>k</sub>(s') and s<sub>k</sub> ≠ s'<sub>k</sub>, whose factor is 0. So M M† = 1, and M is square, hence unitary.</p>
 <p>In the language of Araújo, Feix, Navascués and Brukner (2017, Definition 1), the process |U⟩⟩⟨⟨U| is therefore <em>pure</em>. Section 2 spells out why this implies validity for arbitrary local CPTP maps and instruments, including ancillas shared or entangled with outside systems. Fixing the source to |0⟩ and tracing the sink recovers the diagonal process matrix of w.</p>
 <p><strong>Converse (numerical only).</strong> If w is not a process function, the exclusivity property fails (Dourdent et al. 2026, Theorem 7); we have not proved that unitarity then fails in general, but numerically (code/check.py) every non-process function in the 2- and 3-party binary cases fails unitarity for random local unitaries. The &quot;open/closed&quot; contrast is the point: U is a bijection for every w; closing the loop is unitary exactly when w is consistent.</p>
 <p><strong>Checks.</strong> code/check.py enumerates all 12 binary 2-party and 744 binary 3-party process functions, verifies ||MM† - 1|| &lt; 1e-13 for Haar-random local unitaries (with and without qubit ancillas) and for ternary 2-party examples, and verifies that non-process functions fail. Lean status is in lean/STATUS.md.</p>
@@ -61,14 +62,14 @@ hr{border:0;border-top:1px solid #ddd;margin:2rem 0}
 <pre><code>U |o, e⟩ = |w(o) + e, o⟩.
 </code></pre>
 <p>The inverse reads the sink as the output string and the source as the difference between the input and w(o). A bijection of a finite set is a unitary. A unitary on a fixed basis is not yet a quantum process. Parties must be able to insert instruments that are not diagonal in that basis. A Hadamard is the test case. If the induced map from source to sink ceases to be trace-preserving, the classical consistency clause has not lifted, and quantum theory needs an extra filter. If it remains trace-preserving for every instrument, the fixed-point clause was already the quantum consistency clause.</p>
-<p>Daher Ahmed and Kunjwal conjectured, on 30 September 2026, that every process function purifies to a unitary process. They prove it under mutual exclusivity of control conditions, and under a second sufficient condition, unambiguity, and they note that the bare permutation unitary of the reversible extension may fail to be a valid process. The argument below is that it does not fail. Araújo, Feix, Navascués and Brukner had already written down, in 2017, a purification of the Lugano process by exactly this construction (the standard |x,y⟩ → |x, y + f⊗⟩ trick, credited there to Baumeler and Wolf); a routed-circuit reconstruction is due to Vanrietvelde, Ormrod, Kristjánsson and Barrett. Baumeler, Gilani and Rashid (2022) proved that the diagonal (dephased) process matrix of every process function is valid, and remarked, without a separate proof for the coherent operator, that the reversible extensions are therefore unitarily extensible. The contribution claimed here is a short general proof for the coherent permutation unitary, for every process function.</p>
+<p>Daher Ahmed and Kunjwal conjectured, on 30 September 2026, that every process function purifies to a unitary process. They prove it under mutual exclusivity of control conditions, and under a second sufficient condition, unambiguity, and they note that the bare permutation unitary of the reversible extension may fail to be a valid process. The argument below is that it does not fail. Araújo, Feix, Navascués and Brukner had already written down, in 2017, a purification of the Lugano process by exactly this construction (the standard |x,y⟩ → |x, y + f(x)⟩ trick, credited there to Baumeler and Wolf); a routed-circuit reconstruction is due to Vanrietvelde, Ormrod, Kristjánsson and Barrett. Baumeler, Gilani and Rashid (2022) proved that the diagonal (dephased) process matrix of every process function is valid, and remarked, without a separate proof for the coherent operator, that the reversible extensions are therefore unitarily extensible. The contribution claimed here is a short general proof for the coherent permutation unitary, for every process function.</p>
 <h2>7. Time symmetry and retrocausality</h2>
 <p>Price has argued that a time-symmetric ontology for quantum theory should be retrocausal, on the assumption that the quantum state is real. Leifer and Pusey replaced that assumption with lambda-mediation: correlations between a preparation and a later measurement are mediated by the ontic state of the system. No retrocausality, operational time symmetry, and lambda-mediation then imply a timelike Bell factorization, which sequential measurements violate. Maudlin's reply is that the operational time-reverse of an experiment is not always itself an experiment of the same kind. The no-go is conditional.</p>
 <p>The dilation in this note is adjacent to that argument, not a solution of it. A process function that violates a causal inequality already has each party's input depending on another party's output. The later setting is an argument of the earlier input. Lambda-mediation, in the strict past-screening sense, fails because of the cycle, not because a retrocausal hidden variable was added by hand. Read forwards, the source is an input and the sink is an output. Read backwards, they exchange roles, and the inverse of the permutation unitary is the reversed process. The objection that the bare Lugano function is not an involution on its own three bits is an objection to refusing the source and the sink. Whether the dependence is the retrocausality Price asked for, or only an operational time-reverse, is a reading of the same operator. The mathematics does not choose the reading. It does remove one cheap reply: one cannot say that the cyclic classical model dies when instruments become unitary.</p>
 <h2>8. What this does not settle</h2>
 <p>Embeddability is untouched. A unitary process on a finite alphabet is not a solution of Einstein's equation, and it is not a local Hamiltonian flow on a wormhole. The billiard has the wrong multiplicity. Post-selection realises the event list conditional on the post-selection succeeding. The theorem says the list has a unitary dilation. It does not say the dilation is a spacetime.</p>
 <p>Purifiability in the sense of open quantum problem 43, whether every extensibly causal process is purifiable, is related but not identical. The theorem puts every process function, including those that violate causal inequalities, inside the unitarily extendible fragment. It does not classify processes that are not deterministic classical functions.</p>
-<p>Freedom is not settled. Nothing here decides whether an agent whose output is an argument of an earlier input has a choice. The fixed-point clause says the choice, if made, completes uniquely. It does not say the choice was open. Whether this is an adequate reply to Black depends on whether consistency conditions may rule out interventions, or only rule out histories given the interventions. The note takes the first reading, and the formalism is built for it.</p>
+<p>Freedom is not settled. Nothing here decides whether an agent whose output is an argument of an earlier input has a choice. The fixed-point clause says the choice, if made, completes uniquely. It does not say the choice was open. Whether this is an adequate reply to Black depends on whether consistency conditions may rule out interventions, or only rule out histories given the interventions. The note takes the second reading: consistency rules out histories given the interventions, never the interventions themselves (Section 5), and the formalism is built for it.</p>
 <p>The combinatorial lemma is finite for any fixed alphabet and is the piece an attacker has to break. The linear algebra after it is row orthogonality. See lean/STATUS.md for exactly what is and is not machine-checked.</p>
 <h2>9. Status of the purification conjecture</h2>
 <p>Conjecture: a classical process (a point of the Baumeler-Wolf polytope) is purifiable in the sense of Araujo et al. (2017) if and only if it is a mixture of process functions.</p>
@@ -77,7 +78,7 @@ hr{border:0;border-top:1px solid #ddd;margin:2rem 0}
 <li>Every process function lifts to a unitary process (Section 1). The core identity is machine-checked in Lean (https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/STATUS.md). Validity follows by Stinespring (Appendix A).</li>
 <li>Mixtures of process functions are purifiable: use a coherent random source. Convex combinations of purifiable processes are purifiable (Appendix C).</li>
 <li>Classical version (D.6): a classical process is the marginal of a classical reversible process with a random source if and only if it is a mixture of process functions. So the conjecture says that quantum purifiability gives nothing beyond classical purifiability, for classical processes.</li>
-<li>Exact non-purifiability certificates (rational arithmetic) for E_ex1 and for vertex orbits 7 and 50 (Appendix C; pipeline in code/stochastic/cert).</li>
+<li>Exact non-purifiability certificates (rational arithmetic) for E<sub>ex1</sub> and for vertex orbits 7 and 50 (Appendix C; pipeline in code/stochastic/cert).</li>
 <li>Structure of any purification: the sink records (o, i) orthogonally (D.1). Constraints on the fixed source state are vacuous (D.2). Validity under quantum-controlled interventions holds for every classical process (D.5).</li>
 <li>A natural strengthening, a single classical source basis (D.3), is false. Counterexample: a causal circuit (D.4).</li>
 <li>No-go (D.8): no certificate that uses only the fixed source sector can rule out purification of any classical process.</li>
@@ -85,21 +86,21 @@ hr{border:0;border-top:1px solid #ddd;margin:2rem 0}
 <p><strong>Evidence.</strong></p>
 <ul>
 <li>None of the 49 remaining non-deterministic vertex orbits lifted under a GPU purification search. Best residuals were far from zero (Appendix C).</li>
-<li>The process-function hull for 3 binary parties has exactly 29,344 facets in 93 orbits. A single orbit (82) is violated by E_ex1 and by all 51 sampled non-deterministic vertices (D.7).</li>
-<li>Along the segment from Lugano to E_ex1, purifiability appears to stop exactly where the hull does (D.8).</li>
+<li>The process-function hull for 3 binary parties has exactly 29,344 facets in 93 orbits. A single orbit (82) is violated by E<sub>ex1</sub> and by all 51 sampled non-deterministic vertices (D.7).</li>
+<li>Along the segment from Lugano to E<sub>ex1</sub>, purifiability appears to stop exactly where the hull does (D.8).</li>
 </ul>
 <p><strong>Open.</strong> The quantum case. Any proof must use the purifying unitary on source states orthogonal to the source state. That is the non-convex isotropy condition of AFNB Theorem 4, and it is where every attempted certificate (single-form inertia, block forms, SDP relaxations) has stalled for the larger orbits.</p>
-<p><strong>Interpretation (philosophical, not a result).</strong> Consistent time loops are the setting: a process function is a loop in which every local choice has exactly one consistent history. The conjecture asks whether chance inside such a loop can be fundamental, or only ignorance about which deterministic loop obtains. If it holds, every reversible quantum loop with classical statistics is a coherent ignorance mixture of deterministic consistent loops. Genuinely chancy loops like E_ex1 would then be classically consistent but not reversibly realisable. Reversibility, not consistency alone, would be the constraint that excludes basic chance from loops. D.4 adds a caveat: the &quot;which-loop&quot; variable can be contextual, so the ignorance reading is about W, not about any single hidden label.</p>
+<p><strong>Interpretation (philosophical, not a result).</strong> Consistent time loops are the setting: a process function is a loop in which every local choice has exactly one consistent history. The conjecture asks whether chance inside such a loop can be fundamental, or only ignorance about which deterministic loop obtains. If it holds, every reversible quantum loop with classical statistics is a coherent ignorance mixture of deterministic consistent loops. Genuinely chancy loops like E<sub>ex1</sub> would then be classically consistent but not reversibly realisable. Reversibility, not consistency alone, would be the constraint that excludes basic chance from loops. D.4 adds a caveat: the &quot;which-loop&quot; variable can be contextual, so the ignorance reading is about W, not about any single hidden label.</p>
 <h2>Appendix A. Unitarity under local unitaries implies validity</h2>
-<p><strong>Definitions (AFNB 2017, Sec. 2).</strong> A process with source P, sink F and parties k is an operator W ≥ 0 on P ⊗ F ⊗ ∏<sub>k</sub> (I<sub>k</sub> ⊗ O<sub>k</sub>). For local maps A<sub>k</sub> : L(I<sub>k</sub> ⊗ X<sub>k</sub>) → L(O<sub>k</sub> ⊗ Y<sub>k</sub>), the induced map is the link product G<sub>A</sub> = W * (A<sub>1</sub> ⊗ ... ⊗ A<sub>n</sub>), a map L(P ⊗ X) → L(F ⊗ Y) with X = ⊗_k X<sub>k</sub> and Y = ⊗_k Y<sub>k</sub>. W is <em>valid</em> if G<sub>A</sub> is CPTP whenever every A<sub>k</sub> is CPTP, for all finite-dimensional local ancillas X<sub>k</sub>, Y<sub>k</sub>. W is <em>pure</em> (their Definition 1) if G<sub>A</sub> is unitary whenever every A<sub>k</sub> is unitary. Their Theorem 2 says W is pure iff W = |U⟩⟩⟨⟨U| for a unitary U. For pure Choi vectors the link product composes operators: if A<sub>k</sub>(rho) = V<sub>k</sub> rho V<sub>k</sub>†, then G<sub>A</sub>(rho) = M rho M†, where M is the operator of Section 1.</p>
+<p><strong>Definitions (AFNB 2017, Sec. 2).</strong> A process with source P, sink F and parties k is an operator W ≥ 0 on P ⊗ F ⊗ ∏<sub>k</sub> (I<sub>k</sub> ⊗ O<sub>k</sub>). For local maps A<sub>k</sub> : L(I<sub>k</sub> ⊗ X<sub>k</sub>) → L(O<sub>k</sub> ⊗ Y<sub>k</sub>), the induced map is the link product G<sub>A</sub> = W * (A<sub>1</sub> ⊗ ... ⊗ A<sub>n</sub>), a map L(P ⊗ X) → L(F ⊗ Y) with X = ⊗<sub>k</sub> X<sub>k</sub> and Y = ⊗<sub>k</sub> Y<sub>k</sub>. W is <em>valid</em> if G<sub>A</sub> is CPTP whenever every A<sub>k</sub> is CPTP, for all finite-dimensional local ancillas X<sub>k</sub>, Y<sub>k</sub>. W is <em>pure</em> (their Definition 1) if G<sub>A</sub> is unitary whenever every A<sub>k</sub> is unitary. Their Theorem 2 says W is pure iff W = |U⟩⟩⟨⟨U| for a unitary U. For pure Choi vectors the link product composes operators: if A<sub>k</sub>(rho) = V<sub>k</sub> rho V<sub>k</sub>†, then G<sub>A</sub>(rho) = M rho M†, where M is the operator of Section 1.</p>
 <p><strong>Claim.</strong> W = |U⟩⟩⟨⟨U| with U the permutation lift of a process function w is a valid process.</p>
 <p><em>Step 1 (local unitaries).</em> By the Theorem of Section 1, G<sub>A</sub> is conjugation by a unitary M whenever every A<sub>k</sub> is conjugation by a unitary V<sub>k</sub>. This holds for any ancilla dimensions with |I<sub>k</sub>||X<sub>k</sub>| = |O<sub>k</sub>||Y<sub>k</sub>|. (Machine-checked, both sides, including the dimension count: <code>PFUL.induced_mul_conjTranspose</code>, <code>PFUL.induced_conjTranspose_mul</code>, <code>PFUL.induced_unitary</code>; see lean/STATUS.md.)</p>
-<p><em>Step 2 (local CPTP maps, via Stinespring).</em> Let A<sub>k</sub> : L(I<sub>k</sub> X<sub>k</sub>) → L(O<sub>k</sub> Y<sub>k</sub>) be CPTP. Stinespring dilation gives an isometry S<sub>k</sub> : I<sub>k</sub> X<sub>k</sub> → O<sub>k</sub> Y<sub>k</sub> E<sub>k</sub> with A<sub>k</sub>(rho) = Tr_{E<sub>k</sub>}[S<sub>k</sub> rho S<sub>k</sub>†]. Pad the input with E'<sub>k</sub> of dimension |O<sub>k</sub>||Y<sub>k</sub>||E<sub>k</sub>| and the output with E''<sub>k</sub> of dimension |I<sub>k</sub>||X<sub>k</sub>|. The two sides then have equal dimension, and the isometry psi ⊗ |0⟩ → (S<sub>k</sub> psi) ⊗ |0⟩, defined on the |0⟩-slice, extends to a unitary V<sub>k</sub> : I<sub>k</sub> X<sub>k</sub> E'<sub>k</sub> → O<sub>k</sub> Y<sub>k</sub> E<sub>k</sub> E''<em>k by completing orthonormal bases. So A<sub>k</sub>(rho) = Tr</em>{E<sub>k</sub> E''<em>k}[V<sub>k</sub> (rho ⊗ |0⟩⟨0|</em>{E'<sub>k</sub>}) V<sub>k</sub>†]. The ancillas E', E, E'' never enter U, and the link product is multilinear and commutes with appending fixed states and with partial traces on systems it does not contract. Hence</p>
-<pre><code>G<sub>A</sub>(rho) = Tr_{E E''}[ M (rho ⊗ |0⟩⟨0|_{E'}) M† ],
+<p><em>Step 2 (local CPTP maps, via Stinespring).</em> Let A<sub>k</sub> : L(I<sub>k</sub> X<sub>k</sub>) → L(O<sub>k</sub> Y<sub>k</sub>) be CPTP. Stinespring dilation gives an isometry S<sub>k</sub> : I<sub>k</sub> X<sub>k</sub> → O<sub>k</sub> Y<sub>k</sub> E<sub>k</sub> with A<sub>k</sub>(rho) = Tr<sub>E<sub>k</sub></sub>[S<sub>k</sub> rho S<sub>k</sub>†]. Pad the input with E'<sub>k</sub> of dimension |O<sub>k</sub>||Y<sub>k</sub>||E<sub>k</sub>| and the output with E''<sub>k</sub> of dimension |I<sub>k</sub>||X<sub>k</sub>|. The two sides then have equal dimension, and the isometry psi ⊗ |0⟩ → (S<sub>k</sub> psi) ⊗ |0⟩, defined on the |0⟩-slice, extends to a unitary V<sub>k</sub> : I<sub>k</sub> X<sub>k</sub> E'<sub>k</sub> → O<sub>k</sub> Y<sub>k</sub> E<sub>k</sub> E''<sub>k</sub> by completing orthonormal bases. So A<sub>k</sub>(rho) = Tr<sub>E<sub>k</sub> E''<sub>k</sub></sub>[V<sub>k</sub> (rho ⊗ |0⟩⟨0|<sub>E'<sub>k</sub></sub>) V<sub>k</sub>†]. The ancillas E', E, E'' never enter U, and the link product is multilinear and commutes with appending fixed states and with partial traces on systems it does not contract. Hence</p>
+<pre><code>G<sub>A</sub>(rho) = Tr<sub>E E''</sub>[ M (rho ⊗ |0⟩⟨0|<sub>E'</sub>) M† ],
 </code></pre>
 <p>where M is the operator of Step 1 for the unitaries V<sub>k</sub>, with enlarged local ancillas X<sub>k</sub> E'<sub>k</sub> and Y<sub>k</sub> E<sub>k</sub> E''<sub>k</sub>. Appending a state, a unitary conjugation and a partial trace are each CPTP, so G<sub>A</sub> is CPTP.</p>
-<p><em>Step 3 (shared and entangled ancillas).</em> An ancilla R that is shared between parties, or entangled with any outside system, is covered by complete positivity. The joint state lives on P X R; G<sub>A</sub> ⊗ id_R is CPTP because G<sub>A</sub> is; outputs are normalised states, and every probability that a later measurement on F Y R assigns is non-negative and sums to 1. Pre-shared entanglement between laboratories is the special case in which part of X<sub>j</sub> and part of X<sub>k</sub> start in an entangled state supplied through the source. It is also covered, because Step 2 already allows arbitrary input states on P ⊗ X.</p>
-<p><em>Step 4 (instruments).</em> Let {A<sub>k</sub>^{a<sub>k</sub>}} be CP maps summing to a CPTP map A<sub>k</sub>. The link product of positive operators (Choi operators) is positive, so each G<sub>a</sub> = W * ⊗_k A<sub>k</sub>^{a<sub>k</sub>} is CP. Multilinearity gives ∑<sub>a</sub> G<sub>a</sub> = G<sub>A</sub>, which is CPTP by Step 2. Then p(a) = Tr G<sub>a</sub>(rho) ≥ 0 and ∑<sub>a</sub> p(a) = 1 for every input rho. This is the validity condition of Oreshkov, Costa and Brukner, applied to the process seen by the parties once the source is prepared and the sink discarded. Fixing the source in |0⟩ and tracing the sink yields W<sub>w</sub> = ∑<sub>o</sub> |o⟩⟨o|_O ⊗ |w(o)⟩⟨w(o)|_I, the classical process matrix of w.</p>
+<p><em>Step 3 (shared and entangled ancillas).</em> An ancilla R that is shared between parties, or entangled with any outside system, is covered by complete positivity. The joint state lives on P X R; G<sub>A</sub> ⊗ id<sub>R</sub> is CPTP because G<sub>A</sub> is; outputs are normalised states, and every probability that a later measurement on F Y R assigns is non-negative and sums to 1. Pre-shared entanglement between laboratories is the special case in which part of X<sub>j</sub> and part of X<sub>k</sub> start in an entangled state supplied through the source. It is also covered, because Step 2 already allows arbitrary input states on P ⊗ X.</p>
+<p><em>Step 4 (instruments).</em> Let {A<sub>k</sub><sup>a<sub>k</sub></sup>} be CP maps summing to a CPTP map A<sub>k</sub>. The link product of positive operators (Choi operators) is positive, so each G<sub>a</sub> = W * ⊗<sub>k</sub> A<sub>k</sub><sup>a<sub>k</sub></sup> is CP. Multilinearity gives ∑<sub>a</sub> G<sub>a</sub> = G<sub>A</sub>, which is CPTP by Step 2. Then p(a) = Tr G<sub>a</sub>(rho) ≥ 0 and ∑<sub>a</sub> p(a) = 1 for every input rho. This is the validity condition of Oreshkov, Costa and Brukner, applied to the process seen by the parties once the source is prepared and the sink discarded. Fixing the source in |0⟩ and tracing the sink yields W<sub>w</sub> = ∑<sub>o</sub> |o⟩⟨o|<sub>O</sub> ⊗ |w(o)⟩⟨w(o)|<sub>I</sub>, the classical process matrix of w.</p>
 <p>So purity gives validity with no further assumption. The only input specific to process functions is Step 1.</p>
 <h2>Appendix B. Unequal input and output alphabets</h2>
 <p>Nothing in Section 1 needs |I<sub>k</sub>| = |O<sub>k</sub>|.</p>
@@ -113,24 +114,24 @@ hr{border:0;border-top:1px solid #ddd;margin:2rem 0}
 <p><strong>Question.</strong> Does every logically consistent classical process admit a unitary extension, in the sense of AFNB purifiability? The process may be stochastic, not just a deterministic process function.</p>
 <p><strong>What is known (verified sources).</strong></p>
 <ul>
-<li>Baumeler and Wolf (NJP 18, 013036 (2016), https://arxiv.org/abs/1507.01714) show the classical processes form a polytope. With two binary parties it has 12 extremal points, all deterministic. With three binary parties it has 710,760 extremal points, of which only 744 are deterministic, i.e. process functions. The rest are &quot;proper mixtures&quot; of logically inconsistent deterministic processes. One explicit example is E_ex1 = (C + C̄)/2, the uniform mixture of the circular identity channel C (x<sub>1</sub> = a<sub>3</sub>, x<sub>2</sub> = a<sub>1</sub>, x<sub>3</sub> = a<sub>2</sub>) and its bitwise negation C̄.</li>
+<li>Baumeler and Wolf (NJP 18, 013036 (2016), https://arxiv.org/abs/1507.01714) show the classical processes form a polytope. With two binary parties it has 12 extremal points, all deterministic. With three binary parties it has 710,760 extremal points, of which only 744 are deterministic, i.e. process functions. The rest are &quot;proper mixtures&quot; of logically inconsistent deterministic processes. One explicit example is E<sub>ex1</sub> = (C + C̄)/2, the uniform mixture of the circular identity channel C (x<sub>1</sub> = a<sub>3</sub>, x<sub>2</sub> = a<sub>1</sub>, x<sub>3</sub> = a<sub>2</sub>) and its bitwise negation C̄.</li>
 <li>Araújo, Feix, Navascués and Brukner (Quantum 1, 10 (2017), https://arxiv.org/abs/1611.08535) define purifiability (their Definition 3). Their Theorem 4 is an exact criterion, and Section 5 gives a necessary condition, dim V<sub>W</sub> ≥ rank W.</li>
 <li>Baumeler, Gilani and Rashid (Quantum 6, 673 (2022), https://arxiv.org/abs/2104.06234) assert unitary extensibility for process functions only, via reversible embeddings, without a separate proof.</li>
 <li>Daher Ahmed and Kunjwal (https://arxiv.org/abs/2610.00579) conjecture that process functions are purifiable. Tobar and Costa (CQG 37, 205011 (2020), https://arxiv.org/abs/2001.02511) treat reversible deterministic dynamics.</li>
 <li>I found no source that claims to settle purifiability of the non-deterministic extremal points.</li>
 </ul>
 <p><strong>C.1 Proposition (proved).</strong> Every convex mixture of process functions is purifiable.</p>
-<p><em>Proof.</em> Let W = ∑<sub>j</sub> p<sub>j</sub> W<sub>w<sub>j</sub></sub>. Take source P' = C^J ⊗ P and sink F' = C^J ⊗ F, and define U|o, e, j⟩ = |w<sub>j</sub>(o) + e⟩_I |o, j⟩_F'. With local unitaries inserted, the induced operator is the block sum ⊕<em>j M<sub>j</sub>. Each M<sub>j</sub> is unitary by the Theorem of Section 1, so the process is pure. Feed ∑<sub>j</sub> sqrt(p<sub>j</sub>)|j⟩ ⊗ |0⟩ into P'. This is a fixed pure state, equivalently |0⟩ followed by a unitary that is absorbed into U. Then trace out F'. Because the sink keeps a copy of j, the cross terms vanish and the result is ∑<sub>j</sub> p<sub>j</sub> W</em>{w<sub>j</sub>} = W. ∎</p>
+<p><em>Proof.</em> Let W = ∑<sub>j</sub> p<sub>j</sub> W<sub>w<sub>j</sub></sub>. Take source P' = C<sup>J</sup> ⊗ P and sink F' = C<sup>J</sup> ⊗ F, and define U|o, e, j⟩ = |w<sub>j</sub>(o) + e⟩<sub>I</sub> |o, j⟩<sub>F</sub>'. With local unitaries inserted, the induced operator is the block sum ⊕<sub>j</sub> M<sub>j</sub>. Each M<sub>j</sub> is unitary by the Theorem of Section 1, so the process is pure. Feed ∑<sub>j</sub> sqrt(p<sub>j</sub>)|j⟩ ⊗ |0⟩ into P'. This is a fixed pure state, equivalently |0⟩ followed by a unitary that is absorbed into U. Then trace out F'. Because the sink keeps a copy of j, the cross terms vanish and the result is ∑<sub>j</sub> p<sub>j</sub> W<sub>w<sub>j</sub></sub> = W. ∎</p>
 <p>The control register must enter through the source and leave through the sink. If it is not handed to the sink, the coherence between branches survives, and the result is no longer the classical mixture. Hence the whole deterministic-extrema polytope of Baumeler and Wolf is purifiable. This covers every two-party classical process with binary inputs and outputs, since there all extremal points are deterministic.</p>
-<p><strong>C.2 E_ex1 is not purifiable (exact certificate).</strong> Scripts are in code/stochastic/.</p>
-<p><em>Reduction.</em> In AFNB Theorem 4 the auxiliary sink F' behaves as a party with trivial output. Every term of the projector L<sub>V</sub>^⊥ therefore traces out and replaces F'. Write w<sub>i</sub> = Σ_k |w<sub>i,k</sub>⟩|k⟩<em>{F'} and define X<sub>i</sub> by X<sub>i</sub> |p<sub>k</sub>⟩ = sqrt(E</em>{p<sub>k</sub>}) |w<sub>i,k</sub>⟩. The conditions become L<sub>3</sub>^⊥(X<sub>i</sub> Λ X<sub>j</sub>^†) = 0 for all i, j, with Λ = diag(1/E) on the support. Here L<sub>3</sub>^⊥ is the ordinary three-party projector on 64×64 matrices, and X<sub>0</sub> = W. This takes seconds instead of tens of minutes, and it reproduces the full computation (dim V<sub>W</sub> 27 for E_ex1 and 56 for Lugano).</p>
+<p><strong>C.2 E<sub>ex1</sub> is not purifiable (exact certificate).</strong> Scripts are in code/stochastic/.</p>
+<p><em>Reduction.</em> In AFNB Theorem 4 the auxiliary sink F' behaves as a party with trivial output. Every term of the projector L<sub>V</sub><sup>⊥</sup> therefore traces out and replaces F'. Write w<sub>i</sub> = Σ<sub>k</sub> |w<sub>i,k</sub>⟩|k⟩<sub>F'</sub> and define X<sub>i</sub> by X<sub>i</sub> |p<sub>k</sub>⟩ = sqrt(E<sub>p<sub>k</sub></sub>) |w<sub>i,k</sub>⟩. The conditions become L<sub>3</sub><sup>⊥</sup>(X<sub>i</sub> Λ X<sub>j</sub>†) = 0 for all i, j, with Λ = diag(1/E) on the support. Here L<sub>3</sub><sup>⊥</sup> is the ordinary three-party projector on 64×64 matrices, and X<sub>0</sub> = W. This takes seconds instead of tens of minutes, and it reproduces the full computation (dim V<sub>W</sub> 27 for E<sub>ex1</sub> and 56 for Lugano).</p>
 <p><em>Certificate.</em></p>
 <ul>
-<li>E_ex1 is logically consistent and is a vertex of the three-party binary polytope (active-constraint rank 64 of 64). Hence it is not a mixture of process functions.</li>
+<li>E<sub>ex1</sub> is logically consistent and is a vertex of the three-party binary polytope (active-constraint rank 64 of 64). Hence it is not a mixture of process functions.</li>
 <li>rank W = 16. Exact integer arithmetic (python-flint) gives dim V<sub>W</sub> = 27.</li>
 <li>One explicit integer combination of the constraint functionals (code/stochastic/exact.py, cert_phi.npy) gives a sesquilinear form on V<sub>W</sub>. Its symmetric part has exact inertia (13 positive, 13 negative, 1 zero), computed by rational congruence elimination.</li>
-<li>The span of w<sub>0</sub>, ..., w_15 is a 16-dimensional subspace on which this form must vanish, so it is totally isotropic for the symmetric part. But a totally isotropic subspace has dimension at most 1 + min(13, 13) = 14 &lt; 16. So no purification exists.</li>
-<li>An independent numerical check agrees. A gradient search for purifications reaches residual 8·10^-14 for Lugano (which is purifiable), but stalls at 79.7 for E_ex1.</li>
+<li>The span of w<sub>0</sub>, ..., w<sub>15</sub> is a 16-dimensional subspace on which this form must vanish, so it is totally isotropic for the symmetric part. But a totally isotropic subspace has dimension at most 1 + min(13, 13) = 14 &lt; 16. So no purification exists.</li>
+<li>An independent numerical check agrees. A gradient search for purifications reaches residual 8·10<sup>-14</sup> for Lugano (which is purifiable), but stalls at 79.7 for E<sub>ex1</sub>.</li>
 </ul>
 <p><strong>C.3 Purifiable set and the conjecture.</strong> The control-register argument of C.1 works for any purifiable processes, not just process functions. So the purifiable classical processes form a convex set containing the hull of the process functions. We conjecture they are exactly that hull:</p>
 <p><em>Conjecture.</em> A classical process is purifiable iff it is a mixture of process functions.</p>
@@ -138,142 +139,447 @@ hr{border:0;border-top:1px solid #ddd;margin:2rem 0}
 <ul>
 <li>40,000 random LP vertices of the three-party binary polytope gave 39,354 deterministic vertices and 646 non-deterministic ones. These fall into 51 orbits under party permutations and local input/output relabellings (code/stochastic/reps.json). Ranks are 15–23.</li>
 <li>AFNB's necessary condition dim V<sub>W</sub> ≥ rank W holds for all 51 orbits (nec_partial.json), so on its own it decides nothing. dim V<sub>W</sub> ranges from 27 to 256.</li>
-<li>Exact certificates of non-purifiability exist for the 2 orbits with dim V<sub>W</sub> = 27, one of which contains E_ex1 (exact2.py, cert_phi_7.npy, cert_phi_50.npy).</li>
+<li>Exact certificates of non-purifiability exist for the 2 orbits with dim V<sub>W</sub> = 27, one of which contains E<sub>ex1</sub> (exact2.py, cert_phi_7.npy, cert_phi_50.npy).</li>
 <li>For the other 49 orbits (dim V<sub>W</sub> ≥ 82) the random-form isotropy test was inconclusive. The GPU gradient search of C.4 found no purification for any of them (best residual ≥ 12.97). This is numerical evidence only.</li>
 <li>No purifiable non-mixture has been found. That is weak evidence, because the large cases are untested.</li>
-<li>All 1,488 mixtures (q + E_ex1)/2 and (q + 4 E_ex1)/5, with q one of the 744 process functions, lie outside the process-function hull (LP check). They are untested candidates for non-extreme counterexamples.</li>
+<li>All 1,488 mixtures (q + E<sub>ex1</sub>)/2 and (q + 4 E<sub>ex1</sub>)/5, with q one of the 744 process functions, lie outside the process-function hull (LP check). They are untested candidates for non-extreme counterexamples.</li>
 </ul>
 <p><strong>C.4 GPU sweep over the 49 open orbits (numerical evidence, not proof).</strong></p>
 <ul>
 <li>Method: code/stochastic/gpu/gpusearch.py ran on one RTX 3090. For each orbit it made 64 random restarts of batched L-BFGS in float32 on the reduced Theorem 4 residual, then polished in float64.</li>
-<li>Validation: the same code finds Lugano's purification (residual 1.2e-16) and stalls at 79.676 on E_ex1, which is certified non-purifiable.</li>
+<li>Validation: the same code finds Lugano's purification (residual 1.2e-16) and stalls at 79.676 on E<sub>ex1</sub>, which is certified non-purifiable.</li>
 <li>Result: no orbit reached the 1e-10 threshold. The best residuals range from 12.97 (orbit 40) to 59.35. Every orbit stalled far from zero.</li>
 <li>Interpretation: this is consistent with the conjecture that none of the 49 non-deterministic vertex orbits is purifiable. But a local search can miss solutions, so it is not a proof. Only orbits 7 and 50 (C.2) have exact certificates.</li>
 </ul>
-<p>| orbit | rank | dim V<sub>W</sub> | best residual (float64) | restarts |
-|---|---|---|---|---|
-| 0 | 15 | 124 | 20.12 | 64 |
-| 1 | 16 | 176 | 13.03 | 64 |
-| 2 | 15 | 156 | 15.62 | 64 |
-| 3 | 15 | 156 | 15.49 | 64 |
-| 4 | 16 | 128 | 21.93 | 64 |
-| 5 | 16 | 160 | 12.98 | 64 |
-| 6 | 16 | 144 | 18.48 | 64 |
-| 8 | 16 | 82 | 35.84 | 64 |
-| 9 | 16 | 112 | 27.06 | 64 |
-| 10 | 16 | 82 | 34.75 | 64 |
-| 11 | 16 | 128 | 21.72 | 64 |
-| 12 | 16 | 112 | 26.91 | 64 |
-| 13 | 16 | 196 | 12.97 | 64 |
-| 14 | 16 | 144 | 18.49 | 64 |
-| 15 | 16 | 168 | 13.02 | 64 |
-| 16 | 15 | 156 | 19.57 | 64 |
-| 17 | 15 | 164 | 15.82 | 64 |
-| 18 | 16 | 160 | 13.02 | 64 |
-| 19 | 16 | 160 | 12.97 | 64 |
-| 20 | 16 | 82 | 35.32 | 64 |
-| 21 | 16 | 128 | 21.73 | 64 |
-| 22 | 16 | 164 | 18.44 | 64 |
-| 23 | 16 | 172 | 12.99 | 64 |
-| 24 | 16 | 112 | 26.78 | 64 |
-| 25 | 16 | 136 | 21.76 | 64 |
-| 26 | 16 | 128 | 21.88 | 64 |
-| 27 | 16 | 144 | 18.5 | 64 |
-| 28 | 15 | 124 | 20.12 | 64 |
-| 29 | 16 | 144 | 18.51 | 64 |
-| 30 | 16 | 168 | 13.02 | 64 |
-| 31 | 16 | 160 | 13.02 | 64 |
-| 32 | 21 | 160 | 49.61 | 64 |
-| 33 | 16 | 164 | 18.46 | 64 |
-| 34 | 20 | 174 | 35.72 | 64 |
-| 35 | 16 | 160 | 13.02 | 64 |
-| 36 | 16 | 160 | 12.97 | 64 |
-| 37 | 16 | 160 | 12.98 | 64 |
-| 38 | 22 | 176 | 48.56 | 64 |
-| 39 | 21 | 146 | 59.35 | 64 |
-| 40 | 16 | 196 | 12.97 | 64 |
-| 41 | 16 | 204 | 13.01 | 64 |
-| 42 | 16 | 172 | 12.99 | 64 |
-| 43 | 22 | 224 | 25.58 | 64 |
-| 44 | 21 | 160 | 50.3 | 64 |
-| 45 | 21 | 174 | 41.12 | 64 |
-| 46 | 20 | 166 | 34.6 | 64 |
-| 47 | 23 | 248 | 42.74 | 64 |
-| 48 | 21 | 172 | 37.9 | 64 |
-| 49 | 23 | 256 | 29.02 | 64 |</p>
-<p><em>Proof idea for &quot;only if&quot; (not completed).</em> A purification U restricted to classical permutation instruments gives a unitary M for every reversible local classical operation. One would like to show that M's action on basis states then decomposes into permutations, giving a deterministic decomposition. We have not proved this. E_ex1 shows the classical consistency of W alone is not enough.</p>
-<p><strong>Answer.</strong> Not every classical process admits a unitary extension: E_ex1 (and one other vertex orbit) provably does not. Mixtures of process functions do. Whether those are the only ones is the open conjecture above.</p>
+<table>
+<thead>
+<tr>
+<th>orbit</th>
+<th>rank</th>
+<th>dim V<sub>W</sub></th>
+<th>best residual (float64)</th>
+<th>restarts</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>15</td>
+<td>124</td>
+<td>20.12</td>
+<td>64</td>
+</tr>
+<tr>
+<td>1</td>
+<td>16</td>
+<td>176</td>
+<td>13.03</td>
+<td>64</td>
+</tr>
+<tr>
+<td>2</td>
+<td>15</td>
+<td>156</td>
+<td>15.62</td>
+<td>64</td>
+</tr>
+<tr>
+<td>3</td>
+<td>15</td>
+<td>156</td>
+<td>15.49</td>
+<td>64</td>
+</tr>
+<tr>
+<td>4</td>
+<td>16</td>
+<td>128</td>
+<td>21.93</td>
+<td>64</td>
+</tr>
+<tr>
+<td>5</td>
+<td>16</td>
+<td>160</td>
+<td>12.98</td>
+<td>64</td>
+</tr>
+<tr>
+<td>6</td>
+<td>16</td>
+<td>144</td>
+<td>18.48</td>
+<td>64</td>
+</tr>
+<tr>
+<td>8</td>
+<td>16</td>
+<td>82</td>
+<td>35.84</td>
+<td>64</td>
+</tr>
+<tr>
+<td>9</td>
+<td>16</td>
+<td>112</td>
+<td>27.06</td>
+<td>64</td>
+</tr>
+<tr>
+<td>10</td>
+<td>16</td>
+<td>82</td>
+<td>34.75</td>
+<td>64</td>
+</tr>
+<tr>
+<td>11</td>
+<td>16</td>
+<td>128</td>
+<td>21.72</td>
+<td>64</td>
+</tr>
+<tr>
+<td>12</td>
+<td>16</td>
+<td>112</td>
+<td>26.91</td>
+<td>64</td>
+</tr>
+<tr>
+<td>13</td>
+<td>16</td>
+<td>196</td>
+<td>12.97</td>
+<td>64</td>
+</tr>
+<tr>
+<td>14</td>
+<td>16</td>
+<td>144</td>
+<td>18.49</td>
+<td>64</td>
+</tr>
+<tr>
+<td>15</td>
+<td>16</td>
+<td>168</td>
+<td>13.02</td>
+<td>64</td>
+</tr>
+<tr>
+<td>16</td>
+<td>15</td>
+<td>156</td>
+<td>19.57</td>
+<td>64</td>
+</tr>
+<tr>
+<td>17</td>
+<td>15</td>
+<td>164</td>
+<td>15.82</td>
+<td>64</td>
+</tr>
+<tr>
+<td>18</td>
+<td>16</td>
+<td>160</td>
+<td>13.02</td>
+<td>64</td>
+</tr>
+<tr>
+<td>19</td>
+<td>16</td>
+<td>160</td>
+<td>12.97</td>
+<td>64</td>
+</tr>
+<tr>
+<td>20</td>
+<td>16</td>
+<td>82</td>
+<td>35.32</td>
+<td>64</td>
+</tr>
+<tr>
+<td>21</td>
+<td>16</td>
+<td>128</td>
+<td>21.73</td>
+<td>64</td>
+</tr>
+<tr>
+<td>22</td>
+<td>16</td>
+<td>164</td>
+<td>18.44</td>
+<td>64</td>
+</tr>
+<tr>
+<td>23</td>
+<td>16</td>
+<td>172</td>
+<td>12.99</td>
+<td>64</td>
+</tr>
+<tr>
+<td>24</td>
+<td>16</td>
+<td>112</td>
+<td>26.78</td>
+<td>64</td>
+</tr>
+<tr>
+<td>25</td>
+<td>16</td>
+<td>136</td>
+<td>21.76</td>
+<td>64</td>
+</tr>
+<tr>
+<td>26</td>
+<td>16</td>
+<td>128</td>
+<td>21.88</td>
+<td>64</td>
+</tr>
+<tr>
+<td>27</td>
+<td>16</td>
+<td>144</td>
+<td>18.5</td>
+<td>64</td>
+</tr>
+<tr>
+<td>28</td>
+<td>15</td>
+<td>124</td>
+<td>20.12</td>
+<td>64</td>
+</tr>
+<tr>
+<td>29</td>
+<td>16</td>
+<td>144</td>
+<td>18.51</td>
+<td>64</td>
+</tr>
+<tr>
+<td>30</td>
+<td>16</td>
+<td>168</td>
+<td>13.02</td>
+<td>64</td>
+</tr>
+<tr>
+<td>31</td>
+<td>16</td>
+<td>160</td>
+<td>13.02</td>
+<td>64</td>
+</tr>
+<tr>
+<td>32</td>
+<td>21</td>
+<td>160</td>
+<td>49.61</td>
+<td>64</td>
+</tr>
+<tr>
+<td>33</td>
+<td>16</td>
+<td>164</td>
+<td>18.46</td>
+<td>64</td>
+</tr>
+<tr>
+<td>34</td>
+<td>20</td>
+<td>174</td>
+<td>35.72</td>
+<td>64</td>
+</tr>
+<tr>
+<td>35</td>
+<td>16</td>
+<td>160</td>
+<td>13.02</td>
+<td>64</td>
+</tr>
+<tr>
+<td>36</td>
+<td>16</td>
+<td>160</td>
+<td>12.97</td>
+<td>64</td>
+</tr>
+<tr>
+<td>37</td>
+<td>16</td>
+<td>160</td>
+<td>12.98</td>
+<td>64</td>
+</tr>
+<tr>
+<td>38</td>
+<td>22</td>
+<td>176</td>
+<td>48.56</td>
+<td>64</td>
+</tr>
+<tr>
+<td>39</td>
+<td>21</td>
+<td>146</td>
+<td>59.35</td>
+<td>64</td>
+</tr>
+<tr>
+<td>40</td>
+<td>16</td>
+<td>196</td>
+<td>12.97</td>
+<td>64</td>
+</tr>
+<tr>
+<td>41</td>
+<td>16</td>
+<td>204</td>
+<td>13.01</td>
+<td>64</td>
+</tr>
+<tr>
+<td>42</td>
+<td>16</td>
+<td>172</td>
+<td>12.99</td>
+<td>64</td>
+</tr>
+<tr>
+<td>43</td>
+<td>22</td>
+<td>224</td>
+<td>25.58</td>
+<td>64</td>
+</tr>
+<tr>
+<td>44</td>
+<td>21</td>
+<td>160</td>
+<td>50.3</td>
+<td>64</td>
+</tr>
+<tr>
+<td>45</td>
+<td>21</td>
+<td>174</td>
+<td>41.12</td>
+<td>64</td>
+</tr>
+<tr>
+<td>46</td>
+<td>20</td>
+<td>166</td>
+<td>34.6</td>
+<td>64</td>
+</tr>
+<tr>
+<td>47</td>
+<td>23</td>
+<td>248</td>
+<td>42.74</td>
+<td>64</td>
+</tr>
+<tr>
+<td>48</td>
+<td>21</td>
+<td>172</td>
+<td>37.9</td>
+<td>64</td>
+</tr>
+<tr>
+<td>49</td>
+<td>23</td>
+<td>256</td>
+<td>29.02</td>
+<td>64</td>
+</tr>
+</tbody>
+</table>
+<p><em>Proof idea for &quot;only if&quot; (not completed).</em> A purification U restricted to classical permutation instruments gives a unitary M for every reversible local classical operation. One would like to show that M's action on basis states then decomposes into permutations, giving a deterministic decomposition. We have not proved this. E<sub>ex1</sub> shows the classical consistency of W alone is not enough.</p>
+<p><strong>Answer.</strong> Not every classical process admits a unitary extension: E<sub>ex1</sub> (and one other vertex orbit) provably does not. Mixtures of process functions do. Whether those are the only ones is the open conjecture above.</p>
 <h2>Appendix D. Purifications of classical processes: the physics route</h2>
 <p>Status labels: <strong>[proved]</strong>, <strong>[conjecture]</strong>, <strong>[gap]</strong>. Nothing here proves the conjecture; it is still open.</p>
 <p>Setting. A purification of a classical process W (diagonal; equivalently a stochastic map p(i|o) on the joint
 classical inputs i and outputs o of the parties) is a unitary V : P ⊗ O → F ⊗ I together with a fixed source
-state |psi⟩ in P such that (i) W = Tr_F of the Choi vector of V(|psi⟩ ⊗ .), and (ii) for every choice of local
+state |psi⟩ in P such that (i) W = Tr<sub>F</sub> of the Choi vector of V(|psi⟩ ⊗ .), and (ii) for every choice of local
 operations (unitaries with ancillas) the induced map P ⊗ ancillas → F ⊗ ancillas is unitary (AFNB 2017).
 Write  V|psi, o⟩ = ∑<sub>i</sub> |i⟩ ⊗ |v<sub>o,i</sub>⟩  with  v<sub>o,i</sub> in F.</p>
-<p><strong>Lemma D.1 [proved].</strong>  ⟨v<sub>o',i'</sub> | v<sub>o,i</sub>⟩ = delta_{o o'} delta_{i i'} p(i|o).
-Proof. The Choi matrix of the induced channel O → I is  ∑<sub>o</sub>,o'} |o⟩⟨o'| ⊗ Tr_F[ V|psi,o⟩⟨psi,o'|V† ],
+<p><strong>Lemma D.1 [proved].</strong>  ⟨v<sub>o',i'</sub> | v<sub>o,i</sub>⟩ = delta<sub>o o'</sub> delta<sub>i i'</sub> p(i|o).
+Proof. The Choi matrix of the induced channel O → I is  ∑<sub>o,o'</sub> |o⟩⟨o'| ⊗ Tr<sub>F</sub>[ V|psi,o⟩⟨psi,o'|V† ],
 whose ((o,i),(o',i')) entry is ⟨v<sub>o',i'</sub>|v<sub>o,i</sub>⟩. W is diagonal with diagonal entries p(i|o). QED.
 Consequence: the sink holds a perfect record of the pair (o,i): the normalised vectors f<sub>o,i</sub> = v<sub>o,i</sub>/sqrt(p(i|o))
 (over the support of W) are orthonormal, so dim F ≥ |supp W| = rank W = r (the same r as in AFNB Thm 4).
 Checked numerically on the source-sink lift of Lugano (code/stochastic/physics/lemma_d1_check.py).</p>
 <p><strong>Lemma D.2 [proved; negative].</strong> Conditions (i)-(ii) restricted to the source state |psi⟩ impose nothing beyond
 W being a classical process. For classical deterministic interventions with input copies, o = f(i) (+) a with the
-input i copied to a private ancilla, the output for ancilla value a is ∑<sub>i</sub> |i⟩<em>anc ⊗ sqrt(p(i|f(i)+a)) f</em>{f(i)+a, i};
+input i copied to a private ancilla, the output for ancilla value a is ∑<sub>i</sub> |i⟩<sub>anc</sub> ⊗ sqrt(p(i|f(i)+a)) f<sub>f(i)+a, i</sub>;
 by D.1 these are orthogonal for a ≠ a' and have total norm ∑<sub>i</sub> p(i|f(i)+a) = 1 (logical consistency).
-Hence any non-purifiability (e.g. E_ex1, orbits 7 and 50) must come from the action of V on source states
+Hence any non-purifiability (e.g. E<sub>ex1</sub>, orbits 7 and 50) must come from the action of V on source states
 orthogonal to |psi⟩. Any proof of the conjecture must use those states. This is where proposal (2) breaks down:
 the &quot;which-function&quot; label lambda cannot come from a basis of the span of |psi⟩ alone.</p>
 <p><strong>Where proposal (2) fails [gap].</strong> The intended argument: under each intervention the global map is a generalised
-permutation conditioned on a source label lambda; expanding |psi⟩ = ∑<sub>lambda</sub> c_lambda |lambda⟩ gives
-W = sum |c_lambda|^2 W<sub>w_lambda</sub>. Three gaps:
+permutation conditioned on a source label lambda; expanding |psi⟩ = ∑<sub>lambda</sub> c<sub>lambda</sub> |lambda⟩ gives
+W = sum |c<sub>lambda</sub>|<sup>2</sup> W<sub>w<sub>lambda</sub></sub>. Three gaps:
 (a) Unitarity under local unitaries does not obviously make V, restricted to classical party inputs, a generalised
 permutation. D.1 gives orthogonality only for the fixed |psi⟩, and only after tracing the party wires through W.
 (b) Even when it holds for each intervention f separately, the label lambda may depend on f (no single basis of P
 works for all f). Ruling this out is exactly the noncontextuality-type step that is missing.
 (c) Coherences in |psi⟩ across labels: they vanish from W by D.1, but they constrain V on psi-perp, see (b).</p>
 <p><strong>Conjecture D.3.</strong> If V purifies a classical process, there is an orthonormal basis {lambda} of P such that
-V|lambda, o⟩ = phase * |w_lambda(o)⟩ ⊗ |g_lambda(o)⟩ for functions w_lambda, with g_lambda injective on outputs.
-D.3 implies the conjecture: each w_lambda must then be a process function, since V must stay unitary under classical
+V|lambda, o⟩ = phase * |w<sub>lambda</sub>(o)⟩ ⊗ |g<sub>lambda</sub>(o)⟩ for functions w<sub>lambda</sub>, with g<sub>lambda</sub> injective on outputs.
+D.3 implies the conjecture: each w<sub>lambda</sub> must then be a process function, since V must stay unitary under classical
 interventions restricted to the source state |lambda⟩, and by Baumeler-Wolf that means a unique fixed point.
 D.3 holds for our source-sink lifts. It has not been tested on the non-permutation purifications found by the
 optimiser (Lugano, App. C); that test is the next step. A counterexample to D.3 that is still a mixture would refute
 only D.3, not the conjecture.</p>
 <h3>D.4 Conjecture D.3 is false (update, Oct 10 2026) [proved, exact counterexample]</h3>
-<p>Write G<sub>i,o</sub> = V<sub>o</sub>† (Pi_i ⊗ 1_F) V<sub>o</sub> on P, where V<sub>o</sub>|s⟩ = V|s,o⟩. D.3 is equivalent to: all G<sub>i,o</sub> are
+<p>Write G<sub>i,o</sub> = V<sub>o</sub>† (Pi<sub>i</sub> ⊗ 1<sub>F</sub>) V<sub>o</sub> on P, where V<sub>o</sub>|s⟩ = V|s,o⟩. D.3 is equivalent to: all G<sub>i,o</sub> are
 projectors that commute pairwise (their common eigenbasis is the label basis lambda). Counterexample: a causally
 ordered circuit (code/stochastic/physics/d3_counterexample.py). Party A has trivial input and output oA. The source is
-P = m ⊗ a. Apply H^{oA} to m, CNOT m → a, send m to B's input, and route (oA, oB, a) to the sink. V is a
+P = m ⊗ a. Apply H<sup>oA</sup> to m, CNOT m → a, send m to B's input, and route (oA, oB, a) to the sink. V is a
 permutation-and-Hadamard circuit of unitaries in a fixed causal order, so it is a valid unitary process. With
-psi = |00⟩ the process is classical: p(iB|oA=0) = delta_{iB,0} and p(iB|oA=1) = 1/2. Lemma D.1 holds: W is diagonal.
-W is a mixture of process functions (w_lambda(oA) = lambda*oA). But the G's are Z-projectors for oA=0 and
+psi = |00⟩ the process is classical: p(iB|oA=0) = delta<sub>iB,0</sub> and p(iB|oA=1) = 1/2. Lemma D.1 holds: W is diagonal.
+W is a mixture of process functions (w<sub>lambda</sub>(oA) = lambda*oA). But the G's are Z-projectors for oA=0 and
 X-projectors for oA=1. They do not commute (commutator norm 1/2), so no source basis works. Restricting to psi does
 not help either: psi = |00⟩ is an eigenvector of the oA=0 projectors only.</p>
 <p>Consequence. Gap (b) is real. Even for causal processes, the &quot;which-function&quot; randomness is generated contextually,
 by measuring the quantum source in a basis that depends on earlier outputs. So no argument that extracts a single
 classical label from the source can work, and unitarity under all local unitaries does not force one. The mixture
 conclusion still holds here for a different reason: every causally ordered classical process is a mixture of causal
-deterministic ones. A proof of &quot;purifiable =&gt; mixture of process functions&quot; therefore has to show directly that
+deterministic ones. A proof of &quot;purifiable ⇒ mixture of process functions&quot; therefore has to show directly that
 W lies in conv(PF), for example that purifiability implies every facet inequality of the PF polytope. It cannot go
 through a source-label decomposition. Status: the conjecture is open; D.3 is refuted; no counterexample to the
 conjecture itself.</p>
 <h3>D.5 The hull route (Oct 10 2026)</h3>
 <p><strong>Proposition D.5 [proved]: validity under quantum-controlled interventions is automatic, so it cannot be the
-criterion.</strong> Let W be any classical process, including E_ex1 and all 49 open orbits. Let the parties apply arbitrary
+criterion.</strong> Let W be any classical process, including E<sub>ex1</sub> and all 49 open orbits. Let the parties apply arbitrary
 local instruments, coherently controlled by a shared ancilla that may be entangled across parties. Then the
 probabilities are normalised. Reason: W is diagonal, so it dephases every party's input and output. The effective
 intervention is then a classical joint behaviour q(o|i) produced from a shared quantum state by local operations, so
 q is non-signalling. Every non-signalling behaviour is an affine (not necessarily convex) combination of local
-deterministic ones. The normalisation ∑<sub>i</sub>,o} p(i|o) q(o|i) is affine in q and equals 1 on every local
+deterministic ones. The normalisation ∑<sub>i,o</sub> p(i|o) q(o|i) is affine in q and equals 1 on every local
 deterministic q (logical consistency), so it equals 1 for all such q. Positivity is termwise. So the proposed test
-&quot;valid under quantum-controlled interventions&quot; holds for every classical process. It cannot separate E_ex1 from PF
+&quot;valid under quantum-controlled interventions&quot; holds for every classical process. It cannot separate E<sub>ex1</sub> from PF
 mixtures, and step (3) of the plan is moot. Purifiability is strictly stronger only because of its unitarity
 (reversibility) requirement.</p>
-<p><strong>Proposition D.6 [proved, sketch]: classical-reversible purifiability &lt;=&gt; mixture of PFs.</strong> Call W
+<p><strong>Proposition D.6 [proved, sketch]: classical-reversible purifiability ⇔ mixture of PFs.</strong> Call W
 classically purifiable if it is the marginal, for a random source value lambda, of a classical reversible process: a
 bijection (lambda, o) → (i, sink) that stays a bijection P → F under every deterministic local intervention.
 For a fixed lambda this is a deterministic process. Bijectivity of the composite map under every intervention f
 forces exactly one consistent execution: zero leaves the source value with no image, and two collide by counting.
-So each w_lambda is a process function (Baumeler-Wolf 2016), and W = ∑<sub>lambda</sub> p(lambda) W<sub>w_lambda</sub>. The converse
+So each w<sub>lambda</sub> is a process function (Baumeler-Wolf 2016), and W = ∑<sub>lambda</sub> p(lambda) W<sub>w<sub>lambda</sub></sub>. The converse
 is the source-sink construction with a random source. Hence <strong>the conjecture is equivalent to: a classical process
 that is quantum-purifiable is already classically purifiable.</strong> D.4 shows the quantum purification itself need not be
 classical (its labels are contextual), so this has to be argued at the level of W.</p>
@@ -281,8 +587,8 @@ classical (its labels are contextual), so this has to be argued at the level of 
 space. Facet enumeration results are recorded below. Each facet that some open orbit violates is a candidate
 inequality that purifiability would have to imply.
 Full facet enumeration was not done: pycddlib does not build on the box, and 744 vertices in dimension 37 may have
-very many facets. Instead, sep.py finds by LP a separating inequality of the PF hull (box-normalised, |f| &lt;= 1):
-E_ex1 and orbit 7 violate one by 6.0, orbit 8 by 4.0, and a PF mixture by 0, as expected. These inequalities are not
+very many facets. Instead, sep.py finds by LP a separating inequality of the PF hull (box-normalised, |f| ≤ 1):
+E<sub>ex1</sub> and orbit 7 violate one by 6.0, orbit 8 by 4.0, and a PF mixture by 0, as expected. These inequalities are not
 reduced modulo the affine hull or by symmetry, so their supports carry no meaning yet. <strong>No inequality has been
 derived from purifiability. The conjecture remains open.</strong> Next steps: enumerate facets with lrs/normaliz or by
 symmetry-adapted LP, then try to derive one facet class from Theorem 4 (isotropy) together with Lemma D.1.</p>
@@ -295,13 +601,13 @@ description or symmetry-exploiting code (normaliz, PANDA with the 384-element sy
 multi-core CPU is the natural next step; its cost is unknown until a short benchmark is run.</p>
 <p>Facets found by polar LP (<code>facets/facetlp.py</code>). Each LP optimum was checked to be a facet: its tight PFs have affine
 rank 36. Facets are classified up to the 384 symmetries (party permutations and input/output relabelings; all 384
-preserve the PF set). Over E_ex1 and the 51 sampled non-deterministic vertex orbits, the optimal separating facets
-fall into <strong>8 classes</strong>. Class 0 (418 tight PFs) is violated by E_ex1 and 24 orbits, including orbit 8. Class 2 (418)
+preserve the PF set). Over E<sub>ex1</sub> and the 51 sampled non-deterministic vertex orbits, the optimal separating facets
+fall into <strong>8 classes</strong>. Class 0 (418 tight PFs) is violated by E<sub>ex1</sub> and 24 orbits, including orbit 8. Class 2 (418)
 covers orbits 7, 50 and 15 others; classes 1, 3-7 cover the rest. The class-0 facet, written with joint inputs i and
 outputs o (bits of parties A, B, C):</p>
-<pre><code>p(000|000) ⟨= p(000|001) + p(010|001) + p(000|100) + p(010|110) + p(011|111)
+<pre><code>p(000|000) ≤ p(000|001) + p(010|001) + p(000|100) + p(010|110) + p(011|111)
 </code></pre>
-<p>E_ex1 gives 1/2 &gt; 0. Combinatorial content for a process function w: if w(000) = 000, then w(001) is 000 or 010,
+<p>E<sub>ex1</sub> gives 1/2 &gt; 0. Combinatorial content for a process function w: if w(000) = 000, then w(001) is 000 or 010,
 or w(100) = 000, or w(110) = 010, or w(111) = 011.</p>
 <p><strong>Derivation from purifiability: not achieved.</strong> A natural attempt: use Lemma D.1 to read p(i|o) as squared norms of
 orthogonal sink vectors, then try to show the class-0 inequality follows from unitarity under suitable superpositions
@@ -314,14 +620,14 @@ lie in the same affine span). Output <code>facets/pf.out.gz</code>.</p>
 (<code>facets/classify.py</code>, <code>classes_full.json</code>). Orbit sizes: 384 (66 orbits), 192 (17), 128 (2), 96 (5), 64 (3).
 The 8 LP classes of D.7 are all among them: LP classes 0, 1, 2 are full orbits 82, 83, 84 (418 tight PFs);
 classes 3-6 are orbits 42, 38, 37, 41 (238); class 7 is orbit 91 (436).</p>
-<p>Violations. E_ex1 violates 24 of the 93 facet orbits, orbit 7 violates 53, orbit 8 violates 41, and every test point
+<p>Violations. E<sub>ex1</sub> violates 24 of the 93 facet orbits, orbit 7 violates 53, orbit 8 violates 41, and every test point
 violates at least one. <strong>Facet orbit 82, the class-0 inequality of D.7
-p(000|000) ⟨= p(000|001)+p(010|001)+p(000|100)+p(010|110)+p(011|111), is violated by E_ex1 and by all 51 sampled
+p(000|000) ≤ p(000|001)+p(010|001)+p(000|100)+p(010|110)+p(011|111), is violated by E<sub>ex1</sub> and by all 51 sampled
 non-deterministic vertex orbits</strong> (by some member of the facet's orbit). So this single inequality class separates
 every sampled non-deterministic vertex from the PF hull. Proving it from purifiability is the natural next target.
 Status: facet list exact (normaliz); the derivation from purifiability is open.</p>
 <h3>D.8 Toward deriving facet orbit 82 from purifiability (Oct 10 2026): not proved</h3>
-<p>Sanity checks. Lugano and all PF mixtures satisfy every PF-hull facet, by construction. E_ex1 violates orbit 82
+<p>Sanity checks. Lugano and all PF mixtures satisfy every PF-hull facet, by construction. E<sub>ex1</sub> violates orbit 82
 (D.7).</p>
 <p><strong>Proposition D.8 [proved, negative]: no certificate built from the fixed source state alone can work.</strong>
 The proposal was an SDP over Gram matrices of sink vectors, with the source in |psi⟩ and parties applying arbitrary
@@ -329,12 +635,12 @@ local unitaries (with ancillas, e.g. Hadamard superpositions of deterministic in
 linear function of W. Inner products between outputs for ancilla inputs a, a' are Tr[W (M<sub>a</sub> ⊗ M<sub>a'</sub>† ...)].
 Unitarity on the psi-sector (orthonormal outputs for orthonormal ancilla inputs) follows from validity of W under the
 local operations that prepare the ancilla in a, a', (a+a')/sqrt2 and (a+ia')/sqrt2. By D.5 every classical process,
-including E_ex1, is valid under all such operations. So these constraints are satisfiable by E_ex1, and any SDP over
+including E<sub>ex1</sub>, is valid under all such operations. So these constraints are satisfiable by E<sub>ex1</sub>, and any SDP over
 psi-sector Gram data is feasible for it: no dual certificate exists. (This strengthens D.2 from classical to
 arbitrary local interventions.) Any derivation of the facet must use V on source states orthogonal to psi. In AFNB
 Thm 4 terms, that is the non-convex isotropic-subspace condition, the same obstruction met in the certificate work
 (App. C). <strong>The facet has not been derived; no certificate was found.</strong></p>
-<p>Numerical boundary test (<code>physics/boundary.py</code>, <code>boundary.json</code>). On x<sub>t</sub> = (1-t) Lugano + t E_ex1, the PF hull is
+<p>Numerical boundary test (<code>physics/boundary.py</code>, <code>boundary.json</code>). On x<sub>t</sub> = (1-t) Lugano + t E<sub>ex1</sub>, the PF hull is
 left at t<sub>h</sub> ~ 2e-7: Lugano is a vertex and this direction exits the hull at once. The full purification search
 (gpusearch, float64, 8 restarts) finds no purification at t = 0.02 (best residual 52.2; rank 19, dim V<sub>W</sub> 88) or at
 t = 0.2 (60.1); the same code reaches about 1e-13 on Lugano itself. This is consistent with the conjecture, since the

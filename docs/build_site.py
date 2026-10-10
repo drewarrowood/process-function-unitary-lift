@@ -3,7 +3,6 @@
 Outputs docs/index.html (technical note), docs/graded.html (gentle version), docs/og.png and docs/og-graded.png.
 """
 import pathlib, re, html
-from markdown_it import MarkdownIt
 from PIL import Image, ImageDraw, ImageFont
 root = pathlib.Path(__file__).resolve().parent.parent
 BASE = "https://drewarrowood.github.io/process-function-unitary-lift/"
@@ -16,26 +15,15 @@ code{font-family:'DejaVu Sans Mono',Menlo,monospace;font-size:.9em} a{color:#064
 li{margin:.3rem 0} footer{margin-top:3rem;font-size:.85rem;color:#555}
 blockquote{margin:1rem 0;padding:.6rem .9rem;border-left:4px solid #9fb8d8;background:#f5f8fc}
 blockquote p{margin:.4rem 0} nav.top{font-size:.92rem;margin:.2rem 0 1rem;padding:.5rem .7rem;background:#f3f3f3}
-hr{border:0;border-top:1px solid #ddd;margin:2rem 0}"""
+hr{border:0;border-top:1px solid #ddd;margin:2rem 0}
+table{border-collapse:collapse;font-size:.9rem;display:block;overflow-x:auto} th,td{border:1px solid #ccc;padding:.2rem .5rem;text-align:right}"""
 
-# Substitutions for lift.md, which is written in ASCII math (unchanged from the original builder).
-LIFT_SUBS = [(r"\^dagger", "†"), (r"\(x\)", "⊗"), (r"-&gt;", "→"), (r"&gt;=", "≥"), (r"!=", "≠"),
-        (r"&lt;&lt;U\|", "⟨⟨U|"), (r"\|U&gt;&gt;", "|U⟩⟩"),
-        (r"\|([^|&\n<]{1,24}?)&gt;", r"|\1⟩"), (r"&lt;([^|&\n<]{1,24}?)\|", r"⟨\1|"),
-        (r"\bprod_k\b", "∏<sub>k</sub>"), (r"\bsum_\{?([a-z]+(?:, [a-z_]+)?)\}?", r"∑<sub>\1</sub>"),
-        (r"\b([A-Za-zEGVSWpfw]'{0,2})_\{([^}<]{1,12})\}", r"\1<sub>\2</sub>"),
-        (r"\b([A-Za-z]'{0,2})_([A-Za-z0-9]'?)(?![A-Za-z0-9_])", r"\1<sub>\2</sub>")]
-# graded.md is already written in Unicode; only turn x_y / x_{yz} into subscripts.
-GRADED_SUBS = [(r"(?<![\w/.\-])([A-Za-zΠ])_\{([^}<]{1,12})\}", r"\1<sub>\2</sub>"),
-        (r"(?<![\w/.\-])([A-Za-zΠΣ1])_([A-Za-z0-9λ]+)(?![\w])", r"\1<sub>\2</sub>"),
-        (r"⟩_([A-Za-z0-9]+)(?![\w])", r"⟩<sub>\1</sub>")]
+import sys
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from mdmath import LIFT_SUBS, GRADED_SUBS, render as _render
 
 def render(md, subs):
-    md = md.replace("(lean/", f"({REPO}/blob/main/lean/")
-    body = MarkdownIt("commonmark").render(md)
-    for a, b in subs:
-        body = re.sub(a, b, body)
-    return body
+    return _render(md, subs, REPO)
 
 def page(title, desc, url, og_image, nav, body):
     og = """<meta property="og:title" content="{t}"><meta property="og:description" content="{d}">
