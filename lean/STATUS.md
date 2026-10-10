@@ -24,7 +24,13 @@ Finitely many parties (`Fintype ι`); input alphabets `I k` arbitrary (any cardi
 - `PFUL.Countable.tsum_prod_eq_one_anc`: the same with each output paired with a sink-ancilla label (`q k i` a probability vector on `O k × Y k`).
 - `PFUL.Countable.induced_colnorm`: for complex kernels `V k : O k × Y k → I k × X k → ℂ` with unit-norm columns (`∑' r, ‖V k r c‖₊² = 1`), every column of the induced map `∏ k, V k (f k, y k) (w f k + e k, x k)` has unit norm: `∑' (f,y), ‖M (f,y) (e,x)‖₊² = 1`.
 - Axioms: `propext`, `Classical.choice`, `Quot.sound` only.
-- **Not formalised (countable case):** row orthonormality (needs a tsum factorisation over finite products of countable index types, not in Mathlib), and the operator statement on `lp 2` (M bounded, M M† = 1, M† M = 1). So Lean has the column-norm half of unitarity for countable alphabets. The rows (pointwise exclusivity) and the assembly into a unitary on ℓ² are paper arguments (Appendix F.2-F.3).
+- `PFUL.Countable.hasSum_pi_prod` (PFUL/Rows.lean): factorisation lemma. For a finite index type K, countable X k and absolutely summable g k : X k → ℂ, `HasSum (fun x => ∏ k, g k (x k)) (∏ k, ∑' x, g k x)`. Proof: product of counting measures (`Measure.pi count = count`) and Fubini (`integral_fintype_prod_eq_prod`). The ℝ≥0∞ version was not needed and is not stated separately; the column identity was proved directly.
+- `PFUL.Countable.exclusivity`: the exclusivity lemma for arbitrary alphabets.
+- `PFUL.Countable.induced_rows`: orthonormal rows. If each V k has square-summable orthonormal rows, then for all sink indices r, r', `HasSum (fun c => M r c * conj (M r' c)) (if r = r' then 1 else 0)`, with the series convergent.
+- `PFUL.Countable.orthogonal_span_eq_bot` (PFUL/Assemble.lean): an orthonormal family is total if Parseval holds on a separating family (proof by Bessel's inequality on the family extended by a unit vector orthogonal to it).
+- `PFUL.Countable.induced_unitary_l2`: **the induced map is unitary on ℓ².** Hypotheses: finitely many parties; I k, X k, O k, Y k countable; each V k has square-summable orthonormal rows and unit-norm columns (a unitary kernel). Conclusion: there is a linear isometric *equivalence* `Φ : ℓ²(sources × ancillas) ≃ₗᵢ[ℂ] ℓ²(sinks × ancillas)` with `Φ v r = ∑' c, M r c * v c` (as a HasSum) and `Φ (single c 1) r = M r c`. So Φ is the induced operator, and it is unitary (isometric and surjective; M M† = 1 and M† M = 1).
+- Axioms for all of the above: `propext`, `Classical.choice`, `Quot.sound`.
+- Remaining limits: finitely many parties; continuous alphabets not covered; the step "unitary induced maps ⇒ valid process" (Stinespring, Appendix A) is not formalised in any case.
 
 ## Legacy Mathlib-free files (library `Legacy`)
 
