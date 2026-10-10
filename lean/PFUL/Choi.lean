@@ -1,4 +1,5 @@
 import PFUL.Isometry
+import Mathlib.Analysis.Matrix.PosDef
 
 /-!
 # Gap 3: the process matrix (Choi form) and the generalised Born rule
@@ -12,6 +13,7 @@ choice of local CPTP maps (in Kraus form): the AFNB/OCB normalisation condition.
 -/
 
 open Matrix Finset
+open scoped ComplexOrder
 
 namespace PFUL.Choi
 
@@ -102,7 +104,66 @@ theorem born_eq_one (w : (∀ k, O k) → (∀ k, I k)) (hw : IsProcessFunction 
   rw [born_eq_trace, Matrix.trace_mul_comm, ← Matrix.mul_assoc, indM_isometry w hw K hK,
     Matrix.one_mul, hρ]
 
+/-- Trace preservation in Choi form: `∑ j, (K j)ᴴ K j` is the partial trace of the Choi matrix. -/
+theorem sum_kraus_apply {I' O' J' : Type*} [Fintype O'] [Fintype J']
+    (K : J' → Matrix O' I' ℂ) (i i' : I') :
+    (∑ j, (K j)ᴴ * K j) i i' = ∑ o, choi K (i', o) (i, o) := by
+  simp only [Matrix.sum_apply, Matrix.mul_apply, conjTranspose_apply, choi]
+  rw [Finset.sum_comm]
+  refine Finset.sum_congr rfl (fun o _ => Finset.sum_congr rfl (fun j _ => ?_))
+  ring
+
+/-- **Kraus operators from the Choi matrix.** Every positive semidefinite matrix on `I' × O'`
+(a completely positive map, by Choi's theorem) is the Choi matrix of a Kraus family, obtained from
+its spectral decomposition; if its partial trace over `O'` is the identity (trace preservation),
+the Kraus family is complete. -/
+theorem kraus_of_choi {I' O' : Type*} [Fintype I'] [Fintype O'] [DecidableEq I'] [DecidableEq O']
+    (C : Matrix (I' × O') (I' × O') ℂ) (hC : C.PosSemidef) :
+    ∃ K : (I' × O') → Matrix O' I' ℂ, choi K = C ∧
+      ((∀ i i', ∑ o, C (i', o) (i, o) = if i = i' then 1 else 0) → ∑ j, (K j)ᴴ * K j = 1) := by
+  classical
+  set U := (hC.1.eigenvectorUnitary : Matrix (I' × O') (I' × O') ℂ)
+  set lam := hC.1.eigenvalues
+  set K : (I' × O') → Matrix O' I' ℂ := fun j => Matrix.of fun o i => (Real.sqrt (lam j) : ℂ) * U (i, o) j
+  have hK : choi K = C := by
+    have hspec := hC.1.spectral_theorem
+    ext p p'
+    conv_rhs => rw [hspec]
+    simp only [choi, K, map_mul, Matrix.of_apply, Unitary.conjStarAlgAut_apply, Matrix.mul_apply, Matrix.diagonal_apply,
+      Function.comp_apply, star_apply, mul_ite, mul_zero, Finset.sum_ite_eq', Finset.mem_univ,
+      if_true, Finset.sum_mul, star_mul', Complex.star_def, Complex.conj_ofReal]
+    refine Finset.sum_congr rfl (fun j _ => ?_)
+    have hs : ((Real.sqrt (lam j) : ℂ)) * (Real.sqrt (lam j) : ℂ) = (lam j : ℂ) := by
+      rw [← Complex.ofReal_mul, Real.mul_self_sqrt (hC.eigenvalues_nonneg j)]
+    linear_combination (U p j * (starRingEnd ℂ) (U p' j)) * hs
+  refine ⟨K, hK, fun htp => ?_⟩
+  ext i i'
+  rw [sum_kraus_apply, hK, htp, Matrix.one_apply]
+
+/-- Generalised Born rule with arbitrary local Choi matrices `C k` on `I k × O k`. -/
+def bornC (w : (∀ k, O k) → (∀ k, I k)) (ρ : Matrix (∀ k, I k) (∀ k, I k) ℂ)
+    (C : ∀ k, Matrix (I k × O k) (I k × O k) ℂ) : ℂ :=
+  ∑ x : Idx I O, ∑ x' : Idx I O, procMat w x x' *
+    (ρ x.1 x'.1 * ((if x.2.1 = x'.2.1 then 1 else 0) * ∏ k, C k (x.2.2 k) (x'.2.2 k)))
+
+/-- **Gap 3, Choi form: AFNB/OCB normalisation for all local CPTP maps.** For every process function,
+every source state of trace one, and all local Choi matrices that are positive semidefinite (CP) with
+identity partial trace over the output (TP), `Tr[W (ρ ⊗ 1_F ⊗ ⨂ C_k)ᵀ] = 1`. -/
+theorem bornC_eq_one (w : (∀ k, O k) → (∀ k, I k)) (hw : IsProcessFunction w)
+    (ρ : Matrix (∀ k, I k) (∀ k, I k) ℂ) (hρ : ρ.trace = 1)
+    (C : ∀ k, Matrix (I k × O k) (I k × O k) ℂ) (hC : ∀ k, (C k).PosSemidef)
+    (htp : ∀ k i i', ∑ o, C k (i', o) (i, o) = if i = i' then 1 else 0) :
+    bornC w ρ C = 1 := by
+  classical
+  choose K hK using fun k => kraus_of_choi (C k) (hC k)
+  have h := born_eq_one (J := fun k => I k × O k) w hw ρ hρ K (fun k => (hK k).2 (htp k))
+  have : bornC w ρ C = born w ρ K := by
+    simp only [bornC, born, (fun k => (hK k).1)]
+  rw [this, h]
+
 end PFUL.Choi
 
 #print axioms PFUL.Choi.born_eq_trace
 #print axioms PFUL.Choi.born_eq_one
+#print axioms PFUL.Choi.kraus_of_choi
+#print axioms PFUL.Choi.bornC_eq_one

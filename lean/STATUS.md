@@ -38,7 +38,15 @@ Finitely many parties (`Fintype ι`); input alphabets `I k` arbitrary (any cardi
 - `PFUL.ValidWith w X Y` (the AFNB-style validity condition used in Appendix A): for all local unitaries V k : I k × X k → O k × Y k (Stinespring dilations) and all joint density matrices σ of source and input ancillas (entanglement and shared ancillas allowed), the global output and the sink state (partial trace over output ancillas) are density matrices.
 - `PFUL.valid`: every process function satisfies `ValidWith w X Y` for all finite ancilla types X, Y.
 - Axioms: `propext`, `Classical.choice`, `Quot.sound`.
-- Not formalised: existence of Stinespring dilations for CPTP maps (taken as given); instruments with individual outcomes (Appendix A Step 4); equivalence with AFNB's Choi-operator formulation.
+- Gaps closed (PFUL/Isometry.lean, PFUL/Channels.lean, PFUL/Choi.lean):
+  - `PFUL.Column.sum_prod_eq_prod`: column identity with constant row sums λ_k (over ℂ): Σ_s ∏_k q_k(w s k)(s k) = ∏_k λ_k (proof: normalise, use the λ=1 case, polynomial identity in a perturbation parameter).
+  - `PFUL.induced_isometry`: isometric (not necessarily square) local maps give Mᴴ M = 1.
+  - `PFUL.krausDilP`, `PFUL.krausDilP_isometry`, `PFUL.ptrace_krausDil`: Stinespring dilation V = Σ_j K_j ⊗ |j⟩ of any Kraus family is an isometry and reproduces the channel Σ_j K_j ρ K_jᴴ.
+  - `PFUL.valid_kraus`: validity (global output and sink state are density matrices) for arbitrary local CPTP maps in Kraus form, with arbitrary joint (entangled/shared) states of source and ancillas.
+  - `PFUL.outcomeState`, `PFUL.outcomeState_posSemidef`, `PFUL.sum_outcomeState`, `PFUL.valid_instrument`: local instruments; every outcome-conditioned sink state is PSD, they sum to a density matrix, and outcome probabilities sum to 1.
+  - `PFUL.Choi.procMat` (W = |U⟩⟩⟨⟨U|), `PFUL.Choi.choi`, `PFUL.Choi.born`/`bornC` (generalised Born rule Tr[W (ρ ⊗ 1_F ⊗ ⨂ C_k)ᵀ]), `PFUL.Choi.born_eq_trace` (Born rule = Tr[M ρ Mᴴ]), `PFUL.Choi.born_eq_one`, `PFUL.Choi.kraus_of_choi` (PSD Choi matrix ⇒ Kraus family, via the spectral theorem; TP ⇒ complete), `PFUL.Choi.bornC_eq_one`: AFNB/OCB normalisation Tr[W(...)] = 1 for every source state and all local CPTP Choi matrices.
+- Remaining limits: the Choi-form theorems are for local maps I_k → O_k without extra party ancillas (ancillas are covered in the density-matrix form `valid_kraus`). We prove that our condition implies AFNB normalisation, not the converse equivalence. Choi's theorem (CP ⇔ PSD Choi matrix) is used as the definition of CP in Choi form.
+
 
 ## Legacy Mathlib-free files (library `Legacy`)
 
@@ -54,7 +62,7 @@ Build: `cd lean && lake build`. Every file compiles. There is no `sorry`, `admit
 - Lift.lean `off_diagonal_cancels`, `diagonal_is_one`, and GramGeneral.lean `gram_unitary`. These are integer-valued (`Int`) "rows". Row orthonormality is a hypothesis, and in `gram_unitary` the witness party is also a hypothesis rather than being derived from the lemma. ComplexGram.lean contains only algebraic helper lemmas for a hand-rolled complex type.
 
 ## Not formalised
-- Existence of Stinespring dilations; instruments; AFNB's Choi-operator form of validity (the density-matrix form is `PFUL.valid`).
+- The converse direction (AFNB Choi normalisation ⇒ density-matrix validity) and Choi-form statements with party ancillas.
 - Spacetime embedding (Gaps.lean defines `SpacetimeEmbeddingClaim : Prop := False` as a marker).
 
 Build: `lake exe cache get && lake build` (fetches the Mathlib cache).
