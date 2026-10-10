@@ -9,7 +9,7 @@ rev = "v4.34.1"
 # Main result: complex / star-field Gram cancellation, M Mᴴ = 1 (uses Mathlib).
 [[lean_lib]]
 name = "PFUL"
-roots = ["PFUL.UnitaryLift", "PFUL.Column", "PFUL.Countable", "PFUL.Rows", "PFUL.Assemble", "PFUL.Validity", "PFUL.Isometry"]
+roots = ["PFUL.UnitaryLift", "PFUL.Column", "PFUL.Countable", "PFUL.Rows", "PFUL.Assemble", "PFUL.Validity", "PFUL.Isometry", "PFUL.Channels"]
 
 # Earlier Mathlib-free files (combinatorial lemma, finite checks).
 [[lean_lib]]
