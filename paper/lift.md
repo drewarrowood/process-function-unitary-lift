@@ -34,7 +34,7 @@ In the language of Araújo, Feix, Navascués and Brukner (2017, Definition 1), t
 
 ## 2. From unitarity to validity
 
-Section 1 shows that the lift is *pure* in the sense of Araújo et al. (unitaries in, unitary out). Appendix A derives full process validity from this (any local CPTP maps, local and shared/entangled ancillas, instruments) using Stinespring dilation. Appendix B covers input and output alphabets of different sizes. Appendix C treats stochastic classical processes: mixtures of process functions are purifiable, but a non-deterministic extremal point of the Baumeler–Wolf polytope numerically is not.
+Section 1 shows that the lift is *pure* in the sense of Araújo et al. (unitaries in, unitary out). Appendix A derives full process validity from this (any local CPTP maps, local and shared/entangled ancillas, instruments) using Stinespring dilation. Appendix B covers input and output alphabets of different sizes. Appendix C treats stochastic classical processes: mixtures of process functions are purifiable, but a non-deterministic extremal point of the Baumeler–Wolf polytope provably is not (exact certificate).
 
 ## 3. Backward causation, before the formalism
 
@@ -135,20 +135,31 @@ Nothing in Section 1 needs |I_k| = |O_k|.
 
 The control register must enter through the source and leave through the sink. If it is not handed to the sink, the coherence between branches survives, and the result is no longer the classical mixture. Hence the whole deterministic-extrema polytope of Baumeler and Wolf is purifiable. This covers every two-party classical process with binary inputs and outputs, since there all extremal points are deterministic.
 
-**C.2 Numerical result: E_ex1 appears not to be purifiable.** Scripts are in code/stochastic/.
-- E_ex1 is logically consistent and is a vertex of the three-party binary polytope (active-constraint rank 64 of 64). So it is not a mixture of process functions, and C.1 does not apply.
-- Its process matrix has rank 16, and dim V_W = 27 ≥ 16. AFNB's necessary condition therefore does not rule it out.
-- Applying their full Theorem 4: write the candidate vectors w_i in coordinates on V_W. The quadratic conditions then require a 16-dimensional subspace S of C^27 on which 46 explicit sesquilinear forms vanish.
-- For at least one form, the Hermitian part has inertia that allows totally isotropic subspaces of dimension at most 12 < 16. So no such S exists, and E_ex1 is not purifiable.
-- Control: the same pipeline applied to Lugano, which is purifiable, gives a bound of 29 ≥ 8.
-- Status: this is a floating-point computation with clean spectral gaps (about 1e-17 versus at least 5e-3). It is not an exact or symbolic certificate.
+**C.2 E_ex1 is not purifiable (exact certificate).** Scripts are in code/stochastic/.
 
-**Answer (current status).** No, if the numerics are right. Not every logically consistent classical process admits a unitary extension. Mixtures of process functions do. The non-deterministic extremal point E_ex1 is numerically not purifiable.
+*Reduction.* In AFNB Theorem 4 the auxiliary sink F' behaves as a party with trivial output. Every term of the projector L_V^⊥ therefore traces out and replaces F'. Write w_i = Σ_k |w_{i,k}>|k>_{F'} and define X_i by X_i |p_k> = sqrt(E_{p_k}) |w_{i,k}>. The conditions become L_3^⊥(X_i Λ X_j^†) = 0 for all i, j, with Λ = diag(1/E) on the support. Here L_3^⊥ is the ordinary three-party projector on 64×64 matrices, and X_0 = W. This takes seconds instead of tens of minutes, and it reproduces the full computation (dim V_W 27 for E_ex1 and 56 for Lugano).
 
-**Open.**
-- An exact certificate for E_ex1, e.g. rational arithmetic on the 46 forms.
-- Classifying which of the 709,936 non-deterministic extremal points are purifiable.
-- Whether purifiability of a classical process implies that it lies in the deterministic-extrema polytope.
+*Certificate.*
+- E_ex1 is logically consistent and is a vertex of the three-party binary polytope (active-constraint rank 64 of 64). Hence it is not a mixture of process functions.
+- rank W = 16. Exact integer arithmetic (python-flint) gives dim V_W = 27.
+- One explicit integer combination of the constraint functionals (code/stochastic/exact.py, cert_phi.npy) gives a sesquilinear form on V_W. Its symmetric part has exact inertia (13 positive, 13 negative, 1 zero), computed by rational congruence elimination.
+- The span of w_0, ..., w_15 is a 16-dimensional subspace on which this form must vanish, so it is totally isotropic for the symmetric part. But a totally isotropic subspace has dimension at most 1 + min(13, 13) = 14 < 16. So no purification exists.
+- An independent numerical check agrees. A gradient search for purifications reaches residual 8·10^-14 for Lugano (which is purifiable), but stalls at 79.7 for E_ex1.
+
+**C.3 Purifiable set and the conjecture.** The control-register argument of C.1 works for any purifiable processes, not just process functions. So the purifiable classical processes form a convex set containing the hull of the process functions. We conjecture they are exactly that hull:
+
+*Conjecture.* A classical process is purifiable iff it is a mixture of process functions.
+
+*Evidence so far.*
+- 40,000 random LP vertices of the three-party binary polytope gave 39,354 deterministic vertices and 646 non-deterministic ones. These fall into 51 orbits under party permutations and local input/output relabellings (code/stochastic/reps.json). Their ranks are 15–23, and their entries are halves, or thirds and two-thirds.
+- AFNB's necessary condition holds for every orbit tested, so it never decides the question.
+- The random-form isotropy test is inconclusive for the larger V_W (e.g. rank 15 with dim V_W = 124, and rank 16 with 176).
+- Gradient searches on those orbits are running. Results go to code/stochastic/opt_results.jsonl. No purifiable non-mixture has been found.
+- All 744 mixtures (q + E_ex1)/2 and (q + 4 E_ex1)/5 with q a process function lie outside the process-function hull (LP check). They are candidates for non-extreme counterexamples, and are untested.
+
+*Proof idea for "only if" (not completed).* A purification U restricted to classical permutation instruments gives a unitary M for every reversible local classical operation. One would like to show that M's action on basis states then decomposes into permutations, giving a deterministic decomposition. We have not proved this. E_ex1 shows the classical consistency of W alone is not enough.
+
+**Answer.** Not every classical process admits a unitary extension: E_ex1 provably does not. Mixtures of process functions do. Whether those are the only ones is the open conjecture above.
 
 ## References
 

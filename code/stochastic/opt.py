@@ -4,6 +4,9 @@ import fast2, fast3
 def search(E,restarts=3,seed=0,maxiter=3000):
     d,supp,r,m,Xs,Lam=fast3.prep(E); T=fast3.forms(Xs,Lam).astype(float)
     used=np.nonzero(np.abs(T).sum(axis=(0,1))>1e-9)[0]; T=T[:,:,used]
+    Tm=T.reshape(m*m,-1); Q,s,_=np.linalg.svd(Tm.T@Tm) if False else (None,None,None)
+    U_,s_,Vt=np.linalg.svd(Tm,full_matrices=False); k_=int(np.sum(s_>1e-9*s_[0]))
+    T=(Tm@Vt[:k_].T).reshape(m,m,k_)   # isometric compression of constraint space
     G=np.einsum('aij,j,bij->ab',Xs,Lam,Xs)   # <w_a|w_b>
     W=np.zeros((64,64)); W[supp,supp]=d[supp]
     c0=np.linalg.lstsq(Xs.reshape(m,-1).T,W.ravel(),rcond=None)[0]
