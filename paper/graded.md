@@ -12,6 +12,8 @@ The note proves one theorem, studies a harder question it cannot yet settle, and
 2. **Why this choice.** Why this piece of mathematics captures the idea, rather than some other piece.
 3. **What it commits us to.** Every formalism takes sides on something. Choosing a symbol is often choosing a philosophy.
 
+**One thing this is not about: spacetime.** The stories below use time machines and wormholes as motivation, but the mathematics is about abstract loops between laboratories. A unitary process on a finite alphabet is not a solution of Einstein's equations, and not a wormhole. The theorem says that a consistent loop's list of events has a unitary dilation. It does not say that the dilation is a spacetime (see paper/EMBEDDING.md).
+
 Claims are marked by status, following Section 9 of the note:
 
 - **Proved** means there is a proof. In a few places it is also machine-checked.
@@ -52,9 +54,11 @@ Keep this pair in mind. The whole note turns on asking for *exactly one*.
 
 David Lewis, in "The paradoxes of time travel" (1976), dealt with the grandfather by splitting the word "can". Can the traveller kill his grandfather? He *can*, relative to his own abilities, his gun, and the local facts. He *cannot*, relative to the whole past, which includes the fact that the grandfather survived. Something will stop him: a slip on a banana peel, a jammed gun. There is no contradiction in the world. There is only a contradiction in the wish.
 
-Physicists reached a similar view. Around 1990, Friedman, Morris, Novikov, Thorne and others proposed what is now called the *Novikov self-consistency principle*: only self-consistent histories occur. Echeverria, Klinkhammer and Thorne then studied billiard balls fired through a wormhole time machine. They found starting conditions with one consistent continuation, conditions with two, and conditions for which none was apparent.
+Physicists reached a similar view. Around 1990, Friedman, Morris, Novikov, Thorne and others proposed what is now called the *Novikov self-consistency principle*: only self-consistent histories occur. Echeverria, Klinkhammer and Thorne (1991) then studied a billiard ball fired through a wormhole time machine. They chose "dangerous" starting conditions, where the ball would emerge in the past and knock its younger self off course: a billiard-table grandfather. One expects no consistent history. They found the opposite. A wide class of dangerous starts has *infinitely many* consistent continuations. Some quiet starts, such as a ball at rest far from the wormhole, have exactly one. They searched for a start with *no* consistent continuation and found none.
 
-So consistency, by itself, has two gaps. It throws out the grandfather histories, but it does not pick among the bootstrap ones. And, as John Earman warned, a consistency condition stuck on after the laws of motion is not itself a law of motion. It tells you which films are allowed. It does not tell you how the film runs.
+So the billiard balls illustrate the bootstrap, not the grandfather. The real trouble was too many histories, not too few.
+
+So consistency, by itself, has two gaps. It throws out the grandfather histories, but it does not pick among the bootstrap ones, and the billiard balls show that the bootstrap is the live danger. And, as John Earman warned, a consistency condition stuck on after the laws of motion is not itself a law of motion. It tells you which films are allowed. It does not tell you how the film runs.
 
 ### 4. A better rule: exactly one history, whatever anyone does
 
@@ -64,7 +68,7 @@ Now demand this:
 
 > **However each person chooses to behave, there is exactly one consistent history.**
 
-This rules out the grandfather, because there is always at least one consistent history. It rules out the bootstrap, because there is never more than one. And it does both *without taking anybody's freedom away*. The people in the labs may adopt any strategy whatsoever: "if I receive a 0, send a 1", "always send 0", anything. The loop is not allowed to forbid an action. It may only settle how everything fits together once the actions are chosen.
+Put plainly, "exactly one" rules out both failures at once. It rules out the grandfather (no consistent history), because there is always at least one. It rules out the bootstrap (more than one), because there is never more than one. Two old ideas have the same shape. Russell asked that a definite description such as "the author of the letter" denote exactly one thing, not none and not two. Newton's mechanics is prized because a well-posed initial-value problem has exactly one solution, given the starting conditions. And the demand does both *without taking anybody's freedom away*. The people in the labs may adopt any strategy whatsoever: "if I receive a 0, send a 1", "always send 0", anything. The loop is not allowed to forbid an action. It may only settle how everything fits together once the actions are chosen.
 
 The note calls a loop with this property a **process function**. The idea comes from Baumeler and Wolf, and the "you may still do anything you could do in an ordinary lab" clause is the *no-new-physics* principle of Baumeler, Costa, Ralph, Wolf and Zych.
 
@@ -129,7 +133,9 @@ In the small examples both sets are {0, 1}: one bit in, one bit out.
 
 **Why this choice.** We describe agents only by what crosses the walls of their labs. What happens inside is the agent's own business. This is a deliberately thin picture of agency: a lab is a black box with one door in and one door out, each used once.
 
-**What it commits us to.** Two things. First, *locality of agency*: each party acts only on what it receives. It cannot reach out and alter another lab directly. Second, *finiteness*: the sets are finite. The note's results are for finite alphabets. Continuous variables, which Baumeler and coauthors also study, are not covered (Appendix B of the note).
+**What it commits us to.** Two things. First, *locality of agency*: each party acts only on what it receives. It cannot reach out and alter another lab directly. Second, for now, *finiteness*: the sets are finite. Countably infinite alphabets are handled in Part VII. Continuous ones remain open.
+
+A word about "agents" and "freedom", which recur throughout. Nothing in the mathematics models anyone *choosing*. As Section 10 explains, "freedom" will mean only the range of a quantifier: a condition must hold *for every* strategy a lab could follow.
 
 When we write a whole list of outputs, one per party, we write o = (o₁, …, oₙ). The set of all such lists is the product O₁ × … × Oₙ, written ∏ Oₖ. Likewise i = (i₁, …, iₙ) is a list of inputs.
 
@@ -165,7 +171,7 @@ Each party follows a **local intervention**, also called a strategy:
 
 **Why a function from input to output?** It is the most general deterministic behaviour of a closed lab with one door in and one door out. Whatever goes on inside, from the outside it is a rule that turns what came in into what goes out. Randomised strategies come later. They turn out to be averages of deterministic ones.
 
-**What it commits us to.** We will quantify over *all* such f. That universal quantifier *is* the formal expression of freedom. We are not allowed to say "the loop is fine, provided nobody adopts strategy so-and-so." That would be the loop forbidding an action, which is the move Section 4 refused. (Whether the agents are free in some deeper metaphysical sense is another matter. The note says explicitly that it does not settle this. See Section 67.)
+**What it commits us to.** We will quantify over *all* such f. That universal quantifier *is* the formal expression of freedom, and it is all that "freedom" means here. Freedom is the range of the quantifier "for every f", not an act of anyone choosing. No agent, will or decision appears in the mathematics. There is only the demand that the conclusion hold whichever f is plugged in. We are not allowed to say "the loop is fine, provided nobody adopts strategy so-and-so." That would be the loop forbidding an action, which is the move Section 4 refused. (Whether the agents are free in some deeper metaphysical sense is another matter. The note says explicitly that it does not settle this. See Section 67.)
 
 ### 11. Fixed points: consistent histories
 
@@ -502,7 +508,7 @@ What if w is *not* a process function? Then the exclusivity property fails (Dour
 
 The code also checks the theorem by brute force: all 12 two-party and 744 three-party binary process functions, under random local unitaries, with and without ancillas, plus three-symbol two-party examples. The deviation from unitarity stays below 10⁻¹³.
 
-**What has been shown, philosophically.** Daher Ahmed and Kunjwal (2026) had conjectured this result and proved it for a subclass. They noted that the bare permutation unitary might fail to be a valid process. The note argues that it never fails. Araújo et al. (2017) had already written down this construction for Lugano, and Baumeler, Gilani and Rashid (2022) had remarked on unitary extensibility without a separate proof. The note's contribution is a short general proof for the coherent permutation unitary. Its philosophical reading is that **classical fixed-point consistency is already a quantization condition**. No extra quantum filter is needed.
+**What has been shown, philosophically.** Daher Ahmed and Kunjwal (2026) had conjectured this result and proved it for a subclass. They noted that the bare permutation unitary might fail to be a valid process. The note argues that it never fails. Araújo et al. (2017) had already written down this construction for Lugano, and Baumeler, Gilani and Rashid (2022) had remarked on unitary extensibility without a separate proof. The note's contribution is a short general proof for the coherent permutation unitary. Its philosophical reading, refined in Section 62, is that **consistency plus a complete record gives unitarity**. No extra quantum filter is needed.
 
 ---
 
@@ -717,7 +723,9 @@ The proof uses an exact criterion due to Araújo et al. (their Theorem 4). Here 
 
 ### 51. The other random corners
 
-Sampling 40,000 random vertices of the three-party binary polytope gave 646 non-deterministic ones. Up to symmetry (swapping parties and relabelling inputs and outputs) these fall into **51 orbits**. For all 51, the simple room test dim V_W ≥ rank W passes, so it decides nothing.
+How were these corners found? Not by listing all 710,760 vertices of the three-party binary polytope. The note's code (code/stochastic/sample.py) solved 40,000 linear programs. Each one minimised a random linear objective, with independent Gaussian coefficients, over the Baumeler–Wolf polytope, that is, over all logically consistent p(i | o). Each optimum is a vertex. Of the 40,000 vertices found, 39,354 were deterministic (process functions) and only 646 were non-deterministic. Yet only 744 of the 710,760 vertices are deterministic. So the method is far from uniform: random objectives land on corners in proportion to how "pointy" they are, and the process functions are evidently very pointy. **The 51 orbits are therefore only as representative as this sampling.** Indeed most random corners have certainly never been seen. A symmetry orbit has at most 384 members, so the 51 orbits contain at most 51 × 384 = 19,584 vertices, under 3% of the 710,016 non-deterministic ones.
+
+Up to symmetry (swapping parties and relabelling inputs and outputs), the 646 non-deterministic samples fall into **51 orbits**. For all 51, the simple room test dim V_W ≥ rank W passes, so it decides nothing.
 
 - **Proved (exact certificates):** orbits 7 and 50, the two orbits with dim V_W = 27. One of them contains E_ex1.
 - **Evidence only:** for the other 49 orbits (dim V_W from 82 to 256), the certificate method was inconclusive. A GPU search, with 64 random restarts per orbit, found no purification for any of them. Best residuals ranged from 12.97 to 59.35, far from zero, while the same code finds Lugano's purification and stalls on E_ex1 as expected. A local search can miss solutions, so this is not a proof.
@@ -870,15 +878,15 @@ So the conjecture is open. D.3 is refuted. No counterexample to the conjecture i
 
 > **Everything in this part is interpretation.** It is a reading of the results above, following the note's own philosophical sections (3–8 and the end of 9). None of it is a theorem. Where a claim goes beyond the note's own wording, I say so.
 
-### 62. Consistency is already a quantization condition
+### 62. Consistency plus a complete record gives unitarity
 
-The classical demand "exactly one consistent history, whatever anyone does" was invented to dissolve the grandfather and the bootstrap. Nothing in it mentions amplitudes, phases or interference. Yet the main theorem shows that it is exactly strong enough to keep the quantum lift unitary. The proof makes the reason visible. Consistency guarantees that any two global histories are told apart by some agent who was in the same situation in both. Quantum mechanics turns "told apart by a local agent" into "orthogonal", and orthogonality is all unitarity needs.
+The classical demand "exactly one consistent history, whatever anyone does" was invented to dissolve the grandfather and the bootstrap. Nothing in it mentions amplitudes, phases or interference. Yet the main theorem shows that, together with one more ingredient, it is enough to keep the quantum lift unitary. The extra ingredient is the sink's *complete record*: its perfect copy of every party's output (Sections 18 and 28). Because the sink records the outputs, each final state corresponds to a single history, and histories cannot interfere on the way to the same record. Consistency then guarantees that any two global histories are told apart by some agent who was in the same situation in both. Quantum mechanics turns "told apart by a local agent" into "orthogonal", and that orthogonality, between records that already separate the histories, is what unitarity needs.
 
-So the note reads the result as saying that **fixed-point consistency is already a quantization condition**. The note surveys other quantum treatments of time loops. Deutsch's fixed-point model pays for its consistency with nonlinearity. Post-selection discards inconsistent branches, which the note calls a filter on samples, "of the same shape as a measure-zero axiom". Neither, the note argues, supplies the criterion. For process functions, the theorem shows that no extra quantum filter is needed. The classical consistency condition, imposed for all interventions, already carries over.
+The note's own slogan is that fixed-point consistency is "already a quantization condition". The more careful statement is: **consistency plus a complete record gives unitarity.** Consistency alone does not, since the bare loop w (Lugano, say) is not even reversible; the source and sink must be added first. The note surveys other quantum treatments of time loops. Deutsch's fixed-point model pays for its consistency with nonlinearity. Post-selection discards inconsistent branches, which the note calls a filter on samples, "of the same shape as a measure-zero axiom". Neither, the note argues, supplies the criterion. For process functions, the theorem shows that no extra quantum filter is needed. Once the world keeps a complete record, the classical consistency condition, imposed for all interventions, carries over.
 
 ### 63. Lewis and Novikov, revisited
 
-Lewis showed that time travel stories need not contradict themselves. Novikov proposed that physics admits only the stories that do not. Both left a gap. Lewis's "can and cannot" explains why the grandfather survives, but not *which* history obtains. Novikov's principle throws out inconsistent histories but does not choose among the consistent ones. The billiard balls of Section 3 sometimes had two.
+Lewis showed that time travel stories need not contradict themselves. Novikov proposed that physics admits only the stories that do not. Both left a gap. Lewis's "can and cannot" explains why the grandfather survives, but not *which* history obtains. Novikov's principle throws out inconsistent histories but does not choose among the consistent ones. The billiard balls of Section 3 often had infinitely many.
 
 The process-function clause closes both gaps at once, at the price of a strong demand. *Every* intervention must have exactly one consistent history. The main theorem then adds something neither Lewis nor Novikov could have asked for. When the agents are given every power quantum mechanics allows, the demand still holds, with probabilities exactly normalised, for finite and countably infinite alphabets alike. On this reading, the consistency principle is not a filter bolted onto the dynamics, which was Earman's worry. For process functions, it *guarantees a property of a reversible dynamics* that contains the loop. (The converse, that every inconsistent loop breaks unitarity, is supported numerically but not proved; Section 36.)
 
@@ -940,7 +948,7 @@ Two cautions. First, a checked theorem is only as good as its statement (Section
 
 ### 70. What the theorem does not say
 
-- **It is not about spacetime.** A unitary process on a finite alphabet is not a solution of Einstein's equations, and not a wormhole. The theorem says the event list has a unitary dilation. It does not say the dilation is a spacetime (see paper/EMBEDDING.md).
+- **It is not about spacetime.** See "How to read this" at the top: a unitary dilation is not a spacetime.
 - **It does not classify all quantum processes.** It places every process function, including ones that violate causal inequalities, among the unitarily extendible processes. It says nothing about processes that are not deterministic classical functions, beyond the stochastic results of Parts VIII–XI.
 - **It does not cover continuous alphabets.** Countable ones are done (Part VII). Continuous ones first need a definition of the closed loop.
 - **It does not settle freedom** (Section 67).
