@@ -19,7 +19,9 @@ Claims are marked by status, following Section 9 of the note:
 - **Open** means nobody knows yet.
 - **Interpretation** means philosophy. It is a reading of the mathematics, not a result.
 
-The final section is all interpretation. A summary box at the very end says what is proved, what is evidence, and what is open.
+The path runs from easy to hard. Stories first (Part I). Then the symbols, one at a time (Parts II–IV). Then the main theorem and its proof (Part V), and why a machine-checked proof matters (Part VI). Then infinity, with Hilbert's hotel smuggled into a time loop (Part VII). The second half is about chance: mixtures and purification (Part VIII), the random corners that cannot be purified (Part IX), the open conjecture and the evidence for it (Part X), and an honest map of the routes that failed (Part XI). Part XII is all philosophy, clearly marked as interpretation. A summary box at the very end says what is proved, what is evidence, and what is open.
+
+---
 
 ---
 
@@ -108,9 +110,12 @@ More precisely: take a consistent classical loop, made reversible with a source 
 
 The note's first answer, the **main theorem**, is: yes, for every process function. The second question, which is **open**, is about loops with chance in them, like the coin-flip loop. Can they be realised reversibly? The note proves that the coin-flip loop E_ex1 cannot be. It conjectures that the only chancy loops that can be are those whose chance is mere ignorance about which deterministic consistent loop obtains.
 
+Two further questions ride along. What if the alphabets are infinite, so that a party can send any whole number? In a hotel with infinitely many rooms, a perfectly orderly shuffle can still leave a room empty, and we must check that a time loop cannot lose probability the same way (Part VII). And how sure can we be of a short proof about something this strange? Part VI tells the story of a referee who cannot be flattered.
+
 The rest of this document builds the symbols needed to say all that exactly.
 
 ---
+
 ## Part II. The first symbols: loops as functions
 
 ### 8. Parties, inputs and outputs
@@ -145,7 +150,7 @@ The map w is this answer. It does not mention time at all. A party's input may d
 **What it commits us to.**
 
 - *No global time order is assumed.* Order, if there is one, has to be read off from the shape of w (who depends on whom). It is not built in.
-- *The environment is deterministic.* Given the outputs, the inputs are fixed. (Part VI relaxes this, allowing randomness.)
+- *The environment is deterministic.* Given the outputs, the inputs are fixed. (Part VIII relaxes this, allowing randomness.)
 - *Agents are the source of variation.* Everything "free" lives in the outputs. The world responds; it does not choose. This matches the no-new-physics stance of Section 4.
 
 Notice one more thing. The map w alone is not yet a history. It says what the parties *would* receive for each possible list of outputs. A history is a list of outputs together with the inputs that w assigns to it, and it is only *actual* if it also fits with what the parties do on receiving those inputs. That fit is the next idea.
@@ -160,7 +165,7 @@ Each party follows a **local intervention**, also called a strategy:
 
 **Why a function from input to output?** It is the most general deterministic behaviour of a closed lab with one door in and one door out. Whatever goes on inside, from the outside it is a rule that turns what came in into what goes out. Randomised strategies come later. They turn out to be averages of deterministic ones.
 
-**What it commits us to.** We will quantify over *all* such f. That universal quantifier *is* the formal expression of freedom. We are not allowed to say "the loop is fine, provided nobody adopts strategy so-and-so." That would be the loop forbidding an action, which is the move Section 4 refused. (Whether the agents are free in some deeper metaphysical sense is another matter. The note says explicitly that it does not settle this. See Section 54.)
+**What it commits us to.** We will quantify over *all* such f. That universal quantifier *is* the formal expression of freedom. We are not allowed to say "the loop is fine, provided nobody adopts strategy so-and-so." That would be the loop forbidding an action, which is the move Section 4 refused. (Whether the agents are free in some deeper metaphysical sense is another matter. The note says explicitly that it does not settle this. See Section 67.)
 
 ### 11. Fixed points: consistent histories
 
@@ -241,6 +246,7 @@ This is a legitimate strategy. The only possible clash is if wₖ(s) = wₖ(s′
 **Where this comes from, and what it commits us to.** This is the forward direction of a recent theorem of Dourdent, Leitherer, Boghiu, Simonov, Kunjwal and Acín (2026). They show that a list of events comes from a process function exactly when it is complete and *pairwise exclusive*. The note connects this to a principle of Specker: if any two of several questions can be answered jointly, then all of them can. Philosophically, the lemma says that consistency is a constraint on *distinguishability by local agents*. Two global histories are never so alike that no agent placed identically in both could tell them apart by its own actions. The theorem will turn this into orthogonality. In quantum mechanics, orthogonal means perfectly distinguishable.
 
 ---
+
 ## Part III. Making the loop reversible
 
 ### 16. Bijections: the arithmetic of not forgetting
@@ -273,7 +279,7 @@ Read it slot by slot. It takes the parties' outputs o and the source value e. It
 
 **Why this is reversible.** Given the result (i, o), recover the start: the outputs are o (the sink kept them), and the source value is e = i − w(o). Nothing is lost. So U is a bijection, and it is one *for every map w*, process function or not. The source shift and the sink copy have absorbed all the forgetfulness.
 
-**What it commits us to.** The sink keeps a perfect copy of the outputs. This is the classical ancestor of a principle we will meet again. In a reversible world, whatever is done leaves a record somewhere. Lemma D.1 of the note (Section 47 below) shows that something like this is *forced* in any reversible realisation, not just this one.
+**What it commits us to.** The sink keeps a perfect copy of the outputs. This is the classical ancestor of a principle we will meet again. In a reversible world, whatever is done leaves a record somewhere. Lemma D.1 of the note (Section 56 below) shows that something like this is *forced* in any reversible realisation, not just this one.
 
 ### 19. Worked examples of U
 
@@ -295,13 +301,21 @@ The two-to-one loop has become one-to-one.
 
 There is a subtlety worth stating clearly, because the whole note depends on it. U is a bijection of the *open* system: outputs and source in, inputs and sink out. But the parties are still inside the loop. They take their inputs and turn them into their outputs. When we plug the parties in, the loop *closes*, and what remains is a map from source to sink.
 
-Closing the loop is where consistency matters. For the swap w(a, b) = (b, a), U is still a perfectly good bijection. Close the loop with both parties copying, and source value e = (0, 0) has two consistent continuations, while e = (1, 0) has none (Section 25 computes this). The open bijection says nothing about the closed loop. The note's slogan: **U is a bijection for every w; closing the loop is well behaved exactly when w is consistent.** (The "only when" half of this is numerical evidence only, as Section 35 explains.)
+Closing the loop is where consistency matters. For the swap w(a, b) = (b, a), U is still a perfectly good bijection. Close the loop with both parties copying, and source value e = (0, 0) has two consistent continuations, while e = (1, 0) has none (Section 26 computes this). The open bijection says nothing about the closed loop. The note's slogan: **U is a bijection for every w; closing the loop is well behaved exactly when w is consistent.** (The "only when" half of this is numerical evidence only, as Section 36 explains.)
+
+### 21. A first look at the arrow of time
+
+*A story.* A film shows a glass falling from a table and shattering. Run it backwards and you see shards leap from the floor and fuse into a glass on the table. Every frame of the reversed film obeys the laws of mechanics. We still know at once which way is "real".
+
+Physicists usually explain the asymmetry by boundary conditions, not by the laws. The laws are reversible. The world happens to have started in a very special state, and records pile up toward the future. The glass leaves shards, sound waves and warmth, a sink full of traces. The source-and-sink picture of Section 17 has exactly this shape: a reversible U in the middle, a given starting state at one end, a record at the other.
+
+**Interpretation (mine, not the note's).** In the lift, nothing irreversible happens inside U. Irreversibility appears only when we *fix* the source to one state and *discard* the sink, when we stop tracking the beginning and the end. Part VIII comes back to this. When a chancy loop can be realised reversibly at all, its randomness is the shadow of exactly that ignoring: a fixed source state and a discarded sink. Whether every chancy loop can be realised this way is the open question of Part X, and the coin-flip loop of Section 5 shows that some cannot.
 
 ---
 
 ## Part IV. Quantum vocabulary, one word at a time
 
-### 21. Kets: |o⟩ as a perfectly distinguishable configuration
+### 22. Kets: |o⟩ as a perfectly distinguishable configuration
 
 Quantum mechanics describes a system by a vector in a space of possibilities. The notation |o⟩, read "ket o", is the vector that stands for "the system is definitely in configuration o". Here o is one of our classical labels. The angle bracket marks it as a vector, not a number.
 
@@ -319,7 +333,7 @@ is a legitimate state, a *superposition*. It is neither 0 nor 1, and it is not a
 
 We also write ⟨o| ("bra o") for the mirror image of |o⟩, and ⟨u|v⟩ for the inner product of two vectors. It is 1 when they are the same unit vector, 0 when they are orthogonal, and something in between otherwise.
 
-### 22. Tensor products: independent agents
+### 23. Tensor products: independent agents
 
 When two systems sit side by side, the space for both together is the **tensor product**, written ⊗. If Alice's bit lives in a two-dimensional space and Bob's in another, the pair lives in a 2 × 2 = 4-dimensional space with basis |0⟩⊗|0⟩, |0⟩⊗|1⟩, |1⟩⊗|0⟩, |1⟩⊗|1⟩. We usually write these as |00⟩, |01⟩, and so on.
 
@@ -327,9 +341,9 @@ When Alice acts with V_A on her system and Bob acts with V_B on his, the joint o
 
 **Why this captures independence.** The tensor product is built so that local operations compose without interfering. Alice's action does not depend on which basis Bob uses, and the amplitude of a joint event is the product of the local amplitudes. Dimensions multiply, just as the number of joint classical configurations does.
 
-**What it commits us to.** Each lab is a separate factor, and each agent acts only on its own factor. This is the quantum version of the locality of agency from Section 8. It also allows *entanglement*, joint states that are not products. The note's validity argument has to handle entangled equipment too (Section 34).
+**What it commits us to.** Each lab is a separate factor, and each agent acts only on its own factor. This is the quantum version of the locality of agency from Section 8. It also allows *entanglement*, joint states that are not products. The note's validity argument has to handle entangled equipment too (Section 35).
 
-### 23. Unitaries: reversible, nothing lost
+### 24. Unitaries: reversible, nothing lost
 
 A **unitary** is a linear map U on a space of states that preserves every inner product. Equivalently,
 
@@ -339,7 +353,7 @@ Here U† ("U dagger") is the conjugate transpose: flip the matrix across its di
 
 **What this says.** U† undoes U. Every unitary is reversible, and its reverse is U†. Because inner products are preserved, perfectly distinguishable states stay perfectly distinguishable. Total probability is conserved: a normalised state stays normalised.
 
-**Why unitary = reversible = no information lost.** These are three faces of one property. "Reversible": U† runs the process backwards. "No information lost": distinguishable inputs remain distinguishable outputs, since orthogonal stays orthogonal. "Probability conserved": lengths are preserved, so probabilities still sum to 1. In quantum theory the fundamental, closed-system dynamics is unitary. Anything else arises by ignoring part of a larger unitary story (Section 34).
+**Why unitary = reversible = no information lost.** These are three faces of one property. "Reversible": U† runs the process backwards. "No information lost": distinguishable inputs remain distinguishable outputs, since orthogonal stays orthogonal. "Probability conserved": lengths are preserved, so probabilities still sum to 1. In quantum theory the fundamental, closed-system dynamics is unitary. Anything else arises by ignoring part of a larger unitary story (Section 35).
 
 **Classical bijections are unitaries.** A bijection of labels, extended to superpositions by linearity, is a *permutation matrix*. That is a matrix of 0s and 1s with exactly one 1 in each row and each column, and it is unitary. So U from Section 18 becomes the operator
 
@@ -353,7 +367,7 @@ The subscripts say which system each ket lives in: the parties' outputs O, the s
 
 It is unitary, but it is not a permutation. It turns definite bits into superpositions, with a minus sign that can cause cancellation. If a party inside the loop applies H, the loop sees something no classical strategy could produce. The note calls this "the test case". If U only behaved well for classical strategies, a Hadamard inside the loop is where it would break.
 
-### 24. Ancillas: private equipment
+### 25. Ancillas: private equipment
 
 A real laboratory has more than one bit's worth of equipment. We allow party k a private input system Xₖ and a private output system Yₖ (an **ancilla**, from the Latin for "servant"). The party's most general reversible action is then a unitary
 
@@ -363,7 +377,7 @@ which needs the dimensions to match: |Iₖ|·|Xₖ| = |Oₖ|·|Yₖ|. This also 
 
 **What it commits us to.** The agents are as powerful as quantum theory allows inside their labs. The theorem quantifies over *all* such Vₖ, with ancillas of any finite size. Again, the universal quantifier is the formal shape of freedom.
 
-### 25. What "the lift works" means, and what failure looks like
+### 26. What "the lift works" means, and what failure looks like
 
 Plug every party's Vₖ into U. Feed each input system Iₖ into Vₖ, and feed each output Oₖ back into U. What remains is a map from the source plus the parties' input ancillas to the sink plus their output ancillas:
 
@@ -384,15 +398,16 @@ So M is not unitary. Probability is doubled for some source states and annihilat
 For a process function and identity Vₖ, every column has exactly one 1, which is the classical definition again. The real question is what happens when the Vₖ are Hadamards, or arbitrary unitaries, so that many histories interfere.
 
 ---
+
 ## Part V. The main theorem, step by step
 
-### 26. Statement
+### 27. Statement
 
 > **Theorem (proved).** Let w be a process function with finite alphabets. Let each party k apply any unitary Vₖ : Iₖ ⊗ Xₖ → Oₖ ⊗ Yₖ, with private ancillas of any finite size. Then the induced source-to-sink operator M : P ⊗ X → F ⊗ Y is unitary.
 
 In plain words: **every consistent deterministic loop, made reversible with a source and a sink, stays reversible however quantum the agents inside it act.** Quantum freedom does not bring the paradoxes back.
 
-### 27. The amplitude formula, read in words
+### 28. The amplitude formula, read in words
 
 The proof starts by writing down M explicitly. Its entries are
 
@@ -402,11 +417,11 @@ Here is how to read this.
 
 - **Left side.** The amplitude for the world to go from source value e and input ancillas x to sink record s and output ancillas y.
 - **Right side.** The sink records s, and the sink holds the parties' outputs. So s *is* the list of what the parties sent. Given that, the loop delivers to party k the input wₖ(s), shifted by the source to wₖ(s) + eₖ. Party k then has to turn that input (with its ancilla xₖ) into its output sₖ (with ancilla yₖ). The amplitude for that is the matrix entry Vₖ[(sₖ, yₖ), (wₖ(s) + eₖ, xₖ)].
-- **The product ∏ₖ.** The parties act independently, so the joint amplitude is the product of the local amplitudes. This is the tensor product of Section 22 doing its job.
+- **The product ∏ₖ.** The parties act independently, so the joint amplitude is the product of the local amplitudes. This is the tensor product of Section 23 doing its job.
 
 **Philosophical point.** Because the sink records the outputs, each entry of M corresponds to *a single* consistent assignment of inputs and outputs. There is no sum over alternative histories inside an entry. The sink's record has made the histories distinguishable, so they cannot interfere with each other on the way to the same final state. Whatever interference there is happens *between* entries, and that is what the next step controls.
 
-### 28. The test: rows must be orthonormal
+### 29. The test: rows must be orthonormal
 
 A square matrix is unitary when its rows are orthonormal. Each row must have length 1, and any two different rows must be orthogonal. In symbols, M M† = 1, which written out is
 
@@ -416,7 +431,7 @@ We need this to be 1 when (s, y) = (s′, y′) and 0 otherwise.
 
 **Meaning.** The rows are labelled by final records. So the test asks whether *different final records are perfectly distinguishable*, and whether each one carries total weight 1. Reversibility, in this form, is a statement about the records the world keeps.
 
-### 29. Step 1: the sum splits into one factor per party
+### 30. Step 1: the sum splits into one factor per party
 
 Plug the product formula into the sum. The sum is over all source values e = (e₁, …, eₙ) and all ancillas x = (x₁, …, xₙ). Each party's factor involves only that party's own eₖ and xₖ. A sum of products of independent pieces is a product of sums:
 
@@ -424,7 +439,7 @@ Plug the product formula into the sum. The sum is over all source values e = (e�
 
 **Meaning.** The global question breaks into one local question per lab. This is where the source does its real work. Because each party has its own independent source symbol eₖ, summing over it lets each lab's input range over everything.
 
-### 30. Step 2: a party that receives the same input contributes a clean 0 or 1
+### 31. Step 2: a party that receives the same input contributes a clean 0 or 1
 
 Look at party k's factor when wₖ(s) = wₖ(s′). Then both Vₖ entries have the *same* input slot, wₖ(s) + eₖ. As eₖ runs through all of Iₖ, so does that slot. Rename it i. The factor becomes
 
@@ -434,42 +449,54 @@ which is just the inner product of two rows of Vₖ. Since Vₖ is unitary, it i
 
 **Meaning.** For a party in the same situation in both scenarios, local reversibility settles the question. Its factor is 1 if it did the same thing in both, and 0 if it acted differently.
 
-### 31. Step 3: equal records give length 1
+### 32. Step 3: equal records give length 1
 
 If s = s′, then wₖ(s) = wₖ(s′) for every k trivially, so every factor is of the kind in Step 2. The product is 1 exactly when y = y′. So every row has length 1, and rows with the same s but different ancilla records are orthogonal.
 
-### 32. Step 4: different records give 0, thanks to the lemma
+### 33. Step 4: different records give 0, thanks to the lemma
 
 If s ≠ s′, the factors of parties with wₖ(s) ≠ wₖ(s′) could be anything. Here is where consistency enters. The exclusivity lemma (Section 15) guarantees a party k with wₖ(s) = wₖ(s′) and sₖ ≠ s′ₖ. That party's factor is of the Step 2 kind, and since sₖ ≠ s′ₖ, it is 0. One zero factor makes the whole product 0.
 
-**Meaning.** Two different final records are orthogonal because some agent, placed identically in both scenarios, acted differently. Its local unitarity forces the zero. Without a process function, there may be no such witness, and the other factors can conspire to make M M† ≠ 1. The swap of Section 25 shows them doing it.
+**Meaning.** Two different final records are orthogonal because some agent, placed identically in both scenarios, acted differently. Its local unitarity forces the zero. Without a process function, there may be no such witness, and the other factors can conspire to make M M† ≠ 1. The swap of Section 26 shows them doing it.
 
-### 33. Step 5: square, hence unitary
+### 34. Step 5: square, hence unitary
 
 So M M† = 1. M is also square: the source-plus-input-ancilla side has dimension ∏ |Iₖ||Xₖ|, and the sink-plus-output-ancilla side has dimension ∏ |Oₖ||Yₖ|, which are equal because each |Iₖ||Xₖ| = |Oₖ||Yₖ|. For square matrices, M M† = 1 implies M† M = 1. So M is unitary. ∎
 
 **The whole proof in one sentence.** Each final record picks out a single consistent history (the sink), each lab contributes independently (the tensor product), a lab in the same situation in two histories contributes a clean 0 or 1 (local unitarity), and consistency guarantees that any two different histories have such a lab that acted differently (exclusivity).
 
-**What is machine-checked.** The exclusivity lemma and the identities M M† = 1 and M† M = 1 are formally verified in the Lean 4 proof assistant with Mathlib. They are stated for complex amplitudes, any finite number of parties, any finite alphabets, and any finite local ancillas, with input and output sizes allowed to differ. The note names the theorems PFUL.induced_mul_conjTranspose, PFUL.induced_conjTranspose_mul and PFUL.induced_unitary (the last stating membership in the unitary group). They depend only on Lean's standard axioms. The lemma is *derived* in Lean, not assumed. Details are in [lean/STATUS.md](https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/STATUS.md).
+**Checked by machine.** The lemma and both halves of unitarity are machine-checked in the Lean proof assistant, for complex amplitudes, any finite number of parties, any finite alphabets and any finite ancillas. Part VI explains what that means and why it matters.
 
-### 34. From "unitary under unitaries" to "valid under everything"
+**A warning for later.** Step 5 is the only step that uses counting: a *square* matrix with orthonormal rows is unitary. In infinite dimensions that step fails, and Part VII has to replace it with a different idea.
 
-Agents in labs do not only apply unitaries. They measure, add noise, discard things, and use equipment entangled with other labs. Does the result survive all that? The note's Appendix A shows that it does, by a standard argument (**proved on paper, and now fully machine-checked in Lean**). The Lean theorem lets the labs' equipment start in any joint state, entangled with each other and with the source. It then checks that after the loop, what remains is always a genuine quantum state: positive, with total probability one.
+### 35. From "unitary under unitaries" to "valid under everything" (proved; machine-checked)
 
-The key tool is **Stinespring dilation**. Any physically allowed operation, any "CPTP map" in the jargon (completely positive and trace preserving), can be written as three steps: add a fresh ancilla in a fixed state, apply a unitary to everything, then throw part of the result away. The throwing away is a *partial trace*: we average over what we can no longer see.
+Agents in labs do not only apply unitaries. They measure, add noise, throw things away, and use equipment entangled with other labs. Does the result survive all that? The note's Appendix A shows that it does, and every step is now machine-checked in Lean (Part VI says why that matters).
 
-**Philosophical gloss.** Every noisy or irreversible operation is a reversible one *seen partially*. Irreversibility is ignorance of a larger story in which nothing is lost. This is the first appearance of the idea of **purification**, which drives the second half of the note.
+The key tool is **Stinespring dilation**. Any physically allowed operation (a "CPTP map", in the jargon: completely positive and trace preserving) can be written in three steps. Add a fresh ancilla in a fixed state, apply a unitary to everything, then throw part of the result away. Throwing away is a *partial trace*: we average over what we can no longer see.
 
-With Stinespring in hand, the argument goes in four steps.
+**Philosophical gloss.** Every noisy or irreversible operation is a reversible one *seen partially*. Irreversibility is ignorance of a larger story in which nothing is lost. This is the first appearance of the idea of **purification**, which drives the second half of this document.
 
-1. Local unitaries give a unitary M (the theorem).
-2. A general local operation is a unitary on a larger lab followed by discarding. The extra systems never touch U, so the induced map is "append a state, apply the unitary M, discard". Each of those is physically allowed, so the composite is too.
-3. Shared or entangled equipment is covered by *complete* positivity, which is exactly the property that an operation stays allowed when it acts on part of an entangled whole.
-4. Measurements with outcomes ("instruments") give non-negative probabilities that add up to 1, by linearity.
+With Stinespring in hand, the argument has four steps. Each comes with the Lean theorem that checks it.
 
-Fix the source in |0⟩ and discard the sink, and you get back the classical loop w: each output o yields input w(o) with certainty. So the quantum lift contains the original classical loop as a special case.
+1. **Local unitaries give a unitary M.** This is the theorem of Part V. Lean also proves the version where the local maps are isometries, not necessarily square (`PFUL.induced_isometry`). Packaged as a validity statement, `PFUL.valid` says the following. For any finite ancillas and any joint quantum state of the source and the labs' equipment, entangled or shared, both the global output and the state left in the sink are genuine density matrices: positive, with total probability 1.
+2. **General local operations.** Any operation given by Kraus operators has an isometric Stinespring dilation that reproduces it (`PFUL.krausDilP_isometry`, `PFUL.ptrace_krausDil`). Validity for arbitrary local CPTP maps is `PFUL.valid_kraus`.
+3. **Entangled and shared equipment.** This is already covered by step 1. The joint starting state is allowed to be anything.
+4. **Measurements with outcomes (instruments).** Each outcome's conditional sink state is positive, and they add up to a density matrix, so outcome probabilities are non-negative and sum to 1 (`PFUL.valid_instrument`).
 
-### 35. The converse: evidence only
+**The process-matrix form.** Physicists usually state validity differently, as a "generalised Born rule". Write the whole process as one matrix W = |U⟩⟩⟨⟨U|. Each lab's operation is likewise written as its *Choi matrix* C, a positive matrix that encodes the operation completely. The rule then asks that Tr[W(ρ ⊗ 1 ⊗ C₁ ⊗ … ⊗ Cₙ)] = 1 for every source state ρ and every allowed local operation. Lean checks this too:
+
+- W is positive (`PFUL.Choi.procMat_posSemidef`).
+- The Born-rule normalisation equals 1 for all local CPTP Choi matrices (`PFUL.Choi.bornC_eq_one`), and also with lab ancillas (`PFUL.Choi.bornC_anc_eq_one`, `PFUL.Choi.bornAnc_eq_one`). The last needs no structure at all on the ancilla types.
+- The two ways of stating validity, the Born rule and "outputs are density matrices", are equivalent (`PFUL.Choi.afnb_iff_density`, and `PFUL.Choi.afnb_iff_density_split` in the exact layout of `PFUL.valid`).
+- **Choi's theorem** itself is proved: an operation is completely positive exactly when its Choi matrix is positive (`PFUL.Choi.isCP_iff_choi`). So "completely positive" is a theorem about the matrices, not a definition slipped in by hand.
+- One theorem bundles the whole chain: unitary validity, Kraus-channel validity and Born-rule normalisation for every completely positive, trace-preserving local operation (`PFUL.Choi.validity_package`).
+
+Everything in this list is for finite dimensions, with standard axioms only. The one remaining technicality is the Choi form in *infinite* dimensions (Section 43).
+
+Fix the source in |0⟩ and discard the sink, and you get back the classical loop w: each output o yields the input w(o) with certainty. The quantum lift contains the original classical loop as a special case.
+
+### 36. The converse: evidence only
 
 What if w is *not* a process function? Then the exclusivity property fails (Dourdent et al.). The note does *not* prove that unitarity must then fail in general. But numerically, every non-process function in the two- and three-party binary cases fails unitarity for random local unitaries (code/check.py). That fits the slogan of Section 20, but the "only if" direction is **evidence**, not proof.
 
@@ -478,9 +505,98 @@ The code also checks the theorem by brute force: all 12 two-party and 744 three-
 **What has been shown, philosophically.** Daher Ahmed and Kunjwal (2026) had conjectured this result and proved it for a subclass. They noted that the bare permutation unitary might fail to be a valid process. The note argues that it never fails. Araújo et al. (2017) had already written down this construction for Lugano, and Baumeler, Gilani and Rashid (2022) had remarked on unitary extensibility without a separate proof. The note's contribution is a short general proof for the coherent permutation unitary. Its philosophical reading is that **classical fixed-point consistency is already a quantization condition**. No extra quantum filter is needed.
 
 ---
-## Part VI. Chance in loops: mixtures and purification
 
-### 36. Classical processes: p(i | o)
+## Part VI. The incorruptible referee: why machine-checked proof matters
+
+### 37. A story: the referee who cannot be flattered
+
+Imagine a referee with three odd traits. She reads every line, never skims, and never gets tired. She has no reputation to protect and no friends to please, so a famous name on the paper means nothing to her. And she accepts nothing she cannot rebuild from first principles. "It is well known that…" earns a polite refusal until you show her why.
+
+Human refereeing has none of these traits reliably. Short proofs in mathematical physics often hide a step that "obviously" generalises: a square-matrix argument quietly reused in infinite dimensions, a sum swapped with a limit, an ancilla assumed to be unentangled. The proof in Part V is short. Part VII showed that one of its innocent-looking steps, "orthonormal rows plus square means unitary", is exactly the step that fails in Hilbert's hotel.
+
+**Lean** is a proof assistant: a programming language in which definitions and proofs are written so precisely that a small, trusted program (the *kernel*) can check every inference. **Mathlib** is its large shared library of formalised mathematics. A theorem that compiles has been checked by the referee who cannot be flattered.
+
+### 38. What exactly she has checked
+
+These results are machine-checked, in Lean 4.34.1 with Mathlib, using only Lean's three standard axioms (`propext`, `Classical.choice`, `Quot.sound`). There is no "sorry", meaning no unproved step, no custom axiom, and in the main results no `native_decide`, a shortcut that trusts the compiler.
+
+- **The definition.** `PFUL.IsProcessFunction` w says that for every strategy f there is exactly one s with fₖ(wₖ(s)) = sₖ for all k. That is the definition of Section 12, transcribed.
+- **The lemma is derived, not assumed.** `PFUL.exclusivity` proves Section 15 from the definition.
+- **The main theorem.** M M† = 1 (`PFUL.induced_mul_conjTranspose`), M† M = 1 (`PFUL.induced_conjTranspose_mul`), and membership in the unitary group (`PFUL.induced_unitary`). These hold for complex amplitudes, any finite number of parties, any finite alphabets, and ancillas of any finite size, with input and output sizes allowed to differ. The row identity even holds over any field with a conjugation.
+- **Validity under everything** (Section 35), including Choi's theorem, ending in `PFUL.Choi.validity_package`.
+- **Countable alphabets** (Part VII), ending in `PFUL.Countable.induced_unitary_l2`.
+
+### 39. What a referee cannot check
+
+She checks that the proof proves the statement. She cannot check that the statement says what we *mean*. Two episodes from the repository's own history make the point.
+
+- **The weaker theorem that looked like the real one.** Early Lean files proved row cancellation for integer-valued "rows". There, row orthonormality was a *hypothesis*, and so, in one file, was the witness party that the exclusivity lemma is supposed to supply. Those files compile. They are honestly labelled in lean/STATUS.md as "proved only under assumptions (NOT the paper's theorem)". A green tick on the wrong statement is still a green tick.
+- **A claim marked as false on purpose.** The Lean files define a placeholder `SpacetimeEmbeddingClaim` and set it equal to False. This is a deliberate flag that nothing here says the loop is a spacetime (Section 70).
+
+So machine-checking moves trust; it does not remove it. Trust moves away from the long chain of inferences and onto three short things: the small kernel, the three axioms, and the *definitions*. Anyone can read `PFUL.IsProcessFunction` in two lines and judge whether it captures "exactly one consistent history for every intervention". That is a much smaller thing to trust than a long chain of index-juggling.
+
+**What remains unchecked.** The Choi form in infinite dimensions (Mathlib lacks trace-class operators). Continuous alphabets, which have no settled definition yet. Everything in the stochastic half (Parts VIII–XI): the certificates there are exact computer arithmetic, but they are not Lean proofs. And, of course, every philosophical claim.
+
+---
+
+## Part VII. Infinity: Hilbert's hotel inside a time loop
+
+### 40. A story: the hotel with infinitely many rooms
+
+David Hilbert liked to describe a hotel with infinitely many rooms, numbered 1, 2, 3, and so on, all of them occupied. A new guest arrives. The manager asks every guest to move from room n to room n + 1. Nobody is turned out, nobody shares a room, and room 1 is now free. The move was perfectly one-to-one, and still a room appeared from nowhere. Run it the other way, everyone from n + 1 to n, and the guest in room 1 has nowhere to go.
+
+Now smuggle the hotel into a time loop. Suppose a party's alphabet is infinite: it can receive and send any whole number. The source, the sink and the loop shuffle "guests" (basis states) between infinitely many "rooms". In a finite hotel, a shuffle that never doubles guests up must fill every room. That is the counting step at the end of the finite proof (Section 34: a square matrix with orthonormal rows is unitary). In an infinite hotel that step is simply false. The map could be like Hilbert's manager. Different sink records would stay perfectly distinguishable, but some state coming in from the source could fail to arrive anywhere in full. Probability would *leak* into the infinite corridors.
+
+In quantum terms, the operator that moves n to n + 1 (the *shift*) has orthonormal rows but is not unitary. So the question for infinite alphabets is sharp. **Does the loop leak?**
+
+### 41. The setting and the easy half (proved)
+
+The note's Appendix F takes finitely many parties. Each input alphabet Iₖ is countable and carries a group structure, so the source can still "add" its value. The integers ℤ are the model case. Each output alphabet Oₖ is countable. Quantum states live in ℓ², the space of square-summable sequences over these sets: the infinite-dimensional analogue of the finite spaces we have used so far.
+
+- **The open map is still a bijection (proved, F.1).** U|o, e⟩ = |w(o) + e, o⟩ shuffles basis states one-to-one and onto, with inverse (i, f) ↦ (f, i − w(f)). So U is unitary on ℓ². Here the hotel is harmless: U is a genuine bijection.
+- **No interference between different histories (proved, F.2).** The exclusivity lemma holds for alphabets of any size. Its proof only ever prescribes two values of each strategy. Each matrix entry of M is still a single product with no infinite sum hiding inside it, so no question of convergence arises. The rows of M are orthonormal, M M† = 1, exactly as in Part V.
+
+That is the half of unitarity that says *distinct records never blur together*. The other half, that *nothing leaks*, is where the hotel lurks.
+
+### 42. The second half: count the consistent histories by chance (proved)
+
+The finite proof got the second half for free by counting dimensions. The new proof (Appendix F.3) replaces counting with probability, and the idea is lovely.
+
+**Step 1: read each lab as a random rule.** Fix a source value e (with ancilla x). Each party's unitary Vₖ turns an input into a superposition of outputs. The squared amplitudes give, for each input i, a probability distribution qₖ(· | i) over outputs. Because Vₖ is unitary, each of these really is a probability distribution, summing to 1.
+
+**Step 2: draw a whole strategy at random.** For every party k and every possible input i, independently, draw an output fₖ(i) with probability qₖ(fₖ(i) | i). The result is a *random deterministic strategy* for everybody: a random choice of the f of Section 10. With infinitely many inputs this is an infinite product of probability spaces. That is perfectly standard measure theory.
+
+**Step 3: notice what the column norm is.** The squared length of the column of M for source value e works out to
+
+    Σ over o of ∏ₖ qₖ(oₖ | wₖ(o)).
+
+The term for a given o is exactly the probability that o is a fixed point of the random strategy. Summing over all o, with Tonelli's theorem to justify swapping sum and expectation, gives the **expected number of fixed points**.
+
+**Step 4: consistency finishes the job.** For a process function, *every* deterministic strategy has exactly one fixed point. So the number of fixed points is the constant 1, and its expectation is 1. Every column has length 1. Nothing leaks. Together with the orthonormal rows, M is unitary.
+
+**Worked check.** For w(a, b) = (0, a), the column norm is Σ over a, b of q_A(a | 0) · q_B(b | a). Sum over b first: each q_B(· | a) sums to 1. Then sum over a: q_A(· | 0) sums to 1. Total 1, as promised. For the swap w(a, b) = (b, a) with both parties copying (q(o | i) = 1 exactly when o = i), the column norm is the number of a, b with a = b, which is 2. That is the bootstrap of Section 26 again: "probability" doubled.
+
+**What the story shows.** Back in the hotel, a leak would be a source state with column length less than 1, a guest who checks in and never fully arrives. The expected-fixed-points argument shows that the guest is always *exactly* accounted for. The reason is the reason for everything else in this document. Every way the agents could behave yields exactly one consistent history. A random behaviour is just an average over such ways, and an average of ones is one.
+
+**Philosophical gloss (interpretation).** Consistency does double duty. Through the exclusivity lemma it forbids different histories from interfering. Through the expected count it forbids probability from being created or destroyed. The first is a statement about *distinguishability*, the second about *conservation*. Both come from the single clause "exactly one fixed point, for every intervention."
+
+The same argument also gives a second, *dimension-free* proof in the finite case. It never uses the fact that the matrix is square.
+
+### 43. What the referee has checked about infinity
+
+- **Finite alphabets, second proof (machine-checked).** The averaging identity `PFUL.Column.sum_prod_eq_one` holds over any commutative ring. Unit columns are `PFUL.induced_colnorm`. M† M = 1 from orthonormal rows plus unit columns, with no dimension count, is `PFUL.induced_conjTranspose_mul_of_colnorm`.
+- **Countable alphabets (machine-checked).** The expected-fixed-points identity is `PFUL.Countable.tsum_prod_eq_one`, built with Mathlib's infinite product measure, and it allows inputs of any cardinality. Unit columns are `PFUL.Countable.induced_colnorm`. Orthonormal rows are `PFUL.Countable.induced_rows`, using the factorisation lemma `PFUL.Countable.hasSum_pi_prod`. The assembly is `PFUL.Countable.induced_unitary_l2`. It gives a linear isometric *equivalence* between the two ℓ² spaces whose matrix is M: a genuine unitary on infinite-dimensional Hilbert space. Its hypotheses are finitely many parties, countable alphabets and ancillas, and each Vₖ a unitary kernel. Standard axioms only.
+
+**Still open or not formalised.**
+
+- **Continuous alphabets (open, F.5).** Take inputs in the real line or the circle. The open map U is still unitary on L², since it preserves measure. But "the loop closed with arbitrary local unitaries" involves evaluating functions at points, which is undefined for general L² unitaries. So the statement first needs a *definition*. The note suggests one, inspired by the countable proof, but it would need a measurable version of "exactly one fixed point". For measure-preserving local bijections the closed map preserves measure in the causal case, and this is open in the non-causal case.
+- **The process-matrix (Choi) form in infinite dimensions (not formalised).** The unitary layer is machine-checked for countable alphabets. Restating validity as "Tr[W(…)] = 1" there needs trace-class operators and partial traces on ℓ². Mathlib does not yet have them, so this was not attempted. It is a technical gap in the formalisation, not a doubt about the mathematics of the unitary layer.
+
+---
+
+## Part VIII. Chance in loops: mixtures and purification
+
+### 44. Classical processes: p(i | o)
 
 Now let the environment be random. Instead of a function w, we have conditional probabilities
 
@@ -492,7 +608,7 @@ A **classical process** is such a p that is **logically consistent**. For every 
 
 **What it commits us to.** Chance is put in the *environment*, not in the agents. And consistency is demanded only "on average". A random loop may be inconsistent in some of its deterministic pieces, as long as the probabilities always add up correctly. The coin-flip loop of Section 5 was exactly this.
 
-### 37. The polytope: a map of all consistent loops
+### 45. The polytope: a map of all consistent loops
 
 Collect all the numbers p(i | o) into one long list. Each classical process is then a point in a high-dimensional space. Logical consistency is a set of linear equations and inequalities (probabilities are non-negative, and certain sums equal 1). A region cut out by finitely many linear conditions like that is a **polytope**, a many-dimensional cousin of a polygon or a cut gemstone. This one is the **Baumeler–Wolf polytope**.
 
@@ -509,13 +625,13 @@ Every process function is a vertex: a deterministic point cannot be a mixture of
 
 Inside the big polytope sits a smaller one, the **process-function hull**, conv(PF). It is the set of all mixtures of the 744 process functions. For three binary parties, the random corners stick out beyond it.
 
-### 38. Purification: randomness as ignorance of a hidden pure state
+### 46. Purification: randomness as ignorance of a hidden pure state
 
 Can a chancy loop be realised in a reversible quantum world? The precise notion is **purifiability** (Araújo, Feix, Navascués and Brukner 2017, Definition 3).
 
 A classical process W is *purifiable* if there is
 
-- a unitary V, with a source and a sink, that is **pure**: unitary to unitary for every choice of local unitaries, as in Section 25; and
+- a unitary V, with a source and a sink, that is **pure**: unitary to unitary for every choice of local unitaries, as in Section 26; and
 - a fixed **source state** |ψ⟩ (ψ is Greek "psi"),
 
 such that preparing the source in |ψ⟩ and discarding the sink gives back exactly the probabilities of W.
@@ -526,7 +642,7 @@ such that preparing the source in |ψ⟩ and discarding the sink gives back exac
 
 (The W here is the process written as a matrix, the "process matrix". For classical processes it is diagonal, with the numbers p(i | o) on the diagonal. Nothing below needs more than that.)
 
-### 39. Mixtures of process functions are purifiable (proved)
+### 47. Mixtures of process functions are purifiable (proved)
 
 **Proposition (proved; note, C.1).** Every mixture of process functions is purifiable.
 
@@ -546,13 +662,13 @@ Under local unitaries this acts as M_j on the j-th block, and each M_j is unitar
 
 The same trick mixes *any* purifiable processes, so the purifiable classical processes form a convex set containing the whole process-function hull. In particular, every two-party binary classical process is purifiable.
 
-### 40. The classical version settles itself (proved)
+### 48. The classical version settles itself (proved)
 
 Before going quantum, ask the classical question. Call W **classically purifiable** if it is what you see, averaging over a random source value λ, of a classical reversible process. That is, a bijection that stays a bijection from source to sink under every deterministic local intervention.
 
 **Proposition (proved, sketch; note D.6).** W is classically purifiable if and only if it is a mixture of process functions.
 
-**Why.** Fix the source value λ. You get a deterministic loop w_λ. For the source-to-sink map to stay a bijection under every intervention, each intervention must have exactly one consistent run. With zero runs, that source value would have no image. With two, two runs would collide in the sink, by counting. So each w_λ is a process function, and W is the λ-average of them. The converse is the random-source construction of Section 39.
+**Why.** Fix the source value λ. You get a deterministic loop w_λ. For the source-to-sink map to stay a bijection under every intervention, each intervention must have exactly one consistent run. With zero runs, that source value would have no image. With two, two runs would collide in the sink, by counting. So each w_λ is a process function, and W is the λ-average of them. The converse is the random-source construction of Section 47.
 
 **Meaning.** In a *classical* reversible world, chance in a consistent loop is always ignorance about which deterministic consistent loop obtains. This is now a theorem.
 
@@ -562,9 +678,9 @@ So the big question narrows sharply:
 
 ---
 
-## Part VII. The random corners
+## Part IX. The random corners
 
-### 41. E_ex1, formally
+### 49. E_ex1, formally
 
 Recall the coin-flip loop of Section 5. Let C be the *circular identity*, in which each party receives the previous party's output:
 
@@ -581,7 +697,7 @@ Recall the coin-flip loop of Section 5. Let C be the *circular identity*, in whi
 
 So E_ex1 is a consistent loop whose chance is not ignorance over consistent deterministic loops. It averages two *inconsistent* deterministic loops. In the geometry of the polytope it is a corner: there is nothing more definite inside the polytope for its chance to be ignorance about.
 
-### 42. Why E_ex1 cannot be purified: isotropic subspaces, gently
+### 50. Why E_ex1 cannot be purified: isotropic subspaces, gently
 
 **Proposition (proved, exact certificate; note C.2).** E_ex1 is not purifiable.
 
@@ -599,7 +715,7 @@ The proof uses an exact criterion due to Araújo et al. (their Theorem 4). Here 
 
 **A numerical cross-check.** A gradient search for purifications drives the residual to about 10⁻¹³ for Lugano, which is purifiable, but stalls at 79.7 for E_ex1. The search agrees with the certificate.
 
-### 43. The other random corners
+### 51. The other random corners
 
 Sampling 40,000 random vertices of the three-party binary polytope gave 646 non-deterministic ones. Up to symmetry (swapping parties and relabelling inputs and outputs) these fall into **51 orbits**. For all 51, the simple room test dim V_W ≥ rank W passes, so it decides nothing.
 
@@ -607,19 +723,31 @@ Sampling 40,000 random vertices of the three-party binary polytope gave 646 non-
 - **Evidence only:** for the other 49 orbits (dim V_W from 82 to 256), the certificate method was inconclusive. A GPU search, with 64 random restarts per orbit, found no purification for any of them. Best residuals ranged from 12.97 to 59.35, far from zero, while the same code finds Lugano's purification and stalls on E_ex1 as expected. A local search can miss solutions, so this is not a proof.
 
 ---
-## Part VIII. The conjecture, and the evidence
 
-### 44. The conjecture
+## Part X. The conjecture, and the evidence
+
+### 52. The conjecture
 
 > **Conjecture (open).** A classical process is purifiable if and only if it is a mixture of process functions.
 
-The "if" direction is proved (Section 39). The "only if" direction is open. By Section 40, the conjecture is equivalent to:
+The "if" direction is proved (Section 47). The "only if" direction is open. By Section 48, the conjecture is equivalent to:
 
 > **A classical process that is quantum-purifiable is already classically purifiable.**
 
 In words: for loops with classical statistics, quantum reversibility buys nothing that classical reversibility did not already give. If the conjecture holds, every reversible quantum realisation of a chancy classical loop is, at the level of its statistics, a coherent ignorance-mixture of deterministic consistent loops.
 
-### 45. The hidden-label idea (Conjecture D.3)
+### 53. A story: two workshops
+
+Two workshops build time loops to order. The first, the *clockmaker's*, uses only classical parts: gears, levers, a shuffled deck sealed in a drawer at the start, and a ledger at the end that records everything. Its machines are reversible: from the ledger and the final positions you could reconstruct the deck. The second, the *quantum workshop*, may use anything quantum mechanics allows: superposed gears, entangled drawers, interference. Its machines must also be reversible, in the quantum sense.
+
+A customer orders a loop with given classical statistics: "under every strategy, these inputs with these probabilities".
+
+- The clockmaker can build exactly the **mixtures of process functions**. The shuffled deck picks a deterministic consistent loop, and the ledger remembers which (Section 48, proved).
+- The quantum workshop can build at least those (Section 47, proved). It provably *cannot* build the coin-flip loop E_ex1 (Section 50, proved).
+
+The conjecture says the two order books are identical. **Quantum reversibility buys loops nothing that classical reversibility does not.** If true, all the extra power of the quantum workshop, its superpositions and interference, is invisible in the classical statistics of a loop. Whatever it builds, the clockmaker could have built with a shuffled deck.
+
+### 54. The hidden-label idea (Conjecture D.3)
 
 The most natural strategy for proving the conjecture goes like this. Take any purification. Look inside its source. Hope to find a classical label λ, "which loop are we in?", such that for each value of λ the purification just runs one deterministic loop w_λ. Then W would be the λ-average of the w_λ. Each w_λ would have to be a process function, because the purification stays unitary on each label alone. And the conjecture would follow.
 
@@ -631,11 +759,17 @@ for functions w_λ (the loop for label λ) and g_λ, with g_λ one-to-one on out
 
 **What D.3 encodes.** It is a *hidden-variable* thesis. Underneath the quantum description there is a single classical fact, fixed in advance, about which deterministic loop is running. The fact is fixed independently of what the agents do.
 
-### 46. The counterexample: contextual randomness (proved; note D.4)
+### 55. The counterexample: contextual randomness (proved; note D.4)
+
+*A story first: the coin whose face is decided by how you look.* A sealed token sits in a drawer. Alice, in the first lab, makes a choice. Then Bob, in the second lab, receives a bit. The whole thing behaves exactly as if a fair coin had been tossed in advance. Heads, Bob's bit is a copy of Alice's. Tails, Bob always receives 0. Naturally you assume the coin's face is written somewhere in the drawer, waiting.
+
+It is not. If Alice chooses 0, the token is consulted with one question, and the face does not matter, since both "loops" give Bob a 0. If Alice chooses 1, the token is consulted with a *different*, incompatible question, and only then does a face appear, at random. There is no single way of reading the token that would serve as the coin for both of Alice's choices. The statistics are those of a coin tossed in advance. The mechanism is a coin whose face is decided by how you look.
+
+Now the details.
 
 **D.3 is false.** The counterexample is not even a time loop. It is an ordinary, causally ordered circuit.
 
-**The story.** Alice has no input; she just chooses a bit oA. Then Bob receives a bit and sends one. The source holds two qubits, m and a, both starting in |0⟩. The circuit:
+**The circuit.** Alice has no input; she just chooses a bit oA. Then Bob receives a bit and sends one. The source holds two qubits, m and a, both starting in |0⟩. The circuit:
 
 1. If oA = 1, apply a Hadamard to m. If oA = 0, leave m alone.
 2. Copy m into a, using a controlled-NOT, which flips a exactly when m is 1.
@@ -661,19 +795,19 @@ on the source. Here V_o is the purification with the parties' outputs fixed at o
 
 **Consequence for proofs.** No argument that tries to extract one classical label from the source can work. A proof of the conjecture must show *directly* that W lies in the process-function hull, for example by showing that purifiability implies every facet inequality of that hull.
 
-### 47. Two things that cannot be the criterion
+### 56. Two things that cannot be the criterion
 
 The note also proves two negative results. They say where the answer is *not*.
 
 **Quantum-controlled interventions do not help (proved; note D.5).** One might hope that E_ex1 fails some weaker quantum test, such as letting the parties apply instruments coherently controlled by shared entangled equipment, and checking that probabilities still add to 1. They always do, for *every* classical process. Because W is classical (diagonal), it strips away all quantum coherence at the parties' doors. What remains is a classical joint behaviour that cannot be used to signal. Every such behaviour is an *affine* combination of local deterministic ones (signed weights allowed). The normalisation is linear and equals 1 on each deterministic strategy, so it equals 1 for all of them. So only the *unitarity* (reversibility) requirement can separate E_ex1 from mixtures. Consistency under quantum interventions is not enough.
 
-**The actual source state is not enough (proved; notes D.2 and D.8).** Any test that looks only at what happens when the source is in its actual state |ψ⟩ is passed by every classical process, including E_ex1. This holds even when the parties use arbitrary local unitaries and superpositions of strategies. So any proof must use how the purification would act on source states *orthogonal* to |ψ⟩, the ones that never actually occur. In Araújo et al.'s terms, that is exactly the non-convex isotropic-subspace condition of Section 42.
+**The actual source state is not enough (proved; notes D.2 and D.8).** Any test that looks only at what happens when the source is in its actual state |ψ⟩ is passed by every classical process, including E_ex1. This holds even when the parties use arbitrary local unitaries and superpositions of strategies. So any proof must use how the purification would act on source states *orthogonal* to |ψ⟩, the ones that never actually occur. In Araújo et al.'s terms, that is exactly the non-convex isotropic-subspace condition of Section 50.
 
 **Philosophical gloss (interpretation).** What rules out E_ex1 is not anything that happens. It is the *modal* structure of the reversible world: how it would have behaved had it started differently. Reversibility is a constraint on counterfactuals, not only on actual histories.
 
 A related structural fact (**proved; note D.1**): in any purification, the sink keeps a perfect record of the pair (outputs, inputs). The vectors it holds for different pairs are orthogonal, with squared lengths p(i | o). Reversibility forces a complete record, as Section 18 anticipated.
 
-### 48. The facet evidence
+### 57. The facet evidence
 
 If the conjecture is true, purifiability must imply every facet inequality of the process-function hull. So it helps to know those inequalities.
 
@@ -689,7 +823,7 @@ where each string lists the three parties' bits, inputs before the bar and outpu
 
 Members of facet orbit 82 are violated by E_ex1 and by **all 51** sampled non-deterministic vertex orbits. So a single class of inequalities separates every sampled random corner from the hull. **Deriving it from purifiability is the natural next target. It has not been done.**
 
-### 49. Walking from Lugano to E_ex1
+### 58. Walking from Lugano to E_ex1
 
 The note also tests the boundary numerically (evidence; note D.8). Walk along the straight line from Lugano (purifiable) toward E_ex1 (not):
 
@@ -697,28 +831,58 @@ The note also tests the boundary numerically (evidence; note D.8). Walk along th
 
 The process-function hull is left almost at once, at about t ≈ 2 × 10⁻⁷, because Lugano is a corner and this direction points straight out. The purification search finds nothing at t = 0.02 or t = 0.2, with best residuals 52.2 and 60.1. The same code reaches about 10⁻¹³ on Lugano itself. So along this line, purifiability appears to stop exactly where the hull does. That is consistent with the conjecture, but it is not proof.
 
-### 50. Why the rest is hard
+---
 
-Three things make the open half of the conjecture difficult.
+## Part XI. The honest map of dead ends
 
-1. **The constraint is non-convex.** Whether a 16-dimensional (or larger) subspace exists on which many quadratic forms all vanish is not a convex question. Convex questions can usually be settled by duality: when no solution exists, there is a checkable certificate saying so. Non-convex questions offer no such guarantee. Single-form counting (Section 42) worked for the two smallest orbits. For the larger ones, single-form inertia, block forms and SDP relaxations (a standard convex approximation) have all stalled.
-2. **The easy information is useless.** By D.2, D.5 and D.8, everything that can be read off from the actual source state is satisfied by every classical process. The proof must engage the unrealised source states, and that is exactly where the non-convexity lives.
-3. **No hidden label.** By D.4, one cannot reduce the problem to finding a classical "which loop" variable. The argument has to work at the level of W itself, presumably facet by facet.
+### 59. A story: the cartographer's other map
+
+Explorers publish the route that reached the summit. The best of them also publish a second map, of the gullies that ended in cliffs, the passes that were snowed in, and the bridges that looked sound and were not. That second map is less glamorous, but it is the one the next party needs most.
+
+The open half of the conjecture has such a map. Here it is, route by route. Every entry is either **proved** to be a dead end, or **evidence** that it stalls.
+
+### 60. The routes that failed
+
+1. **The hidden-label route. Dead end, proved (D.4).** Find a classical "which loop" variable in the source. The causal counterexample of Section 55 shows that no such variable need exist, even when the conclusion is true.
+2. **The weaker quantum test. Dead end, proved (D.5).** Demand only that probabilities be normalised under quantum-controlled interventions. Every classical process passes, including E_ex1 (Section 56).
+3. **The actual source state. Dead end, proved (D.2, D.8).** Look only at what the purification does to the source state that is really prepared. Every classical process passes there too, so no certificate built from that data alone can rule out a purification (Section 56).
+4. **Single-form certificates. Partial success, then a stall.** Combine the constraint forms into one and count its plus and minus directions (Section 50). This *works* for the two smallest orbits, giving E_ex1's exact certificate. For the 49 larger orbits it was inconclusive.
+5. **Block forms and semidefinite relaxations. Stalled.** Matrix-valued forms and semidefinite programming generalise the counting test. The note's Section 9 lists them, with single-form inertia, as the attempts that "stalled for the larger orbits".
+6. **Symmetry and representation theory. Negative result (Appendix E).** The 384 symmetries (permuting parties, relabelling inputs and outputs) could shrink the problem, so the note computed each process's *stabiliser*, the symmetries that leave it unchanged. E_ex1 and orbit 50 have 48, orbit 7 has 16, Lugano 6, and 34 of the sampled orbits have only the trivial one. Symmetry helps most exactly where certificates already exist, and not at all for most open orbits. Worse, the natural convex relaxation that symmetry would have sped up, a moment relaxation over pairs of copies of the projector, turned out to be *feasible* for E_ex1 at r = 16, with strict margins. It cannot even detect the one case we know is non-purifiable. It is strictly weaker than the plain counting test, so symmetry-reducing it is pointless. Stronger convex certificates would need higher moment levels, or would have to encode rank.
+7. **Local numerical search. Evidence, not proof.** Gradient searches find Lugano's purification and stall on every random corner tried (Sections 51 and 58). A local search can always miss a solution.
+8. **The algebraic route. Not attempted.** The repository's working notes (code/stochastic/cert/better/NOTES.md, not the paper) record one more idea. The obstruction seems to live on the special set of vectors that are isotropic for all the forms at once, an algebraic variety, and a certificate about the ranks on that set would be sound in principle. It has not been carried out. It is listed here only so the map is complete.
+
+### 61. Why the dead ends cluster
+
+The map has a shape, and the shape is the lesson.
+
+- **The easy information is useless.** Everything readable from the actual source state is satisfied by every classical process (routes 2 and 3). Any proof must use how the purification would treat source states orthogonal to the one actually prepared.
+- **That information is non-convex.** Demanding that a whole 16-dimensional (or larger) subspace make many quadratic forms vanish at once is not a convex condition. Convex questions can usually be settled by duality: when no solution exists, there is a checkable certificate saying so. Non-convex questions offer no such guarantee. Every convex surrogate tried, routes 4 to 6, either needs luck in small cases or is provably too weak.
+- **No shortcut through a hidden variable** (route 1). The argument has to work at the level of the statistics W, presumably facet by facet (Section 57).
 
 So the conjecture is open. D.3 is refuted. No counterexample to the conjecture itself has been found. That last point is weak evidence, because the large cases are untested.
 
+**Philosophical gloss (interpretation).** Negative results are knowledge. "This route provably cannot work" narrows the space of possible proofs as surely as a positive lemma narrows the space of possible worlds. Here the negative results also have content of their own. They say that what separates basic chance from ignorance, if anything does, lies in the *counterfactual* behaviour of a reversible world, how it would have treated a source state that was never prepared. Nothing in what actually happens shows it.
+
 ---
-## Part IX. Philosophical discussion
+
+## Part XII. Philosophical discussion
 
 > **Everything in this part is interpretation.** It is a reading of the results above, following the note's own philosophical sections (3–8 and the end of 9). None of it is a theorem. Where a claim goes beyond the note's own wording, I say so.
 
-### 51. Consistency is already a quantization condition
+### 62. Consistency is already a quantization condition
 
 The classical demand "exactly one consistent history, whatever anyone does" was invented to dissolve the grandfather and the bootstrap. Nothing in it mentions amplitudes, phases or interference. Yet the main theorem shows that it is exactly strong enough to keep the quantum lift unitary. The proof makes the reason visible. Consistency guarantees that any two global histories are told apart by some agent who was in the same situation in both. Quantum mechanics turns "told apart by a local agent" into "orthogonal", and orthogonality is all unitarity needs.
 
 So the note reads the result as saying that **fixed-point consistency is already a quantization condition**. The note surveys other quantum treatments of time loops. Deutsch's fixed-point model pays for its consistency with nonlinearity. Post-selection discards inconsistent branches, which the note calls a filter on samples, "of the same shape as a measure-zero axiom". Neither, the note argues, supplies the criterion. For process functions, the theorem shows that no extra quantum filter is needed. The classical consistency condition, imposed for all interventions, already carries over.
 
-### 52. Can chance be fundamental inside a loop?
+### 63. Lewis and Novikov, revisited
+
+Lewis showed that time travel stories need not contradict themselves. Novikov proposed that physics admits only the stories that do not. Both left a gap. Lewis's "can and cannot" explains why the grandfather survives, but not *which* history obtains. Novikov's principle throws out inconsistent histories but does not choose among the consistent ones. The billiard balls of Section 3 sometimes had two.
+
+The process-function clause closes both gaps at once, at the price of a strong demand. *Every* intervention must have exactly one consistent history. The main theorem then adds something neither Lewis nor Novikov could have asked for. When the agents are given every power quantum mechanics allows, the demand still holds, with probabilities exactly normalised, for finite and countably infinite alphabets alike. On this reading, the consistency principle is not a filter bolted onto the dynamics, which was Earman's worry. For process functions, it *guarantees a property of a reversible dynamics* that contains the loop. (The converse, that every inconsistent loop breaks unitarity, is supported numerically but not proved; Section 36.)
+
+### 64. Can chance be fundamental inside a loop?
 
 Two pictures of chance are in play.
 
@@ -735,40 +899,52 @@ The results so far:
 
 If the conjecture holds, the note's reading is this. Every reversible quantum loop with classical statistics is a coherent ignorance-mixture of deterministic consistent loops. Genuinely chancy loops like E_ex1 would be classically consistent but not reversibly realisable. **Reversibility, not consistency alone, would be the constraint that excludes basic chance from loops.** D.5 sharpens this: consistency under all quantum interventions holds for every classical process, so it is precisely the reversibility requirement that does the excluding.
 
-### 53. Ignorance without a hidden label
+### 65. Determinism hidden, or created on the fly?
 
-The D.4 counterexample adds a caveat the note insists on. Even where chance *is* ignorance, the ignorance need not be about a single hidden label carried in the source. In D.4 the statistics are a mixture of deterministic loops. But "which loop" is answered differently depending on what Alice does. The ignorance reading is therefore a claim about the process W, not about any one hidden variable.
+There are two ways to imagine the chance in a mixture of loops.
 
-One might put it like this (this framing is mine, not the note's). The world may be "as if" one of several deterministic loops obtains, without there being a context-independent fact about which. That is a familiar pattern from the foundations of quantum mechanics. What is new here is only the setting.
+- **Hidden determinism.** The world was always one particular deterministic loop. The coin was tossed at the beginning and its face is written somewhere. We just have not looked.
+- **Determinism created on the fly.** No face is written anywhere. A definite loop *emerges* as the agents act, and which one emerges depends on what they do.
 
-### 54. Freedom, bilking and Lewis
+The clockmaker's workshop (Section 53) is pure hidden determinism: the shuffled deck in the drawer. The D.4 counterexample (Section 55) shows that a quantum reversible world can produce the very same statistics by the second route. The token answers "which loop?" only when asked, and the question it is asked depends on Alice's choice.
+
+**Interpretation.** If the conjecture is true, the two pictures cannot be told apart by any loop's classical statistics. Every quantum-reversible chancy loop has the statistics of a shuffled deck. But the *mechanism* may still be on-the-fly. The ignorance reading is safe as a claim about W. It is not safe as a claim about a hidden label. This is the note's own caveat. That it echoes contextuality in quantum foundations (Kochen and Specker) is my comparison, not a result.
+
+### 66. Reversibility and the arrow of time
+
+Section 21 gave the standard picture: reversible laws, an arrow supplied by a special beginning and an accumulating record. The lift realises that picture precisely, for loops.
+
+- In the middle is U, reversible, with M unitary however the agents act.
+- At the beginning is the source, set to a fixed state.
+- At the end is the sink, which keeps a perfect record of what the parties sent and received (D.1, Section 56), and which we then ignore.
+
+Randomness appears only at the edges. A mixture of loops arises from a coherent source and a discarded record (Section 47). If the label is not handed to the sink, the branches interfere, and the result is no longer a classical mixture. **Interpretation.** In this toy world, classical chance and the arrow of time have a common origin: what we do not track at the boundaries. The conjecture, read this way, says that boundary-ignorance is the *only* source of chance a reversible loop can have. That is why basic chance, as in E_ex1, would be excluded not by consistency (E_ex1 is consistent) but by reversibility.
+
+### 67. Freedom, bilking and Lewis
 
 Black's *bilking* argument against backward causation goes like this. If a later event causes an earlier one, an agent who sees the earlier event can act to prevent the later one. Either the agent cannot so act, which wants explaining, or the later event was not needed for the earlier one. Lewis answered that the agent can and cannot, in two senses of "can".
 
 The process-function framework takes a definite side. It quantifies over *all* interventions, so no action is forbidden. The loop only constrains which global history results. The note is explicit that this does not settle whether the agent's choice was genuinely *open*. The fixed-point clause says the choice, if made, completes uniquely. Whether that answers Black depends on whether a consistency condition may rule out interventions, or only rule out histories given the interventions. The note takes the second reading, and the formalism is built for it: consistency never forbids an intervention. As the note's Section 5 puts it, "Consistency is not allowed to forbid the operation. It is allowed only to constrain the global solution."
 
-### 55. Time symmetry and the reading of the source and sink
+### 68. Time symmetry and the reading of the source and sink
 
 Read forwards, the source is an input and the sink is an output. Read backwards, using U†, they swap roles, and the reversed operator is the time-reversed process. In a loop like Lugano, an earlier input already depends on a later setting. Some authors, notably Price, argue that time symmetry pushes toward retrocausality. Leifer and Pusey made that argument precise under an assumption ("λ-mediation"), and Maudlin has objected to it. The note's position is modest. The mathematics does not choose between a retrocausal reading and a merely operational time-reverse. It does remove one cheap reply: one cannot say that the cyclic classical model dies as soon as the agents act quantumly.
 
-### 56. What the theorem does not say
+### 69. What formal verification adds, epistemically
+
+**Interpretation.** A proof does two jobs. It *convinces* (this is true), and it *explains* (this is why). Machine-checking strengthens the first job enormously and leaves the second untouched. The Lean files guarantee that the stated theorem follows from the stated definitions. They do not tell you why exclusivity is the heart of the matter. That is what Parts II–V are for.
+
+Machine-checking also changes the *social* character of trust. Without it, a reader trusts the author, the referees, and the hope that someone would have noticed a gap. With it, a reader can trust a small public kernel and two lines of definition, and needs no one's reputation. That suits a result about consistency well. Its claim is that a loop is safe when every agent's every choice completes uniquely, and its warrant is a check that every inference completes.
+
+Two cautions. First, a checked theorem is only as good as its statement (Section 39). Second, the parts that matter most philosophically, the readings in this Part, are exactly the parts no referee, human or mechanical, can check.
+
+### 70. What the theorem does not say
 
 - **It is not about spacetime.** A unitary process on a finite alphabet is not a solution of Einstein's equations, and not a wormhole. The theorem says the event list has a unitary dilation. It does not say the dilation is a spacetime (see paper/EMBEDDING.md).
-- **It does not classify all quantum processes.** It places every process function, including ones that violate causal inequalities, among the unitarily extendible processes. It says nothing about processes that are not deterministic classical functions, beyond the stochastic results of Parts VI–VIII.
-- **It does not settle freedom** (Section 54).
-- **The weak point is the lemma.** The combinatorial lemma is the piece an attacker has to break. Everything after it is row orthogonality. In this case the lemma is also machine-checked.
-
----
-
-## Part X. Infinite alphabets, and a second proof
-
-What if a party's alphabet is infinite, say all the integers? The construction still makes sense: the source adds its value to w(o), and the sink copies o. That rule still shuffles basis states one-to-one, so the big map is unitary.
-
-The finite proof had two halves. The first half shows that different sink outcomes never interfere ("rows are orthogonal"). That uses only the exclusivity lemma, and it works for any alphabet size. The second half used a counting trick: a square matrix whose rows are orthonormal is automatically unitary. In infinite dimensions that trick fails. The "shift" operator has orthonormal rows but loses a dimension.
-
-The new proof replaces counting with probability. Read each party's unitary as a random rule: an input i produces output o with probability |amplitude|^2. Now pick a random deterministic rule for every party and every input independently. The total weight in each column of the big map equals the expected number of consistent histories. A process function has exactly one consistent history for every deterministic choice, so that expectation is exactly 1. Every column has length one, nothing leaks away, and the map is unitary.
-
-So consistency does double duty. It forbids interference between different histories, and it guarantees no probability is lost. For finite alphabets this second proof is machine-checked in Lean (`PFUL.induced_conjTranspose_mul_of_colnorm`). For countably infinite alphabets, Lean now checks the whole argument. No probability leaks away (`PFUL.Countable.tsum_prod_eq_one`). Different histories don't interfere (`PFUL.Countable.induced_rows`). Together they give a genuine unitary operator on the infinite-dimensional Hilbert space (`PFUL.Countable.induced_unitary_l2`). Continuous alphabets are still open, because even defining the map needs care.
+- **It does not classify all quantum processes.** It places every process function, including ones that violate causal inequalities, among the unitarily extendible processes. It says nothing about processes that are not deterministic classical functions, beyond the stochastic results of Parts VIII–XI.
+- **It does not cover continuous alphabets.** Countable ones are done (Part VII). Continuous ones first need a definition of the closed loop.
+- **It does not settle freedom** (Section 67).
+- **The weak point is the lemma.** The combinatorial lemma is the piece an attacker has to break. Everything after it is row orthogonality. In this case the lemma is also machine-checked, and it holds for alphabets of any size.
 
 ---
 
@@ -776,29 +952,35 @@ So consistency does double duty. It forbids interference between different histo
 
 > **Proved**
 >
-> - Every process function, with any finite alphabets, lifts to a pure unitary process: under any local unitaries with any finite ancillas, the source-to-sink map is unitary. *Machine-checked in Lean 4 (exclusivity lemma; M M† = 1 and M† M = 1; unitary-group membership), standard axioms only.*
-> - Validity under arbitrary local operations, entangled ancillas and instruments follows by Stinespring. *Machine-checked in Lean: Stinespring dilations of any Kraus channel (`PFUL.valid_kraus`), instruments (`PFUL.valid_instrument`), and the process-matrix normalisation Tr[W(…)] = 1 for every local CPTP map, with ancillas (`PFUL.Choi.bornC_anc_eq_one`). The two notions of validity are proved equivalent (`PFUL.Choi.afnb_iff_density`). Choi's theorem itself is machine-checked (`PFUL.Choi.isCP_iff_choi`). One theorem bundles all of it (`PFUL.Choi.validity_package`). The infinite-dimensional Choi form is not formalised, because Mathlib lacks trace-class operators.*
-> - Mixtures of process functions are purifiable (coherent random source, label recorded in the sink).
-> - Classical reversible purifiability holds exactly for mixtures of process functions (D.6). So the conjecture says quantum reversibility adds nothing here.
-> - E_ex1 and the vertex orbits 7 and 50 (one of which contains E_ex1) are not purifiable. *Exact rational certificates.*
-> - In any purification, the sink holds an orthogonal record of (outputs, inputs) (D.1). Constraints on the fixed source state alone are vacuous (D.2). Validity under quantum-controlled interventions holds for every classical process (D.5).
-> - The hidden-label strengthening D.3 is false. Counterexample: a causal circuit (D.4).
-> - No certificate that uses only the fixed source state can rule out purification of any classical process (D.8).
-> - The lift also works for countably infinite alphabets (Appendix F), by a probabilistic proof that needs no dimension count. *The finite-alphabet version of that proof is machine-checked in Lean.*
-> - The three-party binary process-function hull has exactly 29,344 facets in 93 orbits (exact computation with normaliz).
+> - **The main theorem.** Every process function, with any finite alphabets, lifts to a pure unitary process: under any local unitaries with any finite ancillas, the source-to-sink map is unitary. *Machine-checked in Lean 4 (exclusivity lemma; M M† = 1 and M† M = 1; unitary-group membership), standard axioms only.*
+> - **Validity under everything.** Validity under arbitrary local operations, entangled or shared ancillas, and instruments follows by Stinespring, and so does the process-matrix normalisation Tr[W(…)] = 1. *Machine-checked in Lean, finite dimensions: `PFUL.valid`, `PFUL.valid_kraus`, `PFUL.valid_instrument`, `PFUL.Choi.bornC_anc_eq_one` and the group-free `PFUL.Choi.bornAnc_eq_one`, the equivalence `PFUL.Choi.afnb_iff_density` (and `_split`), Choi's theorem `PFUL.Choi.isCP_iff_choi`, all bundled in `PFUL.Choi.validity_package`.*
+> - **Countable alphabets** (Appendix F). With finitely many parties and countable alphabets, the inputs carrying a group structure, the lift is unitary on ℓ². Rows come from exclusivity, and unit columns from the expected-number-of-fixed-points argument, which also gives a dimension-free finite proof. *Machine-checked in Lean, ending in `PFUL.Countable.induced_unitary_l2`. The finite-alphabet column proof is checked too.*
+> - **Mixtures.** Mixtures of process functions are purifiable: a coherent random source, with the label recorded in the sink.
+> - **The classical version.** Classical reversible purifiability holds exactly for mixtures of process functions (D.6). So the conjecture says quantum reversibility adds nothing here.
+> - **Certificates.** E_ex1 and the vertex orbits 7 and 50 (one of which contains E_ex1) are not purifiable. *Exact rational certificates, not Lean proofs.*
+> - **Structure.** In any purification, the sink holds an orthogonal record of (outputs, inputs) (D.1).
+> - **The dead ends.** Constraints on the fixed source state alone are vacuous (D.2). Validity under quantum-controlled interventions holds for every classical process (D.5). The hidden-label strengthening D.3 is false, with a causal circuit as counterexample (D.4). No certificate that uses only the fixed source state can rule out purification of any classical process (D.8).
+> - **Facets.** The three-party binary process-function hull has exactly 29,344 facets in 93 orbits (exact computation with normaliz).
+>
+> **Negative results (Appendix E)**
+>
+> - Symmetry stabilisers are large only where certificates already exist. Most open orbits have trivial or tiny stabilisers.
+> - The moment relaxation is feasible for E_ex1 at r = 16, so it is strictly weaker than single-form inertia, and symmetry-reducing it is pointless.
 >
 > **Evidence (not proof)**
 >
-> - A GPU search found no purification for any of the 49 remaining sampled non-deterministic vertex orbits. Best residuals 12.97–59.35.
+> - A GPU search found no purification for any of the 49 remaining sampled non-deterministic vertex orbits. Best residuals were 12.97–59.35.
 > - A single facet orbit (82) is violated by E_ex1 and by all 51 sampled non-deterministic vertex orbits.
 > - Along the segment from Lugano to E_ex1, purifiability appears to stop exactly where the hull does.
 > - Numerically, non-process functions fail unitarity under random local unitaries (2- and 3-party binary). The converse of the main theorem is not proved.
 >
 > **Open**
 >
-> - The conjecture: a classical process is purifiable if and only if it is a mixture of process functions. The "if" half is proved. The "only if" half is open.
-> - Deriving any facet inequality, for example orbit 82, from purifiability.
-> - Any proof must use the purifying unitary on source states orthogonal to the actual one. That is the non-convex isotropy condition of Araújo et al.'s Theorem 4, where every certificate attempt so far has stalled for the larger orbits.
-> - Spacetime embedding, continuous alphabets (countable ones are done), and lifts built from bijections other than U are not addressed.
+> - **The conjecture.** A classical process is purifiable if and only if it is a mixture of process functions. The "if" half is proved. The "only if" half is open.
+> - **Facets from purifiability.** No facet inequality, for example orbit 82, has been derived from purifiability.
+> - **Where any proof must look.** Any proof must use the purifying unitary on source states orthogonal to the actual one. That is the non-convex isotropy condition of Araújo et al.'s Theorem 4, where every certificate attempt has stalled for the larger orbits: single-form inertia, block forms, SDP and moment relaxations.
+> - **Continuous alphabets.** The closed loop first needs a definition (F.5).
+> - **Not formalised.** The Choi form in infinite dimensions, because Mathlib lacks trace-class operators and partial traces on ℓ².
+> - **Not addressed.** Spacetime embedding, and lifts built from bijections other than U.
 
-*For definitions, full proofs, references and code pointers, see the technical note, [paper/lift.md](https://github.com/drewarrowood/process-function-unitary-lift/blob/main/paper/lift.md).*
+*For definitions, full proofs, references and code pointers, see the technical note, [paper/lift.md](https://github.com/drewarrowood/process-function-unitary-lift/blob/main/paper/lift.md), and [lean/STATUS.md](https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/STATUS.md).*
