@@ -139,7 +139,7 @@ So purity gives validity with no further assumption. The only input specific to 
 
 - *Ancillas, converse, Choi's theorem:* `PFUL.Choi.born_anc_eq_one` and `bornC_anc_eq_one` give the Choi-form normalisation with party ancillas (local maps I_k X_k -> O_k Y_k, ancilla state folded into the source state). `PFUL.Choi.procMat_posSemidef` shows W is PSD. `PFUL.Choi.afnb_iff_density` shows AFNB normalisation is equivalent to the density-matrix condition. `PFUL.Choi.isCP_iff_choi` is Choi's theorem (CP iff PSD Choi matrix), so CP is a theorem rather than a definition.
 
-Remaining technicalities: the equivalence is stated with source and ancillas as one register (a reindexing of `ValidWith`), and each ancilla type is given a group structure. Any finite set admits one, and the formulas use only 0.
+Bookkeeping: `PFUL.Choi.bornAnc_eq_one` needs no structure on the ancilla types. `PFUL.Choi.bornSplit_eq_one` and `PFUL.Choi.afnb_iff_density_split` use exactly the index layout of `ValidWith`. `PFUL.Choi.validity_package` bundles unitary validity, Kraus-channel validity and AFNB normalisation in one theorem. Not formalised: the Choi form in infinite dimensions, which needs trace-class operators and partial traces on l^2 that Mathlib does not yet have. The unitary layer there is `PFUL.Countable.induced_unitary_l2`.
 
 ## Appendix B. Unequal input and output alphabets
 

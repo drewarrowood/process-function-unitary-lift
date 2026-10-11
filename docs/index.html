@@ -123,7 +123,7 @@ table{border-collapse:collapse;font-size:.9rem;display:block;overflow-x:auto} th
 <p><em>Ancillas, converse, Choi's theorem:</em> <code>PFUL.Choi.born_anc_eq_one</code> and <code>bornC_anc_eq_one</code> give the Choi-form normalisation with party ancillas (local maps I<sub>k</sub> X<sub>k</sub> → O<sub>k</sub> Y<sub>k</sub>, ancilla state folded into the source state). <code>PFUL.Choi.procMat_posSemidef</code> shows W is PSD. <code>PFUL.Choi.afnb_iff_density</code> shows AFNB normalisation is equivalent to the density-matrix condition. <code>PFUL.Choi.isCP_iff_choi</code> is Choi's theorem (CP iff PSD Choi matrix), so CP is a theorem rather than a definition.</p>
 </li>
 </ul>
-<p>Remaining technicalities: the equivalence is stated with source and ancillas as one register (a reindexing of <code>ValidWith</code>), and each ancilla type is given a group structure. Any finite set admits one, and the formulas use only 0.</p>
+<p>Bookkeeping: <code>PFUL.Choi.bornAnc_eq_one</code> needs no structure on the ancilla types. <code>PFUL.Choi.bornSplit_eq_one</code> and <code>PFUL.Choi.afnb_iff_density_split</code> use exactly the index layout of <code>ValidWith</code>. <code>PFUL.Choi.validity_package</code> bundles unitary validity, Kraus-channel validity and AFNB normalisation in one theorem. Not formalised: the Choi form in infinite dimensions, which needs trace-class operators and partial traces on l<sup>2</sup> that Mathlib does not yet have. The unitary layer there is <code>PFUL.Countable.induced_unitary_l2</code>.</p>
 <h2>Appendix B. Unequal input and output alphabets</h2>
 <p>Nothing in Section 1 needs |I<sub>k</sub>| = |O<sub>k</sub>|.</p>
 <ul>
