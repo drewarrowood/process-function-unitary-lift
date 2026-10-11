@@ -777,7 +777,7 @@ So consistency does double duty. It forbids interference between different histo
 > **Proved**
 >
 > - Every process function, with any finite alphabets, lifts to a pure unitary process: under any local unitaries with any finite ancillas, the source-to-sink map is unitary. *Machine-checked in Lean 4 (exclusivity lemma; M M† = 1 and M† M = 1; unitary-group membership), standard axioms only.*
-> - Validity under arbitrary local operations, entangled ancillas and instruments follows by Stinespring. *Machine-checked in Lean: Stinespring dilations of any Kraus channel (`PFUL.valid_kraus`), instruments (`PFUL.valid_instrument`), and the process-matrix normalisation Tr[W(…)] = 1 for every local CPTP map (`PFUL.Choi.bornC_eq_one`).*
+> - Validity under arbitrary local operations, entangled ancillas and instruments follows by Stinespring. *Machine-checked in Lean: Stinespring dilations of any Kraus channel (`PFUL.valid_kraus`), instruments (`PFUL.valid_instrument`), and the process-matrix normalisation Tr[W(…)] = 1 for every local CPTP map, with ancillas (`PFUL.Choi.bornC_anc_eq_one`). The two notions of validity are proved equivalent (`PFUL.Choi.afnb_iff_density`). Choi's theorem itself is machine-checked (`PFUL.Choi.isCP_iff_choi`).*
 > - Mixtures of process functions are purifiable (coherent random source, label recorded in the sink).
 > - Classical reversible purifiability holds exactly for mixtures of process functions (D.6). So the conjecture says quantum reversibility adds nothing here.
 > - E_ex1 and the vertex orbits 7 and 50 (one of which contains E_ex1) are not purifiable. *Exact rational certificates.*
