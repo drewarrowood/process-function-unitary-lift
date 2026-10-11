@@ -50,7 +50,11 @@ Finitely many parties (`Fintype ι`); input alphabets `I k` arbitrary (any cardi
   - `PFUL.Choi.procMat_posSemidef`: W = |U⟩⟩⟨⟨U| is PSD.
   - `PFUL.Choi.afnb_iff_density`: for any map w and fixed local Kraus channels, AFNB normalisation (Born rule = 1 for all density matrices ρ) ⇔ the induced output M ρ Mᴴ is a density matrix for all ρ. Positivity is automatic; the content is the trace. With `wAnc` this covers party ancillas.
   - `PFUL.Choi.ampliate`, `IsCP`, `choiOf`, `cp_choi_posSemidef`, `apply_eq_sum_choi`, `choi_posSemidef_cp`, `isCP_iff_choi`: **Choi's theorem.** A linear map Φ is CP (Φ ⊗ id_n preserves PSD for all n) iff its Choi matrix is PSD. CP is now a theorem, not a definition.
-- Still not covered: the equivalence `afnb_iff_density` is stated in the Choi-file indexing (source ⊗ ancillas as one register, ∀ k, I k × X k), not literally for `ValidWith` with its (∀ k, I k) × (∀ k, X k) indexing (a reindexing). Infinite dimensions are not covered in the Choi form.
+- Bookkeeping (PFUL/Bookkeeping.lean):
+  - `PFUL.Choi.liftVecAnc`, `bornAnc`, `bornAnc_eq_bornC`, `bornAnc_eq_one`: AFNB normalisation with party ancillas, **group-free** (ancilla types need only Fintype + DecidableEq). Ancilla wires are identity wiring; internally a group structure is borrowed from `Fintype.equivFin` when needed, and the formula does not depend on it.
+  - `PFUL.Choi.splitEquiv`, `bornSplit`, `bornSplit_eq_one`, `indSplit`, `bornSplit_eq_trace`, `afnb_iff_density_split`: the same in `ValidWith`'s split layout ((∀ k, I k) × (∀ k, X k)), plus the split-layout equivalence of AFNB normalisation with the density-matrix condition, for any map w and any local Kraus channels with ancillas.
+  - `PFUL.Choi.validity_package`: one theorem bundling `ValidWith` (local unitaries), `valid_kraus` (local Kraus channels) and split-layout AFNB normalisation for all CP (`isCP_iff_choi`) and TP local Choi matrices.
+- Out of scope: the Choi form in infinite dimensions. The ℓ² results (`induced_unitary_l2`) cover the pure/unitary layer for countable alphabets, but a Born rule needs (i) trace-class operators and their trace on ℓ², with the identity Tr(M ρ M†) = Tr ρ for unitary M; (ii) partial traces over infinite tensor factors; (iii) a Choi-type representation of CP maps on trace-class operators (the Choi matrix of the identity map is not trace-class). Mathlib (v4.34.1) has no trace-class/Schatten-class theory on Hilbert spaces and no partial trace, so this would mean building those first. It is not attempted.
 
 
 ## Legacy Mathlib-free files (library `Legacy`)
@@ -67,7 +71,7 @@ Build: `cd lean && lake build`. Every file compiles. There is no `sorry`, `admit
 - Lift.lean `off_diagonal_cancels`, `diagonal_is_one`, and GramGeneral.lean `gram_unitary`. These are integer-valued (`Int`) "rows". Row orthonormality is a hypothesis, and in `gram_unitary` the witness party is also a hypothesis rather than being derived from the lemma. ComplexGram.lean contains only algebraic helper lemmas for a hand-rolled complex type.
 
 ## Not formalised
-- Reindexing `afnb_iff_density` to the literal `ValidWith` index types; Choi form in infinite dimensions.
+- Choi form in infinite dimensions (needs trace-class operators and partial traces on ℓ², absent from Mathlib).
 - Spacetime embedding (Gaps.lean defines `SpacetimeEmbeddingClaim : Prop := False` as a marker).
 
 Build: `lake exe cache get && lake build` (fetches the Mathlib cache).
