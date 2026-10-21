@@ -1,0 +1,6 @@
+/workspace/cert82/isodim.py:20: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  best=min(best,float(f))
+orbit20 m 82 r 16 rr 8 loss 2.0315609987098415e-06
+orbit20 m 82 r 16 rr 10 loss 0.0002620358881303971
+orbit20 m 82 r 16 rr 12 loss 0.526077031904783
