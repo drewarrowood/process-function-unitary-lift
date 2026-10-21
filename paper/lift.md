@@ -491,6 +491,14 @@ G.1 itself is therefore known in substance. Combining it with C.1 to settle the 
 | (2,2,3,3) | 36 | 36 | 0 | 0/50 |
 | (3,2,3,2) | 45 | 45 | 0 | 0/50 |
 
+For larger alphabets, code/stochastic/bipartite/vertices_only.py does the vertex test alone (enumerating process functions is too costly there):
+
+| (|A_in|,|A_out|,|B_in|,|B_out|) | LPs | distinct vertices found | non-deterministic |
+|---|---|---|---|
+| (3,3,3,3) | 500 | 146 | 0 |
+| (4,2,4,2) | 300 | 100 | 0 |
+| (2,4,2,4) | 300 | 60 | 0 |
+
 In every case the vertices found are exactly the process functions, as G.1 predicts. The (2,2,2,2) count of 12 matches Baumeler-Wolf.
 
 ## References
