@@ -101,6 +101,7 @@ Conjecture: a classical process (a point of the Baumeler-Wolf polytope) is purif
 - Structure of any purification: the sink records (o, i) orthogonally (D.1). Constraints on the fixed source state are vacuous (D.2). Validity under quantum-controlled interventions holds for every classical process (D.5).
 - A natural strengthening, a single classical source basis (D.3), is false. Counterexample: a causal circuit (D.4).
 - No-go (D.8): no certificate that uses only the fixed source sector can rule out purification of any classical process.
+- Two parties (Appendix G): every bipartite classical process, with any finite alphabets, is a mixture of causally ordered process functions. So the conjecture holds for two parties, and holds trivially.
 
 **Evidence.**
 - None of the 49 remaining non-deterministic vertex orbits lifted under a GPU purification search. Best residuals were far from zero (Appendix C).
@@ -453,6 +454,44 @@ The earlier draft's special cases (permutation interventions; causally ordered w
 **F.5 Continuous alphabets [partly definitional].** Take I_k a locally compact abelian group with Haar measure (R, U(1)), and w measurable. Then U is a measure-preserving bijection of O x P, so it is unitary on L^2 (F.1 carries over). The induced map, however, involves pointwise evaluation <f|V T_{w(f)}. That is undefined for general unitaries on L^2, so "unitary under all local unitaries" first needs a definition, for instance via the phase-space approach of Giacomini et al. For measure-preserving local bijections the induced map is the bijection e -> f(e). It is measure-preserving in the causal case (Fubini), but this is open in the non-causal case.
 
 **Status.** Proved (paper and Lean, finite and countable), for countable alphabets with a group structure on the inputs and finitely many parties: the lift is unitary under all local unitaries with ancillas (F.1-F.3). Open: continuous alphabets, where the induced map first needs a definition (F.5). The proof of F.3 suggests the natural definition, via the kernel <f|V|w(f)+e> with Haar measure, and the same probabilistic argument would then need the measurable-selection version of "exactly one fixed point".
+
+## Appendix G. Two parties: the conjecture holds, trivially (Oct 21 2026)
+
+**Theorem G.1 [proved].** Let p(a,b|x,y) be a valid classical process on two parties A, B, with finite alphabets of any sizes: a, b are the inputs and x, y the outputs. Valid means p >= 0 and sum_{a,b} p(a,b|f(a),g(b)) = 1 for all functions f, g. Then p is a convex combination of deterministic causally ordered process functions. Each of these has one of two forms: a = a0 constant and b = h(x), or b = b0 constant and a = h(y).
+
+**Corollary G.2 [proved].** For two parties, the purification conjecture of Section 9 holds. Both sides are true for every valid classical process. Every such process is a mixture of process functions (G.1), so it is purifiable (C.1). Also, every bipartite process function is causally ordered: a 0/1 point that is a convex combination of 0/1 points equals one of them. So the two-party case says nothing about the open multipartite question. The separation between "classically consistent" and "reversibly realisable" starts at three parties, where E_ex1 lives.
+
+*Proof of G.1.* Write every function of (a,b,x,y) as a sum of components p_S, one for each subset S of {a,b,x,y}. The component p_S depends only on the variables in S, and its sum over any one variable in S is zero. (These are the products of "average" and "traceless" projections.)
+
+*Step 1 (linear constraints).* Validity for deterministic f, g gives the same normalisation for stochastic local maps sigma(x|a), tau(y|b), by linearity. The quantity sum p sigma tau is affine in each argument, so its derivatives along traceless directions vanish.
+- Second order: sum p delta(x|a) eps(y|b) = 0 whenever sum_x delta = 0 and sum_y eps = 0. Such products span all functions that are traceless in x and in y, so p_S = 0 whenever S contains both x and y.
+- First order with tau uniform: sum p delta(x|a) = 0 for every delta with sum_x delta = 0. Summing over b and y keeps only S with b, y not in S, so p_{x} = p_{ax} = 0. Symmetrically, p_{y} = p_{by} = 0.
+
+What survives is p = c + s + t, with c = p_∅ + p_a + p_b + p_ab, s = p_bx + p_abx and t = p_ay + p_aby. Here c(a,b) is the average of p over (x,y), so it is a probability distribution. Also sum_x s = sum_b s = 0 and sum_y t = sum_a t = 0. This is the diagonal case of the Oreshkov-Costa-Brukner term structure.
+
+*Step 2 (positive split).* Let m1(a,b) = -min_x s(a,b,x) and m2(a,b) = -min_y t(a,b,y). Both are >= 0 because s and t have mean zero. Evaluating p >= 0 at the minimising x and y gives c >= m1 + m2. Choose c1 >= m1 and c2 >= m2 with c1 + c2 = c, and put U = c1 + s and V = c2 + t. Then U, V >= 0 and p = U + V. Since sum_b s = 0, U(a,b|x) has total mass q = sum c1 for every x, and its A-marginal sum_b c1(a,b) does not depend on x. So U/q = r(a) r(b|a,x) is a classical A-before-B process. By the same argument, V/(1-q) is a B-before-A process.
+
+*Step 3 (deterministic decomposition).* r(a) r(b|a,x) = sum_{a0} r(a0) delta_{a,a0} sum_h prod_x r(h(x)|a0,x) delta_{b,h(x)}, where h ranges over the functions X -> B. Each term is a = a0, b = h(x). Under any interventions it has exactly one consistent history, a0, f(a0), h(f(a0)), so it is a process function. The same holds for the B-before-A part. ∎
+
+**Literature [cited].**
+- Oreshkov, Costa and Brukner (Nat. Commun. 3, 1092 (2012), Supplementary) prove that the bipartite process matrices diagonal in fixed bases are causally separable. Their proof is the quantum version of Step 2.
+- Baumann and Brukner (arXiv:1601.06620) extend this to inputs diagonal and outputs arbitrary. They note that it fails for three parties (Baumeler, Feix and Wolf, PRA 90, 042106 (2014)).
+- For two binary parties, Baumeler and Wolf (2016) report that all 12 vertices of the classical polytope are deterministic (Appendix C). G.1 is the general-alphabet version.
+
+G.1 itself is therefore known in substance. Combining it with C.1 to settle the two-party purification statement is immediate. I did not find a source that states the purification version explicitly. Steps 1-3 are included so that the note is self-contained. Suggested wording for Section 9: "For two parties the conjecture holds, because every bipartite classical process is causally separable [OCB 2012, Suppl.; see also Baumann-Brukner 2016] and hence a mixture of causally ordered process functions (Appendix G)."
+
+**Numerical check [numerical].** The script is code/stochastic/bipartite/vertices.py. For each alphabet size it samples LP vertices of the bipartite classical-process polytope (300 random objectives) and checks that each vertex is 0/1. It also checks 50 averages of 4 random vertices for membership in conv(PF) by LP.
+
+| (|A_in|,|A_out|,|B_in|,|B_out|) | process functions | distinct vertices found | non-deterministic | outside conv(PF) |
+|---|---|---|---|---|
+| (2,2,2,2) | 12 | 12 | 0 | 0/50 |
+| (3,2,2,2) | 24 | 24 | 0 | 0/50 |
+| (2,3,2,2) | 20 | 20 | 0 | 0/50 |
+| (3,3,2,2) | 36 | 36 | 0 | 0/50 |
+| (2,2,3,3) | 36 | 36 | 0 | 0/50 |
+| (3,2,3,2) | 45 | 45 | 0 | 0/50 |
+
+In every case the vertices found are exactly the process functions, as G.1 predicts. The (2,2,2,2) count of 12 matches Baumeler-Wolf.
 
 ## References
 
