@@ -1,0 +1,6 @@
+Lugano party 0 opfirst_resid=0.75 open_purity=1.3e-15 {'marg_first': False}
+Lugano party 1 opfirst_resid=0.75 open_purity=5.9e-16 {'marg_first': False}
+Lugano party 2 opfirst_resid=0.75 open_purity=8.9e-16 {'marg_first': False}
+H5 party 0 opfirst_resid=0.5 open_purity=8.9e-16 {'marg_first': True, 'cond_sums': [np.float64(0.0), np.float64(1.0), np.float64(2.0)], 'cond_valid': False}
+H5 party 1 opfirst_resid=0 open_purity=1.4e-15 {'marg_first': True, 'cond_sums': [np.float64(1.0)], 'cond_valid': True}
+H5 party 2 opfirst_resid=0 open_purity=1.1e-15 {'marg_first': True, 'cond_sums': [np.float64(1.0)], 'cond_valid': True}
