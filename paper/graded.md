@@ -947,7 +947,7 @@ Section 58e left the Switchboard with a list of linear rules: the conditions und
 
 **The easy case is settled (proved).** If all the boards are just relabellings with phases (a common basis that each board only shuffles), then for *every* source state the statistics are a mixture of process functions. This covers the Ring of 58e. The hard case is boards that genuinely superpose, like a board that half-flips Alice's bit and half-flips Bob's at once. The Shadows are of this kind, and their statistics are still in the hull.
 
-**How hard is it to cheat? (evidence).** We asked the computer to push a Switchboard's statistics across the most important wall of the hull (facet 82) by a set amount v, while staying as close to pure as it could. In 108 tries, the "impurity" R it had to accept was always at least about 0.31·v². In words: to get across the wall by v, you must be impure by roughly 0.56·v (measuring impurity as √R). Nothing found came closer. If some machine could cross the wall at zero cost, the search would be closing in on a true counterexample, and it never did. This is evidence, not proof.
+**How hard is it to cheat? (evidence).** We asked the computer to push a Switchboard's statistics across the most important wall of the hull (facet 82) by a set amount v, while staying as close to pure as it could. In 108 tries, the "impurity" R it had to accept was always at least about 0.31·v². In words: to get across the wall by v, you must be impure by roughly 0.56·v (measuring impurity as √R). Nothing found came closer. *(Superseded: Section 58h exhibits an exact machine that crosses a hull wall at zero impurity; the toll was an artefact of the search.)* If some machine could cross the wall at zero cost, the search would be closing in on a true counterexample, and it never did. This is evidence, not proof.
 
 *A story: the toll on the wall.* The hull is a walled town. Every honest machine lives inside it. A traveller can always step up to the wall, and can even climb over, but each metre over the wall costs a fixed toll in impurity, and the toll never drops to zero. Whether the toll is a law of the land or only the price at the gates we have tried is the open question.
 
@@ -971,6 +971,23 @@ The hard Switchboards are the ones whose boards *blur* two flip patterns at once
 **Is every no-first-mover machine a Switchboard? (partly proved).** Any machine can be given an extra "carbon copy" of the inputs in its sink without spoiling its purity. A slightly bigger Switchboard, with extra sink space, obeys the same rule, piece by piece. What is missing is one fact: that the machine's sink can always be made to remember the parties' outputs, whatever the source holds, and not just for the source state actually used. If that fact holds, every no-first-mover machine is a Switchboard, and the conjecture comes down to the Switchboard rule. We could neither prove that fact nor break it.
 
 *A story: the two-tone bell.* A bell-founder casts bells that ring two notes at once. Each note on its own is a tune the town knows. The worry is that the two notes, ringing together, could beat into a tune no one has heard. Every bell of the simplest two-note kind has now been rung against every wall of the town, and none has carried a new tune out. Whether some three- or four-note bell could do it is still unknown.
+
+
+### 58h. The bet is lost: a reversible loop with genuine chance (proved; note H.12, H.10.6)
+
+**First, a win (proved).** The two-tone bells of 58g are now settled: *every* two-pattern Switchboard gives statistics that are a mixture of process functions, for every angle and every source state. The proof is a bookkeeping trick. For each board, the machine only ever moves probability around inside small blocks of input strings, and it moves the total in each block nowhere. So one can "ship" the source's probabilities to the board's probabilities block by block. Each way of shipping, combined over the different boards, turns out to be a process function. A computer checked, exactly, that this works for all 39,512 two-pattern boards.
+
+**Then a loss (proved).** Allowing all eight flip patterns at once changes the picture. The computer found a Switchboard whose eight boards are built only from the phases 1, i, −1, −i in the Hadamard basis. Every one of its rules checks out exactly, in exact arithmetic with no rounding. For one simple source state, its statistics are a *valid* classical process: every intervention gives total probability exactly 1. Yet that process lies **outside** the hull of process functions. There is a wall of the hull that every process function respects, and this process sits on the wrong side of it, by exactly 3√2/16 − 1/4 (about 0.015). So the conjecture this note has been chasing is **false**: a reversible quantum machine can produce classical statistics in a time loop that are *not* a disguised mixture of consistent deterministic loops.
+
+**Why the earlier search missed it.** The big search over all boards kept settling into local valleys (Section 58f's "toll" was one of them). Restricting to boards built from flips alone made the landscape simple enough that exact solutions appeared at once. The toll was the price at the gates we happened to try, not a law of the land.
+
+**How sure are we?** The facts about the classical statistics (valid, outside the hull) are exact. Purity rests on the switchboard lemma and its two companions (H.7.1, H.8.1, H.8.2), which are proved on paper but not yet in Lean. A separate brute-force simulation of the machine, under random local operations with scratch qubits, finds it unitary to fifteen decimal places. Before announcing this, a Lean proof or an independent check of those lemmas would be wise.
+
+**What changes.** The "if" half stands: every mixture of process functions is purifiable. Two parties, and three parties with an order or with a first mover, still give nothing new. The new statement is: *quantum reversibility is strictly more permissive than classical reversibility for classical loops, already with three parties and one bit each.* Classically (D.6), reversibility does force the hull.
+
+*A story: the three-note bell.* The founder finally cast a bell with eight notes. Each pair of notes was in tune with the town's rules, and every rule held to the last digit. When it rang, it played a tune that no deterministic loop could play, yet a tune no one could catch in a contradiction. Chance, it seems, can live inside a consistent loop, provided the loop is quantum.
+
+**Philosophical gloss (interpretation).** Section 64 asked whether chance inside a loop can be fundamental, or only ignorance about which deterministic loop obtains. For classical reversible machines the answer is still "only ignorance". For quantum reversible machines it is now "not always".
 
 
 ---
@@ -1099,6 +1116,8 @@ Two cautions. First, a checked theorem is only as good as its statement (Section
 
 > **Proved**
 >
+> - **A purifiable process outside the hull** (H.12; Section 58h). Exact counterexample to the purification conjecture (purity via the paper lemmas H.7.1, H.8.1, H.8.2; not Lean).
+> - **Two-tone Switchboards are mixtures** (H.10.6; Section 58h). Coset-transport theorem plus an exhaustive exact check of all 39,512 two-pattern boards.
 > - **The main theorem.** Every process function, with any finite alphabets, lifts to a pure unitary process: under any local unitaries with any finite ancillas, the source-to-sink map is unitary. *Machine-checked in Lean 4 (exclusivity lemma; M M† = 1 and M† M = 1; unitary-group membership), standard axioms only.*
 > - **Validity under everything.** Validity under arbitrary local operations, entangled or shared ancillas, and instruments follows by Stinespring, and so does the process-matrix normalisation Tr[W(…)] = 1. *Machine-checked in Lean, finite dimensions: `PFUL.valid`, `PFUL.valid_kraus`, `PFUL.valid_instrument`, `PFUL.Choi.bornC_anc_eq_one` and the group-free `PFUL.Choi.bornAnc_eq_one`, the equivalence `PFUL.Choi.afnb_iff_density` (and `_split`), Choi's theorem `PFUL.Choi.isCP_iff_choi`, all bundled in `PFUL.Choi.validity_package`.*
 > - **Countable alphabets** (Appendix F). With finitely many parties and countable alphabets, the inputs carrying a group structure, the lift is unitary on ℓ². Rows come from exclusivity, and unit columns from the expected-number-of-fixed-points argument, which also gives a dimension-free finite proof. *Machine-checked in Lean, ending in `PFUL.Countable.induced_unitary_l2`. The finite-alphabet column proof is checked too.*
@@ -1125,7 +1144,7 @@ Two cautions. First, a checked theorem is only as good as its statement (Section
 > - A GPU search found no purification for any of the 49 remaining sampled non-deterministic vertex orbits. Best residuals were 12.97–59.35.
 > - Machines with no first mover (H.7; Section 58e): a small, local search found 13 pure machines, including the Shadows near Lugano. All of their statistics lie inside the hull.
 > - Two-tone Switchboards (H.10; Section 58g): all 39,512 two-pattern boards allowed by the rule, checked against every hull wall at seven angles, stay inside the hull for every source state. Float64 evidence, no counterexample. Proved: no relabelling trick and no degree-2 argument can settle the general case.
-> - Switchboard toll (I.4; Section 58f): crossing facet 82 by v always cost impurity R >= 0.31 v² in 108 runs. No counterexample.
+> - ~~Switchboard toll (I.4; Section 58f)~~: withdrawn. It was an artefact of local search; H.12 crosses the hull at zero impurity.
 > - Degree-4 certificates for orbit 8 of the proposed shape cannot exist for random slices (C.6). No paid compute was used.
 > - A single facet orbit (82) is violated by E_ex1 and by all 51 sampled non-deterministic vertex orbits.
 > - Along the segment from Lugano to E_ex1, purifiability appears to stop exactly where the hull does.
@@ -1134,7 +1153,7 @@ Two cautions. First, a checked theorem is only as good as its statement (Section
 >
 > **Open**
 >
-> - **The conjecture.** A classical process is purifiable if and only if it is a mixture of process functions. The "if" half is proved. The "only if" half is open.
+> - **The conjecture: refuted (H.12; Section 58h).** "Purifiable iff a mixture of process functions" is false. The "if" half is proved; the "only if" half fails for an exact three-party binary Switchboard. Purity rests on paper proofs (H.7.1, H.8.1, H.8.2) plus exact arithmetic, and a direct simulation agrees to 1e-15. Open now: what the purifiable set actually is.
 > - **Loops without a first mover.** The conjecture for processes whose purifications all have no party first in the machine (H.6; Lugano-type loops; the Ring, Chorus, Switchboard and Shadows of Section 58e), and the exact status of orbits 8, 10, 20 and the other 46 sampled open orbits.
 > - **Facets from purifiability.** No facet inequality, for example orbit 82, has been derived from purifiability.
 > - **Where any proof must look.** Any proof must use the purifying unitary on source states orthogonal to the actual one. That is the non-convex isotropy condition of Araújo et al.'s Theorem 4, where every certificate attempt has stalled for the larger orbits: single-form inertia, block forms, SDP and moment relaxations.

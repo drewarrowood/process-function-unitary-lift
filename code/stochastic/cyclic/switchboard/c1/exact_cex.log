@@ -1,0 +1,9 @@
+(1) all U_o unitary: exact
+(2) forbidden Pauli coefficients checked 2232 nonzero 0
+(3a) p is real, entries in Q(sqrt2)
+(3b) p >= 0, columns sum to 1, and all 64 deterministic interventions give total probability exactly 1: VALID
+float pre-screen: most violated facet 1741 -0.015165042944955687
+(4a) inequality valid on all 744 PFs exactly; tight on 418
+(4b) g.p + g0 = 1/4 + -3/16*sqrt2  sign -1
+EXACT: purifiable (pure switchboard, source phi (x) |0>) valid classical process OUTSIDE conv(PF).
+g (p-coords, i-major): ['0', '0', '0', '0', '0', '0', '0', '0', '1', '-1', '0', '0', '0', '0', '0', '0', '1', '0', '-1', '0', '0', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0', '-1', '0', '0', '0', '2', '0', '0', '0', '-1', '0', '0', '0', '1', '0', '0', '0', '0', '0', '-1', '0', '2', '0', '0', '0', '0', '0', '0', '0', '0']
