@@ -101,6 +101,7 @@ Conjecture: a classical process (a point of the Baumeler-Wolf polytope) is purif
 - A natural strengthening, a single classical source basis (D.3), is false. Counterexample: a causal circuit (D.4).
 - No-go (D.8): no certificate that uses only the fixed source sector can rule out purification of any classical process.
 - Two parties (Appendix G): every bipartite classical process, with any finite alphabets, is a mixture of causally ordered process functions. So the conjecture holds for two parties, and holds trivially.
+- Three parties, causally separable classes (Appendix H): if some party is last, or some party is first with valid conditional bipartite processes, the process is a mixture of process functions. So the conjecture holds on classically causally separable processes. Being marginally first is not enough (E_ex1).
 
 **Evidence.**
 - None of the 49 remaining non-deterministic vertex orbits lifted under a GPU purification search. Best residuals were far from zero (Appendix C).
@@ -502,6 +503,59 @@ For larger alphabets, code/stochastic/bipartite/vertices_only.py does the vertex
 | (2,4,2,4) | 300 | 60 | 0 |
 
 In every case the vertices found are exactly the process functions, as G.1 predicts. The (2,2,2,2) count of 12 matches Baumeler-Wolf.
+
+## Appendix H. Three parties: structural reductions, a determinantal probe, and a unitary-side search (Oct 21 2026)
+
+Status labels: **[proved]**, **[numerical]**, **[cited]**, **[failed]**. The three-party conjecture remains open. Code: code/stochastic/structural/.
+
+Notation. Inputs a, b, c; outputs x, y, z; a classical process p(a,b,c|x,y,z) >= 0 with sum_{a,b,c} p(a,b,c|f(a),g(b),h(c)) = 1 for all local functions f, g, h. Any finite alphabets unless stated.
+
+### H.1 Route A: classes that reduce to Appendix G
+
+**Definitions.** Party A is *last* if p does not depend on x. A is *marginally first* if p(a|x,y,z) := sum_{b,c} p does not depend on (x,y,z). A is *first with valid conditionals* if, in addition, for every a with p(a) > 0 and every x, the conditional q_{a,x}(b,c|y,z) = p(a,b,c|x,y,z)/p(a) is a valid bipartite classical process. A process is *classically causally separable* if it is a convex combination of processes, each with some party first with valid conditionals. This is the diagonal (classical) analogue of the recursive definition of Wechs, Abbott and Branciard (NJP 21, 013027 (2019), Def. 5) and of Oreshkov-Giarmatzi's extensible causal separability [cited; the definitions were checked against arXiv:1807.10557. I have not checked that the classical specialisation with extensions reduces exactly to the one used here, so it is offered as an analogue].
+
+**Theorem H.1 [proved].** If some party is last, p is a mixture of process functions in which that party is last.
+
+*Proof.* Say A is last. The B,C marginal r(b,c|y,z) = sum_a p is a valid bipartite process (take f arbitrary). By G.1, r = sum_l mu_l delta[(b,c) = w_l(y,z)], with each w_l a causally ordered bipartite process function. Put t(a|b,c,y,z) = p/r where r > 0, and any distribution elsewhere. Expand t as a product mixture of deterministic functions alpha(b,c,y,z), with weight prod_{args} t(alpha(args)|args). Then p = sum_{l,alpha} mu_l nu(alpha) delta[(b,c) = w_l(y,z)] delta[a = alpha(b,c,y,z)]. Each term is a process function: given g, h, the B,C part has one fixed point, and then a is determined. ∎
+
+**Theorem H.2 [proved].** If some party is first with valid conditionals, p is a mixture of process functions in which that party is first. Hence every classically causally separable 3-party process is a mixture of causally ordered process functions, and the purification conjecture holds on that class (both sides true, via C.1).
+
+*Proof.* Say A is first. By G.1, q_{a,x} = sum_l mu(l|a,x) W_l, with W_l ranging over the finitely many bipartite causally ordered process functions. Then p = sum_{a0} p(a0) sum_{lambda: X -> L} prod_x mu(lambda(x)|a0,x) delta[a = a0] W_{lambda(x)}(b,c|y,z). The term (a0, lambda) has a = a0, and then (b,c) given by the process function W_{lambda(x)}. Under interventions f, g, h, x = f(a0) is fixed, and W_{lambda(x)} has exactly one fixed point, so the term is a process function. ∎ The result extends to N parties by induction when the definition is recursive (the conditional (N-1)-party process is required to be separable). For N = 3, G.1 makes the bipartite recursion automatic.
+
+**Marginally first is not enough [proved].** E_ex1 = (C + C̄)/2 is marginally first in every party: party 1's input is o_3 or its negation with probability 1/2 each, so it is uniform whatever the outputs are. Yet it is not a mixture of process functions (C.2). The conditional for a_1 is a3 = o2 + [o3 != a1], a2 = o1 + [o3 != a1] (mod 2). With the intervention o3 = h(a3), this has 0 or 2 fixed points, so it is invalid. The validity of conditionals carries the whole content.
+
+**Numerics [numerical]** (classes.py, classes.json; 3 binary parties, 300 random LP objectives on each sub-polytope; every distinct vertex was tested for 0/1 and for membership in conv(744 PFs)):
+
+| sub-polytope | distinct vertices | non-deterministic | outside conv(PF) |
+|---|---|---|---|
+| A last | 157 | 0 | 0 |
+| A first with valid conditionals | 187 | 0 | 0 |
+| A marginally first | 208 | 39 | 11 |
+
+The first two rows agree with H.1 and H.2. Of E_ex1 and the 51 non-deterministic vertex orbits, none is last or first-with-valid-conditionals in any party. 19 of them are marginally first in at least one party, including E_ex1, orbits 7 and 50 (all three certified non-purifiable), and orbit 8 (marginally first in parties 1 and 2).
+
+**Where Lugano sits [cited/proved].** The Lugano (Araújo-Feix / Baumeler-Wolf) process function violates a causal inequality (Baumeler, Feix, Wolf, PRA 90, 042106 (2014), arXiv:1403.7333) [cited]. So it is not causally separable. Directly: each input depends non-trivially on outputs of both other parties, so no party is marginally first, and every output is used, so no party is last [proved]. It lies outside every reducible class, but it is a process function. The interesting class is exactly conv(PF) minus the causally separable processes, together with the candidate non-hull processes, and the reductions say nothing about either.
+
+**Does purifiability add anything here?** On the classes of H.1 and H.2, no: every valid process is already a PF mixture. The natural next statement would be "purifiable and marginally first imply valid conditionals". It would settle the conjecture for the 19 marginally-first orbits, including orbit 8. It is open [not proved]. D.2 and D.8 show it cannot follow from the source sector alone.
+
+### H.2 Route B: a determinantal bound for orbit 8 [failed, numerical]
+
+Idea. If S is a jointly isotropic subspace (AFNB Thm 4, reduced as in C.2) and u is in S, then S lies in ker K(u), where K(u)_{t,b} = Q_t(u, e_b) runs over the 196 linearly independent constraint forms of orbit 8 (m = dim V_W = 82). So dim S <= dim R + (82 - rank K(u)) for any isotropic u outside the common radical R (dim R = 1, spanned by c0). An exact proof would need rank K(u) >= 67 on the whole isotropic cone outside R. That is one determinantal variety (67-minors) with no real point on the cone, which can be checked algebraically in principle.
+
+Probe (detprobe.py). Generic near-isotropic u (residual ~1e-7 to 1e-6) have numerical rank 81. But minimising the tail singular values of K(u) along the cone gives points whose spectrum drops from 1.6e-2 (sigma_50) to 3.4e-4 (sigma_55) and stays there down to sigma_66, with isotropy residual 2.5e-7. So, numerically, the cone contains u with rank K(u) of about 51-55. The single-vector bound then gives only dim S <= ~28-32, not < 16. The determinantal route with one vector cannot work for orbit 8. A flag version (rank conditions on pairs u, v in S) would be needed, and it is a much larger variety. Not attempted. Gröbner bases on a symmetric ansatz were not attempted, because the stabiliser of orbit 8 has order 8 (App. E), too small to reduce the 82 complex unknowns per basis vector to a tractable size. **No exact proof for orbit 8.**
+
+### H.3 Route C: counterexample hunt from the unitary side [numerical, negative]
+
+Parametrisation (hunt.py). U = U0 exp(iH) is a 64 x 64 unitary O (x) P -> I (x) F, with P = F = C^8 and source |0>. The loss is a purity residual sum ||M M^dagger - 1||^2 over random Haar local unitaries, with and without qubit ancillas, plus a penalty on the off-diagonal part of W (classicality), minus the value of a PF-hull facet from orbit 82 (D.7) under a random symmetry. A point with purity residual ~0, W diagonal and facet > 0 would be a purifiable process outside conv(PF).
+- Random start (U0 = 1, 8 seeds x 20,000 Adam steps): purity was never reached. The final residual (20 fresh samples, qubit ancillas) was 10-172. The facet values there are meaningless, because W is not normalised. **[failed: the optimiser does not even find pure unitaries from random starts]**
+- Start at the Lugano lift (exactly pure, facet image chosen tight = 0 at Lugano; 8 seeds): the search trades purity against violation. Final facet violation was 0.008-0.018 at purity residual 0.13-2.4 (ancilla samples) and off-diagonal mass 4e-5 to 7e-4. Not one run kept both residuals near 0 with positive violation.
+
+This is consistent with the conjecture: leaving the hull at a Lugano vertex costs purity at once, as in D.8's boundary test. It is local, small-sample evidence, not a proof. No counterexample was found.
+
+### H.4 Summary
+- Proved: H.1 (some party last implies PF mixture) and H.2 (classically causally separable implies mixture of causally ordered PFs). On both classes the conjecture holds trivially. Also proved: marginal "firstness" does not reduce (E_ex1).
+- Open: whether purifiability forces valid conditionals for a marginally first party (this would cover orbits 7, 8, 50 and E_ex1 at once).
+- Failed: the single-vector determinantal bound for orbit 8 (numerically the cone has rank ~51-55 points), and the unitary-side counterexample search (no hit).
 
 ## References
 
