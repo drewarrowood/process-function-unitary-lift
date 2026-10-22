@@ -1,0 +1,8 @@
+/workspace/pful-work/code/stochastic/cyclic/famC.py:53: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  if t%500==0: print(seed,t,'pur %.3g facet %.3g'%(float(pur),float(f)),flush=True)
+3 0 pur 0.748 facet -0.318
+3 500 pur 0.079 facet -0.164
+3 1000 pur 0.000356 facet -0.153
+3 1500 pur 1.86e-05 facet -0.158
+FINAL {"seed": 3, "lam": 0.0, "init": "rand", "pur_anc": 2.6994932246652878e-06, "pur_noanc": 2.3964238518539666e-06, "facet": -0.16065444265981027}
