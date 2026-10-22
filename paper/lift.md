@@ -90,28 +90,42 @@ The combinatorial lemma is finite for any fixed alphabet and is the piece an att
 
 ## 9. Status of the purification conjecture
 
-Conjecture: a classical process (a point of the Baumeler-Wolf polytope) is purifiable in the sense of Araujo et al. (2017) if and only if it is a mixture of process functions.
+Conjecture: a classical process (a point of the Baumeler-Wolf polytope) is purifiable in the sense of Araujo et al. (2017) if and only if it is a mixture of process functions (a "PF blend").
+
+This section is a map of the current status. Labels follow the appendices: **[proved]**, **[certified exact]** (rational certificate, not Lean), **[numerical]**, **[cited]**. Proofs live in the appendices and are not restated here.
 
 **Proved.**
-- Every process function lifts to a unitary process (Section 1). The core identity is machine-checked in Lean (lean/STATUS.md). Validity follows by Stinespring (Appendix A); the whole validity chain is machine-checked in finite dimensions (PFUL.valid, valid_kraus, valid_instrument, isCP_iff_choi, afnb_iff_density_split, bornAnc_eq_one, bundled in PFUL.Choi.validity_package).
-- Countable alphabets (Appendix F): the lift is unitary on l^2, in the paper and in Lean (PFUL.Countable.induced_unitary_l2), via the expected-number-of-fixed-points argument for the column side. Not formalised: the Choi form in infinite dimensions. Open: continuous alphabets (F.5).
-- Mixtures of process functions are purifiable: use a coherent random source. Convex combinations of purifiable processes are purifiable (Appendix C).
-- Classical version (D.6): a classical process is the marginal of a classical reversible process with a random source if and only if it is a mixture of process functions. So the conjecture says that quantum purifiability gives nothing beyond classical purifiability, for classical processes.
-- Exact non-purifiability certificates (rational arithmetic) for E_ex1 and for vertex orbits 7 and 50 (Appendix C; pipeline in code/stochastic/cert).
-- Structure of any purification: the sink records (o, i) orthogonally (D.1). Constraints on the fixed source state are vacuous (D.2). Validity under quantum-controlled interventions holds for every classical process (D.5).
-- A natural strengthening, a single classical source basis (D.3), is false. Counterexample: a causal circuit (D.4).
-- No-go (D.8): no certificate that uses only the fixed source sector can rule out purification of any classical process.
-- Two parties (Appendix G): every bipartite classical process, with any finite alphabets, is a mixture of causally ordered process functions. So the conjecture holds for two parties, and holds trivially.
-- Three parties, causally separable classes (Appendix H): if some party is last, or some party is first with valid conditional bipartite processes, the process is a mixture of process functions. So the conjecture holds on classically causally separable processes. Being marginally first is not enough (E_ex1).
+- *Process functions lift* (Section 1, Appendix A). Every process function lifts to a unitary process. The core identity and the validity chain are machine-checked in Lean in finite dimensions (PFUL.induced_unitary; PFUL.Choi.validity_package). Countable alphabets: Appendix F (PFUL.Countable.induced_unitary_l2). Continuous alphabets: open (F.5).
+- *Blends lift* (C.1). Every mixture of process functions is purifiable, and convex combinations of purifiable processes are purifiable. This is the "if" half of the conjecture.
+- *Classical version* (D.6). A classical process is classically reversibly purifiable iff it is a PF blend. So the conjecture says quantum purifiability adds nothing for classical processes.
+- *Two parties* (Appendix G, Theorem G.1). Every bipartite valid classical process, with any finite alphabets, is a blend of causally ordered process functions. So the conjecture holds for two parties, with both sides true. This is known in substance [cited: Oreshkov-Costa-Brukner 2012, Suppl.; Baumann-Brukner 2016].
+- *Three parties, a party last* (Theorem H.1). If some party's output influences nothing, the process is a PF blend.
+- *Three parties, causally separable* (Theorem H.2). If some party is first and every conditional bipartite process is valid, the process is a PF blend. So every classically causally separable three-party process is a blend of causally ordered process functions, and the conjecture holds on that class trivially.
+- *Structure of purifications* (D.1, D.2, D.5). The sink records (o, i) orthogonally. Constraints on the fixed source state are vacuous. Validity under quantum-controlled interventions holds for every classical process.
 
-**Evidence.**
-- None of the 49 remaining non-deterministic vertex orbits lifted under a GPU purification search. Best residuals were far from zero (Appendix C).
-- The process-function hull for 3 binary parties has exactly 29,344 facets in 93 orbits. A single orbit (82) is violated by E_ex1 and by all 51 sampled non-deterministic vertices (D.7).
-- Along the segment from Lugano to E_ex1, purifiability appears to stop exactly where the hull does (D.8).
+**Certified exact non-purifiable.** E_ex1, and vertex orbits 7 and 50 (one of which contains E_ex1): exact inertia certificates (C.2; code/stochastic/cert). They are not mixtures of process functions, so they agree with the conjecture.
 
-**Open.** The quantum case. Any proof must use the purifying unitary on source states orthogonal to the source state. That is the non-convex isotropy condition of AFNB Theorem 4, and it is where every attempted certificate (single-form inertia, block forms, SDP relaxations) has stalled for the larger orbits. The degree-2 moment relaxation over P (x) P is even weaker than single-form inertia: it is feasible for E_ex1 (Appendix E).
+**Settled negatively (routes that provably do not work).**
+- *Hidden source label* (D.3/D.4). The single-classical-label strengthening D.3 is false: a causal circuit is an exact counterexample.
+- *Fixed-source certificates* (D.8). No certificate that uses only the fixed source sector can rule out purification of any classical process.
+- *Marginally-first reduction* (H.5). Purifiability plus "party A's input marginal is output-independent" does not force valid conditionals. An exact counterexample is a 4-term PF blend. So H.2 cannot be extended this way to E_ex1 and orbits 7, 8, 50, even though all of them are marginally first in some party (H.1 numerics).
+- *Form-based certificates for orbits 8/10/20* (C.5). Every linear or block-Hermitian combination of the constraint forms tried stalls at lambda_16 ~ +1e-4. Adding the Gram normalisation provably adds nothing. The obstruction is non-convex. The earlier estimate that "about half" of the open orbits are certifiable by the current pipeline is **withdrawn**.
+- *Moment relaxation* (Appendix E). The degree-2 relaxation is feasible for E_ex1, so it is weaker than single-form inertia.
+- *Single-vector determinantal bound for orbit 8* (H.2 route B) [numerical]. The jointly isotropic cone contains vectors with rank K(u) of about 51-55, so the bound gives only dim <= ~28-32, not < 16.
 
-**Interpretation (philosophical, not a result).** Consistent time loops are the setting: a process function is a loop in which every local choice has exactly one consistent history. The conjecture asks whether chance inside such a loop can be fundamental, or only ignorance about which deterministic loop obtains. If it holds, every reversible quantum loop with classical statistics is a coherent ignorance mixture of deterministic consistent loops. Genuinely chancy loops like E_ex1 would then be classically consistent but not reversibly realisable. Reversibility, not consistency alone, would be the constraint that excludes basic chance from loops. D.4 adds a caveat: the "which-loop" variable can be contextual, so the ignorance reading is about W, not about any single hidden label.
+**Numerical evidence (not proof).**
+- *GPU sweep* (C.4). None of the 49 remaining sampled non-deterministic vertex orbits lifted. Best residuals were 12.97-59.35; the same code reaches 1e-16 on Lugano.
+- *Isotropic dimension* (C.5). For orbits 8, 10 and 20, constraint-isotropic subspaces appear to exist up to dimension ~10 and fail by 12. A purification needs 16.
+- *Facets* (D.7). Facet orbit 82 is violated by E_ex1 and by all 51 sampled non-deterministic vertex orbits.
+- *Boundary* (D.8). Along Lugano -> E_ex1, purifiability appears to stop where the PF hull does.
+- *Unitary-side hunt* (H.3). Optimising unitaries for purity, classicality and facet violation found no purifiable process outside the hull. From Lugano, facet violation of ~0.01 costs a purity residual of 0.1-2.4.
+
+**Open.**
+- The "only if" half for **non-causally-separable three-party processes**: the class that contains Lugano-type process functions, their blends, and every candidate counterexample. Theorems H.1 and H.2 say nothing there.
+- The exact status of **orbits 8, 10, 20** (dim V_W = 82) and **the other 46 sampled open orbits**: numerically non-purifiable, with no exact certificate.
+- Deriving any PF-hull facet (for example orbit 82) from purifiability. Any proof must use the purifying unitary on source states orthogonal to the fixed source state (D.2, D.8). That is the non-convex isotropy condition of AFNB Theorem 4.
+
+**Interpretation (philosophical, not a result).** Consistent time loops are the setting: a process function is a loop in which every local choice has exactly one consistent history. The conjecture asks whether chance inside such a loop can be fundamental, or only ignorance about which deterministic loop obtains. If it holds, every reversible quantum loop with classical statistics is a coherent ignorance mixture of deterministic consistent loops. Genuinely chancy loops like E_ex1 would then be classically consistent but not reversibly realisable. Reversibility, not consistency alone, would be the constraint that excludes basic chance from loops. D.4 adds a caveat: the "which-loop" variable can be contextual, so the ignorance reading is about W, not about any single hidden label. H.2 and H.5 sharpen this: wherever a causal order exists, the ignorance reading is automatic. The open question lives entirely in loops without one.
 
 ## Appendix A. Unitarity under local unitaries implies validity
 

@@ -839,6 +839,46 @@ The note also tests the boundary numerically (evidence; note D.8). Walk along th
 
 The process-function hull is left almost at once, at about t ≈ 2 × 10⁻⁷, because Lugano is a corner and this direction points straight out. The purification search finds nothing at t = 0.02 or t = 0.2, with best residuals 52.2 and 60.1. The same code reaches about 10⁻¹³ on Lugano itself. So along this line, purifiability appears to stop exactly where the hull does. That is consistent with the conjecture, but it is not proof.
 
+### 58a. Two parties: there is nothing to purify away (proved; note Appendix G)
+
+*A story first: the two-room house.* Two people live in a house with two rooms. Each can leave a note for the other, but the house has a rule: no note may ever create a paradox, whatever either of them decides to write. With only two rooms, it turns out the rule is very strict. In every run, one of the two must in effect read before the other writes, perhaps with a coin deciding who goes first. A genuine loop, where each reads what the other has not yet written, needs at least three rooms.
+
+**The statement.** Write a two-party classical process as p(a, b | x, y). Here a is what Alice receives (her *input*), x is what she sends (her *output*), and b, y are the same for Bob. "Valid" means two things. Every probability is non-negative. And for every pair of strategies, Alice replying x = f(a) and Bob replying y = g(b) with *any* functions f and g, the probabilities of all consistent histories add up to exactly 1. The note proves (**Theorem G.1**) that every such p, with alphabets of any finite size, is a mixture of *causally ordered* process functions. In each of these, either Alice's input is fixed and Bob's is a function of what Alice sent, or the other way round.
+
+**How the proof goes, in words.** Split p into pieces according to which of the four variables a, b, x, y each piece really depends on. Validity kills every piece that would let Alice's choice and Bob's choice interact inside the same input. What survives is a constant part, an "Alice-to-Bob" part and a "Bob-to-Alice" part. The constant part is large enough to cover the negative dips of the other two, so p splits into two non-negative halves: one where Alice goes first and one where Bob goes first. Each half is a mixture of deterministic one-way processes. This is the classical shadow of an argument by Oreshkov, Costa and Brukner (2012).
+
+**Consequence.** For two parties, every valid classical process is a mixture of process functions. By Section 47 it is therefore purifiable. Both sides of the conjecture are true, so the conjecture holds, but trivially. The interesting question starts at three parties, which is where E_ex1 lives.
+
+### 58b. Three parties with a clear order (proved; note Appendix H)
+
+With three parties, Alice, Bob and Carol, there can be genuine loops (Lugano). But many three-party processes still have an order hidden in them. The note proves that whenever they do, the two-party result does the rest.
+
+- **Someone is last (Theorem H.1).** Suppose Carol's output z changes nobody's input; she only listens. Then forget Carol for a moment. Alice and Bob form a valid two-party process, which by 58a is a mixture of ordered process functions. Carol's input is then just some random function of what Alice and Bob did. Every piece is a deterministic consistent loop, so the whole is a mixture of process functions.
+- **Someone is first, properly (Theorem H.2).** Suppose Alice's input a does not depend on anyone's output (she is *marginally first*). Suppose also that, once a and Alice's output x are fixed, what remains between Bob and Carol is itself a valid two-party process (the *conditionals are valid*). Then each remainder is a mixture of ordered two-party process functions (58a). Gluing Alice in front gives a mixture of three-party process functions.
+
+A process that is, in any run, a mixture of such "someone goes first, and the rest is consistent" pieces is called *causally separable*. So: **every causally separable three-party classical process is a mixture of process functions, and the conjecture holds for it** (trivially again: both sides are true).
+
+**Where the real question is.** Lugano is not causally separable: it violates a causal inequality (Baumeler, Feix and Wolf, 2014), and each party's input depends on both others. So the open part of the conjecture lives exactly among the loops with no hidden order. That region contains Lugano-type process functions, their mixtures, and every candidate counterexample.
+
+**A subtlety that matters.** "Marginally first" alone, without valid conditionals, is not enough. E_ex1, the coin-flip loop, gives each party an input that looks like a fair coin whatever anyone does. So every party is marginally first. Yet E_ex1 is not a mixture of process functions. Once you fix, say, Alice's input, the remaining Bob-Carol process can have no consistent history, or two.
+
+### 58c. A tempting shortcut that fails (proved; note H.5)
+
+Since E_ex1 and the hard orbits 7, 8 and 50 are all marginally first in some party, a tempting plan was: show that *purifiability* forces valid conditionals for a marginally-first party. Then 58b would finish them off.
+
+*A story: the referee's coin.* A referee flips two coins, β and γ, and hands them to Bob and Carol as their inputs b = β and c = γ. Bob and Carol then each send a bit, y and z. Alice, last of all, is told a = β ⊕ γ ⊕ y ⊕ z, where ⊕ means addition mod 2 ("the parity"). In formula form,
+
+    p(a, b, c | x, y, z) = ¼ if a = b ⊕ c ⊕ y ⊕ z, and 0 otherwise.
+
+- This is a mixture of four deterministic consistent loops, one for each value of the coins (β, γ). In each, Bob and Carol go first and Alice last. So it is purifiable (Section 47).
+- Looking only at the statistics, Alice's input is a fair coin whatever anyone does. She is *marginally first*, even though in the machine she is actually last.
+- Fix Alice's input to a = 0 and look at what remains for Bob and Carol: (b, c) uniform among the pairs with b ⊕ c ⊕ y ⊕ z = 0. If Bob and Carol simply copy their inputs to their outputs (y = b, z = c), the "probabilities" of consistent histories add up to 2. For a = 1 they add up to 0. The conditional is not a valid process.
+
+So the shortcut is false, already for a classically purifiable process. Every claim above is checked in exact fraction arithmetic (code/stochastic/structural/margfirst_cex.py). **Why the shortcut fails:** looking at a's statistics cannot tell you whether a is *computed first* in the machine. Fixing a is then post-selection, keeping only the runs where something downstream turned out a certain way, and post-selection does not respect reversibility. A version that might still be true would have to talk about the purifying unitary itself, not about W. That is listed as open.
+
+**Philosophical gloss (interpretation).** "Comes first" is a fact about mechanism, not about statistics. A variable can look exactly like a fresh coin flip while being the last thing the machine computes. This is the same lesson as Section 55, from the other side. There, the statistics looked like a coin tossed in advance, but no coin was in the drawer. Here, a party looks like it acts first and in fact acts last.
+
+
 ---
 
 ## Part XI. The honest map of dead ends
@@ -859,6 +899,11 @@ The open half of the conjecture has such a map. Here it is, route by route. Ever
 6. **Symmetry and representation theory. Negative result (Appendix E).** The 384 symmetries (permuting parties, relabelling inputs and outputs) could shrink the problem, so the note computed each process's *stabiliser*, the symmetries that leave it unchanged. E_ex1 and orbit 50 have 48, orbit 7 has 16, Lugano 6, and 34 of the sampled orbits have only the trivial one. Symmetry helps most exactly where certificates already exist, and not at all for most open orbits. Worse, the natural convex relaxation that symmetry would have sped up, a moment relaxation over pairs of copies of the projector, turned out to be *feasible* for E_ex1 at r = 16, with strict margins. It cannot even detect the one case we know is non-purifiable. It is strictly weaker than the plain counting test, so symmetry-reducing it is pointless. Stronger convex certificates would need higher moment levels, or would have to encode rank.
 7. **Local numerical search. Evidence, not proof.** Gradient searches find Lugano's purification and stall on every random corner tried (Sections 51 and 58). A local search can always miss a solution.
 8. **Algebraic geometry. Assessed: infeasible by size** (code/stochastic/alggeom/SIZE_ESTIMATES.md). Why not just solve the equations directly? Purifiability asks for a 16-dimensional subspace on which every constraint form vanishes, which is a system of polynomial equations. The forms are sesquilinear, so the system lives over the real numbers. Written out in coordinates, E_ex1 has 352 real unknowns and 23,552 real quadratic equations. Orbit 8 has about 2,112 unknowns and 100,352 equations. Homotopy continuation, the standard numerical method, would have to track about 2³⁵² solution paths for E_ex1 and 2²¹¹² for orbit 8. And certifying that *no* solution exists is exactly the hard case for such methods. Gröbner bases, the exact method, are far out of reach: practical limits are tens of variables, not thousands. Symmetry does not reduce the number of unknowns, because the subspace sought need not itself be symmetric. Small sub-problems are feasible but uninformative: isotropic subspaces exist for small r, and non-existence only starts near r = 15–16, where the full size applies. So the obstruction will not yield to brute-force elimination. It needs a structural argument, or a stronger convex hierarchy (route 6).
+
+9. **Rank (determinant) bound for orbit 8. Fails, numerically (note H, route B).** If u is in a subspace that makes every form vanish, the whole subspace sits inside the vectors "orthogonal" to u under all forms. Counting those gives a dimension bound. But vectors of the isotropic set exist for which the bound allows about 28–32 dimensions, more than the 16 needed. So one vector is not enough.
+10. **Form certificates for orbits 8, 10, 20. Proved too weak (note C.5).** Every linear or block combination of the forms tried stalls. Adding the normalisation provably adds nothing. Numerically, subspaces making all forms vanish exist up to dimension about 10, short of 16, but the gap is non-convex and invisible to such certificates. The earlier estimate that about half of the open orbits could be certified this way is withdrawn.
+11. **Marginally first implies valid conditionals. Dead end, proved (H.5; Section 58c).**
+12. **Counterexample hunt from the quantum side. No hit (note H, route C).** Searching directly over unitaries for a purifiable process outside the hull found none. Starting from Lugano, every step outside the hull cost purity.
 
 ### 61. Why the dead ends cluster
 
@@ -968,6 +1013,9 @@ Two cautions. First, a checked theorem is only as good as its statement (Section
 > - **Certificates.** E_ex1 and the vertex orbits 7 and 50 (one of which contains E_ex1) are not purifiable. *Exact rational certificates, not Lean proofs.*
 > - **Structure.** In any purification, the sink holds an orthogonal record of (outputs, inputs) (D.1).
 > - **The dead ends.** Constraints on the fixed source state alone are vacuous (D.2). Validity under quantum-controlled interventions holds for every classical process (D.5). The hidden-label strengthening D.3 is false, with a causal circuit as counterexample (D.4). No certificate that uses only the fixed source state can rule out purification of any classical process (D.8).
+> - **Two parties** (Appendix G; Section 58a). Every two-party valid classical process is a mixture of ordered process functions, so the conjecture holds for two parties, trivially.
+> - **Ordered three-party processes** (Appendix H; Section 58b). If some party is last, or first with valid conditionals (causally separable), the process is a mixture of process functions.
+> - **A shortcut closed** (H.5; Section 58c). Purifiable plus marginally first does not force valid conditionals; exact counterexample.
 > - **Facets.** The three-party binary process-function hull has exactly 29,344 facets in 93 orbits (exact computation with normaliz).
 >
 > **Negative results (Appendix E)**
@@ -981,11 +1029,13 @@ Two cautions. First, a checked theorem is only as good as its statement (Section
 > - A GPU search found no purification for any of the 49 remaining sampled non-deterministic vertex orbits. Best residuals were 12.97–59.35.
 > - A single facet orbit (82) is violated by E_ex1 and by all 51 sampled non-deterministic vertex orbits.
 > - Along the segment from Lugano to E_ex1, purifiability appears to stop exactly where the hull does.
+> - Orbits 8, 10, 20: isotropic subspaces appear to stop near dimension 10, short of the 16 needed; form certificates provably cannot capture this (C.5). A unitary-side counterexample search found nothing (H.3).
 > - Numerically, non-process functions fail unitarity under random local unitaries (2- and 3-party binary). The converse of the main theorem is not proved.
 >
 > **Open**
 >
 > - **The conjecture.** A classical process is purifiable if and only if it is a mixture of process functions. The "if" half is proved. The "only if" half is open.
+> - **Loops without a hidden order.** The conjecture for three-party processes that are not causally separable, and the exact status of orbits 8, 10, 20 and the other 46 sampled open orbits.
 > - **Facets from purifiability.** No facet inequality, for example orbit 82, has been derived from purifiability.
 > - **Where any proof must look.** Any proof must use the purifying unitary on source states orthogonal to the actual one. That is the non-convex isotropy condition of Araújo et al.'s Theorem 4, where every certificate attempt has stalled for the larger orbits: single-form inertia, block forms, SDP and moment relaxations.
 > - **Continuous alphabets.** The closed loop first needs a definition (F.5).
