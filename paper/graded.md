@@ -1121,6 +1121,10 @@ Two cautions. First, a checked theorem is only as good as its statement (Section
 - **It does not settle freedom** (Section 67).
 - **The weak point is the lemma.** The combinatorial lemma is the piece an attacker has to break. Everything after it is row orthogonality. In this case the lemma is also machine-checked, and it holds for alphabets of any size.
 
+### 71. How big is the purifiable set? (H.13)
+
+The H.12 counterexample can be made much plainer. A board that uses only signs (±1) gives a counterexample in which every number is a simple fraction such as 1/16 or 9/16. The source state is just (|000>+|001>+|010>-|101>)/2. Each step between boards mixes 4 classical patterns instead of 8. This was checked in exact fraction arithmetic. Mixing two purifiable processes always gives a purifiable process: a hidden coin decides which purification runs. So the purifiable set is convex. It sits strictly between the mixtures of process functions and the valid processes. A complete search of one natural family of boards (13,105 boards) shows which facets of the hull can be crossed and roughly by how much. 31 of the 93 facet types were never crossed. These are numerical leads, not theorems.
+
 ---
 
 ## What is proved, what is evidence, what is open

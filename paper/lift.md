@@ -969,6 +969,48 @@ The key lemmas are as follows.
 
 **Quadratic robustness near facet 82 (Appendix I) [false: H.12 has R = 0 and a facet violation].** A proof of v <= c sqrt(R) would imply (C1) for facet 82 at R = 0. None of the routes above gives it. H.10.2 shows that any SOS proof must be at least quartic in U.
 
+### H.13 Toward the purifiable set: exhaustive Z_4 X-type boards, a rational counterexample, convexity (Oct 22 2026) [proved: H.13.1, H.13.2 (exact rational arithmetic); numerical: H.13.3-H.13.4]
+
+Code: code/stochastic/cyclic/switchboard/h13/ (xenum.py, canon.py, analyze.py, simple_phi.py, exact_rational.py; logs *.log). Write Purif for the set of purifiable three-party binary classical processes (any finite source and sink), Valid for the valid polytope.
+
+**H.13.1 Purif is convex, and conv(PF) ⊊ Purif ⊊ Valid [proved].** Let V_1, V_2 purify p_1, p_2. Add a control qubit c to the source, prepared as sqrt(λ)|0> + sqrt(1-λ)|1>, and route it straight to the sink. Set V = |0><0|_c ⊗ V_1 + |1><1|_c ⊗ V_2, padding the smaller one with an idle register. Composing V with any local operations A gives |0><0| ⊗ (V_1∘A) + |1><1| ⊗ (V_2∘A). That is block diagonal with unitary blocks, so V is pure. The parties never touch c, and tracing the sink gives λp_1 + (1-λ)p_2. So Purif is convex. It contains conv(PF) (C.1) and is strictly larger (H.12, H.13.2). It is strictly smaller than Valid: the exact certificates of C.2 (E_ex1, orbits 7 and 50) are valid but not purifiable. ∎ The same argument shows that, for one fixed board family, the set of p it induces over all source states (mixed sources allowed) is a linear image of the 8x8 density matrices. Purif contains the convex hull of these spectrahedral shadows. Whether Purif is a polytope is open.
+
+**H.13.2 A rational, real counterexample with half the Pauli support [proved; exact rational arithmetic, no irrationals].** Take U_o = Hd·diag((-1)^{n_o(z)})·Hd with n_o(z) ∈ {0,1}. Rows o = 000..111, columns z = 000..111:
+
+| o | n_o(z) |
+|---|---|
+| 000 | 0 0 0 0 0 0 0 0 |
+| 001 | 0 0 1 1 1 1 1 1 |
+| 010 | 0 0 0 0 1 0 1 0 |
+| 011 | 0 0 1 1 0 1 0 1 |
+| 100 | 0 0 0 1 0 0 0 1 |
+| 101 | 0 0 1 0 1 1 1 0 |
+| 110 | 0 0 0 1 1 0 1 1 |
+| 111 | 0 0 1 0 0 1 0 0 |
+
+Each U_o is a real orthogonal matrix with entries in (1/4)Z. Each U_o U_000^T has 4 X-Pauli terms; the H.12 board has 8. Take the source phi = (|000> + |001> + |010> - |101>)/2. Then p(i|o) = (U_o phi)_i^2 has entries in {0, 1/16, 1/4, 9/16} (table in exact_rational.log). exact_rational.py checks the following in Fraction arithmetic only.
+- (1) Every U_o is orthogonal.
+- (2) All 2,232 forbidden Pauli coefficients vanish, so the board is pure with and without ancillas (H.8.1-H.8.2).
+- (3) p is valid: all 64 deterministic interventions give total probability 1.
+- (4) Facet 16962 (orbit 91; tight on 436 PFs, range 2 on PFs) takes the value **-1/8** on p.
+
+The source (|000> + |001> + |010>)/sqrt 3 also gives a rational p, and that p violates facets 16962 and 15629 by -1/12. **So irrational phases, Z_4 phases and full Pauli support are all inessential: ±1 phases and 4-term transitions suffice.** By H.10.6, two-term boards cannot do this, so 4 terms is within one of the minimum. Whether 3-term X-type boards can violate a facet is open; none of the Z_4 boards below does.
+
+**H.13.3 Exhaustive Z_4 X-type enumeration [exact enumeration; violations numerical].** Fix the gauge m_000 = 0 (a common right factor is absorbed into phi) and m_o(000) = 0 (global phases). The Pauli rule for X-type boards says: the Walsh-Fourier transform of i^{m_o - m_o'} vanishes on every a ⊇ D(o,o'). These are integer tests. Backtracking over the cube (xenum.py, exact) gives **exactly 13,105 pure Z_4 X-type boards**. Modulo output flips, party permutations and complex conjugation, they fall into 386 classes (canon.py). For each class, analyze.py computes max over phi of the violation of all 29,344 facets, as -λ_min(Σ g·P_{o,i} + g_0) divided by the facet's range on PFs [numerical, float64].
+- 12 of the 386 classes (216 boards) leave conv(PF). 2 of the 27 classes with real (±1) phases do; H.13.2 is one of them.
+- No board whose transitions have at most 2 X-terms violates any facet, which is consistent with H.10.6. The violating classes have at most 4, 5 or 6 terms per transition (gauge m_000 = 0).
+- The largest relative violation is **0.1404**, on orbit 91, reached by the ±1 class of H.13.2 at its optimal (irrational) phi. Facet orbit 82 (the H.12 facet) reaches 0.1036.
+
+**H.13.4 Which facets purifiable processes violate [numerical, within Z_4 X-type boards].** 62 of the 93 facet orbits are violated by some board. The following 31 orbits are never violated in this family: 4-11, 14, 16, 19, 21, 24-31, 52-54, 57, 66, 67, 69, 75, 79, 81, 92. They are candidates for facets that remain valid on Purif. Maximum relative violation per violated orbit:
+- 0.14: orbit 91.
+- 0.10: orbits 82-84.
+- 0.09: orbits 40, 45-47, 60, 61, 76, 78.
+- 0.05-0.06: orbits 36-39, 41-44, 50, 51, 58, 59, 62, 63, 72, 73, 86-89.
+- 0.02-0.04: the rest.
+This is a lower bound on the violation over Purif, not the maximum. General boards, larger phase groups and non-X-type boards were not enumerated.
+
+**Partial characterization (status).** Proved: Purif is convex, with conv(PF) ⊊ Purif ⊊ Valid. Two-term boards stay inside conv(PF) (H.10.6). The commuting/monomial boards do too (H.8.4). Four-term ±1 boards can leave it (H.13.2). Not proved: three-term boards; whether the 31 unviolated orbits are valid on all of Purif; whether Purif is a polytope; whether X-type boards already give all of Purif.
+
 ## Appendix I. Robustness: approximately blended versus approximately liftable (Oct 22 2026)
 
 Norm: for classical processes, ||p - q||_1 = sum over (i,o) of |p(i|o) - q(i|o)|. For machines, the switchboard residual is rho(U) := sqrt(R(U)), the l2 norm of the forbidden Pauli coefficients (H.8.1).
