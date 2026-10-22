@@ -1,0 +1,3 @@
+pairs 39512 constant w1^w2 5208
+distinct values of w1^w2 among nonconstant {2: 20736, 3: 13056, 4: 512}
+random nonconstant sample 500: non-commuting 500

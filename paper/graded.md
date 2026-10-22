@@ -958,6 +958,21 @@ Section 58e left the Switchboard with a list of linear rules: the conditions und
 **What is still open.** Whether the Switchboard's rule forces its statistics into the hull, and whether every machine with no first mover can be put in Switchboard form. Both are stated as conjectures in the technical note (H.9).
 
 
+### 58g. Boards that blur two wirings (evidence; note H.10, H.11)
+
+The hard Switchboards are the ones whose boards *blur* two flip patterns at once: partly "flip Alice's bit", partly "flip Bob's". We tried three ways to tame them.
+
+**Shuffling does not help (proved).** One hope was to average the machine over harmless relabellings until the boards stop blurring. The only relabellings that leave all the statistics alone are phase changes on the input strings, and those leave the blur exactly as it was. So any proof has to face the blur directly.
+
+**The cheapest kind of proof cannot work (proved).** A "degree-2" argument, which treats each board's entries only through averages of their products, cannot tell a real machine from a fake one that never relates different boards at all. That fake can produce any statistics whatever. So a proof has to be at least degree 4 in the board entries.
+
+**A whole family, checked exactly, then tested (evidence).** The simplest blurring boards mix two process functions with a fixed angle: "mostly w1, a little of w2", coherently. The computer listed *every* way to choose w1 and w2 so that the Switchboard's rule holds. (Along the way it confirmed that, for single bits, the exclusivity rule singles out exactly the 744 process functions.) There are 39,512 such pairs, and 34,304 of them genuinely blur. For every one of their 237 symmetry types, at seven angles, and against *all* 29,344 walls of the hull, the statistics stayed inside the hull for every source state. The worst value was −0.00000000000002, which is zero up to rounding. This is evidence, not proof. No counterexample.
+
+**Is every no-first-mover machine a Switchboard? (partly proved).** Any machine can be given an extra "carbon copy" of the inputs in its sink without spoiling its purity. A slightly bigger Switchboard, with extra sink space, obeys the same rule, piece by piece. What is missing is one fact: that the machine's sink can always be made to remember the parties' outputs, whatever the source holds, and not just for the source state actually used. If that fact holds, every no-first-mover machine is a Switchboard, and the conjecture comes down to the Switchboard rule. We could neither prove that fact nor break it.
+
+*A story: the two-tone bell.* A bell-founder casts bells that ring two notes at once. Each note on its own is a tune the town knows. The worry is that the two notes, ringing together, could beat into a tune no one has heard. Every bell of the simplest two-note kind has now been rung against every wall of the town, and none has carried a new tune out. Whether some three- or four-note bell could do it is still unknown.
+
+
 ---
 
 ## Part XI. The honest map of dead ends
@@ -1109,6 +1124,7 @@ Two cautions. First, a checked theorem is only as good as its statement (Section
 >
 > - A GPU search found no purification for any of the 49 remaining sampled non-deterministic vertex orbits. Best residuals were 12.97–59.35.
 > - Machines with no first mover (H.7; Section 58e): a small, local search found 13 pure machines, including the Shadows near Lugano. All of their statistics lie inside the hull.
+> - Two-tone Switchboards (H.10; Section 58g): all 39,512 two-pattern boards allowed by the rule, checked against every hull wall at seven angles, stay inside the hull for every source state. Float64 evidence, no counterexample. Proved: no relabelling trick and no degree-2 argument can settle the general case.
 > - Switchboard toll (I.4; Section 58f): crossing facet 82 by v always cost impurity R >= 0.31 v² in 108 runs. No counterexample.
 > - Degree-4 certificates for orbit 8 of the proposed shape cannot exist for random slices (C.6). No paid compute was used.
 > - A single facet orbit (82) is violated by E_ex1 and by all 51 sampled non-deterministic vertex orbits.
