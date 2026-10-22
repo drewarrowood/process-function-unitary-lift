@@ -633,12 +633,12 @@ noncomputable def ptrace (T : lp (fun _ : J => H) 2 →L[ℂ] lp (fun _ : J => H
 variable {T S : lp (fun _ : J => H) 2 →L[ℂ] lp (fun _ : J => H) 2}
 
 theorem ptrace_mem (hT : T ∈ traceClass (lp (fun _ : J => H) 2)) : ptrace T ∈ traceClass H := by
-  rw [ptrace, dif_pos hT]; exact (exists_ptrace hT).choose_spec.1
+  rw [ptrace, dite_eq_left hT]; exact (exists_ptrace hT).choose_spec.1
 
 /-- **Defining property of the partial trace:** `Tr(Tr_J(T) C) = Tr(T (C ⊗ 1))`. -/
 theorem trace_ptrace_comp (hT : T ∈ traceClass (lp (fun _ : J => H) 2)) (C : H →L[ℂ] H) :
     trace (ptrace T ∘L C) = trace (T ∘L amp C) := by
-  rw [ptrace, dif_pos hT]; exact (exists_ptrace hT).choose_spec.2 C
+  rw [ptrace, dite_eq_left hT]; exact (exists_ptrace hT).choose_spec.2 C
 
 /-- **Uniqueness:** any operator with the defining property is the partial trace. -/
 theorem ptrace_unique (P : H →L[ℂ] H)

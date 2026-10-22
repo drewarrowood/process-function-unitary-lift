@@ -28,7 +28,7 @@ theorem isCompactOperator_rankOne (x : K) (y : H) :
     IsCompactOperator ((InnerProductSpace.rankOne ℂ x y : H →L[ℂ] K) : H → K) := by
   have : InnerProductSpace.rankOne ℂ x y = (ContinuousLinearMap.toSpanSingleton ℂ x : ℂ →L[ℂ] K) ∘L innerSL ℂ y := by
     ext z; simp [InnerProductSpace.rankOne_apply]
-  rw [this, ContinuousLinearMap.coe_comp']
+  rw [this, ContinuousLinearMap.coe_comp]
   exact (isCompactOperator_of_locallyCompactSpace_dom (innerSL ℂ y : H →L[ℂ] ℂ)).clm_comp _
 
 /-- Finite-rank truncation `A ∘ P_F`. -/
@@ -43,14 +43,14 @@ theorem trunc_isCompact {ι : Type*} (b : HilbertBasis ι ℂ H) (F : Finset ι)
   induction F using Finset.induction_on with
   | empty => simpa using isCompactOperator_zero
   | insert a s ha ih =>
-    rw [Finset.sum_insert ha, ContinuousLinearMap.coe_add']
+    rw [Finset.sum_insert ha, FunLike.coe_add]
     exact (isCompactOperator_rankOne _ _).add ih
 
 theorem sub_trunc_basis {ι : Type*} (b : HilbertBasis ι ℂ H) (F : Finset ι) (A : H →L[ℂ] K)
     (j : ι) [Decidable (j ∈ F)] : (A - trunc b F A) (b j) = if j ∈ F then 0 else A (b j) := by
   classical
   have ho := orthonormal_iff_ite.1 b.orthonormal
-  simp only [trunc, sub_apply, ContinuousLinearMap.sum_apply, InnerProductSpace.rankOne_apply, ho]
+  simp only [trunc, sub_apply, sum_apply, InnerProductSpace.rankOne_apply, ho]
   simp only [ite_smul, one_smul, zero_smul, Finset.sum_ite_eq']
   split_ifs <;> simp
 
@@ -98,7 +98,7 @@ theorem isCompactOperator_of_mem {T : H →L[ℂ] H} (hT : T ∈ traceClass H) :
   induction hT using Submodule.span_induction with
   | mem T hT =>
     obtain ⟨K, _, _, _, A, B, hA, hB, rfl⟩ := hT
-    rw [ContinuousLinearMap.coe_comp']
+    rw [ContinuousLinearMap.coe_comp]
     exact hB.isCompactOperator.clm_comp (adjoint A)
   | zero => exact isCompactOperator_zero
   | add x y _ _ hx hy => exact hx.add hy
@@ -175,7 +175,7 @@ theorem schmidt {T : H →L[ℂ] H} (hT : T ∈ traceClass H) :
       (∀ n m, s n ≠ 0 → s m ≠ 0 → ⟪u n, u m⟫_ℂ = if n = m then 1 else 0) ∧
       HasSum s (trace (absOp T)) ∧ traceNorm T = ‖trace (absOp T)‖ₑ := by
   have hc : IsCompactOperator (absOp T) := by
-    rw [← adjoint_partialIso_comp_self, ContinuousLinearMap.coe_comp']
+    rw [← adjoint_partialIso_comp_self, ContinuousLinearMap.coe_comp]
     exact (isCompactOperator_of_mem hT).clm_comp _
   set b := eigBasis hc
   set s : EigIdx T → ℂ := fun n => ⟪b n, absOp T (b n)⟫_ℂ

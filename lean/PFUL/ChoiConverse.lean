@@ -26,7 +26,7 @@ theorem KernelPSD.herm {P : Type*} [DecidableEq P] {J : P → P → ℂ} (h : Ke
     intro z
     have := (Complex.nonneg_iff.1 (h {p, q} fun r => if r = p then 1 else z)).2
     rw [Finset.sum_pair hpq, Finset.sum_pair hpq, Finset.sum_pair hpq] at this
-    simp only [if_neg (Ne.symm hpq), ite_true, star_one, one_mul, mul_one] at this
+    simp only [Ne.symm hpq, ite_false, ite_true, star_one, one_mul, mul_one] at this
     rw [this]; congr 1; ring
   have h1 := key 1
   have h2 := key Complex.I
@@ -55,7 +55,7 @@ theorem KernelPSD.exists_factor {P : Type u} [Countable P] [DecidableEq P] {J : 
       rw [hJ.herm i j]
     · have h0 := (Complex.nonneg_iff.1 (hJ vv.support fun p => star (vv p))).1
       convert h0 using 1
-      simp only [Finsupp.sum, K, Matrix.of_apply, ContinuousLinearMap.smul_apply,
+      simp only [Finsupp.sum, K, Matrix.of_apply, smul_apply,
         ContinuousLinearMap.id_apply, inner_smul_left, star_star]
       refine (congrArg Complex.re ?_).trans (Complex.conj_re _)
       simp only [map_sum]

@@ -3,7 +3,7 @@ import Mathlib.LinearAlgebra.Matrix.ConjTranspose
 import Mathlib.Algebra.BigOperators.Pi
 import Mathlib.Algebra.BigOperators.Ring.Finset
 import Mathlib.Data.Fintype.BigOperators
-import Mathlib.Data.Complex.Basic
+import Mathlib.Basic.Complex.Basic
 import Mathlib.LinearAlgebra.UnitaryGroup
 
 open Finset Matrix
@@ -90,12 +90,12 @@ theorem induced_mul_conjTranspose (w : (∀ k, O k) → (∀ k, I k)) (hw : IsPr
     · subst hy; simp
     · obtain ⟨k, hk'⟩ : ∃ k, y k ≠ y' k := by
         by_contra h; push Not at h; exact hy (funext h)
-      rw [Matrix.one_apply, if_neg (by simp [hy])]
+      rw [Matrix.one_apply, ite_eq_right (by simp [hy])]
       exact prod_eq_zero (mem_univ k) (by simp [hk'])
   · obtain ⟨k, hsk, hwk⟩ := exclusivity w hw hs
-    rw [Matrix.one_apply, if_neg (by simp [hs])]
+    rw [Matrix.one_apply, ite_eq_right (by simp [hs])]
     apply prod_eq_zero (mem_univ k)
-    rw [hwk, factor_eq 𝕜 (V k) (w s' k), hV k, Matrix.one_apply, if_neg (by simp [hsk])]
+    rw [hwk, factor_eq 𝕜 (V k) (w s' k), hV k, Matrix.one_apply, ite_eq_right (by simp [hsk])]
 
 /-- The complex case: closing the lift with arbitrary local unitaries (with local ancillas)
 gives an operator with orthonormal rows. When `∏|I k||X k| = ∏|O k||Y k|` it is square, hence unitary. -/
