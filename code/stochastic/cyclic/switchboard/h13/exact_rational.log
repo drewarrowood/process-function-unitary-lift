@@ -1,0 +1,10 @@
+(1) all U_o real orthogonal, entries in Z/4: exact
+(2) forbidden Pauli coefficients checked 2232 nonzero 0
+   facet 16962 tight on 436 PFs, range 2 : value on p = -1/8 (relative -0.0625)
+   facet 16962 tight on 436 PFs, range 2 : value on p = -1/8 (relative -0.0625)
+   facet 15629 tight on 436 PFs, range 2 : value on p = 1/4 (relative 0.1250)
+(3,4) (|0>+|1>+|2>-|5>)/2 : p rational, VALID, OUTSIDE conv(PF)  p = [['1/4', '0', '1/16', '9/16', '9/16', '1/16', '0', '1/4'], ['1/4', '1/4', '1/16', '1/16', '1/16', '1/16', '1/4', '1/4'], ['1/4', '0', '1/16', '1/16', '1/16', '1/16', '0', '1/4'], ['0', '0', '1/16', '1/16', '1/16', '1/16', '0', '0'], ['0', '1/4', '9/16', '1/16', '1/16', '9/16', '1/4', '0'], ['1/4', '1/4', '1/16', '1/16', '1/16', '1/16', '1/4', '1/4'], ['0', '1/4', '1/16', '1/16', '1/16', '1/16', '1/4', '0'], ['0', '0', '1/16', '1/16', '1/16', '1/16', '0', '0']]
+   facet 16962 tight on 436 PFs, range 2 : value on p = -1/12 (relative -0.0417)
+   facet 16962 tight on 436 PFs, range 2 : value on p = -1/12 (relative -0.0417)
+   facet 15629 tight on 436 PFs, range 2 : value on p = -1/12 (relative -0.0417)
+(3,4) (|0>+|1>+|2>)/sqrt3 [p uses phi phi^T] : p rational, VALID, OUTSIDE conv(PF)  p = 
