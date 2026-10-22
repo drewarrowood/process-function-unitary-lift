@@ -1,0 +1,9 @@
+pairs 39512 orbit reps 237
+t 0.2618 running min lambda_min -1.577e-14
+t 0.3927 running min lambda_min -1.577e-14
+t 0.5236 running min lambda_min -1.577e-14
+t 0.7854 running min lambda_min -1.599e-14
+t 1.0472 running min lambda_min -1.599e-14
+t 1.1781 running min lambda_min -1.621e-14
+t 1.3090 running min lambda_min -1.732e-14
+RESULT min over reps, facets, t of lambda_min: -1.732e-14 [1.3089969389957472, 21048, [[0, 0, 0, 0, 0, 0, 1, 1], [0, 2, 0, 2, 0, 0, 0, 0]]]
