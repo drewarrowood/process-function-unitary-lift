@@ -200,3 +200,26 @@ Gaps:
   Appendix A) and the reduction "pairwise commuting P_{o,i} ⇒ hypothesis with b = u o₀" are
   not packaged; the H.8.1 Pauli-span equivalence is not formalised.
 - Continuous alphabets: unchanged (not formalised).
+
+## Round 6 (H.12 counterexample)
+
+Proved (no `sorry`, no `native_decide`; finite computations by `decide +kernel`; axioms of
+`purification_conjecture_false` and all key lemmas: propext/Classical.choice/Quot.sound):
+- `PFUL/CounterexampleData.lean`: Gaussian-integer board tables (`U8 = tab`), board Gram
+  check, 25 kernel-checked purity blocks (`purityBlock_all`, `TD_eq`), validity under the 64
+  deterministic interventions (`valid_det`), the PF inequality check over 4 interventions
+  (`pfCheck_eq`, `two_cases`), `g_pN = 32`, `g_pM = -24`.
+- `PFUL/Counterexample.lean`: `board_mem_unitaryGroup` (each U_o unitary, U_o = H·diag(i^m)·H);
+  general link product `compose` with ancillas `a : Fin 3 → Type`, `IsPure`;
+  **`isPure_Vsb`** (Switchboard pure for all finite ancillas and local unitaries, via
+  `scalar_key` multilinear reduction); `pcl_eq` (p = (pN + pM√2)/128); **`valid_pcl`**
+  (all stochastic local interventions, via `stoch_decomp`); `Lg_nonneg_of_isPF`,
+  `Lg_pcl_neg` (L(p) = (32 − 24√2)/128 < 0), `pcl_not_mem_convexHull`; `purifiable_pcl`;
+  **`purification_conjecture_false`**: ∃ p, Valid p ∧ Purifiable p ∧ p ∉ convexHull ℝ PFset.
+- Build: CounterexampleData ≈130 s (≈2.6 GB peak), Counterexample a few seconds.
+
+Gaps:
+- Ancillas: finite types in `Type 0` only (infinite-dimensional ancillas not covered).
+- Purity/validity/PF are this file's finite-dimensional definitions (link-product `compose`,
+  `Valid` over product stochastic interventions, `IsPF` as unique fixed point); they are not
+  yet linked to the `PFUL.Validity`/`Choi` framework.
