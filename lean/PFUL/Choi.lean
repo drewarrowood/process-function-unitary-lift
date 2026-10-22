@@ -55,7 +55,7 @@ theorem born_eq_trace (w : (∀ k, O k) → (∀ k, I k)) (ρ : Matrix (∀ k, I
   simp only [born, procMat, liftVec, Fintype.sum_prod_type, ite_mul, one_mul, zero_mul,
     apply_ite star, star_one, star_zero, mul_ite, mul_one, mul_zero]
   simp only [Finset.sum_ite_irrel, Finset.sum_const_zero, Finset.sum_ite_eq, Finset.sum_ite_eq',
-    Finset.mem_univ, if_true]
+    Finset.mem_univ, ite_true]
   simp only [choi]
   simp_rw [Fintype.prod_sum (fun k (j : J k) => K k j _ _ * star (K k j _ _))]
   simp only [Matrix.trace, Matrix.diag, Matrix.mul_apply, indM, conjTranspose_apply, star_prod,
@@ -131,7 +131,7 @@ theorem kraus_of_choi {I' O' : Type*} [Fintype I'] [Fintype O'] [DecidableEq I']
     conv_rhs => rw [hspec]
     simp only [choi, K, map_mul, Matrix.of_apply, Unitary.conjStarAlgAut_apply, Matrix.mul_apply, Matrix.diagonal_apply,
       Function.comp_apply, star_apply, mul_ite, mul_zero, Finset.sum_ite_eq', Finset.mem_univ,
-      if_true, Finset.sum_mul, star_mul', Complex.star_def, Complex.conj_ofReal]
+      ite_true, Finset.sum_mul, star_mul', Complex.star_def, Complex.conj_ofReal]
     refine Finset.sum_congr rfl (fun j _ => ?_)
     have hs : ((Real.sqrt (lam j) : ℂ)) * (Real.sqrt (lam j) : ℂ) = (lam j : ℂ) := by
       rw [← Complex.ofReal_mul, Real.mul_self_sqrt (hC.eigenvalues_nonneg j)]

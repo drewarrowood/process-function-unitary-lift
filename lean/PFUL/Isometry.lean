@@ -38,7 +38,7 @@ theorem Column.sum_prod_eq_prod (w : (∀ k, O k) → (∀ k, I k)) (hw : Column
           intro k i
           rw [← Finset.sum_div, Finset.sum_add_distrib, hq k i, ← Finset.mul_sum,
             Finset.sum_ite_eq' Finset.univ (o0 k)]
-          simp only [Finset.mem_univ, if_true, mul_one]
+          simp only [Finset.mem_univ, ite_true, mul_one]
           exact div_self (ht k))
       simp only [Finset.prod_div_distrib] at h1
       have hQ : ∏ k, (lam k + t) ≠ 0 := Finset.prod_ne_zero_iff.2 (fun k _ => ht k)
@@ -48,7 +48,7 @@ theorem Column.sum_prod_eq_prod (w : (∀ k, O k) → (∀ k, I k)) (hw : Column
     have hPQ : P = Q := by
       apply Polynomial.eq_of_infinite_eval_eq
       have hfin : (Set.range (fun k => -lam k)).Finite := Set.finite_range _
-      refine ((Set.infinite_univ (α := ℂ)).diff hfin).mono ?_
+      refine ((Set.infinite_univ (α := ℂ)).sdiff hfin).mono ?_
       intro t ht
       refine hev t (fun k h => ht.2 ⟨k, ?_⟩)
       simp only; linear_combination -h

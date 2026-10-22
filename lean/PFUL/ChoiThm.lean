@@ -71,7 +71,7 @@ theorem choi_posSemidef_cp (Φ : Matrix I I ℂ →ₗ[ℂ] Matrix O O ℂ) (h :
     simp only [choi, Matrix.of_apply, Matrix.sum_apply, Matrix.mul_apply, conjTranspose_apply, A,
       Fintype.sum_prod_type, star_mul', mul_ite, ite_mul, mul_one, mul_zero, zero_mul, one_mul,
       apply_ite star, star_one, star_zero, Finset.sum_ite_eq, Finset.sum_ite_eq', Finset.mem_univ,
-      if_true, Finset.mul_sum, Finset.sum_mul]
+      ite_true, Finset.mul_sum, Finset.sum_mul]
     conv_lhs => rw [Finset.sum_comm]
     conv_lhs => arg 2; ext i'; rw [Finset.sum_comm]; arg 2; ext j1; rw [Finset.sum_comm]
     conv_lhs => rw [Finset.sum_comm]; arg 2; ext j1; rw [Finset.sum_comm]

@@ -117,20 +117,20 @@ theorem induced_rows {X Y : ι → Type*} [∀ k, AddCommGroup (I k)] [∀ k, Co
     exact this.tsum_eq
   by_cases hrr : r = r'
   · subst hrr
-    rw [if_pos rfl]
+    rw [ite_eq_left rfl]
     symm
-    exact Finset.prod_eq_one (fun k _ => by rw [hfac k rfl, if_pos rfl])
-  · rw [if_neg hrr]
+    exact Finset.prod_eq_one (fun k _ => by rw [hfac k rfl, ite_eq_left rfl])
+  · rw [ite_eq_right hrr]
     symm
     by_cases h1 : r.1 = r'.1
     · have h2 : r.2 ≠ r'.2 := fun h2 => hrr (Prod.ext h1 h2)
       obtain ⟨k, hk⟩ : ∃ k, r.2 k ≠ r'.2 k := by
         by_contra h; push Not at h; exact h2 (funext h)
       refine Finset.prod_eq_zero (Finset.mem_univ k) ?_
-      rw [hfac k (by rw [h1]), if_neg (fun h => hk (congrArg Prod.snd h))]
+      rw [hfac k (by rw [h1]), ite_eq_right (fun h => hk (congrArg Prod.snd h))]
     · obtain ⟨k, hsk, hwk⟩ := exclusivity w hw h1
       refine Finset.prod_eq_zero (Finset.mem_univ k) ?_
-      rw [hfac k hwk, if_neg (fun h => hsk (congrArg Prod.fst h))]
+      rw [hfac k hwk, ite_eq_right (fun h => hsk (congrArg Prod.fst h))]
 
 end PFUL.Countable
 

@@ -169,3 +169,34 @@ Gaps:
 - `stinespring` is on abstract `H →L ℓ²(J;K)`; the bridge to the kernel form `V : O × Y → A → ℂ`
   used in `valid_kraus_l2` (building the isometry from the kernel) is not stated as a lemma.
 - `ampMap` uses finite ancillas (n-positivity for all n, the standard CP definition).
+
+## Round 5
+
+Proved (no `sorry`, axioms propext/Classical.choice/Quot.sound):
+- `PFUL/TraceNormDense.lean`: `exists_finiteRank_traceNorm_lt` (finite-rank operators are
+  trace-norm dense in the trace class); `traceNorm_rankOne_le`, `enorm_inner_apply_le`,
+  `norm_amp_le`, `traceNorm_ptrace_le`, `trace_conj_comp` (cross-space cyclicity),
+  `traceNorm_conj_le`; `IsNormalCPTP` (IsCPTP + trace-norm bound ∃ c, ‖Φ T‖₁ ≤ c ‖T‖₁);
+  `isNormalCPTP_stinespring`; `eq_of_rankOne_basis` (normal CPTP maps agreeing on matrix units
+  agree on the trace class).
+- `PFUL/KrausNormal.lean`: `krausIso`, `krausChannel` (ρ ↦ Tr_Y(UρU†), the `valid_kraus_l2`
+  form), `krausStine`, **`krausChannel_eq_stinespring`** (bridge kernel form ↔ abstract
+  Stinespring isometry), `isNormalCPTP_krausChannel`, `inner_krausChannel` (its Choi kernel is
+  `choiKernel V`), `choiOf` with `choiOf_psd` (from CP) and `choiOf_tp`,
+  **`exists_kraus_of_normalCPTP`**, **`isNormalCPTP_iff_kraus`** (Kraus ⟺ normal CPTP on
+  countable ℓ²), `IsNormalCPTP.congr`, **`valid_normalCPTP_l2`** (validity for arbitrary normal
+  CPTP local channels on countable alphabets).
+- `PFUL/CommutingBlend.lean` (H.8.4 core, finite dimensions): `inner_eq_zero_or_norm_eq_one`
+  (commuting rank-one projectors: parallel or orthogonal), `commuting_blend`
+  (p_φ(i|o) = Σ_j |⟨b_j,φ⟩|² [f_j(o) = i], Σ_j |⟨b_j,φ⟩|² = ‖φ‖²).
+- All deprecation warnings in PFUL removed (`if_pos/if_neg/dif_pos/if_true/if_false`,
+  `coe_comp'`, `Set.mem_setOf_eq`, `Set.Infinite.diff`, `ofReal_norm_eq_enorm`, the
+  `Mathlib.Data.Complex.Basic` import).
+
+Gaps:
+- Normality is defined as trace-norm boundedness; for maps linear on the trace class this is
+  trace-norm continuity. (Automatic boundedness of positive TP maps is not proved.)
+- H.8.4: that each deterministic record f_j is a process function (validity of 0/1 records,
+  Appendix A) and the reduction "pairwise commuting P_{o,i} ⇒ hypothesis with b = u o₀" are
+  not packaged; the H.8.1 Pauli-span equivalence is not formalised.
+- Continuous alphabets: unchanged (not formalised).

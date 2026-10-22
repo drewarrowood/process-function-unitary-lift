@@ -36,8 +36,8 @@ theorem traceNorm_sub_schmidt_le {T : H →L[ℂ] H} (hT : T ∈ traceClass H) {
     intro m
     have h1 := hTx (v m)
     have h2 : HasSum (fun n => (s n * ⟪v n, v m⟫_ℂ) • u n) ((s m * ⟪v m, v m⟫_ℂ) • u m) :=
-      hasSum_single m fun n hn => by rw [hvv, if_neg hn]; simp
-    rw [h1.unique h2, hvv, if_pos rfl, mul_one]
+      hasSum_single m fun n hn => by rw [hvv, ite_eq_right hn]; simp
+    rw [h1.unique h2, hvv, ite_eq_left rfl, mul_one]
   have hRv : ∀ m, R (v m) = if m ∈ F then 0 else s m • u m := by
     intro m
     simp only [R, sub_apply, sum_apply, smul_apply, InnerProductSpace.rankOne_apply, hTv, hvv,
@@ -49,10 +49,10 @@ theorem traceNorm_sub_schmidt_le {T : H →L[ℂ] H} (hT : T ∈ traceClass H) {
     have hsub : Summable fun n : {x // x ∉ F} => (s n).re := hσ.summable.subtype _
     have := (hasSum_subtype_iff_indicator (f := fun n => (s n).re) (s := {x | x ∉ F})).1 hsub.hasSum
     convert this using 1
-    funext m; simp only [g, Set.indicator, Set.mem_setOf_eq]; split_ifs <;> rfl
+    funext m; simp only [g, Set.indicator, Set.mem_ofPred_eq]; split_ifs <;> rfl
   refine iSup₂_le fun C hC => ?_
   have htr := hasSum_trace (comp_mem_left C hR) v
-  rw [← ofReal_norm_eq_enorm]
+  rw [← ofReal_norm]
   refine ENNReal.ofReal_le_ofReal (htr.norm_le_of_bounded hg fun m => ?_)
   simp only [comp_apply, hRv, g]
   split_ifs with hm
@@ -65,7 +65,7 @@ theorem traceNorm_sub_schmidt_le {T : H →L[ℂ] H} (hT : T ∈ traceClass H) {
     rw [map_smul, inner_smul_right, norm_mul, hre]
     have hum : ‖u m‖ = 1 := by
       have := hu m m hs hs
-      rw [if_pos rfl] at this
+      rw [ite_eq_left rfl] at this
       have h' : ‖u m‖ ^ 2 = 1 := by rw [← inner_self_eq_norm_sq (𝕜 := ℂ), this]; simp
       nlinarith [norm_nonneg (u m), sq_nonneg (‖u m‖ - 1)]
     have : ‖⟪v m, C (u m)⟫_ℂ‖ ≤ 1 := by
