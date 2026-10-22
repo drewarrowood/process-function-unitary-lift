@@ -1,0 +1,4 @@
+/workspace/pful-graded/code/stochastic/cert/cone67b.py:29: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  opt.step(cl); val=float(f(B@z).detach()); best=min(best,val); print("  restart",s,"loss",val,"norm-check",float((B@z).norm()),flush=True)
+  restart 0 loss 1.2870394224312015e-08 norm-check 14.830084915008692

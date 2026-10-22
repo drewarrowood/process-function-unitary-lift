@@ -1,0 +1,8 @@
+D (0,) rank H.7.1 48 rank Pauli 48 rank joint 48 allowed dim 16
+D (1,) rank H.7.1 48 rank Pauli 48 rank joint 48 allowed dim 16
+D (2,) rank H.7.1 48 rank Pauli 48 rank joint 48 allowed dim 16
+D (0, 1) rank H.7.1 36 rank Pauli 36 rank joint 36 allowed dim 28
+D (0, 2) rank H.7.1 36 rank Pauli 36 rank joint 36 allowed dim 28
+D (1, 2) rank H.7.1 36 rank Pauli 36 rank joint 36 allowed dim 28
+D (0, 1, 2) rank H.7.1 27 rank Pauli 27 rank joint 27 allowed dim 37
+EQUIVALENT
