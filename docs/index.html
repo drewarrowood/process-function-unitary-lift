@@ -105,7 +105,7 @@ table{border-collapse:collapse;font-size:.9rem;display:block;overflow-x:auto} th
 </ul>
 <p><strong>Open.</strong></p>
 <ul>
-<li>The &quot;only if&quot; half for <strong>purifications with no operator-first party</strong>: every party's input is influenced by some party output in V, as in the Lugano-type cyclic lifts. By H.6 this is the only place a purifiable non-blend can live. It contains Lugano-type process functions, their blends, and every candidate counterexample (E<sub>ex1</sub> and all 51 sampled orbits fail first-with-valid-conditionals in every party, so any purification of them has no operator-first party).</li>
+<li>The &quot;only if&quot; half for <strong>purifications with no operator-first party</strong>: every party's input is influenced by some party output in V, as in the Lugano-type cyclic lifts. By H.6 this is the only place a purifiable non-blend can live. It contains Lugano-type process functions, their blends, and every candidate counterexample (E<sub>ex1</sub> and all 51 sampled orbits fail first-with-valid-conditionals in every party, so any purification of them has no operator-first party). H.7 [numerical] searched this class with three binary parties. It found pure purifications with complete causal graphs, beyond Lugano: one with a separable W, and a non-separable continuous family near Lugano. Every induced process found lies in conv(PF); no counterexample.</li>
 <li>The exact status of <strong>orbits 8, 10, 20</strong> (dim V<sub>W</sub> = 82) and <strong>the other 46 sampled open orbits</strong>: numerically non-purifiable, with no exact certificate.</li>
 <li>Deriving any PF-hull facet (for example orbit 82) from purifiability. Any proof must use the purifying unitary on source states orthogonal to the fixed source state (D.2, D.8). That is the non-convex isotropy condition of AFNB Theorem 4.</li>
 </ul>
@@ -693,6 +693,17 @@ left at t<sub>h</sub> ~ 2e-7: Lugano is a vertex and this direction exits the hu
 t = 0.2 (60.1); the same code reaches about 1e-13 on Lugano itself. This is consistent with the conjecture, since the
 purifiable set appears to end where the PF hull does along this line. It is numerical evidence, not a proof.
 Generalisation to other facet orbits: not attempted, since no certificate exists to generalise.</p>
+<h3>D.9 Facet orbit 82 from purifiability: reductions and a negative result (Oct 22 2026): not proved</h3>
+<p>Status labels: <strong>[proved]</strong>, <strong>[proved, exact]</strong> (rational arithmetic), <strong>[failed]</strong>. The derivation of facet orbit 82 from purifiability is still open. Code: code/stochastic/physics/d9/ (f82_exact.py, log f82_exact.log).</p>
+<p><strong>D.9.1 The facet orbit, exactly [proved, exact].</strong> The images of p(000|000) ≤ p(000|001)+p(010|001)+p(000|100)+p(010|110)+p(011|111) under the 384 symmetries are 384 distinct inequalities. In exact rationals: every one of the 744 PFs satisfies all 384 (maximum value 0), with 418 tight PFs per member. E<sub>ex1</sub> violates 48 members, each by 1/2. Every one of the 51 sampled vertex orbits (reps.json, entries rounded to the exact rationals they represent) violates at least one member. The maximum violation is 1/2, except orbits 32, 34, 38, 39 and 43-49, where it is 1/3. Members violated per orbit range from 1 (orbits 2, 3, 13, 19, 37, 40) to 48 (orbit 50). This turns the D.7 numerical claim into an exact one.</p>
+<p><strong>D.9.2 Where facet 82 is already proved [proved].</strong> Facet 82 holds for every purifiable W that has a purification with an operator-first party (H.6.2), or that has a W-level last party (H.1). In both cases W is a PF blend. So a purifiable W violating facet 82 has only purifications in which every party's input has a parent among the party outputs (H.6). This adds nothing to H.6; it only states the facet consequence.</p>
+<p><strong>D.9.3 Averaging the validity identity gives nothing [proved, negative].</strong> The idea was to average the purity identity M M^dag = 1 over Haar (or 2-design) local unitaries, which gives linear and quadratic constraints, and then derive facet 82 by a small SOS in the 37 diagonal variables. This cannot work for constraints read on the fixed source state psi. Each such constraint is a polynomial in the numbers ⟨psi, a|M^dag ... M|psi, a'⟩ for local operations and ancilla states, possibly averaged. By D.8 these numbers are linear in W. Their values are forced by validity of W under local operations with ancillas, and by D.5 every valid classical W, E<sub>ex1</sub> included, is valid under all of them. Each such identity is therefore satisfied by E<sub>ex1</sub>, and so is any Haar or design average of products of these numbers. No degree-2 (or any degree) certificate in the diagonal variables alone can be built from them. Constraints that use V on psi-perp involve the off-diagonal blocks of the full Choi vector on P and F. Eliminating those blocks is the AFNB Thm. 4 isotropy problem, which is non-convex (C.5). Also, the purifiable set is convex (C.3). So any diagonal-only necessary condition that implies facet 82 implies it only through its supporting hyperplanes, and a quadratic inequality has no advantage over a linear one. The proposed numerical test (idea 4) is moot for psi-sector constraints. <strong>[failed: idea (3) is vacuous in its psi-sector form]</strong></p>
+<p><strong>D.9.4 Where the attempt stopped.</strong></p>
+<ul>
+<li>D.8's failure point is unchanged. A derivation must use V on source states orthogonal to psi, where the only known exact handle is single-form inertia (C.2). That handle fails for every orbit with dim V<sub>W</sub> ≥ 82 (C.5).</li>
+<li>The cyclic route (H.6, idea 2) needs a structure theorem for unitary processes whose BLO causal graph has every party influenced, for example &quot;each input is a routed function of the other outputs and the source&quot;. BLO 2021 leave cyclic structure open, and I found no such theorem. No constraint on the diagonal was derived from cyclicity. The cyclic purification search (code/stochastic/cyclic/, future H.7) is separate work and was not touched.</li>
+<li>No new exact non-purifiability certificate was obtained. Status: facet 82 is proved for the purifiable W covered by H.1 and H.6. For the rest it is open.</li>
+</ul>
 <h2>Appendix E. Symmetry-reduced moment relaxation (negative result)</h2>
 <p><strong>Stabilisers</strong> in the 384-element group of party permutations and input/output relabelings: E<sub>ex1</sub> and orbit 50: 48; orbit 7: 16; orbits 8 and 20: 8; Lugano: 6; orbits 10 and 46: 4; 11 orbits: 2; 34 orbits: 1. Symmetry helps most where certificates already exist, and not at all for most open orbits.</p>
 <p><strong>Relaxation.</strong> Variables P (m x m) and Y (m<sup>2</sup> x m<sup>2</sup>), Hermitian, with Y standing for P ⊗ P and F the swap. A rank-r projector onto a totally isotropic subspace satisfies Y ≥ 0, 0 ≤ P ≤ I, tr P = r, Tr<sub>2</sub> Y = rP, Tr<sub>2</sub>(YF) = P (from P<sup>2</sup> = P), P ⊗ I - Y ≥ 0 and Tr<sub>1</sub>[(Q<sub>t</sub> ⊗ 1)YF] = P Q<sub>t</sub> P = 0 for every form. So infeasibility would certify non-purifiability, for complex subspaces. The constraints are covariant under the stabiliser, so symmetry reduction would be legitimate.</p>
@@ -918,6 +929,228 @@ since every deterministic choice of local functions has exactly one fixed point.
 <ul>
 <li>Barrett, Lorenz and Oreshkov (2021) prove the two endpoints. If a unitary process has an acyclic causal structure, it is a comb (Thm. 4). Every unitarily extendible bipartite process is causally separable (Thm. 3). Their Thm. 6 is that reversibly extendible classical processes form the deterministic polytope, the classical analogue of D.6.</li>
 <li>They state that a unitarily extendible process need not be causally separable in general (AF process), and they leave open how cyclicity constrains extensions. I did not find the one-parentless-node conditioning lemma H.6.1, or Theorem H.6.2, stated there, in AFNB 2017, or in Wechs-Abbott-Branciard 2019. WAB's recursive definition of causal separability (first party, then a valid conditional) is the target property; they do not connect it to purifications. H.6.1 is elementary given those sources. It is offered as a short observation, not as a new technique. I did not do a full literature search beyond these papers.</li>
+</ul>
+<h3>H.7 Purifications with no operator-first party: a search beyond Lugano (Oct 22 2026) [numerical; two small proved statements]</h3>
+<p><strong>Goal.</strong> By H.6, a purifiable process outside conv(PF) can only have purifications in which no party is operator-first. This section looks for such purifications with three binary parties and small source and sink, and asks whether any of them induces a classical process outside the hull. <strong>No non-blend was found.</strong> Code is in code/stochastic/cyclic/, with logs and .npy results there.</p>
+<p><strong>Tests applied to every purification found.</strong></p>
+<ul>
+<li><em>Purity:</em> max ||M M^dag - 1|| under fresh Haar local unitaries, with and without qubit ancillas.</li>
+<li><em>Operator-first residual for each party:</em> the channel P ⊗ O → I<sub>k</sub> must be independent of O (common.opfirst).</li>
+<li><em>Causal graph:</em> pairwise influence O<sub>j</sub> → I<sub>k</sub> through V (common.influence; an edge is drawn when the residual is &gt; 1e-6).</li>
+<li><em>Induced classical process:</em> p(i|o).</li>
+<li><em>Hull test:</em> L1 distance to conv(744 PFs) by LP.</li>
+<li><em>Lugano weight:</em> the minimal weight on the 64 Lugano-orbit PFs in any PF decomposition (LP with L1 slack 1e-7). Weight 0 means p is a blend of PFs that each have a constant component, i.e. classically causally separable (H.2).</li>
+</ul>
+<p><strong>Family A: single-PF lifts and phase variants [proved / numerical].</strong></p>
+<ul>
+<li>In the lift of Section 1, I<sub>k</sub> = w<sub>k</sub>(o) + e<sub>k</sub>, so party k is operator-first iff w<sub>k</sub> is constant.</li>
+<li>Of the 744 binary PFs, exactly 64 have no constant component. They form one orbit under party permutations and bit flips, the Lugano orbit (orbit size 64 = 384/6) [exhaustive check, famA.py].</li>
+<li>So, among single-PF lifts, &quot;no operator-first party&quot; is the same as &quot;Lugano-type&quot;.</li>
+<li>Phases: multiplying the lift by a source-only or sink-only phase keeps purity (residual ~2e-15), because these are local unitaries on P or F.</li>
+<li>A generic joint phase exp(i theta(o,e)) destroys purity (residual 0.61-0.68 for three random theta).</li>
+<li>Every pure phase variant induces the same diagonal p, the PF itself.</li>
+</ul>
+<p><strong>Family B: coherent blends of causal orders [proved].</strong> Take the C.1 lift of a blend of three causally ordered PFs whose first parties are A, B and C respectively (PF indices 17, 145, 152 in pfs744.npy).</p>
+<ul>
+<li>In this purification no party is operator-first (residual 0.75 for each party).</li>
+<li>Every output is used, so no party is last.</li>
+<li>Yet W is a blend of causally ordered PFs.</li>
+<li>So &quot;no operator-first party in V&quot; does not imply that W is non-separable, and the structural guess &quot;every purification with no first party is Lugano-like&quot; is <strong>false</strong> as stated.</li>
+<li>The classical analogue (Barrett-Lorenz-Oreshkov 2021) is that cyclic causal structure does not imply causal nonseparability (their classical SWITCH remark).</li>
+</ul>
+<p><strong>Family C: output-dependent source unitaries (&quot;noisy-PF&quot; purifications).</strong> Source P = S ⊗ T and sink F = O ⊗ E', with S, T, O, E' each C<sup>8</sup>:</p>
+<pre><code>V|o, s, t⟩ = ∑<sub>e</sub> C<sub>o</sub>[e, s] |e⟩<sub>I</sub> |o⟩<sub>F</sub> |e xor t⟩<sub>F</sub>,     C<sub>o</sub> in U(8), one per joint output o.
+</code></pre>
+<ul>
+<li>V is unitary for any choice of the C<sub>o</sub>.</li>
+<li>The sink records (o, i), so W is diagonal, with p(i|o) = |C<sub>o</sub>[i, 0]|<sup>2</sup>.</li>
+<li>Every classical p arises for some C<sub>o</sub>; purity is the only constraint.</li>
+<li>The Lugano lift is the case C<sub>o</sub> = X<sup>w(o)</sup>.</li>
+</ul>
+<p><strong>Lemma H.7.1 [proved; numerically verified].</strong> Family C is pure under local unitaries <em>without ancillas</em> iff, for all o ≠ o' and all delta in {0,1}<sup>3</sup>, with K = C<sub>o</sub> C<sub>o'</sub>^dag, D = supp(o xor o') and S = D \ supp(delta):</p>
+<pre><code>sum over e<sub>S</sub> of (-1)<sup>|e<sub>S</sub>|</sup> K[e, e xor delta] = 0     for every value of e outside S.
+</code></pre>
+<p><em>Proof.</em> Rows (o,t') and (o',t'') of the induced M have inner product ∑<sub>e</sub> K[e, e xor delta] ∏<sub>k</sub> U<sub>k</sub>[o<sub>k</sub>,e<sub>k</sub>] conj(U<sub>k</sub>[o'<sub>k</sub>, e<sub>k</sub> xor delta<sub>k</sub>]), with delta = t' xor t''. For o = o' this is delta<sub>delta,0</sub>. For o ≠ o', the factor of party k, as U<sub>k</sub> ranges over U(2), spans all of C<sup>2</sup> unless k is in D and delta<sub>k</sub> = 0. In that case it spans only (1,-1), because the rows of U<sub>k</sub> are orthogonal. The products of these spans give exactly the stated condition. ∎</p>
+<p>lemmaC.py confirms the condition numerically:</p>
+<table>
+<thead>
+<tr>
+<th>C</th>
+<th>violation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lugano</td>
+<td>0</td>
+</tr>
+<tr>
+<td>random unitaries</td>
+<td>1.58</td>
+</tr>
+<tr>
+<td>polished solutions in the table below</td>
+<td>3e-11 to 3.5e-9</td>
+</tr>
+<tr>
+<td>rand_12 (polished only to 1.6e-6)</td>
+<td>6.3e-6</td>
+</tr>
+</tbody>
+</table>
+<p>With ancillas the condition is necessary; I have not shown that it is sufficient.</p>
+<p><strong>Searches in family C [numerical].</strong> Method: Adam on purity, using sampled local unitaries with and without qubit ancillas (famC.py), then L-BFGS polishing in float64 on a fixed batch of 12 samples (polish.py), then the tests above on fresh samples (characterize.py; charP.json, charP2.json, charL.json).</p>
+<ul>
+<li>Random starts: 11 seeds. 1 failed to become pure (rand_11, polish loss 224). 1 reached only purity 1.6e-6 (rand_12).</li>
+<li>Lugano-seeded starts (noise 0.3): 3 seeds.</li>
+<li>Facet-pushing runs (pure loss minus lambda times a random image of facet 82, lambda = 0.1, 0.3, 1): Lugano-seeded runs reached facet violation 0.89-1.0 only at purity residual 0.03-0.05 (famC_lug_*_{6,8,10}.log). None was pure. This is the same trade-off as H.3. The two random-start facet runs were invalid because of a since-fixed parametrisation bug (a non-Hermitian generator). Their logs were discarded.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>solution</th>
+<th>purity</th>
+<th>op-first residual A/B/C</th>
+<th>causal graph</th>
+<th>first or last party at operator level</th>
+<th>hull dist</th>
+<th>min Lugano weight</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>rand_1</td>
+<td>3e-11</td>
+<td>0 / .52 / .46</td>
+<td>A&gt;B, A&gt;C, B&lt;→C</td>
+<td>A first</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>rand_2</td>
+<td>2e-10</td>
+<td>.33 / .53 / .38</td>
+<td>A&lt;→C, A&gt;B, C&gt;B</td>
+<td>B last</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>rand_3</td>
+<td>2e-11</td>
+<td>.23 / .22 / .63</td>
+<td>A&lt;→B, A&gt;C, B&gt;C</td>
+<td>C last</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>rand_12</td>
+<td>1.6e-6</td>
+<td>.68 / .42 / 0</td>
+<td>A&lt;→B, C&gt;A, C&gt;B</td>
+<td>C first</td>
+<td>7e-7 (noise)</td>
+<td>n/a</td>
+</tr>
+<tr>
+<td>rand_13</td>
+<td>6e-10</td>
+<td>.46 / .24 / 0</td>
+<td>C&gt;A, C&gt;B, B&gt;A</td>
+<td>C first, A last</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>rand_14</td>
+<td>5e-10</td>
+<td>.56 / .18 / .30</td>
+<td>B&lt;→C, B&gt;A, C&gt;A</td>
+<td>A last</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td><strong>rand_15</strong></td>
+<td>1.4e-10</td>
+<td>.67 / .55 / .73</td>
+<td><strong>complete (all 6 edges)</strong></td>
+<td><strong>none</strong></td>
+<td>0</td>
+<td><strong>0</strong></td>
+</tr>
+<tr>
+<td>rand_16</td>
+<td>2e-11</td>
+<td>.67 / 0 / .50</td>
+<td>B&gt;A, B&gt;C, A&lt;→C</td>
+<td>B first</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>rand_17</td>
+<td>2e-11</td>
+<td>.24 / .44 / .21</td>
+<td>A&lt;→C, A&gt;B, C&gt;B</td>
+<td>B last</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>rand_18</td>
+<td>3e-10</td>
+<td>.47 / .48 / 0</td>
+<td>A&lt;→B, C&gt;A, C&gt;B</td>
+<td>C first</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td><strong>lug_21</strong></td>
+<td>5e-10</td>
+<td>.75 / .72 / .72</td>
+<td><strong>complete</strong></td>
+<td><strong>none</strong></td>
+<td>0</td>
+<td><strong>0.93</strong></td>
+</tr>
+<tr>
+<td><strong>lug_22</strong></td>
+<td>7e-11</td>
+<td>.71 / .72 / .72</td>
+<td><strong>complete</strong></td>
+<td><strong>none</strong></td>
+<td>0</td>
+<td><strong>0.87</strong></td>
+</tr>
+<tr>
+<td><strong>lug_23</strong></td>
+<td>7e-11</td>
+<td>.73 / .72 / .74</td>
+<td><strong>complete</strong></td>
+<td><strong>none</strong></td>
+<td>0</td>
+<td><strong>0.90</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Reading [numerical].</strong></p>
+<ol>
+<li>Every pure solution found induces a p inside conv(PF), at LP distance 0. <strong>No counterexample.</strong></li>
+<li>The rows with an operator-first party are consistent with H.6. An operator-last party (its output influences no input) makes p independent of that output, so H.1 applies. 9 of the 10 random-start pure solutions have a first or a last party.</li>
+<li><strong>New: no first and no last party, separable W.</strong> rand_15 is a purification with a complete (maximally cyclic) causal graph, no operator-first and no operator-last party. Its p needs Lugano weight 0, so it is a blend of causally ordered PFs. Together with family B, this shows that the open class &quot;no operator-first party&quot; contains many purifications of causally separable processes.</li>
+<li><strong>New: genuinely non-separable continuous family near Lugano.</strong> The Lugano-seeded solutions are pure, are not phased permutations (their C<sub>o</sub> are generic unitaries, so not of D.3 form), and have a complete causal graph. Their p needs Lugano weight 0.87-0.93: non-separable, but a PF blend.</li>
+<li><strong>Structural guess refuted.</strong> &quot;Every no-first-party purification is Lugano-like up to local unitaries&quot; is false: family B is an exact counterexample, and rand_15 is a numerical one.</li>
+</ol>
+<p><strong>What remains open.</strong> The conjecture on the class of purifications with neither an operator-first nor an operator-last party.</p>
+<ul>
+<li>Within family C, Lemma H.7.1 turns no-ancilla purity into linear conditions on the products C<sub>o</sub> C<sub>o'</sub>^dag. A proof that these conditions, together with the ancilla conditions, force p into conv(PF) would settle family C. Not attempted.</li>
+<li>Family C has source dimension 64 and records (o, i) in the sink. General purifications can have larger sources and need not have this form (D.4).</li>
+<li>These searches cover a small, structured slice. They are local and few: 13 pure solutions in total.</li>
+<li><strong>Running jobs:</strong> none. All runs completed or were stopped; the logs are in code/stochastic/cyclic/.</li>
 </ul>
 <h2>References</h2>
 <ol>
