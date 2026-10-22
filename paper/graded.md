@@ -6,7 +6,7 @@
 
 ## How to read this
 
-The note proves one theorem, studies a harder question it cannot yet settle, and draws some philosophical lessons. This version takes the same path, but slowly. It begins with stories and no symbols at all. Then it brings in notation one piece at a time. Each time a new symbol appears, I try to say three things:
+The note has two results. First, every consistent deterministic loop (a process function) can be made quantum-reversible. Second, and this is now the note's main result, the natural guess that the *only* chancy loops that can be made quantum-reversible are mixtures of deterministic ones is **false** (Section 58h). It also draws some philosophical lessons. This version takes the same path, but slowly. It begins with stories and no symbols at all. Then it brings in notation one piece at a time. Each time a new symbol appears, I try to say three things:
 
 1. **What it stands for.** The plain meaning.
 2. **Why this choice.** Why this piece of mathematics captures the idea, rather than some other piece.
@@ -21,7 +21,7 @@ Claims are marked by status, following Section 9 of the note:
 - **Open** means nobody knows yet.
 - **Interpretation** means philosophy. It is a reading of the mathematics, not a result.
 
-The path runs from easy to hard. Stories first (Part I). Then the symbols, one at a time (Parts II–IV). Then the main theorem and its proof (Part V), and why a machine-checked proof matters (Part VI). Then infinity, with Hilbert's hotel smuggled into a time loop (Part VII). The second half is about chance: mixtures and purification (Part VIII), the random corners that cannot be purified (Part IX), the open conjecture and the evidence for it (Part X), and an honest map of the routes that failed (Part XI). Part XII is all philosophy, clearly marked as interpretation. A summary box at the very end says what is proved, what is evidence, and what is open.
+The path runs from easy to hard. Stories first (Part I). Then the symbols, one at a time (Parts II–IV). Then the main theorem and its proof (Part V), and why a machine-checked proof matters (Part VI). Then infinity, with Hilbert's hotel smuggled into a time loop (Part VII). The second half is about chance: mixtures and purification (Part VIII), the random corners that cannot be purified (Part IX), the conjecture, the evidence that seemed to support it, and the counterexample that refutes it (Part X, ending in Section 58h), and an honest map of the routes that failed (Part XI). Part XII is all philosophy, clearly marked as interpretation. A summary box at the very end says what is proved, what is evidence, and what is open.
 
 ---
 
@@ -112,7 +112,7 @@ Now the question of the note can be put without symbols:
 
 More precisely: take a consistent classical loop, made reversible with a source and a sink. Now let the people in the labs act in fully *quantum* ways. They may put their bits into superpositions, apply operations that have no classical counterpart, and entangle their labs with private equipment. Does the whole arrangement still behave sensibly, with probabilities that always add up to exactly one? Or does quantum freedom bring paradoxes back?
 
-The note's first answer, the **main theorem**, is: yes, for every process function. The second question, which is **open**, is about loops with chance in them, like the coin-flip loop. Can they be realised reversibly? The note proves that the coin-flip loop E_ex1 cannot be. It conjectures that the only chancy loops that can be are those whose chance is mere ignorance about which deterministic consistent loop obtains.
+The note's first answer, the **main theorem**, is: yes, for every process function. The second question is about loops with chance in them, like the coin-flip loop. Can they be realised reversibly? The note proves that the coin-flip loop E_ex1 cannot be. It had conjectured that the only chancy loops that can be are those whose chance is mere ignorance about which deterministic consistent loop obtains. **That conjecture is false** (Section 58h). A machine with three labs and one bit each produces chancy statistics that are not any mixture of deterministic loops. This has been checked exactly, re-checked independently, and proved in a proof assistant, with two stated limits.
 
 Two further questions ride along. What if the alphabets are infinite, so that a party can send any whole number? In a hotel with infinitely many rooms, a perfectly orderly shuffle can still leave a room empty, and we must check that a time loop cannot lose probability the same way (Part VII). And how sure can we be of a short proof about something this strange? Part VI tells the story of a referee who cannot be flattered.
 
@@ -732,13 +732,13 @@ Up to symmetry (swapping parties and relabelling inputs and outputs), the 646 no
 
 ---
 
-## Part X. The conjecture, and the evidence
+## Part X. The conjecture, the evidence, and the refutation
 
 ### 52. The conjecture
 
-> **Conjecture (open).** A classical process is purifiable if and only if it is a mixture of process functions.
+> **Conjecture (now refuted; see Section 58h).** A classical process is purifiable if and only if it is a mixture of process functions.
 
-The "if" direction is proved (Section 47). The "only if" direction is open. By Section 48, the conjecture is equivalent to:
+The "if" direction is proved (Section 47). The "only if" direction is false (Section 58h). Sections 52–58g are kept as they were written, while it was open. By Section 48, the conjecture is equivalent to:
 
 > **A classical process that is quantum-purifiable is already classically purifiable.**
 
@@ -753,7 +753,7 @@ A customer orders a loop with given classical statistics: "under every strategy,
 - The clockmaker can build exactly the **mixtures of process functions**. The shuffled deck picks a deterministic consistent loop, and the ledger remembers which (Section 48, proved).
 - The quantum workshop can build at least those (Section 47, proved). It provably *cannot* build the coin-flip loop E_ex1 (Section 50, proved).
 
-The conjecture says the two order books are identical. **Quantum reversibility buys loops nothing that classical reversibility does not.** If true, all the extra power of the quantum workshop, its superpositions and interference, is invisible in the classical statistics of a loop. Whatever it builds, the clockmaker could have built with a shuffled deck.
+The conjecture said the two order books are identical (Section 58h shows they are not). **Quantum reversibility buys loops nothing that classical reversibility does not.** If true, all the extra power of the quantum workshop, its superpositions and interference, is invisible in the classical statistics of a loop. Whatever it builds, the clockmaker could have built with a shuffled deck.
 
 ### 54. The hidden-label idea (Conjecture D.3)
 
@@ -981,7 +981,16 @@ The hard Switchboards are the ones whose boards *blur* two flip patterns at once
 
 **Why the earlier search missed it.** The big search over all boards kept settling into local valleys (Section 58f's "toll" was one of them). Restricting to boards built from flips alone made the landscape simple enough that exact solutions appeared at once. The toll was the price at the gates we happened to try, not a law of the land.
 
-**How sure are we?** The facts about the classical statistics (valid, outside the hull) are exact. Purity rests on the switchboard lemma and its two companions (H.7.1, H.8.1, H.8.2), which are proved on paper but not yet in Lean. A separate brute-force simulation of the machine, under random local operations with scratch qubits, finds it unitary to fifteen decimal places. Before announcing this, a Lean proof or an independent check of those lemmas would be wise.
+**How sure are we?** Three separate checks now agree.
+1. *The note's own proof.* The facts about the classical statistics (valid, outside the hull) are exact. Purity follows from the switchboard lemma and its two companions (H.7.1, H.8.1, H.8.2), proved on paper, together with an exact check of the rule.
+2. *An independent referee.* Someone else wrote a fresh verification program working only from the note's description of the machine. It checks purity directly, without using those lemmas. It recounts the 744 process functions from scratch and finds its own wall that the process crosses. It agrees on every point (note H.12.2).
+3. *A proof assistant.* The whole statement, "there is a valid, purifiable classical process outside the hull of process functions", has been proved in Lean (note H.12.3).
+
+**What "checked by a proof assistant" means here.** Lean is a program that accepts a proof only if every step follows from the rules of logic and from earlier proved facts. It does not trust the author or take a step on faith, and it is the incorruptible referee of Part VI. Its verdict is only as good as the definitions it was given. Here the definitions of "pure", "valid" and "process function" were written for this one proof, in a small self-contained file. A careful reader should still check that they mean what this guide says. Two limits are known.
+- The scratch equipment in each lab is assumed finite.
+- These definitions have not yet been formally connected to the general framework that the main theorem's Lean proof uses.
+
+Inside those limits the counterexample is as certain as mathematics gets. It has not been through peer review.
 
 **What changes.** The "if" half stands: every mixture of process functions is purifiable. Two parties, and three parties with an order or with a first mover, still give nothing new. The new statement is: *quantum reversibility is strictly more permissive than classical reversibility for classical loops, already with three parties and one bit each.* Classically (D.6), reversibility does force the hull.
 
@@ -998,7 +1007,7 @@ The hard Switchboards are the ones whose boards *blur* two flip patterns at once
 
 Explorers publish the route that reached the summit. The best of them also publish a second map, of the gullies that ended in cliffs, the passes that were snowed in, and the bridges that looked sound and were not. That second map is less glamorous, but it is the one the next party needs most.
 
-The open half of the conjecture has such a map. Here it is, route by route. Every entry is either **proved** to be a dead end, or **evidence** that it stalls.
+The "only if" half of the conjecture, open until Section 58h, had such a map. Here it is, route by route. Every entry is either **proved** to be a dead end, or **evidence** that it stalls.
 
 ### 60. The routes that failed
 
@@ -1024,7 +1033,7 @@ The map has a shape, and the shape is the lesson.
 - **That information is non-convex.** Demanding that a whole 16-dimensional (or larger) subspace make many quadratic forms vanish at once is not a convex condition. Convex questions can usually be settled by duality: when no solution exists, there is a checkable certificate saying so. Non-convex questions offer no such guarantee. Every convex surrogate tried, routes 4 to 6, either needs luck in small cases or is provably too weak. Attacking the non-convex system head-on (route 8) is hopeless by sheer size.
 - **No shortcut through a hidden variable** (route 1). The argument has to work at the level of the statistics W, presumably facet by facet (Section 57).
 
-So the conjecture is open. D.3 is refuted. No counterexample to the conjecture itself has been found. That last point is weak evidence, because the large cases are untested.
+When this map was drawn the conjecture was open. D.3 is refuted, and the conjecture itself was later refuted by Section 58h, through a route this map did not list: restricting the search to flip-built Switchboards.
 
 **Philosophical gloss (interpretation).** Negative results are knowledge. "This route provably cannot work" narrows the space of possible proofs as surely as a positive lemma narrows the space of possible worlds. Here the negative results also have content of their own. They say that what separates basic chance from ignorance, if anything does, lies in the *counterfactual* behaviour of a reversible world, how it would have treated a source state that was never prepared. Nothing in what actually happens shows it.
 
@@ -1059,9 +1068,11 @@ The results so far:
 
 - In a *classical* reversible world, only ignorance-chance is possible (D.6, proved).
 - In a *quantum* reversible world, ignorance-chance is possible (C.1, proved), and at least some basic-chance loops are impossible (E_ex1, and every vertex in orbits 7 and 50, one of which contains E_ex1; proved).
-- Whether *every* basic-chance loop is impossible in a quantum reversible world is the conjecture (open).
+- *Not* every basic-chance loop is impossible in a quantum reversible world: the conjecture is false (Section 58h, proved). Some are possible, and some (E_ex1) are not.
 
-If the conjecture holds, the note's reading is this. Every reversible quantum loop with classical statistics is a coherent ignorance-mixture of deterministic consistent loops. Genuinely chancy loops like E_ex1 would be classically consistent but not reversibly realisable. **Reversibility, not consistency alone, would be the constraint that excludes basic chance from loops.** D.5 sharpens this: consistency under all quantum interventions holds for every classical process, so it is precisely the reversibility requirement that does the excluding.
+**What this teaches (interpretation).** Purity does not single out the mixtures of deterministic loops. Quantum reversibility is strictly more permissive than classical reversibility, which does single them out (D.6). The extra loops need three labs, since with two every consistent chancy loop is already a mixture (Section 58a). In them no lab goes first inside the machine: by Section 58d, a machine with a first mover only produces mixtures. Chance can be basic in a loop, but only in a loop that is cyclic all the way down.
+
+*The reading below was written assuming the conjecture and is superseded.* If the conjecture held, the note's reading would be this. Every reversible quantum loop with classical statistics is a coherent ignorance-mixture of deterministic consistent loops. Genuinely chancy loops like E_ex1 would be classically consistent but not reversibly realisable. **Reversibility, not consistency alone, would be the constraint that excludes basic chance from loops.** D.5 sharpens this: consistency under all quantum interventions holds for every classical process, so it is precisely the reversibility requirement that does the excluding.
 
 ### 65. Determinism hidden, or created on the fly?
 
@@ -1072,7 +1083,7 @@ There are two ways to imagine the chance in a mixture of loops.
 
 The clockmaker's workshop (Section 53) is pure hidden determinism: the shuffled deck in the drawer. The D.4 counterexample (Section 55) shows that a quantum reversible world can produce the very same statistics by the second route. The token answers "which loop?" only when asked, and the question it is asked depends on Alice's choice.
 
-**Interpretation.** If the conjecture is true, the two pictures cannot be told apart by any loop's classical statistics. Every quantum-reversible chancy loop has the statistics of a shuffled deck. But the *mechanism* may still be on-the-fly. The ignorance reading is safe as a claim about W. It is not safe as a claim about a hidden label. This is the note's own caveat. That it echoes contextuality in quantum foundations (Kochen and Specker) is my comparison, not a result.
+**Interpretation (written assuming the conjecture; superseded by Section 58h for loops outside the hull).** If the conjecture were true, the two pictures cannot be told apart by any loop's classical statistics. Every quantum-reversible chancy loop has the statistics of a shuffled deck. But the *mechanism* may still be on-the-fly. The ignorance reading is safe as a claim about W. It is not safe as a claim about a hidden label. This is the note's own caveat. That it echoes contextuality in quantum foundations (Kochen and Specker) is my comparison, not a result.
 
 ### 66. Reversibility and the arrow of time
 
@@ -1082,7 +1093,7 @@ Section 21 gave the standard picture: reversible laws, an arrow supplied by a sp
 - At the beginning is the source, set to a fixed state.
 - At the end is the sink, which keeps a perfect record of what the parties sent and received (D.1, Section 56), and which we then ignore.
 
-Randomness appears only at the edges. A mixture of loops arises from a coherent source and a discarded record (Section 47). If the label is not handed to the sink, the branches interfere, and the result is no longer a classical mixture. **Interpretation.** In this toy world, classical chance and the arrow of time have a common origin: what we do not track at the boundaries. The conjecture, read this way, says that boundary-ignorance is the *only* source of chance a reversible loop can have. That is why basic chance, as in E_ex1, would be excluded not by consistency (E_ex1 is consistent) but by reversibility.
+Randomness appears only at the edges. A mixture of loops arises from a coherent source and a discarded record (Section 47). If the label is not handed to the sink, the branches interfere, and the result is no longer a classical mixture. **Interpretation.** In this toy world, classical chance and the arrow of time have a common origin: what we do not track at the boundaries. The conjecture, read this way, says that boundary-ignorance is the *only* source of chance a reversible loop can have. That is why basic chance, as in E_ex1, would be excluded not by consistency (E_ex1 is consistent) but by reversibility. Section 58h refutes that reading. Interference among the board operations inside the machine, not only ignorance at the boundaries, can produce classical chance in a reversible loop. Reversibility still excludes some basic chance, such as E_ex1, but not all of it.
 
 ### 67. Freedom, bilking and Lewis
 
@@ -1116,17 +1127,17 @@ Two cautions. First, a checked theorem is only as good as its statement (Section
 
 > **Proved**
 >
-> - **A purifiable process outside the hull** (H.12; Section 58h). Exact counterexample to the purification conjecture (purity via the paper lemmas H.7.1, H.8.1, H.8.2; not Lean).
+> - **A purifiable process outside the hull** (H.12; Section 58h). Exact counterexample to the purification conjecture. It is the note's main result. Purity follows from the paper lemmas H.7.1, H.8.1 and H.8.2. The whole statement was re-derived independently (H.12.2). *Machine-checked in Lean as `purification_conjecture_false`, standard axioms only.* The limits are finite ancillas and self-contained definitions not yet linked to the main framework (H.12.3).
 > - **Two-tone Switchboards are mixtures** (H.10.6; Section 58h). Coset-transport theorem plus an exhaustive exact check of all 39,512 two-pattern boards.
 > - **The main theorem.** Every process function, with any finite alphabets, lifts to a pure unitary process: under any local unitaries with any finite ancillas, the source-to-sink map is unitary. *Machine-checked in Lean 4 (exclusivity lemma; M M† = 1 and M† M = 1; unitary-group membership), standard axioms only.*
 > - **Validity under everything.** Validity under arbitrary local operations, entangled or shared ancillas, and instruments follows by Stinespring, and so does the process-matrix normalisation Tr[W(…)] = 1. *Machine-checked in Lean, finite dimensions: `PFUL.valid`, `PFUL.valid_kraus`, `PFUL.valid_instrument`, `PFUL.Choi.bornC_anc_eq_one` and the group-free `PFUL.Choi.bornAnc_eq_one`, the equivalence `PFUL.Choi.afnb_iff_density` (and `_split`), Choi's theorem `PFUL.Choi.isCP_iff_choi`, all bundled in `PFUL.Choi.validity_package`.*
 > - **Countable alphabets** (Appendix F). With finitely many parties and countable alphabets, the inputs carrying a group structure, the lift is unitary on ℓ². Rows come from exclusivity, and unit columns from the expected-number-of-fixed-points argument, which also gives a dimension-free finite proof. *Machine-checked in Lean, ending in `PFUL.Countable.induced_unitary_l2`. The finite-alphabet column proof is checked too.*
 > - **Mixtures.** Mixtures of process functions are purifiable: a coherent random source, with the label recorded in the sink.
-> - **The classical version.** Classical reversible purifiability holds exactly for mixtures of process functions (D.6). So the conjecture says quantum reversibility adds nothing here.
+> - **The classical version.** Classical reversible purifiability holds exactly for mixtures of process functions (D.6). By the counterexample, quantum reversibility does add something.
 > - **Certificates.** E_ex1 and the vertex orbits 7 and 50 (one of which contains E_ex1) are not purifiable. *Exact rational certificates, not Lean proofs.*
 > - **Structure.** In any purification, the sink holds an orthogonal record of (outputs, inputs) (D.1).
 > - **The dead ends.** Constraints on the fixed source state alone are vacuous (D.2). Validity under quantum-controlled interventions holds for every classical process (D.5). The hidden-label strengthening D.3 is false, with a causal circuit as counterexample (D.4). No certificate that uses only the fixed source state can rule out purification of any classical process (D.8).
-> - **Two parties** (Appendix G; Section 58a). Every two-party valid classical process is a mixture of ordered process functions, so the conjecture holds for two parties, trivially.
+> - **Two parties** (Appendix G; Section 58a). Every two-party valid classical process is a mixture of ordered process functions, so for two parties purifiable means mixture; the counterexample needs three.
 > - **Ordered three-party processes** (Appendix H; Section 58b). If some party is last, or first with valid conditionals (causally separable), the process is a mixture of process functions.
 > - **A shortcut closed** (H.5; Section 58c). Purifiable plus marginally first does not force valid conditionals; exact counterexample.
 > - **The Chorus** (H.7; Section 58e). A machine with no first or last mover can still produce an ordinary mixture of ordered process functions, so "no first mover" does not mean "Lugano in disguise". The Switchboard's no-ancilla purity condition (Lemma H.7.1) is proved, and it is the full purity condition: it reads as operator-valued exclusivity, and ancillas add nothing (H.8; Section 58f). Relabelling-type Switchboards give mixtures of process functions.
@@ -1153,10 +1164,10 @@ Two cautions. First, a checked theorem is only as good as its statement (Section
 >
 > **Open**
 >
-> - **The conjecture: refuted (H.12; Section 58h).** "Purifiable iff a mixture of process functions" is false. The "if" half is proved; the "only if" half fails for an exact three-party binary Switchboard. Purity rests on paper proofs (H.7.1, H.8.1, H.8.2) plus exact arithmetic, and a direct simulation agrees to 1e-15. Open now: what the purifiable set actually is.
-> - **Loops without a first mover.** The conjecture for processes whose purifications all have no party first in the machine (H.6; Lugano-type loops; the Ring, Chorus, Switchboard and Shadows of Section 58e), and the exact status of orbits 8, 10, 20 and the other 46 sampled open orbits.
+> - **The conjecture: refuted (H.12; Section 58h).** "Purifiable iff a mixture of process functions" is false. The "if" half is proved; the "only if" half fails for an exact three-party binary Switchboard. It is proved on paper, re-checked independently and proved in Lean, with the limits stated above. Open now: what the purifiable set actually is (a polytope?), the smallest counterexamples, other scenarios, and linking the Lean definitions to the main framework.
+> - **Loops without a first mover.** Which processes are purifiable among those whose purifications all have no party first in the machine (H.6; Lugano-type loops; the Ring, Chorus, Switchboard and Shadows of Section 58e), and the exact status of orbits 8, 10, 20 and the other 46 sampled open orbits.
 > - **Facets from purifiability.** No facet inequality, for example orbit 82, has been derived from purifiability.
-> - **Where any proof must look.** Any proof must use the purifying unitary on source states orthogonal to the actual one. That is the non-convex isotropy condition of Araújo et al.'s Theorem 4, where every certificate attempt has stalled for the larger orbits: single-form inertia, block forms, SDP and moment relaxations.
+> - **Where any non-purifiability proof must look.** Any proof must use the purifying unitary on source states orthogonal to the actual one. That is the non-convex isotropy condition of Araújo et al.'s Theorem 4, where every certificate attempt has stalled for the larger orbits: single-form inertia, block forms, SDP and moment relaxations.
 > - **Continuous alphabets.** The closed loop first needs a definition (F.5).
 > - **Not formalised.** The literal Choi form Tr[W(…)] = 1 in infinite dimensions, where W is not trace class. The trace form is checked: the project's own trace-class and partial-trace library (`lean/PFUL/TraceClass.lean`) gives `PFUL.Countable.valid_density_l2`, Tr = 1 for every input density operator on ℓ².
 > - **Not addressed.** Spacetime embedding, and lifts built from bijections other than U.

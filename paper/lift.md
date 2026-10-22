@@ -1,10 +1,30 @@
-# Every process function lifts to a unitary process
+# Purifiable classical processes need not be mixtures of process functions
+
+*Subtitle: every process function lifts to a unitary process, but quantum purifiability strictly enlarges the classical-process set beyond the process-function hull (three binary parties).*
 
 **Draft note. Not submitted. Not refereed.** Canonical source of the paper; `lift.pdf` is built from this file.
 
 ## Abstract
 
-A process function is a classical map w from the outputs of several parties to their inputs such that every choice of local deterministic interventions has exactly one fixed point. Baumeler, Costa, Ralph, Wolf and Zych showed that every process function extends to a bijection by adding a source and a sink, and left open whether every such bijection quantizes to a valid unitary quantum process; Daher Ahmed and Kunjwal (2026) state this as a conjecture and prove it for a subclass. We give a short argument that it holds for every process function with finite alphabets: the permutation unitary U|o,e> = |w(o)+e, o> composed with arbitrary local unitaries induces a unitary from source to sink. The key combinatorial fact, that two distinct output strings always disagree at some party whose input w assigns equally, is the pairwise-exclusivity property of Dourdent et al. (2026). The philosophical sections read the result as saying that fixed-point consistency is already a quantization condition. The result is a draft: the exclusivity lemma and the identity M M^dagger = 1 (complex amplitudes, any finite number of parties, any finite alphabets, local ancillas) are machine-checked in Lean 4 with Mathlib (theorems PFUL.induced_mul_conjTranspose, PFUL.induced_conjTranspose_mul and PFUL.induced_unitary, the last stating membership in the unitary group; standard axioms only). The step from "unitary under local unitaries" to "valid process" (Appendix A) is also machine-checked: for arbitrary local CPTP maps in Kraus form via their Stinespring isometries (PFUL.valid_kraus), for instruments (PFUL.valid_instrument), and in the Choi/process-matrix form Tr[W(rho (x) 1 (x) C_A (x) ...)] = 1 for all local CPTP Choi matrices, with party ancillas (PFUL.Choi.bornC_anc_eq_one). The two forms are proved equivalent (PFUL.Choi.afnb_iff_density), and Choi's theorem is proved too (PFUL.Choi.isCP_iff_choi); PFUL.Choi.validity_package bundles the chain. Appendix F extends the theorem to countable alphabets, in the paper and in Lean (PFUL.Countable.induced_unitary_l2): exclusivity gives orthonormal rows, and unit columns follow because the column norm is the expected number of fixed points of a random local intervention, which is 1. The Choi form in infinite dimensions is not formalised, and continuous alphabets remain open. A second part studies stochastic classical processes. Mixtures of process functions are purifiable. We had conjectured that nothing else is; Appendix H.12 refutes this with an exact three-party binary counterexample (a purifiable valid classical process outside the process-function hull). We give exact non-purifiability certificates for E_ex1 and two vertex orbits, several structural lemmas, a counterexample to a natural strengthening, a no-go for certificates that use only the fixed source state, the complete facet list of the 3-party binary process-function hull (29,344 facets in 93 symmetry orbits), a negative result for symmetry-reduced moment relaxations (Appendix E: feasible for E_ex1, hence weaker than the inertia certificate), and numerical evidence. Section 9 states exactly what is proved.
+A classical process (a point of the Baumeler-Wolf polytope) is purifiable in the sense of Araujo et al. (2017) if it arises from a pure process, one that stays unitary under all local unitaries with ancillas, by restricting to classical interventions. Mixtures of process functions are purifiable, and it was natural to ask whether nothing else is; we had conjectured so. **The main result of this note is that this is false.** Theorem H.12.1 gives a three-party binary classical process p, induced by an explicit Switchboard with eight 8x8 boards whose entries lie in Z[i]/8 and a source state with phases in Q(zeta_8), such that p is valid, the machine is pure, and p violates a facet inequality of the process-function (PF) hull: L(p) = 1/4 - (3/16) sqrt 2 < 0, while L >= 0 on all 744 process functions. The verification is exact. It has been re-derived independently from the paper text alone (code/stochastic/cyclic/switchboard/verify_h12), and the statement `purification_conjecture_false : ∃ p, Valid p ∧ Purifiable p ∧ p ∉ convexHull ℝ PFset` is checked by the Lean 4 proof assistant with Mathlib (lean/PFUL/Counterexample.lean; standard axioms only, no `sorry`, no `native_decide`). Two gaps remain in the formal statement: ancillas are finite-dimensional, and the Lean definitions of purity, validity and process function are self-contained, not yet linked to the PFUL.Validity/Choi framework used elsewhere in the repository. The paper has not been peer reviewed.
+
+The counterexample sits exactly where earlier structural results said it must. If some party is first at the operator level in a purification, the process is a PF blend (H.6); in the counterexample no party is first, and every party's input depends on another party's output. For two parties every valid classical process is a PF blend (Appendix G), so three parties are needed. Classically reversible purification gives exactly the PF hull (D.6), so the gap is a quantum effect. Exact non-purifiability certificates for E_ex1 and two vertex orbits (C.2) show the purifiable set is still a proper subset of the valid processes.
+
+The first part of the note proves the lifting theorem that the purification question starts from. A process function is a classical map w from the outputs of several parties to their inputs such that every choice of local deterministic interventions has exactly one fixed point. Baumeler, Costa, Ralph, Wolf and Zych showed that every process function extends to a bijection by adding a source and a sink, and left open whether every such bijection quantizes to a valid unitary quantum process; Daher Ahmed and Kunjwal (2026) state this as a conjecture and prove it for a subclass. We give a short argument that it holds for every process function with finite alphabets: the permutation unitary U|o,e> = |w(o)+e, o> composed with arbitrary local unitaries induces a unitary from source to sink. The key combinatorial fact, that two distinct output strings always disagree at some party whose input w assigns equally, is the pairwise-exclusivity property of Dourdent et al. (2026). The identity M M^dagger = 1 and the validity chain are machine-checked in Lean 4 (PFUL.induced_unitary, PFUL.valid_kraus, PFUL.valid_instrument, PFUL.Choi.bornC_anc_eq_one, PFUL.Choi.afnb_iff_density, PFUL.Choi.isCP_iff_choi, PFUL.Choi.validity_package; standard axioms only), and Appendix F extends it to countable alphabets (PFUL.Countable.induced_unitary_l2). The Choi form in infinite dimensions is not formalised, and continuous alphabets remain open. The philosophical sections read the lifting theorem as saying that fixed-point consistency is already a quantization condition, and Section 10 reads H.12 as saying that purity does not, in addition, single out mixtures of deterministic loops. Section 9 states exactly what is proved, certified, numerical, or open.
+
+## 0. Introduction and contributions
+
+Process functions are the deterministic classical processes without global causal order: every local choice has exactly one consistent history. Their mixtures form a polytope, conv(PF), inside the larger polytope of valid classical processes. Purity (unitarity under all local operations, Araujo et al. 2017) is the standard candidate for the physically admissible processes. Two questions follow: does every process function purify, and are mixtures of process functions the only classical processes that do? This note answers the first yes and the second no.
+
+Contributions, in the order of the evidence for them:
+
+1. **A purifiable classical process outside the PF hull (Theorem H.12.1) [proved; exact; independently re-derived; Lean-checked with two stated gaps].** Three binary parties, an explicit X-type Switchboard and source state, a facet inequality of conv(PF) violated by 1/4 - (3/16) sqrt 2. Section 9 and H.12 list what each check covers.
+2. **Every process function lifts to a unitary process (Section 1, Appendix A) [proved; Lean-checked in finite dimensions; countable alphabets in Appendix F].**
+3. **Where purifiable non-blends can and cannot live [proved].** Mixtures of PFs are purifiable (C.1). Two parties: every valid classical process is a PF blend (Appendix G). Three parties: a party last, or a party first with valid conditionals, forces a PF blend (H.1, H.2), and so does a party that is first at the operator level in some purification (H.6). Switchboard structure: the purity conditions are an operator form of pairwise exclusivity, ancillas add nothing, and commuting or two-term boards give PF blends (H.8, H.10.6).
+4. **Limits of the purifiable set [certified exact].** E_ex1 and vertex orbits 7 and 50 are not purifiable (C.2), so the purifiable set lies strictly between conv(PF) and the valid polytope.
+5. **The complete facet list of the three-party binary PF hull** (29,344 facets in 93 orbits, D.7), negative results for several certificate routes (D.8, Appendix E, C.5, C.6), and numerical surveys, all labelled as such.
+
+Earlier versions of this note stated the "only if" direction as a conjecture and collected evidence for it. That material is kept as a record and marked superseded where H.12 overturns it; nothing in it is used in the proof of H.12.1.
 
 ## 1. Result and short proof
 
@@ -88,29 +108,38 @@ Freedom is not settled. Nothing here decides whether an agent whose output is an
 The combinatorial lemma is finite for any fixed alphabet and is the piece an attacker has to break. The linear algebra after it is row orthogonality. See lean/STATUS.md for exactly what is and is not machine-checked.
 
 
-## 9. Status of the purification conjecture
+## 9. Status: what is proved about purifiable classical processes
 
-Conjecture (as originally stated): a classical process (a point of the Baumeler-Wolf polytope) is purifiable in the sense of Araujo et al. (2017) if and only if it is a mixture of process functions (a "PF blend").
+**Former conjecture.** A classical process is purifiable if and only if it is a mixture of process functions (a "PF blend").
 
-**Status (Oct 22 2026): FALSE (Theorem H.12.1).** The "if" half holds (C.1). The "only if" half fails. An exact three-party binary Switchboard (X-type boards, phases in {±1, ±i}) purifies a valid classical process p with g.p + g0 = 1/4 - (3/16)sqrt 2 < 0 for an inequality valid on all 744 PFs. The purity step uses the paper proofs of H.7.1, H.8.1 and H.8.2, not Lean. A direct numerical simulation agrees to 1e-15. The rest of this map is kept as a record. Items phrased as evidence *for* the conjecture are superseded where marked.
+**Theorem 9.1 (= H.12.1) [proved].** The "if" half holds (C.1). The "only if" half is false: there is a valid three-party binary classical process that is purifiable and lies outside conv(PF).
+
+What supports Theorem 9.1, in decreasing order of independence:
+- *Exact paper proof* (H.12, code/stochastic/cyclic/switchboard/c1/exact_cex.py). Exact arithmetic in Q(zeta_8): unitarity of the boards, the Pauli rule of H.8.1, validity under all 64 deterministic interventions, and the facet value 1/4 - (3/16) sqrt 2 < 0. Purity then follows from the paper proofs of H.7.1, H.8.1 and H.8.2.
+- *Independent re-derivation* (verify_h12/verify.py, verify.log), written from the paper text only. It checks purity directly through an exact multi-affine criterion over 125 slot combinations, with no use of H.7.1 or H.8. It re-enumerates the 744 PFs by brute force over 8^8 maps and uses its own rational separating inequality, value 1 - (3/4) sqrt 2 < 0, together with an infeasible membership LP. It also runs 1,200 random float trials (residual <= 2.4e-15) with a perturbed control.
+- *Lean 4 proof* (lean/PFUL/Counterexample.lean, CounterexampleData.lean; lean/STATUS.md Round 6). The statement `purification_conjecture_false : ∃ p, Valid p ∧ Purifiable p ∧ p ∉ convexHull ℝ PFset` is proved. The only axioms are propext, Classical.choice and Quot.sound. There is no `sorry` and no `native_decide`; the finite computations use `decide +kernel`. Purity is proved for all finite ancillas and local unitaries (`isPure_Vsb`), validity for all stochastic local interventions (`valid_pcl`), and non-membership through the facet functional (`pcl_not_mem_convexHull`). **Gaps:** (i) ancillas range over finite types only; (ii) `Valid`, `Purifiable` and `PFset` are defined in that file, finite-dimensionally, and are not yet proved equivalent to the PFUL.Validity/Choi definitions used for the lifting theorem. A reader has to check that those definitions mean what Section 9 says (H.12.3 lists them).
+
+None of this has been peer reviewed.
+
+**Where the gap lives.** It needs three parties (Appendix G), a purification with no operator-first party (H.6), and boards that are neither commuting nor two-term (H.8.4, H.10.6). The H.12 machine has all three features.
 
 This section is a map of the current status. Labels follow the appendices: **[proved]**, **[certified exact]** (rational certificate, not Lean), **[numerical]**, **[cited]**. Proofs live in the appendices and are not restated here.
 
 **Proved.**
 - *Process functions lift* (Section 1, Appendix A). Every process function lifts to a unitary process. The core identity and the validity chain are machine-checked in Lean in finite dimensions (PFUL.induced_unitary; PFUL.Choi.validity_package). Countable alphabets: Appendix F (PFUL.Countable.induced_unitary_l2). Continuous alphabets: open (F.5).
-- *Blends lift* (C.1). Every mixture of process functions is purifiable, and convex combinations of purifiable processes are purifiable. This is the "if" half of the conjecture.
-- *Classical version* (D.6). A classical process is classically reversibly purifiable iff it is a PF blend. So the conjecture says quantum purifiability adds nothing for classical processes.
-- *Two parties* (Appendix G, Theorem G.1). Every bipartite valid classical process, with any finite alphabets, is a blend of causally ordered process functions. So the conjecture holds for two parties, with both sides true. This is known in substance [cited: Oreshkov-Costa-Brukner 2012, Suppl.; Baumann-Brukner 2016].
+- *Blends lift* (C.1). Every mixture of process functions is purifiable, and convex combinations of purifiable processes are purifiable. This is the "if" half of the former conjecture.
+- *Classical version* (D.6). A classical process is classically reversibly purifiable iff it is a PF blend. Together with H.12 this shows that quantum purifiability does add something: the quantum purifiable set strictly contains the classical one.
+- *Two parties* (Appendix G, Theorem G.1). Every bipartite valid classical process, with any finite alphabets, is a blend of causally ordered process functions. So for two parties purifiable = PF blend = valid; the gap of H.12 needs three parties. This is known in substance [cited: Oreshkov-Costa-Brukner 2012, Suppl.; Baumann-Brukner 2016].
 - *Three parties, a party last* (Theorem H.1). If some party's output influences nothing, the process is a PF blend.
-- *Three parties, causally separable* (Theorem H.2). If some party is first and every conditional bipartite process is valid, the process is a PF blend. So every classically causally separable three-party process is a blend of causally ordered process functions, and the conjecture holds on that class trivially.
-- *Three parties, a party first in the purification* (Lemma H.6.1, Theorem H.6.2). If some purification of W has a party whose input is prepared from the source alone (operator-level first: V factorises through that party's input), then every conditional bipartite process is valid and purifiable, and W is a PF blend. So a purifiable process outside the hull could only have purifications in which every party's input is influenced by some party output. Lugano has no purification with an operator-first party.
+- *Three parties, causally separable* (Theorem H.2). If some party is first and every conditional bipartite process is valid, the process is a PF blend. So every classically causally separable three-party process is a blend of causally ordered process functions, so no gap can occur on that class.
+- *Three parties, a party first in the purification* (Lemma H.6.1, Theorem H.6.2). If some purification of W has a party whose input is prepared from the source alone (operator-level first: V factorises through that party's input), then every conditional bipartite process is valid and purifiable, and W is a PF blend. So a purifiable process outside the hull can only have purifications in which every party's input is influenced by some party output. Lugano has no purification with an operator-first party.
 - *Switchboard structure* (H.8). The H.7.1 purity conditions are equivalent to a Pauli-span condition, K_{o,o'} in the span of the operators trivial on some party whose output changed, which is the operator form of exclusivity. Checked in exact arithmetic. Ancillas add no conditions, so H.7.1 is full purity. Operator-first and operator-last parties are read off K. Monomial or commuting switchboards give PF blends for every source state (H.8.1-H.8.5).
 - *Attacks on (C1)* (H.10). Two natural routes are closed. No twirl that preserves p can reduce to the commuting case, and the degree-2 (Shor) relaxation in the board entries is vacuous. Exhaustive check: pairwise exclusivity is equivalent to being a PF for three binary parties (744). Two-term boards X^{w1(o)} exp(i t X^{d(o)}) are classified exactly (39,512 non-trivial pairs, 34,304 with non-commuting projectors).
 - *Toward (C2)* (H.11). Input copying preserves purity. Generalized switchboards (extra sink F') obey the block-wise Pauli rule. (C2) reduces to whether the sink can be made to record o on every source state (open).
-- *Robustness, trivial halves* (I.1-I.3). Being eps-close to a blend implies being eps-close to purifiable. A quantitative converse is equivalent to the conjecture. In family C the machine residual bounds the operator purity defect.
+- *Robustness, trivial halves* (I.1-I.3). Being eps-close to a blend implies being eps-close to purifiable. A quantitative converse would have been equivalent to the conjecture, and is therefore false (H.12). In family C the machine residual bounds the operator purity defect.
 - *Structure of purifications* (D.1, D.2, D.5). The sink records (o, i) orthogonally. Constraints on the fixed source state are vacuous. Validity under quantum-controlled interventions holds for every classical process.
 
-**Certified exact non-purifiable.** E_ex1, and vertex orbits 7 and 50 (one of which contains E_ex1): exact inertia certificates (C.2; code/stochastic/cert). They are not mixtures of process functions, so they agree with the conjecture.
+**Certified exact non-purifiable.** E_ex1, and vertex orbits 7 and 50 (one of which contains E_ex1): exact inertia certificates (C.2; code/stochastic/cert). So the purifiable set, while larger than conv(PF), is still a proper subset of the valid classical processes.
 
 **Settled negatively (routes that provably do not work).**
 - *Hidden source label* (D.3/D.4). The single-classical-label strengthening D.3 is false: a causal circuit is an exact counterexample.
@@ -121,27 +150,35 @@ This section is a map of the current status. Labels follow the appendices: **[pr
 - *Degree-4 single-vector certificates for orbit 8* (C.6) [numerical]. Random 67-dim (even 60-dim) subspaces of V_W, with the radical removed, contain jointly isotropic vectors (loss 1e-9 to 2e-7, against a baseline of 0.1). So the C.5 degree-4 proposal fails for random L, and full-frame level-2 Lasserre is about 3.4e6 in size. No paid compute was used.
 - *Single-vector determinantal bound for orbit 8* (H.2 route B) [numerical]. The jointly isotropic cone contains vectors with rank K(u) of about 51-55, so the bound gives only dim <= ~28-32, not < 16.
 
-**Numerical evidence (not proof).**
+**Numerical observations (not proof; recorded before H.12 and partly read at the time as support for the conjecture, which H.12 shows they were not).**
 - *GPU sweep* (C.4). None of the 49 remaining sampled non-deterministic vertex orbits lifted. Best residuals were 12.97-59.35; the same code reaches 1e-16 on Lugano.
 - *Isotropic dimension* (C.5). For orbits 8, 10 and 20, constraint-isotropic subspaces appear to exist up to dimension ~10 and fail by 12. A purification needs 16.
 - *Facets* (D.7). Facet orbit 82 is violated by E_ex1 and by all 51 sampled non-deterministic vertex orbits.
 - *Boundary* (D.8). Along Lugano -> E_ex1, purifiability appears to stop where the PF hull does.
 - *Two-term boards* (H.10.4). All 237 symmetry classes, 7 values of t and all 29,344 facets give operator facet values >= -1.7e-14. So they lie in conv(PF) for every source state, including the non-commuting ones. No counterexample. Float64, not exact.
-- *Switchboard robustness* (H.8, I.4). Minimising the exact purity residual R at prescribed facet-82 violation v always gave R >= 0.31 v^2, i.e. violation <= 1.79 sqrt(R): 108 runs, v from 0.01 to 0.9. No counterexample in family C.
-- *Unitary-side hunt* (H.3). Optimising unitaries for purity, classicality and facet violation found no purifiable process outside the hull. From Lugano, facet violation of ~0.01 costs a purity residual of 0.1-2.4.
+- *Switchboard robustness* (H.8, I.4). Minimising the exact purity residual R at prescribed facet-82 violation v always gave R >= 0.31 v^2, i.e. violation <= 1.79 sqrt(R): 108 runs, v from 0.01 to 0.9. No counterexample in family C was found by this local search; H.12 lies in family C, so the floor is withdrawn (Appendix I).
+- *Unitary-side hunt* (H.3). Optimising unitaries for purity, classicality and facet violation found no purifiable process outside the hull (the H.12 example needed the restriction to X-type boards). From Lugano, facet violation of ~0.01 costs a purity residual of 0.1-2.4.
 
 **Refuted / superseded (Oct 22 2026).** The only-if half of the conjecture and the Switchboard conjecture (C1) are false (H.12.1). The Appendix I floor R >= 0.31 v^2 was a local-optimisation artefact and is withdrawn. Evidence items above that were read as support for the conjecture (C.4, D.7, D.8, H.3, H.7, the Switchboard robustness item) remain true as statements about what was found, not as evidence for it.
 
 **Proved (Oct 22, later).** *Coset-transport theorem* (H.10.6): X-type boards whose class-constant selections are all PFs give PF blends for every source state, with an explicit decomposition. Exhaustive exact check: **all two-term boards are PF blends**. *Recording* (H.11.4): a coherent-control purification shows that o need not be recorded on every source state.
 
-**Open.**
-- The "only if" half for **purifications with no operator-first party**: every party's input is influenced by some party output in V, as in the Lugano-type cyclic lifts. By H.6 this is the only place a purifiable non-blend can live. It contains Lugano-type process functions, their blends, and every candidate counterexample (E_ex1 and all 51 sampled orbits fail first-with-valid-conditionals in every party, so any purification of them has no operator-first party). H.7 [numerical] searched this class with three binary parties. It found pure purifications with complete causal graphs, beyond Lugano: one with a separable W, and a non-separable continuous family near Lugano. Every induced process found lies in conv(PF); no counterexample. H.8/H.9 (Oct 22) prove the Switchboard's structure (Pauli form, ancillas redundant, commuting case) and leave the hull question open (conjectures C1, C2 in H.9). H.10/H.11 attack C1 and C2: partial results, no counterexample.
-- The exact status of **orbits 8, 10, 20** (dim V_W = 82) and **the other 46 sampled open orbits**: numerically non-purifiable, with no exact certificate.
-- Deriving any PF-hull facet (for example orbit 82) from purifiability. Any proof must use the purifying unitary on source states orthogonal to the fixed source state (D.2, D.8). That is the non-convex isotropy condition of AFNB Theorem 4.
+## 10. Conclusion, interpretation, and open problems
 
-**Interpretation after H.12 (philosophical).** Some reversible quantum loops with classical statistics are *not* coherent mixtures of deterministic consistent loops. Quantum reversibility admits genuinely chancy classical loops that classical reversibility (D.6) does not. The earlier reading below assumed the conjecture.
+**What purity singles out.** For process functions purity is automatic (Section 1): fixed-point consistency already guarantees a unitary dilation. For classical processes in general it is a genuine restriction, since E_ex1 and orbits 7 and 50 are valid but not purifiable (C.2). But it is not the restriction "mixture of deterministic consistent loops". The purifiable classical processes form a convex set strictly between conv(PF) and the valid polytope (C.3, H.12). Classically, reversible purification gives exactly conv(PF) (D.6). So the extra processes are a quantum effect. A coherent superposition of board operations, none of which is a classical bijection, yields classical statistics that no mixture of process functions reproduces.
 
-**Interpretation (philosophical, not a result; written assuming the conjecture).** Consistent time loops are the setting: a process function is a loop in which every local choice has exactly one consistent history. The conjecture asks whether chance inside such a loop can be fundamental, or only ignorance about which deterministic loop obtains. If it holds, every reversible quantum loop with classical statistics is a coherent ignorance mixture of deterministic consistent loops. Genuinely chancy loops like E_ex1 would then be classically consistent but not reversibly realisable. Reversibility, not consistency alone, would be the constraint that excludes basic chance from loops. D.4 adds a caveat: the "which-loop" variable can be contextual, so the ignorance reading is about W, not about any single hidden label. H.2 and H.5 sharpen this: wherever a causal order exists, the ignorance reading is automatic. The open question lives entirely in loops without one.
+**No operator-first party is needed, and none is allowed.** H.6 shows that if any party is first at the operator level in some purification, the process is a PF blend. Every purifiable non-blend must therefore be "cyclic all the way down": in every purification, each party's input depends on some party's output. The H.12 machine is of this kind (operator-first residuals 0.31 / 0.25 / 0.31, complete causal graph). The gap is not produced by an exotic ingredient such as a party acting before the loop. It comes from the loop itself.
+
+**The two-party contrast.** With two parties every valid classical process is a blend of causally ordered process functions (Appendix G), so valid = purifiable = conv(PF). The separation first appears at three parties, the smallest setting in which process functions without causal order (Lugano) exist.
+
+**Interpretation (philosophical, not a result).** Read a process function as a deterministic consistent time loop. Before H.12, the hoped-for reading was that every reversible quantum loop with classical statistics is an ignorance mixture of such loops: chance in a loop would only be ignorance of which loop obtains. H.12 shows this reading fails. Quantum reversibility admits classical loops whose chance is not ignorance over deterministic loops, though it still excludes some classically consistent ones (E_ex1). The earlier version of this paragraph assumed the conjecture. It is superseded, as is its claim that reversibility excludes basic chance from loops; D.4's caveat about contextual "which-loop" variables no longer bears on the main question.
+
+**Open problems.**
+1. *Characterise the purifiable set.* Is it a polytope, or even closed? What are its extreme points? Are vertex orbits 8, 10, 20 and the other 46 sampled orbits that are numerically non-purifiable (C.4, C.5) truly non-purifiable? Exact certificates exist only for orbits 7 and 50.
+2. *Minimal counterexamples.* Find the smallest facet violation and the fewest non-PF board terms. Which facet orbits can be violated? The H.12 example uses facet 1741 of the normaliz list. What is the reach of X-type boards? The H.12 boards reach L1 distance 0.828 = 2(sqrt 2 - 1) from conv(PF) at their best source state [numerical]. Are three-term boards enough?
+3. *Other scenarios.* Larger alphabets, more parties, unequal alphabets (Appendix B), the countable case (Appendix F), and which causal-inequality violations the new processes reach.
+4. *Close the formal gaps.* Link the Lean definitions in Counterexample.lean to PFUL.Validity/Choi, and extend purity to infinite-dimensional ancillas.
+5. *Structure of purifications.* The reduction (C2) of a general three-party purification to Switchboard form (H.11) is open, and so is any facet description of the purifiable set derived from purity.
 
 ## Appendix A. Unitarity under local unitaries implies validity
 
@@ -212,9 +249,9 @@ The control register must enter through the source and leave through the sink. I
 - The span of w_0, ..., w_15 is a 16-dimensional subspace on which this form must vanish, so it is totally isotropic for the symmetric part. But a totally isotropic subspace has dimension at most 1 + min(13, 13) = 14 < 16. So no purification exists.
 - An independent numerical check agrees. A gradient search for purifications reaches residual 8·10^-14 for Lugano (which is purifiable), but stalls at 79.7 for E_ex1.
 
-**C.3 Purifiable set and the conjecture.** The control-register argument of C.1 works for any purifiable processes, not just process functions. So the purifiable classical processes form a convex set containing the hull of the process functions. We conjecture they are exactly that hull:
+**C.3 Purifiable set and the (former) conjecture.** The control-register argument of C.1 works for any purifiable processes, not just process functions. So the purifiable classical processes form a convex set containing the hull of the process functions. We conjecture they are exactly that hull:
 
-*Conjecture.* A classical process is purifiable iff it is a mixture of process functions.
+*Conjecture (refuted, H.12.1).* A classical process is purifiable iff it is a mixture of process functions. The "if" half is C.1; the "only if" half is false.
 
 *Evidence so far.*
 - 40,000 random LP vertices of the three-party binary polytope gave 39,354 deterministic vertices and 646 non-deterministic ones. These fall into 51 orbits under party permutations and local input/output relabellings (code/stochastic/reps.json). Ranks are 15–23.
@@ -229,7 +266,7 @@ The control register must enter through the source and leave through the sink. I
 - Method: code/stochastic/gpu/gpusearch.py ran on one RTX 3090. For each orbit it made 64 random restarts of batched L-BFGS in float32 on the reduced Theorem 4 residual, then polished in float64.
 - Validation: the same code finds Lugano's purification (residual 1.2e-16) and stalls at 79.676 on E_ex1, which is certified non-purifiable.
 - Result: no orbit reached the 1e-10 threshold. The best residuals range from 12.97 (orbit 40) to 59.35. Every orbit stalled far from zero.
-- Interpretation: this is consistent with the conjecture that none of the 49 non-deterministic vertex orbits is purifiable. But a local search can miss solutions, so it is not a proof. Only orbits 7 and 50 (C.2) have exact certificates.
+- Interpretation [superseded by H.12]: this is consistent with the conjecture that none of the 49 non-deterministic vertex orbits is purifiable. But a local search can miss solutions, so it is not a proof. Only orbits 7 and 50 (C.2) have exact certificates.
 
 | orbit | rank | dim V_W | best residual (float64) | restarts |
 |---|---|---|---|---|
@@ -300,10 +337,10 @@ The control register must enter through the source and leave through the sink. I
 
 *Proof idea for "only if" (not completed).* A purification U restricted to classical permutation instruments gives a unitary M for every reversible local classical operation. One would like to show that M's action on basis states then decomposes into permutations, giving a deterministic decomposition. We have not proved this. E_ex1 shows the classical consistency of W alone is not enough.
 
-**Answer.** Not every classical process admits a unitary extension: E_ex1 (and one other vertex orbit) provably does not. Mixtures of process functions do. Whether those are the only ones is the open conjecture above.
+**Answer.** Not every classical process admits a unitary extension: E_ex1 (and one other vertex orbit) provably does not. Mixtures of process functions do. Whether those are the only ones was the conjecture above; H.12.1 shows they are not.
 
 ## Appendix D. Purifications of classical processes: the physics route
-Status labels: **[proved]**, **[conjecture]**, **[gap]**. Nothing here proves the conjecture; it is still open.
+Status labels: **[proved]**, **[conjecture]**, **[gap]**. Nothing here proves the conjecture. (Written before H.12, which refutes it.)
 
 Setting. A purification of a classical process W (diagonal; equivalently a stochastic map p(i|o) on the joint
 classical inputs i and outputs o of the parties) is a unitary V : P (x) O -> F (x) I together with a fixed source
@@ -323,7 +360,7 @@ W being a classical process. For classical deterministic interventions with inpu
 input i copied to a private ancilla, the output for ancilla value a is sum_i |i>_anc (x) sqrt(p(i|f(i)+a)) f_{f(i)+a, i};
 by D.1 these are orthogonal for a != a' and have total norm sum_i p(i|f(i)+a) = 1 (logical consistency).
 Hence any non-purifiability (e.g. E_ex1, orbits 7 and 50) must come from the action of V on source states
-orthogonal to |psi>. Any proof of the conjecture must use those states. This is where proposal (2) breaks down:
+orthogonal to |psi>. Any proof of the conjecture would have had to use those states (moot after H.12). This is where proposal (2) breaks down:
 the "which-function" label lambda cannot come from a basis of the span of |psi> alone.
 
 **Where proposal (2) fails [gap].** The intended argument: under each intervention the global map is a generalised
@@ -361,8 +398,8 @@ classical label from the source can work, and unitarity under all local unitarie
 conclusion still holds here for a different reason: every causally ordered classical process is a mixture of causal
 deterministic ones. A proof of "purifiable => mixture of process functions" therefore has to show directly that
 W lies in conv(PF), for example that purifiability implies every facet inequality of the PF polytope. It cannot go
-through a source-label decomposition. Status: the conjecture is open; D.3 is refuted; no counterexample to the
-conjecture itself.
+through a source-label decomposition. Status at the time: the conjecture was open; D.3 is refuted. The conjecture itself was later refuted
+(H.12.1).
 
 ### D.5 The hull route (Oct 10 2026)
 
@@ -384,7 +421,7 @@ bijection (lambda, o) -> (i, sink) that stays a bijection P -> F under every det
 For a fixed lambda this is a deterministic process. Bijectivity of the composite map under every intervention f
 forces exactly one consistent execution: zero leaves the source value with no image, and two collide by counting.
 So each w_lambda is a process function (Baumeler-Wolf 2016), and W = sum_lambda p(lambda) W_{w_lambda}. The converse
-is the source-sink construction with a random source. Hence **the conjecture is equivalent to: a classical process
+is the source-sink construction with a random source. Hence **the conjecture was equivalent to: a classical process
 that is quantum-purifiable is already classically purifiable.** D.4 shows the quantum purification itself need not be
 classical (its labels are contextual), so this has to be argued at the level of W.
 
@@ -395,7 +432,7 @@ Full facet enumeration was not done: pycddlib does not build on the box, and 744
 very many facets. Instead, sep.py finds by LP a separating inequality of the PF hull (box-normalised, |f| <= 1):
 E_ex1 and orbit 7 violate one by 6.0, orbit 8 by 4.0, and a PF mixture by 0, as expected. These inequalities are not
 reduced modulo the affine hull or by symmetry, so their supports carry no meaning yet. **No inequality has been
-derived from purifiability. The conjecture remains open.** Next steps: enumerate facets with lrs/normaliz or by
+derived from purifiability. The conjecture remained open at this point; H.12.1 later refuted it.** Next steps: enumerate facets with lrs/normaliz or by
 symmetry-adapted LP, then try to derive one facet class from Theorem 4 (isotropy) together with Lemma D.1.
 
 ### D.7 Facets of the PF hull: partial (Oct 10 2026)
@@ -461,7 +498,7 @@ Thm 4 terms, that is the non-convex isotropic-subspace condition, the same obstr
 Numerical boundary test (`physics/boundary.py`, `boundary.json`). On x_t = (1-t) Lugano + t E_ex1, the PF hull is
 left at t_h ~ 2e-7: Lugano is a vertex and this direction exits the hull at once. The full purification search
 (gpusearch, float64, 8 restarts) finds no purification at t = 0.02 (best residual 52.2; rank 19, dim V_W 88) or at
-t = 0.2 (60.1); the same code reaches about 1e-13 on Lugano itself. This is consistent with the conjecture, since the
+t = 0.2 (60.1); the same code reaches about 1e-13 on Lugano itself. This was read as consistent with the conjecture [superseded by H.12], since the
 purifiable set appears to end where the PF hull does along this line. It is numerical evidence, not a proof.
 Generalisation to other facet orbits: not attempted, since no certificate exists to generalise.
 
@@ -516,11 +553,11 @@ The earlier draft's special cases (permutation interventions; causally ordered w
 
 **Status.** Proved (paper and Lean, finite and countable), for countable alphabets with a group structure on the inputs and finitely many parties: the lift is unitary under all local unitaries with ancillas (F.1-F.3). Open: continuous alphabets, where the induced map first needs a definition (F.5). The proof of F.3 suggests the natural definition, via the kernel <f|V|w(f)+e> with Haar measure, and the same probabilistic argument would then need the measurable-selection version of "exactly one fixed point".
 
-## Appendix G. Two parties: the conjecture holds, trivially (Oct 21 2026)
+## Appendix G. Two parties: purifiable = PF blend, trivially (Oct 21 2026)
 
 **Theorem G.1 [proved].** Let p(a,b|x,y) be a valid classical process on two parties A, B, with finite alphabets of any sizes: a, b are the inputs and x, y the outputs. Valid means p >= 0 and sum_{a,b} p(a,b|f(a),g(b)) = 1 for all functions f, g. Then p is a convex combination of deterministic causally ordered process functions. Each of these has one of two forms: a = a0 constant and b = h(x), or b = b0 constant and a = h(y).
 
-**Corollary G.2 [proved].** For two parties, the purification conjecture of Section 9 holds. Both sides are true for every valid classical process. Every such process is a mixture of process functions (G.1), so it is purifiable (C.1). Also, every bipartite process function is causally ordered: a 0/1 point that is a convex combination of 0/1 points equals one of them. So the two-party case says nothing about the open multipartite question. The separation between "classically consistent" and "reversibly realisable" starts at three parties, where E_ex1 lives.
+**Corollary G.2 [proved].** For two parties, the former purification conjecture of Section 9 holds (in contrast with three parties, H.12.1). Both sides are true for every valid classical process. Every such process is a mixture of process functions (G.1), so it is purifiable (C.1). Also, every bipartite process function is causally ordered: a 0/1 point that is a convex combination of 0/1 points equals one of them. So the two-party case says nothing about the open multipartite question. The separation between "classically consistent" and "reversibly realisable" starts at three parties, where E_ex1 lives.
 
 *Proof of G.1.* Write every function of (a,b,x,y) as a sum of components p_S, one for each subset S of {a,b,x,y}. The component p_S depends only on the variables in S, and its sum over any one variable in S is zero. (These are the products of "average" and "traceless" projections.)
 
@@ -564,7 +601,7 @@ In every case the vertices found are exactly the process functions, as G.1 predi
 
 ## Appendix H. Three parties: structural reductions, a determinantal probe, and a unitary-side search (Oct 21 2026)
 
-Status labels: **[proved]**, **[numerical]**, **[cited]**, **[failed]**. The three-party conjecture remains open. Code: code/stochastic/structural/.
+Status labels: **[proved]**, **[numerical]**, **[cited]**, **[failed]**. The three-party conjecture was open when this appendix was written; H.12.1 refutes it. Code: code/stochastic/structural/.
 
 Notation. Inputs a, b, c; outputs x, y, z; a classical process p(a,b,c|x,y,z) >= 0 with sum_{a,b,c} p(a,b,c|f(a),g(b),h(c)) = 1 for all local functions f, g, h. Any finite alphabets unless stated.
 
@@ -594,7 +631,7 @@ The first two rows agree with H.1 and H.2. Of E_ex1 and the 51 non-deterministic
 
 **Where Lugano sits [cited/proved].** The Lugano (Araújo-Feix / Baumeler-Wolf) process function violates a causal inequality (Baumeler, Feix, Wolf, PRA 90, 042106 (2014), arXiv:1403.7333) [cited]. So it is not causally separable. Directly: each input depends non-trivially on outputs of both other parties, so no party is marginally first, and every output is used, so no party is last [proved]. It lies outside every reducible class, but it is a process function. The interesting class is exactly conv(PF) minus the causally separable processes, together with the candidate non-hull processes, and the reductions say nothing about either.
 
-**Does purifiability add anything here?** On the classes of H.1 and H.2, no: every valid process is already a PF mixture. The natural next statement would be "purifiable and marginally first imply valid conditionals". It would settle the conjecture for the 19 marginally-first orbits, including orbit 8. It is open [not proved]. D.2 and D.8 show it cannot follow from the source sector alone.
+**Does purifiability add anything here?** On the classes of H.1 and H.2, no: every valid process is already a PF mixture. The natural next statement would be "purifiable and marginally first imply valid conditionals". It would settle the conjecture for the 19 marginally-first orbits, including orbit 8. It is open [not proved]; H.5 shows the W-level version fails. D.2 and D.8 show it cannot follow from the source sector alone.
 
 ### H.2 Route B: a determinantal bound for orbit 8 [failed, numerical]
 
@@ -608,10 +645,10 @@ Parametrisation (hunt.py). U = U0 exp(iH) is a 64 x 64 unitary O (x) P -> I (x) 
 - Random start (U0 = 1, 8 seeds x 20,000 Adam steps): purity was never reached. The final residual (20 fresh samples, qubit ancillas) was 10-172. The facet values there are meaningless, because W is not normalised. **[failed: the optimiser does not even find pure unitaries from random starts]**
 - Start at the Lugano lift (exactly pure, facet image chosen tight = 0 at Lugano; 8 seeds): the search trades purity against violation. Final facet violation was 0.008-0.018 at purity residual 0.13-2.4 (ancilla samples) and off-diagonal mass 4e-5 to 7e-4. Not one run kept both residuals near 0 with positive violation.
 
-This is consistent with the conjecture: leaving the hull at a Lugano vertex costs purity at once, as in D.8's boundary test. It is local, small-sample evidence, not a proof. No counterexample was found.
+This was read as consistent with the conjecture [superseded by H.12]: leaving the hull at a Lugano vertex costs purity at once, as in D.8's boundary test. It is local, small-sample evidence, not a proof. No counterexample was found.
 
 ### H.4 Summary
-- Proved: H.1 (some party last implies PF mixture) and H.2 (classically causally separable implies mixture of causally ordered PFs). On both classes the conjecture holds trivially. Also proved: marginal "firstness" does not reduce (E_ex1).
+- Proved: H.1 (some party last implies PF mixture) and H.2 (classically causally separable implies mixture of causally ordered PFs). On both classes every valid process is a PF blend, so no gap can occur there. Also proved: marginal "firstness" does not reduce (E_ex1).
 - Settled negatively (H.5): purifiability plus marginal firstness does not force valid conditionals; a 4-term PF mixture is an exact counterexample.
 - Failed: the single-vector determinantal bound for orbit 8 (numerically the cone has rank ~51-55 points), and the unitary-side counterexample search (no hit).
 
@@ -677,7 +714,7 @@ Firstness is not a property of W: H.5 shows a marginally first party that is las
 - Lugano is not marginally first in any party (H.1), so none of its purifications, not just the lift, has an operator-first party.
 - None of E_ex1 or the 51 sampled non-deterministic vertex orbits is first-with-valid-conditionals in any party (H.1 numerics). So a purification of any of them, if one exists, has no operator-first party. This includes orbit 8, which is marginally first in parties 1 and 2. For E_ex1 and orbits 7 and 50 the statement is vacuous, since they have no purification at all (C.2).
 
-**What this leaves open.** The conjecture is now reduced to purifications in which **every** party has a parent among the party outputs, i.e. every party's input is influenced by some output in V. Lugano-type lifts are like this: their causal graph is a 3-cycle. Theorem H.6.2 says nothing about a W whose only purifications are of this kind. That is the same class flagged as open in Section 9, now characterised at the operator level. A purifiable non-blend, if one exists, must be such a W: one with no first party and no last party in any purification. W-level lastness already gives H.1. Operator-level lastness is a stronger hypothesis, so it is covered too.
+**What this leaves open.** The conjecture was thereby reduced to purifications in which **every** party has a parent among the party outputs, i.e. every party's input is influenced by some output in V. Lugano-type lifts are like this: their causal graph is a 3-cycle. Theorem H.6.2 says nothing about a W whose only purifications are of this kind. That is the same class flagged as open in Section 9, now characterised at the operator level. A purifiable non-blend, if one exists, must be such a W: one with no first party and no last party in any purification. W-level lastness already gives H.1. Operator-level lastness is a stronger hypothesis, so it is covered too.
 
 **Numerics [numerical]** (code/stochastic/structural/opfirst.py, log opfirst.log; C.1 lifts). The firstness residual is max |J - Tr_O J (x) 1/d_O| for the channel P (x) O -> I_k. Open purity is ||M M^dag - 1||_max, with slot k replaced by a SWAP and the other two closed by Haar unitaries with qubit ancillas, worst of 5.
 
@@ -777,7 +814,7 @@ With ancillas the condition is necessary. It is also sufficient: see H.8.2 (adde
 
 *Names.* The gentle version (graded.md, Section 58e) uses informal names: the Ring (the 64 Lugano-orbit single-PF lifts of family A), the Chorus (family B), the Switchboard (family C) and the Shadows (lug_21-23).
 
-**What remains open.** The conjecture on the class of purifications with neither an operator-first nor an operator-last party.
+**What remained open.** The conjecture on the class (refuted there by H.12.1) of purifications with neither an operator-first nor an operator-last party.
 - Within family C, Lemma H.7.1 turns no-ancilla purity into linear conditions on the products C_o C_o'^dag. A proof that these conditions, together with the ancilla conditions, force p into conv(PF) would settle family C. Attempted in H.8: the ancilla conditions are implied (H.8.2), and the hull question is still open.
 - Family C has source dimension 64 and records (o, i) in the sink. General purifications can have larger sources and need not have this form (D.4).
 - These searches cover a small, structured slice. They are local and few: 13 pure solutions in total.
@@ -785,7 +822,7 @@ With ancillas the condition is necessary. It is also sufficient: see H.8.2 (adde
 
 ### H.8 The Switchboard lemma: Pauli form, ancillas, and what is and is not forced (Oct 22 2026) [proved parts; hull question numerical]
 
-Task: do the purity conditions of Lemma H.7.1 force the induced p into conv(PF) (37-dim, 744 vertices)? **Answer: not settled.** The conditions are equivalent to full purity, so this is the conjecture restricted to family C. A numerical search (108 runs) found no counterexample, and the trade-off between violation and purity residual is quadratic (Appendix I). What is proved: H.8.1-H.8.5. Code: code/stochastic/cyclic/switchboard/.
+Task: do the purity conditions of Lemma H.7.1 force the induced p into conv(PF) (37-dim, 744 vertices)? **Answer (at the time): not settled; H.12.1 later answered no.** The conditions are equivalent to full purity, so this is the conjecture restricted to family C (answered negatively by H.12.1). A numerical search (108 runs) found no counterexample, and the trade-off between violation and purity residual is quadratic (Appendix I). What is proved: H.8.1-H.8.5. Code: code/stochastic/cyclic/switchboard/.
 
 Notation. Write U_o := C_o (8x8 unitary, rows indexed by the input string e = (e_A, e_B, e_C)), K_{o,o'} := U_o U_{o'}^dag, and D(o,o') := supp(o xor o'). For a unit source vector phi in S put psi_o := U_o phi. Then p_phi(i|o) = |<i|psi_o>|^2, and psi_o = K_{o,o'} psi_{o'}. The source column s = 0 of H.7 is phi = |0>. The H.7.1 conditions do not mention phi, so every phi gives a purification.
 
@@ -864,9 +901,9 @@ Let U_o = cos(t) X^{w1(o)} + i sin(t) X^{w2(o)} = X^{w1(o)} exp(i t X^{d(o)}), w
 
 **H.11.4 Per-machine recording is false [proved].** Take a coherent control: a source qubit r, passed on to the sink, with V = |0><0|_r (x) V0 + |1><1|_r (x) V1. Here V0 is a PF lift (it records o) and V1 is a pure comb A -> B -> C (I_B = O_A and I_C = O_B wired, I_A from the source, O_C to the sink), which does not record o_A or o_B. V is pure, since the induced map is |0><0| (x) M0 + |1><1| (x) M1. On the source |0>_r (x) psi it purifies the classical W of V0. On |1>_r (x) s, the values o_A and o_B end up in the parties' inputs, not the sink, so no sink unitary can record them. So "every purification records o on every source state" (H.11.3) is false. A reduction must first restrict the source to a suitable subspace containing psi. Whether such a sub-purification always exists is open. After H.12 this question no longer decides the conjecture, which is false. It remains a question about the shape of general purifications.
 
-### H.12 A purifiable classical process outside the PF hull: the purification conjecture is false (Oct 22 2026) [proved: exact arithmetic + the paper proofs of H.7.1, H.8.1, H.8.2]
+### H.12 A purifiable classical process outside the PF hull: the purification conjecture is false (Oct 22 2026) [proved: exact arithmetic + paper proofs; independently re-derived (H.12.2); Lean-checked with two gaps (H.12.3)]
 
-**Theorem H.12.1.** There is a valid three-party binary classical process p with an AFNB purification (a pure process, i.e. unitary under all local unitaries with arbitrary finite ancillas) such that p is **not** a mixture of process functions. So the "only if" half of the conjecture of Section 9 is false, and so is (C1) of H.9.
+**Theorem H.12.1.** There is a valid three-party binary classical process p with an AFNB purification (a pure process, i.e. unitary under all local unitaries with arbitrary finite ancillas) such that p is **not** a mixture of process functions. So the "only if" half of the conjecture of Section 9 is false, and so is (C1) of H.9. This is the main result of the note (Theorem 9.1).
 
 **The machine.** It is a Switchboard (family C, H.7) with X-type boards. Let Hd be the 3-qubit Hadamard. Put U_o = Hd diag(i^{m_o(z)}) Hd, so U_o acts diagonally in the Hadamard basis |z^>. The exponents m_o(z) in {0,1,2,3}, for z = 000, ..., 111 in binary order, are:
 
@@ -899,7 +936,36 @@ V|o, s, t> = sum_e U_o[e, s] |e>_I |o>_F |e xor t>_F. The source state is phi (x
 
 **What survives.** The "if" half (C.1). The classical version D.6, which says *classical* reversible purifiability gives exactly the PF hull. Two parties (G). All the structural theorems (H.1, H.2, H.6, H.8, H.10.6). The exact non-purifiability certificates for E_ex1 and orbits 7 and 50 (C.2). The corrected statement: **quantum purifiability is strictly weaker than being a mixture of process functions, already for three binary parties, and the gap is witnessed by a Switchboard with no operator-first party.** Open: the exact purifiable set; whether it is a polytope; whether the vertex orbits 8, 10, 20 and the other sampled orbits are purifiable after all; and the reach of X-type boards.
 
-**Caveat.** The purity step rests on the paper proofs of Lemma H.7.1 and H.8.1-H.8.2, together with the exact check that the Pauli rule holds. The direct numerical simulation agrees to 1e-15. Formalising H.7.1/H.8.2 in Lean, or an independent review, is recommended before this result is announced.
+**H.12.2 Independent re-derivation [exact, with float cross-checks].** A separate verification, code/stochastic/cyclic/switchboard/verify_h12/verify.py (log verify.log), was written from the text of this section alone and uses none of the code above.
+- (0) Each 8U_o has Gaussian-integer entries, and (8U_o)(8U_o)^dag = 64·1 exactly.
+- (2a) Purity is checked directly, not via H.7.1/H.8. The induced map is multi-affine in the three local operations, so purity reduces to an exact identity over 125 slot combinations. The result is PASS.
+- (2b) 1,200 random trials, with isometries and ancilla dimensions 1 to 5, give max |M^dag M - 1| = 2.0e-15 [numerical]. A control with board 000 perturbed gives 3e-2, as it should.
+- (3) p >= 0 and its columns sum to 1, exactly. All 64 deterministic interventions give total probability exactly 1, which covers all local stochastic interventions by multi-affinity.
+- (4) The 744 PFs are re-enumerated by brute force over all 8^8 maps. The paper inequality has minimum 0 on them, is tight on 418, and takes the value 1/4 - (3/16) sqrt 2 on p. The referee's own rational separating inequality takes the value 1 - (3/4) sqrt 2 < 0 on p and is verified exactly on all PFs. The membership LP is infeasible.
+- (5) A full circuit simulation reproduces p to 2.2e-16 [numerical].
+
+**H.12.3 Lean formalisation [proved in Lean 4 + Mathlib; two gaps].** lean/PFUL/CounterexampleData.lean and lean/PFUL/Counterexample.lean (lean/STATUS.md, Round 6) prove
+
+    theorem purification_conjecture_false :
+      ∃ p, Valid p ∧ Purifiable p ∧ p ∉ convexHull ℝ PFset
+
+The only axioms are propext, Classical.choice and Quot.sound. There is no `sorry` and no `native_decide`; finite computations use `decide +kernel`. The definitions, all in that file, are as follows.
+- `IsPure V`: for every family of finite ancilla types a_k and every local unitary A_k on Bool × a_k, the link product `compose V A` is unitary.
+- `Purifiable p`: some pure V on a 64-dimensional source and sink, with a normalised source state, induces p via p(i|o) = Σ_f |<i,f|V|o,ψ>|^2.
+- `Valid p`: p >= 0, and total probability is 1 under every product of local stochastic maps.
+- `PFset`: the 0/1 points of maps w with a unique fixed point for every local deterministic intervention.
+
+The key lemmas are as follows.
+- `board_mem_unitaryGroup`: each U_o = Hd·diag(i^m)·Hd is unitary.
+- `isPure_Vsb`: the Switchboard is pure. The proof is a direct multilinear reduction, independent of the paper's H.7.1/H.8.2.
+- `valid_pcl`.
+- `Lg_nonneg_of_isPF` and `Lg_pcl_neg`: L(p) = (32 - 24 sqrt 2)/128 < 0.
+- `pcl_not_mem_convexHull`.
+- `purifiable_pcl`.
+
+**Gaps.** (i) The ancillas are finite types in `Type 0`, so infinite-dimensional ancillas are not covered. (ii) The definitions are self-contained and not yet linked to the PFUL.Validity/Choi framework that carries the lifting theorem. Whether `Valid`/`IsPure` coincide with the process-matrix definitions of Appendix A is checked on paper here (both are "unitary/normalised under all local operations"), not in Lean.
+
+**Caveat (revised).** The purity step now has three supports. The first is the paper proofs of H.7.1 and H.8.1-H.8.2, with the exact Pauli check. The second is the referee's direct exact criterion (H.12.2). The third is the Lean proof `isPure_Vsb` (H.12.3). None of the three has been peer reviewed. The earlier recommendation to formalise before announcing has been met, subject to the two gaps above.
 
 **Quadratic robustness near facet 82 (Appendix I) [false: H.12 has R = 0 and a facet violation].** A proof of v <= c sqrt(R) would imply (C1) for facet 82 at R = 0. None of the routes above gives it. H.10.2 shows that any SOS proof must be at least quartic in U.
 
@@ -909,7 +975,7 @@ Norm: for classical processes, ||p - q||_1 = sum over (i,o) of |p(i|o) - q(i|o)|
 
 **I.1 Blend-close implies liftable-close [proved, trivial].** If ||p - q||_1 <= eps with q in conv(PF), then p is within eps of a purifiable process, namely q (C.1). So delta = eps, in any norm. This uses only conv(PF) ⊆ Purif.
 
-**I.2 The converse is the conjecture [proved, trivial].** "dist(p, Purif) <= delta implies dist(p, conv PF) <= eps(delta) with eps(delta) -> 0" for all p holds iff the closure of Purif equals conv(PF). If the conjecture holds, then eps = delta. If it fails at some p*, then eps(0) >= dist(p*, conv PF) > 0. So no quantitative converse can be proved without proving the conjecture. A non-trivial robustness statement must therefore compare *approximately pure machines* with the hull, as follows.
+**I.2 The converse is the conjecture [proved, trivial; the conjecture is false by H.12.1, so the converse fails].** "dist(p, Purif) <= delta implies dist(p, conv PF) <= eps(delta) with eps(delta) -> 0" for all p holds iff the closure of Purif equals conv(PF). If the conjecture holds, then eps = delta. If it fails at some p*, then eps(0) >= dist(p*, conv PF) > 0. So no quantitative converse can be proved without proving the conjecture. A non-trivial robustness statement must therefore compare *approximately pure machines* with the hull, as follows.
 
 **I.3 Residual controls operator purity [proved].** In family C, with or without ancillas, every entry of M M^dag - 1 has modulus at most 2 sqrt(2) rho(U).
 *Proof.* Write K = (allowed part) + sum over forbidden sigma of c_sigma sigma. The allowed part reproduces the exact row inner products (H.8.1, H.8.2). A forbidden X^delta Z^b contributes c_{delta,b} sum_e (+-1) prod_k N_k(e_k). By Cauchy-Schwarz on unit rows, sum_e |prod_k N_k(e_k)| <= prod_k sum_{e_k} |N_k(e_k)| <= 1. Only the 8 strings with a = delta contribute, so the deviation is at most sum_b |c_{delta,b}| <= sqrt(8) rho. ∎
