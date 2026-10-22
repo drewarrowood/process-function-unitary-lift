@@ -1,6 +1,6 @@
 # Mathlib PR suitability (not opened)
 
-## B. Polar decomposition / trace norm (PFUL/Polar.lean): suitable, after adaptation
+## B. Polar decomposition / trace norm (PFUL/Polar.lean): suitable; standalone file now at MathlibPR/PolarDecomposition.lean (builds, no project deps)
 Mathlib has `CFC.abs` and `LinearMap.extendOfIsometry` but no polar decomposition on Hilbert space. Minimal PR outline:
 1. File `Mathlib/Analysis/InnerProductSpace/PolarDecomposition.lean` (or under `CStarAlgebra/`).
 2. `ContinuousLinearMap.norm_abs_apply : ‖CFC.abs T x‖ = ‖T x‖`, `inner_abs_apply_abs_apply`.
@@ -13,3 +13,6 @@ It is specific to process functions and ℓ² index conventions. The only generi
 
 ## TraceClass.lean
 A trace-class/HS PR would be valuable, but it would have to be reconciled with Mathlib's design (Schatten norms, `HilbertBasis`). Out of scope for now.
+
+## Status of the standalone file (MathlibPR/PolarDecomposition.lean)
+Done: all items 2-4 above, including `IsPartialIsometry` and `polar_unique`. Still needed before opening a PR: Mathlib style review (naming: maybe `ContinuousLinearMap.polarIsometry` → `partialIsometryOfPolar`), docstrings on every declaration, `@[simp]` attributes, moving the instance `HasOrthogonalProjection` for `polarInitial` to a general `topologicalClosure` instance, a characterisation `ker V = ker T`, and a version for `T : E →L[ℂ] F` between different spaces (|T| lives on E, V : E → F; the proof is the same).

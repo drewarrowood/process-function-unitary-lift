@@ -17,9 +17,11 @@ open scoped InnerProductSpace ComplexOrder
 
 set_option linter.unusedSectionVars false
 
+universe u
+
 namespace PFUL.Polar
 
-variable {H : Type} [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
+variable {H : Type u} [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
 
 /-- `|T| = √(T† T)`. -/
 noncomputable abbrev absOp (T : H →L[ℂ] H) : H →L[ℂ] H := CFC.abs T
@@ -231,8 +233,103 @@ theorem traceNorm_eq_trace_abs {T : H →L[ℂ] H} (hT : T ∈ traceClass H) :
       (by rw [LinearIsometryEquiv.norm_map]; exact norm_partialIso_le T)
     rwa [adjoint_partialIso_comp_self] at h
 
+
+/-! ## Partial isometries and uniqueness of the polar decomposition -/
+
+/-- A partial isometry: `V V† V = V` (equivalently `V†V` is an orthogonal projection). -/
+def IsPartialIsometry (V : H →L[ℂ] H) : Prop := V ∘L adjoint V ∘L V = V
+
+theorem partialIso_eq_comp_proj (T : H →L[ℂ] H) (x : H) :
+    partialIso T x = partialIso T ((initSp T).starProjection x) := by
+  have hx : x = (initSp T).starProjection x + (x - (initSp T).starProjection x) := by abel
+  conv_lhs => rw [hx, map_add]
+  rw [partialIso_of_mem_orthogonal T ((initSp T).sub_starProjection_mem_orthogonal x), add_zero]
+
+theorem isPartialIsometry_partialIso (T : H →L[ℂ] H) : IsPartialIsometry (partialIso T) := by
+  ext x
+  simp only [comp_apply]
+  rw [adjoint_partialIso_comp, ← partialIso_eq_comp_proj]
+
+/-- For a partial isometry, `V†V` is idempotent and self-adjoint (an orthogonal projection). -/
+theorem IsPartialIsometry.proj {V : H →L[ℂ] H} (hV : IsPartialIsometry V) :
+    (adjoint V ∘L V) ∘L (adjoint V ∘L V) = adjoint V ∘L V ∧
+      adjoint (adjoint V ∘L V) = adjoint V ∘L V := by
+  refine ⟨?_, by rw [adjoint_comp, adjoint_adjoint]⟩
+  have : (adjoint V ∘L V) ∘L (adjoint V ∘L V) = adjoint V ∘L (V ∘L adjoint V ∘L V) := by
+    simp only [comp_assoc]
+  rw [this, hV]
+
+/-- **Uniqueness of the polar decomposition.** If `T = W A` with `A` positive, `W` isometric on
+`range A` and zero on `(range A)ᗮ`, then `A = |T|` and `W` is the partial isometry `partialIso T`. -/
+theorem polar_unique {T W A : H →L[ℂ] H} (hA : A.IsPositive) (hT : W ∘L A = T)
+    (hWiso : ∀ x, ‖W (A x)‖ = ‖A x‖)
+    (hW0 : ∀ x ∈ (LinearMap.range (A : H →ₗ[ℂ] H))ᗮ, W x = 0) :
+    A = absOp T ∧ W = partialIso T := by
+  have hAA : adjoint T ∘L T = A ∘L A := by
+    have hz : ∀ x, ⟪(adjoint T ∘L T - A ∘L A) x, x⟫_ℂ = 0 := by
+      intro x
+      rw [sub_apply, inner_sub_left, comp_apply, adjoint_inner_left, comp_apply,
+        ← adjoint_inner_right A, hA.isSelfAdjoint.adjoint_eq, ← hT, comp_apply,
+        inner_self_eq_norm_sq_to_K, inner_self_eq_norm_sq_to_K, hWiso, sub_self]
+    have := (inner_map_self_eq_zero ((adjoint T ∘L T - A ∘L A : H →L[ℂ] H) : H →ₗ[ℂ] H)).1 hz
+    exact sub_eq_zero.1 (ContinuousLinearMap.coe_injective this)
+  have hA' : A = absOp T := by
+    have h0 : 0 ≤ A := nonneg_iff_isPositive.2 hA
+    change A = CFC.sqrt (star T * T)
+    rw [ContinuousLinearMap.star_eq_adjoint]
+    change A = CFC.sqrt (adjoint T ∘L T)
+    rw [hAA]
+    exact (CFC.sqrt_mul_self A h0).symm
+  refine ⟨hA', ?_⟩
+  subst hA'
+  set K := initSp T
+  have hrange : LinearMap.range (absOp T : H →ₗ[ℂ] H) ≤ LinearMap.ker ((W - partialIso T : H →L[ℂ] H) : H →ₗ[ℂ] H) := by
+    rintro _ ⟨x, rfl⟩
+    simp only [LinearMap.mem_ker, ContinuousLinearMap.coe_coe, sub_apply]
+    rw [← comp_apply W, hT, ← comp_apply (partialIso T), polar, sub_self]
+  have hK : K ≤ LinearMap.ker ((W - partialIso T : H →L[ℂ] H) : H →ₗ[ℂ] H) :=
+    Submodule.topologicalClosure_minimal _ hrange (W - partialIso T).isClosed_ker
+  ext x
+  have hx : x = K.starProjection x + (x - K.starProjection x) := by abel
+  have horth : x - K.starProjection x ∈ (LinearMap.range (absOp T : H →ₗ[ℂ] H))ᗮ :=
+    Submodule.orthogonal_le (Submodule.le_topologicalClosure _) (K.sub_starProjection_mem_orthogonal x)
+  have h1 := hK (K.starProjection_apply_mem x)
+  simp only [LinearMap.mem_ker, ContinuousLinearMap.coe_coe, sub_apply, sub_eq_zero] at h1
+  rw [hx, map_add, map_add, h1, hW0 _ horth,
+    partialIso_of_mem_orthogonal T (K.sub_starProjection_mem_orthogonal x)]
+
+/-- **Converse:** if `∑ᵢ ⟪eᵢ, |T| eᵢ⟫` converges (in some Hilbert basis), `T` is trace class; so
+`T ∈ traceClass ↔ Tr |T| < ∞`. -/
+theorem mem_traceClass_iff {T : H →L[ℂ] H} {ι : Type u} (b : HilbertBasis ι ℂ H) :
+    T ∈ traceClass H ↔ Summable fun i => (⟪b i, absOp T (b i)⟫_ℂ).re := by
+  have hterm : ∀ i, (⟪b i, absOp T (b i)⟫_ℂ).re = ‖sqrtAbs T (b i)‖ ^ 2 := by
+    intro i
+    rw [← sqrtAbs_mul_self, comp_apply, ← adjoint_inner_left, adjoint_sqrtAbs,
+      inner_self_eq_norm_sq_to_K]
+    norm_cast
+  constructor
+  · intro hT
+    exact Complex.reCLM.summable (hasSum_trace (absOp_mem hT) b).summable
+  · intro hs
+    simp_rw [hterm] at hs
+    have hS : IsHS (sqrtAbs T) := by
+      refine IsHS.of_basis b ?_
+      rw [hsSq]
+      have : (fun i => ‖sqrtAbs T (b i)‖ₑ ^ 2) = fun i => ENNReal.ofReal (‖sqrtAbs T (b i)‖ ^ 2) := by
+        funext i; rw [ENNReal.ofReal_pow (norm_nonneg _), ofReal_norm]
+      rw [this, ← ENNReal.ofReal_tsum_of_nonneg (fun i => by positivity) hs]
+      exact ENNReal.ofReal_ne_top
+    have heq : T = adjoint (sqrtAbs T ∘L adjoint (partialIso T)) ∘L sqrtAbs T := by
+      rw [adjoint_comp, adjoint_adjoint, adjoint_sqrtAbs, comp_assoc, sqrtAbs_mul_self, polar]
+    rw [heq]
+    exact Submodule.subset_span ⟨H, inferInstance, inferInstance, inferInstance, _, _,
+      hS.comp_right _, hS, rfl⟩
+
 end PFUL.Polar
 
 #print axioms PFUL.Polar.polar
 #print axioms PFUL.Polar.adjoint_partialIso_comp
 #print axioms PFUL.Polar.traceNorm_eq_trace_abs
+#print axioms PFUL.Polar.polar_unique
+#print axioms PFUL.Polar.mem_traceClass_iff
+#print axioms PFUL.Polar.isPartialIsometry_partialIso

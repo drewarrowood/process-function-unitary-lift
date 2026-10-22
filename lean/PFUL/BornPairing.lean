@@ -24,17 +24,19 @@ open ContinuousLinearMap PFUL.TraceClass
 open scoped InnerProductSpace ComplexOrder
 set_option linter.unusedSectionVars false
 
+universe u
+
 namespace PFUL.Countable
 
 section General
-variable {S R : Type} [DecidableEq S] [DecidableEq R]
+variable {S R : Type u} [DecidableEq S] [DecidableEq R]
 
 /-- Row vector `u_r = U† e_r` of the induced operator (the `r`-th block of `|U⟩⟩`). -/
 noncomputable def rowVec (U : lp (fun _ : S => ℂ) 2 →L[ℂ] lp (fun _ : R => ℂ) 2) (r : R) :
     lp (fun _ : S => ℂ) 2 :=
   adjoint U (lp.single 2 r 1)
 
-theorem inner_single_left' {T : Type} [DecidableEq T] (t : T) (f : lp (fun _ : T => ℂ) 2) :
+theorem inner_single_left' {T : Type u} [DecidableEq T] (t : T) (f : lp (fun _ : T => ℂ) 2) :
     ⟪lp.single 2 t (1 : ℂ), f⟫_ℂ = f t := by
   rw [lp.inner_single_left]; simp
 
@@ -53,7 +55,7 @@ theorem bornTerm_eq (U : lp (fun _ : S => ℂ) 2 →L[ℂ] lp (fun _ : R => ℂ)
     bornTerm U ρ r = ⟪lp.single 2 r (1 : ℂ), (U ∘L ρ ∘L adjoint U) (lp.single 2 r 1)⟫_ℂ := by
   simp only [comp_apply]; rw [← adjoint_inner_left]; rfl
 
-theorem stdBasis_lp_apply {T : Type} [DecidableEq T] (t : T) :
+theorem stdBasis_lp_apply {T : Type u} [DecidableEq T] (t : T) :
     (default : HilbertBasis T ℂ (lp (fun _ : T => ℂ) 2)) t = lp.single 2 t 1 := by
   rw [← HilbertBasis.repr_symm_single]; rfl
 
