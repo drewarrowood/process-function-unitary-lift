@@ -1,0 +1,11 @@
+class 10515 phases (zeta_8 powers): [[0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 1, 1, 1, 1, 1, 1], [0, 0, 0, 0, 1, 0, 1, 0], [0, 0, 1, 1, 2, 1, 2, 1], [0, 0, 0, 1, 0, 0, 0, 1], [0, 0, 1, 2, 1, 1, 1, 2], [0, 0, 0, 1, 1, 0, 1, 1], [0, 0, 1, 2, 2, 1, 2, 2]] 
+ (1) unitary, (2) Pauli rule: exact
+ orbit 16 facet 12406 : |v|^2 * (g.p+g0) = 491357689/800000000 + -702031757/1600000000 sqrt2 sign -1  value -0.006317 (relative -0.002106)
+ orbit 19 facet 26054 : |v|^2 * (g.p+g0) = 234647147/400000000 + -670070737/1600000000 sqrt2 sign -1  value -0.005646 (relative -0.001882)
+ orbit 21 facet 4386 : |v|^2 * (g.p+g0) = 29013371/50000000 + -82955477/200000000 sqrt2 sign -1  value -0.006317 (relative -0.002106)
+ orbit 24 facet 8095 : |v|^2 * (g.p+g0) = 658166309/800000000 + -935696139/1600000000 sqrt2 sign -1  value -0.004338 (relative -0.001446)
+ orbit 27 facet 15356 : |v|^2 * (g.p+g0) = 41033639/80000000 + -581201931/1600000000 sqrt2 sign -1  value -0.000794 (relative -0.000265)
+ orbit 29 facet 7052 : |v|^2 * (g.p+g0) = 205385451/400000000 + -116351057/320000000 sqrt2 sign -1  value -0.000740 (relative -0.000247)
+ orbit 52 facet 4396 : |v|^2 * (g.p+g0) = 509711951/800000000 + -144553793/320000000 sqrt2 sign -1  value -0.001703 (relative -0.000568)
+ orbit 67 facet 12438 : |v|^2 * (g.p+g0) = 67432867/100000000 + -191210757/400000000 sqrt2 sign -1  value -0.001703 (relative -0.000568)
+EXACT: all listed orbits violated by a purifiable process.
