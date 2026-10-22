@@ -750,6 +750,8 @@ With ancillas the condition is necessary; I have not shown that it is sufficient
 4. **New: genuinely non-separable continuous family near Lugano.** The Lugano-seeded solutions are pure, are not phased permutations (their C_o are generic unitaries, so not of D.3 form), and have a complete causal graph. Their p needs Lugano weight 0.87-0.93: non-separable, but a PF blend.
 5. **Structural guess refuted.** "Every no-first-party purification is Lugano-like up to local unitaries" is false: family B is an exact counterexample, and rand_15 is a numerical one.
 
+*Names.* The gentle version (graded.md, Section 58e) uses informal names: the Ring (the 64 Lugano-orbit single-PF lifts of family A), the Chorus (family B), the Switchboard (family C) and the Shadows (lug_21-23).
+
 **What remains open.** The conjecture on the class of purifications with neither an operator-first nor an operator-last party.
 - Within family C, Lemma H.7.1 turns no-ancilla purity into linear conditions on the products C_o C_o'^dag. A proof that these conditions, together with the ancilla conditions, force p into conv(PF) would settle family C. Not attempted.
 - Family C has source dimension 64 and records (o, i) in the sink. General purifications can have larger sources and need not have this form (D.4).

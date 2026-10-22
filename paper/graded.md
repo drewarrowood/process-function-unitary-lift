@@ -893,6 +893,48 @@ Checks on the two running examples (code/stochastic/structural/opfirst.py):
 **Philosophical gloss (interpretation).** 58c said "first" is a fact about mechanism. 58d says that mechanism-level "first" is enough. Wherever the machine has a genuine first mover, chance inside the loop really is ignorance of which deterministic loop is running. The open question, whether chance can be basic inside a loop, is a question only about machines with no first mover at all.
 
 
+### 58e. Machines with no first mover (evidence; note H.7)
+
+58d leaves one place where a counterexample could hide: machines in which *nobody* is first. In such a machine, every party's input is touched by somebody's output. Here "the machine" means a purification: a reversible (unitary) device V that takes a source state and the parties' outputs, and returns the parties' inputs plus a sink record. We went looking for such machines with three parties sending and receiving single bits. For each one we asked whether the classical statistics it produces, p(i|o), can fall outside the mixtures of process functions (the "hull"). The answer from this search was **no, every time**. The search was small and local, so this is evidence, not proof.
+
+Each machine found was given the same checks:
+- *Is it pure?* Close each party's slot with random local unitaries and check that the result is still unitary.
+- *Is anyone first?* For each party k, does any output reach k's input?
+- *Who influences whom?* The full influence graph.
+- *Is it in the hull?* A linear program measures the distance from p to the hull of the 744 process functions.
+- *How much Lugano does it need?* The smallest weight that any decomposition of p must put on Lugano-type process functions. Weight 0 means p is an ordinary mixture of *ordered* process functions.
+
+Four kinds of machine turned up. They have informal names here; the technical note gives the formal descriptions.
+
+**The Ring** (single-function lifts). Lift one process function w as in Section 1. Party k's input is then w_k(o) plus a source bit, so k is first in the machine exactly when w_k ignores everyone's outputs. Of the 744 binary process functions, exactly 64 have no such constant part. They form a single family under relabelling: Lugano's orbit, in which each party's input is set by the other two parties' outputs. So, for lifts of a single function, "no first mover" means exactly "Lugano-type". Adding phases on the source alone or the sink alone keeps the machine pure. Phases that mix outputs and source destroy purity. Either way, the statistics are just w itself.
+
+**The Chorus** (coherent blend of three causal orders; proved). Put three ordered process functions in coherent superposition, as in Section 47: one with Alice first, one with Bob first, one with Carol first. Inside this machine no party is first and no party is last. Yet the classical statistics are an ordinary mixture of ordered process functions.
+
+*A story: the ledger with no clock.* Three clerks share an office with no clock. Ask any of them who signed the ledger first, and each will truthfully say that someone else's entry was already there. Yet each morning the ledger reads, page by page, as one of three tidy orders. The disorder lived inside the room. The record is ordinary.
+
+The Chorus refutes a tempting guess: "every machine with no first mover is Lugano in disguise." That guess is false.
+
+**The Switchboard** (a new family). The machine reads all three outputs o and picks one 8×8 unitary C_o for that joint choice. It applies C_o to a source register s, which produces the three input bits e. It also writes o, and e XOR'ed with a second source register t, into the sink:
+
+    V|o, s, t> = sum_e C_o[e, s] |e> |o> |e xor t>.
+
+Here |…> is a basis state, and the sum runs over the eight possible input strings e. The machine is always reversible, and the sink always keeps a copy of (outputs, inputs), so the statistics are classical: p(i|o) = |C_o[i, 0]|². Lugano is the special case where each C_o just flips bits according to w(o).
+
+*A story: the switchboard.* Every caller's choice rewires the board before any call connects. Nothing is ever lost, because each board is unitary. The question is whether the boards for different choices agree well enough for the whole exchange to stay coherent. **Lemma H.7.1 (proved)** says exactly how much agreement is needed when the parties use no ancillas: a list of linear conditions on the products C_o C_o'†, one for each pair of different choices. With ancillas these conditions are still necessary, but we have not shown they are enough. Whether the agreement forces an ordered story is open. It is a bet, not a proof.
+
+**The Shadows** (three Switchboard machines found near Lugano). Starting the search close to Lugano produced three new pure machines (lug_21 to lug_23). Their C_o are generic unitaries, not relabelled permutations. Every party influences every other one. Their statistics need Lugano weight 0.87 to 0.93, so they are genuinely not causally separable, yet they lie inside the hull. One machine from a random start (rand_15) also has every party influencing every other, but its statistics need Lugano weight 0: like the Chorus, it is disordered inside and ordinary on the record.
+
+**The numbers (evidence).**
+- *What was run:* 11 random starts, 3 starts near Lugano, then polishing to high precision. That gave 13 pure machines in total. One random start never became pure. One was polished only to a residual of 1.6e-6.
+- *Who is first or last:* 9 of the 10 pure random-start machines have a party that is first or last inside the machine, so 58d (first) or 58b (last) already covers them.
+- *Hull:* every pure machine's statistics lie in the hull, at distance 0.
+- *Pushing for a facet violation:* runs that also tried to push the statistics across a hull facet reached violations near the maximum, but only at purity residuals of 0.03 to 0.05. None was a pure machine.
+
+**What this leaves open.** The conjecture for machines with neither a first nor a last mover. The Switchboard is one structured slice of them, and the Lemma is a foothold there. A general machine can have a bigger source and need not have this form.
+
+**Philosophical gloss (interpretation).** The Chorus and the Shadows pull apart two things that are easy to run together: disorder *inside* the machine, and disorder *in the record*. A machine can be thoroughly cyclic inside while its record is an ordinary mixture of ordered stories. So far, every reversible loop we have found leaves a record that is a mixture of consistent deterministic loops.
+
+
 ---
 
 ## Part XI. The honest map of dead ends
@@ -1030,6 +1072,7 @@ Two cautions. First, a checked theorem is only as good as its statement (Section
 > - **Two parties** (Appendix G; Section 58a). Every two-party valid classical process is a mixture of ordered process functions, so the conjecture holds for two parties, trivially.
 > - **Ordered three-party processes** (Appendix H; Section 58b). If some party is last, or first with valid conditionals (causally separable), the process is a mixture of process functions.
 > - **A shortcut closed** (H.5; Section 58c). Purifiable plus marginally first does not force valid conditionals; exact counterexample.
+> - **The Chorus** (H.7; Section 58e). A machine with no first or last mover can still produce an ordinary mixture of ordered process functions, so "no first mover" does not mean "Lugano in disguise". The Switchboard's no-ancilla purity condition (Lemma H.7.1) is proved.
 > - **The shortcut repaired at machine level** (H.6; Section 58d). If some purification has a party first *in the machine* (its input prepared from the source alone), the conditionals are valid and the process is a mixture of process functions.
 > - **Facets.** The three-party binary process-function hull has exactly 29,344 facets in 93 orbits (exact computation with normaliz).
 >
@@ -1042,6 +1085,7 @@ Two cautions. First, a checked theorem is only as good as its statement (Section
 > **Evidence (not proof)**
 >
 > - A GPU search found no purification for any of the 49 remaining sampled non-deterministic vertex orbits. Best residuals were 12.97–59.35.
+> - Machines with no first mover (H.7; Section 58e): a small, local search found 13 pure machines, including the Shadows near Lugano. All of their statistics lie inside the hull.
 > - A single facet orbit (82) is violated by E_ex1 and by all 51 sampled non-deterministic vertex orbits.
 > - Along the segment from Lugano to E_ex1, purifiability appears to stop exactly where the hull does.
 > - Orbits 8, 10, 20: isotropic subspaces appear to stop near dimension 10, short of the 16 needed; form certificates provably cannot capture this (C.5). A unitary-side counterexample search found nothing (H.3).
@@ -1050,7 +1094,7 @@ Two cautions. First, a checked theorem is only as good as its statement (Section
 > **Open**
 >
 > - **The conjecture.** A classical process is purifiable if and only if it is a mixture of process functions. The "if" half is proved. The "only if" half is open.
-> - **Loops without a first mover.** The conjecture for processes whose purifications all have no party first in the machine (H.6; Lugano-type loops), and the exact status of orbits 8, 10, 20 and the other 46 sampled open orbits.
+> - **Loops without a first mover.** The conjecture for processes whose purifications all have no party first in the machine (H.6; Lugano-type loops; the Ring, Chorus, Switchboard and Shadows of Section 58e), and the exact status of orbits 8, 10, 20 and the other 46 sampled open orbits.
 > - **Facets from purifiability.** No facet inequality, for example orbit 82, has been derived from purifiability.
 > - **Where any proof must look.** Any proof must use the purifying unitary on source states orthogonal to the actual one. That is the non-convex isotropy condition of Araújo et al.'s Theorem 4, where every certificate attempt has stalled for the larger orbits: single-form inertia, block forms, SDP and moment relaxations.
 > - **Continuous alphabets.** The closed loop first needs a definition (F.5).
