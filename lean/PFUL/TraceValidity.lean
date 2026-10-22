@@ -15,16 +15,18 @@ entangled ancillas allowed) the global output `Φ ρ Φ†` and the reduced sink
 
 open ContinuousLinearMap PFUL.TraceClass
 
+universe u v
+
 namespace PFUL.Countable
 
-variable {ι : Type} [Fintype ι] [DecidableEq ι]
-variable {I O : ι → Type}
+variable {ι : Type v} [Fintype ι] [DecidableEq ι]
+variable {I O : ι → Type u}
 
 /-- **Validity on countable alphabets, trace form.** Same hypotheses as `induced_unitary_l2`. The
 induced unitary `Φ` sends every density operator `ρ` on `ℓ²(sources × input ancillas)` to a density
 operator, and tracing out the output ancillas `Y` leaves a density operator on `ℓ²(sink outputs)`:
 `Tr [Tr_Y (Φ ρ Φ†)] = 1`. -/
-theorem valid_density_l2 {X Y : ι → Type} [∀ k, AddCommGroup (I k)] [∀ k, Countable (I k)]
+theorem valid_density_l2 {X Y : ι → Type u} [∀ k, AddCommGroup (I k)] [∀ k, Countable (I k)]
     [∀ k, Countable (X k)] [∀ k, Countable (O k)] [∀ k, Countable (Y k)]
     [∀ k, DecidableEq (I k)] [∀ k, DecidableEq (X k)]
     [∀ k, DecidableEq (O k)] [∀ k, DecidableEq (Y k)]

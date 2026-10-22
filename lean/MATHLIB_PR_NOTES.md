@@ -16,3 +16,9 @@ A trace-class/HS PR would be valuable, but it would have to be reconciled with M
 
 ## Status of the standalone file (MathlibPR/PolarDecomposition.lean)
 Done: all items 2-4 above, including `IsPartialIsometry` and `polar_unique`. Still needed before opening a PR: Mathlib style review (naming: maybe `ContinuousLinearMap.polarIsometry` → `partialIsometryOfPolar`), docstrings on every declaration, `@[simp]` attributes, moving the instance `HasOrthogonalProjection` for `polarInitial` to a general `topologicalClosure` instance, a characterisation `ker V = ker T`, and a version for `T : E →L[ℂ] F` between different spaces (|T| lives on E, V : E → F; the proof is the same).
+
+## Round 3
+`MathlibPR/PolarDecomposition.lean` now covers E →L[ℂ] F, has `@[simp]` lemmas
+(`polarAbs_comp_polarAbs`, `adjoint_polarAbs`, `norm_polarAbs_apply`, `polarIsometry_comp_polarAbs`,
+…), kernels (`ker_polarAbs`, `ker_polarIsometry`), lines ≤ 100 chars. Candidate follow-up PRs:
+`IsHS.isCompactOperator` and the Schmidt decomposition (needs Hilbert–Schmidt in Mathlib first).
