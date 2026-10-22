@@ -144,3 +144,28 @@ Continuous alphabets (not formalised; scope):
 - Required Lean infrastructure: Haar-measure L² unitaries for translations (Mathlib has
   measure-preserving maps and Lp, but not the translation unitary as `→L[ℂ]` on `Lp`), and
   direct integrals of Hilbert spaces (absent).
+
+## Round 4
+
+Proved (no `sorry`, axioms propext/Classical.choice/Quot.sound):
+- `PFUL/ChoiConverse.lean`: `KernelPSD` (all finite sections PSD, complex order), `KernelPSD.herm`
+  (PSD ⇒ Hermitian), `KernelPSD.exists_factor` (Kolmogorov factorisation over a countable index,
+  via Mathlib's `RKHS.OfKernel` + Gram–Schmidt over an enumeration + `HilbertBasis.mk`), and
+  **`exists_kraus_of_choi`**: a PSD, trace-preserving Choi kernel on countable `O × A` is
+  `choiKernel V` for a Kraus kernel `V` over a countable `Y` satisfying `hiso` (the hypothesis of
+  `valid_kraus_l2`).
+- `PFUL/CPTP.lean`: `ampMap` (Φ ⊗ id_Z, finite Z), `IsCPTP` (trace class preserved, linear, TP,
+  CP), `sandwich_mem`, `IsCPTP.isPositive`, `IsCPTP.isDensity`, `stinespring V`
+  (ρ ↦ Tr_J(VρV†)) and **`isCPTP_stinespring`** (Kraus/Stinespring ⇒ CPTP, any Kraus index J).
+- `PFUL/SchmidtTraceNorm.lean`: `traceNorm_sub_schmidt_le` (‖T − T_F‖₁ ≤ Σ_{n∉F} s_n),
+  `tendsto_traceNorm_schmidt`, `PFUL.Polar.schmidt_traceNorm`.
+
+Gaps:
+- CPTP ⇒ Kraus (Stinespring dilation for normal CP maps on the trace class) is not formalised.
+  Route: from Φ build the PSD Choi kernel J(o,a;o',a') = ⟨o|Φ(|a⟩⟨a'|)|o'⟩ (PSD by CP on finite
+  ancillas), then `exists_kraus_of_choi`, then show the Kraus channel agrees with Φ on rank-ones
+  and extend by trace-norm continuity — needs normality/trace-norm continuity of Φ (not part of
+  `IsCPTP` as stated) and density of finite-rank operators in trace norm.
+- `stinespring` is on abstract `H →L ℓ²(J;K)`; the bridge to the kernel form `V : O × Y → A → ℂ`
+  used in `valid_kraus_l2` (building the isometry from the kernel) is not stated as a lemma.
+- `ampMap` uses finite ancillas (n-positivity for all n, the standard CP definition).
