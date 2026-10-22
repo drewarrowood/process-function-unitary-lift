@@ -874,9 +874,23 @@ Since E_ex1 and the hard orbits 7, 8 and 50 are all marginally first in some par
 - Looking only at the statistics, Alice's input is a fair coin whatever anyone does. She is *marginally first*, even though in the machine she is actually last.
 - Fix Alice's input to a = 0 and look at what remains for Bob and Carol: (b, c) uniform among the pairs with b ⊕ c ⊕ y ⊕ z = 0. If Bob and Carol simply copy their inputs to their outputs (y = b, z = c), the "probabilities" of consistent histories add up to 2. For a = 1 they add up to 0. The conditional is not a valid process.
 
-So the shortcut is false, already for a classically purifiable process. Every claim above is checked in exact fraction arithmetic (code/stochastic/structural/margfirst_cex.py). **Why the shortcut fails:** looking at a's statistics cannot tell you whether a is *computed first* in the machine. Fixing a is then post-selection, keeping only the runs where something downstream turned out a certain way, and post-selection does not respect reversibility. A version that might still be true would have to talk about the purifying unitary itself, not about W. That is listed as open.
+So the shortcut is false, already for a classically purifiable process. Every claim above is checked in exact fraction arithmetic (code/stochastic/structural/margfirst_cex.py). **Why the shortcut fails:** looking at a's statistics cannot tell you whether a is *computed first* in the machine. Fixing a is then post-selection, keeping only the runs where something downstream turned out a certain way, and post-selection does not respect reversibility. A version that might still be true would have to talk about the purifying unitary itself, not about W. That version is true; see 58d.
 
 **Philosophical gloss (interpretation).** "Comes first" is a fact about mechanism, not about statistics. A variable can look exactly like a fresh coin flip while being the last thing the machine computes. This is the same lesson as Section 55, from the other side. There, the statistics looked like a coin tossed in advance, but no coin was in the drawer. Here, a party looks like it acts first and in fact acts last.
+
+### 58d. The shortcut, repaired inside the machine (proved; note H.6)
+
+58c showed that statistics cannot tell you who goes first. The machine can. Say Alice is *first in the machine* when her input wire is filled from the source alone, before anyone's output, her own included, can touch it. In the machine's own terms, the unitary splits into two stages. First a step that prepares Alice's input from the source. Then everything else.
+
+*A story: the sealed envelope.* Before the game starts, the referee seals Alice's instruction in an envelope, using only the coins in her own pocket. Nothing Bob or Carol later does can reach back into that envelope. Opening it early is then just reading a note that was already written. It is not the post-selection of 58c, where we kept only the runs in which a later computation came out a certain way. So we may open the envelope first, write down a and Alice's reply x, and look at what is left between Bob and Carol. What is left is again a reversible machine of the same kind: a pure two-party process. Its statistics are exactly the conditional p(…)/p(a). So the conditionals are valid, 58b applies, and the whole process is a mixture of process functions.
+
+Checks on the two running examples (code/stochastic/structural/opfirst.py):
+- In the referee's-coin machine of 58c, Alice is *not* first in the machine; she is computed last, and her conditionals are invalid. Bob and Carol *are* first in the machine, and their conditionals are valid.
+- In the Lugano machine nobody is first, and nobody can be. Lugano is not even marginally first in any party, so no machine for it puts anyone first.
+
+**What this leaves.** A purifiable process outside the mixtures, if one exists, must have only machines in which *every* party's input is reached by somebody's output: a genuine loop, like Lugano's. Each of E_ex1 and the open orbits fails 58b's test in every party, so any machine for one of them would have to be loop-shaped all the way through. The conjecture now lives entirely there. The lemma is short, and close to known results on causal structure in unitary processes (Barrett, Lorenz and Oreshkov 2021). We did not find it stated in this form.
+
+**Philosophical gloss (interpretation).** 58c said "first" is a fact about mechanism. 58d says that mechanism-level "first" is enough. Wherever the machine has a genuine first mover, chance inside the loop really is ignorance of which deterministic loop is running. The open question, whether chance can be basic inside a loop, is a question only about machines with no first mover at all.
 
 
 ---
@@ -902,7 +916,7 @@ The open half of the conjecture has such a map. Here it is, route by route. Ever
 
 9. **Rank (determinant) bound for orbit 8. Fails, numerically (note H, route B).** If u is in a subspace that makes every form vanish, the whole subspace sits inside the vectors "orthogonal" to u under all forms. Counting those gives a dimension bound. But vectors of the isotropic set exist for which the bound allows about 28–32 dimensions, more than the 16 needed. So one vector is not enough.
 10. **Form certificates for orbits 8, 10, 20. Proved too weak (note C.5).** Every linear or block combination of the forms tried stalls. Adding the normalisation provably adds nothing. Numerically, subspaces making all forms vanish exist up to dimension about 10, short of 16, but the gap is non-convex and invisible to such certificates. The earlier estimate that about half of the open orbits could be certified this way is withdrawn.
-11. **Marginally first implies valid conditionals. Dead end, proved (H.5; Section 58c).**
+11. **Marginally first implies valid conditionals. Dead end, proved (H.5; Section 58c).** (The machine-level version is true: Section 58d.)
 12. **Counterexample hunt from the quantum side. No hit (note H, route C).** Searching directly over unitaries for a purifiable process outside the hull found none. Starting from Lugano, every step outside the hull cost purity.
 
 ### 61. Why the dead ends cluster
@@ -1016,6 +1030,7 @@ Two cautions. First, a checked theorem is only as good as its statement (Section
 > - **Two parties** (Appendix G; Section 58a). Every two-party valid classical process is a mixture of ordered process functions, so the conjecture holds for two parties, trivially.
 > - **Ordered three-party processes** (Appendix H; Section 58b). If some party is last, or first with valid conditionals (causally separable), the process is a mixture of process functions.
 > - **A shortcut closed** (H.5; Section 58c). Purifiable plus marginally first does not force valid conditionals; exact counterexample.
+> - **The shortcut repaired at machine level** (H.6; Section 58d). If some purification has a party first *in the machine* (its input prepared from the source alone), the conditionals are valid and the process is a mixture of process functions.
 > - **Facets.** The three-party binary process-function hull has exactly 29,344 facets in 93 orbits (exact computation with normaliz).
 >
 > **Negative results (Appendix E)**
@@ -1035,7 +1050,7 @@ Two cautions. First, a checked theorem is only as good as its statement (Section
 > **Open**
 >
 > - **The conjecture.** A classical process is purifiable if and only if it is a mixture of process functions. The "if" half is proved. The "only if" half is open.
-> - **Loops without a hidden order.** The conjecture for three-party processes that are not causally separable, and the exact status of orbits 8, 10, 20 and the other 46 sampled open orbits.
+> - **Loops without a first mover.** The conjecture for processes whose purifications all have no party first in the machine (H.6; Lugano-type loops), and the exact status of orbits 8, 10, 20 and the other 46 sampled open orbits.
 > - **Facets from purifiability.** No facet inequality, for example orbit 82, has been derived from purifiability.
 > - **Where any proof must look.** Any proof must use the purifying unitary on source states orthogonal to the actual one. That is the non-convex isotropy condition of Araújo et al.'s Theorem 4, where every certificate attempt has stalled for the larger orbits: single-form inertia, block forms, SDP and moment relaxations.
 > - **Continuous alphabets.** The closed loop first needs a definition (F.5).

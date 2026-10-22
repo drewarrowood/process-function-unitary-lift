@@ -46,7 +46,7 @@ table{border-collapse:collapse;font-size:.9rem;display:block;overflow-x:auto} th
 <p>Section 1 shows that the lift is <em>pure</em> in the sense of Araújo et al. (unitaries in, unitary out). Appendix A derives full process validity from this (any local CPTP maps, local and shared/entangled ancillas, instruments) using Stinespring dilation. Appendix B covers input and output alphabets of different sizes. Appendix C treats stochastic classical processes: mixtures of process functions are purifiable, but a non-deterministic extremal point of the Baumeler–Wolf polytope provably is not (exact certificate).</p>
 <h2>3. Backward causation, before the formalism</h2>
 <p>The linguistic objection to backward causation is that a cause is, by definition, earlier than its effect. Dummett argued in 1954 and again in 1964 that this is a stipulation about the word, not a discovery about the world. Black's bilking argument is the better objection. If an earlier event is supposed to be the effect of a later one, an agent who sees the earlier event can intervene so as to prevent the later one. Either the agent cannot intervene, which wants an explanation, or the later event was not necessary for the earlier one. Lewis's reply splits the modal: one can, relative to the local facts and the laws, and one cannot, relative to the whole past. That dissolves a verbal paradox. It does not say which histories the laws admit.</p>
-<p>General relativity makes the question physical. Gödel's 1949 solution has closed timelike curves. Morris, Thorne and Yurtsever showed that a traversable wormhole, if one could be held open, can be converted into a time machine by relative motion of the mouths. The Cauchy problem on the resulting spacetime is the grandfather paradox in differential equations. Friedman, Morris, Novikov, Thorne and collaborators proposed, in 1990, that only self-consistent solutions occur. Echeverria, Klinkhammer and Thorne then integrated the hard-sphere billiard on a wormhole and found initial data with one consistent continuation, data with two, and data for which none was apparent. Carlini, Frolov, Mensky, Novikov and Solodukhin derived a version of self-consistency from stationarity of the action in a model, and found the same underdetermination. Novikov's principle removes inconsistent solutions. It does not choose among consistent ones. Earman's survey of the classical problem remains the right warning: a consistency condition that is imposed after the dynamics is not a dynamics.</p>
+<p>General relativity makes the question physical. Gödel's 1949 solution has closed timelike curves. Morris, Thorne and Yurtsever showed that a traversable wormhole, if one could be held open, can be converted into a time machine by relative motion of the mouths. The Cauchy problem on the resulting spacetime is the grandfather paradox in differential equations. Friedman, Morris, Novikov, Thorne and collaborators proposed, in 1990, that only self-consistent solutions occur. Echeverria, Klinkhammer and Thorne then studied a hard-sphere billiard ball on a wormhole. For every &quot;dangerous&quot; initial trajectory they examined, one aimed so that the ball would knock its younger self off course, they found at least one self-consistent continuation, and many initial data admit several, some infinitely many. They did not prove that consistent solutions exist for all initial data, but they found no case without one. Carlini, Frolov, Mensky, Novikov and Solodukhin derived a version of self-consistency from stationarity of the action in a model, and found the same underdetermination. Novikov's principle removes inconsistent solutions. It does not choose among consistent ones. Earman's survey of the classical problem remains the right warning: a consistency condition that is imposed after the dynamics is not a dynamics.</p>
 <h2>4. Three quantum replies, and why none is the criterion</h2>
 <p>Deutsch's 1991 model asks for a fixed point of the partial trace around the curve. In finite dimension a fixed point exists, so no particular action is forbidden, and the grandfather paradox becomes a mixed state. The cost is nonlinearity. The model clones unknown states. Aaronson and Watrous showed that the computational power is PSPACE. Bennett, Leung, Smith and Smolin argued that the power is an artefact of demanding a fixed point for a distribution that an ordinary preparation would not produce. Tolksdorf and Verch showed that the Deutsch condition can be met to arbitrary precision in quantum field theory on a spacetime with no closed timelike curve at all. A Deutsch fixed point is not diagnostic of a loop.</p>
 <p>Lloyd, Maccone and collaborators replace the fixed point by post-selection, the P-CTC model. Inconsistent branches are the ones that fail the post-selection. The grandfather paradox is resolved by the experiment not happening. Process functions sit inside this class: the event list appears conditional on the post-selection succeeding. That is a simulation. It is not an account of why the inconsistent branch was never a physical option. Post-selection is a filter on samples, of the same shape as a measure-zero axiom.</p>
@@ -72,26 +72,44 @@ table{border-collapse:collapse;font-size:.9rem;display:block;overflow-x:auto} th
 <p>Freedom is not settled. Nothing here decides whether an agent whose output is an argument of an earlier input has a choice. The fixed-point clause says the choice, if made, completes uniquely. It does not say the choice was open. Whether this is an adequate reply to Black depends on whether consistency conditions may rule out interventions, or only rule out histories given the interventions. The note takes the second reading: consistency rules out histories given the interventions, never the interventions themselves (Section 5), and the formalism is built for it.</p>
 <p>The combinatorial lemma is finite for any fixed alphabet and is the piece an attacker has to break. The linear algebra after it is row orthogonality. See lean/STATUS.md for exactly what is and is not machine-checked.</p>
 <h2>9. Status of the purification conjecture</h2>
-<p>Conjecture: a classical process (a point of the Baumeler-Wolf polytope) is purifiable in the sense of Araujo et al. (2017) if and only if it is a mixture of process functions.</p>
+<p>Conjecture: a classical process (a point of the Baumeler-Wolf polytope) is purifiable in the sense of Araujo et al. (2017) if and only if it is a mixture of process functions (a &quot;PF blend&quot;).</p>
+<p>This section is a map of the current status. Labels follow the appendices: <strong>[proved]</strong>, <strong>[certified exact]</strong> (rational certificate, not Lean), <strong>[numerical]</strong>, <strong>[cited]</strong>. Proofs live in the appendices and are not restated here.</p>
 <p><strong>Proved.</strong></p>
 <ul>
-<li>Every process function lifts to a unitary process (Section 1). The core identity is machine-checked in Lean (https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/STATUS.md). Validity follows by Stinespring (Appendix A); the whole validity chain is machine-checked in finite dimensions (PFUL.valid, valid_kraus, valid_instrument, isCP_iff_choi, afnb_iff_density_split, bornAnc_eq_one, bundled in PFUL.Choi.validity_package).</li>
-<li>Countable alphabets (Appendix F): the lift is unitary on l<sup>2</sup>, in the paper and in Lean (PFUL.Countable.induced_unitary_l2), via the expected-number-of-fixed-points argument for the column side. Not formalised: the Choi form in infinite dimensions. Open: continuous alphabets (F.5).</li>
-<li>Mixtures of process functions are purifiable: use a coherent random source. Convex combinations of purifiable processes are purifiable (Appendix C).</li>
-<li>Classical version (D.6): a classical process is the marginal of a classical reversible process with a random source if and only if it is a mixture of process functions. So the conjecture says that quantum purifiability gives nothing beyond classical purifiability, for classical processes.</li>
-<li>Exact non-purifiability certificates (rational arithmetic) for E<sub>ex1</sub> and for vertex orbits 7 and 50 (Appendix C; pipeline in code/stochastic/cert).</li>
-<li>Structure of any purification: the sink records (o, i) orthogonally (D.1). Constraints on the fixed source state are vacuous (D.2). Validity under quantum-controlled interventions holds for every classical process (D.5).</li>
-<li>A natural strengthening, a single classical source basis (D.3), is false. Counterexample: a causal circuit (D.4).</li>
-<li>No-go (D.8): no certificate that uses only the fixed source sector can rule out purification of any classical process.</li>
+<li><em>Process functions lift</em> (Section 1, Appendix A). Every process function lifts to a unitary process. The core identity and the validity chain are machine-checked in Lean in finite dimensions (PFUL.induced_unitary; PFUL.Choi.validity_package). Countable alphabets: Appendix F (PFUL.Countable.induced_unitary_l2). Continuous alphabets: open (F.5).</li>
+<li><em>Blends lift</em> (C.1). Every mixture of process functions is purifiable, and convex combinations of purifiable processes are purifiable. This is the &quot;if&quot; half of the conjecture.</li>
+<li><em>Classical version</em> (D.6). A classical process is classically reversibly purifiable iff it is a PF blend. So the conjecture says quantum purifiability adds nothing for classical processes.</li>
+<li><em>Two parties</em> (Appendix G, Theorem G.1). Every bipartite valid classical process, with any finite alphabets, is a blend of causally ordered process functions. So the conjecture holds for two parties, with both sides true. This is known in substance [cited: Oreshkov-Costa-Brukner 2012, Suppl.; Baumann-Brukner 2016].</li>
+<li><em>Three parties, a party last</em> (Theorem H.1). If some party's output influences nothing, the process is a PF blend.</li>
+<li><em>Three parties, causally separable</em> (Theorem H.2). If some party is first and every conditional bipartite process is valid, the process is a PF blend. So every classically causally separable three-party process is a blend of causally ordered process functions, and the conjecture holds on that class trivially.</li>
+<li><em>Three parties, a party first in the purification</em> (Lemma H.6.1, Theorem H.6.2). If some purification of W has a party whose input is prepared from the source alone (operator-level first: V factorises through that party's input), then every conditional bipartite process is valid and purifiable, and W is a PF blend. So a purifiable process outside the hull could only have purifications in which every party's input is influenced by some party output. Lugano has no purification with an operator-first party.</li>
+<li><em>Structure of purifications</em> (D.1, D.2, D.5). The sink records (o, i) orthogonally. Constraints on the fixed source state are vacuous. Validity under quantum-controlled interventions holds for every classical process.</li>
 </ul>
-<p><strong>Evidence.</strong></p>
+<p><strong>Certified exact non-purifiable.</strong> E<sub>ex1</sub>, and vertex orbits 7 and 50 (one of which contains E<sub>ex1</sub>): exact inertia certificates (C.2; code/stochastic/cert). They are not mixtures of process functions, so they agree with the conjecture.</p>
+<p><strong>Settled negatively (routes that provably do not work).</strong></p>
 <ul>
-<li>None of the 49 remaining non-deterministic vertex orbits lifted under a GPU purification search. Best residuals were far from zero (Appendix C).</li>
-<li>The process-function hull for 3 binary parties has exactly 29,344 facets in 93 orbits. A single orbit (82) is violated by E<sub>ex1</sub> and by all 51 sampled non-deterministic vertices (D.7).</li>
-<li>Along the segment from Lugano to E<sub>ex1</sub>, purifiability appears to stop exactly where the hull does (D.8).</li>
+<li><em>Hidden source label</em> (D.3/D.4). The single-classical-label strengthening D.3 is false: a causal circuit is an exact counterexample.</li>
+<li><em>Fixed-source certificates</em> (D.8). No certificate that uses only the fixed source sector can rule out purification of any classical process.</li>
+<li><em>Marginally-first reduction</em> (H.5). Purifiability plus &quot;party A's input marginal is output-independent&quot; does not force valid conditionals. The operator-level version does (H.6). An exact counterexample is a 4-term PF blend. So H.2 cannot be extended this way to E<sub>ex1</sub> and orbits 7, 8, 50, even though all of them are marginally first in some party (H.1 numerics).</li>
+<li><em>Form-based certificates for orbits 8/10/20</em> (C.5). Every linear or block-Hermitian combination of the constraint forms tried stalls at lambda_16 ~ +1e-4. Adding the Gram normalisation provably adds nothing. The obstruction is non-convex. The earlier estimate that &quot;about half&quot; of the open orbits are certifiable by the current pipeline is <strong>withdrawn</strong>.</li>
+<li><em>Moment relaxation</em> (Appendix E). The degree-2 relaxation is feasible for E<sub>ex1</sub>, so it is weaker than single-form inertia.</li>
+<li><em>Single-vector determinantal bound for orbit 8</em> (H.2 route B) [numerical]. The jointly isotropic cone contains vectors with rank K(u) of about 51-55, so the bound gives only dim ≤ ~28-32, not &lt; 16.</li>
 </ul>
-<p><strong>Open.</strong> The quantum case. Any proof must use the purifying unitary on source states orthogonal to the source state. That is the non-convex isotropy condition of AFNB Theorem 4, and it is where every attempted certificate (single-form inertia, block forms, SDP relaxations) has stalled for the larger orbits. The degree-2 moment relaxation over P ⊗ P is even weaker than single-form inertia: it is feasible for E<sub>ex1</sub> (Appendix E).</p>
-<p><strong>Interpretation (philosophical, not a result).</strong> Consistent time loops are the setting: a process function is a loop in which every local choice has exactly one consistent history. The conjecture asks whether chance inside such a loop can be fundamental, or only ignorance about which deterministic loop obtains. If it holds, every reversible quantum loop with classical statistics is a coherent ignorance mixture of deterministic consistent loops. Genuinely chancy loops like E<sub>ex1</sub> would then be classically consistent but not reversibly realisable. Reversibility, not consistency alone, would be the constraint that excludes basic chance from loops. D.4 adds a caveat: the &quot;which-loop&quot; variable can be contextual, so the ignorance reading is about W, not about any single hidden label.</p>
+<p><strong>Numerical evidence (not proof).</strong></p>
+<ul>
+<li><em>GPU sweep</em> (C.4). None of the 49 remaining sampled non-deterministic vertex orbits lifted. Best residuals were 12.97-59.35; the same code reaches 1e-16 on Lugano.</li>
+<li><em>Isotropic dimension</em> (C.5). For orbits 8, 10 and 20, constraint-isotropic subspaces appear to exist up to dimension ~10 and fail by 12. A purification needs 16.</li>
+<li><em>Facets</em> (D.7). Facet orbit 82 is violated by E<sub>ex1</sub> and by all 51 sampled non-deterministic vertex orbits.</li>
+<li><em>Boundary</em> (D.8). Along Lugano → E<sub>ex1</sub>, purifiability appears to stop where the PF hull does.</li>
+<li><em>Unitary-side hunt</em> (H.3). Optimising unitaries for purity, classicality and facet violation found no purifiable process outside the hull. From Lugano, facet violation of ~0.01 costs a purity residual of 0.1-2.4.</li>
+</ul>
+<p><strong>Open.</strong></p>
+<ul>
+<li>The &quot;only if&quot; half for <strong>purifications with no operator-first party</strong>: every party's input is influenced by some party output in V, as in the Lugano-type cyclic lifts. By H.6 this is the only place a purifiable non-blend can live. It contains Lugano-type process functions, their blends, and every candidate counterexample (E<sub>ex1</sub> and all 51 sampled orbits fail first-with-valid-conditionals in every party, so any purification of them has no operator-first party).</li>
+<li>The exact status of <strong>orbits 8, 10, 20</strong> (dim V<sub>W</sub> = 82) and <strong>the other 46 sampled open orbits</strong>: numerically non-purifiable, with no exact certificate.</li>
+<li>Deriving any PF-hull facet (for example orbit 82) from purifiability. Any proof must use the purifying unitary on source states orthogonal to the fixed source state (D.2, D.8). That is the non-convex isotropy condition of AFNB Theorem 4.</li>
+</ul>
+<p><strong>Interpretation (philosophical, not a result).</strong> Consistent time loops are the setting: a process function is a loop in which every local choice has exactly one consistent history. The conjecture asks whether chance inside such a loop can be fundamental, or only ignorance about which deterministic loop obtains. If it holds, every reversible quantum loop with classical statistics is a coherent ignorance mixture of deterministic consistent loops. Genuinely chancy loops like E<sub>ex1</sub> would then be classically consistent but not reversibly realisable. Reversibility, not consistency alone, would be the constraint that excludes basic chance from loops. D.4 adds a caveat: the &quot;which-loop&quot; variable can be contextual, so the ignorance reading is about W, not about any single hidden label. H.2 and H.5 sharpen this: wherever a causal order exists, the ignorance reading is automatic. The open question lives entirely in loops without one.</p>
 <h2>Appendix A. Unitarity under local unitaries implies validity</h2>
 <p><strong>Definitions (AFNB 2017, Sec. 2).</strong> A process with source P, sink F and parties k is an operator W ≥ 0 on P ⊗ F ⊗ ∏<sub>k</sub> (I<sub>k</sub> ⊗ O<sub>k</sub>). For local maps A<sub>k</sub> : L(I<sub>k</sub> ⊗ X<sub>k</sub>) → L(O<sub>k</sub> ⊗ Y<sub>k</sub>), the induced map is the link product G<sub>A</sub> = W * (A<sub>1</sub> ⊗ ... ⊗ A<sub>n</sub>), a map L(P ⊗ X) → L(F ⊗ Y) with X = ⊗<sub>k</sub> X<sub>k</sub> and Y = ⊗<sub>k</sub> Y<sub>k</sub>. W is <em>valid</em> if G<sub>A</sub> is CPTP whenever every A<sub>k</sub> is CPTP, for all finite-dimensional local ancillas X<sub>k</sub>, Y<sub>k</sub>. W is <em>pure</em> (their Definition 1) if G<sub>A</sub> is unitary whenever every A<sub>k</sub> is unitary. Their Theorem 2 says W is pure iff W = |U⟩⟩⟨⟨U| for a unitary U. For pure Choi vectors the link product composes operators: if A<sub>k</sub>(rho) = V<sub>k</sub> rho V<sub>k</sub>†, then G<sub>A</sub>(rho) = M rho M†, where M is the operator of Section 1.</p>
 <p><strong>Claim.</strong> W = |U⟩⟩⟨⟨U| with U the permutation lift of a process function w is a valid process.</p>
@@ -530,6 +548,12 @@ table{border-collapse:collapse;font-size:.9rem;display:block;overflow-x:auto} th
 </tr>
 </tbody>
 </table>
+<p><strong>C.5 Exact-certificate attempt for the dim V<sub>W</sub> = 82 orbits 8, 10, 20 (Oct 21 2026).</strong> Status labels: orbits 7, 50 (and E<sub>ex1</sub>) <strong>[certified exact]</strong>; all 49 orbits in the C.4 table <strong>[numerical only]</strong>. No new certificate was obtained.</p>
+<ul>
+<li>Earlier single-form runs (20 time-boxed rounds per orbit, <code>cert/results_cpu/status.jsonl</code>) and block forms with k = 2 (<code>cert/better/NOTES.md</code>) found no certificate. The best bound was 20.5 &gt; r = 16.</li>
+<li>New numerical probe (<code>cert/isodim.py</code>, logs in <code>cert/better/isodim*.log</code>; 8 CPU threads, 2 restarts x 600 Adam steps per size). It asks for the largest complex subspace of V<sub>W</sub> that is totally isotropic for all constraint forms, ignoring the Gram and fixed-vector conditions. Isotropy loss at dimension 8 / 10 / 12: orbit 8: 1.3e-3 (3.7e-6 after 2,500 steps) / 0.22 / 0.68 (14: 1.46; 16: 2.34); orbit 10: 1.5e-5 / 1.3e-5 / 0.55; orbit 20: 2.0e-6 / 2.6e-4 / 0.53. So isotropic subspaces seem to exist up to dimension about 10 and to fail by 12. That is far below r = 16, which is consistent with non-purifiability, but it is numerical only.</li>
+<li>Why the linear certificate families fail. A Hermitian combination H of the constraint forms certifies only if n+(H) + n0(H) &lt; 16, i.e. n-(H) ≥ 67 of 82. The searches plateau at lambda_16(H)/||H|| ~ +1e-4. Adding the Gram normalisation C<sup>H</sup> G C = tr(W) I does not help: G is PSD, so n+(H + muG) ≥ n+(H) for mu &gt; 0, and the extended test certifies nothing the plain test cannot. The fixed vector c0 lies in the common radical (NOTES item 3). So the gap between the isotropic dimension (~10) and r (16) is invisible to every linear or block-Hermitian form tried. It is a genuinely nonlinear (non-convex) obstruction. A sound exact certificate would need, e.g., a degree-4 Positivstellensatz showing that some 67-dim subspace of V<sub>W</sub> contains no nonzero jointly isotropic vector, or a determinantal argument (rank K(u) &gt; 66 on the jointly isotropic cone). Neither has been set up: an unreduced degree-4 SDP has ~10<sup>4</sup>-size blocks, which is beyond this box (8 cores, 15 GB) and far beyond the per-orbit budget. The larger orbits (dim V<sub>W</sub> 112-256) face the same obstruction with a larger gap, so the estimate that about half are certifiable by the current pipeline is not supported.</li>
+</ul>
 <p><em>Proof idea for &quot;only if&quot; (not completed).</em> A purification U restricted to classical permutation instruments gives a unitary M for every reversible local classical operation. One would like to show that M's action on basis states then decomposes into permutations, giving a deterministic decomposition. We have not proved this. E<sub>ex1</sub> shows the classical consistency of W alone is not enough.</p>
 <p><strong>Answer.</strong> Not every classical process admits a unitary extension: E<sub>ex1</sub> (and one other vertex orbit) provably does not. Mixtures of process functions do. Whether those are the only ones is the open conjecture above.</p>
 <h2>Appendix D. Purifications of classical processes: the physics route</h2>
@@ -690,6 +714,211 @@ since every deterministic choice of local functions has exactly one fixed point.
 <p>The earlier draft's special cases (permutation interventions; causally ordered w) are now corollaries. The earlier remark that two-party process functions are causal still holds for any cardinality, by the two-fixed-point argument: first w<sub>k</sub> is independent of o<sub>k</sub>, then w<sub>A</sub> and w<sub>B</sub> cannot both be non-constant. That remark is no longer needed. No counterexample search is needed either, because F.3 rules out proper co-isometries.</p>
 <p><strong>F.5 Continuous alphabets [partly definitional].</strong> Take I<sub>k</sub> a locally compact abelian group with Haar measure (R, U(1)), and w measurable. Then U is a measure-preserving bijection of O x P, so it is unitary on L<sup>2</sup> (F.1 carries over). The induced map, however, involves pointwise evaluation ⟨f|V T<sub>w(f)</sub>. That is undefined for general unitaries on L<sup>2</sup>, so &quot;unitary under all local unitaries&quot; first needs a definition, for instance via the phase-space approach of Giacomini et al. For measure-preserving local bijections the induced map is the bijection e → f(e). It is measure-preserving in the causal case (Fubini), but this is open in the non-causal case.</p>
 <p><strong>Status.</strong> Proved (paper and Lean, finite and countable), for countable alphabets with a group structure on the inputs and finitely many parties: the lift is unitary under all local unitaries with ancillas (F.1-F.3). Open: continuous alphabets, where the induced map first needs a definition (F.5). The proof of F.3 suggests the natural definition, via the kernel ⟨f|V|w(f)+e⟩ with Haar measure, and the same probabilistic argument would then need the measurable-selection version of &quot;exactly one fixed point&quot;.</p>
+<h2>Appendix G. Two parties: the conjecture holds, trivially (Oct 21 2026)</h2>
+<p><strong>Theorem G.1 [proved].</strong> Let p(a,b|x,y) be a valid classical process on two parties A, B, with finite alphabets of any sizes: a, b are the inputs and x, y the outputs. Valid means p ≥ 0 and ∑<sub>a,b</sub> p(a,b|f(a),g(b)) = 1 for all functions f, g. Then p is a convex combination of deterministic causally ordered process functions. Each of these has one of two forms: a = a0 constant and b = h(x), or b = b0 constant and a = h(y).</p>
+<p><strong>Corollary G.2 [proved].</strong> For two parties, the purification conjecture of Section 9 holds. Both sides are true for every valid classical process. Every such process is a mixture of process functions (G.1), so it is purifiable (C.1). Also, every bipartite process function is causally ordered: a 0/1 point that is a convex combination of 0/1 points equals one of them. So the two-party case says nothing about the open multipartite question. The separation between &quot;classically consistent&quot; and &quot;reversibly realisable&quot; starts at three parties, where E<sub>ex1</sub> lives.</p>
+<p><em>Proof of G.1.</em> Write every function of (a,b,x,y) as a sum of components p<sub>S</sub>, one for each subset S of {a,b,x,y}. The component p<sub>S</sub> depends only on the variables in S, and its sum over any one variable in S is zero. (These are the products of &quot;average&quot; and &quot;traceless&quot; projections.)</p>
+<p><em>Step 1 (linear constraints).</em> Validity for deterministic f, g gives the same normalisation for stochastic local maps sigma(x|a), tau(y|b), by linearity. The quantity sum p sigma tau is affine in each argument, so its derivatives along traceless directions vanish.</p>
+<ul>
+<li>Second order: sum p delta(x|a) eps(y|b) = 0 whenever ∑<sub>x</sub> delta = 0 and ∑<sub>y</sub> eps = 0. Such products span all functions that are traceless in x and in y, so p<sub>S</sub> = 0 whenever S contains both x and y.</li>
+<li>First order with tau uniform: sum p delta(x|a) = 0 for every delta with ∑<sub>x</sub> delta = 0. Summing over b and y keeps only S with b, y not in S, so p<sub>x</sub> = p<sub>ax</sub> = 0. Symmetrically, p<sub>y</sub> = p<sub>by</sub> = 0.</li>
+</ul>
+<p>What survives is p = c + s + t, with c = p_∅ + p<sub>a</sub> + p<sub>b</sub> + p<sub>ab</sub>, s = p<sub>bx</sub> + p<sub>abx</sub> and t = p<sub>ay</sub> + p<sub>aby</sub>. Here c(a,b) is the average of p over (x,y), so it is a probability distribution. Also ∑<sub>x</sub> s = ∑<sub>b</sub> s = 0 and ∑<sub>y</sub> t = ∑<sub>a</sub> t = 0. This is the diagonal case of the Oreshkov-Costa-Brukner term structure.</p>
+<p><em>Step 2 (positive split).</em> Let m1(a,b) = -min_x s(a,b,x) and m2(a,b) = -min_y t(a,b,y). Both are ≥ 0 because s and t have mean zero. Evaluating p ≥ 0 at the minimising x and y gives c ≥ m1 + m2. Choose c1 ≥ m1 and c2 ≥ m2 with c1 + c2 = c, and put U = c1 + s and V = c2 + t. Then U, V ≥ 0 and p = U + V. Since ∑<sub>b</sub> s = 0, U(a,b|x) has total mass q = sum c1 for every x, and its A-marginal ∑<sub>b</sub> c1(a,b) does not depend on x. So U/q = r(a) r(b|a,x) is a classical A-before-B process. By the same argument, V/(1-q) is a B-before-A process.</p>
+<p><em>Step 3 (deterministic decomposition).</em> r(a) r(b|a,x) = ∑<sub>a0</sub> r(a0) delta<sub>a,a0</sub> ∑<sub>h</sub> prod_x r(h(x)|a0,x) delta<sub>b,h(x)</sub>, where h ranges over the functions X → B. Each term is a = a0, b = h(x). Under any interventions it has exactly one consistent history, a0, f(a0), h(f(a0)), so it is a process function. The same holds for the B-before-A part. ∎</p>
+<p><strong>Literature [cited].</strong></p>
+<ul>
+<li>Oreshkov, Costa and Brukner (Nat. Commun. 3, 1092 (2012), Supplementary) prove that the bipartite process matrices diagonal in fixed bases are causally separable. Their proof is the quantum version of Step 2.</li>
+<li>Baumann and Brukner (arXiv:1601.06620) extend this to inputs diagonal and outputs arbitrary. They note that it fails for three parties (Baumeler, Feix and Wolf, PRA 90, 042106 (2014)).</li>
+<li>For two binary parties, Baumeler and Wolf (2016) report that all 12 vertices of the classical polytope are deterministic (Appendix C). G.1 is the general-alphabet version.</li>
+</ul>
+<p>G.1 itself is therefore known in substance. Combining it with C.1 to settle the two-party purification statement is immediate. I did not find a source that states the purification version explicitly. Steps 1-3 are included so that the note is self-contained. Suggested wording for Section 9: &quot;For two parties the conjecture holds, because every bipartite classical process is causally separable [OCB 2012, Suppl.; see also Baumann-Brukner 2016] and hence a mixture of causally ordered process functions (Appendix G).&quot;</p>
+<p><strong>Numerical check [numerical].</strong> The script is code/stochastic/bipartite/vertices.py. For each alphabet size it samples LP vertices of the bipartite classical-process polytope (300 random objectives) and checks that each vertex is 0/1. It also checks 50 averages of 4 random vertices for membership in conv(PF) by LP.</p>
+<p>| (|A<sub>in</sub>|,|A<sub>out</sub>|,|B<sub>in</sub>|,|B<sub>out</sub>|) | process functions | distinct vertices found | non-deterministic | outside conv(PF) |
+|---|---|---|---|---|
+| (2,2,2,2) | 12 | 12 | 0 | 0/50 |
+| (3,2,2,2) | 24 | 24 | 0 | 0/50 |
+| (2,3,2,2) | 20 | 20 | 0 | 0/50 |
+| (3,3,2,2) | 36 | 36 | 0 | 0/50 |
+| (2,2,3,3) | 36 | 36 | 0 | 0/50 |
+| (3,2,3,2) | 45 | 45 | 0 | 0/50 |</p>
+<p>For larger alphabets, code/stochastic/bipartite/vertices_only.py does the vertex test alone (enumerating process functions is too costly there):</p>
+<p>| (|A<sub>in</sub>|,|A<sub>out</sub>|,|B<sub>in</sub>|,|B<sub>out</sub>|) | LPs | distinct vertices found | non-deterministic |
+|---|---|---|---|
+| (3,3,3,3) | 500 | 146 | 0 |
+| (4,2,4,2) | 300 | 100 | 0 |
+| (2,4,2,4) | 300 | 60 | 0 |</p>
+<p>In every case the vertices found are exactly the process functions, as G.1 predicts. The (2,2,2,2) count of 12 matches Baumeler-Wolf.</p>
+<h2>Appendix H. Three parties: structural reductions, a determinantal probe, and a unitary-side search (Oct 21 2026)</h2>
+<p>Status labels: <strong>[proved]</strong>, <strong>[numerical]</strong>, <strong>[cited]</strong>, <strong>[failed]</strong>. The three-party conjecture remains open. Code: code/stochastic/structural/.</p>
+<p>Notation. Inputs a, b, c; outputs x, y, z; a classical process p(a,b,c|x,y,z) ≥ 0 with ∑<sub>a,b,c</sub> p(a,b,c|f(a),g(b),h(c)) = 1 for all local functions f, g, h. Any finite alphabets unless stated.</p>
+<h3>H.1 Route A: classes that reduce to Appendix G</h3>
+<p><strong>Definitions.</strong> Party A is <em>last</em> if p does not depend on x. A is <em>marginally first</em> if p(a|x,y,z) := ∑<sub>b,c</sub> p does not depend on (x,y,z). A is <em>first with valid conditionals</em> if, in addition, for every a with p(a) &gt; 0 and every x, the conditional q<sub>a,x</sub>(b,c|y,z) = p(a,b,c|x,y,z)/p(a) is a valid bipartite classical process. A process is <em>classically causally separable</em> if it is a convex combination of processes, each with some party first with valid conditionals. This is the diagonal (classical) analogue of the recursive definition of Wechs, Abbott and Branciard (NJP 21, 013027 (2019), Def. 5) and of Oreshkov-Giarmatzi's extensible causal separability [cited; the definitions were checked against arXiv:1807.10557. I have not checked that the classical specialisation with extensions reduces exactly to the one used here, so it is offered as an analogue].</p>
+<p><strong>Theorem H.1 [proved].</strong> If some party is last, p is a mixture of process functions in which that party is last.</p>
+<p><em>Proof.</em> Say A is last. The B,C marginal r(b,c|y,z) = ∑<sub>a</sub> p is a valid bipartite process (take f arbitrary). By G.1, r = ∑<sub>l</sub> mu_l delta[(b,c) = w<sub>l</sub>(y,z)], with each w<sub>l</sub> a causally ordered bipartite process function. Put t(a|b,c,y,z) = p/r where r ⟩ 0, and any distribution elsewhere. Expand t as a product mixture of deterministic functions alpha(b,c,y,z), with weight prod_{args} t(alpha(args)|args). Then p = ∑<sub>l,alpha</sub> mu_l nu(alpha) delta[(b,c) = w<sub>l</sub>(y,z)] delta[a = alpha(b,c,y,z)]. Each term is a process function: given g, h, the B,C part has one fixed point, and then a is determined. ∎</p>
+<p><strong>Theorem H.2 [proved].</strong> If some party is first with valid conditionals, p is a mixture of process functions in which that party is first. Hence every classically causally separable 3-party process is a mixture of causally ordered process functions, and the purification conjecture holds on that class (both sides true, via C.1).</p>
+<p><em>Proof.</em> Say A is first. By G.1, q<sub>a,x</sub> = ∑<sub>l</sub> mu(l|a,x) W<sub>l</sub>, with W<sub>l</sub> ranging over the finitely many bipartite causally ordered process functions. Then p = ∑<sub>a0</sub> p(a0) ∑<sub>lambda: X → L</sub> prod_x mu(lambda(x)|a0,x) delta[a = a0] W<sub>lambda(x)</sub>(b,c|y,z). The term (a0, lambda) has a = a0, and then (b,c) given by the process function W<sub>lambda(x)</sub>. Under interventions f, g, h, x = f(a0) is fixed, and W<sub>lambda(x)</sub> has exactly one fixed point, so the term is a process function. ∎ The result extends to N parties by induction when the definition is recursive (the conditional (N-1)-party process is required to be separable). For N = 3, G.1 makes the bipartite recursion automatic.</p>
+<p><strong>Marginally first is not enough [proved].</strong> E<sub>ex1</sub> = (C + C̄)/2 is marginally first in every party: party 1's input is o<sub>3</sub> or its negation with probability 1/2 each, so it is uniform whatever the outputs are. Yet it is not a mixture of process functions (C.2). The conditional for a<sub>1</sub> is a3 = o2 + [o3 ≠ a1], a2 = o1 + [o3 ≠ a1] (mod 2). With the intervention o3 = h(a3), this has 0 or 2 fixed points, so it is invalid. The validity of conditionals carries the whole content.</p>
+<p><strong>Numerics [numerical]</strong> (classes.py, classes.json; 3 binary parties, 300 random LP objectives on each sub-polytope; every distinct vertex was tested for 0/1 and for membership in conv(744 PFs)):</p>
+<table>
+<thead>
+<tr>
+<th>sub-polytope</th>
+<th>distinct vertices</th>
+<th>non-deterministic</th>
+<th>outside conv(PF)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A last</td>
+<td>157</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>A first with valid conditionals</td>
+<td>187</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>A marginally first</td>
+<td>208</td>
+<td>39</td>
+<td>11</td>
+</tr>
+</tbody>
+</table>
+<p>The first two rows agree with H.1 and H.2. Of E<sub>ex1</sub> and the 51 non-deterministic vertex orbits, none is last or first-with-valid-conditionals in any party. 19 of them are marginally first in at least one party, including E<sub>ex1</sub>, orbits 7 and 50 (all three certified non-purifiable), and orbit 8 (marginally first in parties 1 and 2).</p>
+<p><strong>Where Lugano sits [cited/proved].</strong> The Lugano (Araújo-Feix / Baumeler-Wolf) process function violates a causal inequality (Baumeler, Feix, Wolf, PRA 90, 042106 (2014), arXiv:1403.7333) [cited]. So it is not causally separable. Directly: each input depends non-trivially on outputs of both other parties, so no party is marginally first, and every output is used, so no party is last [proved]. It lies outside every reducible class, but it is a process function. The interesting class is exactly conv(PF) minus the causally separable processes, together with the candidate non-hull processes, and the reductions say nothing about either.</p>
+<p><strong>Does purifiability add anything here?</strong> On the classes of H.1 and H.2, no: every valid process is already a PF mixture. The natural next statement would be &quot;purifiable and marginally first imply valid conditionals&quot;. It would settle the conjecture for the 19 marginally-first orbits, including orbit 8. It is open [not proved]. D.2 and D.8 show it cannot follow from the source sector alone.</p>
+<h3>H.2 Route B: a determinantal bound for orbit 8 [failed, numerical]</h3>
+<p>Idea. If S is a jointly isotropic subspace (AFNB Thm 4, reduced as in C.2) and u is in S, then S lies in ker K(u), where K(u)_{t,b} = Q<sub>t</sub>(u, e<sub>b</sub>) runs over the 196 linearly independent constraint forms of orbit 8 (m = dim V<sub>W</sub> = 82). So dim S ≤ dim R + (82 - rank K(u)) for any isotropic u outside the common radical R (dim R = 1, spanned by c0). An exact proof would need rank K(u) ≥ 67 on the whole isotropic cone outside R. That is one determinantal variety (67-minors) with no real point on the cone, which can be checked algebraically in principle.</p>
+<p>Probe (detprobe.py). Generic near-isotropic u (residual ~1e-7 to 1e-6) have numerical rank 81. But minimising the tail singular values of K(u) along the cone gives points whose spectrum drops from 1.6e-2 (sigma_50) to 3.4e-4 (sigma_55) and stays there down to sigma_66, with isotropy residual 2.5e-7. So, numerically, the cone contains u with rank K(u) of about 51-55. The single-vector bound then gives only dim S ≤ ~28-32, not &lt; 16. The determinantal route with one vector cannot work for orbit 8. A flag version (rank conditions on pairs u, v in S) would be needed, and it is a much larger variety. Not attempted. Gröbner bases on a symmetric ansatz were not attempted, because the stabiliser of orbit 8 has order 8 (App. E), too small to reduce the 82 complex unknowns per basis vector to a tractable size. <strong>No exact proof for orbit 8.</strong></p>
+<h3>H.3 Route C: counterexample hunt from the unitary side [numerical, negative]</h3>
+<p>Parametrisation (hunt.py). U = U0 exp(iH) is a 64 x 64 unitary O ⊗ P → I ⊗ F, with P = F = C<sup>8</sup> and source |0⟩. The loss is a purity residual sum ||M M† - 1||<sup>2</sup> over random Haar local unitaries, with and without qubit ancillas, plus a penalty on the off-diagonal part of W (classicality), minus the value of a PF-hull facet from orbit 82 (D.7) under a random symmetry. A point with purity residual ~0, W diagonal and facet &gt; 0 would be a purifiable process outside conv(PF).</p>
+<ul>
+<li>Random start (U0 = 1, 8 seeds x 20,000 Adam steps): purity was never reached. The final residual (20 fresh samples, qubit ancillas) was 10-172. The facet values there are meaningless, because W is not normalised. <strong>[failed: the optimiser does not even find pure unitaries from random starts]</strong></li>
+<li>Start at the Lugano lift (exactly pure, facet image chosen tight = 0 at Lugano; 8 seeds): the search trades purity against violation. Final facet violation was 0.008-0.018 at purity residual 0.13-2.4 (ancilla samples) and off-diagonal mass 4e-5 to 7e-4. Not one run kept both residuals near 0 with positive violation.</li>
+</ul>
+<p>This is consistent with the conjecture: leaving the hull at a Lugano vertex costs purity at once, as in D.8's boundary test. It is local, small-sample evidence, not a proof. No counterexample was found.</p>
+<h3>H.4 Summary</h3>
+<ul>
+<li>Proved: H.1 (some party last implies PF mixture) and H.2 (classically causally separable implies mixture of causally ordered PFs). On both classes the conjecture holds trivially. Also proved: marginal &quot;firstness&quot; does not reduce (E<sub>ex1</sub>).</li>
+<li>Settled negatively (H.5): purifiability plus marginal firstness does not force valid conditionals; a 4-term PF mixture is an exact counterexample.</li>
+<li>Failed: the single-vector determinantal bound for orbit 8 (numerically the cone has rank ~51-55 points), and the unitary-side counterexample search (no hit).</li>
+</ul>
+<h3>H.5 Purifiability plus &quot;A marginally first&quot; does not force valid conditionals [proved, exact counterexample] (Oct 21 2026)</h3>
+<p><strong>Question.</strong> Does purifiable + (A marginally first) imply that every conditional q<sub>a,x</sub>(b,c|y,z) is a valid bipartite process? If so, H.2 would settle E<sub>ex1</sub> and orbits 7, 8 and 50.</p>
+<p><strong>Answer: no, already for classically purifiable processes.</strong> Take three binary parties and</p>
+<pre><code>p(a,b,c|x,y,z) = (1/4) [a = b + c + y + z mod 2].
+</code></pre>
+<ul>
+<li>p is a uniform mixture of 4 process functions w<sub>beta,gamma</sub>: b = beta, c = gamma, a = beta + gamma + y + z. In each, B and C are first and A is last. So p is purifiable (C.1); A is even last (H.1).</li>
+<li>A is marginally first: p(a|x,y,z) = 1/2 for every a, x, y, z.</li>
+<li>The conditional q<sub>a</sub>(b,c|y,z) = (1/2)[b + c + y + z = a] is invalid. With the interventions y = b, z = c, ∑<sub>b,c</sub> q<sub>a</sub> = 2 for a = 0 and 0 for a = 1.</li>
+</ul>
+<p>All of this is checked in exact rational arithmetic (code/stochastic/structural/margfirst_cex.py): the decomposition, validity of p, that the 4 maps are process functions, marginal firstness and the conditional sums. So the implication fails. No search was needed. Any statement of this form is false whenever some PF mixture is marginally first with invalid conditionals.</p>
+<p><strong>Where the naive proof breaks.</strong> The plan was to fix A's classical input and obtain a lift of the conditional. Marginal firstness is a property of the diagonal W only. In the purification (here the source-sink lift of a PF mixture), A's input register is computed downstream of B's and C's outputs. Its marginal is uniform only because the mixture is averaged over (beta, gamma). Fixing a is therefore post-selection on a variable that depends on y, z. Post-selection is not a unitary operation and does not preserve purity or even validity of what remains. A sound conditioning step needs A to be first <em>in the purifying unitary</em>: I<sub>A</sub> must depend only on the source under every local intervention. That is a structural property of V, not of W. D.4 shows such structure cannot be read off W.</p>
+<p><strong>Consistency with E<sub>ex1</sub> (3) [proved].</strong> E<sub>ex1</sub> is marginally first with invalid conditionals (H.1). Its non-purifiability rests only on the inertia certificate of C.2. H.5 shows that the invalid conditionals carry no evidence by themselves, since a purifiable process shares both features. The certificate is unaffected.</p>
+<p><strong>Consequence.</strong> Route A, in its W-level form, cannot reach the marginally-first orbits. A version that could survive: &quot;if V purifies W and A is first <em>in V</em> (I<sub>A</sub> independent of all party outputs, as an operator statement), then the conditionals of W are valid&quot;. This is proved in H.6 (Lemma H.6.1, Theorem H.6.2). It says nothing about E<sub>ex1</sub> unless one also shows that every purification can be rearranged so that a marginally-first party is first in V. H.5 shows that rearrangement is impossible in general (in the example, A is last in the natural purification). So this line does not by itself settle the conjecture: it reduces it to purifications with no operator-first party (H.6).</p>
+<h3>H.6 Operator-level firstness forces valid conditionals [proved] (Oct 21 2026)</h3>
+<p>This is the operator-level variant left unproved at the end of H.5. Setting as in D: a purification of W is a unitary V : P ⊗ O → F ⊗ I, with O = O<sub>A</sub> O<sub>B</sub> O<sub>C</sub>, I = I<sub>A</sub> I<sub>B</sub> I<sub>C</sub> and a fixed source state |psi⟩, such that closing the party slots with arbitrary local unitaries (with ancillas) always gives a unitary (AFNB 2017, Def. 3).</p>
+<p><strong>Definition (operator-level first).</strong> Party A is <em>first in V</em> if V factorises as</p>
+<pre><code>V = (V' ⊗ 1_{I<sub>A</sub>}) (S ⊗ 1<sub>O</sub>),    S : P → I<sub>A</sub> ⊗ R unitary,    V' : R ⊗ O<sub>A</sub> ⊗ O<sub>B</sub> ⊗ O<sub>C</sub> → F ⊗ I<sub>B</sub> ⊗ I<sub>C</sub> unitary,
+</code></pre>
+<p>up to reordering of wires. So I<sub>A</sub> is prepared from the source alone, and A's output O<sub>A</sub> enters only V', together with the leftover source R. Two other candidate definitions are equivalent:</p>
+<ul>
+<li>(no-signalling form) the channel P ⊗ O → I<sub>A</sub> obtained from V by tracing F, I<sub>B</sub>, I<sub>C</sub> does not depend on the O input. Its Choi operator is J<sub>I<sub>A</sub> P</sub> ⊗ 1<sub>O</sub> / d<sub>O</sub>. The factorisation follows from Eggeling-Schlingemann-Werner (semicausal ⇒ semilocalizable, EPL 57, 782 (2002)) applied to the isometry V. The converse is immediate. [cited + proved]</li>
+<li>(causal-graph form) in the causal structure of the unitary process (Barrett-Lorenz-Oreshkov, Nat. Commun. 12, 885 (2021), Def. 4), with the source and sink as extra nodes, A has no parents among A, B, C. A's own output is included, so there is no self-loop. For unitaries, no influence from each of O<sub>A</sub>, O<sub>B</sub>, O<sub>C</sub> separately implies no influence from O jointly. In the Heisenberg picture, V^dag (Z<sub>I<sub>A</sub></sub> ⊗ 1) V commutes with the operator algebras of O<sub>A</sub>, O<sub>B</sub> and O<sub>C</sub>, and these generate all operators on O. [proved]</li>
+</ul>
+<p>Firstness is not a property of W: H.5 shows a marginally first party that is last in the natural lift. A weaker &quot;process-level first&quot; condition, that A's input is unaffected by other parties' instruments, is just marginal firstness for classical W. H.5 refutes the reduction under that weaker condition.</p>
+<p><strong>Lemma H.6.1 [proved].</strong> Suppose A is first in a purification (V, psi) of a classical process p(a,b,c|x,y,z). Write S|psi⟩ = ∑<sub>a</sub> |a⟩<sub>I<sub>A</sub></sub> ⊗ |r<sub>a</sub>⟩<sub>R</sub>. Then:</p>
+<ol>
+<li>A is marginally first, with p(a) = ||r<sub>a</sub>||<sup>2</sup>.</li>
+<li>For every a with p(a) &gt; 0 and every x, the pair (V', |r<sub>a</sub>⟩|x⟩<sub>O<sub>A</sub></sub> / ||r<sub>a</sub>||) is a purification, in the sense of AFNB, of a diagonal bipartite process on B, C whose diagonal is exactly the conditional q<sub>a,x</sub>(b,c|y,z) = p(a,b,c|x,y,z)/p(a).</li>
+<li>In particular every q<sub>a,x</sub> is a valid, purifiable bipartite classical process.</li>
+</ol>
+<p><em>Proof.</em></p>
+<ul>
+<li>
+<p>(Purity of V'.) Close the A slot with any unitary U<sub>A</sub> : I<sub>A</sub> ⊗ X<sub>A</sub> → O<sub>A</sub> ⊗ Y<sub>A</sub> (one exists for suitable ancilla dimensions), and close B and C with arbitrary U<sub>B</sub>, U<sub>C</sub>. Because nothing upstream of I<sub>A</sub> depends on any output, contracting the A wire is ordinary sequential composition:</p>
+<pre><code>M = (M'<sub>BC</sub> ⊗ 1_{Y<sub>A</sub>}) (1<sub>R</sub> ⊗ U<sub>A</sub> ⊗ 1_{X<sub>B</sub> X<sub>C</sub>}) (S ⊗ 1_{X<sub>A</sub> X<sub>B</sub> X<sub>C</sub>}),
+</code></pre>
+<p>where M'<sub>BC</sub> : R ⊗ O<sub>A</sub> ⊗ X<sub>B</sub> ⊗ X<sub>C</sub> → F ⊗ Y<sub>B</sub> ⊗ Y<sub>C</sub> is V' with B and C closed. M is unitary because V is pure. The two right-hand factors are unitary. So M'<sub>BC</sub> ⊗ 1 is unitary, and hence M'<sub>BC</sub> is unitary. This holds for all U<sub>B</sub>, U<sub>C</sub>, so V', with source R ⊗ O<sub>A</sub>, is a pure bipartite process.</p>
+</li>
+<li>
+<p>(Diagonal and conditionals.) V|psi,x,y,z⟩ = ∑<sub>a</sub> |a⟩<sub>I<sub>A</sub></sub> ⊗ V'|r<sub>a</sub>,x,y,z⟩. The Choi entries of W are therefore W[(a,b,c,x,y,z),(a',b',c',x',y',z')] = &lt;V'(r<sub>a'</sub>,x',y',z')_{b'c'} | V'(r<sub>a</sub>,x,y,z)_{bc}⟩<sub>F</sub>, where _{bc} denotes the component with I<sub>B</sub> I<sub>C</sub> = |b,c⟩. For a = a' and x = x', these are the entries of p(a) times the process matrix W'<sub>a,x</sub> of (V', |r<sub>a</sub>,x⟩/||r<sub>a</sub>||). W is diagonal, so W'<sub>a,x</sub> is diagonal with diagonal p(a,b,c|x,y,z)/p(a) = q<sub>a,x</sub>. Summing the diagonal over b, c at y, z gives ∑<sub>b,c</sub> ||V'(r<sub>a</sub>,x,y,z)_{bc}||<sup>2</sup> = ||r<sub>a</sub>||<sup>2</sup>, which is item 1.</p>
+</li>
+<li>
+<p>(Validity.) The diagonal of a valid process matrix is a valid classical process: evaluate it on the measure-and-prepare channels b → g(b). Validity of W'<sub>a,x</sub> follows from purity (Appendix A). ∎</p>
+</li>
+</ul>
+<p><strong>Where the H.5 obstruction went.</strong> With A's slot replaced by a SWAP to ancillas, the remaining B, C map from P ⊗ O<sub>A</sub> to F ⊗ I<sub>A</sub> is unitary for every pure process, whether or not A is first (checked numerically below). So the source-and-sink &quot;open-A&quot; bipartite process is always pure. The conditioning on x is harmless, since x is a source preparation. The conditioning on a is a sink post-selection. Firstness is exactly what moves the a-measurement onto R, before V' acts, via S. Normalisation then comes for free (item 1). Without firstness, a is a sink outcome, and fixing it is the post-selection of H.5.</p>
+<p><strong>Theorem H.6.2 [proved].</strong> Let W be a 3-party classical process (any finite alphabets). If some purification of W has some party first at the operator level, then W is a PF blend, indeed a blend of causally ordered process functions with that party first.</p>
+<p><em>Proof.</em> Lemma H.6.1 shows that the party is first with valid conditionals. Apply H.2, which uses G.1. ∎</p>
+<p><em>N parties.</em> Lemma H.6.1 holds verbatim and gives an (N-1)-party purifiable conditional. If the conditional purifications again have a first party, recursively, W is a blend of causally ordered PFs. For the conditional, that party has to be first in V' with the source state |r<sub>a</sub>,x⟩, so the recursion is on V', not on W. This includes the case where V has an acyclic causal structure in the BLO sense: a topological order supplies a first party at every level, and the order is inherited by V'. The 3-party case needs firstness only once, because G.1 handles every bipartite remainder. [proved for N = 3; for N &gt; 3, proved under the recursive hypothesis, using the recursive form of H.2 stated after its proof]</p>
+<p><em>Quantum remark.</em> For a general (non-diagonal) W, the same proof gives a pure bipartite conditional. BLO Theorem 3 (every unitarily extendible bipartite process is causally separable) then makes W causally separable with A first. [proved modulo cited BLO Thm. 3]</p>
+<p><strong>Contrapositive (useful) [proved].</strong> If W is not first-with-valid-conditionals in party k, then no purification of W has k first at the operator level. Consequences:</p>
+<ul>
+<li>Lugano is not marginally first in any party (H.1), so none of its purifications, not just the lift, has an operator-first party.</li>
+<li>None of E<sub>ex1</sub> or the 51 sampled non-deterministic vertex orbits is first-with-valid-conditionals in any party (H.1 numerics). So a purification of any of them, if one exists, has no operator-first party. This includes orbit 8, which is marginally first in parties 1 and 2. For E<sub>ex1</sub> and orbits 7 and 50 the statement is vacuous, since they have no purification at all (C.2).</li>
+</ul>
+<p><strong>What this leaves open.</strong> The conjecture is now reduced to purifications in which <strong>every</strong> party has a parent among the party outputs, i.e. every party's input is influenced by some output in V. Lugano-type lifts are like this: their causal graph is a 3-cycle. Theorem H.6.2 says nothing about a W whose only purifications are of this kind. That is the same class flagged as open in Section 9, now characterised at the operator level. A purifiable non-blend, if one exists, must be such a W: one with no first party and no last party in any purification. W-level lastness already gives H.1. Operator-level lastness is a stronger hypothesis, so it is covered too.</p>
+<p><strong>Numerics [numerical]</strong> (code/stochastic/structural/opfirst.py, log opfirst.log; C.1 lifts). The firstness residual is max |J - Tr<sub>O</sub> J ⊗ 1/d<sub>O</sub>| for the channel P ⊗ O → I<sub>k</sub>. Open purity is ||M M^dag - 1||<sub>max</sub>, with slot k replaced by a SWAP and the other two closed by Haar unitaries with qubit ancillas, worst of 5.</p>
+<table>
+<thead>
+<tr>
+<th>process</th>
+<th>party</th>
+<th>op-first residual</th>
+<th>open-slot purity</th>
+<th>marginally first</th>
+<th>conditionals</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lugano</td>
+<td>A, B, C</td>
+<td>0.75 each</td>
+<td>≤ 1.3e-15</td>
+<td>no</td>
+<td>n/a</td>
+</tr>
+<tr>
+<td>H.5 blend</td>
+<td>A</td>
+<td>0.5 (not first)</td>
+<td>8.9e-16</td>
+<td>yes</td>
+<td>invalid (sums 0, 1, 2)</td>
+</tr>
+<tr>
+<td>H.5 blend</td>
+<td>B</td>
+<td>0 (first)</td>
+<td>1.4e-15</td>
+<td>yes</td>
+<td>valid (all sums 1)</td>
+</tr>
+<tr>
+<td>H.5 blend</td>
+<td>C</td>
+<td>0 (first)</td>
+<td>1.1e-15</td>
+<td>yes</td>
+<td>valid</td>
+</tr>
+</tbody>
+</table>
+<p>This is consistent with the lemma. In the H.5 lift, A is last and not operator-first, and its conditionals are invalid. B and C are operator-first, and their conditionals are valid, as H.6.1 requires. The open-slot map is unitary in every case, which confirms that the content of the lemma is the source-side relocation of the a-measurement.</p>
+<p><strong>Literature [cited, checked against arXiv:2002.12157v3 and quant-ph/0104027].</strong></p>
+<ul>
+<li>Barrett, Lorenz and Oreshkov (2021) prove the two endpoints. If a unitary process has an acyclic causal structure, it is a comb (Thm. 4). Every unitarily extendible bipartite process is causally separable (Thm. 3). Their Thm. 6 is that reversibly extendible classical processes form the deterministic polytope, the classical analogue of D.6.</li>
+<li>They state that a unitarily extendible process need not be causally separable in general (AF process), and they leave open how cyclicity constrains extensions. I did not find the one-parentless-node conditioning lemma H.6.1, or Theorem H.6.2, stated there, in AFNB 2017, or in Wechs-Abbott-Branciard 2019. WAB's recursive definition of causal separability (first party, then a valid conditional) is the target property; they do not connect it to purifications. H.6.1 is elementary given those sources. It is offered as a short observation, not as a new technique. I did not do a full literature search beyond these papers.</li>
+</ul>
 <h2>References</h2>
 <ol>
 <li>M. Dummett, Can an effect precede its cause?, Aristotelian Society Supplementary Volume 28, 27 (1954); Bringing about the past, Philosophical Review 73, 338 (1964).</li>
@@ -722,6 +951,7 @@ since every deterministic choice of local functions has exactly one fixed point.
 <li>G. Tobar and F. Costa, Reversible dynamics with closed time-like curves and freedom of choice, Classical and Quantum Gravity 37, 205011 (2020), arXiv:2001.02511.</li>
 <li>H. Dourdent, K. Simonov, A. Leitherer, E.-C. Boghiu, R. Kunjwal, S. Halder, R. Augusiak and A. Acín, Paradox-free classical non-causality and unambiguous non-locality without entanglement are equivalent, arXiv:2512.23599 (2025).</li>
 <li>Ä. Baumeler, Causal loops: logically consistent correlations, time travel, and computation, PhD thesis, Università della Svizzera italiana (2017).</li>
+<li>V. Baumann and Č. Brukner, Appearance of causality in process matrices when performing fixed-basis measurements for two parties, Physical Review A 93, 062324 (2016).</li>
 </ol>
 
 <footer>Source: <a href="https://github.com/drewarrowood/process-function-unitary-lift">github.com/drewarrowood/process-function-unitary-lift</a> · <a href="https://github.com/drewarrowood/process-function-unitary-lift/raw/main/paper/lift.pdf">PDF</a> · <a href="https://drewarrowood.github.io/process-function-unitary-lift/">Technical note</a> · <a href="https://drewarrowood.github.io/process-function-unitary-lift/graded.html">Gentle version</a></footer>
