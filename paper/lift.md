@@ -554,8 +554,28 @@ This is consistent with the conjecture: leaving the hull at a Lugano vertex cost
 
 ### H.4 Summary
 - Proved: H.1 (some party last implies PF mixture) and H.2 (classically causally separable implies mixture of causally ordered PFs). On both classes the conjecture holds trivially. Also proved: marginal "firstness" does not reduce (E_ex1).
-- Open: whether purifiability forces valid conditionals for a marginally first party (this would cover orbits 7, 8, 50 and E_ex1 at once).
+- Settled negatively (H.5): purifiability plus marginal firstness does not force valid conditionals; a 4-term PF mixture is an exact counterexample.
 - Failed: the single-vector determinantal bound for orbit 8 (numerically the cone has rank ~51-55 points), and the unitary-side counterexample search (no hit).
+
+### H.5 Purifiability plus "A marginally first" does not force valid conditionals [proved, exact counterexample] (Oct 21 2026)
+
+**Question.** Does purifiable + (A marginally first) imply that every conditional q_{a,x}(b,c|y,z) is a valid bipartite process? If so, H.2 would settle E_ex1 and orbits 7, 8 and 50.
+
+**Answer: no, already for classically purifiable processes.** Take three binary parties and
+
+    p(a,b,c|x,y,z) = (1/4) [a = b + c + y + z mod 2].
+
+- p is a uniform mixture of 4 process functions w_{beta,gamma}: b = beta, c = gamma, a = beta + gamma + y + z. In each, B and C are first and A is last. So p is purifiable (C.1); A is even last (H.1).
+- A is marginally first: p(a|x,y,z) = 1/2 for every a, x, y, z.
+- The conditional q_a(b,c|y,z) = (1/2)[b + c + y + z = a] is invalid. With the interventions y = b, z = c, sum_{b,c} q_a = 2 for a = 0 and 0 for a = 1.
+
+All of this is checked in exact rational arithmetic (code/stochastic/structural/margfirst_cex.py): the decomposition, validity of p, that the 4 maps are process functions, marginal firstness and the conditional sums. So the implication fails. No search was needed. Any statement of this form is false whenever some PF mixture is marginally first with invalid conditionals.
+
+**Where the naive proof breaks.** The plan was to fix A's classical input and obtain a lift of the conditional. Marginal firstness is a property of the diagonal W only. In the purification (here the source-sink lift of a PF mixture), A's input register is computed downstream of B's and C's outputs. Its marginal is uniform only because the mixture is averaged over (beta, gamma). Fixing a is therefore post-selection on a variable that depends on y, z. Post-selection is not a unitary operation and does not preserve purity or even validity of what remains. A sound conditioning step needs A to be first *in the purifying unitary*: I_A must depend only on the source under every local intervention. That is a structural property of V, not of W. D.4 shows such structure cannot be read off W.
+
+**Consistency with E_ex1 (3) [proved].** E_ex1 is marginally first with invalid conditionals (H.1). Its non-purifiability rests only on the inertia certificate of C.2. H.5 shows that the invalid conditionals carry no evidence by themselves, since a purifiable process shares both features. The certificate is unaffected.
+
+**Consequence.** Route A, in its W-level form, cannot reach the marginally-first orbits. A version that could survive: "if V purifies W and A is first *in V* (I_A independent of all party outputs, as an operator statement), then the conditionals of W are valid". This is not proved here, and it would say nothing about E_ex1 unless one also shows that every purification can be rearranged so that a marginally-first party is first in V. H.5 shows that rearrangement is impossible in general (in the example, A is last in the natural purification), so this line is closed for the conjecture.
 
 ## References
 
