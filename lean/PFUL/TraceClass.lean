@@ -8,10 +8,12 @@ open scoped ComplexOrder
 
 set_option linter.unusedSectionVars false
 
+universe u v w
+
 namespace PFUL.TraceClass
 
 section HS
-variable {H K : Type} [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
+variable {H : Type u} {K : Type v} [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
   [NormedAddCommGroup K] [InnerProductSpace ℂ K] [CompleteSpace K]
 
 /-- Parseval's identity for a Hilbert basis (real form). -/
@@ -55,7 +57,7 @@ theorem hsSq_indep {ι ι' : Type*} (b : HilbertBasis ι ℂ H) (b' : HilbertBas
   rw [hsSq_eq_adjoint b c, hsSq_eq_adjoint b' c]
 
 /-- Hilbert–Schmidt operators: finite `∑ ‖A eᵢ‖²` (in every, equivalently some, Hilbert basis). -/
-def IsHS (A : H →L[ℂ] K) : Prop := ∀ (ι : Type) (b : HilbertBasis ι ℂ H), hsSq b A ≠ ⊤
+def IsHS (A : H →L[ℂ] K) : Prop := ∀ (ι : Type u) (b : HilbertBasis ι ℂ H), hsSq b A ≠ ⊤
 
 theorem IsHS.of_basis {ι : Type*} (b : HilbertBasis ι ℂ H) {A : H →L[ℂ] K}
     (h : hsSq b A ≠ ⊤) : IsHS A := fun _ b' => by rwa [hsSq_indep b' b]
@@ -89,7 +91,7 @@ theorem enorm_apply_sq_le {ι : Type*} (b : HilbertBasis ι ℂ H) (A : H →L[�
   rw [← adjoint_inner_left, ← mul_pow]
   exact pow_le_pow_left₀ bot_le (enorm_inner_le _ _) 2
 
-variable {H' : Type} [NormedAddCommGroup H'] [InnerProductSpace ℂ H'] [CompleteSpace H']
+variable {H' : Type w} [NormedAddCommGroup H'] [InnerProductSpace ℂ H'] [CompleteSpace H']
 
 theorem hsSq_comp_le {ι : Type*} (b : HilbertBasis ι ℂ H) (C : K →L[ℂ] H') (A : H →L[ℂ] K) :
     hsSq b (C ∘L A) ≤ ‖C‖ₑ ^ 2 * hsSq b A := by
@@ -153,12 +155,12 @@ theorem hasSum_inner_hs {ι κ : Type*} (b : HilbertBasis ι ℂ H) (c : Hilbert
 end HS
 section TC
 open scoped ComplexOrder
-variable (H : Type) [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
+variable (H : Type u) [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
 
 /-- Generators of the trace class: products `A† B` of two Hilbert–Schmidt maps into some Hilbert
 space `K`. -/
 def gens : Set (H →L[ℂ] H) :=
-  {T | ∃ (K : Type) (_ : NormedAddCommGroup K) (_ : InnerProductSpace ℂ K) (_ : CompleteSpace K)
+  {T | ∃ (K : Type u) (_ : NormedAddCommGroup K) (_ : InnerProductSpace ℂ K) (_ : CompleteSpace K)
     (A B : H →L[ℂ] K), IsHS A ∧ IsHS B ∧ T = adjoint A ∘L B}
 
 /-- **Trace-class operators**: the linear span of products of two Hilbert–Schmidt operators. (This is
@@ -176,7 +178,7 @@ variable {H}
 noncomputable def trace (T : H →L[ℂ] H) : ℂ := ∑' i, ⟪stdBasis H i, T (stdBasis H i)⟫_ℂ
 
 theorem exists_hasSum {T : H →L[ℂ] H} (hT : T ∈ traceClass H) : ∃ t : ℂ,
-    ∀ (ι : Type) (b : HilbertBasis ι ℂ H), HasSum (fun i => ⟪b i, T (b i)⟫_ℂ) t := by
+    ∀ (ι : Type u) (b : HilbertBasis ι ℂ H), HasSum (fun i => ⟪b i, T (b i)⟫_ℂ) t := by
   induction hT using Submodule.span_induction with
   | mem T hT =>
     obtain ⟨K, _, _, _, A, B, hA, hB, rfl⟩ := hT
@@ -194,13 +196,13 @@ theorem exists_hasSum {T : H →L[ℂ] H} (hT : T ∈ traceClass H) : ∃ t : �
 
 /-- **Summability and basis independence of the trace.** For trace-class `T` and *any* Hilbert basis
 `b`, `∑ᵢ ⟪bᵢ, T bᵢ⟫` converges unconditionally to `trace T`. -/
-theorem hasSum_trace {T : H →L[ℂ] H} (hT : T ∈ traceClass H) {ι : Type}
+theorem hasSum_trace {T : H →L[ℂ] H} (hT : T ∈ traceClass H) {ι : Type u}
     (b : HilbertBasis ι ℂ H) : HasSum (fun i => ⟪b i, T (b i)⟫_ℂ) (trace T) := by
   obtain ⟨t, h⟩ := exists_hasSum hT
   rw [show trace T = t from (h _ (stdBasis H)).tsum_eq]
   exact h ι b
 
-theorem trace_eq_tsum {T : H →L[ℂ] H} (hT : T ∈ traceClass H) {ι : Type}
+theorem trace_eq_tsum {T : H →L[ℂ] H} (hT : T ∈ traceClass H) {ι : Type u}
     (b : HilbertBasis ι ℂ H) : trace T = ∑' i, ⟪b i, T (b i)⟫_ℂ := (hasSum_trace hT b).tsum_eq.symm
 
 theorem trace_add {S T : H →L[ℂ] H} (hS : S ∈ traceClass H) (hT : T ∈ traceClass H) :
@@ -223,12 +225,12 @@ noncomputable def traceL : traceClass H →ₗ[ℂ] ℂ where
   map_add' S T := trace_add S.2 T.2
   map_smul' a T := trace_smul a T.2
 
-theorem adjoint_comp_mem {K : Type} [NormedAddCommGroup K] [InnerProductSpace ℂ K] [CompleteSpace K]
+theorem adjoint_comp_mem {K : Type u} [NormedAddCommGroup K] [InnerProductSpace ℂ K] [CompleteSpace K]
     {A B : H →L[ℂ] K} (hA : IsHS A) (hB : IsHS B) : adjoint A ∘L B ∈ traceClass H :=
   Submodule.subset_span ⟨K, _, _, _, A, B, hA, hB, rfl⟩
 
 /-- `Tr(A† B) = Tr(B A†)` for Hilbert–Schmidt `A, B : H → K`. -/
-theorem trace_adjoint_comp_comm {K : Type} [NormedAddCommGroup K] [InnerProductSpace ℂ K]
+theorem trace_adjoint_comp_comm {K : Type u} [NormedAddCommGroup K] [InnerProductSpace ℂ K]
     [CompleteSpace K] {A B : H →L[ℂ] K} (hA : IsHS A) (hB : IsHS B) :
     trace (adjoint A ∘L B) = trace (B ∘L adjoint A) := by
   have h := hasSum_inner_hs (stdBasis H) (stdBasis K) (hA.hsSq_ne_top (stdBasis H))
@@ -300,10 +302,25 @@ theorem isHS_innerSL (y : H) : IsHS (innerSL ℂ y) := by
   simp_rw [innerSL_apply_apply, enorm_inner_symm y]
   rw [← enorm_sq_eq_tsum]; exact ENNReal.pow_ne_top enorm_ne_top
 
+theorem isHS_rankOne (v x : H) : IsHS (InnerProductSpace.rankOne ℂ v x) := by
+  refine IsHS.of_basis (stdBasis H) ?_
+  rw [hsSq]
+  simp_rw [InnerProductSpace.rankOne_apply, enorm_smul, mul_pow, enorm_inner_symm x]
+  rw [ENNReal.tsum_mul_right, ← enorm_sq_eq_tsum]
+  exact ENNReal.mul_ne_top (ENNReal.pow_ne_top enorm_ne_top) (ENNReal.pow_ne_top enorm_ne_top)
+
 theorem rankOne_mem (x y : H) : InnerProductSpace.rankOne ℂ x y ∈ traceClass H := by
-  have : InnerProductSpace.rankOne ℂ x y = adjoint (innerSL ℂ x) ∘L innerSL ℂ y := by
-    rw [adjoint_innerSL_apply]; rfl
-  rw [this]; exact adjoint_comp_mem (isHS_innerSL x) (isHS_innerSL y)
+  rcases subsingleton_or_nontrivial H with hH | hH
+  · rw [show InnerProductSpace.rankOne ℂ x y = 0 from Subsingleton.elim _ _]
+    exact Submodule.zero_mem _
+  obtain ⟨v, hv⟩ := exists_norm_eq H (zero_le_one : (0 : ℝ) ≤ 1)
+  have : InnerProductSpace.rankOne ℂ x y =
+      adjoint (InnerProductSpace.rankOne ℂ v x) ∘L InnerProductSpace.rankOne ℂ v y := by
+    ext z
+    rw [InnerProductSpace.adjoint_rankOne, comp_apply]
+    simp only [InnerProductSpace.rankOne_apply, inner_smul_right, inner_self_eq_norm_sq_to_K, hv]
+    simp
+  rw [this]; exact adjoint_comp_mem (isHS_rankOne v x) (isHS_rankOne v y)
 
 /-- **Trace of a rank-one operator:** `Tr |x⟩⟨y| = ⟪y, x⟫`. -/
 theorem trace_rankOne (x y : H) : trace (InnerProductSpace.rankOne ℂ x y) = ⟪y, x⟫_ℂ := by
@@ -324,7 +341,7 @@ theorem enorm_trace_comp_le {C T : H →L[ℂ] H} (hC : ‖C‖ ≤ 1) :
     ‖trace (C ∘L T)‖ₑ ≤ traceNorm T := le_iSup₂_of_le C hC le_rfl
 
 /-- Bound for a generator, uniform in `‖C‖ ≤ 1`. -/
-theorem enorm_trace_gen_le {K : Type} [NormedAddCommGroup K] [InnerProductSpace ℂ K]
+theorem enorm_trace_gen_le {K : Type u} [NormedAddCommGroup K] [InnerProductSpace ℂ K]
     [CompleteSpace K] {A B : H →L[ℂ] K} (hA : IsHS A) (hB : IsHS B) {C : H →L[ℂ] H}
     (hC : ‖C‖ ≤ 1) :
     ‖trace (C ∘L (adjoint A ∘L B))‖ₑ ≤ hsSq (stdBasis K) (adjoint A) + hsSq (stdBasis H) B := by
@@ -388,7 +405,7 @@ theorem eq_of_trace_comp {P Q : H →L[ℂ] H}
 end TC
 
 section L2
-variable {J : Type} {K : Type} [NormedAddCommGroup K] [InnerProductSpace ℂ K] [CompleteSpace K]
+variable {J : Type u} {K : Type v} [NormedAddCommGroup K] [InnerProductSpace ℂ K] [CompleteSpace K]
 
 theorem lp_enorm_sq (f : lp (fun _ : J => K) 2) : ‖f‖ₑ ^ 2 = ∑' j, ‖f j‖ₑ ^ 2 := by
   have h := lp.hasSum_norm (p := 2) (by norm_num) f
@@ -416,7 +433,7 @@ theorem norm_le_of_enorm_sq_le {X Y : Type*} [SeminormedAddCommGroup X] [Seminor
 end L2
 
 section Conj
-variable {H H' : Type} [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
+variable {H H' : Type u} [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
   [NormedAddCommGroup H'] [InnerProductSpace ℂ H'] [CompleteSpace H']
 
 /-- Conjugation `T ↦ U T U†` maps the trace class of `H` into that of `H'`. -/
@@ -452,11 +469,11 @@ theorem trace_conj (U : H →L[ℂ] H') (hU : adjoint U ∘L U = ContinuousLinea
 end Conj
 
 /-- Density operators: positive trace-class operators of unit trace. -/
-def IsDensity {H : Type} [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
+def IsDensity {H : Type u} [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
     (ρ : H →L[ℂ] H) : Prop :=
   ρ ∈ traceClass H ∧ ρ.IsPositive ∧ trace ρ = 1
 
-theorem IsDensity.conj {H H' : Type} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
+theorem IsDensity.conj {H H' : Type u} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
     [CompleteSpace H] [NormedAddCommGroup H'] [InnerProductSpace ℂ H'] [CompleteSpace H']
     {ρ : H →L[ℂ] H} (h : IsDensity ρ) (U : H →L[ℂ] H')
     (hU : adjoint U ∘L U = ContinuousLinearMap.id ℂ H) : IsDensity (U ∘L ρ ∘L adjoint U) :=
@@ -465,9 +482,9 @@ theorem IsDensity.conj {H H' : Type} [NormedAddCommGroup H] [InnerProductSpace �
 /-! ## The tensor product `H ⊗ ℓ²(J)` as `ℓ²(J; H)`, and the partial trace over `J` -/
 
 section PTrace
-variable {H : Type} [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
-variable {J : Type} [DecidableEq J]
-variable {K : Type} [NormedAddCommGroup K] [InnerProductSpace ℂ K] [CompleteSpace K]
+variable {H : Type u} [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
+variable {J : Type u} [DecidableEq J]
+variable {K : Type u} [NormedAddCommGroup K] [InnerProductSpace ℂ K] [CompleteSpace K]
 
 /-- `slot j : H → ℓ²(J; H)`, `x ↦ x ⊗ δⱼ`. -/
 noncomputable def slot (j : J) : H →L[ℂ] lp (fun _ : J => H) 2 :=
@@ -734,10 +751,10 @@ end PTrace
 /-! ## `ℓ²(I × J) ≅ ℓ²(J; ℓ²(I))` and the partial trace on `ℓ²(I × J)` -/
 
 section Prod
-variable {I J : Type} [DecidableEq I] [DecidableEq J]
+variable {I J : Type u} [DecidableEq I] [DecidableEq J]
 
 /-- The product basis indexed by `I × J`. -/
-noncomputable def prodBasisIJ {H : Type} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
+noncomputable def prodBasisIJ {H : Type u} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
     [CompleteSpace H] (b : HilbertBasis I ℂ H) : HilbertBasis (I × J) ℂ (lp (fun _ : J => H) 2) :=
   HilbertBasis.mkOfOrthogonalEqBot ((orthonormal_slot (J := J) b).comp Prod.swap
     Prod.swap_injective) (by
@@ -749,7 +766,7 @@ noncomputable def prodBasisIJ {H : Type} [NormedAddCommGroup H] [InnerProductSpa
 
 /-- `ℓ²(I × J) ≃ ℓ²(J; ℓ²(I))`, `δ₍ᵢ,ⱼ₎ ↦ δᵢ ⊗ δⱼ`: the concrete tensor product
 `ℓ²(I) ⊗ ℓ²(J) = ℓ²(I × J)`. -/
-noncomputable def l2ProdEquiv (I J : Type) [DecidableEq I] [DecidableEq J] :
+noncomputable def l2ProdEquiv (I J : Type u) [DecidableEq I] [DecidableEq J] :
     lp (fun _ : I × J => ℂ) 2 ≃ₗᵢ[ℂ] lp (fun _ : J => lp (fun _ : I => ℂ) 2) 2 :=
   (prodBasisIJ (J := J) (default : HilbertBasis I ℂ (lp (fun _ : I => ℂ) 2))).repr.symm
 
@@ -761,7 +778,7 @@ theorem l2ProdEquiv_single (i : I) (j : J) :
   rw [← HilbertBasis.repr_symm_single]; rfl
 
 /-- `l2ProdEquiv` as a bounded operator. -/
-noncomputable def l2ProdCLM (I J : Type) [DecidableEq I] [DecidableEq J] :
+noncomputable def l2ProdCLM (I J : Type u) [DecidableEq I] [DecidableEq J] :
     lp (fun _ : I × J => ℂ) 2 →L[ℂ] lp (fun _ : J => lp (fun _ : I => ℂ) 2) 2 :=
   ((l2ProdEquiv I J : lp (fun _ : I × J => ℂ) 2 ≃ₗᵢ[ℂ] lp (fun _ : J => lp (fun _ : I => ℂ) 2) 2) :
     lp (fun _ : I × J => ℂ) 2 →L[ℂ] lp (fun _ : J => lp (fun _ : I => ℂ) 2) 2)
@@ -771,7 +788,7 @@ noncomputable def ptraceR (T : lp (fun _ : I × J => ℂ) 2 →L[ℂ] lp (fun _ 
     lp (fun _ : I => ℂ) 2 →L[ℂ] lp (fun _ : I => ℂ) 2 :=
   ptrace (l2ProdCLM I J ∘L T ∘L adjoint (l2ProdCLM I J))
 
-theorem adjoint_comp_self_linearIsometryEquiv {E F : Type} [NormedAddCommGroup E]
+theorem adjoint_comp_self_linearIsometryEquiv {E F : Type u} [NormedAddCommGroup E]
     [InnerProductSpace ℂ E] [CompleteSpace E] [NormedAddCommGroup F] [InnerProductSpace ℂ F]
     [CompleteSpace F] (U : E ≃ₗᵢ[ℂ] F) :
     adjoint (U : E →L[ℂ] F) ∘L (U : E →L[ℂ] F) = ContinuousLinearMap.id ℂ E := by

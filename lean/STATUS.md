@@ -60,7 +60,7 @@ Finitely many parties (`Fintype ι`); input alphabets `I k` arbitrary (any cardi
 - Formulation: for infinite alphabets W = |U⟩⟩⟨⟨U| and the local Choi operators are not trace class, so Tr[W(...)] cannot be a trace of trace-class products. W is kept as the family of its row vectors `rowVec U r = U† e_r` (entries `conj (M r c)`, `rowVec_apply`). The pairing with ρ is the series `∑_r bornTerm U ρ r`, `bornTerm U ρ r = ⟪u_r, ρ u_r⟫`, over sink outcomes r = (o, y) (i.e. 1 on output ancillas). `HasSum` = convergence of the net of finite truncations. In finite dimensions this is exactly `PFUL.Choi.born_eq_trace`.
 - `hasSum_bornTerm`: for any bounded U and trace-class ρ, the series converges to Tr(UρU†). `bornTerm_nonneg`: terms ≥ 0 for positive ρ.
 - `PFUL.Countable.valid_born_l2`: same hypotheses as `valid_density_l2`; row entries are `conj ∏ₖ Vₖ(…)`, and for every density ρ the pairing has nonnegative terms, `HasSum … 1`, and equals `Tr[Tr_Y(ΦρΦ†)]`.
-- Scope: local channels enter as Stinespring kernels V_k (unitary kernels), not as independent Choi operators of trace-class-input channels; general CPTP local maps on countable alphabets (Kraus families with infinitely many Kraus operators) are not covered.
+- Scope: here the local kernels are unitary; general channels are in PFUL/KrausL2.lean (next section).
 - Axioms: `propext`, `Classical.choice`, `Quot.sound`.
 
 ## Polar decomposition and ‖T‖₁ = Tr|T|: PFUL/Polar.lean
@@ -69,10 +69,24 @@ Finitely many parties (`Fintype ι`); input alphabets `I k` arbitrary (any cardi
 - `polar`: T = V|T| for **every bounded T** (no compactness needed). `partialIso_of_mem_orthogonal` (V = 0 on initSpᗮ), `norm_partialIso_of_mem`, `norm_partialIso_le`, `adjoint_partialIso_comp` (V†V = P), `adjoint_partialIso_comp_self` (V†T = |T|).
 - `absOp_mem`: T trace class ⇒ |T| trace class. `trace_absOp_eq`: Tr|T| is a nonnegative real equal to ‖√|T|‖₂². `traceNorm_eq_trace_abs`: **‖T‖₁ (= sup_{‖C‖≤1}|Tr CT|) = Tr|T|** for trace-class T.
 - Axioms: `propext`, `Classical.choice`, `Quot.sound`.
-- Not done: converse (Tr|T| < ∞ ⇒ T ∈ traceClass), uniqueness of the polar decomposition, compactness/spectral decomposition of trace-class operators.
+- `mem_traceClass_iff`: **T ∈ traceClass ↔ ∑ᵢ ⟪eᵢ, |T| eᵢ⟫ summable** (in any given Hilbert basis). Proof of ⇐: √|T| is Hilbert-Schmidt and T = (√|T| V†)† √|T|.
+- `IsPartialIsometry V` (V V† V = V), `isPartialIsometry_partialIso`, `IsPartialIsometry.proj` (V†V idempotent and self-adjoint).
+- `polar_unique`: if T = W A with A positive, ‖W(Ax)‖ = ‖Ax‖ and W = 0 on (range A)ᗮ, then A = |T| and W = partialIso T.
+- Not done: compactness/spectral (Schmidt) decomposition of trace-class operators.
+
+## General local channels on countable alphabets: PFUL/KrausL2.lean
+- Encoding: a local channel ρ ↦ ∑_y K_y ρ K_y† with countably many Kraus operators K_y : ℓ²(I_k × X_k) → ℓ²(O_k) is its Stinespring kernel `V k (o, y) (i, x) = ⟨o|K_y|i,x⟩` (Kraus index y = output ancilla, Y k countable). Completeness ∑_y K_y†K_y = 1 ⟺ `hiso`: `HasSum (fun r => star (V k r c) * V k r c') (if c = c' then 1 else 0)` (orthonormal columns; rows need not be orthonormal). No countability needed on I k, X k.
+- `induced_gram`: the induced kernel M r c = ∏ₖ Vₖ(rₖ)(w r k + c k, …) has orthonormal columns. Proof by polarization: for each pair of columns, a four-column polarized kernel per party (`(u + iᶠ v)/√2`) has unit columns, `induced_colnorm` gives unit norm of every polarized induced column, and `conj u · v = ½ ∑_φ conj(iᶠ)|(u + iᶠ v)/√2|²` (`polar_id`) is expanded multilinearly over the parties (`Fintype.prod_sum`).
+- `induced_isometry_l2`: a linear isometry Φ : ℓ²(sources × X) →ₗᵢ ℓ²(sinks × Y) with Φ δ_c = M(·, c) (via `Orthonormal.orthogonalFamily.linearIsometry`).
+- `valid_kraus_l2`: for every density ρ: ΦρΦ† and Tr_Y(ΦρΦ†) are density operators; the Born pairing (`bornTerm`, row vectors with entries conj ∏ₖ Vₖ) has nonnegative terms, `HasSum … 1`, and equals Tr[Tr_Y(ΦρΦ†)].
+- Axioms: `propext`, `Classical.choice`, `Quot.sound`.
 
 ## Universes
-- Not generalised: everything stays in `Type`. `traceClass` quantifies over Hilbert spaces `K : Type` in its generators and `IsHS` over index types `ι : Type`; moving to `Type u` needs universe-polymorphic restatements throughout TraceClass.lean (doable but not attempted in this pass).
+- TraceClass.lean, Polar.lean, BornPairing.lean are universe-polymorphic: `H : Type u`; HS maps out of H may land in any universe (`K : Type v`); trace-class generators A†B factor through Hilbert spaces in H's universe (`gens`), and basis-independence statements quantify over index types `ι : Type u` (Hilbert bases of H exist with index in Type u). `rankOne_mem` was reproved without passing through ℂ (factor through H with a unit vector), which is what made the generalization possible.
+- Countable.lean, Rows.lean, Assemble.lean, TraceValidity.lean, KrausL2.lean remain stated for alphabets in `Type` (finite parties `ι : Type`); these are combinatorial and were not generalised.
+
+## Standalone Mathlib-style file: MathlibPR/PolarDecomposition.lean (lean_lib `MathlibPR`)
+- Imports only Mathlib; namespace `ContinuousLinearMap`; `E : Type*`. `CFC.abs` based: `norm_abs_apply`, `polarInitial`, `polarIsometry`, `polarIsometry_comp_abs` (T = V|T|), `adjoint_polarIsometry_comp_polarIsometry_apply` (V†V = projection), `adjoint_polarIsometry_comp_self`, `norm_polarIsometry_le`, `IsPartialIsometry`, `isPartialIsometry_polarIsometry`, `polar_unique`. Builds; standard axioms only.
 
 
 ## Legacy Mathlib-free files (library `Legacy`)
