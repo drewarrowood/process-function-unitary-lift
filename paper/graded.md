@@ -541,7 +541,7 @@ She checks that the proof proves the statement. She cannot check that the statem
 
 So machine-checking moves trust; it does not remove it. Trust moves away from the long chain of inferences and onto three short things: the small kernel, the three axioms, and the *definitions*. Anyone can read `PFUL.IsProcessFunction` in two lines and judge whether it captures "exactly one consistent history for every intervention". That is a much smaller thing to trust than a long chain of index-juggling.
 
-**What remains unchecked.** The Choi form in infinite dimensions (Mathlib lacks trace-class operators). Continuous alphabets, which have no settled definition yet. Everything in the stochastic half (Parts VIII–XI): the certificates there are exact computer arithmetic, but they are not Lean proofs. And, of course, every philosophical claim.
+**What remains unchecked.** The process-matrix (Choi) form Tr[W(…)] = 1 in infinite dimensions. The trace form of validity there is now checked (see below). Continuous alphabets, which have no settled definition yet. Everything in the stochastic half (Parts VIII–XI): the certificates there are exact computer arithmetic, but they are not Lean proofs. And, of course, every philosophical claim.
 
 ---
 
@@ -596,7 +596,7 @@ The same argument also gives a second, *dimension-free* proof in the finite case
 **Still open or not formalised.**
 
 - **Continuous alphabets (open, F.5).** Take inputs in the real line or the circle. The open map U is still unitary on L², since it preserves measure. But "the loop closed with arbitrary local unitaries" involves evaluating functions at points, which is undefined for general L² unitaries. So the statement first needs a *definition*. The note suggests one, inspired by the countable proof, but it would need a measurable version of "exactly one fixed point". For measure-preserving local bijections the closed map preserves measure in the causal case, and this is open in the non-causal case.
-- **The process-matrix (Choi) form in infinite dimensions (not formalised).** The unitary layer is machine-checked for countable alphabets. Restating validity as "Tr[W(…)] = 1" there needs trace-class operators and partial traces on ℓ². Mathlib does not yet have them, so this was not attempted. It is a technical gap in the formalisation, not a doubt about the mathematics of the unitary layer.
+- **The process-matrix (Choi) form in infinite dimensions (partly formalised).** The unitary layer is machine-checked for countable alphabets. Mathlib does not have trace-class operators or partial traces on ℓ², so the project now builds them itself (`lean/PFUL/TraceClass.lean`). It proves that the trace converges and does not depend on the basis, that it is linear and cyclic, and that the partial trace exists, is unique, keeps positive operators positive and keeps the trace. With these, validity is restated for countable alphabets: every input density operator, entangled ancillas included, goes to an output state of trace 1, and so does the sink state after tracing out the ancillas (`PFUL.Countable.valid_density_l2`). What is still open is the literal form "Tr[W(…)] = 1". For infinite alphabets W and the local Choi operators are not trace class, so that pairing needs more than this library. It is a technical gap in the formalisation, not a doubt about the mathematics.
 
 ---
 
@@ -1098,7 +1098,7 @@ Two cautions. First, a checked theorem is only as good as its statement (Section
 > - **Facets from purifiability.** No facet inequality, for example orbit 82, has been derived from purifiability.
 > - **Where any proof must look.** Any proof must use the purifying unitary on source states orthogonal to the actual one. That is the non-convex isotropy condition of Araújo et al.'s Theorem 4, where every certificate attempt has stalled for the larger orbits: single-form inertia, block forms, SDP and moment relaxations.
 > - **Continuous alphabets.** The closed loop first needs a definition (F.5).
-> - **Not formalised.** The Choi form in infinite dimensions, because Mathlib lacks trace-class operators and partial traces on ℓ².
+> - **Not formalised.** The literal Choi form Tr[W(…)] = 1 in infinite dimensions, where W is not trace class. The trace form is checked: the project's own trace-class and partial-trace library (`lean/PFUL/TraceClass.lean`) gives `PFUL.Countable.valid_density_l2`, Tr = 1 for every input density operator on ℓ².
 > - **Not addressed.** Spacetime embedding, and lifts built from bijections other than U.
 
 *For definitions, full proofs, references and code pointers, see the technical note, [paper/lift.md](https://github.com/drewarrowood/process-function-unitary-lift/blob/main/paper/lift.md), and [lean/STATUS.md](https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/STATUS.md).*
