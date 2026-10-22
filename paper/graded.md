@@ -1125,6 +1125,10 @@ Two cautions. First, a checked theorem is only as good as its statement (Section
 
 The H.12 counterexample can be made much plainer. A board that uses only signs (±1) gives a counterexample in which every number is a simple fraction such as 1/16 or 9/16. The source state is just (|000>+|001>+|010>-|101>)/2. Each step between boards mixes 4 classical patterns instead of 8. This was checked in exact fraction arithmetic. Mixing two purifiable processes always gives a purifiable process: a hidden coin decides which purification runs. So the purifiable set is convex. It sits strictly between the mixtures of process functions and the valid processes. A complete search of one natural family of boards (13,105 boards) shows which facets of the hull can be crossed and roughly by how much. 31 of the 93 facet types were never crossed. These are numerical leads, not theorems.
 
+### 72. Where the line falls (H.14)
+
+A board whose steps each mix at most three classical flip patterns of the plain (X-only) kind can never leave the hull. This is now proved, so four patterns is exactly where X-only counterexamples start. Allowing eighth roots of unity instead of fourth roots crosses 8 more facet types of the hull. Those crossings are checked in exact arithmetic. 23 facet types have still never been crossed. The largest crossings found have exact values such as (√17−3)/8. The pattern suggests, without proving it, that the purifiable set has a curved boundary and is not a polytope.
+
 ---
 
 ## What is proved, what is evidence, what is open

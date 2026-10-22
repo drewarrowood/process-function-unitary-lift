@@ -1011,6 +1011,60 @@ This is a lower bound on the violation over Purif, not the maximum. General boar
 
 **Partial characterization (status).** Proved: Purif is convex, with conv(PF) ⊊ Purif ⊊ Valid. Two-term boards stay inside conv(PF) (H.10.6). The commuting/monomial boards do too (H.8.4). Four-term ±1 boards can leave it (H.13.2). Not proved: three-term boards; whether the 31 unviolated orbits are valid on all of Purif; whether Purif is a polytope; whether X-type boards already give all of Purif.
 
+### H.14 Three-term boards, wider phase groups, exact per-orbit maxima (Oct 22 2026) [proved: H.14.1, H.14.2; exact algebraic values: H.14.3; numerical: H.14.4]
+
+Code: code/stochastic/cyclic/switchboard/h13/ (z8enum.py, canonN.py, analyzeN.py, cert_z8.py, exactmax.py, threeterm.py; logs alongside).
+
+**H.14.1 X-type boards with at most three terms are PF blends [proved].** Call a board X-type k-term if there is a common unitary W such that every U_o W is a combination of at most k X-strings. (W only moves the source: phi -> W^dag phi.)
+
+*(a) No X-type unitary has exactly three terms.* Suppose U = X^a(α + βX^u + γX^v), with u, v, u xor v distinct and nonzero. Its eigenvalues are α + βχ(u) + γχ(v), over the four sign pairs (χ(u), χ(v)) ∈ {±1}^2. Unitarity needs all four to have modulus 1. Comparing them pairwise gives Re(αβ̄) = Re(αγ̄) = Re(βγ̄) = 0. Read α, β, γ as vectors in R^2: they would then be pairwise perpendicular, which is impossible when all three are nonzero. ∎
+
+So an X-type ≤3-term board has U_o = X^{a(o)} G_o, with G_o = α_o 1 + β_o X^{d(o)} (unitary iff Re(α_o β̄_o) = 0 and |α_o|^2 + |β_o|^2 = 1).
+
+*(b) Theorem.* Every such board gives p_phi ∈ conv(PF) for every phi. This generalises H.10.6: t, the phases and d may all vary with o.
+
+*Proof.* Put o and o' in the same class when G_{o'} ∝ G_o. If G_{o'} ∝ G_o X^{d}, rewrite a(o') -> a(o') xor d, which puts o' in the same class. Then:
+- Same class: K = X^{a xor a'}, and the rule makes a xor a' allowed.
+- Different classes with the same d: G G'^dag has both 1 and X^d with nonzero coefficients, so a xor a' and a xor a' xor d are both allowed.
+- Different d, both two-term: the four strings a xor a', a xor a' xor d, a xor a' xor d', a xor a' xor d xor d' are distinct with nonzero coefficients. So all four are allowed. One-term classes are the special case β = 0.
+
+Hence every class-constant selection o -> a(o) xor h_{κ(o)}, with h_κ ∈ {0, d_κ}, is pairwise exclusive on every pair (o, o'). By H.10.3 (exhaustive and exact: pairwise exclusivity ⇔ PF), it is a PF. The coset-transport construction of H.10.6, with H_κ = {0, d_κ}, then writes p_phi as a PF blend. ∎
+
+This replaces the enumeration in H.10.6 with a proof that uses no computer apart from H.10.3. With H.13.2, the threshold for X-type boards is now exact: **≤3 terms always blend, and 4 terms can violate the hull.**
+
+*(c) General (non-X) three-term unitaries [proved form; hull question open].* Write U = αP + βQ + γR with Paulis P, Q, R, so P^dag U = α + βA + γB.
+- If A and B commute, the argument of (a) applies, so U has at most 2 terms.
+- If A and B anticommute, unitarity forces U ∝ P exp(i t(cos f A' + sin f B')) with Hermitian A' ∝ A and B' ∝ B.
+
+A left Z-string factor leaves p unchanged but does change the Pauli rule. So Paulis with Z components genuinely enlarge the family. threeterm.py anneals over the discrete structure (P_o, A_o, B_o) to satisfy the rule identically. In 30 runs over 7 seeds it never reached an admissible board with genuinely anticommuting terms: the residual stayed at 15-22 [numerical, inconclusive]. **Whether non-X three-term boards can leave the hull is open.**
+
+**H.14.2 Z_8 boards violate 8 of the 31 orbits that Z_4 never violated [proved; exact arithmetic in Q(ζ_8)].** z8enum.py enumerates pure Z_8 X-type boards with the same gauge as H.13.3 and an exact integer Pauli test (in the basis 1, ζ, ζ^2, ζ^3 of Z[ζ_8]).
+- There are exactly **500,081** boards, in 10,603 classes. As a cross-check, the same code with N = 4 gives the H.13.3 count 13,105.
+- Float screen: 88 classes violate. Of these, 76 use odd powers of ζ_8. They reach 70 of the 93 orbits.
+- cert_z8.py certifies the following exactly for class 10515, phases ζ_8^m with m given in cert_z8.log:
+  - unitarity;
+  - the Pauli rule, so the board is pure;
+  - validity, for a Gaussian-rational source vector v;
+  - a negative facet value of the form a + b sqrt 2, for **orbits 16, 19, 21, 24, 27, 29, 52 and 67**.
+- The relative violations are 0.0021, 0.0019, 0.0021, 0.0014, 0.00026, 0.00025, 0.00057 and 0.00057.
+- Remaining **never-violated orbits (23):** 4-11, 14, 25, 26, 28, 30, 31, 53, 54, 57, 66, 69, 75, 79, 81, 92.
+- Z_8 also raises the maxima on orbits 34, 35, 37, 38, 42, 44, 49 and 71, by 2-7% [numerical]. The overall maximum, 0.1404 on orbit 91, does not move.
+
+**H.14.3 Exact per-orbit maxima over Z_4 X-type boards [exact algebraic numbers for float-selected maximisers].** For each violated orbit, take the (class, facet) with the largest float violation. Its maximum over source states is -λ_min(F), and λ_min is an exact root of the integer characteristic-polynomial factor in exactmax_part{1,2}.log (flint/sympy, from an exact rational facet g). Examples:
+- Orbit 91: λ = (3 - sqrt 17)/4 on range 2, so relative violation **(sqrt 17 - 3)/8 ≈ 0.14039**.
+- Orbits 82-84: root of 4x^2 - 4x - 1, so **(sqrt 2 - 1)/4 ≈ 0.10355**.
+- Orbits 60, 61, 76, 78: root of 2x^2 - 3x - 1, on range 3, so **(sqrt 17 - 3)/12 ≈ 0.09359**.
+- Orbits 32-35, 48, 49, 70: root of 4x^2 - 8x - 1, on range 4, so **(sqrt 5 - 2)/8 ≈ 0.02951**.
+- The other orbits have roots of quartics up to octics.
+
+These are exact values of the maximiser that the float screen picked. They are exact family maxima only up to that float argmax over (class, facet), and they are maxima for Z_4 boards, not for Purif (Z_8 already exceeds them on 8 orbits).
+
+**H.14.4 Is Purif a polytope? Do X-type boards generate it? [evidence only].**
+- For every orbit checked, the maximiser's optimum is irrational: a root of an irreducible polynomial of degree ≥ 2 (H.14.3). So each board's region is a curved spectrahedral shadow.
+- The certified violations grow from Z_2 to Z_4 to Z_8: 2, then 12, then 88 violating classes; 62, then 70 orbits. Nothing has saturated.
+
+This suggests, but does not show, that Purif (convex by H.13.1) is not a polytope, and that finite phase groups only approximate it. No proof either way. Whether non-X-type or ancilla boards add anything beyond X-type is open.
+
 ## Appendix I. Robustness: approximately blended versus approximately liftable (Oct 22 2026)
 
 Norm: for classical processes, ||p - q||_1 = sum over (i,o) of |p(i|o) - q(i|o)|. For machines, the switchboard residual is rho(U) := sqrt(R(U)), the l2 norm of the forbidden Pauli coefficients (H.8.1).
