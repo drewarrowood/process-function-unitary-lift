@@ -102,6 +102,8 @@ This section is a map of the current status. Labels follow the appendices: **[pr
 - *Three parties, a party last* (Theorem H.1). If some party's output influences nothing, the process is a PF blend.
 - *Three parties, causally separable* (Theorem H.2). If some party is first and every conditional bipartite process is valid, the process is a PF blend. So every classically causally separable three-party process is a blend of causally ordered process functions, and the conjecture holds on that class trivially.
 - *Three parties, a party first in the purification* (Lemma H.6.1, Theorem H.6.2). If some purification of W has a party whose input is prepared from the source alone (operator-level first: V factorises through that party's input), then every conditional bipartite process is valid and purifiable, and W is a PF blend. So a purifiable process outside the hull could only have purifications in which every party's input is influenced by some party output. Lugano has no purification with an operator-first party.
+- *Switchboard structure* (H.8). The H.7.1 purity conditions are equivalent to a Pauli-span condition, K_{o,o'} in the span of the operators trivial on some party whose output changed, which is the operator form of exclusivity. Checked in exact arithmetic. Ancillas add no conditions, so H.7.1 is full purity. Operator-first and operator-last parties are read off K. Monomial or commuting switchboards give PF blends for every source state (H.8.1-H.8.5).
+- *Robustness, trivial halves* (I.1-I.3). Being eps-close to a blend implies being eps-close to purifiable. A quantitative converse is equivalent to the conjecture. In family C the machine residual bounds the operator purity defect.
 - *Structure of purifications* (D.1, D.2, D.5). The sink records (o, i) orthogonally. Constraints on the fixed source state are vacuous. Validity under quantum-controlled interventions holds for every classical process.
 
 **Certified exact non-purifiable.** E_ex1, and vertex orbits 7 and 50 (one of which contains E_ex1): exact inertia certificates (C.2; code/stochastic/cert). They are not mixtures of process functions, so they agree with the conjecture.
@@ -112,6 +114,7 @@ This section is a map of the current status. Labels follow the appendices: **[pr
 - *Marginally-first reduction* (H.5). Purifiability plus "party A's input marginal is output-independent" does not force valid conditionals. The operator-level version does (H.6). An exact counterexample is a 4-term PF blend. So H.2 cannot be extended this way to E_ex1 and orbits 7, 8, 50, even though all of them are marginally first in some party (H.1 numerics).
 - *Form-based certificates for orbits 8/10/20* (C.5). Every linear or block-Hermitian combination of the constraint forms tried stalls at lambda_16 ~ +1e-4. Adding the Gram normalisation provably adds nothing. The obstruction is non-convex. The earlier estimate that "about half" of the open orbits are certifiable by the current pipeline is **withdrawn**.
 - *Moment relaxation* (Appendix E). The degree-2 relaxation is feasible for E_ex1, so it is weaker than single-form inertia.
+- *Degree-4 single-vector certificates for orbit 8* (C.6) [numerical]. Random 67-dim (even 60-dim) subspaces of V_W, with the radical removed, contain jointly isotropic vectors (loss 1e-9 to 2e-7, against a baseline of 0.1). So the C.5 degree-4 proposal fails for random L, and full-frame level-2 Lasserre is about 3.4e6 in size. No paid compute was used.
 - *Single-vector determinantal bound for orbit 8* (H.2 route B) [numerical]. The jointly isotropic cone contains vectors with rank K(u) of about 51-55, so the bound gives only dim <= ~28-32, not < 16.
 
 **Numerical evidence (not proof).**
@@ -119,10 +122,11 @@ This section is a map of the current status. Labels follow the appendices: **[pr
 - *Isotropic dimension* (C.5). For orbits 8, 10 and 20, constraint-isotropic subspaces appear to exist up to dimension ~10 and fail by 12. A purification needs 16.
 - *Facets* (D.7). Facet orbit 82 is violated by E_ex1 and by all 51 sampled non-deterministic vertex orbits.
 - *Boundary* (D.8). Along Lugano -> E_ex1, purifiability appears to stop where the PF hull does.
+- *Switchboard robustness* (H.8, I.4). Minimising the exact purity residual R at prescribed facet-82 violation v always gave R >= 0.31 v^2, i.e. violation <= 1.79 sqrt(R): 108 runs, v from 0.01 to 0.9. No counterexample in family C.
 - *Unitary-side hunt* (H.3). Optimising unitaries for purity, classicality and facet violation found no purifiable process outside the hull. From Lugano, facet violation of ~0.01 costs a purity residual of 0.1-2.4.
 
 **Open.**
-- The "only if" half for **purifications with no operator-first party**: every party's input is influenced by some party output in V, as in the Lugano-type cyclic lifts. By H.6 this is the only place a purifiable non-blend can live. It contains Lugano-type process functions, their blends, and every candidate counterexample (E_ex1 and all 51 sampled orbits fail first-with-valid-conditionals in every party, so any purification of them has no operator-first party). H.7 [numerical] searched this class with three binary parties. It found pure purifications with complete causal graphs, beyond Lugano: one with a separable W, and a non-separable continuous family near Lugano. Every induced process found lies in conv(PF); no counterexample.
+- The "only if" half for **purifications with no operator-first party**: every party's input is influenced by some party output in V, as in the Lugano-type cyclic lifts. By H.6 this is the only place a purifiable non-blend can live. It contains Lugano-type process functions, their blends, and every candidate counterexample (E_ex1 and all 51 sampled orbits fail first-with-valid-conditionals in every party, so any purification of them has no operator-first party). H.7 [numerical] searched this class with three binary parties. It found pure purifications with complete causal graphs, beyond Lugano: one with a separable W, and a non-separable continuous family near Lugano. Every induced process found lies in conv(PF); no counterexample. H.8/H.9 (Oct 22) prove the Switchboard's structure (Pauli form, ancillas redundant, commuting case) and leave the hull question open (conjectures C1, C2 in H.9).
 - The exact status of **orbits 8, 10, 20** (dim V_W = 82) and **the other 46 sampled open orbits**: numerically non-purifiable, with no exact certificate.
 - Deriving any PF-hull facet (for example orbit 82) from purifiability. Any proof must use the purifying unitary on source states orthogonal to the fixed source state (D.2, D.8). That is the non-convex isotropy condition of AFNB Theorem 4.
 
@@ -272,6 +276,16 @@ The control register must enter through the source and leave through the sink. I
 - Earlier single-form runs (20 time-boxed rounds per orbit, `cert/results_cpu/status.jsonl`) and block forms with k = 2 (`cert/better/NOTES.md`) found no certificate. The best bound was 20.5 > r = 16.
 - New numerical probe (`cert/isodim.py`, logs in `cert/better/isodim*.log`; 8 CPU threads, 2 restarts x 600 Adam steps per size). It asks for the largest complex subspace of V_W that is totally isotropic for all constraint forms, ignoring the Gram and fixed-vector conditions. Isotropy loss at dimension 8 / 10 / 12: orbit 8: 1.3e-3 (3.7e-6 after 2,500 steps) / 0.22 / 0.68 (14: 1.46; 16: 2.34); orbit 10: 1.5e-5 / 1.3e-5 / 0.55; orbit 20: 2.0e-6 / 2.6e-4 / 0.53. So isotropic subspaces seem to exist up to dimension about 10 and to fail by 12. That is far below r = 16, which is consistent with non-purifiability, but it is numerical only.
 - Why the linear certificate families fail. A Hermitian combination H of the constraint forms certifies only if n+(H) + n0(H) < 16, i.e. n-(H) >= 67 of 82. The searches plateau at lambda_16(H)/||H|| ~ +1e-4. Adding the Gram normalisation C^H G C = tr(W) I does not help: G is PSD, so n+(H + muG) >= n+(H) for mu > 0, and the extended test certifies nothing the plain test cannot. The fixed vector c0 lies in the common radical (NOTES item 3). So the gap between the isotropic dimension (~10) and r (16) is invisible to every linear or block-Hermitian form tried. It is a genuinely nonlinear (non-convex) obstruction. A sound exact certificate would need, e.g., a degree-4 Positivstellensatz showing that some 67-dim subspace of V_W contains no nonzero jointly isotropic vector, or a determinantal argument (rank K(u) > 66 on the jointly isotropic cone). Neither has been set up: an unreduced degree-4 SDP has ~10^4-size blocks, which is beyond this box (8 cores, 15 GB) and far beyond the per-orbit budget. The larger orbits (dim V_W 112-256) face the same obstruction with a larger gap, so the estimate that about half are certifiable by the current pipeline is not supported.
+
+**C.6 Degree-4 certificates for orbit 8 (Oct 22 2026) [numerical obstruction; no certificate; no paid compute used].** C.5 proposed a degree-4 Positivstellensatz: exhibit a subspace L of V_W of dimension 67 that contains no nonzero jointly isotropic vector. That would rule out an isotropic 16-plane, since 16 + 67 > 82. The degree-2 (form-based) version provably fails (C.5). Before renting hardware I tested whether any certificate of this shape can exist.
+- *Radical.* The common radical of the 4096 constraint forms (as sesquilinear forms on V_W, orbit 8) has dimension exactly 1 (c0; smallest singular values 0.81, 0.81, 2e-14). So work in R^perp (dim 81). (cert/cone67c.py)
+- *Probe.* For Haar-random L in R^perp, minimise the isotropy loss f(u) = ||L3perp(X(u) Lam X(u)^H)||^2 over unit u in L (Adam, then L-BFGS). The baseline for random unit u is min 0.078, median 0.108.
+  - d = 67: minimum 1.9e-9 (cone67c_orbit8.log). An earlier run without removing the radical gave 1.3e-8 (cone67b_orbit8.log).
+  - d = 60: minimum 2.3e-7 (cone60c_orbit8.log).
+- *Reading [numerical].* The loss falls 7-8 orders of magnitude below baseline. So random subspaces of dimension 67, and even 60, contain (numerically) jointly isotropic vectors outside the radical. A certificate "L has no isotropic vector" of any degree cannot exist for such an L, because it would be a proof of a false statement. The set of isotropic directions is large: it meets random subspaces of codimension at least 21 in R^perp. This matches H.2, which found tangent dimension about 27-31 on the cone. The forms are real quadratic (sesquilinear), so the complex projective dimension theorem does not apply, and I have not proved that *every* 67-dim L meets the cone. A specially chosen L is not excluded by this probe. But no construction of one is known, and random choice fails.
+- *The remaining degree-4 route is out of reach by size.* Level-2 Lasserre on the full frame problem (16 x 82 complex, i.e. 2,624 real unknowns) has a moment matrix indexed by monomials of degree <= 2: about 3.4 x 10^6 rows. That is far beyond any $60 machine. Quotienting by the U(16) frame symmetry leads to the projector relaxation of Appendix E (degree 2 in P = degree 4 in the frame). That relaxation is already feasible for E_ex1, so it is weaker than single-form inertia and cannot certify orbit 8.
+- *Spend.* Because both degree-4 formulations are ruled out (one numerically, one by size and by the E_ex1 control), no instance was rented. **Paid compute used: $0.** Existing vast.ai CLI credentials were found on the box and left untouched. **No certificate for orbit 8. Status unchanged: [numerical only].**
+
 
 *Proof idea for "only if" (not completed).* A purification U restricted to classical permutation instruments gives a unitary M for every reversible local classical operation. One would like to show that M's action on basis states then decomposes into permutations, giving a deterministic decomposition. We have not proved this. E_ex1 shows the classical consistency of W alone is not enough.
 
@@ -720,7 +734,7 @@ lemmaC.py confirms the condition numerically:
 | polished solutions in the table below | 3e-11 to 3.5e-9 |
 | rand_12 (polished only to 1.6e-6) | 6.3e-6 |
 
-With ancillas the condition is necessary; I have not shown that it is sufficient.
+With ancillas the condition is necessary. It is also sufficient: see H.8.2 (added Oct 22 2026).
 
 **Searches in family C [numerical].** Method: Adam on purity, using sampled local unitaries with and without qubit ancillas (famC.py), then L-BFGS polishing in float64 on a fixed batch of 12 samples (polish.py), then the tests above on fresh samples (characterize.py; charP.json, charP2.json, charL.json).
 - Random starts: 11 seeds. 1 failed to become pure (rand_11, polish loss 224). 1 reached only purity 1.6e-6 (rand_12).
@@ -753,10 +767,84 @@ With ancillas the condition is necessary; I have not shown that it is sufficient
 *Names.* The gentle version (graded.md, Section 58e) uses informal names: the Ring (the 64 Lugano-orbit single-PF lifts of family A), the Chorus (family B), the Switchboard (family C) and the Shadows (lug_21-23).
 
 **What remains open.** The conjecture on the class of purifications with neither an operator-first nor an operator-last party.
-- Within family C, Lemma H.7.1 turns no-ancilla purity into linear conditions on the products C_o C_o'^dag. A proof that these conditions, together with the ancilla conditions, force p into conv(PF) would settle family C. Not attempted.
+- Within family C, Lemma H.7.1 turns no-ancilla purity into linear conditions on the products C_o C_o'^dag. A proof that these conditions, together with the ancilla conditions, force p into conv(PF) would settle family C. Attempted in H.8: the ancilla conditions are implied (H.8.2), and the hull question is still open.
 - Family C has source dimension 64 and records (o, i) in the sink. General purifications can have larger sources and need not have this form (D.4).
 - These searches cover a small, structured slice. They are local and few: 13 pure solutions in total.
 - **Running jobs:** none. All runs completed or were stopped; the logs are in code/stochastic/cyclic/.
+
+### H.8 The Switchboard lemma: Pauli form, ancillas, and what is and is not forced (Oct 22 2026) [proved parts; hull question numerical]
+
+Task: do the purity conditions of Lemma H.7.1 force the induced p into conv(PF) (37-dim, 744 vertices)? **Answer: not settled.** The conditions are equivalent to full purity, so this is the conjecture restricted to family C. A numerical search (108 runs) found no counterexample, and the trade-off between violation and purity residual is quadratic (Appendix I). What is proved: H.8.1-H.8.5. Code: code/stochastic/cyclic/switchboard/.
+
+Notation. Write U_o := C_o (8x8 unitary, rows indexed by the input string e = (e_A, e_B, e_C)), K_{o,o'} := U_o U_{o'}^dag, and D(o,o') := supp(o xor o'). For a unit source vector phi in S put psi_o := U_o phi. Then p_phi(i|o) = |<i|psi_o>|^2, and psi_o = K_{o,o'} psi_{o'}. The source column s = 0 of H.7 is phi = |0>. The H.7.1 conditions do not mention phi, so every phi gives a purification.
+
+**H.8.1 Pauli form [proved; exact check].** For o != o', the H.7.1 conditions on K = K_{o,o'} hold iff every Pauli coefficient c_{a,b} = Tr[(X^a Z^b)^dag K]/8 vanishes for strings that are non-identity on every party of D. Equivalently,
+
+    K_{o,o'} in A_D := sum over k in D of (1_k (x) L(C^4)),
+
+the linear span (not the union) of the operators that act trivially on at least one party whose output changed.
+*Proof.* K[e, e xor delta] = sum_b c_{delta,b} (-1)^{b.(e xor delta)}. On S we have delta_S = 0, and sum over e_k of (-1)^{e_k} (-1)^{b_k e_k} equals 2[b_k = 1]. So the signed sum over e_S equals 2^{|S|} times the sum, over the b with b_S = 1, of c_{delta,b} (-1)^{b_{S^c}.(e xor delta)_{S^c}}. As e_{S^c} varies, this is a Fourier transform in b_{S^c}. It vanishes for every e_{S^c} iff c_{delta,b} = 0 whenever b_S = 1, with S = D \ supp(delta). That is, X^delta Z^b is forbidden iff, at every k in D, delta_k = 1 or b_k = 1. ∎ *Exact check* (pauli_exact.py, rational arithmetic with python-flint): for all 7 nonempty D the two families of functionals have equal rank and equal joint rank. The ranks are 48 / 36 / 27 for |D| = 1 / 2 / 3, so the allowed spaces have dimensions 16 / 28 / 37. The stored H.7 solutions satisfy both forms to the same precision (pauli.py).
+*Sanity check.* For a process function, U_o = X^{w(o)} and K = X^{w(o) xor w(o')} is a single Pauli. It is allowed iff w_k(o) = w_k(o') for some k in D, which is the exclusivity lemma of Section 1. So H.8.1 is the operator-valued version of exclusivity, with a span in place of a union.
+
+**H.8.2 Ancillas add nothing in family C [proved].** Family C is pure under local unitaries with arbitrary finite ancillas iff it is pure without them, iff H.8.1 holds. This settles the question left open after H.7.1.
+*Proof.* With ancillas, rows of M are labelled (o, t', y). The row inner product is sum_e K[e, e xor delta] prod_k N_k(e_k), with N_k(e) = sum_x U_k[(o_k,y_k),(e,x)] conj U_k[(o'_k,y'_k),(e xor delta_k, x)]. As in H.7.1, N_k spans C^2 unless (o_k,y_k) != (o'_k,y'_k) and delta_k = 0, in which case it spans (1,-1). The parties with (o_k,y_k) != (o'_k,y'_k) form a set D' that contains D. If o = o', then K = 1 and every condition holds trivially. If o != o', the condition for D' is a further signed sum of the condition for D, because S' = D' \ supp(delta) contains S. So it is implied. ∎ So the 13 H.7 solutions are pure with ancillas exactly, not just numerically.
+
+**H.8.3 Causal structure, read off K [proved].** In family C:
+- (no self-influence) K_{o, o xor e_j} in 1_j (x) U(4) for every o and j;
+- O_j influences I_k (BLO sense) iff some K_{o, o xor e_j} acts non-trivially on k;
+- party k is operator-first iff every K_{o,o'} acts trivially on k, i.e. U_o = (1_k (x) R_o) U_0;
+- party j is operator-last iff K_{o, o xor e_j} is a scalar for every o.
+*Proof.* The Heisenberg pull-back of an observable A on I is sum_o |o><o| (x) G_o(A), with G_o(A) = sum_x U_o^dag A^{(x)} U_o (x) X^x on T. Here A^{(x)} is the part of A whose matrix entries connect e to e xor x. The register T and the sink record o make the pull-back block diagonal in o. Independence of o_j for every A supported on I_k means that U_o^dag sigma_k U_o is the same for o and o xor e_j for every Pauli sigma_k. Equivalently, K commutes with every Pauli on k, so it is trivial on k. For lastness take A on all of I; then K commutes with everything, so it is a scalar. The first item is H.8.1 with |D| = 1. Operator-first follows by composing along edges of the cube {0,1}^3. ∎ So "no first and no last party" means: every party k has some cube edge whose transition acts on k, and no direction j has only scalar transitions.
+
+**H.8.4 Monomial switchboards are PF blends for every source state [proved].** If every U_o U_0^dag is monomial (a permutation matrix times a diagonal phase), or more generally if the rank-one projectors P_{o,i} := U_o^dag |i><i| U_o all commute, then p_phi is in conv(PF) for every phi.
+*Proof.* Commuting rank-one projectors that sum to 1 over i, for each o, are the projectors onto one common orthonormal basis {b_j}: P_{o,i} = |b_{j(o,i)}><b_{j(o,i)}|. For phi = b_j the induced p is 0/1. It is valid by Appendix A, since b_j is a legitimate source state (H.8.1 does not mention phi). A 0/1 valid classical process is a process function. Then p_phi = sum_j |<b_j|phi>|^2 p_{b_j}. ∎ This covers the Ring (all single-PF lifts and their pure phase variants) and the classical reversible case (D.6).
+
+**H.8.5 Single-party edges preserve that party's marginal [proved].** If o and o' differ only at k, then psi_o = (1_k (x) R) psi_{o'}. So the distribution of e_k is the same under o and o'. Party k cannot signal to itself even in superposition. Two-party differences give K in A_A + A_B. This is a sum, and it contains unitaries such as cos(theta) X_A + i sin(theta) X_B, which no single process function produces. That interference is what a proof would have to control.
+
+**The hull question [numerical].** By H.8.2, "do the H.7.1 conditions force p into conv(PF)?" is exactly the purification conjecture restricted to the Switchboard. Equivalently, F_m(U) := sum over (s,i,o) in m of s P_{o,i} <= 0 (operator inequality) for every facet m of the 37-dim hull, whenever U satisfies H.8.1. The search of Appendix I minimises the exact residual R(U) = sum over o != o' of the squared forbidden Pauli coefficients, at prescribed facet-82 violation v = lambda_max(F_m) > 0. It never found R -> 0. The minimum found was R >= 0.31 v^2 over 108 runs (random, Lugano and H.7-solution starts; v = 0.01 to 0.9). **No counterexample.** Note that the class is compact: if inf R = 0 at some fixed v > 0, a limit point would be an exact counterexample. So the observed quadratic floor is the quantitative form of the evidence. It is not a proof.
+
+**Where a proof stopped.** H.8.4 covers the commuting case. The Shadows (lug_21-23) are non-commuting and genuinely non-separable, yet inside the hull. So a general proof must decompose p_phi into PFs without a common eigenbasis, for instance by a phi-dependent basis or by an SOS identity of the form -lambda_max(F_m) >= -c sqrt(R). The numerics suggest c ~ 1.8 for facet 82. I did not find such an identity. An exact SOS search in the 8 x 64 complex entries of U (quartic in U) was not set up.
+
+### H.9 Toward a structure theorem: three binary parties, no operator-first and no last party (Oct 22 2026) [partial; proved vs conjectured marked]
+
+**Proved.**
+1. (H.6.2, H.1) A purifiable W outside conv(PF) has only purifications with no operator-first party and no W-level last party. An operator-last party makes W independent of that output, so H.1 applies. Purifications with an operator-last party are therefore also excluded.
+2. (Family C, H.8) Inside the Switchboard the open class is the set of 8-tuples of unitaries with K_{o,o'} in A_{D(o,o')} (H.8.1), with every party acted on by some edge transition and no direction scalar (H.8.3). On this class purity with and without ancillas coincide (H.8.2). The commuting/monomial sub-class lies in conv(PF) for every source state (H.8.4). That sub-class contains the whole Ring (the 64 Lugano-orbit lifts).
+3. (Family B) The Chorus shows that the open class contains purifications of causally separable W (H.7). So any structure theorem must be a statement about the record W, not about V: "no first mover in V" does not force non-separability.
+4. (No reduction to a canonical form) D.4 already shows that no hidden classical label can be read off. H.8.1 shows the Switchboard transitions live in sums of algebras rather than unions, so purifications are not, up to local unitaries, coherent controls over single process functions. The Shadows are explicit numerical examples (non-monomial C_o).
+
+**Conjectured (not proved).**
+- (C1) Switchboard conjecture: H.8.1 implies F_m(U) <= 0 for every hull facet m. Quantitatively, lambda_max(F_m(U)) <= c sqrt(R(U)) with c ~ 1.8 for facet 82 (Appendix I, numerical).
+- (C2) Every three-party binary purification with no operator-first party can be brought, by local unitaries on source and sink and an enlargement of the source, into Switchboard form with the sink recording (o, i). D.1 gives the orthogonal record of (o, i), but not the controlled-unitary structure of the source. If (C1) and (C2) both held, the three-party binary conjecture would follow. Neither is proved, and (C2) is a guess based only on D.1.
+
+**Not attempted.** Larger sources than C^8 (x) C^8 inside family C (the C_o would then be isometries from a larger S); non-binary alphabets.
+
+## Appendix I. Robustness: approximately blended versus approximately liftable (Oct 22 2026)
+
+Norm: for classical processes, ||p - q||_1 = sum over (i,o) of |p(i|o) - q(i|o)|. For machines, the switchboard residual is rho(U) := sqrt(R(U)), the l2 norm of the forbidden Pauli coefficients (H.8.1).
+
+**I.1 Blend-close implies liftable-close [proved, trivial].** If ||p - q||_1 <= eps with q in conv(PF), then p is within eps of a purifiable process, namely q (C.1). So delta = eps, in any norm. This uses only conv(PF) ⊆ Purif.
+
+**I.2 The converse is the conjecture [proved, trivial].** "dist(p, Purif) <= delta implies dist(p, conv PF) <= eps(delta) with eps(delta) -> 0" for all p holds iff the closure of Purif equals conv(PF). If the conjecture holds, then eps = delta. If it fails at some p*, then eps(0) >= dist(p*, conv PF) > 0. So no quantitative converse can be proved without proving the conjecture. A non-trivial robustness statement must therefore compare *approximately pure machines* with the hull, as follows.
+
+**I.3 Residual controls operator purity [proved].** In family C, with or without ancillas, every entry of M M^dag - 1 has modulus at most 2 sqrt(2) rho(U).
+*Proof.* Write K = (allowed part) + sum over forbidden sigma of c_sigma sigma. The allowed part reproduces the exact row inner products (H.8.1, H.8.2). A forbidden X^delta Z^b contributes c_{delta,b} sum_e (+-1) prod_k N_k(e_k). By Cauchy-Schwarz on unit rows, sum_e |prod_k N_k(e_k)| <= prod_k sum_{e_k} |N_k(e_k)| <= 1. Only the 8 strings with a = delta contribute, so the deviation is at most sum_b |c_{delta,b}| <= sqrt(8) rho. ∎
+
+**I.4 Facet violation versus residual [numerical].** Facet violations bound distance: for a facet with +-1 coefficients and bound 0, f.p <= ||p - q||_1 for every q in the hull, so a violation v gives dist_1(p, conv PF) >= v. push.py minimises R subject to lambda_max(F_m(U)) >= v for facet-82 members (the best source state phi for each machine), in float64 with L-BFGS and an increasing penalty. Starts were random, Lugano, and the H.7 solutions rand_1, rand_15 and lug_21. There were 108 runs (curve.jsonl, curve2.jsonl).
+
+| target v | runs | min R found | min R / v^2 | median R / v^2 |
+|---|---|---|---|---|
+| 0.01 | 21 | 3.27e-5 | 0.327 | 0.431 |
+| 0.03 | 21 | 2.81e-4 | 0.312 | 0.387 |
+| 0.1 | 21 | 3.19e-3 | 0.319 | 0.367 |
+| 0.3 | 21 | 2.94e-2 | 0.326 | 0.370 |
+| 0.5 | 8 | 9.27e-2 | 0.371 | 0.383 |
+| 0.7 | 8 | 1.93e-1 | 0.394 | 0.419 |
+| 0.9 | 8 | 3.52e-1 | 0.434 | 0.453 |
+
+**Numerical statement (not proved).** For every switchboard machine found, facet-82 violation <= 1.79 rho(U), i.e. R >= 0.31 v^2. The ratio R/v^2 is nearly flat for small v, so near the hull boundary the violation grows at most linearly in rho: the modulus looks Lipschitz, not Hölder-1/2. The floor rises slowly for large v. These are local optima: the true infimum of R/v^2 could be lower, and only facet 82 was tested. For contrast, the H.7 sampled-unitary runs reached violations near 0.9 at sampled residual 0.03-0.05. That residual is a sampled average of ||M M^dag - 1||^2 and is not comparable with R. In the exact residual the trade-off is quadratic in v, so a violation is not cheap.
+
+**I.5 Converse direction, numerically [numerical].** Read the other way: a switchboard machine with rho(U) <= delta has statistics, at every source state, that violate facet 82 by at most about 1.79 delta. A machine whose statistics violate it by v is at least rho >= 0.56 v from pure. So in family C, numerically and for facet 82, "delta-close to liftable" (in the machine residual rho) implies "eps-close to the hull's facet-82 side" with eps ~ 1.8 delta. A full hull-distance version, over all 93 facet orbits, was not run.
 
 ## References
 

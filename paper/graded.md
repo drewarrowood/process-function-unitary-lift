@@ -920,7 +920,7 @@ The Chorus refutes a tempting guess: "every machine with no first mover is Lugan
 
 Here |…> is a basis state, and the sum runs over the eight possible input strings e. The machine is always reversible, and the sink always keeps a copy of (outputs, inputs), so the statistics are classical: p(i|o) = |C_o[i, 0]|². Lugano is the special case where each C_o just flips bits according to w(o).
 
-*A story: the switchboard.* Every caller's choice rewires the board before any call connects. Nothing is ever lost, because each board is unitary. The question is whether the boards for different choices agree well enough for the whole exchange to stay coherent. **Lemma H.7.1 (proved)** says exactly how much agreement is needed when the parties use no ancillas: a list of linear conditions on the products C_o C_o'†, one for each pair of different choices. With ancillas these conditions are still necessary, but we have not shown they are enough. Whether the agreement forces an ordered story is open. It is a bet, not a proof.
+*A story: the switchboard.* Every caller's choice rewires the board before any call connects. Nothing is ever lost, because each board is unitary. The question is whether the boards for different choices agree well enough for the whole exchange to stay coherent. **Lemma H.7.1 (proved)** says exactly how much agreement is needed when the parties use no ancillas: a list of linear conditions on the products C_o C_o'†, one for each pair of different choices. With ancillas these conditions are still necessary, and Section 58f shows they are also enough. Whether the agreement forces an ordered story is open. It is a bet, not a proof.
 
 **The Shadows** (three Switchboard machines found near Lugano). Starting the search close to Lugano produced three new pure machines (lug_21 to lug_23). Their C_o are generic unitaries, not relabelled permutations. Every party influences every other one. Their statistics need Lugano weight 0.87 to 0.93, so they are genuinely not causally separable, yet they lie inside the hull. One machine from a random start (rand_15) also has every party influencing every other, but its statistics need Lugano weight 0: like the Chorus, it is disordered inside and ordinary on the record.
 
@@ -933,6 +933,29 @@ Here |…> is a basis state, and the sum runs over the eight possible input stri
 **What this leaves open.** The conjecture for machines with neither a first nor a last mover. The Switchboard is one structured slice of them, and the Lemma is a foothold there. A general machine can have a bigger source and need not have this form.
 
 **Philosophical gloss (interpretation).** The Chorus and the Shadows pull apart two things that are easy to run together: disorder *inside* the machine, and disorder *in the record*. A machine can be thoroughly cyclic inside while its record is an ordinary mixture of ordered stories. So far, every reversible loop we have found leaves a record that is a mixture of consistent deterministic loops.
+
+
+### 58f. What the Switchboard's rules really say (proved in part; note H.8, C.6, Appendix I)
+
+Section 58e left the Switchboard with a list of linear rules: the conditions under which its eight boards agree well enough to stay coherent. We now have a cleaner reading of those rules, and they turn out to be all the rules there are.
+
+**The rules in plain words (proved).** Compare the boards for two different choices of outputs. The "difference" between them is the unitary K = C_o C_o'†. Like any operation on three bits, K can be written as a sum of simple pieces, each of which flips and/or phase-flips some of the three bits. (These pieces are the *Pauli strings*: X flips a bit, Z flips its sign, and a string says what happens to each of the three bits.) The rule is this: every piece of K must leave alone at least one of the parties whose output changed. For a process function, K is a single piece, and the rule becomes the exclusivity lemma of Section 1: two different output strings must agree at some party whose input they do not change. So the Switchboard's rule is exclusivity with a twist. A quantum board may be a *sum* of pieces that each leave a different party alone, where a process function must pick one. A computer check in exact fractions confirms that the old list and the new reading say the same thing.
+
+**Ancillas do not matter (proved).** Section 58e said that private scratch qubits (ancillas) might impose extra conditions. They do not: in the Switchboard, purity with ancillas and purity without them are the same condition. So the 13 pure machines of 58e are exactly pure, not merely pure in the tests.
+
+**Who is first, who is last (proved).** The rule also tells us, by inspection, who influences whom. A party is first exactly when no board difference ever touches its bit. A party is last exactly when changing its output only multiplies the board by a phase.
+
+**The easy case is settled (proved).** If all the boards are just relabellings with phases (a common basis that each board only shuffles), then for *every* source state the statistics are a mixture of process functions. This covers the Ring of 58e. The hard case is boards that genuinely superpose, like a board that half-flips Alice's bit and half-flips Bob's at once. The Shadows are of this kind, and their statistics are still in the hull.
+
+**How hard is it to cheat? (evidence).** We asked the computer to push a Switchboard's statistics across the most important wall of the hull (facet 82) by a set amount v, while staying as close to pure as it could. In 108 tries, the "impurity" R it had to accept was always at least about 0.31·v². In words: to get across the wall by v, you must be impure by roughly 0.56·v (measuring impurity as √R). Nothing found came closer. If some machine could cross the wall at zero cost, the search would be closing in on a true counterexample, and it never did. This is evidence, not proof.
+
+*A story: the toll on the wall.* The hull is a walled town. Every honest machine lives inside it. A traveller can always step up to the wall, and can even climb over, but each metre over the wall costs a fixed toll in impurity, and the toll never drops to zero. Whether the toll is a law of the land or only the price at the gates we have tried is the open question.
+
+**Close to a mixture, close to liftable (proved, but easy).** If a process is close to a mixture of process functions, it is just as close to a liftable one, because the mixture itself lifts. The reverse, "close to liftable implies close to a mixture", is *exactly* the conjecture in disguise, so it cannot be proved separately. The meaningful version is the toll above: nearly pure machines give statistics nearly inside the hull.
+
+**A dead end, checked before spending (evidence).** For orbit 8, a stronger kind of certificate (degree 4) was proposed: find a large slice of the space that contains no "forbidden" direction. Before renting any computer, we tested whether such a slice can exist at random. It cannot: random slices of the proposed size, and even smaller ones, all contain forbidden directions. So that certificate cannot be built that way, and nothing was spent.
+
+**What is still open.** Whether the Switchboard's rule forces its statistics into the hull, and whether every machine with no first mover can be put in Switchboard form. Both are stated as conjectures in the technical note (H.9).
 
 
 ---
@@ -1072,7 +1095,7 @@ Two cautions. First, a checked theorem is only as good as its statement (Section
 > - **Two parties** (Appendix G; Section 58a). Every two-party valid classical process is a mixture of ordered process functions, so the conjecture holds for two parties, trivially.
 > - **Ordered three-party processes** (Appendix H; Section 58b). If some party is last, or first with valid conditionals (causally separable), the process is a mixture of process functions.
 > - **A shortcut closed** (H.5; Section 58c). Purifiable plus marginally first does not force valid conditionals; exact counterexample.
-> - **The Chorus** (H.7; Section 58e). A machine with no first or last mover can still produce an ordinary mixture of ordered process functions, so "no first mover" does not mean "Lugano in disguise". The Switchboard's no-ancilla purity condition (Lemma H.7.1) is proved.
+> - **The Chorus** (H.7; Section 58e). A machine with no first or last mover can still produce an ordinary mixture of ordered process functions, so "no first mover" does not mean "Lugano in disguise". The Switchboard's no-ancilla purity condition (Lemma H.7.1) is proved, and it is the full purity condition: it reads as operator-valued exclusivity, and ancillas add nothing (H.8; Section 58f). Relabelling-type Switchboards give mixtures of process functions.
 > - **The shortcut repaired at machine level** (H.6; Section 58d). If some purification has a party first *in the machine* (its input prepared from the source alone), the conditionals are valid and the process is a mixture of process functions.
 > - **Facets.** The three-party binary process-function hull has exactly 29,344 facets in 93 orbits (exact computation with normaliz).
 >
@@ -1086,6 +1109,8 @@ Two cautions. First, a checked theorem is only as good as its statement (Section
 >
 > - A GPU search found no purification for any of the 49 remaining sampled non-deterministic vertex orbits. Best residuals were 12.97–59.35.
 > - Machines with no first mover (H.7; Section 58e): a small, local search found 13 pure machines, including the Shadows near Lugano. All of their statistics lie inside the hull.
+> - Switchboard toll (I.4; Section 58f): crossing facet 82 by v always cost impurity R >= 0.31 v² in 108 runs. No counterexample.
+> - Degree-4 certificates for orbit 8 of the proposed shape cannot exist for random slices (C.6). No paid compute was used.
 > - A single facet orbit (82) is violated by E_ex1 and by all 51 sampled non-deterministic vertex orbits.
 > - Along the segment from Lugano to E_ex1, purifiability appears to stop exactly where the hull does.
 > - Orbits 8, 10, 20: isotropic subspaces appear to stop near dimension 10, short of the 16 needed; form certificates provably cannot capture this (C.5). A unitary-side counterexample search found nothing (H.3).

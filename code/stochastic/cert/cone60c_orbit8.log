@@ -1,0 +1,3 @@
+m 82 forms 4096 radical dim 1 smallest sv [0.8100925873009809, 0.810092587300972, 4.009887391722756e-14]
+baseline (random unit u in R^perp): min 0.0836 median 0.108
+{"orbit": "orbit8", "d": 60, "L": 0, "restart": 0, "loss": 2.3115351307872572e-07}
