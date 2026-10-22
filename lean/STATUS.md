@@ -107,3 +107,40 @@ Build: `cd lean && lake build`. Every file compiles. There is no `sorry`, `admit
 - Spacetime embedding (Gaps.lean defines `SpacetimeEmbeddingClaim : Prop := False` as a marker).
 
 Build: `lake exe cache get && lake build` (fetches the Mathlib cache).
+
+## Round 3
+
+Proved (no `sorry`, axioms propext/Classical.choice/Quot.sound):
+- `PFUL/Schmidt.lean`: `IsHS.isCompactOperator`, `isCompactOperator_of_mem` (trace class ⇒ compact);
+  `PFUL.Polar.schmidt`: Hilbert basis v of eigenvectors of |T|, s ≥ 0, u orthonormal on {s ≠ 0},
+  `HasSum (fun n => (s n * ⟪v n, x⟫) • u n) (T x)` (strong convergence), `HasSum s (trace |T|)`,
+  ‖T‖₁ = Tr|T|.
+- `PFUL/ChoiL2.lean`: Choi kernel of a Kraus kernel: `hasSum_choiKernel`, `choiKernel_tp`
+  (Σ_o J(o,a;o,a') = δ), `choiKernel_psd` (finite sections PSD). Same `hiso` hypothesis as
+  `valid_kraus_l2`, so every Kraus-specified channel's Choi kernel is covered.
+- Universes: `TraceValidity`, `KrausL2`, `BornPairing` now universe-polymorphic (`ι : Type v`,
+  alphabets `ι → Type u`); all other files already used `Type*`.
+- `MathlibPR/PolarDecomposition.lean`: generalised to T : E →L[ℂ] F, `@[simp]` lemmas,
+  `ker_polarAbs`, `ker_polarIsometry` (ker V = ker T), `polarInitial_orthogonal`, `polar_unique`.
+
+Gaps:
+- Converse Choi theorem in infinite dimensions (PSD + TP Choi kernel ⇒ countable Kraus
+  factorisation). Needs a Kolmogorov/RKHS factorisation of a PSD kernel on a countable set plus a
+  countable orthonormal basis of the closed span (Gram–Schmidt on an enumeration); the Choi
+  kernel is not a bounded operator in general (identity channel), so square roots are unavailable.
+- CP of Φ as a map on trace class is used only through `valid_kraus_l2` (entangled ancilla
+  inputs); no standalone `IsCompletelyPositive` predicate on trace class is defined.
+- Schmidt convergence is strong, not in trace norm.
+
+Continuous alphabets (not formalised; scope):
+- With counting measure, L²(X) = ℓ²(X) — exactly the countable case already covered.
+- For a general measure, the permutation lift |o,e⟩ ↦ |w(o)+e, o⟩ is unitary on L² only if the
+  shift e ↦ w(o)+e is measure-preserving (Haar measure on a locally compact group) and
+  (o,e) ↦ (w(o)+e, o) is measurable; w must be a measurable process function.
+- Unit columns used "expected number of fixed points = 1" via Tonelli over counting measure; the
+  measure-theoretic analogue needs a Jacobian/change-of-variables condition for the fixed-point map
+  and fails without it (fixed points of a continuous map have measure zero, so delta-normalised
+  "states" are not in L²). One needs rigged Hilbert spaces or a direct-integral formulation.
+- Required Lean infrastructure: Haar-measure L² unitaries for translations (Mathlib has
+  measure-preserving maps and Lp, but not the translation unitary as `→L[ℂ]` on `Lp`), and
+  direct integrals of Hilbert spaces (absent).

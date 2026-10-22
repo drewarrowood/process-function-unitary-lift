@@ -24,7 +24,7 @@ open ContinuousLinearMap PFUL.TraceClass
 open scoped InnerProductSpace ComplexOrder
 set_option linter.unusedSectionVars false
 
-universe u
+universe u v
 
 namespace PFUL.Countable
 
@@ -76,8 +76,8 @@ theorem hasSum_bornTerm (U : lp (fun _ : S => ℂ) 2 →L[ℂ] lp (fun _ : R => 
 
 end General
 
-variable {ι : Type} [Fintype ι] [DecidableEq ι]
-variable {I O : ι → Type}
+variable {ι : Type v} [Fintype ι] [DecidableEq ι]
+variable {I O : ι → Type u}
 
 /-- **Literal validity, countable alphabets.** Same hypotheses as `valid_density_l2`. The induced
 unitary `Φ` has matrix entries `M r c = ∏ₖ Vₖ(⋯)`; its row vectors `u_r` (the blocks of
@@ -85,7 +85,7 @@ unitary `Φ` has matrix entries `M r c = ∏ₖ Vₖ(⋯)`; its row vectors `u_r
 `∑_{r = (o,y)} ⟪u_r, ρ u_r⟫` (sum over sink outputs and output ancillas, i.e. `1_Y` on the output
 ancillas) converges, as the limit of its finite truncations, to `1`, with nonnegative terms, and
 its value is `Tr[Tr_Y(ΦρΦ†)]` from `valid_density_l2`. -/
-theorem valid_born_l2 {X Y : ι → Type} [∀ k, AddCommGroup (I k)] [∀ k, Countable (I k)]
+theorem valid_born_l2 {X Y : ι → Type u} [∀ k, AddCommGroup (I k)] [∀ k, Countable (I k)]
     [∀ k, Countable (X k)] [∀ k, Countable (O k)] [∀ k, Countable (Y k)]
     [∀ k, DecidableEq (I k)] [∀ k, DecidableEq (X k)]
     [∀ k, DecidableEq (O k)] [∀ k, DecidableEq (Y k)]

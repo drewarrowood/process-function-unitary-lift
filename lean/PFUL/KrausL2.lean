@@ -24,6 +24,8 @@ open scoped InnerProductSpace ComplexOrder ENNReal NNReal
 
 set_option linter.unusedSectionVars false
 
+universe u v
+
 namespace PFUL.Countable
 
 section Aux
@@ -77,8 +79,8 @@ theorem hasSum_polar {R : Type*} {u v : R → ℂ} {s φ : ℂ} (hs : star s * s
 
 end Aux
 
-variable {ι : Type} [Fintype ι] [DecidableEq ι]
-variable {I O X Y : ι → Type}
+variable {ι : Type v} [Fintype ι] [DecidableEq ι]
+variable {I O X Y : ι → Type u}
 
 /-- **Orthonormal columns of the induced kernel** for isometric (Kraus/Stinespring) local kernels. -/
 theorem induced_gram [∀ k, AddCommGroup (I k)] [∀ k, Countable (O k)] [∀ k, Countable (Y k)]
@@ -175,10 +177,10 @@ end PFUL.Countable
 
 namespace PFUL.Countable
 
-variable {ι : Type} [Fintype ι] [DecidableEq ι]
-variable {I O X Y : ι → Type}
+variable {ι : Type v} [Fintype ι] [DecidableEq ι]
+variable {I O X Y : ι → Type u}
 
-theorem inner_lp_eq_tsum {R : Type} (f g : lp (fun _ : R => ℂ) 2) :
+theorem inner_lp_eq_tsum {R : Type u} (f g : lp (fun _ : R => ℂ) 2) :
     ⟪f, g⟫_ℂ = ∑' r, star (f r) * g r := by
   rw [lp.inner_eq_tsum]; congr 1; funext r; rw [mul_comm]; rfl
 
@@ -216,7 +218,7 @@ theorem induced_isometry_l2 [∀ k, AddCommGroup (I k)] [∀ k, Countable (O k)]
   rw [OrthogonalFamily.linearIsometry_apply_single]
   simp [m, M]
 
-theorem adjoint_comp_self_of_isometry {E F : Type} [NormedAddCommGroup E]
+theorem adjoint_comp_self_of_isometry {E F : Type u} [NormedAddCommGroup E]
     [InnerProductSpace ℂ E] [CompleteSpace E] [NormedAddCommGroup F] [InnerProductSpace ℂ F]
     [CompleteSpace F] (U : E →ₗᵢ[ℂ] F) :
     adjoint U.toContinuousLinearMap ∘L U.toContinuousLinearMap = ContinuousLinearMap.id ℂ E := by
