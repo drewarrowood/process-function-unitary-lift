@@ -9,7 +9,7 @@ rev = "v4.34.1"
 # Main result: complex / star-field Gram cancellation, M Mᴴ = 1 (uses Mathlib).
 [[lean_lib]]
 name = "PFUL"
-roots = ["PFUL.UnitaryLift", "PFUL.Column", "PFUL.Countable", "PFUL.Rows", "PFUL.Assemble", "PFUL.Validity", "PFUL.Isometry", "PFUL.Channels", "PFUL.Choi", "PFUL.ChoiAnc", "PFUL.ChoiThm", "PFUL.Bookkeeping", "PFUL.TraceClass", "PFUL.TraceValidity", "PFUL.BornPairing", "PFUL.Polar", "PFUL.KrausL2", "PFUL.Schmidt", "PFUL.ChoiL2", "PFUL.ChoiConverse", "PFUL.CPTP", "PFUL.SchmidtTraceNorm", "PFUL.TraceNormDense", "PFUL.KrausNormal", "PFUL.CommutingBlend", "PFUL.CounterexampleData", "PFUL.Counterexample", "PFUL.CounterexampleLink", "PFUL.Continuous", "PFUL.ContinuousMeasure", "PFUL.ContinuousUnitary", "PFUL.ChoiLink", "PFUL.CounterexampleInf", "PFUL.CounterexampleRows", "PFUL.CounterexampleUnitary", "PFUL.CounterexampleRows", "PFUL.CounterexampleUnitary"]
+roots = ["PFUL.UnitaryLift", "PFUL.Column", "PFUL.Countable", "PFUL.Rows", "PFUL.Assemble", "PFUL.Validity", "PFUL.Isometry", "PFUL.Channels", "PFUL.Choi", "PFUL.ChoiAnc", "PFUL.ChoiThm", "PFUL.Bookkeeping", "PFUL.TraceClass", "PFUL.TraceValidity", "PFUL.BornPairing", "PFUL.Polar", "PFUL.KrausL2", "PFUL.Schmidt", "PFUL.ChoiL2", "PFUL.ChoiConverse", "PFUL.CPTP", "PFUL.SchmidtTraceNorm", "PFUL.TraceNormDense", "PFUL.KrausNormal", "PFUL.CommutingBlend", "PFUL.CounterexampleData", "PFUL.Counterexample", "PFUL.CounterexampleLink", "PFUL.Continuous", "PFUL.ContinuousMeasure", "PFUL.ContinuousUnitary", "PFUL.ChoiLink", "PFUL.CounterexampleInf", "PFUL.CounterexampleRows", "PFUL.CounterexampleUnitary"]
 
 # Earlier Mathlib-free files (combinatorial lemma, finite checks).
 [[lean_lib]]
