@@ -303,3 +303,19 @@ Gaps:
   `PFUL.Validity.ValidWith` needs a bridge between the counterexample's `Fin 8` encoding and the
   general typeclass setup; this is checked on paper only. F.5.5 for general point maps needs change
   of variables for measurable bijections with a Jacobian, which is not formalised.
+
+## Round 10 (Oct 23 2026)
+
+New files: `CounterexampleRows.lean`, `CounterexampleUnitary.lean`, `CounterexampleValidity.lean`, `ContinuousJacobian.lean`. All are sorry-free, use no `native_decide`, and depend only on the axioms propext, Classical.choice and Quot.sound.
+- `row_scalar_key` (CounterexampleRows): the row orthonormality identity for the Switchboard. It is checked in the kernel by `decide +kernel` over 16 blocks.
+- `isCoIsoKernel_compose_Vsb` and `surjective_of_isCoIsoKernel`: an isometry whose kernel has orthonormal rows is onto ℓ².
+- `isUnitaryInf_Vsb` and `purification_conjecture_false_unitaryInf`: the Switchboard loop is **unitary**, not only isometric, against every family of countable ancillas. `pcl` is Valid, is purifiable by a unitary in that sense, and lies outside the PF hull.
+- `valid_pfPoint_iff` and `validWith_of_valid_pfPoint`: for a deterministic w, `Valid (pfPoint w)` holds iff `IsPF w`, and either implies `PFUL.ValidWith (wBits w) X Y` for all finite X and Y.
+- `PFUL.Continuous.closedLoop_general_unitary`: for a measurable bijection g that carries ρ·μ to μ, with ρ measurable and ρ > 0, and a measurable unimodular phase φ, the map ψ ↦ φ·√ρ·(ψ∘g) is a unitary on L²(μ). This is F.5.5 for general point maps.
+- `PFUL.Continuous.closedLoop_jacobian_unitary`: the same statement for a global C¹-type bijection of a finite-dimensional real space, with derivative g', det g' ≠ 0, measurable |det g'|, and μ an additive Haar measure. Here ρ = |det g'|, obtained from Mathlib's change of variables.
+
+Gaps:
+- `ValidWith` is defined only for deterministic processes. For the non-deterministic `pcl`, the validity link is a category mismatch, not a missing proof.
+- The F.5.5 result needs ρ > 0 everywhere and a global bijection. It does not cover local diffeomorphisms or a degenerate Jacobian.
+- Ancillas of uncountable dimension are still not covered.
+- Math goals 4 (non-X 3-term boards) and 5 (the 23 never-crossed inequalities) were not attempted this round.
