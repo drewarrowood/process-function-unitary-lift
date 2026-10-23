@@ -29,7 +29,7 @@ table{border-collapse:collapse;font-size:.9rem;display:block;overflow-x:auto} th
 <h2>Abstract</h2>
 <p>A classical process (a point of the Baumeler-Wolf polytope) is purifiable in the sense of Araujo et al. (2017) if it arises from a pure process, one that stays unitary under all local unitaries with ancillas, by restricting to classical interventions. Mixtures of process functions are purifiable, and it was natural to ask whether nothing else is; we had conjectured so. <strong>The main result of this note is that this is false.</strong> Theorem H.12.1 gives a three-party binary classical process p, induced by an explicit Switchboard with eight 8x8 boards whose entries lie in Z[i]/8 and a source state with phases in Q(zeta_8), such that p is valid, the machine is pure, and p violates a facet inequality of the process-function (PF) hull: L(p) = 1/4 - (3/16) sqrt 2 &lt; 0, while L ≥ 0 on all 744 process functions. The verification is exact. It has been re-derived independently from the paper text alone (code/stochastic/cyclic/switchboard/verify_h12), and the statement <code>purification_conjecture_false : ∃ p, Valid p ∧ Purifiable p ∧ p ∉ convexHull ℝ PFset</code> is checked by the Lean 4 proof assistant with Mathlib (https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/Counterexample.lean; standard axioms only, no <code>sorry</code>, no <code>native_decide</code>). Two gaps remain in the formal statement: ancillas are finite-dimensional, and the Lean definitions of purity, validity and process function are self-contained, not yet linked to the PFUL.Validity/Choi framework used elsewhere in the repository. The paper has not been peer reviewed.</p>
 <p>The counterexample sits exactly where earlier structural results said it must. If some party is first at the operator level in a purification, the process is a PF blend (H.6); in the counterexample no party is first, and every party's input depends on another party's output. For two parties every valid classical process is a PF blend (Appendix G), so three parties are needed. Classically reversible purification gives exactly the PF hull (D.6), so the gap is a quantum effect. Exact non-purifiability certificates for E<sub>ex1</sub> and two vertex orbits (C.2) show the purifiable set is still a proper subset of the valid processes.</p>
-<p>The first part of the note proves the lifting theorem that the purification question starts from. A process function is a classical map w from the outputs of several parties to their inputs such that every choice of local deterministic interventions has exactly one fixed point. Baumeler, Costa, Ralph, Wolf and Zych showed that every process function extends to a bijection by adding a source and a sink, and left open whether every such bijection quantizes to a valid unitary quantum process; Daher Ahmed and Kunjwal (2026) state this as a conjecture and prove it for a subclass. We give a short argument that it holds for every process function with finite alphabets: the permutation unitary U|o,e⟩ = |w(o)+e, o⟩ composed with arbitrary local unitaries induces a unitary from source to sink. The key combinatorial fact, that two distinct output strings always disagree at some party whose input w assigns equally, is the pairwise-exclusivity property of Dourdent et al. (2026). The identity M M† = 1 and the validity chain are machine-checked in Lean 4 (PFUL.induced_unitary, PFUL.valid_kraus, PFUL.valid_instrument, PFUL.Choi.bornC_anc_eq_one, PFUL.Choi.afnb_iff_density, PFUL.Choi.isCP_iff_choi, PFUL.Choi.validity_package; standard axioms only), and Appendix F extends it to countable alphabets (PFUL.Countable.induced_unitary_l2). The Choi form in infinite dimensions is not formalised, and continuous alphabets remain open. The philosophical sections read the lifting theorem as saying that fixed-point consistency is already a quantization condition, and Section 10 reads H.12 as saying that purity does not, in addition, single out mixtures of deterministic loops. Section 9 states exactly what is proved, certified, numerical, or open.</p>
+<p>The first part of the note proves the lifting theorem that the purification question starts from. A process function is a classical map w from the outputs of several parties to their inputs such that every choice of local deterministic interventions has exactly one fixed point. Baumeler, Costa, Ralph, Wolf and Zych showed that every process function extends to a bijection by adding a source and a sink, and left open whether every such bijection quantizes to a valid unitary quantum process; Daher Ahmed and Kunjwal (2026) state this as a conjecture and prove it for a subclass. We give a short argument that it holds for every process function with finite alphabets: the permutation unitary U|o,e⟩ = |w(o)+e, o⟩ composed with arbitrary local unitaries induces a unitary from source to sink. The key combinatorial fact, that two distinct output strings always disagree at some party whose input w assigns equally, is the pairwise-exclusivity property of Dourdent et al. (2026). The identity M M† = 1 and the validity chain are machine-checked in Lean 4 (PFUL.induced_unitary, PFUL.valid_kraus, PFUL.valid_instrument, PFUL.Choi.bornC_anc_eq_one, PFUL.Choi.afnb_iff_density, PFUL.Choi.isCP_iff_choi, PFUL.Choi.validity_package; standard axioms only), and Appendix F extends it to countable alphabets (PFUL.Countable.induced_unitary_l2). The Choi form in infinite dimensions is formalised as a convergent Born-pairing series (Section 9), and continuous alphabets are settled only partly (F.5: point-map local operations, or causal w). The philosophical sections read the lifting theorem as saying that fixed-point consistency is already a quantization condition, and Section 10 reads H.12 as saying that purity does not, in addition, single out mixtures of deterministic loops. Section 9 states exactly what is proved, certified, numerical, or open.</p>
 <h2>0. Introduction and contributions</h2>
 <p>Process functions are the deterministic classical processes without global causal order: every local choice has exactly one consistent history. Their mixtures form a polytope, conv(PF), inside the larger polytope of valid classical processes. Purity (unitarity under all local operations, Araujo et al. 2017) is the standard candidate for the physically admissible processes. Two questions follow: does every process function purify, and are mixtures of process functions the only classical processes that do? This note answers the first yes and the second no.</p>
 <p>Contributions, in the order of the evidence for them:</p>
@@ -99,7 +99,7 @@ table{border-collapse:collapse;font-size:.9rem;display:block;overflow-x:auto} th
 <p>This section is a map of the current status. Labels follow the appendices: <strong>[proved]</strong>, <strong>[certified exact]</strong> (rational certificate, not Lean), <strong>[numerical]</strong>, <strong>[cited]</strong>. Proofs live in the appendices and are not restated here.</p>
 <p><strong>Proved.</strong></p>
 <ul>
-<li><em>Process functions lift</em> (Section 1, Appendix A). Every process function lifts to a unitary process. The core identity and the validity chain are machine-checked in Lean in finite dimensions (PFUL.induced_unitary; PFUL.Choi.validity_package). Countable alphabets: Appendix F (PFUL.Countable.induced_unitary_l2). Continuous alphabets: open (F.5).</li>
+<li><em>Process functions lift</em> (Section 1, Appendix A). Every process function lifts to a unitary process. The core identity and the validity chain are machine-checked in Lean in finite dimensions (PFUL.induced_unitary; PFUL.Choi.validity_package). Countable alphabets: Appendix F (PFUL.Countable.induced_unitary_l2). Continuous alphabets (F.5): measure preservation for every measurable process function and unitarity for point-map local unitaries (all local unitaries if w is causal) are proved in the paper, with the combinatorial core in Lean (PFUL.Continuous); a canonical closed loop for non-causal w with general local unitaries is open.</li>
 <li><em>Blends lift</em> (C.1). Every mixture of process functions is purifiable, and convex combinations of purifiable processes are purifiable. This is the &quot;if&quot; half of the former conjecture.</li>
 <li><em>Classical version</em> (D.6). A classical process is classically reversibly purifiable iff it is a PF blend. Together with H.12 this shows that quantum purifiability does add something: the quantum purifiable set strictly contains the classical one.</li>
 <li><em>Two parties</em> (Appendix G, Theorem G.1). Every bipartite valid classical process, with any finite alphabets, is a blend of causally ordered process functions. So for two parties purifiable = PF blend = valid; the gap of H.12 needs three parties. This is known in substance [cited: Oreshkov-Costa-Brukner 2012, Suppl.; Baumann-Brukner 2016].</li>
@@ -180,7 +180,7 @@ table{border-collapse:collapse;font-size:.9rem;display:block;overflow-x:auto} th
 <p><em>Ancillas, converse, Choi's theorem:</em> <code>PFUL.Choi.born_anc_eq_one</code> and <code>bornC_anc_eq_one</code> give the Choi-form normalisation with party ancillas (local maps I<sub>k</sub> X<sub>k</sub> → O<sub>k</sub> Y<sub>k</sub>, ancilla state folded into the source state). <code>PFUL.Choi.procMat_posSemidef</code> shows W is PSD. <code>PFUL.Choi.afnb_iff_density</code> shows AFNB normalisation is equivalent to the density-matrix condition. <code>PFUL.Choi.isCP_iff_choi</code> is Choi's theorem (CP iff PSD Choi matrix), so CP is a theorem rather than a definition.</p>
 </li>
 </ul>
-<p>Bookkeeping: <code>PFUL.Choi.bornAnc_eq_one</code> needs no structure on the ancilla types. <code>PFUL.Choi.bornSplit_eq_one</code> and <code>PFUL.Choi.afnb_iff_density_split</code> use exactly the index layout of <code>ValidWith</code>. <code>PFUL.Choi.validity_package</code> bundles unitary validity, Kraus-channel validity and AFNB normalisation in one theorem. Infinite dimensions (countable alphabets). The unitary layer there is <code>PFUL.Countable.induced_unitary_l2</code>. Mathlib has no trace-class or Hilbert-Schmidt operators on infinite-dimensional Hilbert spaces, so the project builds them against its pinned Mathlib (<code>lean/PFUL/TraceClass.lean</code>, no <code>sorry</code>, standard axioms only). Hilbert-Schmidt operators have a basis-independent norm (<code>PFUL.TraceClass.hsSq_indep</code>). The trace class is the span of products A†B of Hilbert-Schmidt maps. Its trace Tr T = Σ⟨e<sub>i</sub>, T e<sub>i</sub>⟩ converges for every Hilbert basis to the same value (<code>hasSum_trace</code>). It is linear (<code>traceL</code>), cyclic against bounded operators (<code>trace_comp_comm</code>), nonnegative on positive operators (<code>trace_nonneg</code>), gives Tr|x⟩⟨y| = ⟨y, x⟩ (<code>trace_rankOne</code>), is invariant under isometric conjugation (<code>trace_conj</code>), and obeys |Tr T| ≤ ‖T‖₁ &lt; ∞ with ‖T‖₁ = sup over ‖C‖ ≤ 1 of |Tr(CT)| (<code>enorm_trace_le_traceNorm</code>, <code>traceNorm_ne_top</code>). The trace class is a two-sided ideal (<code>comp_mem_left</code>, <code>comp_mem_right</code>). The partial trace over J is defined on H ⊗ ℓ²(J), realised as ℓ²(J; H), and on ℓ²(I × J) ≅ ℓ²(J; ℓ²(I)) (<code>l2ProdEquiv</code>). It is the unique trace-class operator with Tr(Tr<sub>J</sub>(T) C) = Tr(T (C ⊗ 1)) for all bounded C (<code>trace_ptrace_comp</code>, <code>ptrace_unique</code>, <code>trace_ptraceR_comp</code>). It is linear, preserves positivity and the trace (<code>ptrace_add</code>, <code>ptrace_smul</code>, <code>ptrace_isPositive</code>, <code>trace_ptrace</code>), and sends |x⊗y⟩⟨x'⊗y'| to ⟨y', y⟩|x⟩⟨x'| (<code>ptrace_rankOne_tensor</code>). With these, <code>PFUL.Countable.valid_density_l2</code> restates validity on countable alphabets in trace form. For every density operator ρ on ℓ²(sources × input ancillas), entangled ancillas included, the output ΦρΦ† of the unitary from <code>induced_unitary_l2</code> and the sink state Tr<sub>Y</sub>(ΦρΦ†) are density operators, so Tr = 1. The Choi form Tr[W(M<sub>A</sub> ⊗ M<sub>B</sub> ⊗ …)] = 1 is also formalised for countable alphabets (<code>lean/PFUL/BornPairing.lean</code>). There neither W nor a local Choi operator is trace class (a channel's Choi operator has partial trace equal to the identity), so the pairing is not a trace of a product of trace-class operators. Instead W = |U⟩⟩⟨⟨U| is kept as the family of its row vectors u<sub>r</sub>, with entries u<sub>r</sub>(c) = conj M(r, c) and M(r, c) = ∏_k V<sub>k</sub>(…) (<code>rowVec_apply</code>). The pairing with an input density operator ρ is the series Σ<sub>r</sub> ⟨u<sub>r</sub>, ρ u<sub>r</sub>⟩ over sink outcomes r = (o, y), which is the limit of its finite truncations; in finite dimensions it is exactly the Born rule Tr[W(ρ ⊗ 1 ⊗ ⨂ C<sub>k</sub>)ᵀ] (<code>PFUL.Choi.born_eq_trace</code>). <code>PFUL.Countable.valid_born_l2</code> proves that this series has nonnegative terms, converges unconditionally to 1, and equals Tr[Tr<sub>Y</sub>(ΦρΦ†)] from <code>valid_density_l2</code>. <code>PFUL.Countable.valid_kraus_l2</code> (<code>lean/PFUL/KrausL2.lean</code>) extends this to arbitrary local channels with countably many Kraus operators: V<sub>k</sub>(o, y)(i, x) = ⟨o|K<sub>y</sub>|i, x⟩ with the Kraus index y as output ancilla, so completeness Σ<sub>y</sub> K<sub>y</sub>†K<sub>y</sub> = 1 is orthonormality of the columns of V<sub>k</sub> (an isometry, not a unitary). The induced operator is then an isometry (<code>induced_isometry_l2</code>); its columns are orthonormal by a polarization argument that reduces the Gram identity to the unit-column theorem (<code>induced_gram</code>). For every density operator ρ, ΦρΦ† and Tr<sub>Y</sub>(ΦρΦ†) are density operators, and the Born pairing converges to 1. The polar decomposition is formalised for every bounded operator (<code>lean/PFUL/Polar.lean</code>). With |T| = √(T†T) (Mathlib's continuous functional calculus), there is a partial isometry V, isometric on the closure of the range of |T| and zero on its orthogonal complement, with T = V|T|, V†V the projection onto that closure, and V†T = |T| (<code>PFUL.Polar.polar</code>, <code>adjoint_partialIso_comp</code>, <code>adjoint_partialIso_comp_self</code>). For trace-class T, |T| is trace class and ‖T‖₁ = Tr|T| (<code>absOp_mem</code>, <code>traceNorm_eq_trace_abs</code>). Conversely, T is trace class iff Σ<sub>i</sub> ⟨e<sub>i</sub>, |T| e<sub>i</sub>⟩ converges in some Hilbert basis (<code>mem_traceClass_iff</code>). V is a partial isometry, VV†V = V (<code>IsPartialIsometry</code>, <code>isPartialIsometry_partialIso</code>). The decomposition is unique: if T = WA with A positive, W isometric on the range of A and zero on its orthogonal complement, then A = |T| and W = V (<code>polar_unique</code>). A self-contained, Mathlib-style version of the polar decomposition, with no project dependencies, is in <code>lean/MathlibPR/PolarDecomposition.lean</code>. The trace-class files are universe-polymorphic: a Hilbert space H may live in any universe <code>Type u</code>, with Hilbert-Schmidt factors and basis index types in the same universe. The countable-alphabet theorems (<code>valid_density_l2</code>, <code>valid_born_l2</code>, <code>valid_kraus_l2</code>) are universe-polymorphic too, as are the finite-alphabet combinatorial files. Trace-class operators are compact (<code>PFUL.TraceClass.isCompactOperator_of_mem</code>, via Hilbert-Schmidt operators as norm limits of finite-rank truncations), and every trace-class T has a Schmidt decomposition (<code>PFUL.Polar.schmidt</code>): a Hilbert basis v of eigenvectors of |T| with eigenvalues s<sub>n</sub> ≥ 0, vectors u<sub>n</sub> orthonormal where s<sub>n</sub> ≠ 0, T x = Σ s<sub>n</sub>⟨v<sub>n</sub>, x⟩u<sub>n</sub>, and Σ s<sub>n</sub> = Tr|T| = ‖T‖₁. For a local channel given by its Kraus kernel, the Choi kernel J(o,a;o',a') = Σ<sub>y</sub> V(o,y)(a) conj V(o',y)(a') converges, satisfies the trace-preservation condition Σ<sub>o</sub> J(o,a;o,a') = δ_{aa'}, and is positive semidefinite on every finite section (<code>PFUL.Countable.choiKernel_tp</code>, <code>choiKernel_psd</code>, <code>lean/PFUL/ChoiL2.lean</code>). Conversely, every kernel on countable alphabets whose finite sections are positive semidefinite and which satisfies the trace-preservation condition is the Choi kernel of a Kraus kernel over a countable Kraus index with Σ<sub>y</sub> K<sub>y</sub>†K<sub>y</sub> = 1, so <code>valid_kraus_l2</code> applies to every such Choi-specified channel (<code>PFUL.Countable.exists_kraus_of_choi</code>, <code>lean/PFUL/ChoiConverse.lean</code>; Mathlib's Moore–Aronszajn reproducing-kernel Hilbert space, then Gram–Schmidt over an enumeration). <code>PFUL.TraceClass.IsCPTP</code> is a standalone predicate for maps on trace-class operators: they preserve the trace class, are linear there, preserve the trace, and Φ ⊗ id<sub>Z</sub> preserves positivity for every finite ancilla Z. Every Stinespring/Kraus channel ρ ↦ Tr<sub>J</sub>(VρV†), with V an isometry and J any Kraus index, satisfies it (<code>isCPTP_stinespring</code>, <code>lean/PFUL/CPTP.lean</code>), and CPTP maps send density operators to density operators (<code>IsCPTP.isDensity</code>). Finite-rank operators are dense in the trace class in trace norm (<code>PFUL.TraceClass.exists_finiteRank_traceNorm_lt</code>). <code>IsNormalCPTP</code> adds trace-norm boundedness (continuity) to <code>IsCPTP</code>, and on countable ℓ² a map is normal CPTP iff it is a Kraus channel ρ ↦ Tr<sub>Y</sub>(UρU†) over a countable Kraus index (<code>PFUL.Countable.isNormalCPTP_iff_kraus</code>, <code>lean/PFUL/KrausNormal.lean</code>). The proof takes the Choi kernel of the map (positive by complete positivity, trace preserving), factors it by <code>exists_kraus_of_choi</code>, and extends agreement from the matrix units |a⟩⟨a'| to the whole trace class by trace-norm continuity (<code>eq_of_rankOne_basis</code>). The kernel-form channel of <code>valid_kraus_l2</code> is identified with the abstract Stinespring channel (<code>krausChannel_eq_stinespring</code>), so validity holds for arbitrary normal CPTP local channels on countable alphabets (<code>PFUL.Countable.valid_normalCPTP_l2</code>). For the commuting Switchboard case of H.8.4, the linear-algebra core is formalised in finite dimensions (<code>PFUL.Switchboard.commuting_blend</code>): if the rank-one projectors commute with those of a reference orthonormal basis, p_φ is a convex mixture of deterministic records, one per basis vector. That each record is a process function is not formalised. The Schmidt series also converges in trace norm, with ‖T − Σ_{n∈F} s<sub>n</sub>|u<sub>n</sub>⟩⟨v<sub>n</sub>|‖₁ ≤ Σ_{n∉F} s<sub>n</sub> (<code>PFUL.Polar.schmidt_traceNorm</code>). The H.12 counterexample is formalised in finite dimensions (<code>PFUL.Counterexample.purification_conjecture_false</code>): the Switchboard is pure against all finite local ancillas and unitaries (<code>isPure_Vsb</code>), its induced process is valid under all stochastic local interventions (<code>valid_pcl</code>), and it violates an inequality satisfied by every process function on three binary parties, L(p) = (32 − 24√2)/128 &lt; 0, so it lies outside their convex hull; the finite checks are kernel-evaluated by <code>decide +kernel</code> without <code>native_decide</code>. Infinite-dimensional ancillas are not covered. Continuous alphabets are not formalised.</p>
+<p>Bookkeeping: <code>PFUL.Choi.bornAnc_eq_one</code> needs no structure on the ancilla types. <code>PFUL.Choi.bornSplit_eq_one</code> and <code>PFUL.Choi.afnb_iff_density_split</code> use exactly the index layout of <code>ValidWith</code>. <code>PFUL.Choi.validity_package</code> bundles unitary validity, Kraus-channel validity and AFNB normalisation in one theorem. Infinite dimensions (countable alphabets). The unitary layer there is <code>PFUL.Countable.induced_unitary_l2</code>. Mathlib has no trace-class or Hilbert-Schmidt operators on infinite-dimensional Hilbert spaces, so the project builds them against its pinned Mathlib (<code>lean/PFUL/TraceClass.lean</code>, no <code>sorry</code>, standard axioms only). Hilbert-Schmidt operators have a basis-independent norm (<code>PFUL.TraceClass.hsSq_indep</code>). The trace class is the span of products A†B of Hilbert-Schmidt maps. Its trace Tr T = Σ⟨e<sub>i</sub>, T e<sub>i</sub>⟩ converges for every Hilbert basis to the same value (<code>hasSum_trace</code>). It is linear (<code>traceL</code>), cyclic against bounded operators (<code>trace_comp_comm</code>), nonnegative on positive operators (<code>trace_nonneg</code>), gives Tr|x⟩⟨y| = ⟨y, x⟩ (<code>trace_rankOne</code>), is invariant under isometric conjugation (<code>trace_conj</code>), and obeys |Tr T| ≤ ‖T‖₁ &lt; ∞ with ‖T‖₁ = sup over ‖C‖ ≤ 1 of |Tr(CT)| (<code>enorm_trace_le_traceNorm</code>, <code>traceNorm_ne_top</code>). The trace class is a two-sided ideal (<code>comp_mem_left</code>, <code>comp_mem_right</code>). The partial trace over J is defined on H ⊗ ℓ²(J), realised as ℓ²(J; H), and on ℓ²(I × J) ≅ ℓ²(J; ℓ²(I)) (<code>l2ProdEquiv</code>). It is the unique trace-class operator with Tr(Tr<sub>J</sub>(T) C) = Tr(T (C ⊗ 1)) for all bounded C (<code>trace_ptrace_comp</code>, <code>ptrace_unique</code>, <code>trace_ptraceR_comp</code>). It is linear, preserves positivity and the trace (<code>ptrace_add</code>, <code>ptrace_smul</code>, <code>ptrace_isPositive</code>, <code>trace_ptrace</code>), and sends |x⊗y⟩⟨x'⊗y'| to ⟨y', y⟩|x⟩⟨x'| (<code>ptrace_rankOne_tensor</code>). With these, <code>PFUL.Countable.valid_density_l2</code> restates validity on countable alphabets in trace form. For every density operator ρ on ℓ²(sources × input ancillas), entangled ancillas included, the output ΦρΦ† of the unitary from <code>induced_unitary_l2</code> and the sink state Tr<sub>Y</sub>(ΦρΦ†) are density operators, so Tr = 1. The Choi form Tr[W(M<sub>A</sub> ⊗ M<sub>B</sub> ⊗ …)] = 1 is also formalised for countable alphabets (<code>lean/PFUL/BornPairing.lean</code>). There neither W nor a local Choi operator is trace class (a channel's Choi operator has partial trace equal to the identity), so the pairing is not a trace of a product of trace-class operators. Instead W = |U⟩⟩⟨⟨U| is kept as the family of its row vectors u<sub>r</sub>, with entries u<sub>r</sub>(c) = conj M(r, c) and M(r, c) = ∏_k V<sub>k</sub>(…) (<code>rowVec_apply</code>). The pairing with an input density operator ρ is the series Σ<sub>r</sub> ⟨u<sub>r</sub>, ρ u<sub>r</sub>⟩ over sink outcomes r = (o, y), which is the limit of its finite truncations; in finite dimensions it is exactly the Born rule Tr[W(ρ ⊗ 1 ⊗ ⨂ C<sub>k</sub>)ᵀ] (<code>PFUL.Choi.born_eq_trace</code>). <code>PFUL.Countable.valid_born_l2</code> proves that this series has nonnegative terms, converges unconditionally to 1, and equals Tr[Tr<sub>Y</sub>(ΦρΦ†)] from <code>valid_density_l2</code>. <code>PFUL.Countable.valid_kraus_l2</code> (<code>lean/PFUL/KrausL2.lean</code>) extends this to arbitrary local channels with countably many Kraus operators: V<sub>k</sub>(o, y)(i, x) = ⟨o|K<sub>y</sub>|i, x⟩ with the Kraus index y as output ancilla, so completeness Σ<sub>y</sub> K<sub>y</sub>†K<sub>y</sub> = 1 is orthonormality of the columns of V<sub>k</sub> (an isometry, not a unitary). The induced operator is then an isometry (<code>induced_isometry_l2</code>); its columns are orthonormal by a polarization argument that reduces the Gram identity to the unit-column theorem (<code>induced_gram</code>). For every density operator ρ, ΦρΦ† and Tr<sub>Y</sub>(ΦρΦ†) are density operators, and the Born pairing converges to 1. The polar decomposition is formalised for every bounded operator (<code>lean/PFUL/Polar.lean</code>). With |T| = √(T†T) (Mathlib's continuous functional calculus), there is a partial isometry V, isometric on the closure of the range of |T| and zero on its orthogonal complement, with T = V|T|, V†V the projection onto that closure, and V†T = |T| (<code>PFUL.Polar.polar</code>, <code>adjoint_partialIso_comp</code>, <code>adjoint_partialIso_comp_self</code>). For trace-class T, |T| is trace class and ‖T‖₁ = Tr|T| (<code>absOp_mem</code>, <code>traceNorm_eq_trace_abs</code>). Conversely, T is trace class iff Σ<sub>i</sub> ⟨e<sub>i</sub>, |T| e<sub>i</sub>⟩ converges in some Hilbert basis (<code>mem_traceClass_iff</code>). V is a partial isometry, VV†V = V (<code>IsPartialIsometry</code>, <code>isPartialIsometry_partialIso</code>). The decomposition is unique: if T = WA with A positive, W isometric on the range of A and zero on its orthogonal complement, then A = |T| and W = V (<code>polar_unique</code>). A self-contained, Mathlib-style version of the polar decomposition, with no project dependencies, is in <code>lean/MathlibPR/PolarDecomposition.lean</code>. The trace-class files are universe-polymorphic: a Hilbert space H may live in any universe <code>Type u</code>, with Hilbert-Schmidt factors and basis index types in the same universe. The countable-alphabet theorems (<code>valid_density_l2</code>, <code>valid_born_l2</code>, <code>valid_kraus_l2</code>) are universe-polymorphic too, as are the finite-alphabet combinatorial files. Trace-class operators are compact (<code>PFUL.TraceClass.isCompactOperator_of_mem</code>, via Hilbert-Schmidt operators as norm limits of finite-rank truncations), and every trace-class T has a Schmidt decomposition (<code>PFUL.Polar.schmidt</code>): a Hilbert basis v of eigenvectors of |T| with eigenvalues s<sub>n</sub> ≥ 0, vectors u<sub>n</sub> orthonormal where s<sub>n</sub> ≠ 0, T x = Σ s<sub>n</sub>⟨v<sub>n</sub>, x⟩u<sub>n</sub>, and Σ s<sub>n</sub> = Tr|T| = ‖T‖₁. For a local channel given by its Kraus kernel, the Choi kernel J(o,a;o',a') = Σ<sub>y</sub> V(o,y)(a) conj V(o',y)(a') converges, satisfies the trace-preservation condition Σ<sub>o</sub> J(o,a;o,a') = δ_{aa'}, and is positive semidefinite on every finite section (<code>PFUL.Countable.choiKernel_tp</code>, <code>choiKernel_psd</code>, <code>lean/PFUL/ChoiL2.lean</code>). Conversely, every kernel on countable alphabets whose finite sections are positive semidefinite and which satisfies the trace-preservation condition is the Choi kernel of a Kraus kernel over a countable Kraus index with Σ<sub>y</sub> K<sub>y</sub>†K<sub>y</sub> = 1, so <code>valid_kraus_l2</code> applies to every such Choi-specified channel (<code>PFUL.Countable.exists_kraus_of_choi</code>, <code>lean/PFUL/ChoiConverse.lean</code>; Mathlib's Moore–Aronszajn reproducing-kernel Hilbert space, then Gram–Schmidt over an enumeration). <code>PFUL.TraceClass.IsCPTP</code> is a standalone predicate for maps on trace-class operators: they preserve the trace class, are linear there, preserve the trace, and Φ ⊗ id<sub>Z</sub> preserves positivity for every finite ancilla Z. Every Stinespring/Kraus channel ρ ↦ Tr<sub>J</sub>(VρV†), with V an isometry and J any Kraus index, satisfies it (<code>isCPTP_stinespring</code>, <code>lean/PFUL/CPTP.lean</code>), and CPTP maps send density operators to density operators (<code>IsCPTP.isDensity</code>). Finite-rank operators are dense in the trace class in trace norm (<code>PFUL.TraceClass.exists_finiteRank_traceNorm_lt</code>). <code>IsNormalCPTP</code> adds trace-norm boundedness (continuity) to <code>IsCPTP</code>, and on countable ℓ² a map is normal CPTP iff it is a Kraus channel ρ ↦ Tr<sub>Y</sub>(UρU†) over a countable Kraus index (<code>PFUL.Countable.isNormalCPTP_iff_kraus</code>, <code>lean/PFUL/KrausNormal.lean</code>). The proof takes the Choi kernel of the map (positive by complete positivity, trace preserving), factors it by <code>exists_kraus_of_choi</code>, and extends agreement from the matrix units |a⟩⟨a'| to the whole trace class by trace-norm continuity (<code>eq_of_rankOne_basis</code>). The kernel-form channel of <code>valid_kraus_l2</code> is identified with the abstract Stinespring channel (<code>krausChannel_eq_stinespring</code>), so validity holds for arbitrary normal CPTP local channels on countable alphabets (<code>PFUL.Countable.valid_normalCPTP_l2</code>). For the commuting Switchboard case of H.8.4, the linear-algebra core is formalised in finite dimensions (<code>PFUL.Switchboard.commuting_blend</code>): if the rank-one projectors commute with those of a reference orthonormal basis, p_φ is a convex mixture of deterministic records, one per basis vector. That each record is a process function is not formalised. The Schmidt series also converges in trace norm, with ‖T − Σ_{n∈F} s<sub>n</sub>|u<sub>n</sub>⟩⟨v<sub>n</sub>|‖₁ ≤ Σ_{n∉F} s<sub>n</sub> (<code>PFUL.Polar.schmidt_traceNorm</code>). The H.12 counterexample is formalised in finite dimensions (<code>PFUL.Counterexample.purification_conjecture_false</code>): the Switchboard is pure against all finite local ancillas and unitaries (<code>isPure_Vsb</code>), its induced process is valid under all stochastic local interventions (<code>valid_pcl</code>), and it violates an inequality satisfied by every process function on three binary parties, L(p) = (32 − 24√2)/128 &lt; 0, so it lies outside their convex hull; the finite checks are kernel-evaluated by <code>decide +kernel</code> without <code>native_decide</code>. The counterexample's own definitions are linked to the general framework: its process-function predicate is exactly <code>PFUL.Countable.IsProcessFunction</code> of the bit-string form (<code>PFUL.Counterexample.isPF_iff</code>), every point of the process-function hull is valid by the general column identity (<code>valid_pfPoint</code>, <code>valid_of_mem_convexHull</code>), and the theorem is restated with the general definition (<code>purification_conjecture_false'</code>). Infinite-dimensional ancillas are not covered. For continuous alphabets the combinatorial core of F.5 is formalised (<code>PFUL.Continuous.tau_bijective</code>, <code>fiber_const</code>, <code>tauInv_apply</code>, <code>c<sub>indep</sub></code>, any cardinality); the measure-theoretic step (F.5.3) is not.</p>
 <h2>Appendix B. Unequal input and output alphabets</h2>
 <p>Nothing in Section 1 needs |I<sub>k</sub>| = |O<sub>k</sub>|.</p>
 <ul>
@@ -774,8 +774,39 @@ For each i, q<sub>k</sub>(.|i) is a probability distribution on O<sub>k</sub>, b
 ∑<sub>o</sub> ∏<sub>k</sub> q<sub>k</sub>(o<sub>k</sub>|w<sub>k</sub>(o)) = E[ number of fixed points of o → f(w(o)) ] = 1,
 since every deterministic choice of local functions has exactly one fixed point. Hence each column has norm 1, the set is complete, and M† M = 1. <strong>Every process function on countable alphabets (inputs carrying a group structure) lifts to a unitary process: U is unitary and so is every induced map.</strong> This argument also gives a dimension-free proof in the finite case. <em>Machine-checked in Lean for finite alphabets:</em> <code>PFUL.Column.sum_prod_eq_one</code> (the fixed-point averaging identity, over any commutative ring), <code>PFUL.induced_colnorm</code> (unit columns), and <code>PFUL.induced_conjTranspose_mul_of_colnorm</code> (Mᴴ M = 1 from orthonormal rows plus unit columns, with no dimension count). Standard axioms only. For countable alphabets, the column identity and unit column norms are machine-checked too: <code>PFUL.Countable.tsum_prod_eq_one</code> (ℝ≥0∞ sums, via the product measure <code>Measure.infinitePi</code>; inputs of any cardinality) and <code>PFUL.Countable.induced_colnorm</code>. Row orthonormality (<code>PFUL.Countable.induced_rows</code>, using the factorisation lemma <code>PFUL.Countable.hasSum_pi_prod</code>) and the assembly are machine-checked as well: <code>PFUL.Countable.induced_unitary_l2</code> gives a linear isometric equivalence between the ℓ² spaces whose matrix is M. So in Lean M is unitary for countable alphabets. Exclusivity gives orthogonal rows, and logical consistency under stochastic interventions gives unit columns.</p>
 <p>The earlier draft's special cases (permutation interventions; causally ordered w) are now corollaries. The earlier remark that two-party process functions are causal still holds for any cardinality, by the two-fixed-point argument: first w<sub>k</sub> is independent of o<sub>k</sub>, then w<sub>A</sub> and w<sub>B</sub> cannot both be non-constant. That remark is no longer needed. No counterexample search is needed either, because F.3 rules out proper co-isometries.</p>
-<p><strong>F.5 Continuous alphabets [partly definitional].</strong> Take I<sub>k</sub> a locally compact abelian group with Haar measure (R, U(1)), and w measurable. Then U is a measure-preserving bijection of O x P, so it is unitary on L<sup>2</sup> (F.1 carries over). The induced map, however, involves pointwise evaluation ⟨f|V T<sub>w(f)</sub>. That is undefined for general unitaries on L<sup>2</sup>, so &quot;unitary under all local unitaries&quot; first needs a definition, for instance via the phase-space approach of Giacomini et al. For measure-preserving local bijections the induced map is the bijection e → f(e). It is measure-preserving in the causal case (Fubini), but this is open in the non-causal case.</p>
-<p><strong>Status.</strong> Proved (paper and Lean, finite and countable), for countable alphabets with a group structure on the inputs and finitely many parties: the lift is unitary under all local unitaries with ancillas (F.1-F.3). Open: continuous alphabets, where the induced map first needs a definition (F.5). The proof of F.3 suggests the natural definition, via the kernel ⟨f|V|w(f)+e⟩ with Haar measure, and the same probabilistic argument would then need the measurable-selection version of &quot;exactly one fixed point&quot;.</p>
+<p><strong>F.5 Continuous alphabets (Oct 23 2026) [definitions; proved; open where marked].</strong></p>
+<p><em>Setting.</em> Finitely many parties. Each I<sub>k</sub> = O<sub>k</sub> = G<sub>k</sub> is a second-countable locally compact abelian group (R, the circle U(1), R^d, or any countable group) with Haar measure λ_k. These are standard Borel spaces and λ_k is σ-finite. Write G = ∏ G<sub>k</sub> and λ = ⊗ λ_k.</p>
+<p><em>Definition F.5.1 (measurable process function).</em> A Borel map w : G → G is a measurable process function if, for every family of Borel maps f<sub>k</sub> : G<sub>k</sub> → G<sub>k</sub>, the map o ↦ f(w(o)) has exactly one fixed point. (Every argument below uses only translations, constant maps and two-valued maps, which are Borel. So this is equivalent to asking the same for all maps f<sub>k</sub>, measurable or not.)</p>
+<p><em>Three candidate definitions of &quot;the closed loop&quot;, compared.</em></p>
+<ul>
+<li>(a) <strong>Point maps.</strong> Restrict the local operations to unitaries that act on points: V ψ(o) = u(o) ψ(g(o)), with g : O<sub>k</sub> → I<sub>k</sub> a Borel bijection with Borel inverse that is non-singular (preserves null sets), and |u|² = d(λ∘g)/dλ. By the classical theorem that automorphisms of L^∞ of a standard measure space come from non-singular point maps (not re-proved here), these are exactly the unitaries that carry multiplication operators to multiplication operators. They are the continuous analogue of monomial (phase × permutation) matrices, and include translations, phase multiplications (momentum kicks), reflections, squeezes ψ(o) ↦ √a ψ(ao), and any measurable rearrangement. For them the kernel V(o,i) = u(o) δ(i − g(o)) can be evaluated on the graph i = w(o)+e, and the countable formula M(o,e) = ∏_k V<sub>k</sub>(o<sub>k</sub>, w<sub>k</sub>(o)+e<sub>k</sub>) becomes the operator (Mψ)(o) = u(o) ψ(t(o)), where t(o) = g(o) − w(o). This is canonical: no choice is made.</li>
+<li>(b) <strong>Direct integrals / disintegration.</strong> One writes L²(G) = ∫^⊕ ℂ dλ and asks V<sub>k</sub> to be decomposable. Decomposable unitaries are multiplication operators, which are the special case g = id of (a). A general V<sub>k</sub> does not respect the fibres, so the disintegration does not define M; the useful content of (b) is contained in (a).</li>
+<li>(c) <strong>Limits of discretisations.</strong> Take M = lim M<sub>n</sub> along refining finite partitions, using F.3 for each M<sub>n</sub>. Every M<sub>n</sub> is unitary, but we found neither a proof that the limit exists nor a proof that it is independent of the partitions for general V<sub>k</sub>. Without that, (c) is not yet a definition.</li>
+<li>(d) <strong>Circuits, for causal w.</strong> When w is causally ordered, close the loop as a circuit. Apply the first party's V, then a controlled translation C = ∫^⊕ |o⟩⟨o| ⊗ T<sub>w<sub>k</sub>(o)</sub> dλ(o) (a direct integral of unitaries, hence unitary), then the next party, and so on. This works for <strong>all</strong> local unitaries and ancillas.</li>
+</ul>
+<p><em>Choice.</em> We adopt (a) for general measurable process functions and (d) as its extension to all local unitaries when w is causal. They agree where both apply (both reduce to the same composition of point maps), and both reduce to the matrix formula of F.2 when every G<sub>k</sub> is countable with counting measure. Option (a) is the largest class on which the defining formula of F.2 makes sense without choices, because it needs the kernel of V<sub>k</sub> on a null set (a graph). Option (c) remains a programme.</p>
+<p><em>Lemma F.5.2 [proved; Lean, any cardinality: <code>PFUL.Continuous.tau_bijective</code>, <code>fiber_const</code>, <code>tauInv_apply</code>, <code>c<sub>indep</sub></code>].</em> Let w be a process function on groups G<sub>k</sub> (no measure needed) and τ(o) := o − w(o).
+(i) τ is a bijection. Its inverse sends a source value e to the fixed point for local translations i ↦ i + e<sub>k</sub>.
+(ii) If τ(o) and τ(o') agree at every party other than a, then w<sub>a</sub>(o) = w<sub>a</sub>(o').
+(iii) Hence τ<sup>-1</sup>(e)<sub>a</sub> = e<sub>a</sub> + c<sub>a</sub>(e<sub>−a</sub>), with an offset c<sub>a</sub> that does not depend on e<sub>a</sub>.
+Proof of (ii): otherwise take f<sub>a</sub>(x) = o<sub>a</sub> if x = w<sub>a</sub>(o) and o'<sub>a</sub> otherwise, and f<sub>k</sub>(i) = i + τ(o)<sub>k</sub> for k ≠ a. Then o and o' are two distinct fixed points.</p>
+<p><em>Theorem F.5.3 [proved, paper] (measure preservation, causal or not).</em> For every measurable process function w, τ is a measure-preserving Borel automorphism of (G, λ).
+Proof, by induction on the number n of parties.</p>
+<ul>
+<li>n = 1: by (ii), w is constant, so τ is a translation.</li>
+<li>n &gt; 1: fix a party a. For each value x of o<sub>a</sub>, the function w<sub>−a</sub>(x, ·) is a process function on the other n−1 parties (set f<sub>a</sub> ≡ x). So by induction τ^x(o') := o' − w<sub>−a</sub>(x, o') is a measure-preserving bijection of G<sub>−a</sub>, and τ(o)_{−a} = τ<sup>o<sub>a</sub></sup>(o<sub>−a</sub>).</li>
+<li>Let σ(o) = (o<sub>a</sub>, τ(o)_{−a}). σ is a Borel bijection, so its inverse is Borel (Lusin–Souslin). σ preserves λ by Tonelli: λ(σ<sup>−1</sup>B) = ∫ λ_{−a}((τ^x)<sup>−1</sup>B<sub>x</sub>) dλ_a(x) = ∫ λ_{−a}(B<sub>x</sub>) dλ_a(x) = λ(B).</li>
+<li>τ∘σ<sup>−1</sup>(x, e') = (x − w<sub>a</sub>(σ<sup>−1</sup>(x,e')), e'). By (ii), w<sub>a</sub> is constant on each set {τ(o)_{−a} = e'}. So τ∘σ<sup>−1</sup>(x, e') = (x − c<sub>a</sub>(e'), e') with c<sub>a</sub> Borel, a fibrewise translation, which preserves λ by Tonelli and the translation invariance of Haar measure.</li>
+<li>Hence τ = (τ∘σ<sup>−1</sup>)∘σ preserves λ. ∎
+This is the measure-theoretic replacement for the countable &quot;expected number of fixed points = 1&quot; identity: (ii) says that the fixed-point count is forced to 1 one party at a time, and Tonelli integrates the parties out in turn.</li>
+</ul>
+<p><em>Corollary F.5.4 [proved, paper] (measure-preserving local bijections; the earlier open case).</em> Let the local operations be measure-preserving Borel bijections f<sub>k</sub> (with Borel inverses g<sub>k</sub> = f<sub>k</sub><sup>−1</sup>). Then the closed-loop map e ↦ s(e) (the unique fixed point of o ↦ f(w(o)+e)) preserves measure, in the causal and the non-causal case alike.
+Proof: s<sup>−1</sup>(o) = g(o) − w(o) = τ_{w'}(g(o)) with w' = w∘g<sup>−1</sup>. Relabelling outputs locally preserves the process-function property, so w' is a measurable process function. Then apply F.5.3. ∎</p>
+<p><em>Theorem F.5.5 [proved, paper] (unitarity in class (a)).</em> For every measurable process function w and every family of point-map unitaries V<sub>k</sub> ∈ (a) (with or without point-map ancillas; append the ancilla coordinates as extra groups on which w does not act), the closed-loop operator (Mψ)(o) = u(o) ψ(g(o) − w(o)) is unitary on L²(G). Proof: ∫ |u(o)|² |ψ(τ_{w'}(g(o)))|² dλ(o) = ∫ |ψ(τ_{w'}(x))|² dλ(x) = ‖ψ‖². The first step is the change of variables x = g(o), using |u|² = Jacobian of g; the second is F.5.3. M is surjective, with inverse ψ ↦ (ψ / u)∘t<sup>−1</sup>. ∎
+Thus the open lift U is unitary (F.1, measure-preserving), and every induced map is unitary for point-map local operations, for every measurable process function.</p>
+<p><em>Theorem F.5.6 [proved, paper] (causal w, all local unitaries).</em> With definition (d), M is a product of unitaries, so it is unitary for all local unitaries and ancillas.</p>
+<p><em>Open (non-causal w, general local unitaries).</em> For a non-causal measurable process function (for example the Lugano function lifted to R³ by threshold sets, which is a measurable process function with piecewise-translation τ) and local unitaries outside class (a), such as a Fourier transform, we have no canonical definition of the closed loop. Here is why. A non-causal w admits no circuit (d): circuits are causally ordered, and the Lugano statistics violate a causal inequality. And the formula of (a) needs the kernel of V<sub>k</sub> on a null set. <em>Conjecture F.5.7:</em> for every measurable process function and all local unitaries, the discretisations of (c) converge strongly to a unitary that is independent of the partitions and extends (a) and (d). Supporting evidence (heuristic, not a proof): every discretisation is unitary (F.3), and the limit exists in the two classes where we can compute it, (a) and (d).</p>
+<p><strong>Status.</strong> Proved (paper and Lean, finite and countable), for countable alphabets with a group structure on the inputs and finitely many parties: the lift is unitary under all local unitaries with ancillas (F.1-F.3). Continuous alphabets (F.5): definitions F.5.1 and (a)/(d) adopted. Measure preservation of the closed loop for every measurable process function, causal or not (F.5.3), and the measure-preserving-bijection case (F.5.4), are proved in the paper. Unitarity holds for point-map local unitaries (F.5.5), and for all local unitaries when w is causal (F.5.6). The combinatorial core (F.5.2) is machine-checked. Open: a canonical closed loop for non-causal w with general local unitaries (Conjecture F.5.7), and a Lean formalisation of the measure-theoretic step.</p>
 <h2>Appendix G. Two parties: purifiable = PF blend, trivially (Oct 21 2026)</h2>
 <p><strong>Theorem G.1 [proved].</strong> Let p(a,b|x,y) be a valid classical process on two parties A, B, with finite alphabets of any sizes: a, b are the inputs and x, y the outputs. Valid means p ≥ 0 and ∑<sub>a,b</sub> p(a,b|f(a),g(b)) = 1 for all functions f, g. Then p is a convex combination of deterministic causally ordered process functions. Each of these has one of two forms: a = a0 constant and b = h(x), or b = b0 constant and a = h(y).</p>
 <p><strong>Corollary G.2 [proved].</strong> For two parties, the former purification conjecture of Section 9 holds (in contrast with three parties, H.12.1). Both sides are true for every valid classical process. Every such process is a mixture of process functions (G.1), so it is purifiable (C.1). Also, every bipartite process function is causally ordered: a 0/1 point that is a convex combination of 0/1 points equals one of them. So the two-party case says nothing about the open multipartite question. The separation between &quot;classically consistent&quot; and &quot;reversibly realisable&quot; starts at three parties, where E<sub>ex1</sub> lives.</p>
@@ -1449,7 +1480,7 @@ This is a lower bound on the violation over Purif, not the maximum. General boar
 <li>If A and B anticommute, unitarity forces U ∝ P exp(i t(cos f A' + sin f B')) with Hermitian A' ∝ A and B' ∝ B.</li>
 </ul>
 <p>A left Z-string factor leaves p unchanged but does change the Pauli rule. So Paulis with Z components genuinely enlarge the family. threeterm.py anneals over the discrete structure (P<sub>o</sub>, A<sub>o</sub>, B<sub>o</sub>) to satisfy the rule identically. In 30 runs over 7 seeds it never reached an admissible board with genuinely anticommuting terms: the residual stayed at 15-22 [numerical, inconclusive]. <strong>Whether non-X three-term boards can leave the hull is open.</strong></p>
-<p><strong>H.14.2 Z<sub>8</sub> boards violate 8 of the 31 orbits that Z<sub>4</sub> never violated [proved; exact arithmetic in Q(ζ_8)].</strong> z8enum.py enumerates pure Z<sub>8</sub> X-type boards with the same gauge as H.13.3 and an exact integer Pauli test (in the basis 1, ζ, ζ<sup>2</sup>, ζ<sup>3</sup> of Z[ζ_8]).</p>
+<p><strong>H.14.2 Z<sub>8</sub> boards violate 8 of the 31 orbits that Z<sub>4</sub> never violated (full tables in Appendix J) [proved; exact arithmetic in Q(ζ_8)].</strong> z8enum.py enumerates pure Z<sub>8</sub> X-type boards with the same gauge as H.13.3 and an exact integer Pauli test (in the basis 1, ζ, ζ<sup>2</sup>, ζ<sup>3</sup> of Z[ζ_8]).</p>
 <ul>
 <li>There are exactly <strong>500,081</strong> boards, in 10,603 classes. As a cross-check, the same code with N = 4 gives the H.13.3 count 13,105.</li>
 <li>Float screen: 88 classes violate. Of these, 76 use odd powers of ζ_8. They reach 70 of the 93 orbits.</li>
@@ -1641,6 +1672,1292 @@ This is a lower bound on the violation over Purif, not the maximum. General boar
 </table>
 <p><strong>Numerical statement (WITHDRAWN after H.12; the exact counterexample has R = 0 with positive violation).</strong> For every switchboard machine found by push.py, facet-82 violation ≤ 1.79 rho(U), i.e. R ≥ 0.31 v<sup>2</sup>. The ratio R/v<sup>2</sup> is nearly flat for small v, so near the hull boundary the violation grows at most linearly in rho: the modulus looks Lipschitz, not Hölder-1/2. The floor rises slowly for large v. These are local optima: the true infimum of R/v<sup>2</sup> could be lower, and only facet 82 was tested. For contrast, the H.7 sampled-unitary runs reached violations near 0.9 at sampled residual 0.03-0.05. That residual is a sampled average of ||M M^dag - 1||<sup>2</sup> and is not comparable with R. In the exact residual the trade-off is quadratic in v, so a violation is not cheap.</p>
 <p><strong>I.5 Converse direction, numerically [numerical; WITHDRAWN after H.12].</strong> Read the other way: a switchboard machine with rho(U) ≤ delta has statistics, at every source state, that violate facet 82 by at most about 1.79 delta. A machine whose statistics violate it by v is at least rho ≥ 0.56 v from pure. So in family C, numerically and for facet 82, &quot;delta-close to liftable&quot; (in the machine residual rho) implies &quot;eps-close to the hull's facet-82 side&quot; with eps ~ 1.8 delta. A full hull-distance version, over all 93 facet orbits, was not run.</p>
+<h2>Appendix J. Facet-orbit tables for H.13-H.14 (Oct 23 2026)</h2>
+<p>Generated by code/stochastic/cyclic/switchboard/h13/tables.py from the committed data: facets from physics/facets/pf.out.gz, orbit labels and Z<sub>4</sub> maxima from xviol.npz, Z<sub>8</sub> maxima from xviol_z8.npz, exact Z<sub>4</sub> maxima from exactmax_part1/2.log, and Z<sub>8</sub> certificates from cert_z8.log. Strings are written i<sub>A</sub> i<sub>B</sub> i<sub>C</sub>. &quot;p(i|o)&quot; is the probability of input string i given output string o.</p>
+<p><em>Representatives.</em> Each orbit's representative is its lowest-index facet. The integer form shown is the one with minimal ℓ¹ norm among the affine representatives that agree with the facet on all 744 process functions (found by LP, then scaled to integers and checked exactly). The representatives are exact. Other members of the orbit follow by the 384 symmetries (relabelling parties and local relabelling of inputs and outputs).</p>
+<p><em>Maxima.</em> &quot;Rel.&quot; means the largest violation found divided by the facet's range on process functions. The Z<sub>4</sub> exact column gives the minimal polynomial of λ_min, the least eigenvalue of the facet operator Σ g P<sub>o,i</sub> + g0 in the facet's normalisation. The violation is its root at the float-selected maximising board; this exact value is [proved, exact] for that board, while the claim that it is the maximum over the class is [numerical]. The Z<sub>8</sub> column is [numerical].</p>
+<h3>J.1 The 23 never-crossed orbits [numerical]</h3>
+<p>Status for all 23 orbits: never violated by the Z<sub>4</sub> (386 classes) and Z<sub>8</sub> (10,603 classes) X-type boards, maximised over source states [numerical].</p>
+<table>
+<thead>
+<tr>
+<th>orbit</th>
+<th>size</th>
+<th>representative facet (index) : integer inequality, value ≥ 0 on every PF</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4</td>
+<td>384</td>
+<td>(72) - p(000</td>
+</tr>
+<tr>
+<td>5</td>
+<td>384</td>
+<td>(73) - p(000</td>
+</tr>
+<tr>
+<td>6</td>
+<td>384</td>
+<td>(76) - p(000</td>
+</tr>
+<tr>
+<td>7</td>
+<td>384</td>
+<td>(77) - p(000</td>
+</tr>
+<tr>
+<td>8</td>
+<td>384</td>
+<td>(78) - p(000</td>
+</tr>
+<tr>
+<td>9</td>
+<td>384</td>
+<td>(79) - p(000</td>
+</tr>
+<tr>
+<td>10</td>
+<td>384</td>
+<td>(86) - p(000</td>
+</tr>
+<tr>
+<td>11</td>
+<td>384</td>
+<td>(94) - p(000</td>
+</tr>
+<tr>
+<td>14</td>
+<td>192</td>
+<td>(171) - p(001</td>
+</tr>
+<tr>
+<td>25</td>
+<td>192</td>
+<td>(191) - p(001</td>
+</tr>
+<tr>
+<td>26</td>
+<td>192</td>
+<td>(240) - p(000</td>
+</tr>
+<tr>
+<td>28</td>
+<td>192</td>
+<td>(242) - p(000</td>
+</tr>
+<tr>
+<td>30</td>
+<td>192</td>
+<td>(245) - p(000</td>
+</tr>
+<tr>
+<td>31</td>
+<td>192</td>
+<td>(247) - p(000</td>
+</tr>
+<tr>
+<td>53</td>
+<td>64</td>
+<td>(513) p(001</td>
+</tr>
+<tr>
+<td>54</td>
+<td>96</td>
+<td>(514) p(001</td>
+</tr>
+<tr>
+<td>57</td>
+<td>192</td>
+<td>(521) - p(000</td>
+</tr>
+<tr>
+<td>66</td>
+<td>96</td>
+<td>(561) - p(000</td>
+</tr>
+<tr>
+<td>69</td>
+<td>192</td>
+<td>(571) p(001</td>
+</tr>
+<tr>
+<td>75</td>
+<td>96</td>
+<td>(595) - p(000</td>
+</tr>
+<tr>
+<td>79</td>
+<td>64</td>
+<td>(698) p(001</td>
+</tr>
+<tr>
+<td>81</td>
+<td>96</td>
+<td>(706) - p(000</td>
+</tr>
+<tr>
+<td>92</td>
+<td>64</td>
+<td>(6928) p(111</td>
+</tr>
+</tbody>
+</table>
+<h3>J.2 The 8 orbits first crossed at Z<sub>8</sub>, exact certificates [proved, exact in Q(ζ8)]</h3>
+<p>Board class 10515 (ζ_8 phases listed in cert_z8.log) satisfies the Pauli rule exactly. With a rational source vector v it gives the following exact values of |v|²·(g·p+g0):</p>
+<ul>
+<li>orbit 16 facet 12406 : |v|<sup>2</sup> * (g.p+g0) = 491357689/800000000 + -702031757/1600000000 sqrt2 sign -1  value -0.006317 (relative -0.002106)</li>
+<li>orbit 19 facet 26054 : |v|<sup>2</sup> * (g.p+g0) = 234647147/400000000 + -670070737/1600000000 sqrt2 sign -1  value -0.005646 (relative -0.001882)</li>
+<li>orbit 21 facet 4386 : |v|<sup>2</sup> * (g.p+g0) = 29013371/50000000 + -82955477/200000000 sqrt2 sign -1  value -0.006317 (relative -0.002106)</li>
+<li>orbit 24 facet 8095 : |v|<sup>2</sup> * (g.p+g0) = 658166309/800000000 + -935696139/1600000000 sqrt2 sign -1  value -0.004338 (relative -0.001446)</li>
+<li>orbit 27 facet 15356 : |v|<sup>2</sup> * (g.p+g0) = 41033639/80000000 + -581201931/1600000000 sqrt2 sign -1  value -0.000794 (relative -0.000265)</li>
+<li>orbit 29 facet 7052 : |v|<sup>2</sup> * (g.p+g0) = 205385451/400000000 + -116351057/320000000 sqrt2 sign -1  value -0.000740 (relative -0.000247)</li>
+<li>orbit 52 facet 4396 : |v|<sup>2</sup> * (g.p+g0) = 509711951/800000000 + -144553793/320000000 sqrt2 sign -1  value -0.001703 (relative -0.000568)</li>
+<li>orbit 67 facet 12438 : |v|<sup>2</sup> * (g.p+g0) = 67432867/100000000 + -191210757/400000000 sqrt2 sign -1  value -0.001703 (relative -0.000568)</li>
+</ul>
+<h3>J.3 Per-orbit maxima (all 93 orbits)</h3>
+<table>
+<thead>
+<tr>
+<th>orbit</th>
+<th>Z4 exact max: min-eigenvalue polynomial, root (facet range r)</th>
+<th>rel. Z4</th>
+<th>rel. Z8 (numerical)</th>
+<th>status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>8x<sup>4</sup> - 44x<sup>3</sup> + 60x<sup>2</sup> - 20x - 3 root -0.110409076756 (r=5)</td>
+<td>0.02208</td>
+<td>0.02208</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>1</td>
+<td>8x<sup>4</sup> - 44x<sup>3</sup> + 60x<sup>2</sup> - 20x - 3 root -0.110409076756 (r=5)</td>
+<td>0.02208</td>
+<td>0.02208</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>2</td>
+<td>8x<sup>4</sup> - 44x<sup>3</sup> + 60x<sup>2</sup> - 20x - 3 root -0.110409076756 (r=5)</td>
+<td>0.02208</td>
+<td>0.02208</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>3</td>
+<td>8x<sup>4</sup> - 44x<sup>3</sup> + 60x<sup>2</sup> - 20x - 3 root -0.110409076756 (r=5)</td>
+<td>0.02208</td>
+<td>0.02208</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>4</td>
+<td>-</td>
+<td>0</td>
+<td>0</td>
+<td>never violated by Z4/Z8 X-type boards [numerical]</td>
+</tr>
+<tr>
+<td>5</td>
+<td>-</td>
+<td>0</td>
+<td>0</td>
+<td>never violated by Z4/Z8 X-type boards [numerical]</td>
+</tr>
+<tr>
+<td>6</td>
+<td>-</td>
+<td>0</td>
+<td>0</td>
+<td>never violated by Z4/Z8 X-type boards [numerical]</td>
+</tr>
+<tr>
+<td>7</td>
+<td>-</td>
+<td>0</td>
+<td>0</td>
+<td>never violated by Z4/Z8 X-type boards [numerical]</td>
+</tr>
+<tr>
+<td>8</td>
+<td>-</td>
+<td>0</td>
+<td>0</td>
+<td>never violated by Z4/Z8 X-type boards [numerical]</td>
+</tr>
+<tr>
+<td>9</td>
+<td>-</td>
+<td>0</td>
+<td>0</td>
+<td>never violated by Z4/Z8 X-type boards [numerical]</td>
+</tr>
+<tr>
+<td>10</td>
+<td>-</td>
+<td>0</td>
+<td>0</td>
+<td>never violated by Z4/Z8 X-type boards [numerical]</td>
+</tr>
+<tr>
+<td>11</td>
+<td>-</td>
+<td>0</td>
+<td>0</td>
+<td>never violated by Z4/Z8 X-type boards [numerical]</td>
+</tr>
+<tr>
+<td>12</td>
+<td>32x<sup>7</sup> - 272x<sup>6</sup> + 904x<sup>5</sup> - 1484x<sup>4</sup> + 1240x<sup>3</sup> - 472x<sup>2</sup> + 46x + 7 root -0.0772693314944 (r=3)</td>
+<td>0.02576</td>
+<td>0.02576</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>13</td>
+<td>32x<sup>7</sup> - 272x<sup>6</sup> + 904x<sup>5</sup> - 1484x<sup>4</sup> + 1240x<sup>3</sup> - 472x<sup>2</sup> + 46x + 7 root -0.0772693314944 (r=3)</td>
+<td>0.02576</td>
+<td>0.02576</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>14</td>
+<td>-</td>
+<td>0</td>
+<td>0</td>
+<td>never violated by Z4/Z8 X-type boards [numerical]</td>
+</tr>
+<tr>
+<td>15</td>
+<td>32x<sup>7</sup> - 272x<sup>6</sup> + 904x<sup>5</sup> - 1484x<sup>4</sup> + 1240x<sup>3</sup> - 472x<sup>2</sup> + 46x + 7 root -0.0772693314944 (r=3)</td>
+<td>0.02576</td>
+<td>0.02576</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>16</td>
+<td>-</td>
+<td>0</td>
+<td>0.002106</td>
+<td>Z8 exact certificate (Q(zeta8))</td>
+</tr>
+<tr>
+<td>17</td>
+<td>32x<sup>7</sup> - 272x<sup>6</sup> + 904x<sup>5</sup> - 1484x<sup>4</sup> + 1240x<sup>3</sup> - 472x<sup>2</sup> + 46x + 7 root -0.0772693314944 (r=3)</td>
+<td>0.02576</td>
+<td>0.02576</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>18</td>
+<td>32x<sup>7</sup> - 272x<sup>6</sup> + 904x<sup>5</sup> - 1484x<sup>4</sup> + 1240x<sup>3</sup> - 472x<sup>2</sup> + 46x + 7 root -0.0772693314944 (r=3)</td>
+<td>0.02576</td>
+<td>0.02576</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>19</td>
+<td>-</td>
+<td>0</td>
+<td>0.001882</td>
+<td>Z8 exact certificate (Q(zeta8))</td>
+</tr>
+<tr>
+<td>20</td>
+<td>32x<sup>7</sup> - 272x<sup>6</sup> + 904x<sup>5</sup> - 1484x<sup>4</sup> + 1240x<sup>3</sup> - 472x<sup>2</sup> + 46x + 7 root -0.0772693314944 (r=3)</td>
+<td>0.02576</td>
+<td>0.02576</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>21</td>
+<td>-</td>
+<td>0</td>
+<td>0.002106</td>
+<td>Z8 exact certificate (Q(zeta8))</td>
+</tr>
+<tr>
+<td>22</td>
+<td>32x<sup>7</sup> - 272x<sup>6</sup> + 904x<sup>5</sup> - 1484x<sup>4</sup> + 1240x<sup>3</sup> - 472x<sup>2</sup> + 46x + 7 root -0.0772693314944 (r=3)</td>
+<td>0.02576</td>
+<td>0.02576</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>23</td>
+<td>32x<sup>7</sup> - 272x<sup>6</sup> + 904x<sup>5</sup> - 1484x<sup>4</sup> + 1240x<sup>3</sup> - 472x<sup>2</sup> + 46x + 7 root -0.0772693314944 (r=3)</td>
+<td>0.02576</td>
+<td>0.02576</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>24</td>
+<td>-</td>
+<td>0</td>
+<td>0.001446</td>
+<td>Z8 exact certificate (Q(zeta8))</td>
+</tr>
+<tr>
+<td>25</td>
+<td>-</td>
+<td>0</td>
+<td>0</td>
+<td>never violated by Z4/Z8 X-type boards [numerical]</td>
+</tr>
+<tr>
+<td>26</td>
+<td>-</td>
+<td>0</td>
+<td>0</td>
+<td>never violated by Z4/Z8 X-type boards [numerical]</td>
+</tr>
+<tr>
+<td>27</td>
+<td>-</td>
+<td>0</td>
+<td>0.0002648</td>
+<td>Z8 exact certificate (Q(zeta8))</td>
+</tr>
+<tr>
+<td>28</td>
+<td>-</td>
+<td>0</td>
+<td>0</td>
+<td>never violated by Z4/Z8 X-type boards [numerical]</td>
+</tr>
+<tr>
+<td>29</td>
+<td>-</td>
+<td>0</td>
+<td>0.0002468</td>
+<td>Z8 exact certificate (Q(zeta8))</td>
+</tr>
+<tr>
+<td>30</td>
+<td>-</td>
+<td>0</td>
+<td>0</td>
+<td>never violated by Z4/Z8 X-type boards [numerical]</td>
+</tr>
+<tr>
+<td>31</td>
+<td>-</td>
+<td>0</td>
+<td>0</td>
+<td>never violated by Z4/Z8 X-type boards [numerical]</td>
+</tr>
+<tr>
+<td>32</td>
+<td>4x<sup>2</sup> - 8x - 1 root -0.118033988750 (r=4)</td>
+<td>0.02951</td>
+<td>0.02951</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>33</td>
+<td>4x<sup>2</sup> - 8x - 1 root -0.118033988750 (r=4)</td>
+<td>0.02951</td>
+<td>0.02951</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>34</td>
+<td>4x<sup>2</sup> - 8x - 1 root -0.118033988750 (r=4)</td>
+<td>0.02951</td>
+<td>0.03115</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>35</td>
+<td>4x<sup>2</sup> - 8x - 1 root -0.118033988750 (r=4)</td>
+<td>0.02951</td>
+<td>0.03115</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>36</td>
+<td>64x<sup>7</sup> - 384x<sup>6</sup> + 864x<sup>5</sup> - 896x<sup>4</sup> + 408x<sup>3</sup> - 48x<sup>2</sup> - 10x + 1 root -0.138600049779 (r=3)</td>
+<td>0.0462</td>
+<td>0.0462</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>37</td>
+<td>64x<sup>7</sup> - 384x<sup>6</sup> + 864x<sup>5</sup> - 896x<sup>4</sup> + 408x<sup>3</sup> - 48x<sup>2</sup> - 10x + 1 root -0.138600049779 (r=3)</td>
+<td>0.0462</td>
+<td>0.0495</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>38</td>
+<td>64x<sup>7</sup> - 384x<sup>6</sup> + 864x<sup>5</sup> - 896x<sup>4</sup> + 408x<sup>3</sup> - 48x<sup>2</sup> - 10x + 1 root -0.138600049779 (r=3)</td>
+<td>0.0462</td>
+<td>0.0495</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>39</td>
+<td>64x<sup>7</sup> - 384x<sup>6</sup> + 864x<sup>5</sup> - 896x<sup>4</sup> + 408x<sup>3</sup> - 48x<sup>2</sup> - 10x + 1 root -0.138600049779 (r=3)</td>
+<td>0.0462</td>
+<td>0.0462</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>40</td>
+<td>8x<sup>4</sup> - 28x<sup>3</sup> + 24x<sup>2</sup> - 1 root -0.184324685944 (r=2)</td>
+<td>0.09216</td>
+<td>0.09216</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>41</td>
+<td>64x<sup>7</sup> - 384x<sup>6</sup> + 864x<sup>5</sup> - 896x<sup>4</sup> + 408x<sup>3</sup> - 48x<sup>2</sup> - 10x + 1 root -0.138600049779 (r=3)</td>
+<td>0.0462</td>
+<td>0.0462</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>42</td>
+<td>64x<sup>7</sup> - 384x<sup>6</sup> + 864x<sup>5</sup> - 896x<sup>4</sup> + 408x<sup>3</sup> - 48x<sup>2</sup> - 10x + 1 root -0.138600049779 (r=3)</td>
+<td>0.0462</td>
+<td>0.04659</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>43</td>
+<td>64x<sup>7</sup> - 384x<sup>6</sup> + 864x<sup>5</sup> - 896x<sup>4</sup> + 408x<sup>3</sup> - 48x<sup>2</sup> - 10x + 1 root -0.138600049779 (r=3)</td>
+<td>0.0462</td>
+<td>0.0462</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>44</td>
+<td>64x<sup>7</sup> - 384x<sup>6</sup> + 864x<sup>5</sup> - 896x<sup>4</sup> + 408x<sup>3</sup> - 48x<sup>2</sup> - 10x + 1 root -0.138600049779 (r=3)</td>
+<td>0.0462</td>
+<td>0.04659</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>45</td>
+<td>8x<sup>4</sup> - 28x<sup>3</sup> + 24x<sup>2</sup> - 1 root -0.184324685944 (r=2)</td>
+<td>0.09216</td>
+<td>0.09216</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>46</td>
+<td>8x<sup>4</sup> - 28x<sup>3</sup> + 24x<sup>2</sup> - 1 root -0.184324685944 (r=2)</td>
+<td>0.09216</td>
+<td>0.09216</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>47</td>
+<td>8x<sup>4</sup> - 28x<sup>3</sup> + 24x<sup>2</sup> - 1 root -0.184324685944 (r=2)</td>
+<td>0.09216</td>
+<td>0.09216</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>48</td>
+<td>4x<sup>2</sup> - 8x - 1 root -0.118033988750 (r=4)</td>
+<td>0.02951</td>
+<td>0.02951</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>49</td>
+<td>4x<sup>2</sup> - 8x - 1 root -0.118033988750 (r=4)</td>
+<td>0.02951</td>
+<td>0.03124</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>50</td>
+<td>8x<sup>4</sup> - 44x<sup>3</sup> + 74x<sup>2</sup> - 33x - 7 root -0.153963018994 (r=3)</td>
+<td>0.05132</td>
+<td>0.05132</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>51</td>
+<td>8x<sup>4</sup> - 44x<sup>3</sup> + 74x<sup>2</sup> - 33x - 7 root -0.153963018994 (r=3)</td>
+<td>0.05132</td>
+<td>0.05132</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>52</td>
+<td>-</td>
+<td>0</td>
+<td>0.0005678</td>
+<td>Z8 exact certificate (Q(zeta8))</td>
+</tr>
+<tr>
+<td>53</td>
+<td>-</td>
+<td>0</td>
+<td>0</td>
+<td>never violated by Z4/Z8 X-type boards [numerical]</td>
+</tr>
+<tr>
+<td>54</td>
+<td>-</td>
+<td>0</td>
+<td>0</td>
+<td>never violated by Z4/Z8 X-type boards [numerical]</td>
+</tr>
+<tr>
+<td>55</td>
+<td>16x<sup>5</sup> - 96x<sup>4</sup> + 192x<sup>3</sup> - 140x<sup>2</sup> + 23x + 3 root -0.0832404606833 (r=3)</td>
+<td>0.02775</td>
+<td>0.02775</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>56</td>
+<td>16x<sup>5</sup> - 96x<sup>4</sup> + 192x<sup>3</sup> - 140x<sup>2</sup> + 23x + 3 root -0.0832404606833 (r=3)</td>
+<td>0.02775</td>
+<td>0.02775</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>57</td>
+<td>-</td>
+<td>0</td>
+<td>0</td>
+<td>never violated by Z4/Z8 X-type boards [numerical]</td>
+</tr>
+<tr>
+<td>58</td>
+<td>8x<sup>4</sup> - 44x<sup>3</sup> + 74x<sup>2</sup> - 33x - 7 root -0.153963018994 (r=3)</td>
+<td>0.05132</td>
+<td>0.05132</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>59</td>
+<td>8x<sup>4</sup> - 44x<sup>3</sup> + 74x<sup>2</sup> - 33x - 7 root -0.153963018994 (r=3)</td>
+<td>0.05132</td>
+<td>0.05132</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>60</td>
+<td>2x<sup>2</sup> - 3x - 1 root -0.280776406404 (r=3)</td>
+<td>0.09359</td>
+<td>0.09359</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>61</td>
+<td>2x<sup>2</sup> - 3x - 1 root -0.280776406404 (r=3)</td>
+<td>0.09359</td>
+<td>0.09359</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>62</td>
+<td>8x<sup>4</sup> - 44x<sup>3</sup> + 74x<sup>2</sup> - 33x - 7 root -0.153963018994 (r=3)</td>
+<td>0.05132</td>
+<td>0.05132</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>63</td>
+<td>8x<sup>4</sup> - 44x<sup>3</sup> + 74x<sup>2</sup> - 33x - 7 root -0.153963018994 (r=3)</td>
+<td>0.05132</td>
+<td>0.05132</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>64</td>
+<td>16x<sup>5</sup> - 96x<sup>4</sup> + 192x<sup>3</sup> - 140x<sup>2</sup> + 23x + 3 root -0.0832404606833 (r=3)</td>
+<td>0.02775</td>
+<td>0.02775</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>65</td>
+<td>16x<sup>5</sup> - 96x<sup>4</sup> + 192x<sup>3</sup> - 140x<sup>2</sup> + 23x + 3 root -0.0832404606833 (r=3)</td>
+<td>0.02775</td>
+<td>0.02775</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>66</td>
+<td>-</td>
+<td>0</td>
+<td>0</td>
+<td>never violated by Z4/Z8 X-type boards [numerical]</td>
+</tr>
+<tr>
+<td>67</td>
+<td>-</td>
+<td>0</td>
+<td>0.0005678</td>
+<td>Z8 exact certificate (Q(zeta8))</td>
+</tr>
+<tr>
+<td>68</td>
+<td>16x<sup>5</sup> - 96x<sup>4</sup> + 192x<sup>3</sup> - 140x<sup>2</sup> + 23x + 3 root -0.0832404606833 (r=3)</td>
+<td>0.02775</td>
+<td>0.02775</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>69</td>
+<td>-</td>
+<td>0</td>
+<td>0</td>
+<td>never violated by Z4/Z8 X-type boards [numerical]</td>
+</tr>
+<tr>
+<td>70</td>
+<td>4x<sup>2</sup> - 8x - 1 root -0.118033988750 (r=4)</td>
+<td>0.02951</td>
+<td>0.02951</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>71</td>
+<td>4096x<sup>8</sup> - 40960x<sup>7</sup> + 168960x<sup>6</sup> - 369664x<sup>5</sup> + 456704x<sup>4</sup> - 308544x<sup>3</sup> + 94288x<sup>2</sup> - 1088x - 3789 root -0.153450660324 (r=4)</td>
+<td>0.03836</td>
+<td>0.03888</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>72</td>
+<td>8x<sup>4</sup> - 44x<sup>3</sup> + 74x<sup>2</sup> - 33x - 7 root -0.153963018994 (r=3)</td>
+<td>0.05132</td>
+<td>0.05132</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>73</td>
+<td>8x<sup>4</sup> - 44x<sup>3</sup> + 74x<sup>2</sup> - 33x - 7 root -0.153963018994 (r=3)</td>
+<td>0.05132</td>
+<td>0.05132</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>74</td>
+<td>16x<sup>5</sup> - 96x<sup>4</sup> + 192x<sup>3</sup> - 140x<sup>2</sup> + 23x + 3 root -0.0832404606833 (r=3)</td>
+<td>0.02775</td>
+<td>0.02775</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>75</td>
+<td>-</td>
+<td>0</td>
+<td>0</td>
+<td>never violated by Z4/Z8 X-type boards [numerical]</td>
+</tr>
+<tr>
+<td>76</td>
+<td>2x<sup>2</sup> - 3x - 1 root -0.280776406404 (r=3)</td>
+<td>0.09359</td>
+<td>0.09359</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>77</td>
+<td>16x<sup>5</sup> - 96x<sup>4</sup> + 192x<sup>3</sup> - 140x<sup>2</sup> + 23x + 3 root -0.0832404606833 (r=3)</td>
+<td>0.02775</td>
+<td>0.02775</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>78</td>
+<td>2x<sup>2</sup> - 3x - 1 root -0.280776406404 (r=3)</td>
+<td>0.09359</td>
+<td>0.09359</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>79</td>
+<td>-</td>
+<td>0</td>
+<td>0</td>
+<td>never violated by Z4/Z8 X-type boards [numerical]</td>
+</tr>
+<tr>
+<td>80</td>
+<td>16x<sup>5</sup> - 96x<sup>4</sup> + 192x<sup>3</sup> - 140x<sup>2</sup> + 23x + 3 root -0.0832404606833 (r=3)</td>
+<td>0.02775</td>
+<td>0.02775</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>81</td>
+<td>-</td>
+<td>0</td>
+<td>0</td>
+<td>never violated by Z4/Z8 X-type boards [numerical]</td>
+</tr>
+<tr>
+<td>82</td>
+<td>4x<sup>2</sup> - 4x - 1 root -0.207106781187 (r=2)</td>
+<td>0.1036</td>
+<td>0.1036</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>83</td>
+<td>4x<sup>2</sup> - 4x - 1 root -0.207106781187 (r=2)</td>
+<td>0.1036</td>
+<td>0.1036</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>84</td>
+<td>4x<sup>2</sup> - 4x - 1 root -0.207106781187 (r=2)</td>
+<td>0.1036</td>
+<td>0.1036</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>85</td>
+<td>16x<sup>5</sup> - 72x<sup>4</sup> + 108x<sup>3</sup> - 60x<sup>2</sup> + 8x + 1 root -0.0757690071115 (r=2)</td>
+<td>0.03788</td>
+<td>0.03788</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>86</td>
+<td>256x<sup>7</sup> - 1536x<sup>6</sup> + 3456x<sup>5</sup> - 3584x<sup>4</sup> + 1664x<sup>3</sup> - 244x<sup>2</sup> - 17x + 3 root -0.102016817295 (r=2)</td>
+<td>0.05101</td>
+<td>0.05101</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>87</td>
+<td>32x<sup>6</sup> - 176x<sup>5</sup> + 352x<sup>4</sup> - 304x<sup>3</sup> + 98x<sup>2</sup> - x - 2 root -0.116604771529 (r=2)</td>
+<td>0.0583</td>
+<td>0.0583</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>88</td>
+<td>256x<sup>7</sup> - 1536x<sup>6</sup> + 3456x<sup>5</sup> - 3584x<sup>4</sup> + 1664x<sup>3</sup> - 244x<sup>2</sup> - 17x + 3 root -0.102016817295 (r=2)</td>
+<td>0.05101</td>
+<td>0.05101</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>89</td>
+<td>32x<sup>6</sup> - 176x<sup>5</sup> + 352x<sup>4</sup> - 304x<sup>3</sup> + 98x<sup>2</sup> - x - 2 root -0.116604771529 (r=2)</td>
+<td>0.0583</td>
+<td>0.0583</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>90</td>
+<td>16x<sup>5</sup> - 72x<sup>4</sup> + 108x<sup>3</sup> - 60x<sup>2</sup> + 8x + 1 root -0.0757690071115 (r=2)</td>
+<td>0.03788</td>
+<td>0.03788</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>91</td>
+<td>2x<sup>2</sup> - 3x - 1 root -0.280776406404 (r=2)</td>
+<td>0.1404</td>
+<td>0.1404</td>
+<td>violated, Z4</td>
+</tr>
+<tr>
+<td>92</td>
+<td>-</td>
+<td>0</td>
+<td>0</td>
+<td>never violated by Z4/Z8 X-type boards [numerical]</td>
+</tr>
+</tbody>
+</table>
+<h3>J.4 Integer representatives of all 93 orbits</h3>
+<table>
+<thead>
+<tr>
+<th>orbit</th>
+<th>size</th>
+<th>representative facet (index) : integer inequality, value ≥ 0 on every PF</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>384</td>
+<td>(0) p(001</td>
+</tr>
+<tr>
+<td>1</td>
+<td>384</td>
+<td>(2) p(001</td>
+</tr>
+<tr>
+<td>2</td>
+<td>384</td>
+<td>(3) p(001</td>
+</tr>
+<tr>
+<td>3</td>
+<td>384</td>
+<td>(6) p(001</td>
+</tr>
+<tr>
+<td>4</td>
+<td>384</td>
+<td>(72) - p(000</td>
+</tr>
+<tr>
+<td>5</td>
+<td>384</td>
+<td>(73) - p(000</td>
+</tr>
+<tr>
+<td>6</td>
+<td>384</td>
+<td>(76) - p(000</td>
+</tr>
+<tr>
+<td>7</td>
+<td>384</td>
+<td>(77) - p(000</td>
+</tr>
+<tr>
+<td>8</td>
+<td>384</td>
+<td>(78) - p(000</td>
+</tr>
+<tr>
+<td>9</td>
+<td>384</td>
+<td>(79) - p(000</td>
+</tr>
+<tr>
+<td>10</td>
+<td>384</td>
+<td>(86) - p(000</td>
+</tr>
+<tr>
+<td>11</td>
+<td>384</td>
+<td>(94) - p(000</td>
+</tr>
+<tr>
+<td>12</td>
+<td>384</td>
+<td>(168) - p(001</td>
+</tr>
+<tr>
+<td>13</td>
+<td>384</td>
+<td>(169) p(001</td>
+</tr>
+<tr>
+<td>14</td>
+<td>192</td>
+<td>(171) - p(001</td>
+</tr>
+<tr>
+<td>15</td>
+<td>384</td>
+<td>(172) p(000</td>
+</tr>
+<tr>
+<td>16</td>
+<td>384</td>
+<td>(173) p(001</td>
+</tr>
+<tr>
+<td>17</td>
+<td>384</td>
+<td>(174) - p(001</td>
+</tr>
+<tr>
+<td>18</td>
+<td>384</td>
+<td>(175) - p(001</td>
+</tr>
+<tr>
+<td>19</td>
+<td>192</td>
+<td>(177) - p(000</td>
+</tr>
+<tr>
+<td>20</td>
+<td>384</td>
+<td>(178) - p(001</td>
+</tr>
+<tr>
+<td>21</td>
+<td>384</td>
+<td>(179) - p(000</td>
+</tr>
+<tr>
+<td>22</td>
+<td>384</td>
+<td>(181) - p(001</td>
+</tr>
+<tr>
+<td>23</td>
+<td>384</td>
+<td>(183) - p(001</td>
+</tr>
+<tr>
+<td>24</td>
+<td>192</td>
+<td>(187) - p(001</td>
+</tr>
+<tr>
+<td>25</td>
+<td>192</td>
+<td>(191) - p(001</td>
+</tr>
+<tr>
+<td>26</td>
+<td>192</td>
+<td>(240) - p(000</td>
+</tr>
+<tr>
+<td>27</td>
+<td>384</td>
+<td>(241) - p(000</td>
+</tr>
+<tr>
+<td>28</td>
+<td>192</td>
+<td>(242) - p(000</td>
+</tr>
+<tr>
+<td>29</td>
+<td>384</td>
+<td>(243) - p(000</td>
+</tr>
+<tr>
+<td>30</td>
+<td>192</td>
+<td>(245) - p(000</td>
+</tr>
+<tr>
+<td>31</td>
+<td>192</td>
+<td>(247) - p(000</td>
+</tr>
+<tr>
+<td>32</td>
+<td>384</td>
+<td>(261) - p(001</td>
+</tr>
+<tr>
+<td>33</td>
+<td>384</td>
+<td>(263) - p(001</td>
+</tr>
+<tr>
+<td>34</td>
+<td>384</td>
+<td>(265) - p(001</td>
+</tr>
+<tr>
+<td>35</td>
+<td>384</td>
+<td>(267) - p(001</td>
+</tr>
+<tr>
+<td>36</td>
+<td>384</td>
+<td>(280) - p(001</td>
+</tr>
+<tr>
+<td>37</td>
+<td>384</td>
+<td>(281) - p(001</td>
+</tr>
+<tr>
+<td>38</td>
+<td>384</td>
+<td>(282) - p(001</td>
+</tr>
+<tr>
+<td>39</td>
+<td>384</td>
+<td>(283) - p(001</td>
+</tr>
+<tr>
+<td>40</td>
+<td>384</td>
+<td>(288) - p(001</td>
+</tr>
+<tr>
+<td>41</td>
+<td>384</td>
+<td>(292) p(000</td>
+</tr>
+<tr>
+<td>42</td>
+<td>384</td>
+<td>(293) - p(001</td>
+</tr>
+<tr>
+<td>43</td>
+<td>384</td>
+<td>(294) - p(001</td>
+</tr>
+<tr>
+<td>44</td>
+<td>384</td>
+<td>(295) - p(001</td>
+</tr>
+<tr>
+<td>45</td>
+<td>384</td>
+<td>(300) - p(000</td>
+</tr>
+<tr>
+<td>46</td>
+<td>384</td>
+<td>(302) - p(000</td>
+</tr>
+<tr>
+<td>47</td>
+<td>384</td>
+<td>(308) - p(000</td>
+</tr>
+<tr>
+<td>48</td>
+<td>384</td>
+<td>(504) p(001</td>
+</tr>
+<tr>
+<td>49</td>
+<td>384</td>
+<td>(506) p(001</td>
+</tr>
+<tr>
+<td>50</td>
+<td>384</td>
+<td>(508) p(001</td>
+</tr>
+<tr>
+<td>51</td>
+<td>384</td>
+<td>(509) p(001</td>
+</tr>
+<tr>
+<td>52</td>
+<td>192</td>
+<td>(512) p(001</td>
+</tr>
+<tr>
+<td>53</td>
+<td>64</td>
+<td>(513) p(001</td>
+</tr>
+<tr>
+<td>54</td>
+<td>96</td>
+<td>(514) p(001</td>
+</tr>
+<tr>
+<td>55</td>
+<td>384</td>
+<td>(516) p(001</td>
+</tr>
+<tr>
+<td>56</td>
+<td>384</td>
+<td>(519) - p(001</td>
+</tr>
+<tr>
+<td>57</td>
+<td>192</td>
+<td>(521) - p(000</td>
+</tr>
+<tr>
+<td>58</td>
+<td>384</td>
+<td>(532) p(001</td>
+</tr>
+<tr>
+<td>59</td>
+<td>384</td>
+<td>(534) p(001</td>
+</tr>
+<tr>
+<td>60</td>
+<td>384</td>
+<td>(543) p(001</td>
+</tr>
+<tr>
+<td>61</td>
+<td>384</td>
+<td>(545) p(001</td>
+</tr>
+<tr>
+<td>62</td>
+<td>384</td>
+<td>(548) p(001</td>
+</tr>
+<tr>
+<td>63</td>
+<td>384</td>
+<td>(550) p(001</td>
+</tr>
+<tr>
+<td>64</td>
+<td>384</td>
+<td>(555) p(001</td>
+</tr>
+<tr>
+<td>65</td>
+<td>384</td>
+<td>(558) - p(001</td>
+</tr>
+<tr>
+<td>66</td>
+<td>96</td>
+<td>(561) - p(000</td>
+</tr>
+<tr>
+<td>67</td>
+<td>192</td>
+<td>(562) p(001</td>
+</tr>
+<tr>
+<td>68</td>
+<td>384</td>
+<td>(569) p(001</td>
+</tr>
+<tr>
+<td>69</td>
+<td>192</td>
+<td>(571) p(001</td>
+</tr>
+<tr>
+<td>70</td>
+<td>384</td>
+<td>(572) p(001</td>
+</tr>
+<tr>
+<td>71</td>
+<td>384</td>
+<td>(573) p(001</td>
+</tr>
+<tr>
+<td>72</td>
+<td>384</td>
+<td>(577) p(001</td>
+</tr>
+<tr>
+<td>73</td>
+<td>384</td>
+<td>(583) p(001</td>
+</tr>
+<tr>
+<td>74</td>
+<td>384</td>
+<td>(593) p(001</td>
+</tr>
+<tr>
+<td>75</td>
+<td>96</td>
+<td>(595) - p(000</td>
+</tr>
+<tr>
+<td>76</td>
+<td>128</td>
+<td>(609) p(001</td>
+</tr>
+<tr>
+<td>77</td>
+<td>384</td>
+<td>(612) - p(001</td>
+</tr>
+<tr>
+<td>78</td>
+<td>128</td>
+<td>(673) - p(001</td>
+</tr>
+<tr>
+<td>79</td>
+<td>64</td>
+<td>(698) p(001</td>
+</tr>
+<tr>
+<td>80</td>
+<td>384</td>
+<td>(705) - p(001</td>
+</tr>
+<tr>
+<td>81</td>
+<td>96</td>
+<td>(706) - p(000</td>
+</tr>
+<tr>
+<td>82</td>
+<td>384</td>
+<td>(1732) p(100</td>
+</tr>
+<tr>
+<td>83</td>
+<td>192</td>
+<td>(1739) p(001</td>
+</tr>
+<tr>
+<td>84</td>
+<td>192</td>
+<td>(1745) p(100</td>
+</tr>
+<tr>
+<td>85</td>
+<td>192</td>
+<td>(1926) p(001</td>
+</tr>
+<tr>
+<td>86</td>
+<td>384</td>
+<td>(1927) p(001</td>
+</tr>
+<tr>
+<td>87</td>
+<td>192</td>
+<td>(1929) p(001</td>
+</tr>
+<tr>
+<td>88</td>
+<td>384</td>
+<td>(1960) - p(001</td>
+</tr>
+<tr>
+<td>89</td>
+<td>192</td>
+<td>(1961) - p(001</td>
+</tr>
+<tr>
+<td>90</td>
+<td>192</td>
+<td>(1962) - p(001</td>
+</tr>
+<tr>
+<td>91</td>
+<td>96</td>
+<td>(5160) p(110</td>
+</tr>
+<tr>
+<td>92</td>
+<td>64</td>
+<td>(6928) p(111</td>
+</tr>
+</tbody>
+</table>
 <h2>References</h2>
 <ol>
 <li>M. Dummett, Can an effect precede its cause?, Aristotelian Society Supplementary Volume 28, 27 (1954); Bringing about the past, Philosophical Review 73, 338 (1964).</li>
@@ -1674,6 +2991,10 @@ This is a lower bound on the violation over Purif, not the maximum. General boar
 <li>H. Dourdent, K. Simonov, A. Leitherer, E.-C. Boghiu, R. Kunjwal, S. Halder, R. Augusiak and A. Acín, Paradox-free classical non-causality and unambiguous non-locality without entanglement are equivalent, arXiv:2512.23599 (2025).</li>
 <li>Ä. Baumeler, Causal loops: logically consistent correlations, time travel, and computation, PhD thesis, Università della Svizzera italiana (2017).</li>
 <li>V. Baumann and Č. Brukner, Appearance of causality in process matrices when performing fixed-basis measurements for two parties, Physical Review A 93, 062324 (2016).</li>
+<li>V. Vilasini and R. Renner, Embedding cyclic information-theoretic structures in acyclic spacetimes: no-go results for indefinite causality, Physical Review A 110, 022227 (2024); arXiv:2203.11245.</li>
+<li>V. Vilasini and R. Colbeck, A general framework for cyclic and fine-tuned causal models and their compatibility with space-time, Physical Review A 106, 032204 (2022); arXiv:2109.12128.</li>
+<li>V. Vilasini and R. Colbeck, Impossibility of superluminal signalling in Minkowski space-time does not rule out causal loops, Physical Review Letters 129, 110401 (2022); arXiv:2206.12887.</li>
+<li>N. Paunković and M. Vojinović, Causal orders, quantum circuits and spacetime: distinguishing between definite and superposed causal orders, arXiv:1905.09682 (2019).</li>
 </ol>
 
 <footer>Source: <a href="https://github.com/drewarrowood/process-function-unitary-lift">github.com/drewarrowood/process-function-unitary-lift</a> · <a href="https://github.com/drewarrowood/process-function-unitary-lift/raw/main/paper/lift.pdf">PDF</a> · <a href="https://drewarrowood.github.io/process-function-unitary-lift/">Technical note</a> · <a href="https://drewarrowood.github.io/process-function-unitary-lift/graded.html">Gentle version</a></footer>

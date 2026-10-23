@@ -223,3 +223,22 @@ Gaps:
 - Purity/validity/PF are this file's finite-dimensional definitions (link-product `compose`,
   `Valid` over product stochastic interventions, `IsPF` as unique fixed point); they are not
   yet linked to the `PFUL.Validity`/`Choi` framework.
+
+
+## Round 7
+
+Proved (no `sorry`, no `native_decide`; axioms propext/Classical.choice/Quot.sound, `tau_bijective` only propext/Quot.sound):
+- `PFUL/CounterexampleLink.lean`: `bitsEquiv` (Fin 8 ≃ 3-bit strings), **`isPF_iff`** (`IsPF w` ↔
+  `PFUL.Countable.IsProcessFunction (wBits w)`), `isPF_iff_column`, **`valid_pfPoint`** (via
+  `PFUL.Column.sum_prod_eq_one`), **`valid_of_mem_convexHull`**, `purification_conjecture_false'`
+  (H.12 restated with the general process-function definition).
+- `PFUL/Continuous.lean` (F.5 core; groups of any cardinality, no measure): `tau` (o ↦ o − w o),
+  **`tau_bijective`**, **`fiber_const`** (w_a constant where τ agrees off a), `tauInv_apply`
+  (τ⁻¹(e)_a = e_a + c_a e), **`c_indep`** (c_a independent of e_a).
+
+Gaps:
+- F.5.3 (τ measure-preserving for Haar measure; induction on parties + Tonelli + Lusin–Souslin) and
+  F.5.5 (unitarity for point-map local unitaries) are paper proofs only.
+- Counterexample: `IsPure` (link-product purity) is not identified with the W = |U⟩⟩⟨⟨U| form of
+  `PFUL.Choi`; ancillas finite in `Type 0`.
+- Normality assumed in `IsNormalCPTP` (automatic boundedness of positive TP maps not proved).

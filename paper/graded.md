@@ -595,8 +595,8 @@ The same argument also gives a second, *dimension-free* proof in the finite case
 
 **Still open or not formalised.**
 
-- **Continuous alphabets (open, F.5).** Take inputs in the real line or the circle. The open map U is still unitary on L², since it preserves measure. But "the loop closed with arbitrary local unitaries" involves evaluating functions at points, which is undefined for general L² unitaries. So the statement first needs a *definition*. The note suggests one, inspired by the countable proof, but it would need a measurable version of "exactly one fixed point". For measure-preserving local bijections the closed map preserves measure in the causal case, and this is open in the non-causal case.
-- **The process-matrix (Choi) form in infinite dimensions (partly formalised).** The unitary layer is machine-checked for countable alphabets. Mathlib does not have trace-class operators or partial traces on ℓ², so the project now builds them itself (`lean/PFUL/TraceClass.lean`). It proves that the trace converges and does not depend on the basis, that it is linear and cyclic, and that the partial trace exists, is unique, keeps positive operators positive and keeps the trace. With these, validity is restated for countable alphabets: every input density operator, entangled ancillas included, goes to an output state of trace 1, and so does the sink state after tracing out the ancillas (`PFUL.Countable.valid_density_l2`). What is still open is the literal form "Tr[W(…)] = 1". For infinite alphabets W and the local Choi operators are not trace class, so that pairing needs more than this library. It is a technical gap in the formalisation, not a doubt about the mathematics.
+- **Continuous alphabets (mostly settled, F.5).** Inputs in the real line or the circle. The closed loop is now defined for local operations that move points around (shifts, flips, squeezes, rearrangements, phase kicks), and for every local operation when the loop is causally ordered. In both cases it is proved unitary in the paper, for every loop, causal or not. The key lemma is machine-checked (`PFUL.Continuous`). Still open: a canonical definition for non-causal loops with general local operations, such as a Fourier transform, and a Lean version of the measure-theory step.
+- **The process-matrix (Choi) form in infinite dimensions (formalised, small gaps).** The Born-rule pairing with W converges to 1 for countable alphabets, for any local channel given by Kraus operators or by a normal completely positive trace-preserving map (`valid_born_l2`, `valid_kraus_l2`, `valid_normalCPTP_l2`). The H.12 counterexample's own definitions are now tied to the general ones (`PFUL.Counterexample.isPF_iff`, `valid_of_mem_convexHull`). Left: purity of the counterexample with infinite-dimensional ancillas, and automatic continuity of positive trace-preserving maps (assumed as "normal").
 
 ---
 
@@ -1117,7 +1117,7 @@ Two cautions. First, a checked theorem is only as good as its statement (Section
 
 - **It is not about spacetime.** See "How to read this" at the top: a unitary dilation is not a spacetime.
 - **It does not classify all quantum processes.** It places every process function, including ones that violate causal inequalities, among the unitarily extendible processes. It says nothing about processes that are not deterministic classical functions, beyond the stochastic results of Parts VIII–XI.
-- **It does not cover continuous alphabets.** Countable ones are done (Part VII). Continuous ones first need a definition of the closed loop.
+- **It does not cover continuous alphabets.** Countable ones are done (Part VII). Continuous ones are settled for point-moving local operations and for causal loops (F.5); the general non-causal case still needs a definition.
 - **It does not settle freedom** (Section 67).
 - **The weak point is the lemma.** The combinatorial lemma is the piece an attacker has to break. Everything after it is row orthogonality. In this case the lemma is also machine-checked, and it holds for alphabets of any size.
 
@@ -1145,6 +1145,22 @@ A board whose steps each mix at most three classical flip patterns of the plain 
 **Story 4: no wormholes.** In ordinary flat spacetime, with no time travel, a similar experiment would need the three "labs" to be smeared out in time, and it would have a hidden step-by-step explanation (Vilasini and Renner). There, the fingerprint would not show time travel. It would show that the hidden explanation must itself be coherently quantum.
 
 **What is solid and what is not.** The mathematics is proved. The papers cited were checked on arXiv. The reading as time travel is an interpretation within one model of quantum time travel; other models (Deutsch's) differ. No actual spacetime or device realising our loop has been constructed.
+
+### 74. Smooth dials instead of switches, and the full facet tables (F.5, Appendix J)
+
+**The question.** So far every party's setting was a whole number, like a switch with finitely or countably many positions. What if it is a dial, a real number or an angle?
+
+**Story.** Ana, Ben and Cai each turn a dial. A loop returns to each of them a dial setting that depends on the others. Before, we counted possibilities: "on average, exactly one consistent history" was the heart of the proof. With dials there are uncountably many histories, so counting has to become measuring volume.
+
+**What we proved.**
+- Take any consistent loop and suppose each person only shifts, flips or stretches their dial (and may add a phase). Then the closed loop squeezes no volume and loses none. So it is a perfectly reversible quantum operation, even when nobody is first.
+- The trick is to peel off one person at a time. Once everyone else's part of the history is fixed, the loop has to hand the remaining person a fixed setting; otherwise two different histories would both be consistent. Peeling the people off in turn turns "one history on average" into "volume preserved".
+- If the loop is causally ordered, any quantum operation at all works.
+- What is left open: for loops with no order, and for operations that mix positions completely (like a Fourier transform), there is not yet a natural definition of what closing the loop even means.
+
+**Machine checks.** The peeling lemma is checked in Lean for dials of any kind. The counterexample of Part VIII now uses the same definitions as the rest of the Lean proofs.
+
+**The tables.** Appendix J of the technical note lists every one of the 93 kinds of facet, the walls of the classical region. For each kind it gives an explicit integer inequality, how many walls are of that kind, and how far our quantum loops get past it. The 23 kinds that no loop we tried ever crossed are listed separately; that is a numerical finding, not a proof.
 
 ---
 
@@ -1193,7 +1209,7 @@ A board whose steps each mix at most three classical flip patterns of the plain 
 > - **Loops without a first mover.** Which processes are purifiable among those whose purifications all have no party first in the machine (H.6; Lugano-type loops; the Ring, Chorus, Switchboard and Shadows of Section 58e), and the exact status of orbits 8, 10, 20 and the other 46 sampled open orbits.
 > - **Facets from purifiability.** No facet inequality, for example orbit 82, has been derived from purifiability.
 > - **Where any non-purifiability proof must look.** Any proof must use the purifying unitary on source states orthogonal to the actual one. That is the non-convex isotropy condition of Araújo et al.'s Theorem 4, where every certificate attempt has stalled for the larger orbits: single-form inertia, block forms, SDP and moment relaxations.
-> - **Continuous alphabets.** The closed loop first needs a definition (F.5).
+> - **Continuous alphabets.** Settled for point-moving local operations and for causal loops (F.5, paper proof; core lemma in Lean). Open for non-causal loops with general local operations.
 > - **Not formalised.** The literal Choi form Tr[W(…)] = 1 in infinite dimensions, where W is not trace class. The trace form is checked: the project's own trace-class and partial-trace library (`lean/PFUL/TraceClass.lean`) gives `PFUL.Countable.valid_density_l2`, Tr = 1 for every input density operator on ℓ².
 > - **Not addressed.** Spacetime embedding, and lifts built from bijections other than U.
 
