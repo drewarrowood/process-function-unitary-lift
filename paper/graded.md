@@ -1228,3 +1228,13 @@ Not yet checked by computer: local operations that stretch the dial (these need 
 ## 76. Plain-language note: helpers of unlimited size (Oct 23 2026)
 
 Before this round, the computer checked the Switchboard counterexample only when each outside "helper" system had finitely many settings. Helpers may now have countably infinitely many settings, such as an infinite ladder of levels. The computer checks that the combined process still loses no information: it is an isometry, meaning it preserves lengths and angles. It also checks that the new definition gives the same answer as the old one whenever the helpers are finite, and the counterexample to the purification conjecture holds in this stronger form. Two things are still open. The computer has not shown the stronger statement that the process is fully reversible (unitary) for infinite helpers. The links to the general validity definition and to general smooth reparametrisations are also still open.
+
+## 77. Plain-language note: the helper machine is fully reversible, and smooth dials work too (Oct 23 2026)
+
+Last round, the computer checked that our helper construction never loses information when the helper is unlimited. Now it also checks that the construction can be run backwards, so it is fully reversible. This means the counterexample survives the strictest reading of "purifiable".
+
+The computer also checks the "smooth dial" result for any smooth, one-to-one rearrangement of space. Stretching and squeezing are fine, provided the rearrangement never crushes a region flat.
+
+Two puzzles are still open:
+- the boards that are not of the X type;
+- the 23 inequalities that no test has broken yet.

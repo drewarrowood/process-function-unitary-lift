@@ -1173,6 +1173,13 @@ This suggests, but does not show, that Purif (convex by H.13.1) is not a polytop
 - Whether quantum CTC dynamics is linear (ref. 16) or nonlinear (Deutsch) is unsettled. Our signature is model-dependent.
 - The physical meaning of the 23 never-crossed orbits and of non-polytopality is conjectural.
 
+
+### H.16 Round 10 status (Oct 23 2026) [proved in Lean unless marked]
+- **Unitarity closed.** The H.12.3 gap "isometry, not unitary, for infinite ancillas" is now closed. `isUnitaryInf_Vsb` proves the Switchboard loop is unitary against every family of countable ancillas. `purification_conjecture_false_unitaryInf` then gives the counterexample in the unitary form. The proof checks row orthonormality (`row_scalar_key`, an exact kernel check) and shows that an isometry with orthonormal rows is onto.
+- **Validity link, partial.** `valid_pfPoint_iff` proves `Valid (pfPoint w) ↔ IsPF w`, and `validWith_of_valid_pfPoint` links this to `PFUL.ValidWith`. Both hold only for deterministic w. `ValidWith` is not defined for non-deterministic processes such as `pcl`.
+- **F.5.5 for general point maps.** `PFUL.Continuous.closedLoop_general_unitary` covers measurable bijections with a positive density. `closedLoop_jacobian_unitary` covers global bijections of ℝⁿ with an invertible derivative, where the density is |det g'|. Local diffeomorphisms and degenerate Jacobians remain open.
+- **Open.** The non-X 3-term boards (from H.14) and the 23 never-crossed inequalities (J.1) were not attacked this round and are still open.
+
 ## Appendix I. Robustness: approximately blended versus approximately liftable (Oct 22 2026)
 
 Norm: for classical processes, ||p - q||_1 = sum over (i,o) of |p(i|o) - q(i|o)|. For machines, the switchboard residual is rho(U) := sqrt(R(U)), the l2 norm of the forbidden Pauli coefficients (H.8.1).

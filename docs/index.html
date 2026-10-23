@@ -1603,6 +1603,13 @@ This is a lower bound on the violation over Purif, not the maximum. General boar
 <li>Whether quantum CTC dynamics is linear (ref. 16) or nonlinear (Deutsch) is unsettled. Our signature is model-dependent.</li>
 <li>The physical meaning of the 23 never-crossed orbits and of non-polytopality is conjectural.</li>
 </ul>
+<h3>H.16 Round 10 status (Oct 23 2026) [proved in Lean unless marked]</h3>
+<ul>
+<li><strong>Unitarity closed.</strong> The H.12.3 gap &quot;isometry, not unitary, for infinite ancillas&quot; is now closed. <code>isUnitaryInf_Vsb</code> proves the Switchboard loop is unitary against every family of countable ancillas. <code>purification_conjecture_false_unitaryInf</code> then gives the counterexample in the unitary form. The proof checks row orthonormality (<code>row_scalar_key</code>, an exact kernel check) and shows that an isometry with orthonormal rows is onto.</li>
+<li><strong>Validity link, partial.</strong> <code>valid_pfPoint_iff</code> proves <code>Valid (pfPoint w) ↔ IsPF w</code>, and <code>validWith_of_valid_pfPoint</code> links this to <code>PFUL.ValidWith</code>. Both hold only for deterministic w. <code>ValidWith</code> is not defined for non-deterministic processes such as <code>pcl</code>.</li>
+<li><strong>F.5.5 for general point maps.</strong> <code>PFUL.Continuous.closedLoop_general_unitary</code> covers measurable bijections with a positive density. <code>closedLoop_jacobian_unitary</code> covers global bijections of ℝⁿ with an invertible derivative, where the density is |det g'|. Local diffeomorphisms and degenerate Jacobians remain open.</li>
+<li><strong>Open.</strong> The non-X 3-term boards (from H.14) and the 23 never-crossed inequalities (J.1) were not attacked this round and are still open.</li>
+</ul>
 <h2>Appendix I. Robustness: approximately blended versus approximately liftable (Oct 22 2026)</h2>
 <p>Norm: for classical processes, ||p - q||_1 = sum over (i,o) of |p(i|o) - q(i|o)|. For machines, the switchboard residual is rho(U) := sqrt(R(U)), the l2 norm of the forbidden Pauli coefficients (H.8.1).</p>
 <p><strong>I.1 Blend-close implies liftable-close [proved, trivial].</strong> If ||p - q||_1 ≤ eps with q in conv(PF), then p is within eps of a purifiable process, namely q (C.1). So delta = eps, in any norm. This uses only conv(PF) ⊆ Purif.</p>
