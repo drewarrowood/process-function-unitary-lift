@@ -278,3 +278,28 @@ Gaps (with reasons):
   ⇒ bounded is true; normality is not automatic for maps on B(H)), and Mathlib lacks the needed
   order-theoretic operator machinery.
 
+
+## Round 9: operator machinery for countable ancillas (`PFUL/CounterexampleInf.lean`)
+
+All sorry-free; axioms are only propext, Classical.choice and Quot.sound; no native_decide.
+- `entOp A` gives the kernel ⟨e_r, A e_c⟩ of a bounded operator on ℓ²(X) = `lp (fun _ => ℂ) 2`.
+  `isIsoKernel_entOp`: a unitary has orthonormal columns (stated with HasSum).
+- `exists_isometry_of_isIsoKernel`: if a kernel's columns are orthonormal, it is the kernel of a
+  linear isometry of ℓ².
+- `composeOp V A`: the bounded-operator compose for countable ancillas κ_k. It is defined as
+  `compose V (entOp ∘ A)`; the ancilla sums are absolutely convergent series. Summation helpers:
+  `hasSum_pi_prod` and `hasSum_prod_fintype`.
+- `IsPureKer` / `IsPureInf`: purity against every family of countable ancillas.
+  `IsPureKer.isPureInf` turns the kernel form into an ℓ² isometry. `IsPureKer.isPure` gives
+  agreement with the matrix `IsPure` on finite ancillas.
+- `isPureKer_Vsb` and `isPureInf_Vsb`: the Switchboard is pure against countable ancillas.
+- `purification_conjecture_false_inf`: `pcl` is Valid, is `PurifiableInf`, and lies outside the
+  process-function hull.
+
+Gaps:
+- Unitarity, not only isometry, for infinite ancillas. Proving surjectivity needs orthonormal rows,
+  which the scalar-key argument does not provide. Ancillas of uncountable dimension are not covered.
+- Goal 4 is not done this round, for two reasons. The link between `Valid` and
+  `PFUL.Validity.ValidWith` needs a bridge between the counterexample's `Fin 8` encoding and the
+  general typeclass setup; this is checked on paper only. F.5.5 for general point maps needs change
+  of variables for measurable bijections with a Jacobian, which is not formalised.
