@@ -242,3 +242,39 @@ Gaps:
 - Counterexample: `IsPure` (link-product purity) is not identified with the W = |U⟩⟩⟨⟨U| form of
   `PFUL.Choi`; ancillas finite in `Type 0`.
 - Normality assumed in `IsNormalCPTP` (automatic boundedness of positive TP maps not proved).
+
+
+## Round 8
+
+Proved (no `sorry`, no `native_decide`; axioms propext/Classical.choice/Quot.sound):
+- `PFUL/ContinuousMeasure.lean` (F.5.3): `tau_measurable`, **`tauInv_measurable`** (Borel inverse via
+  `Measurable.measurableEmbedding`, Lusin–Souslin), **`tau_measurePreserving`**: for `ι` finite and each
+  `G k` an additive commutative group with `MeasurableAdd`, `MeasurableSub₂` and `StandardBorelSpace`, and
+  `μ k` σ-finite and right-invariant, `MeasurePreserving (tau w) (Measure.pi μ) (Measure.pi μ)` for every
+  measurable process function `w` (causal or not). Proof by induction on `card ι`
+  (`piEquivPiSubtypeProd`, `MeasurePreserving.skew_product`, shear via `measurePreserving_sub_right`,
+  `fiber_const`). Corollaries: `tau_measurePreserving_real` (ℝ, Lebesgue), `tau_measurePreserving_circle`
+  (`AddCircle T`, Haar). Countable groups with counting measure are covered by the general theorem.
+- `PFUL/ContinuousUnitary.lean` (F.5.5, translation class): `phaseUnitary` (multiplication by a measurable
+  unit-modulus phase, unitary on L²), `koopman` (Koopman unitary of a measure-preserving measurable
+  equivalence), `tauEquiv`, **`closedLoop_unitary`**: ∃ U : L² ≃ₗᵢ[ℂ] L² with
+  (Uψ)(o) = φ(o)ψ(o − w o) a.e.
+- `PFUL/ChoiLink.lean`: `choiVec`, `choiMat` (= |V⟩⟩⟨⟨V|), `choiVec_apply`, **`compose_eq_link`**,
+  **`compose_congr_choiVec`** (purity depends only on |V⟩⟩), `choiMat_isHermitian`, `choiMat_sq`
+  (W² = (Tr W)W), **`Vsb_pure_choi`**.
+
+Gaps (with reasons):
+- F.5.5 for general point maps g (|u|² = Jacobian): this needs the change of variables formula for
+  measurable bijections with a Jacobian (Mathlib has it for injective differentiable maps on ℝⁿ,
+  `lintegral_image_eq_lintegral_abs_det_fderiv_mul`). The paper reduces it to the translation case.
+  Not done this round.
+- Infinite-dimensional ancillas: `compose`/`IsPure` are matrix-level (finite `Fintype` ancillas). An
+  infinite-ancilla purity notion needs bounded operators on ℓ²(a) ⊗ ℂ^{…}. Finite ancillas do **not**
+  logically suffice, because infinite-ancilla purity is a stronger hypothesis. The paper argument
+  (the proof of `isPure_Vsb` is uniform in the ancilla) is not formalised.
+- `Valid` (counterexample) vs `PFUL.Validity.ValidWith`: still checked on paper only.
+- Automatic boundedness/normality of positive TP maps (dropping the assumption in `IsNormalCPTP`):
+  not attempted. This is a genuine theorem in the infinite-dimensional case (CP + TP on trace class
+  ⇒ bounded is true; normality is not automatic for maps on B(H)), and Mathlib lacks the needed
+  order-theoretic operator machinery.
+

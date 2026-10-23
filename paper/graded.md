@@ -595,7 +595,7 @@ The same argument also gives a second, *dimension-free* proof in the finite case
 
 **Still open or not formalised.**
 
-- **Continuous alphabets (mostly settled, F.5).** Inputs in the real line or the circle. The closed loop is now defined for local operations that move points around (shifts, flips, squeezes, rearrangements, phase kicks), and for every local operation when the loop is causally ordered. In both cases it is proved unitary in the paper, for every loop, causal or not. The key lemma is machine-checked (`PFUL.Continuous`). Still open: a canonical definition for non-causal loops with general local operations, such as a Fourier transform, and a Lean version of the measure-theory step.
+- **Continuous alphabets (mostly settled, F.5).** Inputs in the real line or the circle. The closed loop is now defined for local operations that move points around (shifts, flips, squeezes, rearrangements, phase kicks), and for every local operation when the loop is causally ordered. In both cases it is proved unitary in the paper, for every loop, causal or not. The key lemma is machine-checked (`PFUL.Continuous`). The measure-theory step is now machine-checked too (Oct 23 2026): the loop map never squeezes or stretches volume, for any loop, causal or not (`PFUL.Continuous.tau_measurePreserving`, proved for the real line, the circle and any similar group). The loop built from shifts plus phase kicks is checked to be unitary (`closedLoop_unitary`). Still open: a canonical definition for non-causal loops with general local operations, such as a Fourier transform.
 - **The process-matrix (Choi) form in infinite dimensions (formalised, small gaps).** The Born-rule pairing with W converges to 1 for countable alphabets, for any local channel given by Kraus operators or by a normal completely positive trace-preserving map (`valid_born_l2`, `valid_kraus_l2`, `valid_normalCPTP_l2`). The H.12 counterexample's own definitions are now tied to the general ones (`PFUL.Counterexample.isPF_iff`, `valid_of_mem_convexHull`). Left: purity of the counterexample with infinite-dimensional ancillas, and automatic continuity of positive trace-preserving maps (assumed as "normal").
 
 ---
@@ -1214,3 +1214,13 @@ A board whose steps each mix at most three classical flip patterns of the plain 
 > - **Not addressed.** Spacetime embedding, and lifts built from bijections other than U.
 
 *For definitions, full proofs, references and code pointers, see the technical note, [paper/lift.md](https://github.com/drewarrowood/process-function-unitary-lift/blob/main/paper/lift.md), and [lean/STATUS.md](https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/STATUS.md).*
+
+## 75. Plain-language note: what the computer now checks about smooth dials (Oct 23 2026)
+
+Section 74 described inputs that are smooth dials (a position on a line or an angle on a circle) rather than finite menus. Two of its key facts are now checked line by line by the Lean proof assistant, using only the standard axioms.
+
+- **No volume is lost or gained.** Wire the parties into any loop, causal or not. The map from "what everyone outputs" to "the net shift around the loop" moves regions of outcome space around without changing their total size. This is the continuous replacement for "exactly one consistent history" in the finite case. The computer proves it for any number of parties on lines, circles, or any group with a translation-invariant notion of size.
+- **Probabilities still add to one.** If every party just shifts its dial and adds a phase, the whole loop is a unitary. Total probability is conserved for every input state.
+- **The counterexample is tied to the standard formalism.** The Switchboard's purity, the key ingredient of the counterexample to the purification conjecture, is now shown to be a property of its process matrix W = |V⟩⟩⟨⟨V|. That is the object the rest of the theory uses.
+
+Not yet checked by computer: local operations that stretch the dial (these need a Jacobian change of variables), memories (ancillas) that are infinite-dimensional, and the automatic boundedness of physical maps.
