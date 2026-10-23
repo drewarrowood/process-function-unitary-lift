@@ -1065,6 +1065,75 @@ These are exact values of the maximiser that the float screen picked. They are e
 
 This suggests, but does not show, that Purif (convex by H.13.1) is not a polytope, and that finite phase groups only approximate it. No proof either way. Whether non-X-type or ancilla boards add anything beyond X-type is open.
 
+### H.15 What the results mean in spacetime (Oct 23 2026) [labels: PROVED = this paper; CITED = verified from the arXiv primary source on Oct 23 2026; INTERPRETIVE = our reading, not a theorem]
+
+**H.15.1 The cited embedding framework [CITED].**
+- Baumeler, Costa, Ralph, Wolf and Zych (arXiv:1703.00779, CQG 36, 224002 (2019); ref. 16) model classical deterministic dynamics as follows:
+  - There are N compact, CTC-free "local regions" with spacelike past and future boundaries. They sit in an arbitrary Lorentzian manifold and may be traversed by CTCs.
+  - An agent in region R applies any function f_R from the past-boundary state to the future-boundary state.
+  - The exterior dynamics is a function w: O -> I from future boundaries to past boundaries. Consistency with free local choice is exactly "w∘f has a fixed point for every f", and the fixed point is then unique (their Thm 1). These w are the process functions (PFs) of this paper.
+  - Their Thm 2: every PF extends to an invertible one by adding a source region (output only, "in the past" of all regions) and a sink region (input only, "in the future"). They describe realisations by reversible interactions inside the CTC region (Fig. 3), for example billiard-ball logic.
+  - Their Thm 3: three regions form a PF iff fixing any one output leaves at most one-way signalling between the other two. Three parties can each be both in the past and in the future of the others.
+- Tobar and Costa (arXiv:2001.02511, CQG 37, 205011 (2020); ref. 28) extend this to N regions, with inequivalent four-party PFs. They sketch a wormhole spacetime with pairwise-identified mouths and a billiard-ball computer that implements any PF (their Fig. 3).
+- Baumeler and Wolf (arXiv:1507.01714, NJP 18, 013036 (2016); ref. 15) show that the logically consistent classical processes form a polytope. The deterministic ones are its extremal points, the PFs.
+- Oreshkov, Costa and Brukner (arXiv:1105.4464, ref. 14) define process matrices from local quantum mechanics alone. They note that any process can be read as a CPTP map from the parties' outputs back to their inputs, "having the form of a CTC". They also show that bipartite classical processes are causally separable.
+- Araújo, Feix, Navascués and Brukner (arXiv:1611.08535, Quantum 1, 10 (2017); ref. 17) add a global past P and future F:
+  - A process is pure iff it maps local unitaries to a unitary P -> F (their Thm 2: W = |U_w>><<U_w|).
+  - The purification postulate: a process is physical only if it is part of a pure process. The motivation is reversibility of fundamental dynamics.
+  - They exhibit a purifiable tripartite classical process that violates causal inequalities (their Sec. 7, the Lugano-type function).
+- Lloyd et al. (arXiv:1005.2219, ref. 13) and Deutsch (ref. 10; Phys. Rev. D 44, 3197, journal version, not fetched here) give the P-CTC and D-CTC models. Ref. 16 (Sec. VII) states two comparisons. P-CTCs agree with the unitary-process predictions for valid unitary processes, but allow general unitaries at the price of nonlinearity and restricted local operations. D-CTCs allow arbitrary local operations but predict nonlinear evolution.
+- Vilasini and Renner (arXiv:2203.11245, PRA 110, 022227 (2024)) treat Minkowski space. Note that this no-go is due to Vilasini and **Renner**; the Colbeck papers are cited next. Relativistic causality is a compatibility condition between an information-theoretic structure and an acyclic spacetime. Realisations of indefinite-causal-order processes in such a spacetime (a) necessarily non-localise systems, and (b) admit a definite, acyclic causal-order explanation at a fine-grained level.
+- Vilasini and Colbeck (arXiv:2109.12128, PRA 106, 032204 (2022); arXiv:2206.12887, PRL 129, 110401 (2022)) show that forbidding superluminal signalling alone does not rule out causal loops embedded in Minkowski space. Whether such loops are possible in 3+1 dimensions is open.
+- Paunković and Vojinović (arXiv:1905.09682) show that every circuit can be immersed in a classical spacetime. Quantum-switch experiments in fixed spacetimes do not feature superposed causal orders; only a gravitational switch would.
+
+**H.15.2 Dictionary: our objects as spacetime objects [INTERPRETIVE, built on ref. 16's set-up].**
+
+    time ^                 sink region F (records o and the input string i)
+         |                    ^
+         |   +----------------+-----------------+
+         |   |   CTC / wormhole region:         |   board U_o = coherent, reversible
+         |   |   reversible scattering of the   |   interaction controlled by the
+         |   |   three outgoing carriers o_A,   |   three outputs o (H.7/H.8 form)
+         |   |   o_B, o_C with the source       |
+         |   +--^------^------^-----------+-----+
+         |      |      |      |  (mouths re-emit into the past of A, B, C)
+         |    [A]    [B]    [C]   <- three CTC-free local regions; agents apply
+         |      ^      ^      ^      any local operation (classical bit in/out)
+         |   +--+------+------+--+
+         |   |  source region S  |  prepares phi (the H.12 / H.13.2 state)
+         |   +-------------------+
+
+- *Parties.* A, B and C are ref. 16's local regions with binary inputs and outputs. Their classical inputs i_k and outputs o_k are the states on their past and future boundaries.
+- *Source.* S is ref. 16's output-only region. Here it prepares a quantum state phi of the loop medium instead of a classical string. (In H.13.2, phi = (|000>+|001>+|010>-|101>)/2.)
+- *Boards.* The family {U_o} is the unitary dynamics of the CTC region, conditioned on what the three agents emitted. Physically it is a scattering process in which the carriers sent by A, B and C (the controls o) act coherently on the loop medium before it is re-emitted, through the mouths, into the past boundaries as the inputs i.
+- *Sink.* F receives what leaves the loop (the record of o and the scattered medium). Purity (H.8.2) says that S -> F is unitary for every choice of local unitaries, with or without the agents' private ancillas.
+- *Classical process p(i|o).* It is what the three agents see when each measures their input in the computational basis, as in ref. 31's fixed-basis setting.
+
+**H.15.3 What each result says in spacetime terms.**
+1. *Purifiability = reversible, information-preserving loop dynamics [CITED definition + INTERPRETIVE reading].* Following ref. 17, a purification is a closed quantum system: everything that enters through S and through the agents' futures leaves through F and the agents' pasts, unitarily. Nothing is erased in the CTC region, so all irreversibility sits inside the agents' labs. Classically, ref. 16 Thm 2 shows that every PF is reversible in this sense, and D.6 shows that classical reversibility gives exactly conv(PF).
+2. *The counterexamples (H.12, H.13.2) [PROVED] give a quantum time-travel signature [INTERPRETIVE].* p lies outside conv(PF). So no mixture of deterministic, self-consistent, classical CTC histories of the ref. 16 / ref. 28 kind reproduces these statistics. That includes every billiard-ball model with hidden random initial conditions. Reversible quantum loop dynamics does reproduce them.
+
+   A facet inequality g·p + g0 >= 0 is then an operational witness. The three agents feed in deterministic local strategies, histogram their inputs, and evaluate the facet. A negative value, for example -1/8 for H.13.2, certifies that the loop is not a classical mixture of consistent histories. The rational counterexample needs only real ±1 phases, so the witness does not depend on complex amplitudes. The signature is quantum superposition of flip patterns, not complex phases.
+
+   This is a stronger statement than "non-causal": the Lugano PF is already non-causal and fully classical (refs. 15-17). The H.12 statistics are non-causal *and* non-classical-deterministic. Caveat: the witness assumes that the agents' operations are the classical local operations of the model (ref. 16 Sec. III) and that the statistics are gathered over many runs.
+3. *No first party (H.6.2) [PROVED].* Any purification of a process outside the hull has no operator-first party. In spacetime terms [INTERPRETIVE], no region can be placed at the beginning of the loop, even at the operator level. The quantum signature needs a genuinely three-way loop. A wormhole configuration in which one agent's past boundary is causally upstream of all the scattering cannot produce it.
+4. *Pauli rule (H.8.1) [PROVED] as a locality/consistency law of the loop [INTERPRETIVE].* When the outputs of the agents in a set D change, the change in the loop dynamics, K = U_o U_o'^dag, must lie in the span of operators that leave at least one changed party untouched. It is the operator-valued form of the PF exclusivity lemma; for single Paulis it reduces to that lemma exactly (H.10.3). Read in spacetime: no change of emissions may coherently act on all of the changed agents' returning carriers at once. That is the quantum generalisation of "one switch decides the direction of signalling" (ref. 16 Thm 3). It is the quantum analogue of the Novikov self-consistency principle quoted in refs. 14 and 16, as a linear constraint on the dynamics rather than on histories.
+5. *Threshold (H.10.6, H.14.1) [PROVED] as minimum complexity of the loop [INTERPRETIVE].* Consider loop dynamics that act on the returning carriers only by superposing at most three bit-flip patterns at a time (X-type, ≤3 terms). They are always simulable by randomly chosen classical consistent histories: a transport plan gives the mixture explicitly. A quantum signature needs at least four coherently superposed flip patterns per transition (H.13.2 attains four). Non-X three-term dynamics (with Z components) is open (H.14.1(c)).
+6. *Convexity (H.13.1) [PROVED].* A classical coin in S, routed untouched to F, selects which loop runs. So the set of loop statistics is closed under mixing, as for classical CTC models.
+7. *Never-crossed facets (H.13.4, H.14.2) [numerical] and the polytope question (H.14.4) [evidence] [INTERPRETIVE].* 23 facet orbits remain uncrossed by every board tested. They are candidate "classical-like" constraints that may bind every reversible quantum loop. Z_8 crossed 8 facet orbits that Z_4 did not, so the list is provisional. Ref. 15 shows that the classical consistent loops form a polytope. Our evidence suggests that reversible quantum loops form a curved convex set: the best violations are irrational and keep growing as the phase group grows. If that is right, the boundary between classical and quantum time travel is not a finite list of inequalities. That is not proved.
+
+**H.15.4 Minkowski space instead of CTCs [CITED + INTERPRETIVE].**
+- Every PF and every Switchboard here is a fixed linear map, so it can be simulated in ordinary spacetime with postselection (the P-CTC route, ref. 13), at the price of a success probability below 1.
+- Without postselection, the Vilasini-Renner no-go (arXiv:2203.11245) applies to any Minkowski realisation of a process that is not causally ordered, which includes ours, since p is not even causally separable. It would require time-delocalised (non-localised) systems, and would admit a fine-grained explanation with definite, acyclic causal order.
+- So in Minkowski space our counterexample would not certify a causal loop. It would certify that the coarse-grained "events" A, B, C are not localised, and that the fine-grained acyclic explanation must itself be quantum and coherent: by H.12 it cannot be a classical mixture of consistent deterministic histories at the coarse level. Whether the fine-grained acyclic model can be chosen to respect the Pauli rule in a natural way we have not analysed.
+- Vilasini-Colbeck (arXiv:2206.12887) leave open loops in 3+1-dimensional Minkowski space without superluminal signalling. Our results do not bear on that question.
+- On a genuine CTC spacetime (refs. 16, 28) the interpretation of H.15.3 applies directly, *if* one adopts the linear, unitary process model. That model is the one ref. 16 calls the natural quantum extension. It agrees with P-CTCs on valid unitary processes and differs from Deutsch's nonlinear model (ref. 16 Sec. VII).
+
+**H.15.5 What is speculative.**
+- No concrete metric, field theory or material realisation of the H.12/H.13.2 board is given. Ref. 28's wormhole + billiard-ball construction handles classical PFs. A quantum, coherent version (coherent scatterers in the CTC region) is assumed, not built.
+- Whether quantum CTC dynamics is linear (ref. 16) or nonlinear (Deutsch) is unsettled. Our signature is model-dependent.
+- The physical meaning of the 23 never-crossed orbits and of non-polytopality is conjectural.
+
 ## Appendix I. Robustness: approximately blended versus approximately liftable (Oct 22 2026)
 
 Norm: for classical processes, ||p - q||_1 = sum over (i,o) of |p(i|o) - q(i|o)|. For machines, the switchboard residual is rho(U) := sqrt(R(U)), the l2 norm of the forbidden Pauli coefficients (H.8.1).
