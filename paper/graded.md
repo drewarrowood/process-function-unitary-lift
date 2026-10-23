@@ -1224,3 +1224,7 @@ Section 74 described inputs that are smooth dials (a position on a line or an an
 - **The counterexample is tied to the standard formalism.** The Switchboard's purity, the key ingredient of the counterexample to the purification conjecture, is now shown to be a property of its process matrix W = |V⟩⟩⟨⟨V|. That is the object the rest of the theory uses.
 
 Not yet checked by computer: local operations that stretch the dial (these need a Jacobian change of variables), memories (ancillas) that are infinite-dimensional, and the automatic boundedness of physical maps.
+
+## 76. Plain-language note: helpers of unlimited size (Oct 23 2026)
+
+Before this round, the computer checked the Switchboard counterexample only when each outside "helper" system had finitely many settings. Helpers may now have countably infinitely many settings, such as an infinite ladder of levels. The computer checks that the combined process still loses no information: it is an isometry, meaning it preserves lengths and angles. It also checks that the new definition gives the same answer as the old one whenever the helpers are finite, and the counterexample to the purification conjecture holds in this stronger form. Two things are still open. The computer has not shown the stronger statement that the process is fully reversible (unitary) for infinite helpers. The links to the general validity definition and to general smooth reparametrisations are also still open.
