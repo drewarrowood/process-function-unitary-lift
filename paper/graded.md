@@ -1129,6 +1129,23 @@ The H.12 counterexample can be made much plainer. A board that uses only signs (
 
 A board whose steps each mix at most three classical flip patterns of the plain (X-only) kind can never leave the hull. This is now proved, so four patterns is exactly where X-only counterexamples start. Allowing eighth roots of unity instead of fourth roots crosses 8 more facet types of the hull. Those crossings are checked in exact arithmetic. 23 facet types have still never been crossed. The largest crossings found have exact values such as (√17−3)/8. The pattern suggests, without proving it, that the purifiable set has a curved boundary and is not a polytope.
 
+### 73. Putting it in spacetime: three time travellers and a quantum loop (H.15)
+
+**The stage.** General relativity allows spacetimes with closed timelike curves, for example wormholes whose mouths are out of step in time. Baumeler, Costa, Ralph, Wolf and Zych showed that three agents, each in an ordinary small lab, can sit around such a loop. Each can be both in the past and in the future of the others, and each stays free to do whatever they like. No grandfather paradox ever arises. The loop's job is to return to each lab, in its past, a bit computed from what all three sent out. The allowed rules are exactly the "process functions" of this note. Every such rule can be built from reversible machinery, for example billiard balls bouncing inside the wormhole region.
+
+**Story 1: the classical loop.** Ana, Ben and Cai each find a bit on their doorstep, think, and post a bit into the wormhole. A hidden billiard-ball computer decides what lands on the doorsteps, so that whatever they do, history stays consistent. If the computer's starting position is random, they see a random mixture of consistent histories. These mixtures are the "hull".
+
+**Story 2: the quantum loop.** Now let the machinery inside the loop be quantum and perfectly reversible: nothing is ever erased, and everything that goes in comes out somewhere. This is what "purifiable" means. Our counterexamples show that the statistics Ana, Ben and Cai record can then fall outside every mixture of consistent classical histories. They can test it: run many rounds, histogram the bits, and add them up with the integer weights of one facet. Classical loops always give zero or more. The simplest quantum loop we found gives minus one-eighth, using only plus and minus signs. That number is a fingerprint of quantum time travel, not just of time travel.
+
+**Story 3: what the loop must look like.**
+- Nobody can be first. If any one lab could be placed at the start of the loop, the fingerprint would vanish (H.6).
+- The loop obeys a strict traffic rule. When some of the travellers change what they send, the loop's response must leave at least one of them untouched (the Pauli rule, H.8).
+- Simple loops are not enough. A loop that mixes at most three plain bit-flip patterns at each step can always be faked by a random classical history. Four are needed (H.14).
+
+**Story 4: no wormholes.** In ordinary flat spacetime, with no time travel, a similar experiment would need the three "labs" to be smeared out in time, and it would have a hidden step-by-step explanation (Vilasini and Renner). There, the fingerprint would not show time travel. It would show that the hidden explanation must itself be coherently quantum.
+
+**What is solid and what is not.** The mathematics is proved. The papers cited were checked on arXiv. The reading as time travel is an interpretation within one model of quantum time travel; other models (Deutsch's) differ. No actual spacetime or device realising our loop has been constructed.
+
 ---
 
 ## What is proved, what is evidence, what is open
