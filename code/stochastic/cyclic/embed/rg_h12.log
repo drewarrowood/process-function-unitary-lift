@@ -1,0 +1,6 @@
+(a) (G2/2)^2 = X: True ; G = h S h: True
+(b) exact: 128 (Hd X_C)(Hd X_A) L_G^T (Hd)(X_C Pre Hd) == 16 (8 V_H12): True  (all entries Gaussian integers: True )
+(c) unique consistent assignment per agent output: True ; F record determines a: True ; composite == L_G exactly: True
+    L_G^T == transpose of L_G: True
+[time-reversed VOKB Fig. 27 = routed graph for L_G^T, hence for H.12 after local unitaries] univocal: True; adjoint univocal: True; branches: {'A': 2, 'B': 2, 'C': 2, 'F': 1, 'X': 5}
+[time-reversed VOKB Fig. 27 = routed graph for L_G^T, hence for H.12 after local unitaries] branch-graph arrows: 38; weak loops principle: True

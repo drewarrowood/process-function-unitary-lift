@@ -1,0 +1,10 @@
+(0) V_H12 = (Hd)_AI D (Hd)_P: True ; Phi factorisation exact: True
+(3) C_I independent of C_O: 1.1e-16 ; V = U1*id^{Z Zbar}*U2 with unitary U1,U2 (|Z|=16): dev 3.6e-15
+(1) sector algebra: dim {8}  centre dim {2} ; two Haar U_C share a 1-dim common subalgebra (U_C-dependent sectors)
+(2) BLO decomposition self-consistency 2.1e-13 ; omega1,omega2,omega3 unitary to 2.7e-15
+(2) WBO temporal circuit == Cyc(V_H12; U_A,U_B,U_C), 20 Haar draws: max abs dev 2.04e-14
+    omega-chain with A,B wires open == V*U_C: max dev 3.92e-14
+(3) U2^dag [omega-chain] U1^dag == U_C (x) id_Z  (WBO R(U_C)*R' = V*U_C): max dev 3.01e-14
+(5) V_H12 == (Hd X_C)_AI (Hd X_A)_F L_G^T (Hd)_AO (X_C Pre Hd)_P, G=sqrt(X): dev 3.9e-16
+(5) structured WBO circuit (U_C only via time-local instances) == Cyc(L_G; U_A,U_B,U_C), 20 Haar draws: max dev 4.00e-16
+(5) reversed+transposed structured circuit, agents W~_X = h W_X (h X^[X=C]) == Cyc(V_H12; W), 20 Haar draws: max dev 6.80e-16
