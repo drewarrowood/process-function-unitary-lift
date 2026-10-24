@@ -1747,6 +1747,68 @@ Still open are boards with three classes none of which is the identity, and boar
 
 Runs were cut off at the time limit: nsearch2 seeds 13 and 14 ran with `timeout 840`, and their logs are the last checkpoints.
 
+### H.18 Embedding in spacetime II: realisations on time-delocalised subsystems (Oct 24 2026) [labels: PROVED = this paper; NUMERICAL = floating-point check; CITED = read in the arXiv primary source on Oct 24 2026 (IDs checked against the arXiv API); INTERPRETIVE = our reading; OPEN]
+
+H.15 asked whether our boards fit into an ordinary spacetime with each agent at one place and time. The Vilasini–Renner no-go (H.15.1, ref. 32) rules this out for H.12 and H.13.2, because neither is causally ordered. This section takes the other route in the literature. The agents' systems are not localised at single times; they are *delocalised* over several time steps of an ordinary, acyclic quantum circuit. Code: code/stochastic/cyclic/embed/tds_h13.py, tds_h13.log.
+
+**H.18.1 Definitions.**
+- *Temporal circuit.* An ordinary quantum circuit: gates act at definite times, wires run forward in time, and there are no cycles. A *time-local system* is one wire of such a circuit between two gates.
+- *Time-delocalised subsystem (TDS)* (Oreshkov, ref. 40). Take the joint Hilbert space of several time-local wires, for example H_{T1} ⊗ H_{T2} ⊗ H_Q at two different times. Fix an isomorphism J (a unitary change of tensor factorisation) onto a new product, for example H_{A_I} ⊗ H_{B_I} ⊗ H_{rest}. The new factor A_I is a subsystem of the joint wires, but it need not live on any single wire or time. For instance, A_I may equal T1 when a control Q is 0 and T2 when Q is 1, coherently.
+- *Realisation on TDS* (refs. 40, 41). A process W with agents A, B, C has such a realisation if there is a temporal circuit whose gates may depend on the agents' unitaries U_A, U_B, U_C, together with isomorphisms J_in (on the circuit's input wires) and J_out (on its output wires), with the following property: for **every** choice of U_A, U_B, U_C, the circuit rewritten in the J-factorisation equals the cyclic composition of W with exactly one copy of each U_X. A separate gate in the time-local picture that depends on U_X is called a *time-local instance* of U_X. WBO stress that several time-local instances do not mean the operation is applied several times. On the TDS it is applied exactly once.
+- *Unitary extension* (ref. 17). This is a pure process, with a global past P and future F, that reduces to the given process when P is fed a fixed state and F is discarded. Every pure board of this paper is its own unitary extension, with the purification V: P ⊗ A_O B_O C_O → A_I B_I C_I ⊗ F of H.8.2.
+
+**H.18.2 What the literature proves [CITED].**
+- *Oreshkov* (arXiv:1801.07594, Quantum 3, 206 (2019); ref. 40) introduces TDS. **Thm 1:** every unitary extension of a bipartite process has a realisation on TDS. **Thm 2:** so does a class of isometric extensions. He conjectures that processes built by a specific "coherent control of time instances" construction (his Eq. (22)) cannot violate causal inequalities, and leaves this open.
+- *Wechs, Branciard and Oreshkov* (WBO; arXiv:2201.11832, Nat. Commun. 14, 1471 (2023); ref. 41).
+  - **Prop. 1:** every unitary extension of a **tripartite** process has a realisation on TDS. The temporal circuit has the following shape: a gate ω₁ depending on U_C; U_A and U_B on targets T1, T2, coherently controlled by Q, so their order is coherently controlled; middle gates ω₂; and a final ω₃ depending on U_C. The proof fixes U_C and uses the standard form of bipartite unitary processes, a "variation of the quantum switch" (refs. 43, 45).
+  - *Example:* the Baumeler–Wolf unitary extension U_BW of the Araújo–Feix process W_AF, whose function is (¬b∧c, ¬c∧a, ¬a∧b). It violates causal inequalities. WBO give its circuit in full (their Fig. 5 and Suppl. Note 4A, Eqs. (51)–(57)). It is a classical, deterministic circuit. A time-local instance of U_C is applied first, and its output decides the order of A and B. Afterwards U_C may be "reversed and reapplied" with a NOT gate in between, and Alice's and Bob's outputs decide coherently whether this happens.
+  - They argue that the causal-inequality assumptions are still meaningful on TDS, and they show that some TDS variables have no time-local counterpart, i.e. no effective localisation in time.
+  - **Open in WBO:** more than three parties, and whether every process with indefinite causal order has such a realisation.
+- *Barrett, Lorenz and Oreshkov* (arXiv:2002.12157, Nat. Commun. 12, 885 (2021); ref. 45) and *Yokojima, Quintino, Soeda and Murao* (arXiv:2003.05682, Quantum 5, 441 (2021); ref. 43). Every bipartite unitary process is causally separable. More precisely, a pure two-slot superchannel is either a fixed-order unitary circuit or a coherent superposition of the two orders. In particular, purifiable bipartite processes cannot violate device-independent causal inequalities.
+- *Wechs and Oreshkov* (arXiv:2411.16504, Phys. Rev. Lett. (2025), DOI 10.1103/9mk4-8sn5; ref. 44) give a "circuit (super)operator" that tracks how a possibly cyclic circuit changes under a change of subsystem decomposition. They show that the two parties' causal perspectives on the quantum switch are **not** related by such a change.
+- *Portmann, Matt, Maurer, Renner and Tackmann* (arXiv:1512.02240, IEEE Trans. Inf. Theory 63, 3277 (2017); ref. 42) define *causal boxes*: systems closed under composition that allow superpositions of message orders and time-dependent behaviour. Salzger and Vilasini map QC-QCs into causal boxes (H.15.1). Our boards are not QC-QCs (H.15.7b), so that map does not apply to them.
+- *Ormrod, Vanrietvelde and Barrett* (arXiv:2204.10273, Quantum 7, 1028 (2023); ref. 46) model causal structure under sectorial constraints and define a sector-level fine-graining of causal structure. Applied to photonic quantum-switch experiments, the fine-grained structure is acyclic. VOKB's routed graphs (ref. 18) build on this.
+- Vilasini–Renner (no-go for localised embeddings, Thm 4; fine-grained acyclic explanation, Thm 5), Vilasini–Colbeck (cyclic and fine-tuned causal models in Minkowski space) and Paunković–Vojinović ("every circuit can be immersed into a classical spacetime") are summarised in H.15.1, and are used below as stated there.
+
+**H.18.3 Both boards have realisations on TDS [hypotheses PROVED; theorem CITED].** H.8.2 shows that the purification V of each pure board is a unitary P ⊗ A_O B_O C_O → A_I B_I C_I ⊗ F, with every party a qubit. So each board is a unitary extension of a tripartite process, and WBO Prop. 1 applies to both. **H.12 and H.13.2 each run as an ordinary acyclic quantum circuit, with the agents acting once each on time-delocalised subsystems.** This includes the instruments that violate causal inequalities: H.15.7b for H.13.2 and H.15.7d for H.12. Those instruments dilate to unitaries with ancillas, and Prop. 1 covers all unitaries.
+
+**H.18.4 An explicit circuit for H.13.2 [PROVED, with NUMERICAL confirmation].**
+- **(a) Our Lugano purification is WBO's U_BW [PROVED, exact].** lug(a,b,c) = ((1−b)c, (1−c)a, (1−a)b) = (¬b∧c, ¬c∧a, ¬a∧b). So L: |s⟩_P|o⟩_{A_O} ↦ |s ⊕ lug(o)⟩_{A_I}|o⟩_F is exactly WBO's Eq. (5).
+- **(b) WBO's circuit, re-implemented [NUMERICAL].** We built the gates ω₁, the controlled U_A/U_B slots, ω₂ (both branches), the second slot and ω₃ of Eqs. (51)–(54) on a 6-qubit register (p₁p₂p₃ and one ancilla qubit per agent). The circuit equals the cyclic composition of L with U_A, U_B, U_C for 20 Haar-random 2-qubit agent unitaries. The maximum deviation is 3.9·10⁻¹⁶, and the composite is unitary to 1.7·10⁻¹⁵.
+- **(c) Time reversal [PROVED].** Write Cyc(W; U_A, U_B, U_C) for the cyclic composition. Then Cyc(L^T; W_A, W_B, W_C) = Cyc(L; W_A^T, W_B^T, W_C^T)^T. Here W_X^T swaps the agent's input and output wires and the roles of its ancillas, and the outer transpose swaps P with F. *Proof:* the cyclic composition is a contraction of indices, and transposing every factor transposes the contraction. So if a temporal circuit g_k ⋯ g₁ (with isomorphisms J_in, J_out) realises L with agents W^T, then g₁^T ⋯ g_k^T (with J_out^T, J_in^T) realises L^T with agents W.
+  - This reversed circuit is again an ordinary temporal circuit. The transpose of a controlled-W^T is a controlled-W. The time-local instances of C become W_C (in the transposed ω₁) and W_C^† σ_x W_C (in the transposed ω₃), and the permutation gates become their inverses. The isomorphisms are real permutation-type unitaries, so their transposes are isomorphisms too.
+  - *Check [NUMERICAL]:* for 20 Haar draws, the maximum deviation from Cyc(L^T; W) is 4.5·10⁻¹⁶.
+- **(d) H.13.2 [PROVED, with NUMERICAL confirmation].** By H.15.7e, V_{13.2} = (Hd X^{f_o})_{A_I} (Hd X^{f_i})_F · L^T · (Hd)_{A_O} (X^{f_o} Hd)_P (rechecked exactly in tds_h13.py).
+  - Absorb the agent-wire factors into the agents: agent X runs W̃_X = Hd·W_X·(Hd X^{f_o,X}) inside L^T. The P and F factors become a fixed preparation and readout. The reversed WBO circuit then realises H.13.2 on TDS.
+  - *Checks [NUMERICAL]:* 20 Haar draws give a maximum deviation of 6.8·10⁻¹⁶. With the classical instruments of H.15.7b (measure the input, emit the setting), whose dilation is a SWAP of the system with a qubit ancilla, the deviation is 1.1·10⁻¹⁵, and the circuit's P(i|o) equals the board's to 2.2·10⁻¹⁵.
+  - So the exact causal-inequality violation of H.15.7b is produced by an ordinary acyclic circuit, in the TDS variables.
+- **(e) Reading the circuit [INTERPRETIVE].**
+  - In forward time, the circuit first applies a C-instance W_C^† σ_x W_C, coherently conditioned on the past bits. Then A and B act once each, in an order coherently controlled by Q. Last comes a C-instance W_C fed by Q.
+  - Classically, H.13.2 is the time-reversed WBO process seen in the Hadamard frame. All of its non-classicality sits in the local frame changes Hd, since the bare circuit is a reversible classical (permutation) circuit.
+- **(f) What is new [CITED vs ours].**
+  - The existence of a realisation is WBO's theorem, and the forward circuit is WBO's.
+  - Ours are: the identification of H.13.2 with a frame-rotated time reverse of U_BW (H.15.7e); the time-reversal step (c), which is immediate from the definitions but which we did not find stated in WBO (full text searched for "time-revers" and "transpose"); and the exact assembly and numerical check.
+  - Guérin and Brukner (ref. 38) studied the time-reversed Lugano process itself; WBO cite them for the decomposition of U behind their isomorphisms. We do not claim that the reversed circuit is new as an object, only that we found no explicit statement of it.
+
+**H.18.5 Placing the circuit in spacetime [PROVED as a composition of cited results; physical reading INTERPRETIVE].**
+- Paunković–Vojinović (ref. 35): every circuit can be immersed in a classical spacetime with compatible causal orders. Put the five gate layers of H.18.4 at successive, timelike-separated points of one laboratory in Minkowski space. This gives an explicit spacetime embedding of H.13.2 in which every time-local gate is localised and the agents' inputs and outputs are TDS.
+- There is no conflict with Vilasini–Renner Thm 4. That theorem concerns embeddings in which each agent's input and output are localised in a region, and here they are not. The circuit is an instance of their Thm 5 alternative: a fine-grained acyclic explanation whose nodes are the time-local gates.
+- *Fine-grained, not fine-tuned [INTERPRETIVE].* The identity of H.18.4 holds for all agent unitaries, with gates that do not depend on any special parameter values. So the realisation is of the fine-graining kind, not a fine-tuned cyclic model in the Vilasini–Colbeck sense. We have not checked VC's formal fine-tuning definition against it.
+- *Relation to H.15.7a/b [PROVED consistency].* Lemma H.15.7a assumes that each agent's operation is used once at the time-local level. In the H.18.4 circuit, C has two time-local instances (one of them W_C^† σ_x W_C), and A and B act in a coherently controlled order. So the circuit is not a model of the H.15.7a kind, and H.15.7b, which excludes such models, is not contradicted. This answers the quantum half of the OPEN question in H.15.7b, "is there a fine-grained model with multiple use for H.13.2?": yes. Whether a model with **classical** carriers exists stays **OPEN**, because the Hd frame changes make this circuit quantum.
+
+**H.18.6 H.12 [existence CITED; explicit circuit OPEN; routed graph OPEN].**
+- WBO Prop. 1 gives existence (H.18.3).
+- The explicit construction does not carry over: H.12 is not a phased permutation in the Hadamard frame (H.15.8), so no frame change of the H.18.4 kind reduces it to a classical reversible circuit.
+- An explicit circuit would need WBO's general proof run concretely: fix U_C, bring the induced bipartite unitary process into switch-variation form (refs. 43, 45), and assemble ω₁–ω₃. This was not done this round [OPEN].
+- A valid routed graph for H.12 also remains **OPEN** (H.15.7c).
+
+**H.18.7 Status.**
+- PROVED: H.18.3 (both boards satisfy WBO's hypotheses); H.18.4(a), (c), (d) (the explicit reversed-WBO circuit for H.13.2); the H.18.5 consistency with H.15.7a/b.
+- NUMERICAL: the floating-point confirmations in H.18.4.
+- CITED: H.18.2 and WBO Prop. 1.
+- INTERPRETIVE: H.18.4(e) and the fine-graining reading in H.18.5.
+- OPEN: an explicit TDS circuit and a routed graph for H.12; a classical-carrier fine-grained model for H.13.2; realisations for more than three parties (open in WBO too).
+
 ## Appendix I. Robustness: approximately blended versus approximately liftable (Oct 22 2026)
 
 Norm: for classical processes, ||p - q||_1 = sum over (i,o) of |p(i|o) - q(i|o)|. For machines, the switchboard residual is rho(U) := sqrt(R(U)), the l2 norm of the forbidden Pauli coefficients (H.8.1).
@@ -2064,3 +2126,10 @@ Board class 10515 (ζ_8 phases listed in cert_z8.log) satisfies the Pauli rule e
 37. M. Araújo, P. A. Guérin and Ä. Baumeler, Quantum computation with indefinite causal structures, Physical Review A 96, 052315 (2017); arXiv:1706.09854.
 38. P. A. Guérin and Č. Brukner, Observer-dependent locality of quantum events, New Journal of Physics 20, 103031 (2018); arXiv:1805.12429.
 39. V. Baumann, M. Krumm, P. A. Guérin and Č. Brukner, Noncausal Page-Wootters circuits, Physical Review Research 4, 013180 (2022); arXiv:2105.02304.
+40. O. Oreshkov, Time-delocalized quantum subsystems and operations: on the existence of processes with indefinite causal structure in quantum mechanics, Quantum 3, 206 (2019); arXiv:1801.07594.
+41. J. Wechs, C. Branciard and O. Oreshkov, Existence of processes violating causal inequalities on time-delocalised subsystems, Nature Communications 14, 1471 (2023); arXiv:2201.11832.
+42. C. Portmann, C. Matt, U. Maurer, R. Renner and B. Tackmann, Causal boxes: quantum information-processing systems closed under composition, IEEE Transactions on Information Theory 63, 3277 (2017); arXiv:1512.02240.
+43. W. Yokojima, M. T. Quintino, A. Soeda and M. Murao, Consequences of preserving reversibility in quantum superchannels, Quantum 5, 441 (2021); arXiv:2003.05682.
+44. J. Wechs and O. Oreshkov, Subsystem decompositions of quantum evolutions and transformations between causal perspectives, Physical Review Letters (2025), DOI 10.1103/9mk4-8sn5; arXiv:2411.16504.
+45. J. Barrett, R. Lorenz and O. Oreshkov, Cyclic quantum causal models, Nature Communications 12, 885 (2021); arXiv:2002.12157.
+46. N. Ormrod, A. Vanrietvelde and J. Barrett, Causal structure in the presence of sectorial constraints, with application to the quantum switch, Quantum 7, 1028 (2023); arXiv:2204.10273.
