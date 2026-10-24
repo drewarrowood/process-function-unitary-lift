@@ -366,3 +366,34 @@ New file: `PFUL/LemmaH.lean` (Mathlib only, standalone). No sorry, no `native_de
 - `hB`: the factorisation V_y = W·V_x with W p-constant across class-changing p-edges (Lemma B plus unitarity).
 - `hcls`: labels are classes, i.e. operators equal up to a left Pauli and a nonzero scalar have equal labels.
 - That `tmul` with the Pauli cocycle is the operator product is the standard Pauli multiplication table. It is not derived from matrices here.
+
+## Round 12 (Oct 24 2026): the counterexample in the process-matrix (Choi) framework; infinite ancillas
+
+New files: `ProcessMatrix.lean`, `CounterexampleChoi.lean`, `CounterexampleHilbert.lean`. All sorry-free, no `native_decide`, no new axioms; `#print axioms` gives only propext, Classical.choice and Quot.sound for every main theorem (`Round12_axioms.log`). Build: `lake build PFUL.ProcessMatrix PFUL.CounterexampleChoi PFUL.CounterexampleHilbert`.
+
+**Framework (`PFUL.PM`, finite-dimensional: every type is a Fintype).**
+- `IsCPTPChoi J`: J ⪰ 0 and Σ_b J((a,b),(a',b)) = δ_{aa'}. `isCPTPChoi_choiOf_iff`: equivalent to `PFUL.Choi.IsCP Φ` plus trace preservation for the map Φ with Choi matrix `choiOf Φ`.
+- `link W C`: the CDP link product in indices, W on P × F × ∏(I_k × O_k), C_k on (I_k × X_k) × (O_k × Y_k).
+- `IsValidPM W`: W ⪰ 0 and W ∗ C is CPTP (as a Choi matrix P × ∏X → F × ∏Y) for all finite ancillas and all CPTP C_k.
+- `UnitaryLink W`, `IsPurePM W := IsValidPM W ∧ UnitaryLink W` (AFNB Def. 1, finite ancillas).
+- Lemmas: `link_posSemidef`, `link_rankOne`, `isUnitaryM_of_vecOp_eq`.
+
+**Bridges (`CounterexampleChoi.lean`).**
+- `isValidPM_Wcl_iff : IsValidPM (Wcl p) ↔ Valid p` (diagonal process matrix of p).
+- `isValidPM_Wcl_pfPoint_iff : IsValidPM (Wcl (pfPoint w)) ↔ PFUL.Countable.IsProcessFunction (wBits w)`.
+- `isPure_iff_unitaryLink : IsPure V ↔ UnitaryLink (choiMat V)` (every V), via `link_choiMat_vecOp`.
+- `trace_link_Vsb`, `isValidPM_choiMat_Vsb`, `isPurePM_choiMat_Vsb`: W = |Vsb⟩⟩⟨⟨Vsb| is valid and pure in the framework sense.
+- `inducedP_eq_born`: the induced process is the Born rule of W.
+- `purification_conjecture_false_choi`: H.12.1 with framework definitions only (valid process matrix, pure process matrix + normalised source, outside the hull of valid deterministic process matrices).
+
+**Infinite ancillas (`CounterexampleHilbert.lean`).**
+- `kerOf`, `isIsoKernel_kerOf`, `isCoIsoKernel_kerOf`: the matrix of a unitary in any Hilbert basis is a unitary kernel.
+- `IsPureHilbert V`: unitary loop for ancillas in arbitrary Hilbert spaces (Hilbert bases indexed by Bool × κ_k). `isPureHilbert_iff_isUnitaryKer` (every V). `isPureHilbert_Vsb`.
+- `compose2`, `isIsoKernel_compose2_Vsb`: different input/output ancillas, any cardinality, isometric kernels.
+- `krausLoop`, `isIsoKernel_krausLoop`, `valid_normalCPTP_Vsb`: validity of the Switchboard under arbitrary normal CPTP local channels on countable ancillas.
+
+Gaps:
+- `IsValidPM`/`IsPurePM` are finite-dimensional definitions; infinite ancillas are covered by separate kernel, Hilbert-basis and Kraus statements, not by an infinite-dimensional link product of non-trace-class Choi operators.
+- `IsPure V → IsUnitaryKer V` for general V (finite-ancilla purity implies infinite-ancilla purity) is proved on paper only (lift.md H.19.4). Not needed for Vsb.
+- AFNB Thm 2 (pure ⟺ W is the Choi projector of a unitary) is not formalised.
+- Normal CPTP validity needs countable ancilla alphabets (the Kraus theorem used is for countable ℓ²).
