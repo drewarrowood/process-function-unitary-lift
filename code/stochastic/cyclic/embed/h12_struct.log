@@ -1,0 +1,18 @@
+(A) H.12 reduced spectra, a few: AI_A: (np.float64(0.5), np.float64(0.5))  AO_A: (np.float64(0.5), np.float64(0.5))  {AI_A,AO_A}: (np.float64(0.25), np.float64(0.25), np.float64(0.25), np.float64(0.25))  P: (np.float64(0.125), np.float64(0.125), np.float64(0.125), np.float64(0.125)) ... 8
+(A) PF purifications L_g passing the 1-2-system spectral filter vs H.12: []  time reverses L_g^T: []   [of 744 each]
+   H.12 vs Lugano L: differing 1-2 system spectra e.g. [((0, 4), (np.float64(0.25), np.float64(0.213388), np.float64(0.125), np.float64(0.125), np.float64(0.125), np.float64(0.125), np.float64(0.036612)), (np.float64(0.1875), np.float64(0.1875), np.float64(0.1875), np.float64(0.1875), np.float64(0.0625), np.float64(0.0625), np.float64(0.0625), np.float64(0.0625))), ((0, 5), (np.float64(0.25), np.float64(0.125), np.float64(0.125), np.float64(0.125), np.float64(0.125), np.float64(0.125), np.float64(0.125)), (np.float64(0.1875), np.float64(0.1875), np.float64(0.1875), np.float64(0.1875), np.float64(0.0625), np.float64(0.0625), np.float64(0.0625), np.float64(0.0625)))]
+   H.12 vs Lugano^T: differing 1-2 system spectra e.g. [((0, 4), (np.float64(0.25), np.float64(0.213388), np.float64(0.125), np.float64(0.125), np.float64(0.125), np.float64(0.125), np.float64(0.036612)), (np.float64(0.25), np.float64(0.125), np.float64(0.125), np.float64(0.125), np.float64(0.125), np.float64(0.125), np.float64(0.125))), ((0, 6), (np.float64(0.25), np.float64(0.213388), np.float64(0.125), np.float64(0.125), np.float64(0.125), np.float64(0.125), np.float64(0.036612)), (np.float64(0.25), np.float64(0.125), np.float64(0.125), np.float64(0.125), np.float64(0.125), np.float64(0.125), np.float64(0.125)))]
+   sanity: H.13.2 LU-equivalent to Lugano^T by these invariants: True
+   H.12 equivalent to its own time reverse by these invariants: False
+(B) H.12    comp/comp        max facet violation over sources: time reverse +0.000000   forward +0.103553
+(B) H.12    Had/Had          max facet violation over sources: time reverse +0.000000   forward +0.000000
+(B) H.12    comp-in/Had-out  max facet violation over sources: time reverse +0.000000   forward +0.000000
+(B) H.12    Had-in/comp-out  max facet violation over sources: time reverse +0.000000   forward +0.000000
+(B) H.13.2  comp/comp        max facet violation over sources: time reverse +0.000000   forward +0.140388
+(B) H.13.2  Had/Had          max facet violation over sources: time reverse +0.000000   forward +0.000000
+(B) H.13.2  comp-in/Had-out  max facet violation over sources: time reverse +0.000000   forward +0.000000
+(B) H.13.2  Had-in/comp-out  max facet violation over sources: time reverse +0.000000   forward +0.000000
+(B) Lugano  comp/comp        max facet violation over sources: time reverse +0.000000   forward +0.000000
+(B) Lugano  Had/Had          max facet violation over sources: time reverse +0.140388   forward +0.000000
+(B) Lugano  comp-in/Had-out  max facet violation over sources: time reverse +0.000000   forward +0.000000
+(B) Lugano  Had-in/comp-out  max facet violation over sources: time reverse +0.000000   forward +0.000000

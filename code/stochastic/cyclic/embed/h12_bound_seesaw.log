@@ -1,0 +1,10 @@
+seesaw y_A (H.15.7d, -0.7057) restart 0: y.P = -0.659688 (check rows 9.8e-14) sweeps 13
+seesaw y_A (H.15.7d, -0.7057) restart 1: y.P = -0.000000 (check rows 1.1e-15) sweeps 4
+seesaw y_A (H.15.7d, -0.7057) restart 2: y.P = -0.000000 (check rows 2.7e-13) sweeps 4
+seesaw y_A (H.15.7d, -0.7057) restart 3: y.P = -0.000000 (check rows 1.7e-15) sweeps 3
+SEESAW BEST y_A (H.15.7d, -0.7057): -0.659688
+seesaw y_B (cube-26, -0.2224) restart 0: y.P = 0.066576 (check rows 2.0e-12) sweeps 59
+seesaw y_B (cube-26, -0.2224) restart 1: y.P = -0.000000 (check rows 3.3e-12) sweeps 2
+seesaw y_B (cube-26, -0.2224) restart 2: y.P = 0.102243 (check rows 1.5e-11) sweeps 31
+seesaw y_B (cube-26, -0.2224) restart 3: y.P = 0.089045 (check rows 9.0e-14) sweeps 23
+SEESAW BEST y_B (cube-26, -0.2224): -0.000000
