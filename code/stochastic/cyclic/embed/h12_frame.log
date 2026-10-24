@@ -1,0 +1,9 @@
+z = 000 exponents over o: [0, 0, 0, 0, 0, 0, 0, 0] -> character
+z = 001 exponents over o: [3, 3, 3, 3, 1, 1, 1, 1] -> character
+z = 010 exponents over o: [0, 2, 0, 2, 2, 0, 2, 0] -> character
+z = 011 exponents over o: [0, 2, 0, 2, 2, 0, 2, 0] -> character
+z = 100 exponents over o: [2, 2, 2, 2, 2, 2, 2, 2] -> character
+z = 101 exponents over o: [0, 0, 1, 1, 2, 2, 3, 3] -> NOT a character
+z = 110 exponents over o: [3, 3, 3, 3, 1, 1, 1, 1] -> character
+z = 111 exponents over o: [0, 0, 1, 1, 2, 2, 3, 3] -> NOT a character
+H.12 is a phased permutation in the Hadamard frame: False ; failing z: ['101', '111']

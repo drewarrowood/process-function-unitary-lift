@@ -1,0 +1,7 @@
+constant PFs present: True
+PFs equivalent to Lugano: 64
+PFs whose phase lift leaves conv(PF) (max relative facet violation > 1e-9): 64
+  of these Lugano-equivalent: 64 ; non-Lugano: []
+  Lugano-class max violations: [0.140388]
+  H.13.2 function f present: [(153, 0.140388)]
+  max violation over non-Lugano PFs: 5.4360568102080905e-15
