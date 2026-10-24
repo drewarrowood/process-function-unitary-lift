@@ -1,0 +1,10 @@
+('K=Kprime-type', 2, 2) 3024
+('none', 1, 1) 3906
+('none', 1, 2) 60480
+('none', 2, 1) 60480
+('none', 2, 2) 876960
+('two-term collisions', 1, 1, 2, np.int64(2), False) 63
+('two-term collisions', 1, 2, 2, np.int64(2), False) 3024
+('two-term collisions', 2, 1, 2, np.int64(2), False) 3024
+('two-term collisions', 2, 2, 2, np.int64(2), False) 136080
+pairs where two collided strings can vanish together: 0 []

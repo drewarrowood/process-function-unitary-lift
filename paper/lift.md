@@ -1272,7 +1272,11 @@ This contains H.17.8 (take r in any class and note V_c V_c† = 1). It also cont
 - exactly {A,B}, {A,AB} or {B,AB} (v ⊥ v′ together with one vanishing cross component).
 tclass.py found exactly these patterns, by explicit construction on 60 instances of the type.
 
-*(c) The |K∩K′| = 2 case [NUMERICAL, 60 sampled instances] (tclass.py).* Either collided string can be cancelled on its own (support 7 → 6), but never both at once with all coefficients nonzero. A proof of the "never both" statement is OPEN. Pairs involving 2-term classes (products {1,A′}·{1,A,B}, and two commuting 2-term classes) were not classified this round.
+*(c) The |K∩K′| = 2 case and all pairs involving 2-term classes [PROVED by exhaustive exact enumeration] (tcollide.py, tcollide.log).* Every collided string other than those of the K = K′ type has exactly two contributions, φ₁x′_{u′}x̄_u + φ₂x′_{w′}x̄_w. Here x = (α, iβ, iγ), so each x is a real number times a known phase. The string can vanish iff ρ = −φ₁t′_{u′}t̄_u/(φ₂t′_{w′}t̄_w) is real, where the t are those phases. Two strings vanish together iff the two resulting monomial equations in the nonzero reals are sign-consistent. All Pauli phases φ are exact (±1, ±i). Over all 1,071² ordered pairs of 2- and 3-term classes:
+- there are no collisions for 3,906 + 60,480 + 60,480 + 876,960 pairs;
+- there are 3,024 K = K′ pairs, settled by (b);
+- the remaining 63 + 3,024 + 3,024 + 136,080 pairs have exactly two collided strings. **Each of the two can vanish on its own, and never both** (0 exceptions).
+For two commuting 2-term classes on the same A, a single cancellation makes V′V† monomial, so the classes merge. This confirms the 60-instance sample of tclass.py.
 
 *(d) More tuned boards (7 more nsearch2b runs, seeds 31–37, 480 s each; 51 boards in total with H.17.11) [NUMERICAL supports; exact F₂ tests].*
 - SH_grp fails on 45 of the 51. **SH_grp^r holds on all 51**, so by H.17.11(a) every one of them is a PF blend for every source state.
@@ -1285,10 +1289,16 @@ tclass.py found exactly these patterns, by explicit construction on 60 instances
   - The remaining 2 boards involve 2-term classes.
   - So the genuinely tuned boards found so far all reduce to X-type |H| = 2 after absorption.
 
-*(e) Closure [OPEN].* (a)–(c) reduce the tuned case to a finite list of modified pair supports. For |K∩K′| = 1 the support is generic. For |K∩K′| = 2 it is generic minus one collided string, assuming (c). For K = K′ it is one of the supports in (b); 2-term classes are still to be classified. The remaining step was not done this round (time-box). It is to rerun shgrp_exh → shgrp_cube → shgrp_dfs with these supports, with each pair of states accepted if any allowed pattern passes the Pauli rule, testing SH_grp^r with r ranging over the classes. "Every admissible ≤3-term board is a PF blend" therefore remains **OPEN for tuned parameters**, with no counterexample candidate among 51 tuned boards.
+*(e) Closure [OPEN].* (a)–(c) give a complete, proved list of the possible pair supports of V′V†:
+- generic, when |K∩K′| = 1;
+- generic minus exactly one of the two collided strings (or generic), when the groups meet in two elements, including all 2-term cases;
+- one of the supports in (b), when K = K′.
+
+The remaining step was not done this round (time-box). It is to rerun shgrp_exh → shgrp_cube → shgrp_dfs with these supports, with each pair of states accepted if any allowed pattern passes the Pauli rule (this ignores consistency across pairs, so it over-approximates), testing SH_grp^r with r ranging over the classes. "Every admissible ≤3-term board is a PF blend" therefore remains **OPEN for tuned parameters**, with no counterexample candidate among 51 tuned boards.
 
 **H.17.7 Status after this round.**
 - PROVED: the sign-variant lemma H.17.3, with the stated scope; the Pauli coset-transport theorem and the reduction SH_grp ⇒ PF blend (H.17.8a–b); in the generic-support model, every admissible ≤3-term board, non-X boards included, satisfies SH_grp and is therefore a PF blend for every source state (H.17.9, exhaustive exact enumeration).
+- PROVED: complete classification of the cancellation patterns of V′V† for all pairs of ≤3-term classes. There is no cancellation unless the Klein groups meet. When they meet in two elements, at most one collided string vanishes. When K = K′, only the supports of H.17.12(b) occur.
 - PROVED: right-absorbed coset transport, SH_grp^r ⇒ PF blend (H.17.11a). Each of the 19 regenerated tuned boards passes it, so each is a PF blend (supports read numerically, H.17.11b).
 - PROVED (exact dual certificate): orbit 92 is the positivity orbit and holds on all of Valid (H.17.5).
 - EXACT-CERTIFIED: the other 22 never-crossed orbits are not implied by validity alone (H.17.5).
@@ -1298,7 +1308,7 @@ tclass.py found exactly these patterns, by explicit construction on 60 instances
   - the 19 tuned boards have explicit LP PF-blend decompositions at 4 source states each (H.17.11b);
   - no Z₁₆, continuous-phase or locally rotated X-type board violates any of the 22 genuine orbits.
 - OPEN:
-  - "non-X ≤3-term ⇒ PF blend" for tuned (non-generic) parameters. SH_grp fails on tuned boards (H.17.10), but the right-absorbed version SH_grp^r (H.17.11, proved sufficient) holds on all 19 regenerated tuned boards. That it holds on every admissible tuned board is open. It now holds on all 51 tuned boards (H.17.12d), and the cancellation patterns are classified for K=K′ [proved] and |K∩K′|=2 [numerical] (H.17.12a–c); the rerun of the exhaustive pipeline on the modified supports is the remaining step (H.17.12e);
+  - "non-X ≤3-term ⇒ PF blend" for tuned (non-generic) parameters. SH_grp fails on tuned boards (H.17.10), but the right-absorbed version SH_grp^r (H.17.11, proved sufficient) holds on all 19 regenerated tuned boards. That it holds on every admissible tuned board is open. It now holds on all 51 tuned boards (H.17.12d), and the cancellation patterns of V′V† are completely classified [proved] (H.17.12a–c); the rerun of the exhaustive pipeline on the modified supports is the remaining step (H.17.12e);
   - the 22 genuine never-crossed orbits on general purifiable processes.
 
 Runs were cut off at the time limit: nsearch2 seeds 13 and 14 ran with `timeout 840`, and their logs are the last checkpoints.
