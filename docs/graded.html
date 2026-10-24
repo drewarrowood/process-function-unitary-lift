@@ -907,10 +907,10 @@ table{border-collapse:collapse;font-size:.9rem;display:block;overflow-x:auto} th
 <p><strong>The last check, done.</strong> A complete computer enumeration of every way two dials can sit side by side found 329,280 local trouble spots. All but 288 of them provably cannot fit into a full three-party board. An exact search over every possible full board then showed that the last 288 cannot fit either. So every such board with generic dial settings is proved to be a blend of fixed-point machines. Boards with finely tuned dial settings, where terms cancel, are different. Of the 37 tuned boards the search found, 35 fail the test, so the proof does not reach them, although all 37 still sit inside the blend region numerically. A second trick handles them. First fold one dial's setting into the starting state, then run the same test on what is left. That variant is proved to work whenever it passes. We rebuilt 18 tuned boards, plus one saved earlier, and all 19 pass it, so each of them is proved to be a blend. A computer also found the blend recipe explicitly for each. We then listed every way the terms of two dials can cancel. Dials built on different term sets cannot cancel at all. Dials sharing all their terms cancel in only a few ways, and that list is proved. Dials sharing half their terms can lose exactly one term, never two, and that list is proved too. A further 32 tuned boards also pass, 51 in all. Most of them turned out not to be really tuned at all: the search had given the same dial two names. Every genuinely tuned board found shrinks to the simple one-switch type once one dial is folded into the starting state. We then ran that exhaustive search for every board built from just two dials, tuned or not: all 59,836 ways the two dials can combine. None of these boards escapes, so every two-dial board is proved to be a blend. Next came boards with three dials where one of them is the trivial do-nothing dial: about 244,000 cases. A first pass flagged 144 suspects. A sharper version of the same test, also proved, cleared all of them, so these boards are proved blends too. Still unproved: tuned boards with three real dials, or four or more. Only 2 of the 51 tuned boards found are like that, and both pass.</p>
 </li>
 <li>
-<p><strong>Three real dials, partly done.</strong> Boards with three non-trivial dials, with at least one pair of them tuned together, are next. Swapping the parties around and applying certain phase gates that change nothing observable cuts the 1,071 possible first dials down to 61 essentially different ones. For 18 of those 61, every combination of second and third dial has now been checked exhaustively. No board escapes, once a simple consistency rule is applied: the dial-to-dial differences must multiply correctly. Every suspect the search raised broke that rule, so it could not be a real board. The other 43 cases take about 100 more minutes of computing and can be resumed. Folding one dial into the starting state does not reduce these boards to the easier case, so they have to be checked by search.</p>
+<p><strong>Three real dials, done (update, note 82).</strong> Boards with three non-trivial dials, with at least one pair of them tuned together, were next. Swapping the parties around and applying certain phase gates that change nothing observable cuts the 1,071 possible first dials down to 61 essentially different ones. The search has now checked every combination of second and third dial for all 61. No board escapes, once a simple consistency rule is applied: the dial-to-dial differences must multiply correctly. Every suspect the search raised broke that rule, so it could not be a real board [PROVED, H.17.15]. Folding one dial into the starting state does not reduce these boards to the easier case, so they had to be checked by search.</p>
 </li>
 </ul>
-<p>Still open: the remaining 43 cases of three tuned dials, boards with four or more dials (all found so far pass), and the 22 genuine inequalities in general.</p>
+<p>Still open: boards with four or more dials (all found so far pass), and the 22 genuine inequalities in general.</p>
 <h2>79. Plain-language note: what is new, and who got there first (Oct 23 2026)</h2>
 <p>We checked the literature on Oct 23 2026, by web search and by reading the primary papers. We did not do a systematic citation search, and very recent preprints may be missing. Paper Section 0 (&quot;Novelty and prior work&quot;), Section 6, C.3 and H.13.5 give the details.</p>
 <ul>
@@ -961,7 +961,7 @@ table{border-collapse:collapse;font-size:.9rem;display:block;overflow-x:auto} th
 <li>The &quot;rotations&quot; are the 48 moves of the group G₄₈. A move renames the three qubits (6 ways) and, on any subset of qubits (8 ways), conjugates by the phase gate S, which swaps X and Y there.</li>
 <li>None of these moves changes the outcome probabilities (up to renaming the parties), whether the board is a legal process, or anything the computer search tests. So a counterexample exists for some class exactly when one exists for every class in its family.</li>
 <li>A family, called an <em>orbit</em>, is everything one class can be turned into by the 48 moves. The 1,071 classes fall into 61 orbits, and the search checks one representative of each.</li>
-<li>An orbit is &quot;PROVED&quot; once its search has finished and every leftover candidate has been ruled out by the triple-consistency rule. &quot;Still being searched&quot; means it is not finished yet. &quot;Genuine&quot; belongs to a different kind of orbit: families of scorecards (Appendix J), where it means &quot;not just positivity&quot;.</li>
+<li>An orbit is &quot;PROVED&quot; once its search has finished and every leftover candidate has been ruled out by the triple-consistency rule. &quot;Still being searched&quot; means it is not finished yet. (Update: the search has finished and all 61 orbits are now PROVED; see note 82.) &quot;Genuine&quot; belongs to a different kind of orbit: families of scorecards (Appendix J), where it means &quot;not just positivity&quot;.</li>
 </ul>
 </li>
 </ul>
@@ -982,6 +982,26 @@ table{border-collapse:collapse;font-size:.9rem;display:block;overflow-x:auto} th
 <li>Best score found so far: about −0.72 [NUMERICAL].</li>
 <li>A relaxed problem that allows more than real measurements can achieve proves the score can never go below about −1.59 for the main test [NUMERICAL, solver accuracy].</li>
 <li>The true limit lies somewhere in between, and it is OPEN.</li>
+<li><em>Update (note 82):</em> this floor (−1.5856) is now proved exactly.</li>
+</ul>
+</li>
+</ul>
+<h2>82. Plain-language note: the three-dial search is finished, and a proved floor for the Switchboard (Oct 24 2026)</h2>
+<ul>
+<li><strong>Three dials: closed (H.17.15) [PROVED].</strong> The long computer search over boards with three non-trivial dials, at least two of them tuned together, has finished all 61 families (&quot;orbits&quot;, note 80): 5,659,539 combinations in all.
+<ul>
+<li>It raised 188 suspects, and 1,274 cases where it ran out of its step budget.</li>
+<li>Every one of those 1,462 breaks the simple consistency rule: the difference between dials a and c has to be built from the a-to-b and b-to-c differences. So none of them can be a real board.</li>
+<li>That the rule really filters is checked too. On ordinary combinations it lets most through (for example, 16,715 of 17,855 in one family), and the known tuned boards pass it.</li>
+<li>Conclusion: every board with at most three terms and at most three distinct dials is a blend of classical loops. Only boards with four or more dials remain open.</li>
+</ul>
+</li>
+<li><strong>A proved floor for the Switchboard's score (H.15.9(C′)) [PROVED].</strong>
+<ul>
+<li>Note 81 gave a floor of about −1.59, but only to the computer's accuracy. Now that floor is a theorem.</li>
+<li>The relaxed problem has a &quot;dual&quot;: a set of matrices that certifies a floor whenever certain combinations of them have no eigenvalue below a stated number. We rounded the computer's dual to exact fractions. Then we checked every eigenvalue claim (512 blocks, plus 1,536 for the extra &quot;partial transpose&quot; constraints) with exact fraction arithmetic, with no rounding anywhere.</li>
+<li>Result: whatever measurements the agents make, the score is at least −1.5856. A simpler version without the extra constraints gives −1.7243. A useful feature is that the rounded dual does not need to fit the constraints exactly. Any misfit just lowers the floor a little, here by about 0.00004.</li>
+<li>So the true best score lies between −1.5856 and −0.7058, both ends proved. This relaxation cannot do better than about −1.5855, so narrowing further needs a stronger method. Where in this range the true value sits is OPEN.</li>
 </ul>
 </li>
 </ul>

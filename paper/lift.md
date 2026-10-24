@@ -1427,8 +1427,19 @@ This suggests, but does not show, that Purif (convex by H.13.1) is not a polytop
     - summing over party k's outcome pair gives 1_k ⊗ R, with R independent of x_k.
   - Every product of POVMs satisfies these constraints, so min y·P over this set is a lower bound on what any instruments achieve.
   - Result: min y_A·P ≥ −1.7243 and min y_B·P ≥ −1.6821. Adding the PPT constraints Z^{T_k} ≥ 0 (which products also satisfy) tightens this to min y_A·P ≥ −1.5855. The PPT run for y_B was stopped unfinished.
-  - So for y_A the true optimum over all instruments lies in [−1.586, −0.7058]. The gap is large, and we do not claim the seesaw value is optimal.
-  - A rigorous certified bound would need a rounded dual certificate, or a tighter (e.g. symmetric-extension) hierarchy. Both are **OPEN** here.
+  - So for y_A the true optimum over all instruments lies in [−1.586, −0.7058] (now PROVED, (C′)). The gap is large, and we do not claim the seesaw value is optimal.
+  - *Update:* both y_A bounds (NS and NS+PPT) are now certified exactly; see (C′) below. The y_B bounds remain NUMERICAL. A tighter (e.g. symmetric-extension) hierarchy is **OPEN** here.
+- **(C′) Certified lower bounds [PROVED; exact rational arithmetic; h12_dual.py, h12_dual_verify.py, h12_dual_verify_{ns,ppt}.log].** For every choice of instruments:
+  - y_A·P(H.12) ≥ −15855566756799817085266113281250000000001/10⁴⁰ ≈ −1.585557 (NS+PPT dual; SCS dual value −1.5855181);
+  - and, from the NS relaxation alone, y_A·P(H.12) ≥ −17243039067834615707397460937500000000001/10⁴⁰ ≈ −1.724304 (weaker, but needs no PPT terms).
+  - *Certificate (NS case; the PPT case adds the terms below).* Write the relaxation of the upper-side bullet with variables Z_{x,c} (x the setting triple, c the 64 outcome triples (a_k, o_k)). For any Hermitian Λ_x and any Hermitian Γ, Δ attached to the linear constraints, Lagrangian duality gives the identity y_A·P = Σ_x Tr Λ_x + Σ_{x,c} Tr[S_{x,c} Z_{x,c}], where S_{x,c} = y_A[x,a]·W_c − Λ_x − (constraint terms) is determined by (Λ, Γ, Δ). Here W_c = Σ_o ψ_o ψ_o† restricted to outcome bits o, with ψ_o = U_o·ph as in H.15.7d.
+  - On feasible Z the constraint terms vanish, Z_{x,c} ≥ 0 and Σ_c Tr Z_{x,c} = 8 for each x. So Tr[S_{x,c} Z_{x,c}] ≥ l_{x,c}·Tr Z_{x,c} for any l_{x,c} ≤ λ_min(S_{x,c}), and y_A·P ≥ Σ_x Tr Λ_x + 8·Σ_x min_c l_{x,c}.
+  - This holds for **any** Hermitian (Λ, Γ, Δ), feasible or not; infeasibility only weakens the constant. So no exact dual feasibility is required.
+  - *Procedure.* The dual multipliers from an SCS solve (dual value −1.7242877, matching the primal) are rounded to Gaussian rationals with denominator 2³⁰ and made exactly Hermitian. W_c (entries in ℚ(i,√2)) is replaced by rationals from 60-digit evaluation, with entrywise error below 10⁻⁵⁵. Its total effect is far below 10⁻⁴⁰, and 10⁻⁴⁰ is subtracted from the final bound to cover it. For each (x, c) a rational l ≤ λ_min(S_{x,c}) is certified by an exact LDLᵀ factorisation of S_{x,c} − l·1 in Fractions, on its 16×16 real form, with every pivot positive.
+  - *PPT terms.* With Hermitian Y_{x,c,k} for the constraints Z_{x,c}^{T_k} ≥ 0, S_{x,c} also contains −Σ_k Y_{x,c,k}^{T_k}, and the identity gains Σ Tr[Y_{x,c,k} Z_{x,c}^{T_k}]. Since products satisfy Z^{T_k} ≥ 0 and Tr Z^{T_k} = Tr Z, each such term is ≥ l(Y_{x,c,k})·Tr Z_{x,c}, so l_{x,c} becomes l(S_{x,c}) + Σ_k l(Y_{x,c,k}). Each l(Y) is certified by the same exact LDLᵀ test.
+  - The worst slack per setting triple is −3.0·10⁻⁷ (NS) and −6.0·10⁻⁷ (PPT), so rounding costs about 2·10⁻⁵ and 4·10⁻⁵ in total.
+  - Combined with H.15.7d this gives: **the optimum of y_A over all instruments lies in [−1.58556, −0.70580]** [PROVED both ends]. The NS+PPT relaxation value is itself −1.58552 (numerical), so a tighter certificate needs a stronger hierarchy. Closing the gap is **OPEN**.
+  - *Scope.* The instrument-to-POVM reduction used here is the one of H.15.7d [PROVED]. The certificate covers only y_A. y_B has the NUMERICAL relaxation bound −1.6821.
 
 
 ### H.16 Round 10 status (Oct 23 2026) [proved in Lean unless marked]
@@ -1629,7 +1640,7 @@ Still open are boards with three classes none of which is the identity, and boar
   - Hence U is a counterexample if and only if g·U is. So if a counterexample with first tuned class a exists, one exists with first tuned class equal to the representative of a's orbit. Checking the 61 representatives (with b and c over all classes) is therefore exhaustive.
 - **Status words (e).**
   - An orbit is **PROVED** (completed) when tclose3g.py has finished every job whose first tuned class is that orbit's representative, and every candidate and every UNRESOLVED job has then been eliminated by the triple-consistency lemma (tclose3g_cand.py). It follows that no counterexample has its first tuned class in that orbit.
-  - An orbit is **still being searched** (OPEN) when its jobs have not all been run and checked. The counts below are those of the last completed write-up. The running log may be ahead of them, and orbits it has finished count as PROVED only after tclose3g_cand.py has been run on them.
+  - An orbit would be **still being searched** (OPEN) if its jobs had not all been run and checked. The search has now finished (tclose3g.log: 61 of 61 orbits, 5,659,539 jobs), and tclose3g_cand.py has been run on all of it, so no orbit is in this state any more. All 61 are PROVED.
   - "**Genuine**" is not a status of these class orbits. It refers to the *facet* orbits of J.1 and H.17.5: orbits of PF-hull facet inequalities under relabelings of parties, settings and outcomes. There, "genuine" means not equivalent to positivity (orbit 92 is positivity, leaving 22 genuine). Class orbits and facet orbits are different objects that happen to share the word "orbit".
 - **Lemma (triple consistency) [PROVED].** Let V_a, V_b, V_c be unitaries with Pauli expansions. Write S_xy = supp(V_x V_y†), a set of unsigned strings.
   - Then S_ac ⊆ S_ab ⊕ S_bc := {s ⊕ t : s ∈ S_ab, t ∈ S_bc}, and the same holds for the other two orderings.

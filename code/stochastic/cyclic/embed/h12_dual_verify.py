@@ -5,7 +5,7 @@ exactly Hermitian.  For any feasible Z of the relaxation (which contains every p
 (the equality terms vanish on feasible Z: Tr[(G - T_k G) S] = Tr[G (S - T_k S)] = 0 and the x_k-independence terms cancel).
 Since Z_xc, Z_xc^{T_k} >= 0 and sum_c Tr Z_xc = 8:  y.P >= sum_x Tr Lam_x + 8 sum_x min_c [ l(S_xc) + sum_k l(Y_xck) ],
 where l(A) is a rational t with A - t*1 >= 0, CHECKED EXACTLY (LDL^T of the 16x16 real form, Fractions, all pivots > 0).
-W is in Q(i,sqrt2); it is replaced by a rational W' from 60-digit evaluation, |W-W'| entries < 1e-55, contributing < 1e-50 (subtracted)."""
+W is in Q(i,sqrt2); it is replaced by a rational W' from 60-digit evaluation, |W-W'| entries < 1e-55, contributing far less than the 1e-40 subtracted at the end."""
 import pickle, sys, numpy as np, itertools as it, re, sympy as sp
 from fractions import Fraction as Fr
 fn=sys.argv[1]; D=pickle.load(open(fn,'rb')); DEN=2**30

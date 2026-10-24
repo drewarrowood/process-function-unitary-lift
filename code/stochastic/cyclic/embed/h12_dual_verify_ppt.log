@@ -1,0 +1,10 @@
+sum Tr Lam (rounded) = -1.5855180518701673
+x 0 min_c [l(S)+sum l(Y)] = -5.960464477539062e-07
+x 1 min_c [l(S)+sum l(Y)] = -5.960464477539062e-07
+x 2 min_c [l(S)+sum l(Y)] = -5.960464477539062e-07
+x 3 min_c [l(S)+sum l(Y)] = -6.556510925292969e-07
+x 4 min_c [l(S)+sum l(Y)] = -5.960464477539062e-07
+x 5 min_c [l(S)+sum l(Y)] = -5.960464477539062e-07
+x 6 min_c [l(S)+sum l(Y)] = -5.960464477539062e-07
+x 7 min_c [l(S)+sum l(Y)] = -5.960464477539062e-07
+CERTIFIED (exact rational arithmetic): min over all instruments of y_A.P >= -15855566756799817085266113281250000000001/10000000000000000000000000000000000000000 = -1.5855566756799817
