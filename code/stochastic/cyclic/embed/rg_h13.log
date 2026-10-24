@@ -1,0 +1,7 @@
+n_o(z) = o.f(z) mod 2 for all 64 (o,z): True
+exact: (Hd_AI x Hd_F) V (Hd_AO x Hd_P) = W' (permutation (z,w) -> (z, w+f(z))): True
+f_k independent of z_k: True
+[W' single station X: (z,w) -> (z, w+f(z))] univocal: True; adjoint univocal: True; branches: {'A': 1, 'B': 1, 'C': 1, 'F': 1, 'S': 1, 'X': 64}
+[W' single station X: (z,w) -> (z, w+f(z))] branch-graph arrows: 512; weak loops principle: False; non-weak loop: B^0 -> X^4 -> back, arrow types ['green', 'red']
+[W' per-agent stations X_A, X_B, X_C (controls pass through, targets w_k)] univocal: True; adjoint univocal: True; branches: {'A': 1, 'B': 1, 'C': 1, 'F': 1, 'S': 1, 'XA': 8, 'XB': 8, 'XC': 8}
+[W' per-agent stations X_A, X_B, X_C (controls pass through, targets w_k)] branch-graph arrows: 120; weak loops principle: False; non-weak loop: XB^6 -> C^0 -> XC^6 -> B^0 -> back, arrow types ['red', 'green', 'red', 'green']
