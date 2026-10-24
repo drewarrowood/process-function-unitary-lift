@@ -1,0 +1,30 @@
+TUNED 22 139 shbad 3 viol 3.450297314578639e-15
+157 16 {"complete": 158, "hard": 20, "tunedcanc": 1, "sh_fail": 1, "best": 5.929397160535085e-15, "best_shfail": 3.450297314578639e-15, "maxrule": 4.896091263135068e-31, "tuned_used": 2, "shplus_fail": 0}
+TUNED 22 237 shbad 4 viol 5.842548667089886e-15
+330 32 {"complete": 331, "hard": 40, "tunedcanc": 2, "sh_fail": 2, "best": 5.985229672988979e-15, "best_shfail": 5.842548667089886e-15, "maxrule": 4.896091263135068e-31, "tuned_used": 3, "shplus_fail": 0}
+481 48 {"complete": 482, "hard": 60, "tunedcanc": 2, "sh_fail": 2, "best": 5.985229672988979e-15, "best_shfail": 5.842548667089886e-15, "maxrule": 4.896091263135068e-31, "tuned_used": 4, "shplus_fail": 0}
+TUNED 22 492 shbad 3 viol 3.1086244689504383e-15
+620 63 {"complete": 621, "hard": 80, "tunedcanc": 3, "sh_fail": 3, "best": 5.985229672988979e-15, "best_shfail": 5.842548667089886e-15, "maxrule": 4.896091263135068e-31, "tuned_used": 5, "shplus_fail": 0}
+757 79 {"complete": 758, "hard": 100, "tunedcanc": 3, "sh_fail": 3, "best": 5.985229672988979e-15, "best_shfail": 5.842548667089886e-15, "maxrule": 4.896091263135068e-31, "tuned_used": 5, "shplus_fail": 0}
+882 93 {"complete": 883, "hard": 120, "tunedcanc": 3, "sh_fail": 3, "best": 5.985229672988979e-15, "best_shfail": 5.842548667089886e-15, "maxrule": 4.896091263135068e-31, "tuned_used": 5, "shplus_fail": 0}
+994 105 {"complete": 995, "hard": 140, "tunedcanc": 3, "sh_fail": 3, "best": 5.985229672988979e-15, "best_shfail": 5.842548667089886e-15, "maxrule": 4.896091263135068e-31, "tuned_used": 6, "shplus_fail": 0}
+1166 121 {"complete": 1167, "hard": 160, "tunedcanc": 3, "sh_fail": 3, "best": 6.009326066272469e-15, "best_shfail": 5.842548667089886e-15, "maxrule": 4.896091263135068e-31, "tuned_used": 7, "shplus_fail": 0}
+1290 135 {"complete": 1291, "hard": 180, "tunedcanc": 3, "sh_fail": 3, "best": 6.009326066272469e-15, "best_shfail": 5.842548667089886e-15, "maxrule": 4.896091263135068e-31, "tuned_used": 7, "shplus_fail": 0}
+1525 153 {"complete": 1526, "hard": 200, "tunedcanc": 3, "sh_fail": 3, "best": 6.009326066272469e-15, "best_shfail": 5.842548667089886e-15, "maxrule": 4.896091263135068e-31, "tuned_used": 8, "shplus_fail": 0}
+1657 167 {"complete": 1658, "hard": 220, "tunedcanc": 3, "sh_fail": 3, "best": 6.009326066272469e-15, "best_shfail": 5.842548667089886e-15, "maxrule": 4.896091263135068e-31, "tuned_used": 9, "shplus_fail": 0}
+1765 180 {"complete": 1766, "hard": 240, "tunedcanc": 3, "sh_fail": 3, "best": 6.009326066272469e-15, "best_shfail": 5.842548667089886e-15, "maxrule": 4.896091263135068e-31, "tuned_used": 9, "shplus_fail": 0}
+1956 196 {"complete": 1957, "hard": 260, "tunedcanc": 3, "sh_fail": 3, "best": 6.009326066272469e-15, "best_shfail": 5.842548667089886e-15, "maxrule": 4.896091263135068e-31, "tuned_used": 10, "shplus_fail": 0}
+2103 210 {"complete": 2104, "hard": 280, "tunedcanc": 3, "sh_fail": 3, "best": 6.009326066272469e-15, "best_shfail": 5.842548667089886e-15, "maxrule": 4.896091263135068e-31, "tuned_used": 10, "shplus_fail": 0}
+2201 223 {"complete": 2202, "hard": 300, "tunedcanc": 3, "sh_fail": 3, "best": 6.009326066272469e-15, "best_shfail": 5.842548667089886e-15, "maxrule": 4.896091263135068e-31, "tuned_used": 10, "shplus_fail": 0}
+2314 236 {"complete": 2315, "hard": 320, "tunedcanc": 3, "sh_fail": 3, "best": 6.009326066272469e-15, "best_shfail": 5.842548667089886e-15, "maxrule": 4.896091263135068e-31, "tuned_used": 11, "shplus_fail": 0}
+2527 254 {"complete": 2528, "hard": 340, "tunedcanc": 3, "sh_fail": 3, "best": 6.009326066272469e-15, "best_shfail": 5.842548667089886e-15, "maxrule": 4.896091263135068e-31, "tuned_used": 12, "shplus_fail": 0}
+2706 271 {"complete": 2707, "hard": 360, "tunedcanc": 3, "sh_fail": 3, "best": 6.009326066272469e-15, "best_shfail": 5.842548667089886e-15, "maxrule": 4.896091263135068e-31, "tuned_used": 12, "shplus_fail": 0}
+2842 285 {"complete": 2843, "hard": 380, "tunedcanc": 3, "sh_fail": 3, "best": 6.009326066272469e-15, "best_shfail": 5.842548667089886e-15, "maxrule": 4.896091263135068e-31, "tuned_used": 12, "shplus_fail": 0}
+2999 300 {"complete": 3000, "hard": 400, "tunedcanc": 3, "sh_fail": 3, "best": 6.009326066272469e-15, "best_shfail": 5.842548667089886e-15, "maxrule": 4.896091263135068e-31, "tuned_used": 12, "shplus_fail": 0}
+3160 316 {"complete": 3161, "hard": 420, "tunedcanc": 3, "sh_fail": 3, "best": 6.009326066272469e-15, "best_shfail": 5.842548667089886e-15, "maxrule": 4.896091263135068e-31, "tuned_used": 12, "shplus_fail": 0}
+3306 330 {"complete": 3307, "hard": 440, "tunedcanc": 3, "sh_fail": 3, "best": 6.009326066272469e-15, "best_shfail": 5.842548667089886e-15, "maxrule": 4.896091263135068e-31, "tuned_used": 15, "shplus_fail": 0}
+3478 346 {"complete": 3479, "hard": 460, "tunedcanc": 3, "sh_fail": 3, "best": 6.009326066272469e-15, "best_shfail": 5.842548667089886e-15, "maxrule": 4.896091263135068e-31, "tuned_used": 18, "shplus_fail": 0}
+3690 363 {"complete": 3691, "hard": 480, "tunedcanc": 3, "sh_fail": 3, "best": 6.009326066272469e-15, "best_shfail": 5.842548667089886e-15, "maxrule": 4.896091263135068e-31, "tuned_used": 19, "shplus_fail": 0}
+3842 379 {"complete": 3843, "hard": 500, "tunedcanc": 3, "sh_fail": 3, "best": 6.009326066272469e-15, "best_shfail": 5.842548667089886e-15, "maxrule": 4.896091263135068e-31, "tuned_used": 21, "shplus_fail": 0}
+3992 395 {"complete": 3993, "hard": 520, "tunedcanc": 3, "sh_fail": 3, "best": 6.009326066272469e-15, "best_shfail": 5.842548667089886e-15, "maxrule": 4.896091263135068e-31, "tuned_used": 21, "shplus_fail": 0}
+4095 407 {"complete": 4096, "hard": 540, "tunedcanc": 3, "sh_fail": 3, "best": 6.009326066272469e-15, "best_shfail": 5.842548667089886e-15, "maxrule": 4.896091263135068e-31, "tuned_used": 21, "shplus_fail": 0}
