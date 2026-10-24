@@ -1,0 +1,4 @@
+0 1 {"complete": 1, "hard": 1, "sh_ok": 1, "sh_fail": 0, "best_shok": 2.9976021664879227e-15, "best_shfail": -1.0, "maxrule": 7.977695105791627e-33}
+700 125 {"complete": 701, "hard": 107, "sh_ok": 107, "sh_fail": 0, "best_shok": 6.098472905329154e-15, "best_shfail": -1.0, "maxrule": 2.3554893895674178e-31}
+1100 180 {"complete": 1101, "hard": 157, "sh_ok": 157, "sh_fail": 0, "best_shok": 6.098472905329154e-15, "best_shfail": -1.0, "maxrule": 2.3554893895674178e-31}
+1600 275 {"complete": 1601, "hard": 240, "sh_ok": 240, "sh_fail": 0, "best_shok": 6.098472905329154e-15, "best_shfail": -1.0, "maxrule": 2.3554893895674178e-31}

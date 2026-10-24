@@ -1,0 +1,3 @@
+100 21 {"complete": 101, "hard": 17, "sh_ok": 17, "sh_fail": 0, "best_shok": 4.007748272328673e-15, "best_shfail": -1.0, "maxrule": 1.1819075498796592e-31}
+500 103 {"complete": 501, "hard": 90, "sh_ok": 90, "sh_fail": 0, "best_shok": 6.050723381415953e-15, "best_shfail": -1.0, "maxrule": 1.665337711649067e-31}
+700 134 {"complete": 701, "hard": 116, "sh_ok": 116, "sh_fail": 0, "best_shok": 6.050723381415953e-15, "best_shfail": -1.0, "maxrule": 1.665337711649067e-31}

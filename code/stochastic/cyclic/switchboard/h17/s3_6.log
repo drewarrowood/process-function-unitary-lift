@@ -1,0 +1,2 @@
+200 30 {"complete": 201, "hard": 25, "sh_ok": 25, "sh_fail": 0, "best_shok": 5.940176718088868e-15, "best_shfail": -1.0, "maxrule": 1.240116125831455e-31}
+1200 193 {"complete": 1201, "hard": 170, "sh_ok": 170, "sh_fail": 0, "best_shok": 5.995204332975845e-15, "best_shfail": -1.0, "maxrule": 1.610377976732229e-31}

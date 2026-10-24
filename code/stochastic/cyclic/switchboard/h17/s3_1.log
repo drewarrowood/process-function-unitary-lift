@@ -1,0 +1,5 @@
+200 42 {"complete": 201, "hard": 36, "sh_ok": 36, "sh_fail": 0, "best_shok": 5.88418203051333e-15, "best_shfail": -1.0, "maxrule": 1.4176580788708005e-31}
+600 106 {"complete": 601, "hard": 91, "sh_ok": 91, "sh_fail": 0, "best_shok": 5.88418203051333e-15, "best_shfail": -1.0, "maxrule": 1.4377916179989415e-31}
+1200 192 {"complete": 1201, "hard": 167, "sh_ok": 167, "sh_fail": 0, "best_shok": 6.007560850902459e-15, "best_shfail": -1.0, "maxrule": 1.5411083370722719e-31}
+1600 255 {"complete": 1601, "hard": 221, "sh_ok": 221, "sh_fail": 0, "best_shok": 6.007560850902459e-15, "best_shfail": -1.0, "maxrule": 2.219892947030449e-31}
+1700 274 {"complete": 1701, "hard": 238, "sh_ok": 238, "sh_fail": 0, "best_shok": 6.007560850902459e-15, "best_shfail": -1.0, "maxrule": 2.219892947030449e-31}
