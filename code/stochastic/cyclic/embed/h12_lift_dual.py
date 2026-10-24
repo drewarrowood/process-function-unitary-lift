@@ -34,6 +34,6 @@ for v in V:
 pr=cp.Problem(cp.Maximize(cp.real(sum(cp.trace(L) for L in Lam.values()))),cons)
 print('built',f'{time.time()-t0:.0f}s',flush=True)
 pr.solve(solver='SCS',eps=float(sys.argv[1]) if len(sys.argv)>1 else 1e-6,max_iters=200000,verbose=True)
-print(f'LIFT-A dual: status {pr.status}, value {pr.value:.7f}, time {time.time()-t0:.0f}s',flush=True)
+print(f'LIFT-{"ABC"[LIFTP]} dual: status {pr.status}, value {pr.value:.7f}, time {time.time()-t0:.0f}s',flush=True)
 val=lambda d:{k:v.value for k,v in d.items()}
-pickle.dump(dict(Lam=val(Lam),G1=val(G1),G0=val(G0),GB=val(GB),DB=val(DB),GC=val(GC),DC=val(DC)),open('/tmp/r14/lift_dual.pkl','wb'))
+pickle.dump(dict(Lam=val(Lam),G1=val(G1),G0=val(G0),GB=val(GB),DB=val(DB),GC=val(GC),DC=val(DC)),open('/tmp/r14/lift_dual.pkl' if LIFTP==0 else f'/tmp/r15/lift_dual_P{LIFTP}.pkl','wb'))

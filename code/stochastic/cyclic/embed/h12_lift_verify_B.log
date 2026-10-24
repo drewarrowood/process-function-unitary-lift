@@ -1,0 +1,7 @@
+sum Tr Lam (rounded) = -1.2032564217224717
+(xB,xC)=(0,0): min_v t_v = -0.000000596  (float min eig -5.845e-07)
+(xB,xC)=(0,1): min_v t_v = -0.000000715  (float min eig -6.927e-07)
+(xB,xC)=(1,0): min_v t_v = -0.000000656  (float min eig -6.329e-07)
+(xB,xC)=(1,1): min_v t_v = -0.000000715  (float min eig -6.943e-07)
+max |y| = 1 crude rounding error term 8.881784197001252e-16
+CERTIFIED (exact integer arithmetic): min over all instruments of y_A.P >= -315437701416277769/262144000000000000 ~ -1.20329933706771

@@ -7,6 +7,20 @@ U=np.array([Hd@np.diag([1j**MT[o][z] for z in range(8)])@Hd for o in range(8)])
 ph=np.zeros(8,complex); ph[3]=1/2**.5; ph[4]=(1-1j)/2
 psi=np.array([U[o]@ph for o in range(8)])
 y=np.array(eval(re.search(r'\[.*?\]',open('/workspace/pful-graded/code/stochastic/cyclic/embed/instr2_exact.log').readline()).group()),float).reshape(8,8)
+# Round 15: optional relabelling so that party LIFTP (0=A,1=B,2=C) becomes the lifted party (position 0).  y_A itself is unchanged;
+# only the roles of the parties in the relaxation change.  Default 0 reproduces Round 14 exactly.
+import os
+LIFTP=int(os.environ.get('LIFTP','0'))
+if LIFTP:
+    perm=[LIFTP]+[j for j in range(3) if j!=LIFTP]          # new position i holds old party perm[i]
+    def pt(t): return tuple(t[perm[i]] for i in range(3))   # old triple -> new triple
+    def pidx(i): return B3.index(pt(B3[i]))
+    psi2=np.zeros_like(psi); y2=np.zeros_like(y)
+    for o in range(8):
+        for z in range(8): psi2[pidx(o)][pidx(z)]=psi[o][z]
+    for xi in range(8):
+        for ai in range(8): y2[pidx(xi),pidx(ai)]=y[xi,ai]
+    psi,y=psi2,y2
 I2=np.eye(2); Pl=[I2,np.array([[0,1],[1,0]]),np.array([[0,-1j],[1j,0]]),np.diag([1.,-1])]
 def op4(ms):
     M=np.array([[1.]])

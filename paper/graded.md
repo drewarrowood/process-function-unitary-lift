@@ -1426,3 +1426,10 @@ We checked the literature on Oct 23 2026, by web search and by reading the prima
 - **Counting runs settles it [PROVED, using a 2012 result of Oreshkov, Costa and Brukner].** With three agents and yes/no inputs, running *one* agent's box twice and the other two once each is enough, for every consistent classical process. The trick: once the machine knows how that one agent reacts to both possible inputs, the other two face an ordinary two-party situation, and two-party classical situations always have a definite (possibly random) order. Three runs, one per agent, are never enough for the counterexamples, by the earlier lemma. So the exact budget is four runs.
 - **A curious match.** The quantum circuits that run the counterexamples on an ordinary clock (notes 84 and 89) also use one agent twice and the others once. The classical machine has to throw one of its runs away; the quantum circuit throws nothing away.
 - **Still open.** A classical machine that runs every box once, on "spread-out" classical variables, and never throws anything away. We do not yet have a precise definition of that.
+
+## 93. Plain-language note: the H.12 score range narrows again (Oct 24 2026)
+
+- **Where we were (note 91).** The best score y_A that H.12 can reach was known to lie between −1.2772 (a proved floor) and −0.7058 (the best strategy found).
+- **A better floor [PROVED, exact arithmetic].** The floor came from giving one agent's two measurements a common home. Doing this for agent B instead of agent A gives a higher floor, −1.20330, again checked with exact integers. Doing it for agent C gives a weaker floor (about −1.30), so it was not certified.
+- **No better strategy [NUMERICAL].** Restricting all measurements to 13 symmetric directions and searching 3,000 combinations, then polishing, found nothing below −0.7058.
+- **So** the true value lies in [−1.2033, −0.7058]. It is still open.

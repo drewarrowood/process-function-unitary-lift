@@ -46,6 +46,16 @@ for o in range(8):
             e=p[a]*mp.conj(p[b]); R[a,b]=int(mp.nint(e.real*2**62)); I[a,b]=int(mp.nint(e.imag*2**62))
     R=(R+R.T)//1; I=(I-I.T)//1   # symmetrise: now 2x the value on grid 2^-62, i.e. value on grid 2^-63
     Wq[o]=(R,I)   # value = (R + iI)/2^63
+if LIFTP:   # relabel parties exactly as h12_lift_common does for psi
+    Wq2={}
+    for o in range(8):
+        R,I=Wq[o]; R2=np.zeros((8,8),dtype=object); I2_=np.zeros((8,8),dtype=object)
+        for a_ in range(8):
+            for b_ in range(8): R2[pidx(a_),pidx(b_)]=R[a_,b_]; I2_[pidx(a_),pidx(b_)]=I[a_,b_]
+        Wq2[pidx(o)]=(R2,I2_)
+    Wq=Wq2
+# consistency: W' agrees with the float W of h12_lift_common to 1e-15
+assert max(abs(np.array(Wq[o][0],float)/2**63+1j*np.array(Wq[o][1],float)/2**63-W[o]).max() for o in range(8))<1e-14
 yi=np.vectorize(int,otypes=[object])(np.round(y).astype(int)); assert np.allclose(yi.astype(float),y); YMAX=int(np.abs(y).max())
 def embq(Wp,first):
     out=[]
