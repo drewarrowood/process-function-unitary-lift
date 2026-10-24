@@ -13,7 +13,7 @@
 <style>
 body{font-family:Georgia,'Times New Roman',serif;line-height:1.55;margin:0;padding:1rem;color:#111;background:#fff}
 main{max-width:42rem;margin:0 auto} h1{font-size:1.6rem;line-height:1.25} h2{font-size:1.2rem;margin-top:2rem}
-h3{font-size:1.05rem;margin-top:1.6rem}
+h3{font-size:1.05rem;margin-top:1.6rem} img{max-width:100%;height:auto}
 pre{background:#f3f3f3;padding:.6rem;overflow-x:auto;font-size:.9rem;white-space:pre-wrap;word-break:break-word}
 code{font-family:'DejaVu Sans Mono',Menlo,monospace;font-size:.9em} a{color:#0645ad;word-break:break-word}
 li{margin:.3rem 0} footer{margin-top:3rem;font-size:.85rem;color:#555}
@@ -1002,6 +1002,26 @@ table{border-collapse:collapse;font-size:.9rem;display:block;overflow-x:auto} th
 <li>The relaxed problem has a &quot;dual&quot;: a set of matrices that certifies a floor whenever certain combinations of them have no eigenvalue below a stated number. We rounded the computer's dual to exact fractions. Then we checked every eigenvalue claim (512 blocks, plus 1,536 for the extra &quot;partial transpose&quot; constraints) with exact fraction arithmetic, with no rounding anywhere.</li>
 <li>Result: whatever measurements the agents make, the score is at least −1.5856. A simpler version without the extra constraints gives −1.7243. A useful feature is that the rounded dual does not need to fit the constraints exactly. Any misfit just lowers the floor a little, here by about 0.00004.</li>
 <li>So the true best score lies between −1.5856 and −0.7058, both ends proved. This relaxation cannot do better than about −1.5855, so narrowing further needs a stronger method. Where in this range the true value sits is OPEN.</li>
+</ul>
+</li>
+</ul>
+<h2>83. Plain-language note: what &quot;four terms&quot; looks like, and is four really the minimum? (Oct 24 2026)</h2>
+<p><img src="figs/fourterms.png" alt="One term versus four terms on the loop cube. Left: a deterministic loop sends loop state 000 to exactly one state. Right: the four-term H.13.2 operator at outputs o = 001 sends 000 to four states at once, with amplitudes −½, +½, +½, +½." /></p>
+<p><em>Figure: one term versus four terms. The figure is drawn by docs/figs/fourterms.py, and its amplitudes are checked against the H.13.2 table.</em></p>
+<ul>
+<li><strong>What a &quot;term&quot; is.</strong> At each setting of the agents' outputs, the machine applies one operator to the three loop bits A, B, C (the corners of the cube). Write that operator as a sum of &quot;flip patterns&quot;: leave alone, flip A, flip B, flip both, and so on. Each pattern that appears is one <em>term</em>.
+<ul>
+<li><strong>One term (left).</strong> One flip pattern, so a definite loop state goes to exactly one next state, here 000 to 010 (&quot;flip B&quot;). That is one history, an ordinary deterministic loop: a process function. Nothing can interfere with it.</li>
+<li><strong>Four terms (right).</strong> This is the rational counterexample of H.13.2 at outputs o = 001, where the operator is ½(−1 + X<sub>A</sub> + X<sub>B</sub> + X<sub>A</sub> X<sub>B</sub>). State 000 goes to four states at once (000, 100, 010, 110), each a <em>signed branch</em> of amplitude ±½, so each has probability ¼ on its own. One branch carries a minus sign.</li>
+<li><strong>Interference.</strong> When several branches reach the same state by different routes, their amplitudes add, and the signs can make them cancel. This cancellation lets the four-term machine produce statistics that no mixture of ordinary loops can (H.13.2) [PROVED].</li>
+</ul>
+</li>
+<li><strong>Is four really the minimum?</strong> Two terms are never enough (H.10.6) [PROVED]. For three terms, notes 80 and 82 showed that a three-term machine whose operators come in at most three genuinely different kinds (&quot;dials&quot;, or classes) is always a blend of ordinary loops [PROVED]. This round attacked the last case: three terms with <strong>four or more</strong> different dials (H.17.16).
+<ul>
+<li><em>Three simple rules [PROVED].</em> (1) If two dials differ only by a single flip pattern, they are really the same dial. (2) Two neighbouring corners whose dials differ must differ &quot;evenly&quot; in that corner's direction. (3) For every three dials, the a-to-c difference has to be built from the a-to-b and b-to-c differences (the rule from note 82).</li>
+<li><em>An exact search of the most &quot;cancellation-prone&quot; family [PROVED for that family].</em> Here all dials are built from the same three flip patterns, a so-called Klein group, which gives the most room for cancellations. Using the symmetries, there are 21 such families. The search covered all 21 families with four dials each: 1,862,595 combinations, and none of them gives a machine that escapes the classical loops [PROVED for this family]. A random check of 1,200 combinations found something stronger: the rules force every one of them to be trivial (one agent simply acts last).</li>
+<li><em>Random search [NUMERICAL].</em> Among 39,206 random admissible three-term machines, 5,800 were &quot;hard&quot; (no agent is trivially first or last). Almost all of them collapse to a single dial; ten have two dials and none has three or more. None beats the classical loops.</li>
+<li><em>What stays open.</em> We found no gluing argument that reduces four dials to three, and the full search is far too big for one machine (roughly 10⁹ cases). So &quot;four terms is the minimum&quot; is <strong>still OPEN</strong> in general. No three-term counterexample is known.</li>
 </ul>
 </li>
 </ul>

@@ -9,7 +9,7 @@ BASE = "https://drewarrowood.github.io/process-function-unitary-lift/"
 REPO = "https://github.com/drewarrowood/process-function-unitary-lift"
 CSS = """body{font-family:Georgia,'Times New Roman',serif;line-height:1.55;margin:0;padding:1rem;color:#111;background:#fff}
 main{max-width:42rem;margin:0 auto} h1{font-size:1.6rem;line-height:1.25} h2{font-size:1.2rem;margin-top:2rem}
-h3{font-size:1.05rem;margin-top:1.6rem}
+h3{font-size:1.05rem;margin-top:1.6rem} img{max-width:100%;height:auto}
 pre{background:#f3f3f3;padding:.6rem;overflow-x:auto;font-size:.9rem;white-space:pre-wrap;word-break:break-word}
 code{font-family:'DejaVu Sans Mono',Menlo,monospace;font-size:.9em} a{color:#0645ad;word-break:break-word}
 li{margin:.3rem 0} footer{margin-top:3rem;font-size:.85rem;color:#555}

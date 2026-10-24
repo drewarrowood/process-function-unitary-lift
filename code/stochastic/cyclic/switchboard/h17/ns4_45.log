@@ -1,0 +1,9 @@
+125 21 {"complete": 126, "hard": 20, "tunedcanc": 0, "sh_fail": 0, "best": 4.81271232099049e-15, "best_shfail": -1.0, "maxrule": 1.423196568610425e-31, "tuned_used": 0, "nd1": 20, "shplus_fail": 0}
+297 44 {"complete": 298, "hard": 40, "tunedcanc": 0, "sh_fail": 0, "best": 5.858170822011834e-15, "best_shfail": -1.0, "maxrule": 1.423196568610425e-31, "tuned_used": 3, "nd1": 40, "shplus_fail": 0}
+477 68 {"complete": 478, "hard": 60, "tunedcanc": 0, "sh_fail": 0, "best": 5.858170822011834e-15, "best_shfail": -1.0, "maxrule": 1.9425067123395415e-31, "tuned_used": 6, "nd1": 60, "shplus_fail": 0}
+TUNED 45 592 shbad 5 viol 3.2751579228865838e-15
+597 85 {"complete": 598, "hard": 80, "tunedcanc": 1, "sh_fail": 1, "best": 5.858170822011834e-15, "best_shfail": 3.2751579228865838e-15, "maxrule": 1.9425067123395415e-31, "tuned_used": 8, "nd1": 80, "shplus_fail": 0}
+TUNED 45 673 shbad 7 viol 3.463316066259341e-15
+TUNED 45 721 shbad 5 viol 2.8830361249523456e-15
+721 106 {"complete": 722, "hard": 100, "tunedcanc": 3, "sh_fail": 3, "best": 5.885377913841837e-15, "best_shfail": 3.463316066259341e-15, "maxrule": 6.820003328170606e-31, "tuned_used": 11, "nd1": 100, "shplus_fail": 0}
+TUNED 45 734 shbad 2 viol 4.899726457896492e-15

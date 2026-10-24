@@ -1,0 +1,23 @@
+Klein groups 336 G48 orbits 21 [(1, 8, 9), (1, 10, 11), (1, 14, 15), (1, 24, 25), (1, 28, 29), (1, 56, 57), (3, 8, 11), (3, 12, 15), (3, 13, 14), (3, 40, 43), (3, 41, 42), (7, 8, 15), (7, 56, 63), (7, 57, 62), (8, 17, 25), (8, 21, 29), (8, 49, 57), (10, 20, 30), (10, 48, 58), (10, 50, 56), (14, 51, 61)]
+k 4 K 0 (1, 8, 9) jobs 88695 cand 0 unres 0 84
+k 4 K 1 (1, 10, 11) jobs 88695 cand 0 unres 0 570
+k 4 K 2 (1, 14, 15) jobs 88695 cand 0 unres 0 681
+k 4 K 3 (1, 24, 25) jobs 88695 cand 0 unres 0 759
+k 4 K 4 (1, 28, 29) jobs 88695 cand 0 unres 0 862
+k 4 K 5 (1, 56, 57) jobs 88695 cand 0 unres 0 929
+k 4 K 6 (3, 8, 11) jobs 88695 cand 0 unres 0 1000
+k 4 K 7 (3, 12, 15) jobs 88695 cand 0 unres 0 1127
+k 4 K 8 (3, 13, 14) jobs 88695 cand 0 unres 0 1256
+k 4 K 9 (3, 40, 43) jobs 88695 cand 0 unres 0 1322
+k 4 K 10 (3, 41, 42) jobs 88695 cand 0 unres 0 1419
+k 4 K 11 (7, 8, 15) jobs 88695 cand 0 unres 0 1484
+k 4 K 12 (7, 56, 63) jobs 88695 cand 0 unres 0 1545
+k 4 K 13 (7, 57, 62) jobs 88695 cand 0 unres 0 1616
+k 4 K 14 (8, 17, 25) jobs 88695 cand 0 unres 0 1686
+k 4 K 15 (8, 21, 29) jobs 88695 cand 0 unres 0 1752
+k 4 K 16 (8, 49, 57) jobs 88695 cand 0 unres 0 1816
+k 4 K 17 (10, 20, 30) jobs 88695 cand 0 unres 0 1922
+k 4 K 18 (10, 48, 58) jobs 88695 cand 0 unres 0 1984
+k 4 K 19 (10, 50, 56) jobs 88695 cand 0 unres 0 2047
+k 4 K 20 (14, 51, 61) jobs 88695 cand 0 unres 0 2118
+SUMMARY blocks 21 jobs 1862595 cand 0 unres 0
