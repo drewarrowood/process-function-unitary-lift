@@ -1239,7 +1239,7 @@ This suggests, but does not show, that Purif (convex by H.13.1) is not a polytop
   - An LP plus a rational Farkas vector y, checked exactly, gives min over causal strategies of y·P = 0, while y·p = -5/4 (φ_A) and -4/3 (φ_B). As a control, Lugano gives -4.
   - **Hence no model of the kind in Lemma H.15.7a, classical or QC-QC, reproduces H.13.2.** In particular the board W is not a QC-QC, so Salzger-Vilasini's QC-QC-to-causal-box construction does not apply to it.
 - **Consequence for VR [CITED + PROVED].** VR's Thm 5 says that any relativistically causal fixed-spacetime realisation has a fine-grained fixed-order explanation with M ≥ N "possibly communicating" agents. For H.13.2, that explanation must break the single-use set-up: some coarse agent's operation is not realised as one application at one active slot.
-- **The H.12 switchboard is not settled.** At this level of operations its correlation is causal: the LP is feasible, in floating point [NUMERICAL]. Whether another instrument witnesses a causal-inequality violation is OPEN; conv(PF)-exclusion alone does not imply it.
+- **The H.12 switchboard is not settled.** At this level of operations its correlation is causal: the LP is feasible, in floating point [NUMERICAL]. Whether another instrument witnesses a causal-inequality violation is OPEN; conv(PF)-exclusion alone does not imply it. *Update: settled in H.15.7d. Other projective measurements (emit the setting, measure along rational Bloch directions) violate a causal inequality, with an exact certificate [PROVED].*
 - **OPEN.** Is there any classical fine-grained model that allows multiple use or communicating sub-agents, as in VR Thm 5, for H.13.2? Lemma H.15.7a shows such a model must violate single use.
 
 *(A) Are the boards routed quantum circuits?*
@@ -1274,7 +1274,41 @@ This suggests, but does not show, that Purif (convex by H.13.1) is not a polytop
   - **Control:** H.13.2 φ_A reaches t = 0.6963, a violation.
   - A second seed did not finish (no output).
   - **Z8 class 10515** with the H.14.2 source: best t = 1.000017, no violation found [NUMERICAL, instr_z8.log]. Its computational-basis station routes have support sizes {1, 4, 5, 6} (not univocal), and it is Fourier-diagonal (routes_check.log).
-  - **Status.** This narrows but does not settle the question. It is OPEN whether any instrument (general POVMs, entangling the agent's input with a memory, more settings) shows that H.12 or Z8 violates a causal inequality. If none does, H.12 would be a pure non-PF board whose correlations are all causal. Even then, it would still be excluded from single-use classical models with deterministic local operations, because p ∉ conv(PF) (H.12). The fixed-instrument test is weaker than PF-membership.
+  - **Status (superseded for H.12 by H.15.7d, which finds an exact violation; still current for Z8).** This narrows but does not settle the question. It is OPEN whether any instrument (general POVMs, entangling the agent's input with a memory, more settings) shows that H.12 or Z8 violates a causal inequality. If none does, H.12 would be a pure non-PF board whose correlations are all causal. Even then, it would still be excluded from single-use classical models with deterministic local operations, because p ∉ conv(PF) (H.12). The fixed-instrument test is weaker than PF-membership.
+
+**H.15.7d Third pass (Oct 23 2026): a calibrated routed-graph checker, an exact rotated form of H.13.2, and a causal-inequality violation for H.12 [labels per item].**
+
+*(A) Routed graphs.*
+- **Calibration: VOKB's Lugano graph passes the checker [EXACT; code/stochastic/cyclic/embed/rg_lugano.py, rg_lugano.log].** We encoded VOKB Fig. 27 for rg_check.py. Nodes: the agents A, B, C, the vote-counting station X and the future node F. Indices: the result l on X → A and A → F, the pair (vote, result) on A → X with vote·result = 0, and the votes ijk on X → F. Shared indices are enforced through the routes. The checker reports: bi-univocal; branches A, B, C: 2 each ("loses"/"wins"), X: 5, F: 1; 38 branch-graph arrows; weak-loops principle satisfied. This matches VOKB's Sec. 4.3.2, so the checker reproduces a known valid graph as well as known invalid ones.
+- **Rotated form of H.13.2 [PROVED; exact integer check in rg_h13.py, rg_h13.log].** Write n_o(z) = m_o(z)/2. Then n_o(z) is linear in o over F₂:
+  - n_o(z) = o_A f_A(z) + o_B f_B(z) + o_C f_C(z) (mod 2), with f_A = z_B z_C, f_B = z_A(1 + z_C), f_C = z_A + z_B + z_A z_B (the OR of z_A and z_B).
+  - Hence, after a Hadamard on every agent's input wire and output wire (and on the past and future), the H.13.2 purification V becomes the permutation W′: |z⟩_P |w⟩_AO ↦ |z⟩_AI |w ⊕ f(z)⟩_F.
+  - Each f_k does not depend on z_k.
+  - In words: in the rotated frame, each agent receives its input straight from the past. The board then flips agent k's output bit according to a function of the *other* agents' inputs, applied "across" the agents. Local unitaries on agent wires can be absorbed into the agent nodes, so H.13.2 has a valid routed graph if and only if W′ does.
+- **Two natural graphs for W′ fail [EXACT; rg_h13.log].** Both use per-agent computational-basis sectors (one-dimensional) on every agent wire.
+  - (a) A single station X with route (z, w) ↦ (z, w ⊕ f(z)) and 64 branches. It is bi-univocal, but the loop B → X → B is mixed (green, red).
+  - (b) Per-agent stations X_k. X_k applies the flip f_k to w_k, and the controls z_j (j ≠ k) pass through X_k on their way to agent j. It is bi-univocal, with X_k having 8 branches, but there is a mixed loop X_B → C → X_C → B (red, green, red, green).
+  - The mechanism is the same in both. With full agent routes, each agent has a forward choice (its output w_k), which gives green arrows into the stations. It also has a backward choice (its input z_k), which gives red arrows out of the stations. In Lugano the agents have no backward choice: the agent's output index carries a copy of its classical input l, and the quantum content sits in a separate two-dimensional sector. For W′ the agent's input z_k is itself the coherent qubit, so that trick needs a different sector structure.
+- **Status of (A): OPEN.** No valid routed graph for H.13.2 is found, and no obstruction is proved. Excluded so far (by exact check, not by a general argument): the Fourier-station graphs of H.15.7c; the single-station and per-agent-station graphs for W′ with one-dimensional per-agent computational sectors. The structural fact "f_k does not depend on z_k" is the analogue of Lugano's "a majority for Alice does not depend on Alice's vote". That analogy is INTERPRETIVE. The natural next try is a Lugano-type graph in which the stations X_k carry the value of f_k as an index ("did agent k's bit get flipped"), and each agent's coherent qubit sits in a non-trivial sector.
+
+*(B) Instruments: H.12 violates a causal inequality.*
+- **Search [NUMERICAL; instr_search2.py, instr2_h12.log, instr2_z8.log, instr2_h13ctrl.log].**
+  - *Instruments.* Agent k with setting x applies a general 4-outcome qubit POVM {E_{a,o|x}} to its input. It records the outcome a and emits the classical output o. Because the board decoheres o, this is the most general memoryless local instrument. It contains 3-outcome POVMs and rank-1 projective measurements in arbitrary bases.
+  - *Objective.* To avoid the t = 1 plateau of the robustness LP, the optimiser does not maximise t. It minimises a soft-min of y·P over a pool of 2,432 valid causal inequalities: the exact Farkas certificates of H.15.7b (H.13.2 φ_A and φ_B, Lugano) and all their images under party permutations, setting flips and setting-dependent outcome flips. Images of a valid inequality under these relabelings are valid, and a spot check of 64 members gave minimum 0 over all 138,304 deterministic causal strategies.
+  - *Method.* L-BFGS-B from seeded structured starts (a random basis with o = setting, or o = g(outcome)).
+  - *Control.* H.13.2 φ_A reaches y·P = −1.405 (robustness t = 0.679), better than the −5/4 of H.15.7b.
+  - *H.12.* Seeds 1–4, 8 restarts each. The best is y·P = −0.7058 (seed 3), with robustness LP t = 0.8048. instr2_verify.py recomputes P independently from the process matrix W = Σ_o |ψ_o⟩⟨ψ_o| ⊗ |o⟩⟨o|, with Tr W = 8. The two computations agree to 8·10⁻¹⁶, and the rows sum to 1.
+  - *Z8 class 10515.* Seeds 1–2, 8 restarts each. Best y·P = +0.0002, t = 1: no violation found.
+- **Theorem H.15.7d [PROVED; exact arithmetic in Q(√2); instr2_exact.py, instr2_exact.log].** The H.12 switchboard, with its source, violates a causal inequality.
+  - *Instrument.* The optimum is rank-1 projective, with o_k = x_k: agent k measures along a Bloch direction n_{k,x} and emits its setting. We rounded each direction to a rational point of the sphere: n_{A,0} = (−896, −8704, −577)/8769, n_{A,1} = (1280, 4224, 2907)/5285, n_{B,0} = (6912, −16512, −15461)/23653, n_{B,1} = (−32704, −15168, −156597)/160693, n_{C,0} = (13440, 21760, −35829)/44021, n_{C,1} = (−3328, 3648, −4929)/6977.
+  - *Exactness.* The projectors then have entries in Q(i). The board and source have entries in Q(i, √2), so P(a|x) is computed exactly, and its rows sum to 1 exactly.
+  - *Inequality.* y is an integer vector with entries ±1, listed in instr2_exact.log. Its minimum over all 138,304 deterministic causal strategies is exactly 0.
+  - *Value.* y·P = r₁ − r₂√2 with r₁ = 158077977870324318023361541/108202395271728590997126690 and r₂ = 33154036840568731352429917/21640479054345718199425338. Both are positive and r₁² < 2r₂², so y·P < 0 (≈ −0.70568).
+- **Consequences.**
+  - [PROVED] By Lemma H.15.7a (classical carriers) and the Wechs-Dourdent-Abbott-Branciard theorem (QC-QCs) [CITED], H.12 has no single-use fine-grained causally ordered model, exactly like H.13.2. This settles the H.12 item left open in H.15.7(B) and H.15.7c.
+  - [conditional] VOKB Conjectures 1 and 2 then predict that any valid routed graph for H.12 has weak loops.
+  - Why H.15.7c missed it: its 13-direction grid with output g_x(b) contains the right kind of operation (emit the setting) but not the right directions. In addition, hill climbing on t is stuck on the t = 1 plateau. The fixed-facet objective removes both problems.
+  - Still OPEN: Z8 class 10515 (no violation found in this family); whether H.12's violation is attained at "nice" directions; and the maximal violation.
 
 ### H.16 Round 10 status (Oct 23 2026) [proved in Lean unless marked]
 - **Unitarity closed.** The H.12.3 gap "isometry, not unitary, for infinite ancillas" is now closed. `isUnitaryInf_Vsb` proves the Switchboard loop is unitary against every family of countable ancillas. `purification_conjecture_false_unitaryInf` then gives the counterexample in the unitary form. The proof checks row orthonormality (`row_scalar_key`, an exact kernel check) and shows that an isometry with orthonormal rows is onto.
@@ -1446,7 +1480,42 @@ Still open are boards with three classes none of which is the identity, and boar
 
 **H.17.15 Three non-identity classes: symmetry reduction and closure search (Oct 23 2026) [PROVED for the completed orbits listed below, by exhaustive exact enumeration with over-approximating supports; the remaining orbits are OPEN, and the run is resumable] (t3sym.py, tclose3g.py, tclose3g.log, tclose3g_done.txt.gz checkpoint, tclose3g_unres.py, tclose3g_ctrl.py/.log).**
 
-*Symmetry group [PROVED].* Let G₄₈ = S₃ × (ℤ₂)³. It acts by permuting the three qubits, applied to Pauli strings and cube labels together, and by conjugating with a diagonal S gate on any subset m of the qubits. On strings the S part acts as z ↦ z ⊕ (x ∧ m).
+*Definitions used in this section [definitions; the group facts are PROVED by direct computation in t3sym.py].*
+- **Pauli strings.** A three-qubit Pauli string, up to phase, is a pair (x, z) ∈ F₂³ × F₂³ (its X-part and Z-part). In the code it is the integer s = x + 8z. There are 63 non-identity strings.
+- **Class (a).** Each outcome's unitary is U_o = P_o V_k^σ (H.17 preamble), where V_k is one of three kinds:
+  - the identity, V = 1;
+  - a two-term unitary, V = α + iβA, with A a non-identity string;
+  - a three-term unitary, V = α + i(βA + γB), with A < B anticommuting strings.
+  - The *class* of V is its generator tuple: (), (A) or (A, B). It records which Pauli strings occur, and not the real parameters α, β, γ, the sign flip σ or the left Pauli P_o.
+  - There are 63 two-term classes and 1,008 anticommuting pairs A < B. That gives 1,071 non-identity classes, or 1,072 with the identity (tclose2.py, `classes`).
+  - A board puts a pair (P_o, class) on each vertex o of the cube {0,1}³. Here "three non-identity classes" means that exactly three distinct classes a, b, c occur and none of them is ().
+  - Two classes are *tuned* when they are equal or their Klein groups K = ⟨generators⟩ ∪ {1} share a non-identity element. Only then can V_aV_b† have cancellations (H.17.12).
+- **The group G₄₈ (b).** An element is g = (π, m), with π a permutation of the three qubits (equivalently, of the parties) and m ⊆ {A, B, C} a set of qubits (a bit mask in F₂³).
+  - It acts on a string in two steps, exactly as `act` in t3sym.py. First z ↦ z ⊕ (x ∧ m): this is conjugation by the diagonal gate S on the qubits in m, since S X S† = Y, S Y S† = −X and S Z S† = Z. Then the qubit positions of x and z are permuted by π.
+  - It acts on a class by acting on each generator and re-sorting. Any sign it introduces is absorbed into the real parameters β, γ, which a class does not record. Conjugation preserves anticommutation, so classes go to classes.
+  - On cube labels o and differences D it acts by π.
+  - *Why |G| = 48.* The S-parts form (ℤ₂)³. On unsigned strings each S-conjugation is an involution (S² = Z acts trivially up to sign), and they commute.
+  - The permutations form S₃, of order 6, and they normalise the S-part: π S_m π⁻¹ = S_{π(m)}. So G₄₈ = (ℤ₂)³ ⋊ S₃, the hyperoctahedral group of order 8 · 6 = 48.
+  - Checked: the 48 pairs (π, m) give 48 distinct permutations of the 64 strings, and these are closed under composition.
+  - The product is semidirect, not direct: permutations and S-masks do not commute. The earlier shorthand "S₃ × (ℤ₂)³" is corrected here.
+  - Every g is F₂-linear on (x, z) ∈ F₂⁶.
+- **Action on classes and orbits (c).** The orbit of a class c is G₄₈·c = {g·c : g ∈ G₄₈}, the set of classes reachable from c. Orbits partition the 1,071 classes. t3sym.py uses the lexicographically smallest member, min_g g·c, as the orbit's representative. Result: **61 orbits**, 9 of two-term classes and 52 of three-term classes [PROVED by enumeration].
+- **Why one representative per orbit suffices (d).** For g = (π, m), define g·U by U_o ↦ S_m P_{π⁻¹o} V S_m† with qubits permuted by π. [PROVED]
+  - (i) Unitarity and admissibility are preserved: conjugation and relabeling preserve unitarity, and the forbidden-string form ((x|z) ∧ D) = D of the Pauli rule H.8.1 depends only on x and x∨z, which S does not change, and it is covariant under π.
+  - (ii) p_{g·U} is p_U with the parties relabeled by π. The left S_m is diagonal, so it does not change any computational-basis probability. The right S_m† is absorbed into the source state, which ranges over all states anyway.
+  - (iii) The PF hull is invariant under party relabelings.
+  - (iv) Every finite object the search uses is the image under the same F₂-linear map: the forbidden-string rule ((x|z) ∧ D) = D (S preserves x and x∨z), the pair supports and pattern lists of H.17.12, the tuned relation, the groups H of H.17.11a and the test SH_grp^r.
+  - Hence U is a counterexample if and only if g·U is. So if a counterexample with first tuned class a exists, one exists with first tuned class equal to the representative of a's orbit. Checking the 61 representatives (with b and c over all classes) is therefore exhaustive.
+- **Status words (e).**
+  - An orbit is **PROVED** (completed) when tclose3g.py has finished every job whose first tuned class is that orbit's representative, and every candidate and every UNRESOLVED job has then been eliminated by the triple-consistency lemma (tclose3g_cand.py). It follows that no counterexample has its first tuned class in that orbit.
+  - An orbit is **still being searched** (OPEN) when its jobs have not all been run and checked. The counts below are those of the last completed write-up. The running log may be ahead of them, and orbits it has finished count as PROVED only after tclose3g_cand.py has been run on them.
+  - "**Genuine**" is not a status of these class orbits. It refers to the *facet* orbits of J.1 and H.17.5: orbits of PF-hull facet inequalities under relabelings of parties, settings and outcomes. There, "genuine" means not equivalent to positivity (orbit 92 is positivity, leaving 22 genuine). Class orbits and facet orbits are different objects that happen to share the word "orbit".
+- **Lemma (triple consistency) [PROVED].** Let V_a, V_b, V_c be unitaries with Pauli expansions. Write S_xy = supp(V_x V_y†), a set of unsigned strings.
+  - Then S_ac ⊆ S_ab ⊕ S_bc := {s ⊕ t : s ∈ S_ab, t ∈ S_bc}, and the same holds for the other two orderings.
+  - *Proof.* V_aV_c† = (V_aV_b†)(V_bV_c†). Expanding both factors, every term of the product is a phase times the string s ⊕ t, with s ∈ S_ab and t ∈ S_bc. Cancellation can only remove terms.
+  - The condition is unchanged by the job translations (S_ab, S_ac, S_bc) ↦ (S_ab + t_b, S_ac + t_c, S_bc + t_b + t_c). A job whose supports violate it has no unitary realisation, so it cannot be a counterexample.
+
+*Symmetry group [PROVED].* Let G₄₈ = (ℤ₂)³ ⋊ S₃ (defined above). It acts by permuting the three qubits, applied to Pauli strings and cube labels together, and by conjugating with a diagonal S gate on any subset m of the qubits. On strings the S part acts as z ↦ z ⊕ (x ∧ m).
 - Qubit permutations relabel the parties, so they preserve admissibility, the Pauli rule H.8.1 and the PF hull.
 - For the S part, write U_o = P_o V_k ↦ S P_o V_k S†. The left S is diagonal, so it does not change p(i|o). The right S† is absorbed into the source state.
 - The S part preserves X-parts and x∨z, so it preserves the forbidden-string rule ((x|z)&D)==D. It also preserves which pair supports are nontrivial, so it preserves SH_grp^r and the groups H of H.17.11a/H.17.14.
