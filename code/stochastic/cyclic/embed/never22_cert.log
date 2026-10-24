@@ -1,0 +1,91 @@
+=== facet 16581
+max |exact - float| over the 9 qubit unitaries: 1.03e-03
+V is exactly unitary (Gaussian rationals)
+facets in the 22 orbits: 5120
+float relative facet value with exact board: -0.046471 (orbit 14)
+p is exactly a valid classical process (positivity, normalisation, 64 deterministic interventions)
+facet functional exact on all 744 PFs; max PF value 3
+EXACT facet value at p: -575284145634155279045412855016392654495618422404459959426722000648877758048942816076287054783096507523537864047/4126481973103032642753246493374903316451922828966746495216356866622338977635318103230381559747828561100794321175 = -0.13941273689887296  relative: -0.04647091229962432
+CERTIFIED: facet 16581 (orbit 14) is violated by the classical process of a unitary board.
+=== facet 16660
+max |exact - float| over the 9 qubit unitaries: 1.03e-03
+V is exactly unitary (Gaussian rationals)
+facets in the 22 orbits: 5120
+float relative facet value with exact board: -0.046471 (orbit 25)
+p is exactly a valid classical process (positivity, normalisation, 64 deterministic interventions)
+facet functional exact on all 744 PFs; max PF value 3
+EXACT facet value at p: -311738385617903697929280005183427685192700912196447145744735361216297010031355105776361193274718062632658162199/2236077715026974929854125630807631105582112331588586348249462632222418622511529798630374648687305306100248018455 = -0.13941303717797798  relative: -0.04647101239265933
+CERTIFIED: facet 16660 (orbit 25) is violated by the classical process of a unitary board.
+=== facet 25717
+max |exact - float| over the 9 qubit unitaries: 1.03e-03
+V is exactly unitary (Gaussian rationals)
+facets in the 22 orbits: 5120
+float relative facet value with exact board: -0.005171 (orbit 4)
+p is exactly a valid classical process (positivity, normalisation, 64 deterministic interventions)
+facet functional exact on all 744 PFs; max PF value 3
+EXACT facet value at p: -798776612661668100255019697590727982182501799358317087441856379228612467308461023754848964943124235063369140/51491768961506392283047415830709968219200084206363040566740242901682159782702025642245828570720688208641022087 = -0.015512704821984424  relative: -0.005170901607328141
+CERTIFIED: facet 25717 (orbit 4) is violated by the classical process of a unitary board.
+=== facet 25828
+max |exact - float| over the 9 qubit unitaries: 1.03e-03
+V is exactly unitary (Gaussian rationals)
+facets in the 22 orbits: 5120
+float relative facet value with exact board: -0.005171 (orbit 5)
+p is exactly a valid classical process (positivity, normalisation, 64 deterministic interventions)
+facet functional exact on all 744 PFs; max PF value 3
+EXACT facet value at p: -4925335303083988191505536421314616088917559766457522759495588407005768900236205886770415731121639175153294819/317501156994145076932712915029406164113266911471098717483455296706274930367497463335257408881425542748427442568 = -0.015512810566466107  relative: -0.0051709368554887026
+CERTIFIED: facet 25828 (orbit 5) is violated by the classical process of a unitary board.
+=== facet 22340
+max |exact - float| over the 9 qubit unitaries: 1.03e-03
+V is exactly unitary (Gaussian rationals)
+facets in the 22 orbits: 5120
+float relative facet value with exact board: -0.005171 (orbit 6)
+p is exactly a valid classical process (positivity, normalisation, 64 deterministic interventions)
+facet functional exact on all 744 PFs; max PF value 3
+EXACT facet value at p: -7570179996241223944646949816464479334826371350976090312353891279105941824205418338103313260105400062959473947/488011395645057492043066293225274017375293541794483337738945595568238514206367165000586152594723138986503439810 = -0.015512301687617146  relative: -0.005170767229205715
+CERTIFIED: facet 22340 (orbit 6) is violated by the classical process of a unitary board.
+=== facet 28337
+max |exact - float| over the 9 qubit unitaries: 1.03e-03
+V is exactly unitary (Gaussian rationals)
+facets in the 22 orbits: 5120
+float relative facet value with exact board: -0.005171 (orbit 7)
+p is exactly a valid classical process (positivity, normalisation, 64 deterministic interventions)
+facet functional exact on all 744 PFs; max PF value 3
+EXACT facet value at p: -16015147520133533989762667803305527332730090110606290977753355182224961664267053012060455989191643909413393480/1032401226262019837723930094639602800461877737469208344934594327981029659075912934500645742854435844691044454997 = -0.015512522760282876  relative: -0.005170840920094292
+CERTIFIED: facet 28337 (orbit 7) is violated by the classical process of a unitary board.
+=== facet 22341
+max |exact - float| over the 9 qubit unitaries: 1.03e-03
+V is exactly unitary (Gaussian rationals)
+facets in the 22 orbits: 5120
+float relative facet value with exact board: -0.005171 (orbit 8)
+p is exactly a valid classical process (positivity, normalisation, 64 deterministic interventions)
+facet functional exact on all 744 PFs; max PF value 3
+EXACT facet value at p: -22712208134981074973732693439525257602063618381993107908418947776578783181013714459373908097406187417337342902/1464140965106362338248042435902020506628642397352093760640341918013049925207592429749140608204288918956443229267 = -0.015512309727179274  relative: -0.005170769909059758
+CERTIFIED: facet 22341 (orbit 8) is violated by the classical process of a unitary board.
+=== facet 22701
+max |exact - float| over the 9 qubit unitaries: 1.03e-03
+V is exactly unitary (Gaussian rationals)
+facets in the 22 orbits: 5120
+float relative facet value with exact board: -0.005171 (orbit 9)
+p is exactly a valid classical process (positivity, normalisation, 64 deterministic interventions)
+facet functional exact on all 744 PFs; max PF value 3
+EXACT facet value at p: -45418038423943263316241359724397481866736634487469402029950908040330768057196380408807995825754783559795259049/2927831089045478591994300967737869760912290646392136143270328837168688012819334246120445470190295496148058617000 = -0.015512520033643845  relative: -0.005170840011214615
+CERTIFIED: facet 22701 (orbit 9) is violated by the classical process of a unitary board.
+=== facet 28679
+max |exact - float| over the 9 qubit unitaries: 1.03e-03
+V is exactly unitary (Gaussian rationals)
+facets in the 22 orbits: 5120
+float relative facet value with exact board: -0.005171 (orbit 10)
+p is exactly a valid classical process (positivity, normalisation, 64 deterministic interventions)
+facet functional exact on all 744 PFs; max PF value 3
+EXACT facet value at p: -2671838769211328389650268814787828066399483263306396353532185520464912576887248776861028566042756187710593763/172237920316932842131293416481780392348106717078201390477490535281491575176253889153835868884149088243642613922 = -0.01551248856404508  relative: -0.0051708295213483595
+CERTIFIED: facet 28679 (orbit 10) is violated by the classical process of a unitary board.
+=== facet 28338
+max |exact - float| over the 9 qubit unitaries: 1.03e-03
+V is exactly unitary (Gaussian rationals)
+facets in the 22 orbits: 5120
+float relative facet value with exact board: -0.005171 (orbit 11)
+p is exactly a valid classical process (positivity, normalisation, 64 deterministic interventions)
+facet functional exact on all 744 PFs; max PF value 3
+EXACT facet value at p: -48041486378478232842657668792066495401714890436832478443662387617959731879374876064970556893546253139374989222/3096900481509841386167666605745652296007420773484315628539509154302139495803628741873568159469141046921348559281 = -0.015512764024970031  relative: -0.005170921341656677
+CERTIFIED: facet 28338 (orbit 11) is violated by the classical process of a unitary board.
+ALLDONE

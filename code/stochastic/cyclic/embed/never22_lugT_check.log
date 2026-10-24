@@ -1,0 +1,5 @@
+facets in the 22 orbits: 5120
+U = e^{ia} R X R^dag dev 2.0e-06
+U = e^{ia} R X R^dag dev 2.2e-06
+U = e^{ia} R X R^dag dev 2.5e-06
+L_U == (R)_AI (D)_F L_X (R^dag)_P : dev 2.5e-06

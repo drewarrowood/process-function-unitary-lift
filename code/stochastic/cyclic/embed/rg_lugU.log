@@ -1,0 +1,3 @@
+gate-independent: unique consistent assignment per agent output: True ; F record determines a: True ; assignment r(a) == lug(a) for all a: True
+composite == L_{U_A,U_B,U_C} for Lugano, sqrtX-Lugano and 200 Haar triples: max dev 0.0e+00
+closed loop with random local unitaries is unitary (L and L^T, 50 triples x 5 draws): max dev 2.6e-15

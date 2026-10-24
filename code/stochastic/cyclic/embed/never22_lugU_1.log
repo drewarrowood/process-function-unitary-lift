@@ -1,0 +1,5 @@
+facets in the 22 orbits: 5120
+seed 1: 4000 random boards; best max-violation over the 22 orbits: [np.float64(0.00232), np.float64(-0.0), np.float64(-0.0), np.float64(-0.0), np.float64(-0.0)]
+  rev=1 start +0.00232 -> +0.046472
+   VIOLATED orbits: [(4, np.float64(0.005191)), (5, np.float64(0.005191)), (6, np.float64(0.005191)), (7, np.float64(0.005191)), (8, np.float64(0.005191)), (9, np.float64(0.005191)), (10, np.float64(0.005191)), (11, np.float64(0.005191)), (14, np.float64(0.046472)), (25, np.float64(0.046472))]
+  rev=1 start -0.00000 -> +0.000000
