@@ -1250,6 +1250,6 @@ This round attacked the two open puzzles: switchboards that are not of the X typ
 
 - **Half a proof for non-X boards.** The old argument for X-type boards carries over to every board whose "reachable flips" form a closed group. This part is proved. For three-term dials the reachable flips are {none, A, B}, and the flip "A then B" is not covered automatically. That last finite check is what remains.
 
-- **The last check, almost done.** A complete computer enumeration of every way two dials can sit side by side found 329,280 local trouble spots. All but 288 of them provably cannot fit into a full three-party board. The remaining 288 need one more exact check, saved for next time. Boards with finely tuned dial settings, where terms cancel, are not yet covered.
+- **The last check, done.** A complete computer enumeration of every way two dials can sit side by side found 329,280 local trouble spots. All but 288 of them provably cannot fit into a full three-party board. An exact search over every possible full board then showed that the last 288 cannot fit either. So every such board with generic dial settings is proved to be a blend of fixed-point machines. Boards with finely tuned dial settings, where terms cancel, are different. Of the 37 tuned boards the search found, 35 fail the test, so the proof does not reach them, although all 37 still sit inside the blend region numerically.
 
-Still open: those 288 cases, the finely tuned boards, and the 22 genuine inequalities in general.
+Still open: the finely tuned boards, and the 22 genuine inequalities in general.
