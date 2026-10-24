@@ -1,0 +1,63 @@
+== seed 1 (h16_gen_run.py 1 3000 lug)
+/tmp/r16/gen_run.py:25: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  print(f'{t} mu={mu:.1e} maxviol={float(v.max()):+.6f} pen={float(pen):.3e} {time.time()-t0:.0f}s',flush=True)
+0 mu=1.0e+01 maxviol=-0.127769 pen=1.938e+02 1s
+200 mu=1.8e+01 maxviol=-0.000026 pen=7.767e-03 151s
+400 mu=3.4e+01 maxviol=-0.000034 pen=6.949e-02 307s
+600 mu=6.3e+01 maxviol=+0.000010 pen=1.344e-01 463s
+800 mu=1.2e+02 maxviol=-0.000127 pen=1.548e-01 633s
+1000 mu=2.2e+02 maxviol=-0.000659 pen=1.422e-01 799s
+1200 mu=4.0e+02 maxviol=-0.002118 pen=1.527e-01 963s
+1400 mu=7.4e+02 maxviol=-0.004916 pen=1.713e-01 1130s
+1600 mu=1.4e+03 maxviol=-0.008587 pen=1.510e-01 1298s
+1800 mu=2.5e+03 maxviol=-0.009018 pen=1.656e-01 1454s
+2000 mu=4.6e+03 maxviol=-0.008958 pen=1.930e-01 1622s
+2200 mu=8.6e+03 maxviol=-0.009680 pen=1.937e-01 1797s
+2400 mu=1.6e+04 maxviol=-0.010328 pen=2.385e-01 1959s
+2600 mu=2.9e+04 maxviol=-0.010741 pen=2.348e-01 2119s
+2800 mu=5.4e+04 maxviol=-0.011374 pen=2.402e-01 2273s
+2999 mu=1.0e+05 maxviol=-0.012604 pen=1.351e-01 2434s
+FINAL 1 lug -0.012602116737890834 0.1310046455991484 orbits []
+== seed 2 (h16_gen_run.py 2 3000 lug)
+/tmp/r16/gen_run.py:25: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  print(f'{t} mu={mu:.1e} maxviol={float(v.max()):+.6f} pen={float(pen):.3e} {time.time()-t0:.0f}s',flush=True)
+0 mu=1.0e+01 maxviol=-0.127570 pen=1.948e+02 1s
+200 mu=1.8e+01 maxviol=-0.011977 pen=4.807e-03 152s
+400 mu=3.4e+01 maxviol=-0.010219 pen=5.879e-02 294s
+600 mu=6.3e+01 maxviol=-0.005870 pen=1.131e-01 446s
+800 mu=1.2e+02 maxviol=-0.002303 pen=1.455e-01 613s
+1000 mu=2.2e+02 maxviol=-0.000447 pen=1.040e-01 777s
+1200 mu=4.0e+02 maxviol=-0.000299 pen=1.517e-01 948s
+1400 mu=7.4e+02 maxviol=-0.000420 pen=9.242e-02 1120s
+1600 mu=1.4e+03 maxviol=-0.000768 pen=1.501e-01 1293s
+1800 mu=2.5e+03 maxviol=-0.001100 pen=2.116e-01 1462s
+2000 mu=4.6e+03 maxviol=-0.001472 pen=1.289e-01 1630s
+2200 mu=8.6e+03 maxviol=-0.001819 pen=1.609e-01 1793s
+2400 mu=1.6e+04 maxviol=-0.002612 pen=2.005e-01 1953s
+2600 mu=2.9e+04 maxviol=-0.003551 pen=1.534e-01 2118s
+2800 mu=5.4e+04 maxviol=-0.004287 pen=1.799e-01 2282s
+2999 mu=1.0e+05 maxviol=-0.005237 pen=1.570e-01 2443s
+FINAL 2 lug -0.005077080925504247 0.16615844921030398 orbits []
+== seed 3 (h16_gen_run.py 3 3000 lug)
+/tmp/r16/gen_run.py:25: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  print(f'{t} mu={mu:.1e} maxviol={float(v.max()):+.6f} pen={float(pen):.3e} {time.time()-t0:.0f}s',flush=True)
+0 mu=1.0e+01 maxviol=-0.135458 pen=1.988e+02 1s
+200 mu=1.8e+01 maxviol=-0.007611 pen=5.692e-03 152s
+400 mu=3.4e+01 maxviol=-0.006935 pen=7.745e-02 310s
+600 mu=6.3e+01 maxviol=-0.006629 pen=1.384e-01 462s
+800 mu=1.2e+02 maxviol=-0.006767 pen=1.384e-01 630s
+1000 mu=2.2e+02 maxviol=-0.006460 pen=1.482e-01 790s
+1200 mu=4.0e+02 maxviol=-0.006679 pen=1.664e-01 952s
+1400 mu=7.4e+02 maxviol=-0.007079 pen=1.877e-01 1124s
+1600 mu=1.4e+03 maxviol=-0.007474 pen=1.770e-01 1295s
+1800 mu=2.5e+03 maxviol=-0.008136 pen=1.968e-01 1459s
+2000 mu=4.6e+03 maxviol=-0.008942 pen=1.934e-01 1622s
+2200 mu=8.6e+03 maxviol=-0.009654 pen=2.110e-01 1785s
+2400 mu=1.6e+04 maxviol=-0.010837 pen=1.735e-01 1943s
+2600 mu=2.9e+04 maxviol=-0.011363 pen=1.809e-01 2106s
+2800 mu=5.4e+04 maxviol=-0.011908 pen=1.920e-01 2270s
+2999 mu=1.0e+05 maxviol=-0.012617 pen=2.267e-01 2444s
+FINAL 3 lug -0.012553627616100963 0.2389322014381638 orbits []

@@ -1,0 +1,11 @@
+0 [np.int64(2), np.int64(248), np.int64(268), np.int64(685), np.int64(648), np.int64(550), np.int64(97), np.int64(425)] pen 54.125 xor False
+1 [np.int64(237), np.int64(652), np.int64(155), np.int64(579), np.int64(17), np.int64(585), np.int64(548), np.int64(108)] pen 56.0 xor False
+2 [np.int64(115), np.int64(689), np.int64(125), np.int64(32), np.int64(742), np.int64(612), np.int64(651), np.int64(12)] pen 31.75 xor False
+3 [np.int64(60), np.int64(682), np.int64(559), np.int64(624), np.int64(15), np.int64(362), np.int64(433), np.int64(80)] pen 42.75 xor False
+4 [np.int64(719), np.int64(277), np.int64(158), np.int64(230), np.int64(574), np.int64(685), np.int64(375), np.int64(139)] pen 57.75 xor False
+5 [np.int64(519), np.int64(221), np.int64(718), np.int64(503), np.int64(471), np.int64(106), np.int64(46), np.int64(354)] pen 52.5 xor False
+6 [np.int64(57), np.int64(572), np.int64(462), np.int64(320), np.int64(371), np.int64(511), np.int64(58), np.int64(475)] pen 55.0 xor False
+7 [np.int64(424), np.int64(302), np.int64(539), np.int64(443), np.int64(143), np.int64(450), np.int64(308), np.int64(351)] pen 26.25 xor False
+8 [np.int64(315), np.int64(442), np.int64(45), np.int64(159), np.int64(435), np.int64(617), np.int64(276), np.int64(676)] pen 47.0 xor False
+9 [np.int64(618), np.int64(518), np.int64(202), np.int64(50), np.int64(161), np.int64(73), np.int64(724), np.int64(611)] pen 58.625 xor False
+{'xor': 0, 'nonxor': 200, 'valid_nonxor': 0} residual min 14 max 70.12

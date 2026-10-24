@@ -1,0 +1,24 @@
+generated group order 384 | G.npy order 384 | equal: True
+orbit 4: 384 facets, G-orbit of first facet = orbit: True
+orbit 5: 384 facets, G-orbit of first facet = orbit: True
+orbit 6: 384 facets, G-orbit of first facet = orbit: True
+orbit 7: 384 facets, G-orbit of first facet = orbit: True
+orbit 8: 384 facets, G-orbit of first facet = orbit: True
+orbit 9: 384 facets, G-orbit of first facet = orbit: True
+orbit 10: 384 facets, G-orbit of first facet = orbit: True
+orbit 11: 384 facets, G-orbit of first facet = orbit: True
+orbit 14: 192 facets, G-orbit of first facet = orbit: True
+orbit 25: 192 facets, G-orbit of first facet = orbit: True
+orbit 53: 64 facets, G-orbit of first facet = orbit: True
+orbit 79: 64 facets, G-orbit of first facet = orbit: True
+orbit 26: 192 facets, G-orbit of first facet = orbit: True
+orbit 28: 192 facets, G-orbit of first facet = orbit: True
+orbit 30: 192 facets, G-orbit of first facet = orbit: True
+orbit 31: 192 facets, G-orbit of first facet = orbit: True
+orbit 54: 96 facets, G-orbit of first facet = orbit: True
+orbit 57: 192 facets, G-orbit of first facet = orbit: True
+orbit 66: 96 facets, G-orbit of first facet = orbit: True
+orbit 69: 192 facets, G-orbit of first facet = orbit: True
+orbit 75: 96 facets, G-orbit of first facet = orbit: True
+orbit 81: 96 facets, G-orbit of first facet = orbit: True
+orbits checked 22 consistent 22

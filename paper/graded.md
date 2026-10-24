@@ -1446,3 +1446,18 @@ We checked the literature on Oct 23 2026, by web search and by reading the prima
 
 - **The claim (Round 13).** One remaining gap in the computer-checked proofs was said to need a theorem (diagonalising compact symmetric operators) that the Lean maths library lacks.
 - **The fact [checked in the library].** The library has had it since early 2026, and our own Lean files already use it. The gap is still not closed, but it is now ordinary work rather than a missing foundation.
+
+## 96. Plain-language note: the last gap in the machine-checked infinite-dimensional story is closed (Oct 24 2026)
+
+- **The gap (Rounds 8–15).** The computer-checked theorems about channels on infinite-dimensional systems assumed that a channel does not blow up the size of what it acts on ("boundedness"). On paper this is automatic for any map that keeps positive things positive and preserves total probability, but it had not been checked by machine.
+- **Now it is [PROVED, Lean].** Split any self-adjoint operator into a positive part and a negative part. The map preserves the size of each, so it can at most add them up; for a general operator, split it into two self-adjoint pieces and lose at most a factor of 2. The library's existing "functions of operators" machinery gives the split directly, so the diagonalisation theorem discussed in note 95 was not even needed.
+- **What it buys.** Every channel on any system, of any size, now counts in the machine-checked results, with no extra hypothesis: in particular the H.12 Switchboard is consistent against all of them.
+- **Not new mathematics.** The fact itself is classical (Russo and Dye, 1966, give the sharp factor 1); only the machine check is new.
+
+## 97. Plain-language note: the twelve broken families are broken everywhere; ten remain (Oct 24 2026)
+
+- **The question (note 94).** A "family" of inequalities is all the copies of one inequality obtained by relabelling the agents and flipping their bits. We had broken one member of each of twelve families. Is every member broken?
+- **Yes [PROVED, exhaustive check].** The relabellings that define the families are exactly agent swaps and bit flips, and each of these turns a consistent reversible loop into another one (flip a wire with a NOT gate, or rename the agents). So breaking one member breaks them all.
+- **Why the old searches could not reach the remaining ten [PROVED].** Every "XOR-type" classical loop, where each agent receives the source bit flipped by a function of the others' outputs, is either causal or a relabelled Lugano loop. So the tilted Lugano family already covers that whole class.
+- **New searches [NUMERICAL].** More random tilted Lugano loops, 200 reversible classical loops of a more general type (none of which turned out to be consistent quantum loops), and an unrestricted search over all three-qubit loops (which did not manage to stay consistent) found nothing.
+- **Still open.** Ten families (26, 28, 30, 31, 54, 57, 66, 69, 75, 81).
