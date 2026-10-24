@@ -82,5 +82,15 @@ gnav = (f'<nav class="top">Gentle version. The technical source of truth is the 
 og_png(root / "docs/og-graded.png", ["Can every consistent loop", "live in a reversible world?"],
        "exactly one fixed point  ⇒  unitary lift", "Gentle version · stories → symbols → theorem → open problem")
 
+# Glossary only (Appendix K plus the references it cites)
+_lift = (root / "paper/lift.md").read_text()
+_gl = _lift[_lift.index("## Appendix K. Glossary"):]
+GLTITLE = "Glossary: Every process function lifts to a unitary process"
+GLDESC = "Technical definitions of the main terms in the paper (Appendix K), with the references they cite."
+glnav = (f'<nav class="top">Glossary only (Appendix K). Full paper: <a href="{BASE}">technical note</a> · '
+         f'<a href="{BASE}graded.html">gentle version</a>.</nav>')
+(root / "docs/glossary.html").write_text(page(GLTITLE, GLDESC, BASE + "glossary.html", BASE + "og.png", glnav,
+                                              render(_gl, LIFT_SUBS)))
+
 (root / "docs/.nojekyll").write_text("")
 print("ok")
