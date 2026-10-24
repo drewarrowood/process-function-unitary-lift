@@ -1237,16 +1237,16 @@ The computer also checks the "smooth dial" result for any smooth, one-to-one rea
 
 Two puzzles are still open:
 - the boards that are not of the X type;
-- the 23 inequalities that no test has broken yet.
+- the 23 inequalities that no test has broken yet. (Note 78 shows one of them is just "probabilities are never negative", so 22 are genuine.)
 
 ## 78. Plain-language note: attacking the two open puzzles (Oct 23 2026)
 
-This round attacked the two open puzzles: switchboards that are not of the X type, and the 23 inequalities no test had broken (paper Appendix H.17).
+This round attacked the two open puzzles: switchboards that are not of the X type, and the 23 inequalities no test had broken, of which 22 turn out to be genuine (paper Appendix H.17).
 
 - **Non-X switchboards exist.** These are reversible switchboards with up to three terms per setting that are not of the X type. The computer built more than 20,000 of them, and every one stayed inside the region spanned by ordinary process functions. This is a computer check, not a proof.
 - **A small theorem.** One way such a board could escape is through a "sign flip" between two settings of the same dial. An exhaustive exact check proves this can never fit into a full three-party board, as long as the dial settings are generic.
 - **Validity alone is not enough.** For 22 of the 23 inequalities we have exact counterexamples that satisfy every consistency rule but break the inequality. So any proof of those 22 must use reversibility (purifiability), not just consistency. The last one (number 92) turned out to be simply "probabilities are never negative". An exact certificate now proves this, so it holds for every process. It should never have been on the open list.
-- **Wider searches.** Finer phase dials, continuous dials and local rotations of each party broke none of the 23 inequalities.
+- **Wider searches.** Finer phase dials, continuous dials and local rotations of each party broke none of the 22 genuine inequalities.
 
 - **Half a proof for non-X boards.** The old argument for X-type boards carries over to every board whose "reachable flips" form a closed group. This part is proved. For three-term dials the reachable flips are {none, A, B}, and the flip "A then B" is not covered automatically. That last finite check is what remains.
 
