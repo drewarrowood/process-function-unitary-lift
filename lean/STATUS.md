@@ -397,3 +397,41 @@ Gaps:
 - `IsPure V → IsUnitaryKer V` for general V (finite-ancilla purity implies infinite-ancilla purity) is proved on paper only (lift.md H.19.4). Not needed for Vsb.
 - AFNB Thm 2 (pure ⟺ W is the Choi projector of a unitary) is not formalised.
 - Normal CPTP validity needs countable ancilla alphabets (the Kraus theorem used is for countable ℓ²).
+
+Round 13 update: the four gaps above are closed in Lean (next section), with the caveats listed there.
+
+## Round 13 (Oct 24 2026): closing the Round 12 gaps (lift.md H.20)
+
+New files: `Compression.lean`, `PureFiniteInf.lean`, `AFNBPure.lean`, `KrausAny.lean`, `InfiniteLink.lean`, `QubitTensor.lean`, `CounterexampleInfLink.lean`. All sorry-free, no `native_decide`, no new axioms; `#print axioms` gives only propext, Classical.choice and Quot.sound for every theorem listed (`Round13_axioms.lean`, output in `Round13_axioms.log`). Build: `lake build PFUL.Compression PFUL.PureFiniteInf PFUL.AFNBPure PFUL.KrausAny PFUL.InfiniteLink PFUL.QubitTensor PFUL.CounterexampleInfLink`.
+
+**(b) Finite purity ⇒ purity with ancillas of any dimension, every V (`PureFiniteInf.lean`, `Compression.lean`).**
+- `exists_finite_compression σ a ha α α'`: an isometric kernel a on (O × κ) ← (I × κ), κ of any cardinality, I ≃ O finite: there are a finite ancilla n, a unitary matrix B on (O × n) ← (I × n) and i, j ∈ n with i = j ↔ α = α' and the same cross Gram numbers Σ_b conj a(x,b)(y,α) a(x',b)(y',α') = Σ_b conj B(x,b)(y,i) B(x',b)(y',j).
+- `isPureKer_of_isPure`, `isUnitaryKer_of_isPure`, `isPureHilbert_of_isPure : IsPure V → IsPureHilbert V`.
+- `isPure_iff_isPureKer`, `isPure_iff_isUnitaryKer`, `isPure_iff_isPureHilbert` (every V : Proc P P).
+
+**(c) AFNB Theorem 2 (`AFNBPure.lean`).**
+- `exists_unitary_of_unitaryLink σ : UnitaryLink W → ∃ U, IsUnitaryM U ∧ W = choiPM U` (close each slot with a SWAP into the ancilla).
+- `unitaryLink_choiPM (hPF : card P = card F) U : IsValidPM (choiPM U) → UnitaryLink (choiPM U)`.
+- `isPurePM_iff σ hPF W : IsPurePM W ↔ IsValidPM W ∧ ∃ U, IsUnitaryM U ∧ W = choiPM U`.
+- Hypotheses: σ k : I k ≃ O k (our `UnitaryLink` uses one ancilla type per party on both sides), and |P| = |F| for ⇐.
+
+**(d) Kraus / normal CPTP with ancillas of any cardinality (`KrausAny.lean`).**
+- `KernelPSD.exists_factor_any`, `exists_kraus_of_choi_any`, `exists_kraus_of_normalCPTP_any`, `isNormalCPTP_iff_kraus_any`: no `Countable`; the Gram–Schmidt step is replaced by `exists_hilbertBasis`.
+- `valid_normalCPTP_Vsb_any`: `valid_normalCPTP_Vsb` without `Countable` on X_k, X'_k.
+
+**(a) Link product with ancillas of any cardinality (`InfiniteLink.lean`, `CounterexampleInfLink.lean`).**
+- `IsCPTPKer J` (Mathlib `PosSemidef`, i.e. every finite section PSD; trace preservation as an unconditional `HasSum`), `isCPTPKer_iff` (agrees with `IsCPTPChoi` for finite output ancilla).
+- `psd_norm_le`, `posSemidef_of_sections`, `link_posSemidef_any`, `hasSum_pi_prod_any`, `reduceKer`, `isCPTPChoi_reduceKer`.
+- `IsValidPMInf W`, `isValidPMInf_iff W : IsValidPMInf W ↔ IsValidPM W` (no extra hypothesis).
+- `UnitaryLinkInf W` (unitary kernels on arbitrary X_k; the loop M must have orthonormal rows and columns), `IsPurePMInf W`, `isPurePMInf_iff σ W : IsPurePMInf W ↔ IsPurePM W`. Proof: `lmat`, `link_choiPM_vecOp`, `isIsoKernel_lmat`, `isUnitaryKer_lmat` (compression as in (b)) and AFNB Thm 2.
+- `isValidPMInf_Wcl_iff`, `isPurePMInf_choiMat_Vsb`, `purification_conjecture_false_choiInf` (H.12.1 with the infinite-ancilla predicates).
+
+**C² ⊗ K (`QubitTensor.lean`).**
+- `qsplitEquiv : C² ⊗[ℂ] K ≃ₗᵢ PiLp 2 (fun _ : Bool => K)`, `completeSpace_qubitTensor` (the algebraic tensor product with C² is complete), `qubitBasis B : HilbertBasis (Bool × κ) ℂ (C² ⊗[ℂ] K)`, `qubitBasis_apply` (= e_b ⊗ B_j).
+- `isPure_qubitTensor`: for pure V, unitaries A_k of Mathlib's C² ⊗[ℂ] K_k (any dimension) and any Hilbert space G with a Hilbert basis indexed by P × ∏κ_k, the link product is the matrix of a unitary of G.
+
+Gaps after Round 13:
+- The infinite link product is entrywise (kernels with PSD finite sections and unconditional partial-trace sums). It is not an operator statement about non-trace-class Choi operators; Mathlib has no unbounded/non-trace-class Choi operator theory, and the kernel form is the one used.
+- `isPurePM_iff` and `isPurePMInf_iff` need σ k : I k ≃ O k; the converse of AFNB Thm 2 needs |P| = |F|.
+- The global space G = C^P ⊗ K_1 ⊗ K_2 ⊗ K_3 is still "any Hilbert space with a basis indexed by P × ∏κ_k": Mathlib has no completed Hilbert tensor product, and the algebraic K_1 ⊗ K_2 ⊗ K_3 is not complete when two factors are infinite-dimensional.
+- Automatic boundedness of positive TP maps on the trace class (Round 8/9 gap) is unchanged: it needs the Jordan decomposition T = T₊ − T₋ of self-adjoint trace-class operators with ‖T‖₁ = Tr T₊ + Tr T₋, i.e. the spectral theorem for compact self-adjoint operators, which Mathlib does not have.
