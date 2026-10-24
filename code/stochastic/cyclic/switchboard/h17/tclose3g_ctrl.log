@@ -1,0 +1,2 @@
+tb_25_3980.npz supports ((0, 4, 32, 36), (4,), (0, 4, 32, 36)) loosened: True real counterexample: None
+tb_26_554.npz supports ((0, 4, 32, 36), (4,), (0, 4, 32, 36)) loosened: True real counterexample: None
