@@ -10,6 +10,7 @@ from multiprocessing import Pool
 from tclose2 import FORB
 from tclose3 import patterns, span, ST, Pa, Ka
 from t3sym import reps, nonid, tuned
+BUDGET=200000
 def solve(job, loosen=False):
     Sab,Sac,Sbc=job       # class 0=a (absorbed at the root), 1=b, 2=c
     Sup={(0,1):list(Sab),(0,2):list(Sac),(1,2):list(Sbc)}
@@ -62,7 +63,7 @@ def solve(job, loosen=False):
                 if bad: break
             if not bad: return False
         return True
-    budget=[200000]
+    budget=[BUDGET]
     for k0 in range(3):
         i0=64*k0
         for D in range(1,8):
