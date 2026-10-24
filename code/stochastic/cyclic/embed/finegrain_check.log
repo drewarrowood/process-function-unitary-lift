@@ -1,0 +1,8 @@
+deterministic causal correlations: 138304
+H.13.2 phi_A: causal correlation? NO (LP infeasible)
+   rational causal inequality: min over causal vertices = 0, value on p = -5/4 (float -1.2500) -> EXACT violation
+H.13.2 phi_B: causal correlation? NO (LP infeasible)
+   rational causal inequality: min over causal vertices = 0, value on p = -4/3 (float -1.3333) -> EXACT violation
+H.12 switchboard (float): causal correlation? YES (LP feasible)
+Lugano PF: causal correlation? NO (LP infeasible)
+   rational causal inequality: min over causal vertices = 0, value on p = -4 (float -4.0000) -> EXACT violation
