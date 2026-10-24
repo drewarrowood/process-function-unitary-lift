@@ -21,6 +21,8 @@ Claims are marked by status, following Section 9 of the note:
 - **Open** means nobody knows yet.
 - **Interpretation** means philosophy. It is a reading of the mathematics, not a result.
 
+**Looking up a word.** The technical note has a glossary (Appendix K of paper/lift.md). It defines every main technical term, in alphabetical order, says where in the note it is defined and whom it comes from, and flags words this note uses differently from the literature.
+
 The path runs from easy to hard. Stories first (Part I). Then the symbols, one at a time (Parts II–IV). Then the main theorem and its proof (Part V), and why a machine-checked proof matters (Part VI). Then infinity, with Hilbert's hotel smuggled into a time loop (Part VII). The second half is about chance: mixtures and purification (Part VIII), the random corners that cannot be purified (Part IX), the conjecture, the evidence that seemed to support it, and the counterexample that refutes it (Part X, ending in Section 58h), and an honest map of the routes that failed (Part XI). Part XII is all philosophy, clearly marked as interpretation. A summary box at the very end says what is proved, what is evidence, and what is open.
 
 ---
@@ -1366,3 +1368,10 @@ We checked the literature on Oct 23 2026, by web search and by reading the prima
 - **Four dials is now a finite search.** With four dials, each covers exactly two neighbouring corners. Up to symmetry there are only **2,722** ways to place and label them. A computer search checks every way exactly [PROVED for the cases finished so far]. As a control, the same program without the final test finds ordinary "hard" machines easily, so it is not searching an empty space [NUMERICAL].
 - **Status.** At the time of writing, a few hundred of the 2,722 cases are finished, and all are clean: no suspect and nothing left unresolved. The rest runs in the background for a few more hours on this machine. If it finishes clean, "four terms is the minimum" is proved for this model of three-term machines. Until then it is **still OPEN**, but what is left is now a running search, not a missing idea.
 - **What did not work [NUMERICAL].** We checked whether the tests that separate quantum from classical behaviour (hull facets) look only at a few corners at a time. They do not: the ones the four-term counterexample violates all involve at least four corners. That is why the argument has to use the whole cube, as the stiffness argument does.
+
+## 86. Plain-language note: a glossary for the technical note (Oct 24 2026)
+
+- **What was added.** The technical note now ends with a glossary, Appendix K, just before the reference list. Each entry gives a precise definition, the notation, the section where the term is defined, and the source.
+- **Why it helps.** Some words in the note are borrowed (process function, purification, causal inequality). Others are the note's own (board, Switchboard, rigid direction, tuned). A few are used in more than one sense, most of all "class" and "orbit". The glossary says which is which.
+- **One trap it flags.** "Tuned" here means a pair of dials whose flip patterns overlap, so terms can cancel. It is not the "fine-tuned" of Baumeler and Wolf, which means a chancy loop outside the hull of deterministic ones.
+- **Status.** The glossary adds no new results. Where it and the body of the note differ, the body is authoritative.
