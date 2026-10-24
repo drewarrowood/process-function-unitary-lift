@@ -8,7 +8,7 @@ then a class-b vertex is treated as a class-a vertex with X-shift m).  Counterex
 States (P,k), k in {0,a,b}: 192 per vertex.  AC + DFS.  Leaf test (exact): a complete board counts as a candidate only if all three classes occur (otherwise it is a two-class
 board, H.17.13) and it fails SH_grp^r for EVERY absorbed class c in {1, V_a, V_b}.  DFS node limit per job; jobs that hit it
 are reported as UNRESOLVED.  Checkpoint tclose3_done.txt (resumable)."""
-import os, sys, json, itertools as it, collections, numpy as np, time
+import os, sys, json, gzip, itertools as it, collections, numpy as np, time
 from multiprocessing import Pool
 from tclose2 import FORB, anti, classes
 def patterns(g,g2):
@@ -121,13 +121,14 @@ def jobs():
 if __name__=='__main__':
     t0=time.time(); J=jobs(); print('jobs',len(J),flush=True)
     done=set()
-    if os.path.exists('tclose3_done.txt'):
-        for l in open('tclose3_done.txt'): done.add(l.split('\t')[0])
+    CK='tclose3_done.txt.gz'
+    if os.path.exists(CK):
+        for l in gzip.open(CK,'rt'): done.add(l.split('\t')[0])
     todo=[j for j in J if str(j) not in done]
-    with Pool(8) as pool, open('tclose3_done.txt','a') as fo:
+    with Pool(8) as pool, gzip.open(CK,'at') as fo:
         for n,(j,r) in enumerate(zip(todo,pool.imap(solve,todo,chunksize=50))):
             fo.write(str(j)+'\t'+json.dumps(r)+'\n')
             if r: print('CANDIDATE' if r!='UNRESOLVED' else 'UNRESOLVED',j,r,flush=True)
             if n%5000==0: fo.flush(); print(n,len(todo),round(time.time()-t0),flush=True)
-    res=[l.split('\t')[1].strip() for l in open('tclose3_done.txt')]
+    res=[l.split('\t')[1].strip() for l in gzip.open(CK,'rt')]
     print('SUMMARY jobs',len(J),'checked',len(res),'candidates',sum(r not in ('null','"UNRESOLVED"') for r in res),'unresolved',sum(r=='"UNRESOLVED"' for r in res),flush=True)

@@ -1316,7 +1316,7 @@ The remaining step was not done this round (time-box). It is to rerun shgrp_exh 
 
 *Scope.* This covers every board with two classes, tuned or not, including the 7 genuinely tuned two-class boards of H.17.12(d). With H.17.9 it leaves open only boards that have **≥3 distinct classes and at least one tuned class pair**. Only 2 of the 51 tuned boards found are of that kind, and both pass SH_grp^r (H.17.12d). A multi-class version is OPEN: it needs per-class-pair patterns together with a cube search over 1,072-class states.
 
-**H.17.14 Tuned closure for three-class boards containing the identity class (Oct 23 2026) [PROVED by exhaustive exact enumeration; over-approximating supports] (tclose3.py, tclose3_pass1.log, tclose3_pass1_done.txt checkpoint, tclose3_rerun.py/.log, tclose3_cand.py/.log).**
+**H.17.14 Tuned closure for three-class boards containing the identity class (Oct 23 2026) [PROVED by exhaustive exact enumeration; over-approximating supports] (tclose3.py, tclose3_pass1.log, tclose3_pass1_done.txt.gz checkpoint, tclose3_rerun.py/.log, tclose3_cand.py/.log).**
 
 *Refinement of H.17.11(a) [PROVED].* In each group the representative G_ρ may be replaced by Q†G_ρ, where Q is the Pauli string of any one support element s₀. The factor Q is absorbed into the monomials M_o. Then H_ρ = ⟨x ⊕ x(s₀) : x ∈ X(supp G_ρ)⟩, and a(o) shifts by x(s₀). This is the translation normalisation already used in H.17.13.
 
