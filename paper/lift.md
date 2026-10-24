@@ -1316,7 +1316,7 @@ The remaining step was not done this round (time-box). It is to rerun shgrp_exh 
 
 *Scope.* This covers every board with two classes, tuned or not, including the 7 genuinely tuned two-class boards of H.17.12(d). With H.17.9 it leaves open only boards that have **≥3 distinct classes and at least one tuned class pair**. Only 2 of the 51 tuned boards found are of that kind, and both pass SH_grp^r (H.17.12d). A multi-class version is OPEN: it needs per-class-pair patterns together with a cube search over 1,072-class states.
 
-**H.17.14 Tuned closure for three-class boards containing the identity class (Oct 23 2026) [PROVED by exhaustive exact enumeration; over-approximating supports] (tclose3.py, tclose3_pass1.log, tclose3_pass1_done.txt checkpoint, tclose3_rerun.py/.log, tclose3_cand.py/.log).**
+**H.17.14 Tuned closure for three-class boards containing the identity class (Oct 23 2026) [PROVED by exhaustive exact enumeration; over-approximating supports] (tclose3.py, tclose3_pass1.log, tclose3_pass1_done.txt.gz checkpoint, tclose3_rerun.py/.log, tclose3_cand.py/.log).**
 
 *Refinement of H.17.11(a) [PROVED].* In each group the representative G_ρ may be replaced by Q†G_ρ, where Q is the Pauli string of any one support element s₀. The factor Q is absorbed into the monomials M_o. Then H_ρ = ⟨x ⊕ x(s₀) : x ∈ X(supp G_ρ)⟩, and a(o) shifts by x(s₀). This is the translation normalisation already used in H.17.13.
 
@@ -1341,10 +1341,41 @@ The remaining step was not done this round (time-box). It is to rerun shgrp_exh 
 
 Still open are boards with three classes none of which is the identity, and boards with ≥4 classes, in each case with at least one tuned pair. For three classes with a tuned pair there are about 145,000 tuned ordered pairs × 1,072 third classes, roughly 1.5·10⁸ triples before symmetry. A symmetry reduction under qubit permutations and cube relabelling would be needed. The pair-support consistency G_ab G_bc = G_ac is automatic in the per-class-pair model used here: each support is fixed once per class pair. Triple consistency is not imposed, which only enlarges the search and so is sound.
 
+**H.17.15 Three non-identity classes: symmetry reduction and closure search (Oct 23 2026) [PROVED for the completed orbits listed below, by exhaustive exact enumeration with over-approximating supports; the remaining orbits are OPEN, and the run is resumable] (t3sym.py, tclose3g.py, tclose3g.log, tclose3g_done.txt.gz checkpoint, tclose3g_unres.py, tclose3g_ctrl.py/.log).**
+
+*Symmetry group [PROVED].* Let G₄₈ = S₃ × (ℤ₂)³. It acts by permuting the three qubits, applied to Pauli strings and cube labels together, and by conjugating with a diagonal S gate on any subset m of the qubits. On strings the S part acts as z ↦ z ⊕ (x ∧ m).
+- Qubit permutations relabel the parties, so they preserve admissibility, the Pauli rule H.8.1 and the PF hull.
+- For the S part, write U_o = P_o V_k ↦ S P_o V_k S†. The left S is diagonal, so it does not change p(i|o). The right S† is absorbed into the source state.
+- The S part preserves X-parts and x∨z, so it preserves the forbidden-string rule ((x|z)&D)==D. It also preserves which pair supports are nontrivial, so it preserves SH_grp^r and the groups H of H.17.11a/H.17.14.
+- Hence a board is a counterexample if and only if its image is.
+- Output flips, cube translations and a global left Pauli are already quotiented out by the WLOG root (o = 0, P = 1) and the translation normalisation. G ↔ G† maps a support to the same support (supp V† = supp V up to the Pauli map), so it gives no further reduction.
+- Under G₄₈ the 1,071 non-identity classes fall into 61 orbits: 9 orbits of 2-term classes and 52 of 3-term classes.
+
+*Reduction.* A board with exactly three non-identity classes and a tuned pair can be relabelled so that (a,b) is tuned. Then apply g ∈ G₄₈ so that a is an orbit representative. Here b runs over every class tuned with a, and c runs over every non-identity class.
+- Boards using fewer classes are covered by H.17.13. Boards containing the identity class are covered by H.17.14. Boards with no tuned pair are generic and covered by H.17.9.
+- Pair supports (S_ab, S_ac, S_bc) are taken from the H.17.12 lists, using "any nonempty subset of K" when K = K′, which is sound.
+- Jobs equal up to the class-wise translations (S_ab, S_ac, S_bc) ↦ (S_ab+t_b, S_ac+t_c, S_bc+t_b+t_c) are solved once. This gives 17,855 jobs per 2-term orbit and 105,747 for each 3-term orbit completed so far, about 5.7·10⁶ jobs in all if that count holds for every orbit. Before the reduction there were 5.3·10⁷ pattern products for the representatives alone, and about 1.5·10⁸ class triples.
+
+*Search.* The search is the same arc consistency plus DFS as in H.17.14, with 192 values (P, class) per vertex.
+- At the root, the absorbed class a must fail SH_grp^r at a pair at o = 0, with each of the three classes allowed at o.
+- A leaf counts as a candidate only if all three classes occur and SH_grp^r fails for every absorbed class. The test uses the Pauli-factored groups of H.17.14, and groups merge when a pair support is monomial.
+- Each job has a node budget of 2·10⁵. Jobs that exhaust it are re-run with budget 2·10⁷ (tclose3g_unres.py).
+
+*Results.* The run (8 cores; stopped at the round time limit on an orbit boundary) completed orbits 0–17, that is 18 of the 61 orbits (9 2-term and 9 3-term representatives a). These comprised 1,112,418 jobs. The search returned 27 candidates and 224 jobs that exhausted the budget (UNRESOLVED). The 8 UNRESOLVED jobs of orbit 0 were re-run with budget 2·10⁷ and all returned no counterexample. *Triple consistency [PROVED].* V_cV_a† = (V_cV_b†)(V_bV_a†), so S_ac ⊆ S_ab ⊕ S_bc (sumset), and likewise for the other two orderings. The condition is invariant under the job translations. Every one of the 27 candidates and every one of the 224 UNRESOLVED jobs violates it (tclose3g_cand.py), so none of them has a unitary realisation. For example, S_ab = {I} (the identity string) forces V_b ∝ V_a, and then S_bc must equal S_ac. **Hence no counterexample exists with the first tuned class in any of these 18 orbits [PROVED].** The remaining 43 3-term orbits are OPEN. At about 135 s per orbit they need roughly 97 min, resumable with `cd code/stochastic/cyclic/switchboard/h17; nohup python3 tclose3g.py >> tclose3g.log 2>&1 &` (finished orbits are skipped), followed by `python3 tclose3g_cand.py`. Imposing the consistency filter up front removes only about 4% of the jobs (101,637 of 105,747 for orbit 12), so it does not speed up the run.
+
+*Controls.*
+- *Loosened test.* With the failure test loosened to "any cross pair, all three classes present", the solver finds boards for 5 of 200 sampled orbit-0 jobs, so the search is not vacuous.
+- *Known boards.* The two known three-class tuned boards (tb_25_3980, tb_26_554; H.17.12d) have pair supports ((0,4,32,36), (4,), (0,4,32,36)). For these supports the loosened solver finds a board, so the real board is representable. The real solver finds no counterexample (tclose3g_ctrl.log).
+
+*Structural reduction [attempted; not achieved].* We tried to absorb one class of a ≥3-class board via H.17.11a so that the identity case H.17.14 would apply. This does not reduce the problem. After right-absorbing V_c, the new unitaries U_oV_c† are again ≤3-term only when the ratio supports stay small. In the K = K′ case, V_aV_c† can have 3 or 4 terms. Likewise "classes sharing one group H merge" is false in general. Two classes with the same H but a 3-term K = K′ ratio do not become one class, and their joint coset condition is exactly what the search checks. So the three-class case is handled only by enumeration.
+
+*≥4 classes [OPEN].* The per-class-pair model extends verbatim, with (k choose 2) fixed pair supports and the same root and leaf tests. A cube has 8 vertices, so k ≤ 8. However, the number of jobs grows by a factor of about 10³–10⁵ per extra class. No reduction of the ≥4-class case to the ≤3-class case is known. A ≥4-class counterexample would have to fail SH_grp^r for every absorbed class. Its restriction to the vertices carrying three classes is not itself a board, so H.17.15 does not apply to it.
+
 **H.17.7 Status after this round.**
 - PROVED: the sign-variant lemma H.17.3, with the stated scope; the Pauli coset-transport theorem and the reduction SH_grp ⇒ PF blend (H.17.8a–b); in the generic-support model, every admissible ≤3-term board, non-X boards included, satisfies SH_grp and is therefore a PF blend for every source state (H.17.9, exhaustive exact enumeration).
 - PROVED: every admissible three-class board {1, V_a, V_b}, tuned or generic, is a PF blend (H.17.14).
 - PROVED: every admissible two-class ≤3-term board, tuned or generic, is a PF blend (H.17.13, exhaustive exact enumeration over 59,836 supports).
+- PROVED (partial): boards with three non-identity classes whose first tuned class lies in one of the 18 completed G₄₈ orbits are PF blends (H.17.15). The other 43 orbits are OPEN, and the run is resumable.
 - PROVED: complete classification of the cancellation patterns of V′V† for all pairs of ≤3-term classes. There is no cancellation unless the Klein groups meet. When they meet in two elements, at most one collided string vanishes. When K = K′, only the supports of H.17.12(b) occur.
 - PROVED: right-absorbed coset transport, SH_grp^r ⇒ PF blend (H.17.11a). Each of the 19 regenerated tuned boards passes it, so each is a PF blend (supports read numerically, H.17.11b).
 - PROVED (exact dual certificate): orbit 92 is the positivity orbit and holds on all of Valid (H.17.5).
@@ -1355,7 +1386,7 @@ Still open are boards with three classes none of which is the identity, and boar
   - the 19 tuned boards have explicit LP PF-blend decompositions at 4 source states each (H.17.11b);
   - no Z₁₆, continuous-phase or locally rotated X-type board violates any of the 22 genuine orbits.
 - OPEN:
-  - "non-X ≤3-term ⇒ PF blend" for tuned (non-generic) parameters. SH_grp fails on tuned boards (H.17.10), but the right-absorbed version SH_grp^r (H.17.11, proved sufficient) holds on all 19 regenerated tuned boards. That it holds on every admissible tuned board is open. It now holds on all 51 tuned boards (H.17.12d), and the cancellation patterns of V′V† are completely classified [proved] (H.17.12a–c); the closure is now **proved for every two-class board** (H.17.13) and every three-class board containing the identity class (H.17.14). Only boards with three non-identity classes or ≥4 classes, with a tuned class pair, remain;
+  - "non-X ≤3-term ⇒ PF blend" for tuned (non-generic) parameters. SH_grp fails on tuned boards (H.17.10), but the right-absorbed version SH_grp^r (H.17.11, proved sufficient) holds on all 19 regenerated tuned boards. That it holds on every admissible tuned board is open. It now holds on all 51 tuned boards (H.17.12d), and the cancellation patterns of V′V† are completely classified [proved] (H.17.12a–c); the closure is now **proved for every two-class board** (H.17.13) and every three-class board containing the identity class (H.17.14). Three non-identity classes are now reduced by G₄₈ to 61 orbits, of which 18 are proved (H.17.15). Remaining: the other 43 orbits and ≥4 classes, each with a tuned class pair;
   - the 22 genuine never-crossed orbits on general purifiable processes.
 
 Runs were cut off at the time limit: nsearch2 seeds 13 and 14 ran with `timeout 840`, and their logs are the last checkpoints.
