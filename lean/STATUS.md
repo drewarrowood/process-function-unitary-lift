@@ -195,7 +195,7 @@ Proved (no `sorry`, axioms propext/Classical.choice/Quot.sound):
 
 Gaps:
 - Normality is defined as trace-norm boundedness; for maps linear on the trace class this is
-  trace-norm continuity. (Automatic boundedness of positive TP maps is not proved.)
+  trace-norm continuity. (Automatic boundedness of positive TP maps is not proved.) *(Closed in Round 16: `PFUL.TraceClass.IsCPTP.isNormalCPTP`, PFUL/AutoBounded.lean.)*
 - H.8.4: that each deterministic record f_j is a process function (validity of 0/1 records,
   Appendix A) and the reduction "pairwise commuting P_{o,i} ⇒ hypothesis with b = u o₀" are
   not packaged; the H.8.1 Pauli-span equivalence is not formalised.
@@ -241,7 +241,7 @@ Gaps:
   F.5.5 (unitarity for point-map local unitaries) are paper proofs only.
 - Counterexample: `IsPure` (link-product purity) is not identified with the W = |U⟩⟩⟨⟨U| form of
   `PFUL.Choi`; ancillas finite in `Type 0`.
-- Normality assumed in `IsNormalCPTP` (automatic boundedness of positive TP maps not proved).
+- Normality assumed in `IsNormalCPTP` (automatic boundedness of positive TP maps not proved). *(Closed in Round 16: `PFUL.TraceClass.IsCPTP.isNormalCPTP`, PFUL/AutoBounded.lean.)*
 
 
 ## Round 8
@@ -276,7 +276,7 @@ Gaps (with reasons):
 - Automatic boundedness/normality of positive TP maps (dropping the assumption in `IsNormalCPTP`):
   not attempted. This is a genuine theorem in the infinite-dimensional case (CP + TP on trace class
   ⇒ bounded is true; normality is not automatic for maps on B(H)), and Mathlib lacks the needed
-  order-theoretic operator machinery.
+  order-theoretic operator machinery. *(Closed in Round 16: `PFUL.TraceClass.IsCPTP.isNormalCPTP`, PFUL/AutoBounded.lean.)*
 
 
 ## Round 9: operator machinery for countable ancillas (`PFUL/CounterexampleInf.lean`)
@@ -334,7 +334,7 @@ Gaps:
 - Hypotheses kept: measurability of |det g'| and the conull image of s (Lusin (N)); the latter is necessary (singular homeomorphisms). Non-injective local diffeomorphisms are not isometries (degree factor), so they are outside the point-map class.
 - The composite F.5.5 statement (point map g composed with τ_w in one formula) is not restated in Lean; it is a composition of `closedLoop_unitary` with `closedLoop_jacobian_unitary_ae`.
 - Conjecture F.5.7: Proposition F.5.8 (causal w, strong convergence of discretisations to the circuit loop) is proved on paper only; for Fourier-type V_k it is conditional on fixing strongly convergent unitary grid approximants. The non-causal case is OPEN.
-- Automatic boundedness/normality of positive TP maps on trace class (Round 8 gap) is unchanged.
+- Automatic boundedness/normality of positive TP maps on trace class (Round 8 gap) is unchanged. *(Closed in Round 16: `PFUL.TraceClass.IsCPTP.isNormalCPTP`, PFUL/AutoBounded.lean.)*
 
 ## Lemma H and the class bound, H.17.17 (Oct 24 2026)
 
@@ -434,4 +434,17 @@ Gaps after Round 13:
 - The infinite link product is entrywise (kernels with PSD finite sections and unconditional partial-trace sums). It is not an operator statement about non-trace-class Choi operators; Mathlib has no unbounded/non-trace-class Choi operator theory, and the kernel form is the one used.
 - `isPurePM_iff` and `isPurePMInf_iff` need σ k : I k ≃ O k; the converse of AFNB Thm 2 needs |P| = |F|.
 - The global space G = C^P ⊗ K_1 ⊗ K_2 ⊗ K_3 is still "any Hilbert space with a basis indexed by P × ∏κ_k": Mathlib has no completed Hilbert tensor product, and the algebraic K_1 ⊗ K_2 ⊗ K_3 is not complete when two factors are infinite-dimensional.
-- Automatic boundedness of positive TP maps on the trace class (Round 8/9 gap) is unchanged: it needs the Jordan decomposition T = T₊ − T₋ of self-adjoint trace-class operators with ‖T‖₁ = Tr T₊ + Tr T₋, i.e. the spectral theorem for compact self-adjoint operators, which Mathlib does not have.
+- Automatic boundedness of positive TP maps on the trace class (Round 8/9 gap) is unchanged: it needs the Jordan decomposition T = T₊ − T₋ of self-adjoint trace-class operators with ‖T‖₁ = Tr T₊ + Tr T₋, i.e. the spectral theorem for compact self-adjoint operators, which Mathlib does not have. *(Round 15 correction: Mathlib has that theorem. Round 16: the gap is closed without it; the Jordan decomposition comes from the continuous functional calculus, `CFC.posPart`/`CFC.negPart`. See PFUL/AutoBounded.lean.)*
+
+## Round 16: automatic boundedness of positive trace-preserving maps (`PFUL/AutoBounded.lean`, `PFUL/AutoBoundedKraus.lean`)
+
+Proved (no `sorry`, axioms propext/Classical.choice/Quot.sound; `Round16_axioms.lean`, `Round16_axioms.log`):
+- `PFUL.TraceClass.IsPTP`: a map that sends the trace class into the trace class, is linear there, preserves the trace and sends positive trace-class operators to positive operators. `IsCPTP.toIsPTP`.
+- `trace_adjoint` (Tr A† = conj Tr A), `traceNorm_adjoint_le` (‖T†‖₁ ≤ ‖T‖₁), `traceNorm_smul_le`, `traceNorm_of_isPositive` (‖P‖₁ = |Tr P| for positive trace-class P), `trace_of_isPositive` (Tr P is a nonnegative real).
+- `jordan`: for self-adjoint trace-class S, S⁺ = `CFC.posPart S` and S⁻ = `CFC.negPart S` are positive and trace class, S = S⁺ − S⁻ and S⁺ + S⁻ = |S|. The continuous functional calculus suffices; no spectral theorem for compact operators is used.
+- `IsPTP.traceNorm_le_selfAdjoint`: ‖Φ S‖₁ ≤ ‖S‖₁ for self-adjoint trace-class S.
+- `IsPTP.traceNorm_le`: **‖Φ T‖₁ ≤ 2‖T‖₁ for every trace-class T** (split T = Re T + i Im T).
+- `IsCPTP.isNormalCPTP`, `isNormalCPTP_iff`: **the `bounded` field of `IsNormalCPTP` is redundant; normal CPTP = CPTP.** This closes the Round 8/9 gap.
+- Corollaries (`PFUL/AutoBoundedKraus.lean`): `isCPTP_iff_kraus_any` (Kraus ⟺ CPTP on ℓ² of any cardinality, no boundedness assumption) and `PFUL.Counterexample.valid_CPTP_Vsb_any` (Switchboard validity against arbitrary CPTP local channels). Every other theorem stated with `IsNormalCPTP` hypotheses applies to CPTP maps via `IsCPTP.isNormalCPTP`.
+- Not formalised: the sharp constant 1 on non-self-adjoint inputs (true by duality with the Russo–Dye theorem for the unital positive dual map); the dual statement that the Heisenberg-picture map on B(H) is normal.
+
