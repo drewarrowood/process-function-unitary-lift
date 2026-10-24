@@ -38,18 +38,23 @@ def build(assign,classes):
     for o in range(8):
         P,k,sg=assign[o]; c=classes[k]; al,be,ga=par[k]
         if c[0]==1: Vm=np.eye(8)
-        elif c[0]==2: Vm=np.hypot(al,ga)*np.eye(8)+1j*(-1)**(sg&1)*be*PM[c[1]]; Vm/=np.sqrt(np.hypot(al,ga)**2+be**2)
+        elif c[0]==2:
+            A=PM[c[1]]
+            if np.allclose(A@A,-np.eye(8)): A=1j*A
+            Vm=np.hypot(al,ga)*np.eye(8)+1j*(-1)**(sg&1)*be*A; Vm/=np.sqrt(np.hypot(al,ga)**2+be**2)
+        elif False: Vm=np.hypot(al,ga)*np.eye(8)+1j*(-1)**(sg&1)*be*PM[c[1]]; Vm/=np.sqrt(np.hypot(al,ga)**2+be**2)
         else:
             A,B=PM[c[1]],PM[c[2]]
             if np.allclose(A@A,-np.eye(8)): A=1j*A
             if np.allclose(B@B,-np.eye(8)): B=1j*B
             Vm=al*np.eye(8)+1j*((-1)**(sg&1)*be*A+(-1)**(sg>>1)*ga*B)
         U.append(PM[P]@Vm)
-    return np.array(U)
+    rev=[int(format(o,'03b')[::-1],2) for o in range(8)]   # csp vertex bit t = party t; facets use msb = party 0
+    return np.array(U)[rev]
 class Done(Exception): pass
 def rdfs(i,assign,classes,cnt):
     cnt[0]+=1
-    if cnt[0]>20000: raise Done
+    if cnt[0]>3000: raise Done
     if i==8: raise Done(([assign[o] for o in V],list(classes)))
     o=order[i]; prev=order[:i]
     Pdom=[0] if i==0 else [P for P in range(64) if all(not FORB[o,q][P^assign[q][0]] for q in prev)]
@@ -76,12 +81,14 @@ for trial in range(int(sys.argv[2])):
         L_,F_=classify(dict(enumerate(A)),C)
         if L_ or F_: continue
         res['hard']+=1
+        if len({(a[1],a[2]) for a in A})==1: res.setdefault('trivial_common_right',0); res['trivial_common_right']+=1; continue
         for _ in range(3):
             U=build(dict(enumerate(A)),C)
-            un=max(np.abs(u@u.conj().T-np.eye(8)).max() for u in U); rv=ruleviol(U)
+            un=max(np.abs(u@u.conj().T-np.eye(8)).max() for u in U); rv=ruleviol(np.array(U)[[int(format(o,'03b')[::-1],2) for o in range(8)]])
             res['maxrule']=max(res['maxrule'],rv,un)
             v=hullviol(U)
             if v>res['best']: res['best']=float(v)
         if len(res['ex'])<30: res['ex'].append([A,C])
+    if trial%200==0: print(trial,json.dumps({k:v for k,v in res.items() if k!='ex'}),flush=True); json.dump(res,open('rsearch_%d.json'%seed,'w'))
 print(json.dumps({k:v for k,v in res.items() if k!='ex'}),flush=True)
 json.dump(res,open('rsearch_%d.json'%seed,'w'))
