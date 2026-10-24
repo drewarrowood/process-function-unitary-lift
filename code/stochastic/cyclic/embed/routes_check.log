@@ -1,0 +1,3 @@
+Lugano PF: route (o,s)->i univocal: True (support sizes [np.int64(1)]); X-type: True; flip patterns per transition <= 1; diagonal in Fourier sectors z (o enters only as a phase): True
+H.12 switchboard: route (o,s)->i univocal: False (support sizes [np.int64(8)]); X-type: True; flip patterns per transition <= 8; diagonal in Fourier sectors z (o enters only as a phase): True
+H.13.2 rational: route (o,s)->i univocal: False (support sizes [np.int64(1), np.int64(4)]); X-type: True; flip patterns per transition <= 4; diagonal in Fourier sectors z (o enters only as a phase): True
