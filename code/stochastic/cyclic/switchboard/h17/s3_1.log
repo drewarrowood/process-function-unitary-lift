@@ -3,3 +3,9 @@
 1200 192 {"complete": 1201, "hard": 167, "sh_ok": 167, "sh_fail": 0, "best_shok": 6.007560850902459e-15, "best_shfail": -1.0, "maxrule": 1.5411083370722719e-31}
 1600 255 {"complete": 1601, "hard": 221, "sh_ok": 221, "sh_fail": 0, "best_shok": 6.007560850902459e-15, "best_shfail": -1.0, "maxrule": 2.219892947030449e-31}
 1700 274 {"complete": 1701, "hard": 238, "sh_ok": 238, "sh_fail": 0, "best_shok": 6.007560850902459e-15, "best_shfail": -1.0, "maxrule": 2.219892947030449e-31}
+2000 333 {"complete": 2001, "hard": 292, "sh_ok": 292, "sh_fail": 0, "best_shok": 6.107013865558871e-15, "best_shfail": -1.0, "maxrule": 2.219892947030449e-31}
+2200 366 {"complete": 2201, "hard": 322, "sh_ok": 322, "sh_fail": 0, "best_shok": 6.107013865558871e-15, "best_shfail": -1.0, "maxrule": 2.219892947030449e-31}
+2600 437 {"complete": 2601, "hard": 383, "sh_ok": 383, "sh_fail": 0, "best_shok": 6.107013865558871e-15, "best_shfail": -1.0, "maxrule": 2.219892947030449e-31}
+2800 468 {"complete": 2801, "hard": 410, "sh_ok": 410, "sh_fail": 0, "best_shok": 6.107013865558871e-15, "best_shfail": -1.0, "maxrule": 2.219892947030449e-31}
+3400 575 {"complete": 3401, "hard": 500, "sh_ok": 500, "sh_fail": 0, "best_shok": 6.107013865558871e-15, "best_shfail": -1.0, "maxrule": 2.219892947030449e-31}
+3500 591 {"complete": 3501, "hard": 514, "sh_ok": 514, "sh_fail": 0, "best_shok": 6.107013865558871e-15, "best_shfail": -1.0, "maxrule": 2.219892947030449e-31}

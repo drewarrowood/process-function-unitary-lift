@@ -1,2 +1,4 @@
 300 43 {"complete": 301, "hard": 37, "sh_ok": 37, "sh_fail": 0, "best_shok": 5.068193791152845e-15, "best_shfail": -1.0, "maxrule": 2.26640084640245e-31}
 700 117 {"complete": 701, "hard": 101, "sh_ok": 101, "sh_fail": 0, "best_shok": 5.91194820628371e-15, "best_shfail": -1.0, "maxrule": 2.26640084640245e-31}
+2800 454 {"complete": 2801, "hard": 400, "sh_ok": 400, "sh_fail": 0, "best_shok": 6.107360380079794e-15, "best_shfail": -1.0, "maxrule": 2.2676540119953215e-31}
+3800 641 {"complete": 3801, "hard": 560, "sh_ok": 560, "sh_fail": 0, "best_shok": 6.107360380079794e-15, "best_shfail": -1.0, "maxrule": 2.2676540119953215e-31}
