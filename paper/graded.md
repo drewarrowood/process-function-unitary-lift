@@ -1439,7 +1439,8 @@ We checked the literature on Oct 23 2026, by web search and by reading the prima
 - **The list (notes on H.13–H.17).** Among the inequalities that fence in all consistent classical time-travel processes, 22 families had never been broken by any quantum loop we tried. We wondered whether they bind every reversible quantum loop.
 - **Ten of them do not [PROVED, exact arithmetic].** Take the time-reversed Lugano loop of Guérin and Brukner (2018), and let each agent read and write its qubit in a tilted basis: one tilt for what it reads and an independent one for what it writes. With the right tilts the resulting classical statistics break ten of the 22 families. We checked this with exact fractions: the loop is exactly reversible, the statistics are exactly a valid classical process, and an inequality value is exactly negative.
 - **Why it was missed.** Earlier searches only tilted what agents read, or used special tilts. Tilting what they write is what breaks the pattern. The loop itself is well known; what changes is only how it is read.
-- **Still open.** Twelve families remain unbroken. A wider search on them is running.
+- **Two more [PROVED, exact arithmetic].** Letting the three gates inside the Lugano loop be general rotations instead of bit flips breaks two further families (53 and 79). This loop is consistent by the same routing argument as before (Vanrietvelde et al.).
+- **Still open.** Ten families remain unbroken.
 
 ## 95. Plain-language note: a missing tool was not missing (Oct 24 2026)
 
