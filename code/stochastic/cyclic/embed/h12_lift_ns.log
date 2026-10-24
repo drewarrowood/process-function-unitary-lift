@@ -1,0 +1,68 @@
+built 1024 vars 2052 constraints 3s
+(CVXPY) Oct 24 10:58:56 AM: Your problem has 262144 variables, 525312 constraints, and 0 parameters.
+(CVXPY) Oct 24 10:58:57 AM: It is compliant with the following grammars: DCP, DQCP
+(CVXPY) Oct 24 10:58:57 AM: DCP verification time: 0.1949 seconds.
+(CVXPY) Oct 24 10:58:57 AM: Expression tree has 9 nodes.
+(CVXPY) Oct 24 10:58:57 AM: (If you need to solve this problem multiple times, but with different data, consider using parameters.)
+(CVXPY) Oct 24 10:58:57 AM: CVXPY will first compile your problem; then, it will invoke a numerical solver to obtain a solution.
+(CVXPY) Oct 24 10:58:57 AM: Your problem is compiled with the CPP canonicalization backend.
+(CVXPY) Oct 24 10:58:57 AM: Compiling problem (target solver=SCS).
+(CVXPY) Oct 24 10:58:57 AM: Reduction chain: Complex2Real -> Dcp2Cone -> CvxAttr2Constr -> ExactCone2Cone -> EliminateZeroSized -> ConeMatrixStuffing -> SCS
+(CVXPY) Oct 24 10:58:57 AM: Applying reduction Complex2Real
+/workspace/pful-graded/code/stochastic/cyclic/embed/h12_lift.py:59: UserWarning: Objective contains too many subexpressions. Consider vectorizing your CVXPY code to speed up compilation.
+  pr.solve(solver='SCS',eps=eps,max_iters=200000,verbose=True)
+(CVXPY) Oct 24 10:58:58 AM: Applying reduction Dcp2Cone
+(CVXPY) Oct 24 10:59:07 AM: Applying reduction CvxAttr2Constr
+(CVXPY) Oct 24 10:59:09 AM: Applying reduction ExactCone2Cone
+(CVXPY) Oct 24 10:59:10 AM: Applying reduction EliminateZeroSized
+(CVXPY) Oct 24 10:59:11 AM: Applying reduction ConeMatrixStuffing
+(CVXPY) Oct 24 11:05:18 AM: Applying reduction SCS
+(CVXPY) Oct 24 11:05:21 AM: Finished problem compilation (took 3.847e+02 seconds).
+(CVXPY) Oct 24 11:05:21 AM: Invoking solver SCS  to obtain a solution.
+(CVXPY) Oct 24 11:36:55 AM: Problem status: optimal
+(CVXPY) Oct 24 11:36:55 AM: Optimal value: -1.277e+00
+(CVXPY) Oct 24 11:36:55 AM: Compilation took 3.847e+02 seconds
+(CVXPY) Oct 24 11:36:55 AM: Solver (including time spent in interface) took 1.893e+03 seconds
+===============================================================================
+                                     CVXPY                                     
+                                     v1.9.3                                    
+===============================================================================
+-------------------------------------------------------------------------------
+                                  Compilation                                  
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+                                Numerical solver                               
+-------------------------------------------------------------------------------
+------------------------------------------------------------------
+	       SCS v3.3.1 - Splitting Conic Solver
+	(c) Brendan O'Donoghue, Stanford University, 2012
+------------------------------------------------------------------
+problem:  variables n: 262144, constraints m: 1067008
+cones: 	  z: primal zero / dual free vars: 526336
+	  s: psd vars: 540672, ssize: 1024
+settings: eps_abs: 1.0e-05, eps_rel: 1.0e-05, eps_infeas: 1.0e-07
+	  alpha: 1.50, scale: 1.00e-01, adaptive_scale: 1
+	  max_iters: 200000, normalize: 1, rho_x: 1.00e-06
+	  acceleration_lookback: 10, acceleration_interval: 5
+lin-sys:  sparse-direct-mkl-pardiso
+	  nnz(A): 4308992, nnz(P): 0
+------------------------------------------------------------------
+ iter | pri res | dua res |   gap   |   obj   |  scale  | time (s)
+------------------------------------------------------------------
+     0| 2.15e+00  7.42e-01  2.26e+03 -1.12e+03  1.00e-01  1.41e+02 
+   250| 1.57e-04  4.59e-05  1.59e-04 -1.30e+00  4.03e-01  7.63e+02 
+   500| 5.30e-05  2.44e-05  3.31e-05 -1.28e+00  4.03e-01  1.06e+03 
+   750| 1.45e-05  2.26e-05  1.86e-05 -1.28e+00  4.03e-01  1.38e+03 
+  1000| 5.65e-06  3.08e-05  1.02e-05 -1.28e+00  4.03e-01  1.66e+03 
+  1200| 3.72e-06  1.47e-05  2.31e-06 -1.28e+00  9.98e-02  1.89e+03 
+------------------------------------------------------------------
+status:  solved
+timings: total: 1.89e+03s = setup: 1.37e+02s + solve: 1.76e+03s
+	 lin-sys: 9.11e+02s, cones: 3.85e+02s, accel: 1.12e+01s
+------------------------------------------------------------------
+objective = -1.277227
+------------------------------------------------------------------
+-------------------------------------------------------------------------------
+                                    Summary                                    
+-------------------------------------------------------------------------------
+LIFT-A NS y_A: status optimal, value -1.277228, time 2281s
