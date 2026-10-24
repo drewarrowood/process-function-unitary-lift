@@ -1238,3 +1238,14 @@ The computer also checks the "smooth dial" result for any smooth, one-to-one rea
 Two puzzles are still open:
 - the boards that are not of the X type;
 - the 23 inequalities that no test has broken yet.
+
+## 78. Plain-language note: attacking the two open puzzles (Oct 23 2026)
+
+This round attacked the two open puzzles: switchboards that are not of the X type, and the 23 inequalities no test had broken (paper Appendix H.17).
+
+- **Non-X switchboards exist.** These are reversible switchboards with up to three terms per setting that are not of the X type. The computer built more than 20,000 of them, and every one stayed inside the region spanned by ordinary process functions. This is a computer check, not a proof.
+- **A small theorem.** One way such a board could escape is through a "sign flip" between two settings of the same dial. An exhaustive exact check proves this can never fit into a full three-party board, as long as the dial settings are generic.
+- **Validity alone is not enough.** For 22 of the 23 inequalities we have exact counterexamples that satisfy every consistency rule but break the inequality. So any proof of those 22 must use reversibility (purifiability), not just consistency. The last inequality (number 92) appears to follow from consistency alone. If an exact check confirms this, it holds for every purifiable process.
+- **Wider searches.** Finer phase dials, continuous dials and local rotations of each party broke none of the 23 inequalities.
+
+Still open: a proof that non-X boards always stay inside, an exact certificate for inequality 92, and the other 22 inequalities in general.

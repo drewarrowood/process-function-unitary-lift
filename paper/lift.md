@@ -1180,6 +1180,49 @@ This suggests, but does not show, that Purif (convex by H.13.1) is not a polytop
 - **F.5.5 for general point maps.** `PFUL.Continuous.closedLoop_general_unitary` covers measurable bijections with a positive density. `closedLoop_jacobian_unitary` covers global bijections of ℝⁿ with an invertible derivative, where the density is |det g'|. Local diffeomorphisms and degenerate Jacobians remain open.
 - **Open.** The non-X 3-term boards (from H.14) and the 23 never-crossed inequalities (J.1) were not attacked this round and are still open.
 
+### H.17 Non-X three-term boards, local rotations, and what validity alone gives (Oct 23 2026) [labels: PROVED / EXACT-CERTIFIED / NUMERICAL / OPEN per item]
+
+This round attacked the two items H.16 left open: boards that are not of the X type, and the 23 never-crossed orbits of J.1. Code and logs are in code/stochastic/cyclic/switchboard/h16/ (scripts csp2, rsearch, z16sample, xcont) and h17/ (struct3, search3, nsearch, nsearch2, pairlemma, siglemma, sigsearch, locrot, locopt, validlp, validcert, shpcheck). Model: a board with at most 3 Pauli terms per outcome is U_o = P_o V_k^σ. Here V_k is 1, α+iβA, or α+i(βA+γB) with A and B anticommuting, and σ flips the signs of β and γ. This is the H.14 form P·exp(i t(cos φ A + sin φ B)). A board is *hard* if it is complete and admissible (unitary and obeying the Pauli rule H.8.1), has a genuine 3-term class, and has no operator-first and no operator-last party. Hard boards are the ones H.6 and H.1 do not already reduce to PF blends.
+
+**H.17.1 Pure non-X three-term boards exist; none leaves the PF hull [NUMERICAL].**
+- *Generic parameters* (csp2 structure model, rsearch): 5 seeds × 8,000 complete structures gave 6,551 hard boards. The largest violation of any of the 29,344 hull facets, over all source states, was 5.9·10⁻¹⁵. The largest unitarity or Pauli-rule residual was 4.4·10⁻¹⁶. search3 (6 seeds) gave about 4,200 more hard boards. The best value there was 6.3·10⁻¹⁵.
+- *Tuned (non-generic) parameters* (nsearch, nsearch2): here class parameters are chosen so that products U_oU_q† lose terms, which can only happen when the groups ⟨A,B⟩ and ⟨A′,B′⟩ intersect. Supports are recomputed from the matrices, so every cancellation is seen by the Pauli rule. nsearch (3 seeds) gave about 4,600 hard boards. nsearch2 (seeds 1–3 and 11–14; new classes get the most general linear repair) gave 6,340 hard boards. No run printed VIOLATION (threshold 10⁻⁶). The best facet value was ≤ 6.4·10⁻¹⁵ and the Pauli-rule residual was ≤ 6·10⁻³¹.
+- *Conclusion.* Pure boards that are not of the X type and have ≤3 terms per outcome do exist, and in large numbers. Every one tested lies inside the PF hull to round-off. Whether every such board is a PF blend is **OPEN**. H.14.1 proves this only for X-type boards.
+
+**H.17.2 Support transport (SH) [definition; reduction OPEN].** SH says: for every pair o≠q with D=o⊕q, every X-shadow x(P_o)⊕x(P_q)⊕t⊕t′ (with t and t′ ranging over {0}∪X-parts of the class generators) obeys the X-type Pauli rule (x∧D)≠D. Two coarser variants were also checked. SH⁺ groups o~q when U_oU_q† is monomial (all of its terms share one X-part). SH⁺⁺ first absorbs a common right factor U_r† into the source state. The hoped-for reduction is "SH (or SH⁺⁺) ⇒ the H.14.1 X-type argument applies ⇒ PF blend". That reduction is not written out or proved here and remains **OPEN**.
+
+**H.17.3 SH can fail for a pair but not for an admissible generic cube [PROVED by exhaustive exact enumeration, generic-support model].**
+- pairlemma (exhaustive, exact F₂ arithmetic): it covers all anticommuting pairs (A,B), sign changes Δσ∈{1,2,3}, translations R=P_o⊕P_q and differences D≠0. Of these, 94,365 are pairwise admissible. SH fails in 16,344 of them, so SH is *not* automatic pair by pair.
+- siglemma (sign-variant lemma): for each of the 16,344 SH-failing pairs, it searches the intermediate cube vertices for a completion. For |D|=2 this means a common neighbour. For |D|=3 it means a path o–m₁–m₂–q with all six pairwise constraints. Same-class intermediates are enumerated over all 4·64 options. For other-class intermediates only necessary edge conditions are imposed (an over-approximation, so "infeasible" is a proof). 432 configurations survive the local test, and **0** extend to the full cube.
+- *Scope.* The statement covers same-class type-3 sign-variant pairs in the *generic-support* model: a board with generic parameters whose only SH failures would come from sign variants of one class cannot be admissible. It says nothing about tuned parameters. sigsearch agrees: of 60,000 structures, 4,098 contain sign variants and 59 are hard, and none fails SH.
+
+**H.17.4 Tuned boards do violate SH, but not SH⁺⁺, and stay in the hull [NUMERICAL].** With tuned parameters the conservative SH test failed on 35 hard boards across the nsearch2 seeds. The best facet value among them was 5.9·10⁻¹⁵, so none is a violation. Only one board failed SH⁺ (seed 11, board 3339, saved as shp_11_3339.npy). It fails SH⁺ on 6 pairs and satisfies SH⁺⁺ for a suitable common right factor (0 bad pairs; shpcheck.log). Seeds 12–14 had no SH⁺ failures. *Every hard board found satisfies SH⁺⁺* [NUMERICAL]. A proof that SH⁺⁺ always holds is **OPEN**.
+
+**H.17.5 What validity alone gives on the facets [EXACT-CERTIFIED for 22 orbits; NUMERICAL for orbit 92].** Let Valid be the polytope of p(i|o) ≥ 0, normalised, such that every deterministic local intervention has fixed-point probability 1. The validity equalities have rank 27, so Valid has affine dimension 37. Purif ⊆ Valid.
+- *Exact certificates* (validcert): for each of the 22 never-crossed orbits other than 92 there is an exact rational point of Valid where the facet functional is negative. The functional is rationalised and checked to reproduce the integer facet values on all 744 PFs. The relative values are −2/9 for orbits 4–11, 14 and 25, and −1/6 for orbits 26, 28, 30, 31, 53, 54, 57, 66, 69, 75, 79 and 81. So validity alone does not imply these 22 inequalities. Any proof that they hold on Purif must use purity [EXACT-CERTIFIED].
+- *LP screen over all 93 orbits* (validlp): 92 of the 93 facet orbits have strictly negative LP minimum on Valid (relative values between −1/3 and −1/6). For orbit 92 the minimum is −6·10⁻¹⁶, which is 0 to round-off. So orbit 92 appears to hold on *all* of Valid, and hence trivially on Purif [NUMERICAL]. An exact dual certificate for orbit 92 is **OPEN**. If one is found, orbit 92 moves from "never crossed" to "proved for every purifiable process".
+
+**H.17.6 The 23 orbits under wider board families [NUMERICAL].** None of the following produced a violation.
+- *Z₁₆ X-type boards* (z16sample): 2 runs, more than 5,500 sampled pure boards each, scored on every facet of the 23 orbits. The best value was 3.9·10⁻¹⁵.
+- *Continuous X-type phases* (xcont): the violation was maximised with a penalty on the Pauli-rule residual, starting from the best Z₈ boards. The largest values were 2.3·10⁻⁷ (orbit 25, residual 3·10⁻¹¹), 3·10⁻⁸ (orbit 92) and ≤ 10⁻⁸ for the others. These are consistent with penalty/round-off artefacts, below the 10⁻⁶ threshold for exact certification, and were not pursued.
+- *Local rotations* L=L_A⊗L_B⊗L_C applied on the left. These preserve the Pauli rule exactly, so every L·U is pure, but p changes. locrot tried the 216 local Clifford cosets on all 193 Z₄ classes (2 runs) and got a best value of 4.4·10⁻¹⁵. locopt optimised continuously over SU(2)³ from Z₄ starts (2 runs) and got a best value of 3.6·10⁻¹⁵.
+
+**H.17.7 Status after this round.**
+- PROVED: the sign-variant lemma H.17.3, with the stated scope.
+- EXACT-CERTIFIED: 22 of the 23 never-crossed orbits are not implied by validity alone (H.17.5).
+- NUMERICAL:
+  - pure non-X ≤3-term boards exist and all tested ones lie in the PF hull;
+  - every hard board found satisfies SH⁺⁺;
+  - orbit 92 holds on Valid;
+  - no Z₁₆, continuous-phase or locally rotated X-type board violates any of the 23 orbits.
+- OPEN:
+  - "non-X ≤3-term ⇒ PF blend";
+  - the reduction SH⁺⁺ ⇒ PF blend, and whether SH⁺⁺ always holds;
+  - an exact certificate for orbit 92 on Valid;
+  - the 23 orbits on general purifiable processes.
+
+Runs were cut off at the time limit: nsearch2 seeds 13 and 14 ran with `timeout 840`, and their logs are the last checkpoints.
+
 ## Appendix I. Robustness: approximately blended versus approximately liftable (Oct 22 2026)
 
 Norm: for classical processes, ||p - q||_1 = sum over (i,o) of |p(i|o) - q(i|o)|. For machines, the switchboard residual is rho(U) := sqrt(R(U)), the l2 norm of the forbidden Pauli coefficients (H.8.1).
@@ -1218,6 +1261,8 @@ Generated by code/stochastic/cyclic/switchboard/h13/tables.py from the committed
 ### J.1 The 23 never-crossed orbits [numerical]
 
 Status for all 23 orbits: never violated by the Z_4 (386 classes) and Z_8 (10,603 classes) X-type boards, maximised over source states [numerical].
+
+*Update (H.17, Oct 23 2026).* None of the 23 orbits is violated by Z_16 X-type boards, continuous X-type phases, locally rotated (local Clifford and SU(2)^3) X-type boards, or pure non-X boards with ≤3 terms per outcome [numerical]. Orbits 4–11, 14, 25, 26, 28, 30, 31, 53, 54, 57, 66, 69, 75, 79 and 81 are violated at exact rational points of the valid polytope, so validity alone does not imply them [exact-certified, H.17.5]. Orbit 92 holds on all of Valid by LP [numerical, exact certificate open]. If certified, orbit 92 holds for every purifiable process.
 
 | orbit | size | representative facet (index) : integer inequality, value >= 0 on every PF |
 |---|---|---|
@@ -1354,7 +1399,7 @@ Board class 10515 (ζ_8 phases listed in cert_z8.log) satisfies the Pauli rule e
 | 89 | 32x^6 - 176x^5 + 352x^4 - 304x^3 + 98x^2 - x - 2 root -0.116604771529 (r=2) | 0.0583 | 0.0583 | violated, Z4 |
 | 90 | 16x^5 - 72x^4 + 108x^3 - 60x^2 + 8x + 1 root -0.0757690071115 (r=2) | 0.03788 | 0.03788 | violated, Z4 |
 | 91 | 2x^2 - 3x - 1 root -0.280776406404 (r=2) | 0.1404 | 0.1404 | violated, Z4 |
-| 92 | - | 0 | 0 | never violated by Z4/Z8 X-type boards [numerical] |
+| 92 | - | 0 | 0 | never violated by Z4/Z8 X-type boards [numerical]; holds on all of Valid by LP (H.17.5) [numerical] |
 
 ### J.4 Integer representatives of all 93 orbits
 
