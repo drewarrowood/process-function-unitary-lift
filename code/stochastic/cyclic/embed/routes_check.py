@@ -21,3 +21,7 @@ for name,U in [('Lugano PF',UL),('H.12 switchboard',U12),('H.13.2 rational',U13)
     nterms=max(int((np.abs(U[o][:,0])>1e-12).sum()) for o in range(8))
     print(f'{name}: route (o,s)->i univocal: {set(nz)=={1}} (support sizes {sorted(set(nz))}); X-type: {xtype}; '
           f'flip patterns per transition <= {nterms}; diagonal in Fourier sectors z (o enters only as a phase): {diag}')
+mz=[[0,0,0,0,0,0,0,0],[0,0,1,1,1,1,1,1],[0,0,0,0,1,0,1,0],[0,0,1,1,2,1,2,1],[0,0,0,1,0,0,0,1],[0,0,1,2,1,1,1,2],[0,0,0,1,1,0,1,1],[0,0,1,2,2,1,2,2]]
+UZ=np.array([Hd@np.diag([np.exp(2j*np.pi*mz[o][z]/8) for z in range(8)])@Hd for o in range(8)])
+nz=sorted({int((abs(UZ[o][:,s])>1e-12).sum()) for o in range(8) for s in range(8)})
+print(f'Z8 class 10515 (H.14.2): route univocal: {nz==[1]} (support sizes {nz}); diagonal in Fourier sectors: True by construction')
