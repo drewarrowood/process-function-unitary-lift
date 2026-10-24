@@ -1296,3 +1296,17 @@ We checked the literature on Oct 23 2026, by web search and by reading the prima
   - None of these moves changes the outcome probabilities (up to renaming the parties), whether the board is a legal process, or anything the computer search tests. So a counterexample exists for some class exactly when one exists for every class in its family.
   - A family, called an *orbit*, is everything one class can be turned into by the 48 moves. The 1,071 classes fall into 61 orbits, and the search checks one representative of each.
   - An orbit is "PROVED" once its search has finished and every leftover candidate has been ruled out by the triple-consistency rule. "Still being searched" means it is not finished yet. "Genuine" belongs to a different kind of orbit: families of scorecards (Appendix J), where it means "not just positivity".
+
+## 81. Plain-language note: is the Switchboard secretly a famous machine? (Oct 23 2026)
+
+- **Credit check on the routed diagram (H.15.9(A)) [CITED].** The authors of the routed-circuit framework (Vanrietvelde, Ormrod, Kristjánsson and Barrett) define the "time-reversed" diagram themselves, and their two legality rules are symmetric under it. So "a legal diagram run backwards is still legal" follows straight from their definitions. Our backwards-Lugano diagram is a direct application of their work. What we add is only the explicit check and the gate-by-gate assembly.
+- **The Switchboard is not Lugano in disguise (H.15.9(B)).**
+  - Two machines count as "the same up to local relabelling" if you can turn one into the other with a separate rotation on each wire and by renaming the parties.
+  - Some fingerprints survive every such relabelling. Here we use the spectra (eigenvalue lists) of the machine's reduced states on one or two wires.
+  - The Switchboard's fingerprints match none of the 744 classical-loop machines (Lugano among them), run forwards or backwards [NUMERICAL].
+  - It also cannot be a quantum switch or any other "orders in superposition" machine, since those never fail a causal test and the Switchboard does [PROVED].
+- **Running the Switchboard backwards tames it [PROVED in the plain basis; NUMERICAL in three rotated bases].** Backwards, each agent simply receives a copy of the past. In every basis we tried, the classical machine you read off lies inside the hull of classical loops. Backwards Lugano behaves differently: it escapes the hull in the rotated basis. That escape is the H.13.2 board.
+- **How badly can the Switchboard fail its test? (H.15.9(C)).**
+  - Best score found so far: about −0.72 [NUMERICAL].
+  - A relaxed problem that allows more than real measurements can achieve proves the score can never go below about −1.59 for the main test [NUMERICAL, solver accuracy].
+  - The true limit lies somewhere in between, and it is OPEN.

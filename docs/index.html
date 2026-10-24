@@ -57,7 +57,7 @@ table{border-collapse:collapse;font-size:.9rem;display:block;overflow-x:auto} th
 </li>
 <li><em>Every process function lifts to a unitary process (Section 1, Appendix A; countable alphabets, Appendix F): partly known.</em> Baumeler, Gilani and Rashid asserted it without a coherent-level proof. It was proved for the Lugano process (AFNB 2017, Section 7), for an n-party family (Araújo, Guérin and Baumeler, PRA 96, 052315 (2017), Appendix B, ref. 37), and for MECC unitaries (Daher Ahmed and Kunjwal, arXiv:2610.00579, Theorem VII.1, ref. 24). Those last authors state the general case as Conjecture VII.1. Our general proof appears to settle it (Section 6). We found no earlier treatment of countable alphabets.</li>
 <li><em>The X-type term threshold (H.14.1: boards with at most three terms always give PF blends; four terms can leave the hull): new.</em> It is stated in terms of this note's Switchboard definitions, and we found nothing comparable.</li>
-<li><em>No single-use fine-grained model for H.13.2 (H.15.7b): an application of known results.</em> That single-use acyclic and QC-QC realisations give causal correlations is due to Wechs, Dourdent, Abbott and Branciard (PRX Quantum 2, 030335 (2021)) and related work. What is ours is the exact causal-inequality certificate for this particular purifiable non-blend. Lugano, a PF, already violates causal inequalities, so &quot;purifiable but not QC-QC&quot; is not new in itself. Moreover, the board of H.13.2 is locally equivalent to the time-reversed Lugano process, and Guérin and Brukner (2018, ref. 38) already found a causal-inequality violation for that process (a numerical seesaw, I₁ ≈ −1/4, with a uniform-superposition source). Our contribution there is only an exact certificate in a different frame, with a different inequality and source. Likewise, the valid routed graph for H.13.2 (H.15.7e) is a direct corollary of VOKB's Lugano graph plus time reversal.</li>
+<li><em>No single-use fine-grained model for H.13.2 (H.15.7b): an application of known results.</em> That single-use acyclic and QC-QC realisations give causal correlations is due to Wechs, Dourdent, Abbott and Branciard (PRX Quantum 2, 030335 (2021)) and related work. What is ours is the exact causal-inequality certificate for this particular purifiable non-blend. Lugano, a PF, already violates causal inequalities, so &quot;purifiable but not QC-QC&quot; is not new in itself. Moreover, the board of H.13.2 is locally equivalent to the time-reversed Lugano process, and Guérin and Brukner (2018, ref. 38) already found a causal-inequality violation for that process (a numerical seesaw, I₁ ≈ −1/4, with a uniform-superposition source). Our contribution there is only an exact certificate in a different frame, with a different inequality and source. Likewise, the valid routed graph for H.13.2 (H.15.7e) is a direct corollary of VOKB's Lugano graph plus time reversal. VOKB themselves define the adjoint (time-reversed) routed graph and build both validity principles symmetrically from it, so &quot;the reverse of a valid graph is valid&quot; is immediate from their definitions. We found no explicit statement of it, and no treatment of reversed Lugano, in 2206.10042v3 or in Vanrietvelde's thesis (H.15.9(A)).</li>
 </ul>
 <p>Coverage caveat: we searched by web search and read the primary sources cited here. We did not run a systematic citation-graph or Google Scholar search, and preprints from the last few weeks may be missing.</p>
 <h2>1. Result and short proof</h2>
@@ -1809,6 +1809,7 @@ where the brackets are local unitaries: Hadamards and Pauli-X flips on each agen
 <ul>
 <li><em>The graph.</em> Reverse every arrow of VOKB's Lugano graph (Fig. 27) and transpose every route. The checker (rg_check.py) reports: univocal and adjoint univocal; branches A, B, C: 2, X: 5, F: 1; 38 branch-graph arrows; weak-loops principle satisfied. This is expected, because both principles are symmetric under reversal, which swaps green and red arrows.</li>
 <li><em>The fleshing-out.</em> We reconstructed VOKB's Lugano circuit (Fig. 30, eqs. (20)–(21)): a CNOT l → p<sub>A</sub> giving A<sub>in</sub> = p<sub>A</sub> ⊕ l; node V sending (vote = A<sub>out</sub>, l = 0) or (vote 0, l = 1; A<sub>out</sub> to F); and station X on the constraint set. Every node is a permutation of basis states. So the link product on a basis input is the sum over consistent internal assignments. We checked (rg_lugano_flesh.py, rg_lugano_flesh.log) that for every past p and agent-output a there is exactly one consistent assignment, that A<sub>in</sub> = p ⊕ lug(a), and that the F record determines a. Hence the composite is L [exact]. That this reconstruction is VOKB's figure is CITED.</li>
+<li><em>Status [CITED, full text searched; H.15.9(A)].</em> VOKB define the adjoint of a routed graph as its time-reversed version (their Principle 1; Def. B.10), and they read the red arrows of the branch graph off the adjoint. Validity is therefore reversal-symmetric by definition, and this corollary is a one-line application of VOKB. We add only the explicit check and the fleshing-out for L<sup>T</sup>. It does not answer the open question of Baumann et al. (ref. 39), which concerns Page–Wootters circuits, not routed circuits.</li>
 <li><em>Reversal.</em> Transposing every node gives a routed circuit on the reversed graph whose composite is L<sup>T</sup>. Any agent unitary T corresponds bijectively to T<sup>T</sup>, so the agent slots are unchanged as sets. Absorbing the local unitaries of Theorem H.15.7e.2 into the agent nodes and the global past and future gives a valid routed circuit for H.13.2.</li>
 </ul>
 </li>
@@ -1912,6 +1913,48 @@ where the brackets are local unitaries: Hadamards and Pauli-X flips on each agen
 </ul>
 </li>
 <li><em>Unaffected:</em> H.12.1 (its board is not of this form in the Hadamard frame), the lifting theorem (Section 1), and the structural results of H.8–H.14 and H.17.</li>
+</ul>
+<h3>H.15.9 The structure of H.12, and how far it can violate (Oct 23 2026)</h3>
+<p><em>(A) Is the routed-graph corollary new? [CITED; full text of arXiv:2206.10042v3 and of Vanrietvelde's DPhil thesis (Oxford) searched]</em></p>
+<ul>
+<li>VOKB define the adjoint of a routed graph as &quot;the routed graph obtained by reversing the direction of its arrows, and taking the adjoints of its routes&quot;, which &quot;can be interpreted as its time-reversed version&quot; (Principle 1; Def. B.10). Bi-univocality asks for univocality of the graph and of its adjoint. The red arrows of the branch graph are read off the adjoint. So reversing a valid graph gives a valid graph, by definition. They also use time symmetry to shorten proofs (e.g. their Fig. 17 graph is &quot;time-symmetric (up to relabelling)&quot;).</li>
+<li>Neither text mentions a time-reversed Lugano process or Guérin–Brukner 2018. Web searches for later routed-circuit work on time reversal found none. Chiribella–Liu's framework for indefinite time direction is a different formalism.</li>
+<li>Verdict: Corollary H.15.7e.3 is an immediate application of VOKB's definitions, and we word it that way. The explicit graph check and the fleshing-out for L<sup>T</sup> are ours, as far as found. The open question of Baumann, Krumm, Guérin and Brukner (ref. 39) is about Page–Wootters circuits and is not touched.</li>
+</ul>
+<p><em>(B) Is H.12 a known process in disguise? [h12_struct.py, h12_struct.log]</em></p>
+<ul>
+<li><strong>Set-up.</strong> Write the H.12 board as a pure process vector |w⟩ on eight systems: P, F (8-dimensional each) and AI_k, AO_k (qubits). Two processes are <em>LU-equivalent</em> if one becomes the other under a unitary on each of the eight systems and a permutation of the parties. Time reversal (Guérin–Brukner) is complex conjugation together with P ↔ F and AI_k ↔ AO_k. For any set S of systems, the spectrum of the reduced state ρ_S is an LU invariant; under a party permutation, S is relabelled.</li>
+<li><strong>Not a process-function purification, forward or reversed [NUMERICAL; spectra compared after rounding to 10⁻⁶].</strong> Compare the spectra of all 1- and 2-system reductions under all 6 party permutations. H.12 matches none of the 744 PF purifications L<sub>g</sub>, and none of their time reverses L<sub>g</sub><sup>T</sup>. This includes Lugano (= Araújo–Feix = Baumeler–Wolf), Lugano<sup>T</sup>, and all their relabellings. A single invariant suffices: ρ_{P,AI_A} of H.12 has eigenvalues (2 ± √2)/16. For Lugano, the same pair of systems has spectrum (3/16)⁴(1/16)⁴, and for Lugano<sup>T</sup> it is (1/4)(1/8)⁶. As a sanity check, the same test does find H.13.2 LU-equivalent to Lugano<sup>T</sup> (Theorem H.15.7e.2).</li>
+<li><strong>Not causally separable, hence not a quantum-switch variant [PROVED].</strong> LU maps on agent wires can be absorbed into the instruments, and LU maps on P and F into the source and the discard. So LU-equivalent processes have the same set of correlations. H.12 violates a causal inequality (exact certificate, H.15.7d). Every process built from fixed or coherently controlled orders (quantum switch and its 3-party variants, QC-QCs) gives only causal correlations. So none of them is LU-equivalent to H.12. The 3-switch also has a past of a different dimension.</li>
+<li><strong>H.12 is not LU-equivalent to its own time reverse [NUMERICAL, same invariants].</strong> Trivially, H.12 <em>is</em> the time reverse of a pure process, namely its own reverse. So &quot;the time reverse of a pure process&quot; carries no content unless the forward process is named.</li>
+<li><strong>Classical restrictions of H.12's time reverse V<sup>T</sup> [comp/comp PROVED; other frames NUMERICAL].</strong> In V<sup>T</sup> the agents' inputs are a copy of the past register: V<sup>T</sup> |q⟩<sub>AO'</sub>|f⟩<sub>P'</sub> = |f⟩<sub>AI'</sub> ⊗ Σ<sub>s</sub> U<sub>f</sub>[q,s]|s⟩<sub>F'</sub>. So Proposition H.15.8.1 applies verbatim. In the computational frame, p(i|o) = |ψ(i)|² does not depend on o, which makes it a mixture of constant PFs. In the frames Had/Had, comp-in/Had-out and Had-in/comp-out we computed the maximum over sources of all 29,344 facet violations: 0 (to 10⁻¹²) in every frame. So H.12's time reverse stays inside conv(PF) in all four frames tried. Forward H.12 leaves conv(PF) only in the computational frame, with relative violation 0.103553 = (√2 − 1)/4 numerically. The same code reproduces Lugano<sup>T</sup> in Had/Had and H.13.2 in comp/comp at 0.140388 (H.15.8).</li>
+<li><strong>Reading [INTERPRETIVE].</strong> H.12 is a genuinely different object from the Lugano family. It is not a time-reversed PF purification, and not a phase lift (H.15.8). Its time reverse is &quot;classically tame&quot; in these frames, whereas Lugano<sup>T</sup> is not.</li>
+</ul>
+<p><em>(C) How far can H.12 violate y? [h12_bound.py; logs h12_bound_</em>.log]*</p>
+<ul>
+<li><strong>Reduction [PROVED, H.15.7d].</strong> The board decoheres each AO into F. So a general qubit instrument acts here exactly like a 4-outcome POVM {E<sub>a,o|x</sub>}, and P(a|x) = Σ<sub>o</sub> ψ_o† (E<sup>A</sup> ⊗ E<sup>B</sup> ⊗ E<sup>C</sup>) ψ_o with ψ_o = U<sub>o</sub> ph.</li>
+<li><strong>Achievable side (seesaw) [NUMERICAL].</strong> Each step solves an exact SDP over one party's POVMs with the other two fixed.
+<ul>
+<li>For y<sub>A</sub> (the H.15.7d inequality), random starts reach at best −0.6597 in 44 restarts. Most restarts stall at 0.</li>
+<li>Started from the H.15.7d optimum, the seesaw stays at −0.70580, so that point is a fixed point of the seesaw (no single party can improve it).</li>
+<li>For y<sub>B</sub> (the cube-26 inequality, H.15.7e), the seesaw reaches −0.34516, below the exact nice-direction value −0.2224.</li>
+<li>The best value seen for any inequality remains −0.7235 (H.15.7e).</li>
+</ul>
+</li>
+<li><strong>Upper side (relaxation) [NUMERICAL; SDP solver to tolerance 10⁻⁶, no rounded dual certificate].</strong>
+<ul>
+<li>Replace the product E<sup>A</sup> ⊗ E<sup>B</sup> ⊗ E<sup>C</sup> by any family Z<sub>ao|x</sub> ≥ 0 on AI (8×8) such that:
+<ul>
+<li>Σ_{ao} Z<sub>ao|x</sub> = 1;</li>
+<li>summing over party k's outcome pair gives 1_k ⊗ R, with R independent of x<sub>k</sub>.</li>
+</ul>
+</li>
+<li>Every product of POVMs satisfies these constraints, so min y·P over this set is a lower bound on what any instruments achieve.</li>
+<li>Result: min y<sub>A</sub>·P ≥ −1.7243 and min y<sub>B</sub>·P ≥ −1.6821. Adding the PPT constraints Z<sup>T<sub>k</sub></sup> ≥ 0 (which products also satisfy) tightens this to min y<sub>A</sub>·P ≥ −1.5855. The PPT run for y<sub>B</sub> was stopped unfinished.</li>
+<li>So for y<sub>A</sub> the true optimum over all instruments lies in [−1.586, −0.7058]. The gap is large, and we do not claim the seesaw value is optimal.</li>
+<li>A rigorous certified bound would need a rounded dual certificate, or a tighter (e.g. symmetric-extension) hierarchy. Both are <strong>OPEN</strong> here.</li>
+</ul>
+</li>
 </ul>
 <h3>H.16 Round 10 status (Oct 23 2026) [proved in Lean unless marked]</h3>
 <ul>
@@ -3582,7 +3625,7 @@ For two commuting 2-term classes on the same A, a single cancellation makes V′
 <li>Ä. Baumeler and S. Wolf, The space of logically consistent classical processes without causal order, New Journal of Physics 18, 013036 (2016).</li>
 <li>Ä. Baumeler, F. Costa, T. C. Ralph, S. Wolf and M. Zych, Reversible time travel with freedom of choice, Classical and Quantum Gravity 36, 224002 (2019), arXiv:1703.00779.</li>
 <li>M. Araújo, A. Feix, M. Navascués and Č. Brukner, A purification postulate for quantum mechanics with indefinite causal order, Quantum 1, 10 (2017).</li>
-<li>A. Vanrietvelde, N. Ormrod, H. Kristjánsson and J. Barrett, Consistent circuits for indefinite causal order, arXiv:2206.10042 (2022).</li>
+<li>A. Vanrietvelde, N. Ormrod, H. Kristjánsson and J. Barrett, Consistent circuits for indefinite causal order, arXiv:2206.10042 (2022); Quantum 9, 1923 (2025).</li>
 <li>H. Price, Does time-symmetry imply retrocausality? How the quantum world says yes, Studies in History and Philosophy of Modern Physics 43, 75 (2012).</li>
 <li>M. S. Leifer and M. F. Pusey, Is a time symmetric interpretation of quantum theory possible without retrocausality?, Proceedings of the Royal Society A 473, 20160607 (2017).</li>
 <li>T. Maudlin, A tale of two tensors, or, how not to argue for retrocausality, preprint (2017).</li>

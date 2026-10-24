@@ -965,6 +965,26 @@ table{border-collapse:collapse;font-size:.9rem;display:block;overflow-x:auto} th
 </ul>
 </li>
 </ul>
+<h2>81. Plain-language note: is the Switchboard secretly a famous machine? (Oct 23 2026)</h2>
+<ul>
+<li><strong>Credit check on the routed diagram (H.15.9(A)) [CITED].</strong> The authors of the routed-circuit framework (Vanrietvelde, Ormrod, Kristjánsson and Barrett) define the &quot;time-reversed&quot; diagram themselves, and their two legality rules are symmetric under it. So &quot;a legal diagram run backwards is still legal&quot; follows straight from their definitions. Our backwards-Lugano diagram is a direct application of their work. What we add is only the explicit check and the gate-by-gate assembly.</li>
+<li><strong>The Switchboard is not Lugano in disguise (H.15.9(B)).</strong>
+<ul>
+<li>Two machines count as &quot;the same up to local relabelling&quot; if you can turn one into the other with a separate rotation on each wire and by renaming the parties.</li>
+<li>Some fingerprints survive every such relabelling. Here we use the spectra (eigenvalue lists) of the machine's reduced states on one or two wires.</li>
+<li>The Switchboard's fingerprints match none of the 744 classical-loop machines (Lugano among them), run forwards or backwards [NUMERICAL].</li>
+<li>It also cannot be a quantum switch or any other &quot;orders in superposition&quot; machine, since those never fail a causal test and the Switchboard does [PROVED].</li>
+</ul>
+</li>
+<li><strong>Running the Switchboard backwards tames it [PROVED in the plain basis; NUMERICAL in three rotated bases].</strong> Backwards, each agent simply receives a copy of the past. In every basis we tried, the classical machine you read off lies inside the hull of classical loops. Backwards Lugano behaves differently: it escapes the hull in the rotated basis. That escape is the H.13.2 board.</li>
+<li><strong>How badly can the Switchboard fail its test? (H.15.9(C)).</strong>
+<ul>
+<li>Best score found so far: about −0.72 [NUMERICAL].</li>
+<li>A relaxed problem that allows more than real measurements can achieve proves the score can never go below about −1.59 for the main test [NUMERICAL, solver accuracy].</li>
+<li>The true limit lies somewhere in between, and it is OPEN.</li>
+</ul>
+</li>
+</ul>
 
 <footer>Source: <a href="https://github.com/drewarrowood/process-function-unitary-lift">github.com/drewarrowood/process-function-unitary-lift</a> · <a href="https://github.com/drewarrowood/process-function-unitary-lift/raw/main/paper/lift.pdf">PDF</a> · <a href="https://drewarrowood.github.io/process-function-unitary-lift/">Technical note</a> · <a href="https://drewarrowood.github.io/process-function-unitary-lift/graded.html">Gentle version</a></footer>
 </main></body></html>

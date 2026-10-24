@@ -1,0 +1,3 @@
+/workspace/pful-graded/code/stochastic/cyclic/embed/h12_bound.py:99: UserWarning: Objective contains too many subexpressions. Consider vectorizing your CVXPY code to speed up compilation.
+  pr=cp.Problem(cp.Minimize(obj),cons); pr.solve(solver='SCS',eps=1e-6,max_iters=100000)
+RELAX NS+PPT y_A (H.15.7d, -0.7057): status optimal, primal -1.585518, time 412s
