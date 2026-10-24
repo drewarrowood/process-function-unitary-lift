@@ -1,0 +1,3 @@
+trials 3000, window [-40,40]^3, trials without exactly one fixed point: 0
+fixed point type counts (all inputs 0 / A / B / C nonzero): [719, 782, 746, 753]
+distinct |input| values seen up to 81 (range of omega unbounded on Z^3)

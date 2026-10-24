@@ -1461,3 +1461,10 @@ We checked the literature on Oct 23 2026, by web search and by reading the prima
 - **Why the old searches could not reach the remaining ten [PROVED].** Every "XOR-type" classical loop, where each agent receives the source bit flipped by a function of the others' outputs, is either causal or a relabelled Lugano loop. So the tilted Lugano family already covers that whole class.
 - **New searches [NUMERICAL].** More random tilted Lugano loops, 200 reversible classical loops of a more general type (none of which turned out to be consistent quantum loops), and an unrestricted search over all three-qubit loops (which did not manage to stay consistent) found nothing.
 - **Still open.** Ten families (26, 28, 30, 31, 54, 57, 66, 69, 75, 81).
+
+## 98. Plain-language note: reversible loops with continuous dials, one step further (Oct 24 2026)
+
+- **The question (Appendix F).** If the agents' dials are continuous, for example real numbers, and the loop is not causally ordered, does every choice of local reversible operation (including "wave-like" ones such as a Fourier transform) still give one well-defined reversible whole? Earlier rounds proved yes when the loop only reacts to which of *finitely many* zones each dial is in.
+- **New [PROVED, paper].** Yes also when it reacts to which of *countably many* zones each dial is in, even if the loop's responses grow without bound. The proof is shorter than the old one. Testing the whole on independent states of the agents turns the question into an ordinary probability statement: "a consistent loop has exactly one history". A standard algebraic trick then extends the answer to all states.
+- **Example [PROVED; checked numerically].** A Lugano-type loop on the integer parts of three real dials, with ever larger jumps. It is not causally ordered and does not fit the finitely-many-zones case. A computer test with 3,000 random choices always found exactly one consistent history.
+- **Still open.** Loops that respond continuously, or in uncountably many ways, to the dials.
