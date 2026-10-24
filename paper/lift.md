@@ -1296,8 +1296,29 @@ For two commuting 2-term classes on the same A, a single cancellation makes V′
 
 The remaining step was not done this round (time-box). It is to rerun shgrp_exh → shgrp_cube → shgrp_dfs with these supports, with each pair of states accepted if any allowed pattern passes the Pauli rule (this ignores consistency across pairs, so it over-approximates), testing SH_grp^r with r ranging over the classes. "Every admissible ≤3-term board is a PF blend" therefore remains **OPEN for tuned parameters**, with no counterexample candidate among 51 tuned boards.
 
+**H.17.13 Tuned closure for two-class boards (Oct 23 2026) [PROVED by exhaustive exact enumeration; over-approximating supports] (tclose2.py, tclose2.log, tclose2_done.txt checkpoint, tclose2_ctrl.py/.log).**
+
+*Theorem.* Let a board have exactly two distinct unitaries up to left Paulis, U_o ∈ {P_oV, P_oV′}, with V and V′ any classes of ≤3 terms: identity, 2-term or 3-term, with any parameters, tuned or generic. If the board is admissible, it is a PF blend for every source state.
+
+*Proof.* Absorb V into the source (H.17.11a): W_o = P_oG^{b(o)} with G = V′V† and b ∈ {0,1}. Admissibility and SH_grp^r then depend only on S = supp(G).
+- *Which S occur.* By H.17.12 every possible S is one of three kinds:
+  - the generic product support, if there is no collision;
+  - generic, or generic minus exactly one collided string, if the collisions have two contributions (proved);
+  - any nonempty subset of K, if K = K′. This over-approximates H.17.12(b), which is sound.
+- *Normalisation.* Normalised by a left translation, this gives 59,836 non-monomial supports. A monomial S means V′ is a monomial times V; the classes then merge, and the board is a PF blend by H.17.11(a).
+- *Reduction to one failing pair.* If SH_grp^r fails at a pair (o,q), use three symmetries: cube translation, a global left Pauli, and G ↔ G† (which has the same support). Together they give o = 0 with state (P = 1, b = 0), and q = D with b = 1 and an h ∈ ⟨X(S)⟩ such that x(P_q)⊕h covers D.
+- *Search.* For each S and D, arc consistency plus DFS ran over the remaining six vertices, each with 128 states (P, b). Pair constraints are exact: P⊕P′ allowed when b = b′; every P⊕P′⊕s with s ∈ S allowed when b ≠ b′.
+- *Result.* **No admissible board exists in any of the 59,836 × 7 cases** (21 s, 8 cores). Hence SH_grp^r holds and the board is a PF blend. ∎
+
+*Controls.*
+- Replacing the failure condition by "any cross pair" makes the same solver find two-class boards for 6 of 300 sampled supports. So the search is not vacuous, and most supports simply admit no genuine two-class board.
+- All 7 non-merging two-class tuned boards found by nsearch2b have their S in the enumerated list, and every one of their 28 pairs is accepted by the pair tables.
+
+*Scope.* This covers every board with two classes, tuned or not, including the 7 genuinely tuned two-class boards of H.17.12(d). With H.17.9 it leaves open only boards that have **≥3 distinct classes and at least one tuned class pair**. Only 2 of the 51 tuned boards found are of that kind, and both pass SH_grp^r (H.17.12d). A multi-class version is OPEN: it needs per-class-pair patterns together with a cube search over 1,072-class states.
+
 **H.17.7 Status after this round.**
 - PROVED: the sign-variant lemma H.17.3, with the stated scope; the Pauli coset-transport theorem and the reduction SH_grp ⇒ PF blend (H.17.8a–b); in the generic-support model, every admissible ≤3-term board, non-X boards included, satisfies SH_grp and is therefore a PF blend for every source state (H.17.9, exhaustive exact enumeration).
+- PROVED: every admissible two-class ≤3-term board, tuned or generic, is a PF blend (H.17.13, exhaustive exact enumeration over 59,836 supports).
 - PROVED: complete classification of the cancellation patterns of V′V† for all pairs of ≤3-term classes. There is no cancellation unless the Klein groups meet. When they meet in two elements, at most one collided string vanishes. When K = K′, only the supports of H.17.12(b) occur.
 - PROVED: right-absorbed coset transport, SH_grp^r ⇒ PF blend (H.17.11a). Each of the 19 regenerated tuned boards passes it, so each is a PF blend (supports read numerically, H.17.11b).
 - PROVED (exact dual certificate): orbit 92 is the positivity orbit and holds on all of Valid (H.17.5).
@@ -1308,7 +1329,7 @@ The remaining step was not done this round (time-box). It is to rerun shgrp_exh 
   - the 19 tuned boards have explicit LP PF-blend decompositions at 4 source states each (H.17.11b);
   - no Z₁₆, continuous-phase or locally rotated X-type board violates any of the 22 genuine orbits.
 - OPEN:
-  - "non-X ≤3-term ⇒ PF blend" for tuned (non-generic) parameters. SH_grp fails on tuned boards (H.17.10), but the right-absorbed version SH_grp^r (H.17.11, proved sufficient) holds on all 19 regenerated tuned boards. That it holds on every admissible tuned board is open. It now holds on all 51 tuned boards (H.17.12d), and the cancellation patterns of V′V† are completely classified [proved] (H.17.12a–c); the rerun of the exhaustive pipeline on the modified supports is the remaining step (H.17.12e);
+  - "non-X ≤3-term ⇒ PF blend" for tuned (non-generic) parameters. SH_grp fails on tuned boards (H.17.10), but the right-absorbed version SH_grp^r (H.17.11, proved sufficient) holds on all 19 regenerated tuned boards. That it holds on every admissible tuned board is open. It now holds on all 51 tuned boards (H.17.12d), and the cancellation patterns of V′V† are completely classified [proved] (H.17.12a–c); the closure is now **proved for every two-class board** (H.17.13); only boards with ≥3 distinct classes and a tuned class pair remain;
   - the 22 genuine never-crossed orbits on general purifiable processes.
 
 Runs were cut off at the time limit: nsearch2 seeds 13 and 14 ran with `timeout 840`, and their logs are the last checkpoints.
