@@ -7,3 +7,5 @@
 3100 574 {"complete": 3101, "hard": 502, "sh_ok": 502, "sh_fail": 0, "best_shok": 6.106226635613548e-15, "best_shfail": -1.0, "maxrule": 2.68062194707679e-31}
 3200 592 {"complete": 3201, "hard": 518, "sh_ok": 518, "sh_fail": 0, "best_shok": 6.106226635613548e-15, "best_shfail": -1.0, "maxrule": 2.68062194707679e-31}
 3500 640 {"complete": 3501, "hard": 560, "sh_ok": 560, "sh_fail": 0, "best_shok": 6.106226635613548e-15, "best_shfail": -1.0, "maxrule": 2.68062194707679e-31}
+4300 816 {"complete": 4301, "hard": 668, "sh_ok": 668, "sh_fail": 0, "best_shok": 6.106226635613548e-15, "best_shfail": -1.0, "maxrule": 2.68062194707679e-31}
+4500 887 {"complete": 4501, "hard": 696, "sh_ok": 696, "sh_fail": 0, "best_shok": 6.106226635613548e-15, "best_shfail": -1.0, "maxrule": 2.68062194707679e-31}

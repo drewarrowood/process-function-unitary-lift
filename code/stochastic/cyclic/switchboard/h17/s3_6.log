@@ -3,3 +3,4 @@
 2500 427 {"complete": 2501, "hard": 377, "sh_ok": 377, "sh_fail": 0, "best_shok": 6.11040081380243e-15, "best_shfail": -1.0, "maxrule": 2.499987983745207e-31}
 3900 655 {"complete": 3901, "hard": 573, "sh_ok": 573, "sh_fail": 0, "best_shok": 6.11040081380243e-15, "best_shfail": -1.0, "maxrule": 2.52138732945926e-31}
 4100 686 {"complete": 4101, "hard": 598, "sh_ok": 598, "sh_fail": 0, "best_shok": 6.11040081380243e-15, "best_shfail": -1.0, "maxrule": 2.52138732945926e-31}
+5000 1053 {"complete": 5001, "hard": 758, "sh_ok": 758, "sh_fail": 0, "best_shok": 6.11040081380243e-15, "best_shfail": -1.0, "maxrule": 2.52138732945926e-31}
