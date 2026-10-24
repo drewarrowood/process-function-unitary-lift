@@ -1025,6 +1025,22 @@ table{border-collapse:collapse;font-size:.9rem;display:block;overflow-x:auto} th
 </ul>
 </li>
 </ul>
+<h2>84. Plain-language note: running a time loop on an ordinary clock, and the four-dial search continues (Oct 24 2026)</h2>
+<ul>
+<li><strong>The question.</strong> Can our loop machines exist in ordinary spacetime, with no wormholes? Earlier notes said no if each agent sits at one place and one time: that is the Vilasini–Renner no-go [CITED]. This note follows the other way out.</li>
+<li><strong>Time-delocalised systems [CITED idea, Oreshkov 2019; Wechs–Branciard–Oreshkov 2023].</strong> Picture an ordinary lab that runs a fixed sequence of gates, one after another. Normally, &quot;Alice's input&quot; is the wire at one particular moment. But you can also bundle several wires from different moments and split the bundle differently. Then &quot;Alice's input&quot; can be &quot;the wire at time 1 if a control bit is 0, the wire at time 2 if it is 1&quot;, in superposition. A system defined this way is <em>time-delocalised</em>. Described in these bundled systems, the ordinary step-by-step lab looks exactly like a loop.
+<ul>
+<li>Wechs, Branciard and Oreshkov proved that every three-agent loop with a reversible (&quot;unitary&quot;) completion can be run this way [CITED]. Both the Switchboard (H.12) and the rational counterexample (H.13.2) are such loops, so both can be run on an ordinary clock in this sense (H.18.3).</li>
+</ul>
+</li>
+<li><strong>An explicit recipe for H.13.2 (H.18.4) [PROVED, checked numerically].</strong> We already knew that H.13.2 is the time-reversed Lugano loop seen in a rotated basis (note 80, H.15.7e). Wechs–Branciard–Oreshkov wrote out a step-by-step lab for the Lugano loop. We reversed that recipe and added the basis rotations. Running every step backwards gives another ordinary lab, and the rotations become part of what each agent does. The computer confirms that the result reproduces H.13.2 exactly, to about 10⁻¹⁵, for random agent actions and for the classical actions that beat the causal inequality.
+<ul>
+<li>In this lab, Alice and Bob each act once, but who goes first is decided by a quantum control bit. Charlie's action appears at two different moments, once in a &quot;do, flip, undo&quot; form. Wechs–Branciard–Oreshkov stress that on the bundled systems this still counts as Charlie acting once.</li>
+<li>This does not contradict the no-go: there, agents sit at one time, and here they do not. It also does not contradict our earlier result that no one-use-per-agent model works (H.15.7b), because this lab is not one-use at the level of individual moments.</li>
+</ul>
+</li>
+<li><strong>What we did not do.</strong> We have no explicit recipe for the Switchboard. Its existence follows from the theorem, but the Switchboard is not a rotated classical loop, so the shortcut fails (H.18.6). Whether a recipe with only classical signals exists for H.13.2 is open too.</li>
+</ul>
 
 <footer>Source: <a href="https://github.com/drewarrowood/process-function-unitary-lift">github.com/drewarrowood/process-function-unitary-lift</a> · <a href="https://github.com/drewarrowood/process-function-unitary-lift/raw/main/paper/lift.pdf">PDF</a> · <a href="https://drewarrowood.github.io/process-function-unitary-lift/">Technical note</a> · <a href="https://drewarrowood.github.io/process-function-unitary-lift/graded.html">Gentle version</a></footer>
 </main></body></html>

@@ -1,0 +1,8 @@
+(1) lug == Araujo-Feix/Baumeler-Wolf function (not b&c, not c&a, not a&b): True
+(4a) V_13.2 = (Hd X^fo)_AI (Hd X^fi)_F L^T (Hd)_AO (X^fo Hd)_P : True
+(2) WBO temporal circuit == cyclic composition L*U_A*U_B*U_C, 20 Haar draws: max dev 3.93e-16 (G unitary dev 1.67e-15)
+(3) reversed+transposed WBO circuit == cyclic composition L^T*W, 20 draws: max dev 4.52e-16
+(4b) frame-rotated reversed WBO circuit == cyclic composition V_13.2*W, 20 draws: max dev 6.75e-16
+reversed circuit for L^T / H.13.2, time order: w3^T [W_C^dag sigma W_C on (C-wires) iff (a,b)=(0,1)], slot2^T [W_B if Q=0 else W_A], w2^T, slot1^T [W_A if Q=0 else W_B], w1^T [W_C, Q=c read out]
+(5) agents = SWAP dilations of the classical instruments: reversed-WBO circuit == V_13.2 composition, max dev 1.11e-15
+    P(i|o) from the time-local circuit equals the cyclic-composition statistics: max dev 2.22e-15; columns sum to 1: True
