@@ -1,0 +1,19 @@
+orbit 0 (1,) jobs 17855 cand 0 unres 2 17
+orbit 1 (3,) jobs 17855 cand 0 unres 2 32
+orbit 2 (7,) jobs 17855 cand 0 unres 2 47
+orbit 3 (8,) jobs 17855 cand 0 unres 0 60
+orbit 4 (10,) jobs 17855 cand 0 unres 2 74
+orbit 5 (14,) jobs 17855 cand 0 unres 2 88
+orbit 6 (24,) jobs 17855 cand 0 unres 0 101
+orbit 7 (28,) jobs 17855 cand 0 unres 2 115
+orbit 8 (56,) jobs 17855 cand 0 unres 0 128
+orbit 9 (1, 8) jobs 105747 cand 0 unres 28 259
+orbit 10 (1, 9) jobs 105747 cand 0 unres 28 394
+orbit 11 (1, 10) jobs 105747 cand 5 unres 20 540
+orbit 12 (1, 11) jobs 105747 cand 5 unres 20 681
+orbit 13 (1, 14) jobs 105747 cand 6 unres 20 823
+orbit 14 (1, 15) jobs 105747 cand 6 unres 20 965
+orbit 15 (1, 24) jobs 105747 cand 0 unres 28 1080
+orbit 16 (1, 25) jobs 105747 cand 0 unres 28 1195
+orbit 17 (1, 28) jobs 105747 cand 5 unres 20 1326
+KILLED at orbit 17 boundary (22:31 CT) for the round time limit; resume: nohup python3 tclose3g.py >> tclose3g.log 2>&1 &
