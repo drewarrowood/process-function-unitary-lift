@@ -1248,4 +1248,6 @@ This round attacked the two open puzzles: switchboards that are not of the X typ
 - **Validity alone is not enough.** For 22 of the 23 inequalities we have exact counterexamples that satisfy every consistency rule but break the inequality. So any proof of those 22 must use reversibility (purifiability), not just consistency. The last one (number 92) turned out to be simply "probabilities are never negative". An exact certificate now proves this, so it holds for every process. It should never have been on the open list.
 - **Wider searches.** Finer phase dials, continuous dials and local rotations of each party broke none of the 23 inequalities.
 
-Still open: a proof that non-X boards always stay inside, and the 22 genuine inequalities in general.
+- **Half a proof for non-X boards.** The old argument for X-type boards carries over to every board whose "reachable flips" form a closed group. This part is proved. For three-term dials the reachable flips are {none, A, B}, and the flip "A then B" is not covered automatically. That last finite check is what remains.
+
+Still open: that last check for non-X boards, and the 22 genuine inequalities in general.
