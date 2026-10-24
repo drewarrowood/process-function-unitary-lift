@@ -1,0 +1,34 @@
+pool size 2432 ; spot-check min over all causal strategies of 64 random members: 0.0
+  H.12 switchboard seed 9 restart 0: min_y y.P = -0.686616
+  H.12 switchboard seed 9 restart 1: min_y y.P = +0.642291
+  H.12 switchboard seed 9 restart 2: min_y y.P = -0.441539
+  H.12 switchboard seed 9 restart 3: min_y y.P = +0.000000
+  H.12 switchboard seed 9 restart 4: min_y y.P = -0.426082
+  H.12 switchboard seed 9 restart 5: min_y y.P = +0.004856
+  H.12 switchboard seed 9 restart 6: min_y y.P = -0.394202
+  H.12 switchboard seed 9 restart 7: min_y y.P = +0.138865
+  H.12 switchboard seed 10 restart 0: min_y y.P = -0.384781
+  H.12 switchboard seed 10 restart 1: min_y y.P = -0.533487
+  H.12 switchboard seed 10 restart 2: min_y y.P = -0.441539
+  H.12 switchboard seed 10 restart 3: min_y y.P = -0.030619
+  H.12 switchboard seed 10 restart 4: min_y y.P = -0.533490
+  H.12 switchboard seed 10 restart 5: min_y y.P = +0.001172
+  H.12 switchboard seed 10 restart 6: min_y y.P = -0.705800
+  H.12 switchboard seed 10 restart 7: min_y y.P = +0.028468
+  H.12 switchboard seed 11 restart 0: min_y y.P = -0.470012
+  H.12 switchboard seed 11 restart 1: min_y y.P = -0.532707
+  H.12 switchboard seed 11 restart 2: min_y y.P = -0.581319
+  H.12 switchboard seed 11 restart 3: min_y y.P = -0.330546
+  H.12 switchboard seed 11 restart 4: min_y y.P = -0.338036
+  H.12 switchboard seed 11 restart 5: min_y y.P = -0.654977
+  H.12 switchboard seed 11 restart 6: min_y y.P = -0.470011
+  H.12 switchboard seed 11 restart 7: min_y y.P = +0.046117
+  H.12 switchboard seed 12 restart 0: min_y y.P = -0.563673
+  H.12 switchboard seed 12 restart 1: min_y y.P = -0.305536
+  H.12 switchboard seed 12 restart 2: min_y y.P = -0.470012
+  H.12 switchboard seed 12 restart 3: min_y y.P = -0.723488
+  H.12 switchboard seed 12 restart 4: min_y y.P = -0.686616
+  H.12 switchboard seed 12 restart 5: min_y y.P = -0.150844
+  H.12 switchboard seed 12 restart 6: min_y y.P = -0.441539
+  H.12 switchboard seed 12 restart 7: min_y y.P = +0.325121
+H.12 switchboard: BEST min_y y.P = -0.723488 (seed 12, restart 3); robustness LP t = 0.805696 -> VIOLATION

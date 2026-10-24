@@ -1,0 +1,4 @@
+f is a process function: True ; f(o) = lug(o+fo)+fi for all o: True
+exact: V_13.2 = (Hd X^fo)_AI (Hd X^fi)_F L^T (Hd)_AO (X^fo Hd)_P : True
+[time-reversed VOKB Fig. 27 (graph for L^T, hence for H.13.2 after local unitaries)] univocal: True; adjoint univocal: True; branches: {'A': 2, 'B': 2, 'C': 2, 'F': 1, 'X': 5}
+[time-reversed VOKB Fig. 27 (graph for L^T, hence for H.13.2 after local unitaries)] branch-graph arrows: 38; weak loops principle: True
