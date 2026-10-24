@@ -1418,3 +1418,11 @@ We checked the literature on Oct 23 2026, by web search and by reading the prima
 - **A stronger floor [PROVED, exact integer arithmetic].** The old floor treated agent A's two possible measurements as unrelated. A stricter test makes both of A's measurements live side by side, on two copies of A's system, as any real strategy allows. With that requirement no strategy can score below −1.2772. The certificate is checked with whole numbers only, so no floating-point trust is needed.
 - **Searching from above [checked numerically].** 120 more random searches did not beat −0.7058.
 - **Where it stands.** The true best score lies between −1.2772 and −0.7058, both ends proved. The gap is about a third smaller than before, but it is still open. The method itself is a standard idea; only the numbers are new.
+
+
+## 92. Plain-language note: how many times must a classical machine run each box? (Oct 24 2026)
+
+- **The question (note 90).** A classical machine can fake either counterexample if it may run every agent's box once for each possible input and decide afterwards which run counts. It cannot if every box runs exactly once. What lies in between?
+- **Counting runs settles it [PROVED, using a 2012 result of Oreshkov, Costa and Brukner].** With three agents and yes/no inputs, running *one* agent's box twice and the other two once each is enough, for every consistent classical process. The trick: once the machine knows how that one agent reacts to both possible inputs, the other two face an ordinary two-party situation, and two-party classical situations always have a definite (possibly random) order. Three runs, one per agent, are never enough for the counterexamples, by the earlier lemma. So the exact budget is four runs.
+- **A curious match.** The quantum circuits that run the counterexamples on an ordinary clock (notes 84 and 89) also use one agent twice and the others once. The classical machine has to throw one of its runs away; the quantum circuit throws nothing away.
+- **Still open.** A classical machine that runs every box once, on "spread-out" classical variables, and never throws anything away. We do not yet have a precise definition of that.

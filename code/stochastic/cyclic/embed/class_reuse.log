@@ -1,0 +1,10 @@
+Lugano PF             : all 4 slices causally separable (LP); network vs process, 20 random instrument triples: max dev 2.8e-17
+H.13.2 (V_pi) src0    : all 4 slices causally separable (LP); network vs process, 20 random instrument triples: max dev 1.7e-17
+H.13.2 (V_pi) src1    : all 4 slices causally separable (LP); network vs process, 20 random instrument triples: max dev 1.4e-17
+H.13.2 (V_pi) src2    : all 4 slices causally separable (LP); network vs process, 20 random instrument triples: max dev 1.7e-17
+H.13.2 (V_pi) |000>   : all 4 slices causally separable (LP); network vs process, 20 random instrument triples: max dev 1.4e-17
+H.12 (V_pi/2) src0    : all 4 slices causally separable (LP); network vs process, 20 random instrument triples: max dev 2.1e-17
+H.12 (V_pi/2) src1    : all 4 slices causally separable (LP); network vs process, 20 random instrument triples: max dev 1.4e-17
+H.12 (V_pi/2) src2    : all 4 slices causally separable (LP); network vs process, 20 random instrument triples: max dev 1.4e-17
+H.12 (V_pi/2) |000>   : all 4 slices causally separable (LP); network vs process, 20 random instrument triples: max dev 2.8e-17
+ALL OK, worst deviation 2.8e-17
