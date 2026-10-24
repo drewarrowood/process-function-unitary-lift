@@ -1,0 +1,6 @@
+pool size 2432 ; spot-check min over all causal strategies of 64 random members: 0.0
+  H.13.2 phi_A (control) seed 1 restart 0: min_y y.P = -1.405140
+  H.13.2 phi_A (control) seed 1 restart 1: min_y y.P = -0.041884
+  H.13.2 phi_A (control) seed 1 restart 2: min_y y.P = -1.405139
+  H.13.2 phi_A (control) seed 1 restart 3: min_y y.P = -0.040851
+H.13.2 phi_A (control): BEST min_y y.P = -1.405140 (seed 1, restart 0); robustness LP t = 0.679149 -> VIOLATION

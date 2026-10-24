@@ -1,0 +1,34 @@
+pool size 2432 ; spot-check min over all causal strategies of 64 random members: 0.0
+  H.12 switchboard seed 1 restart 0: min_y y.P = -0.300248
+  H.12 switchboard seed 1 restart 1: min_y y.P = +0.000000
+  H.12 switchboard seed 1 restart 2: min_y y.P = -0.563672
+  H.12 switchboard seed 1 restart 3: min_y y.P = +0.032434
+  H.12 switchboard seed 1 restart 4: min_y y.P = -0.354496
+  H.12 switchboard seed 1 restart 5: min_y y.P = -0.305534
+  H.12 switchboard seed 1 restart 6: min_y y.P = -0.686616
+  H.12 switchboard seed 1 restart 7: min_y y.P = +0.089045
+  H.12 switchboard seed 2 restart 0: min_y y.P = -0.470012
+  H.12 switchboard seed 2 restart 1: min_y y.P = -0.549092
+  H.12 switchboard seed 2 restart 2: min_y y.P = -0.212974
+  H.12 switchboard seed 2 restart 3: min_y y.P = +0.000000
+  H.12 switchboard seed 2 restart 4: min_y y.P = -0.441539
+  H.12 switchboard seed 2 restart 5: min_y y.P = +0.000000
+  H.12 switchboard seed 2 restart 6: min_y y.P = -0.259808
+  H.12 switchboard seed 2 restart 7: min_y y.P = +0.089053
+  H.12 switchboard seed 3 restart 0: min_y y.P = -0.426082
+  H.12 switchboard seed 3 restart 1: min_y y.P = -0.533490
+  H.12 switchboard seed 3 restart 2: min_y y.P = -0.705800
+  H.12 switchboard seed 3 restart 3: min_y y.P = +0.106208
+  H.12 switchboard seed 3 restart 4: min_y y.P = -0.705800
+  H.12 switchboard seed 3 restart 5: min_y y.P = +0.014711
+  H.12 switchboard seed 3 restart 6: min_y y.P = -0.394202
+  H.12 switchboard seed 3 restart 7: min_y y.P = +0.000000
+  H.12 switchboard seed 4 restart 0: min_y y.P = -0.686616
+  H.12 switchboard seed 4 restart 1: min_y y.P = -0.017196
+  H.12 switchboard seed 4 restart 2: min_y y.P = -0.417372
+  H.12 switchboard seed 4 restart 3: min_y y.P = -0.118007
+  H.12 switchboard seed 4 restart 4: min_y y.P = -0.271922
+  H.12 switchboard seed 4 restart 5: min_y y.P = +0.102243
+  H.12 switchboard seed 4 restart 6: min_y y.P = -0.338037
+  H.12 switchboard seed 4 restart 7: min_y y.P = +0.035795
+H.12 switchboard: BEST min_y y.P = -0.705800 (seed 3, restart 4); robustness LP t = 0.804755 -> VIOLATION

@@ -1,0 +1,18 @@
+pool size 2432 ; spot-check min over all causal strategies of 64 random members: 0.0
+  Z8 class 10515 seed 1 restart 0: min_y y.P = +0.001490
+  Z8 class 10515 seed 1 restart 1: min_y y.P = +1.154849
+  Z8 class 10515 seed 1 restart 2: min_y y.P = +0.015235
+  Z8 class 10515 seed 1 restart 3: min_y y.P = +0.002956
+  Z8 class 10515 seed 1 restart 4: min_y y.P = +0.003076
+  Z8 class 10515 seed 1 restart 5: min_y y.P = +0.005927
+  Z8 class 10515 seed 1 restart 6: min_y y.P = +0.003117
+  Z8 class 10515 seed 1 restart 7: min_y y.P = +0.004495
+  Z8 class 10515 seed 2 restart 0: min_y y.P = +0.001389
+  Z8 class 10515 seed 2 restart 1: min_y y.P = +0.014328
+  Z8 class 10515 seed 2 restart 2: min_y y.P = +0.003602
+  Z8 class 10515 seed 2 restart 3: min_y y.P = +0.003328
+  Z8 class 10515 seed 2 restart 4: min_y y.P = +0.003468
+  Z8 class 10515 seed 2 restart 5: min_y y.P = +0.002508
+  Z8 class 10515 seed 2 restart 6: min_y y.P = +0.002579
+  Z8 class 10515 seed 2 restart 7: min_y y.P = +0.000229
+Z8 class 10515: BEST min_y y.P = +0.000229 (seed 2, restart 7); robustness LP t = 1.000000 -> no violation found

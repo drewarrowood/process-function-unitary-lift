@@ -1,0 +1,8 @@
+  H.12 switchboard (reproduce seed 3) seed 3 restart 0: min_y y.P = -0.426082
+  H.12 switchboard (reproduce seed 3) seed 3 restart 1: min_y y.P = -0.533490
+  H.12 switchboard (reproduce seed 3) seed 3 restart 2: min_y y.P = -0.705800
+H.12 switchboard (reproduce seed 3): BEST min_y y.P = -0.705800 (seed 3, restart 2); robustness LP t = 0.804754 -> VIOLATION
+Tr W = 8.0
+max |P(einsum) - P(process matrix)| = 7.771561172376096e-16 ; rows sum to [1. 1. 1. 1. 1. 1. 1. 1.] ; min entry 0.00047781149438923254
+violated inequality: denominators [1] ; min over all causal strategies = 0.0 ; value on P = -0.7058003687805772
+robustness LP t = 0.804754494513954
