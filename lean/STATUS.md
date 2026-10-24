@@ -335,3 +335,34 @@ Gaps:
 - The composite F.5.5 statement (point map g composed with τ_w in one formula) is not restated in Lean; it is a composition of `closedLoop_unitary` with `closedLoop_jacobian_unitary_ae`.
 - Conjecture F.5.7: Proposition F.5.8 (causal w, strong convergence of discretisations to the circuit loop) is proved on paper only; for Fourier-type V_k it is conditional on fixing strongly convergent unitary grid approximants. The non-causal case is OPEN.
 - Automatic boundedness/normality of positive TP maps on trace class (Round 8 gap) is unchanged.
+
+## Lemma H and the class bound, H.17.17 (Oct 24 2026)
+
+New file: `PFUL/LemmaH.lean` (Mathlib only, standalone). No sorry, no `native_decide`, no new axioms. `#print axioms` gives only propext, Classical.choice and Quot.sound for every main theorem (`LemmaH_axioms.log`). Build: `lake build PFUL.LemmaH`.
+
+**Model.**
+- A three-qubit Pauli string modulo phase is `PStr = Fin 3 → ZMod 2 × ZMod 2`, with (x, z) bits per site.
+- An operator is given by its Pauli expansion `PStr →₀ ℂ`. The product of expansions is the twisted convolution `tmul φ`, with σ_t σ_s = φ t s σ_(t+s).
+- The theorems only need `φ t s ≠ 0`, so they cover the Pauli phases ±1, ±i.
+- Anticommutation is the symplectic form, and `Rigid p S` means the qubit-p parts are injective on S.
+
+**Proved.**
+- `rigid_two`, `rigid_three` (Lemma H(i)): {1, A} with A ≠ 1, and {1, A, B} with A, B anticommuting, each have a rigid qubit.
+- `card_support_tmul`: if all strings of W share their π-part and π is injective on supp V, then |supp W·V| = |supp W|·|supp V|. This holds for any abelian groups G, H, any additive map π, and any nonvanishing φ.
+- `lemmaH_ii` (Lemma H(ii)): suppose V_y = W·V_x, where all strings of W have the same qubit-p part, p is rigid for V_x, |supp V_x| ≥ 2, |supp V_y| ≤ 3 and V_y ≠ 0. Then W is a single string times a nonzero scalar.
+- `RigidBoard`: the abstract cube with a labelling, an identity label, rigid directions, and closure along rigid directions.
+  - `even_card_class`: every class, the identity included, has even size.
+  - `card_class_ge_two`: every occurring class has size ≥ 2.
+  - `card_image_le_four`: at most 4 classes.
+  - `card_class_eq_two_of_four`: if k = 4, each class has 2 vertices.
+  - `class_eq_edge_of_four`: if k = 4, a non-identity class is the edge {o, o + e_p}.
+  - `rigid_unique_of_four`: if k = 4, a non-identity class has a unique rigid qubit.
+- `classBound`: end to end, k ≤ 4, and k = 4 ⇒ every class has 2 vertices.
+
+**Hypotheses of `classBound`, from the paper and not proved in Lean.**
+- `hshape`: the support shapes of H.17.12.
+- `hle3`: at most three terms.
+- `hne`: class operators are nonzero.
+- `hB`: the factorisation V_y = W·V_x with W p-constant across class-changing p-edges (Lemma B plus unitarity).
+- `hcls`: labels are classes, i.e. operators equal up to a left Pauli and a nonzero scalar have equal labels.
+- That `tmul` with the Pauli cocycle is the operator product is the standard Pauli multiplication table. It is not derived from matrices here.

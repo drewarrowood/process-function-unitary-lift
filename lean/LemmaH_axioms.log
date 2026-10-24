@@ -1,0 +1,24 @@
+-- lake env lean on:
+import PFUL.LemmaH
+open PFUL.LemmaH
+#print axioms rigid_two
+#print axioms rigid_three
+#print axioms card_support_tmul
+#print axioms lemmaH_ii
+#print axioms RigidBoard.even_card_class
+#print axioms RigidBoard.card_image_le_four
+#print axioms RigidBoard.card_class_eq_two_of_four
+#print axioms RigidBoard.class_eq_edge_of_four
+#print axioms RigidBoard.rigid_unique_of_four
+#print axioms classBound
+-- output:
+'PFUL.LemmaH.rigid_two' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PFUL.LemmaH.rigid_three' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PFUL.LemmaH.card_support_tmul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PFUL.LemmaH.lemmaH_ii' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PFUL.LemmaH.RigidBoard.even_card_class' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PFUL.LemmaH.RigidBoard.card_image_le_four' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PFUL.LemmaH.RigidBoard.card_class_eq_two_of_four' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PFUL.LemmaH.RigidBoard.class_eq_edge_of_four' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PFUL.LemmaH.RigidBoard.rigid_unique_of_four' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PFUL.LemmaH.classBound' depends on axioms: [propext, Classical.choice, Quot.sound]

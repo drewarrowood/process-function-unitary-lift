@@ -1736,7 +1736,7 @@ Still open are boards with three classes none of which is the identity, and boar
 - **A counting fact [PROVED].** Suppose a board on the 8 vertices of the cube has exactly k classes, and s of them occur at only one vertex. Every other class occupies at least two vertices, so s + 2(k − s) ≤ 8, that is, s ≥ 2k − 8. For k = 5 at least two classes are *singletons* (occur at a single vertex), and for k = 8 all of them are. By Lemmas A and B, all three edges at a singleton's vertex are class-change edges whose ratio supports are p-constant in their own direction. This constrains a ≥5-class board, but it does not reduce it to fewer classes. *Sharpened in H.17.17:* there are no singletons at all (s = 0), so k ≤ 4.
 - **Gluing [OPEN in Round 7; see H.17.17].** No reduction from ≥4 classes to the proved cases was found (see H.17.16 "No gluing lemma"). The counting fact and the stabiliser reduction are the only structural gains this round. Round 8 (H.17.17) replaces gluing by a class bound: k ≤ 4, and k = 4 is a finite search.
 
-**H.17.17 The gluing lemma: rigid directions, at most four classes, and a finite four-class search (Oct 24 2026) [Lemma D, Lemma H and the class bound PROVED; four-class case reduced to a finite search of 2,722 geometries, PROVED for the geometries finished so far (per-class-pair model of H.17.13–H.17.16), the rest running; facet-locality numbers NUMERICAL] (h17/glue_local.py, glue_adj.py, glue_k4enum.py, glue_k4canon.py, glue_k4.py, glue_k5check.py, glue_facets.py and their .log files; glue_k4_tuples.json, glue_k4_canon.json, glue_k4_done.jsonl, glue_k4_loose.jsonl).**
+**H.17.17 The gluing lemma: rigid directions, at most four classes, and a finite four-class search (Oct 24 2026) [Lemma D, Lemma H and the class bound PROVED; Lemma H and the class bound also PROVED (Lean), under stated hypotheses; four-class case reduced to a finite search of 2,722 geometries, PROVED for the geometries finished so far (per-class-pair model of H.17.13–H.17.16), the rest running; facet-locality numbers NUMERICAL] (h17/glue_local.py, glue_adj.py, glue_k4enum.py, glue_k4canon.py, glue_k4.py, glue_k5check.py, glue_facets.py and their .log files; glue_k4_tuples.json, glue_k4_canon.json, glue_k4_done.jsonl, glue_k4_loose.jsonl).**
 
 *Goal.* H.17.16 and H.17.16b left one case open: admissible ≤3-term boards with **four or more** distinct classes. We wanted a gluing lemma, an argument that reduces this case to the proved ones (≤3 classes: H.17.9, H.17.13–H.17.15; Klein clusters: H.17.16; Lemmas A–C; the counting fact s ≥ 2k − 8 of H.17.16b). The lemma we found does not glue small boards together. It shows that large boards cannot exist: a ≤3-term board has at most four classes, and a four-class board has a rigid shape that a finite search can cover completely.
 
@@ -1766,6 +1766,20 @@ Still open are boards with three classes none of which is the identity, and boar
 - If k = 4, every class has exactly two vertices. A non-identity class with two rigid directions would need ≥ 4 vertices.
 - *Consequences.* The k = 5 and k = 6 Klein-cluster searches of H.17.16b ask about boards that do not exist. Their clean results are consistent with this, but no longer needed. The tclose56 run was left running as instructed.
 - *Cross-check [NUMERICAL] (glue_k5check.log):* the H.17.16 solver with its leaf loosened to "all k classes present" finds a board for 225 of 225 sampled K₀ jobs with k = 4, and for **0 of 90** with k = 5.
+
+*Machine check [PROVED (Lean)] (lean/PFUL/LemmaH.lean; lean/STATUS.md; lean/LemmaH_axioms.log).* Lemma H and the class bound are checked in Lean 4 with Mathlib. There is no sorry and no new axiom; `#print axioms` lists only propext, Classical.choice and Quot.sound.
+- *The model.* A Pauli string is a vector in (F₂²)³. An operator is its Pauli expansion, a finitely supported map to ℂ. The product of expansions is the twisted convolution σ_tσ_s = φ(t, s)σ_(t+s), and the proofs use only φ ≠ 0.
+- *Lemma H(i).* `rigid_two` and `rigid_three`: the supports {1, A} with A ≠ 1, and {1, A, B} with A, B anticommuting, each have a rigid qubit.
+- *The counting step of (ii).* `card_support_tmul`: |supp W·V| = |supp W|·|supp V| when all strings of W share their qubit-p part and p is rigid for V.
+- *Lemma H(ii).* `lemmaH_ii`: if moreover |supp V| ≥ 2, |supp W·V| ≤ 3 and W·V ≠ 0, then W is one Pauli string times a scalar.
+- *The class bound.* For an abstract cube labelling closed along rigid directions, every class has even size ≥ 2, so k ≤ 4 (`RigidBoard.card_image_le_four`). If k = 4, every class has two vertices, and a non-identity class is one edge along its unique rigid direction (`card_class_eq_two_of_four`, `class_eq_edge_of_four`, `rigid_unique_of_four`).
+- *End to end.* `classBound` combines these.
+- *Hypotheses taken from the paper, not proved in Lean:*
+  - the support shapes of H.17.12;
+  - at most three terms, and nonzero class operators;
+  - the factorisation V_y = W·V_x with W qubit-p-constant across a class-changing p-edge (step 1 of the proof of (ii): Lemma B plus unitarity);
+  - labels are classes, i.e. operators that agree up to a left Pauli and a scalar carry the same label;
+  - the identification of the twisted convolution with the Pauli multiplication table.
 
 *The four-class case is finite [PROVED enumeration] (glue_k4enum.py, glue_k4canon.py).*
 - *Labelled geometry.* A labelled geometry gives the class at each of the 8 vertices, together with each class's label. The enumeration lists every labelled geometry a four-class board can have:
