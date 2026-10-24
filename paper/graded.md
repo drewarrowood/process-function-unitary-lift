@@ -1350,3 +1350,9 @@ We checked the literature on Oct 23 2026, by web search and by reading the prima
   - In this lab, Alice and Bob each act once, but who goes first is decided by a quantum control bit. Charlie's action appears at two different moments, once in a "do, flip, undo" form. Wechs–Branciard–Oreshkov stress that on the bundled systems this still counts as Charlie acting once.
   - This does not contradict the no-go: there, agents sit at one time, and here they do not. It also does not contradict our earlier result that no one-use-per-agent model works (H.15.7b), because this lab is not one-use at the level of individual moments.
 - **What we did not do.** We have no explicit recipe for the Switchboard. Its existence follows from the theorem, but the Switchboard is not a rotated classical loop, so the shortcut fails (H.18.6). Whether a recipe with only classical signals exists for H.13.2 is open too.
+- **The four-dial search (H.17.16b).**
+  - We rewrote the search so that it builds cases one at a time instead of all at once, which used to run out of memory. It also skips cases that are mirror images under the symmetries.
+  - With five dials in one family, half of the batches (52 of 104, about 417,000 cases) are finished and clean: no suspects, nothing left unresolved [PROVED for those batches]. The rest runs overnight.
+  - A random sample of four-dial cases across families was also clean [NUMERICAL]. The full cross-family search would take about 10⁵ processor-hours, far beyond this machine.
+  - A small counting fact: with five dials on eight corners, at least two dials sit on a single corner [PROVED].
+  - "Four terms is the minimum" is **still OPEN**.

@@ -1040,6 +1040,15 @@ table{border-collapse:collapse;font-size:.9rem;display:block;overflow-x:auto} th
 </ul>
 </li>
 <li><strong>What we did not do.</strong> We have no explicit recipe for the Switchboard. Its existence follows from the theorem, but the Switchboard is not a rotated classical loop, so the shortcut fails (H.18.6). Whether a recipe with only classical signals exists for H.13.2 is open too.</li>
+<li><strong>The four-dial search (H.17.16b).</strong>
+<ul>
+<li>We rewrote the search so that it builds cases one at a time instead of all at once, which used to run out of memory. It also skips cases that are mirror images under the symmetries.</li>
+<li>With five dials in one family, half of the batches (52 of 104, about 417,000 cases) are finished and clean: no suspects, nothing left unresolved [PROVED for those batches]. The rest runs overnight.</li>
+<li>A random sample of four-dial cases across families was also clean [NUMERICAL]. The full cross-family search would take about 10⁵ processor-hours, far beyond this machine.</li>
+<li>A small counting fact: with five dials on eight corners, at least two dials sit on a single corner [PROVED].</li>
+<li>&quot;Four terms is the minimum&quot; is <strong>still OPEN</strong>.</li>
+</ul>
+</li>
 </ul>
 
 <footer>Source: <a href="https://github.com/drewarrowood/process-function-unitary-lift">github.com/drewarrowood/process-function-unitary-lift</a> · <a href="https://github.com/drewarrowood/process-function-unitary-lift/raw/main/paper/lift.pdf">PDF</a> · <a href="https://drewarrowood.github.io/process-function-unitary-lift/">Technical note</a> · <a href="https://drewarrowood.github.io/process-function-unitary-lift/graded.html">Gentle version</a></footer>
