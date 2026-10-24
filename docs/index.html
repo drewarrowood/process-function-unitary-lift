@@ -1452,7 +1452,7 @@ Let U<sub>o</sub> = cos(t) X<sup>w1(o)</sup> + i sin(t) X<sup>w2(o)</sup> = X<su
 <li>No board whose transitions have at most 2 X-terms violates any facet, which is consistent with H.10.6. The violating classes have at most 4, 5 or 6 terms per transition (gauge m<sub>000</sub> = 0).</li>
 <li>The largest relative violation is <strong>0.1404</strong>, on orbit 91, reached by the ±1 class of H.13.2 at its optimal (irrational) phi. Facet orbit 82 (the H.12 facet) reaches 0.1036.</li>
 </ul>
-<p><strong>H.13.4 Which facets purifiable processes violate [numerical, within Z<sub>4</sub> X-type boards].</strong> 62 of the 93 facet orbits are violated by some board. The following 31 orbits are never violated in this family: 4-11, 14, 16, 19, 21, 24-31, 52-54, 57, 66, 67, 69, 75, 79, 81, 92. They are candidates for facets that remain valid on Purif. Maximum relative violation per violated orbit:</p>
+<p><strong>H.13.4 Which facets purifiable processes violate [numerical, within Z<sub>4</sub> X-type boards].</strong> 62 of the 93 facet orbits are violated by some board. The following 31 orbits are never violated in this family: 4-11, 14, 16, 19, 21, 24-31, 52-54, 57, 66, 67, 69, 75, 79, 81, 92. They are candidates for facets that remain valid on Purif. (Orbit 92 is the positivity orbit p(i|o) ≥ 0 and holds trivially; see H.17.5.) Maximum relative violation per violated orbit:</p>
 <ul>
 <li>0.14: orbit 91.</li>
 <li>0.10: orbits 82-84.</li>
@@ -1495,7 +1495,7 @@ This is a lower bound on the violation over Purif, not the maximum. General boar
 </ul>
 </li>
 <li>The relative violations are 0.0021, 0.0019, 0.0021, 0.0014, 0.00026, 0.00025, 0.00057 and 0.00057.</li>
-<li>Remaining <strong>never-violated orbits (23):</strong> 4-11, 14, 25, 26, 28, 30, 31, 53, 54, 57, 66, 69, 75, 79, 81, 92.</li>
+<li>Remaining <strong>never-violated orbits (23):</strong> 4-11, 14, 25, 26, 28, 30, 31, 53, 54, 57, 66, 69, 75, 79, 81, 92. Orbit 92 is positivity (H.17.5), so 22 are genuine.</li>
 <li>Z<sub>8</sub> also raises the maxima on orbits 34, 35, 37, 38, 42, 44, 49 and 71, by 2-7% [numerical]. The overall maximum, 0.1404 on orbit 91, does not move.</li>
 </ul>
 <p><strong>H.14.3 Exact per-orbit maxima over Z<sub>4</sub> X-type boards [exact algebraic numbers for float-selected maximisers].</strong> For each violated orbit, take the (class, facet) with the largest float violation. Its maximum over source states is -λ_min(F), and λ_min is an exact root of the integer characteristic-polynomial factor in exactmax_part{1,2}.log (flint/sympy, from an exact rational facet g). Examples:</p>
@@ -1586,7 +1586,7 @@ This is a lower bound on the violation over Purif, not the maximum. General boar
 <p><em>Convexity (H.13.1) [PROVED].</em> A classical coin in S, routed untouched to F, selects which loop runs. So the set of loop statistics is closed under mixing, as for classical CTC models.</p>
 </li>
 <li>
-<p><em>Never-crossed facets (H.13.4, H.14.2) [numerical] and the polytope question (H.14.4) [evidence] [INTERPRETIVE].</em> 23 facet orbits remain uncrossed by every board tested. They are candidate &quot;classical-like&quot; constraints that may bind every reversible quantum loop. Z<sub>8</sub> crossed 8 facet orbits that Z<sub>4</sub> did not, so the list is provisional. Ref. 15 shows that the classical consistent loops form a polytope. Our evidence suggests that reversible quantum loops form a curved convex set: the best violations are irrational and keep growing as the phase group grows. If that is right, the boundary between classical and quantum time travel is not a finite list of inequalities. That is not proved.</p>
+<p><em>Never-crossed facets (H.13.4, H.14.2) [numerical] and the polytope question (H.14.4) [evidence] [INTERPRETIVE].</em> 22 genuine facet orbits remain uncrossed by every board tested; a 23rd, orbit 92, is just positivity p(i|o) ≥ 0 and holds for every process (H.17.5). The 22 are candidate &quot;classical-like&quot; constraints that may bind every reversible quantum loop. Z<sub>8</sub> crossed 8 facet orbits that Z<sub>4</sub> did not, so the list is provisional. Ref. 15 shows that the classical consistent loops form a polytope. Our evidence suggests that reversible quantum loops form a curved convex set: the best violations are irrational and keep growing as the phase group grows. If that is right, the boundary between classical and quantum time travel is not a finite list of inequalities. That is not proved.</p>
 </li>
 </ol>
 <p><strong>H.15.4 Minkowski space instead of CTCs [CITED + INTERPRETIVE].</strong></p>
@@ -1601,17 +1601,17 @@ This is a lower bound on the violation over Purif, not the maximum. General boar
 <ul>
 <li>No concrete metric, field theory or material realisation of the H.12/H.13.2 board is given. Ref. 28's wormhole + billiard-ball construction handles classical PFs. A quantum, coherent version (coherent scatterers in the CTC region) is assumed, not built.</li>
 <li>Whether quantum CTC dynamics is linear (ref. 16) or nonlinear (Deutsch) is unsettled. Our signature is model-dependent.</li>
-<li>The physical meaning of the 23 never-crossed orbits and of non-polytopality is conjectural.</li>
+<li>The physical meaning of the 22 genuine never-crossed orbits and of non-polytopality is conjectural.</li>
 </ul>
 <h3>H.16 Round 10 status (Oct 23 2026) [proved in Lean unless marked]</h3>
 <ul>
 <li><strong>Unitarity closed.</strong> The H.12.3 gap &quot;isometry, not unitary, for infinite ancillas&quot; is now closed. <code>isUnitaryInf_Vsb</code> proves the Switchboard loop is unitary against every family of countable ancillas. <code>purification_conjecture_false_unitaryInf</code> then gives the counterexample in the unitary form. The proof checks row orthonormality (<code>row_scalar_key</code>, an exact kernel check) and shows that an isometry with orthonormal rows is onto.</li>
 <li><strong>Validity link, partial.</strong> <code>valid_pfPoint_iff</code> proves <code>Valid (pfPoint w) ↔ IsPF w</code>, and <code>validWith_of_valid_pfPoint</code> links this to <code>PFUL.ValidWith</code>. Both hold only for deterministic w. <code>ValidWith</code> is not defined for non-deterministic processes such as <code>pcl</code>.</li>
 <li><strong>F.5.5 for general point maps.</strong> <code>PFUL.Continuous.closedLoop_general_unitary</code> covers measurable bijections with a positive density. <code>closedLoop_jacobian_unitary</code> covers global bijections of ℝⁿ with an invertible derivative, where the density is |det g'|. Local diffeomorphisms and degenerate Jacobians remain open.</li>
-<li><strong>Open.</strong> The non-X 3-term boards (from H.14) and the 23 never-crossed inequalities (J.1) were not attacked this round and are still open.</li>
+<li><strong>Open.</strong> The non-X 3-term boards (from H.14) and the 23 never-crossed inequalities (J.1) were not attacked this round and are still open. (H.17.5 later showed that orbit 92 is positivity, so 22 are genuine.)</li>
 </ul>
 <h3>H.17 Non-X three-term boards, local rotations, and what validity alone gives (Oct 23 2026) [labels: PROVED / EXACT-CERTIFIED / NUMERICAL / OPEN per item]</h3>
-<p>This round attacked the two items H.16 left open: boards that are not of the X type, and the 23 never-crossed orbits of J.1. Code and logs are in code/stochastic/cyclic/switchboard/h16/ (scripts csp2, rsearch, z16sample, xcont) and h17/ (struct3, search3, nsearch, nsearch2, pairlemma, siglemma, sigsearch, locrot, locopt, validlp, validcert, shpcheck). Model: a board with at most 3 Pauli terms per outcome is U<sub>o</sub> = P<sub>o</sub> V<sub>k</sub>^σ. Here V<sub>k</sub> is 1, α+iβA, or α+i(βA+γB) with A and B anticommuting, and σ flips the signs of β and γ. This is the H.14 form P·exp(i t(cos φ A + sin φ B)). A board is <em>hard</em> if it is complete and admissible (unitary and obeying the Pauli rule H.8.1), has a genuine 3-term class, and has no operator-first and no operator-last party. Hard boards are the ones H.6 and H.1 do not already reduce to PF blends.</p>
+<p>This round attacked the two items H.16 left open: boards that are not of the X type, and the 23 never-crossed orbits of J.1. One of these, orbit 92, turns out to be positivity (H.17.5), leaving 22 genuine. Code and logs are in code/stochastic/cyclic/switchboard/h16/ (scripts csp2, rsearch, z16sample, xcont) and h17/ (struct3, search3, nsearch, nsearch2, pairlemma, siglemma, sigsearch, locrot, locopt, validlp, validcert, shpcheck). Model: a board with at most 3 Pauli terms per outcome is U<sub>o</sub> = P<sub>o</sub> V<sub>k</sub>^σ. Here V<sub>k</sub> is 1, α+iβA, or α+i(βA+γB) with A and B anticommuting, and σ flips the signs of β and γ. This is the H.14 form P·exp(i t(cos φ A + sin φ B)). A board is <em>hard</em> if it is complete and admissible (unitary and obeying the Pauli rule H.8.1), has a genuine 3-term class, and has no operator-first and no operator-last party. Hard boards are the ones H.6 and H.1 do not already reduce to PF blends.</p>
 <p><strong>H.17.1 Pure non-X three-term boards exist; none leaves the PF hull [NUMERICAL].</strong></p>
 <ul>
 <li><em>Generic parameters</em> (csp2 structure model, rsearch): 5 seeds × 8,000 complete structures gave 6,551 hard boards. The largest violation of any of the 29,344 hull facets, over all source states, was 5.9·10⁻¹⁵. The largest unitarity or Pauli-rule residual was 4.4·10⁻¹⁶. search3 (6 seeds) gave about 4,200 more hard boards. The best value there was 6.3·10⁻¹⁵.</li>
@@ -1639,7 +1639,7 @@ This is a lower bound on the violation over Purif, not the maximum. General boar
 </ul>
 </li>
 </ul>
-<p><strong>H.17.6 The 23 orbits under wider board families [NUMERICAL].</strong> None of the following produced a violation.</p>
+<p><strong>H.17.6 The 22 genuine orbits (and orbit 92) under wider board families [NUMERICAL].</strong> None of the following produced a violation.</p>
 <ul>
 <li><em>Z₁₆ X-type boards</em> (z16sample): 2 runs, more than 5,500 sampled pure boards each, scored on every facet of the 23 orbits. The best value was 3.9·10⁻¹⁵.</li>
 <li><em>Continuous X-type phases</em> (xcont): the violation was maximised with a penalty on the Pauli-rule residual, starting from the best Z₈ boards. The largest values were 2.3·10⁻⁷ (orbit 25, residual 3·10⁻¹¹), 3·10⁻⁸ (orbit 92, which is positivity by H.17.5, so this value is purely an artefact) and ≤ 10⁻⁸ for the others. These are consistent with penalty/round-off artefacts, below the 10⁻⁶ threshold for exact certification, and were not pursued.</li>
@@ -1657,22 +1657,43 @@ Sign variants cause no difficulty. V^σ is a different unitary with the same X-s
 SH⁺⁺ (common right factor absorbed into φ) has the same gap. Closing it needs either an exhaustive exact check that SH_grp holds on every admissible ≤3-term cube in the struct3 model (an F₂ enumeration of the pairlemma/siglemma kind, not done this round), or a different transport for non-group shadows. <em>Time-boxed sample [exact per structure; sample NUMERICAL] (shgrp.py, shgrp_1.log).</em> struct3 drew 77,211 random admissible structures in the generic-support model, 80 s, seed 1. Of these, 11,491 are hard, and 7,801 of the hard ones contain a class whose gap is real (|⟨x<sub>A</sub>,x<sub>B</sub>⟩| = 4). SH_grp failed for <strong>0</strong> of them. Admissibility and SH_grp are exact F₂ tests, so by (a)–(b) each sampled structure is <strong>proved</strong> to give PF blends for generic parameters. What remains open is that <em>every</em> structure does: the sample is not exhaustive and tuned (non-generic) parameters are not covered. Status: <strong>OPEN; reduced to a finite F₂ enumeration (csp2/struct3 model plus SH_grp), with no counterexample in 11,491 hard samples</strong>.</li>
 </ul>
 <p><em>(d) Local Clifford conjugation does not reduce to the X-type case [observation].</em> A local Clifford C maps Paulis to Paulis and preserves the Pauli rule. But replacing U<sub>o</sub> by C U<sub>o</sub> C† changes p unless C is diagonal up to a permutation in the computational basis. On one qubit such C (generated by X, Z, S) map X-type strings to X- or Y-type ones and never map Z to X. Conjugation therefore cannot remove the Z-components of A or B while preserving p. For p only the X-parts matter (part (a)), so the reduction actually available is the one in (a)–(b), and the X-type proof extends exactly as far as SH_grp holds.</p>
+<p><strong>H.17.9 Exhaustive exact check of SH_grp in the generic model (Oct 23 2026) [EXHAUSTIVE, EXACT; one residual case OPEN] (shgrp_exh.py, shgrp_local.py, shgrp_cube.py; .log/.json alongside).</strong> The enumeration covers 1,072 class options: V=1, 63 two-term classes, and 1,008 anticommuting pairs A&lt;B. It includes pairs of distinct classes with identical generators. It runs over every left-Pauli difference R (64) and every D≠0 (7).</p>
+<ul>
+<li><em>Pairwise (shgrp_exh).</em> There are 1,999,627 pairwise-admissible different-class configurations, using the generic support R+{0,A,B}+{0,A′,B′}. <strong>SH_grp fails pairwise in 329,280 of them.</strong> Among the 98,685 admissible sign-variant configurations it fails in 16,344. So pairwise admissibility does <em>not</em> imply SH_grp, and a cube-level argument is needed. A typical failure: c = (V=1), c′ = (X₂, X₁Z₂), R = Z₂, D = parties {1,2}. The three support strings Z₂, Y₂, X₁ are allowed, but x(R)⊕x<sub>A</sub>⊕x<sub>B</sub> = X₁X₂ covers D.</li>
+<li><em>Sign variants.</em> For a sign variant with flips on both generators the support is {0,A,B}, so SH and SH_grp coincide on these pairs (the same 16,344 cases as pairlemma). By the sign-variant lemma H.17.3 <strong>none</strong> of them completes to an admissible cube [PROVED, generic model].</li>
+<li><em>Different classes, |D|=1 and |D|=2 [PROVED, generic model].</em> Across a cube edge of party p, every term of K must be trivial on p. Between different classes this forces all generators of both classes to be trivial on p. There are no failures with |D|=1, and the 52,416 with |D|=2 all fail the necessary common-neighbour test (shgrp_local: 0 survive). The cube test below confirms this.</li>
+<li><em>Different classes, all D (shgrp_cube).</em> Fix o=0 and q=D, and give each other vertex a label in {class of o, class of q, fresh identity class}. This over-approximates: sign variants are merged and R and all non-edge constraints are ignored. Then require the edge condition on all 12 cube edges. Of the 329,280 failures, <strong>329,192 are proved impossible</strong>. <strong>288, all with |D|=3, survive</strong> this coarse test. In every one of them o carries the identity class V=1 and q a 3-term class, with 2 values of R per class pair. They are written to shgrp_cube_survivors.json as a resumable checkpoint, to be settled by an exact cube DFS (all P<sub>m</sub>, all class options, all pairwise constraints). This step was not done for lack of time.</li>
+<li><em>Status.</em> <strong>Theorem (conditional on the 288 residual |D|=3 configurations): every admissible board with ≤3 Pauli terms per outcome and generic parameters satisfies SH_grp, hence (H.17.8) is a PF blend for every source state.</strong> The scope is the generic-support model of struct3: U<sub>o</sub> = P<sub>o</sub> V^σ, and the support of every U_oU_q† is the generic one, with no cancellations. The theorem covers non-X boards; X-type boards were already covered by H.14.1. The 288 residual cases are <strong>OPEN</strong>. The random sample of H.17.8(c) (11,491 hard cubes, 0 SH_grp failures) suggests they too are excluded by the full cube constraints.</li>
+</ul>
+<p><strong>H.17.10 Tuned (non-generic) parameters [analysis; OPEN].</strong> Genericity can fail in three ways.</p>
+<ul>
+<li>(i) <em>Degenerate coefficients</em> (β=0 or γ=0). These lower the term count, so the board is covered by the same model with a smaller class.</li>
+<li>(ii) <em>Proportional classes</em> (G<sub>c</sub> ∝ G<sub>c′</sub>). The classes simply merge, and the same-class pairs need nothing (H.17.8b).</li>
+<li>(iii) <em>Cancellation in U_oU_q†.</em> This needs coinciding products, so the groups ⟨A,B⟩ and ⟨A′,B′⟩ must intersect, and coefficients tuned to cancel. Cancellation <em>removes</em> strings from the support, so it makes more structures admissible. SH_grp itself depends only on R and the generators' X-parts, not on the coefficients. Consequently:
+<ul>
+<li>H.17.8(a)–(b) apply verbatim to any tuned board that satisfies SH_grp.</li>
+<li>What can go wrong is only that a tuned board is admissible although its generic counterpart is not, and fails SH_grp.</li>
+</ul>
+</li>
+<li><em>Evidence.</em> nsearch2 found 35 tuned hard boards that fail the weaker SH test. All are inside the PF hull to 6·10⁻¹⁵. Whether any of them fails SH_grp was not recorded [OPEN; check with shgrp.SHgrp on the saved structures].</li>
+<li><em>Proof strategy.</em> A proof for tuned boards would enumerate the finitely many cancellation patterns: which products of {1,A,B}·{1,A′,B′} coincide and can cancel. Each pattern gives a modified support. Rerunning shgrp_exh/shgrp_cube on the modified supports would settle the tuned case.</li>
+</ul>
 <p><strong>H.17.7 Status after this round.</strong></p>
 <ul>
-<li>PROVED: the sign-variant lemma H.17.3, with the stated scope; the Pauli coset-transport theorem and the reduction SH_grp ⇒ PF blend (H.17.8a–b).</li>
+<li>PROVED: the sign-variant lemma H.17.3, with the stated scope; the Pauli coset-transport theorem and the reduction SH_grp ⇒ PF blend (H.17.8a–b); in the generic model, SH_grp failures with |D| ≤ 2 and all sign-variant failures cannot occur in an admissible cube (H.17.9).</li>
 <li>PROVED (exact dual certificate): orbit 92 is the positivity orbit and holds on all of Valid (H.17.5).</li>
 <li>EXACT-CERTIFIED: the other 22 never-crossed orbits are not implied by validity alone (H.17.5).</li>
 <li>NUMERICAL:
 <ul>
 <li>pure non-X ≤3-term boards exist and all tested ones lie in the PF hull;</li>
 <li>every hard board found satisfies SH⁺⁺;</li>
-<li>no Z₁₆, continuous-phase or locally rotated X-type board violates any of the 23 orbits.</li>
+<li>no Z₁₆, continuous-phase or locally rotated X-type board violates any of the 22 genuine orbits.</li>
 </ul>
 </li>
 <li>OPEN:
 <ul>
 <li>&quot;non-X ≤3-term ⇒ PF blend&quot;;</li>
-<li>whether SH_grp holds on every admissible ≤3-term board. This is the gap between the shadow {0,x<sub>A</sub>,x<sub>B</sub>} and the group ⟨x<sub>A</sub>,x<sub>B</sub>⟩ (H.17.8c), a finite F₂ check in the generic model; it also covers whether SH⁺⁺ always holds;</li>
+<li>whether SH_grp holds on every admissible ≤3-term board. In the generic model this is reduced to 288 residual |D|=3 configurations (H.17.9); tuned parameters are analysed in H.17.10 but not settled;</li>
 <li>the 22 genuine never-crossed orbits on general purifiable processes.</li>
 </ul>
 </li>
@@ -1753,8 +1774,8 @@ SH⁺⁺ (common right factor absorbed into φ) has the same gap. Closing it nee
 <p>Generated by code/stochastic/cyclic/switchboard/h13/tables.py from the committed data: facets from physics/facets/pf.out.gz, orbit labels and Z<sub>4</sub> maxima from xviol.npz, Z<sub>8</sub> maxima from xviol_z8.npz, exact Z<sub>4</sub> maxima from exactmax_part1/2.log, and Z<sub>8</sub> certificates from cert_z8.log. Strings are written i<sub>A</sub> i<sub>B</sub> i<sub>C</sub>. &quot;p(i|o)&quot; is the probability of input string i given output string o.</p>
 <p><em>Representatives.</em> Each orbit's representative is its lowest-index facet. The integer form shown is the one with minimal ℓ¹ norm among the affine representatives that agree with the facet on all 744 process functions (found by LP, then scaled to integers and checked exactly). The representatives are exact. Other members of the orbit follow by the 384 symmetries (relabelling parties and local relabelling of inputs and outputs).</p>
 <p><em>Maxima.</em> &quot;Rel.&quot; means the largest violation found divided by the facet's range on process functions. The Z<sub>4</sub> exact column gives the minimal polynomial of λ_min, the least eigenvalue of the facet operator Σ g P<sub>o,i</sub> + g0 in the facet's normalisation. The violation is its root at the float-selected maximising board; this exact value is [proved, exact] for that board, while the claim that it is the maximum over the class is [numerical]. The Z<sub>8</sub> column is [numerical].</p>
-<h3>J.1 The 23 never-crossed orbits [numerical; orbit 92 is positivity, proved in H.17.5, so 22 are genuinely open]</h3>
-<p>Status for all 23 orbits: never violated by the Z<sub>4</sub> (386 classes) and Z<sub>8</sub> (10,603 classes) X-type boards, maximised over source states [numerical].</p>
+<h3>J.1 The 22 genuine never-crossed orbits, plus orbit 92 (positivity) [numerical; orbit 92 proved in H.17.5]</h3>
+<p>Status for all 23 listed orbits (22 genuine, plus orbit 92 = positivity): never violated by the Z<sub>4</sub> (386 classes) and Z<sub>8</sub> (10,603 classes) X-type boards, maximised over source states [numerical].</p>
 <p><em>Update (H.17, Oct 23 2026).</em> None of the 23 orbits is violated by Z<sub>16</sub> X-type boards, continuous X-type phases, locally rotated (local Clifford and SU(2)<sup>3</sup>) X-type boards, or pure non-X boards with ≤3 terms per outcome [numerical]. Orbits 4–11, 14, 25, 26, 28, 30, 31, 53, 54, 57, 66, 69, 75, 79 and 81 are violated at exact rational points of the valid polytope, so validity alone does not imply them [exact-certified, H.17.5]. Orbit 92 is the positivity orbit p(i|o) ≥ 0. On Valid its functional equals p(111|000) exactly, so it holds for every process [proved, H.17.5]. Only the other 22 orbits are genuinely open.</p>
 <table>
 <thead>

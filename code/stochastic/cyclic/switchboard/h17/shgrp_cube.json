@@ -1,0 +1,35 @@
+{
+ "per_D": {
+  "1": {
+   "failures": 0,
+   "cube_completable": 0
+  },
+  "2": {
+   "failures": 0,
+   "cube_completable": 0
+  },
+  "3": {
+   "failures": 17472,
+   "cube_completable": 0
+  },
+  "4": {
+   "failures": 0,
+   "cube_completable": 0
+  },
+  "5": {
+   "failures": 17472,
+   "cube_completable": 0
+  },
+  "6": {
+   "failures": 17472,
+   "cube_completable": 0
+  },
+  "7": {
+   "failures": 276864,
+   "cube_completable": 288
+  }
+ },
+ "total_failures": 329280,
+ "total_completable": 288,
+ "secs": 76
+}
