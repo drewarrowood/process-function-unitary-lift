@@ -1,1 +1,1 @@
-{"res": {"complete": 110, "hard": 20, "tunedcanc": 0, "sh_fail": 0, "best": 5.9570404165043556e-15, "best_shfail": -1.0, "maxrule": 3.789386480211076e-32, "tuned_used": 0, "shplus_fail": 0}, "ex": []}
+{"res": {"complete": 3991, "hard": 520, "tunedcanc": 1, "sh_fail": 1, "best": 6.067195830477101e-15, "best_shfail": 2.8751180119295794e-15, "maxrule": 2.615743460433715e-31, "tuned_used": 21, "shplus_fail": 1}, "ex": [{"P": [0, 34, 1, 1, 16, 34, 16, 0], "k": [0, 1, 0, 0, 0, 1, 0, 0], "g": [[34, 38], [34, 38]], "shbad": 6, "viol": 2.8751180119295794e-15}]}

@@ -84,6 +84,9 @@ def SHplus(U):
             D=o^q; combos=[(0,0)] if rep[o]==rep[q] else it.product(sh[rep[o]],sh[rep[q]])
             if any(((a[o]^a[q]^t^t2)&D)==D for t,t2 in combos): bad+=1
     return bad
+def SHplus2(U):
+    """H.17.1 applied to W_o = U_o U_r^dag (common right unitary absorbed into the source state), best r."""
+    return min(SHplus(np.einsum('oij,kj->oik',U,U[r].conj())) for r in range(8))
 def SHc(assign,classes):
     sh=[sorted({px(s) for s in supp_of(c['V'])}) for c in classes]; bad=0
     for o in range(8):
@@ -123,7 +126,9 @@ for n in range(N):
     v=float(facet_viol(U,T).max()); b=SHc(A,C)
     res['best']=max(res['best'],v)
     bp=SHplus(U); res['shplus_fail']=res.get('shplus_fail',0)+(bp>0)
-    if bp: np.save('shp_%d_%d.npy'%(seed,n),U)
+    if bp:
+        bp2=SHplus2(U); res['shplus2_fail']=res.get('shplus2_fail',0)+(bp2>0)
+        if bp2: np.save('shp2_%d_%d.npy'%(seed,n),U)
     if b: res['sh_fail']+=1; res['best_shfail']=max(res['best_shfail'],v)
     if canc and len(ex)<30: ex.append(dict(P=[int(A[o][0]) for o in range(8)],k=[int(A[o][1]) for o in range(8)],g=[list(map(int,c['g'])) for c in C],shbad=b,viol=v))
     if v>1e-6: np.save('n2viol_%d_%d.npy'%(seed,n),U); print('VIOLATION',v,flush=True)
