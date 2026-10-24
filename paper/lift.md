@@ -1258,6 +1258,35 @@ This contains H.17.8 (take r in any class and note V_c V_c† = 1). It also cont
 
 *(c) What is still open.* (a) settles any tuned board that passes SH_grp^r, and every tuned board found does. What is not proved is that *every* admissible tuned ≤3-term board satisfies SH_grp^r. A proof would enumerate the cancellation patterns of V′V† inside the group algebra of H (finitely many for |H| ≤ 4) and rerun the shgrp_exh/shgrp_cube/shgrp_dfs pipeline on the resulting supports. That was not done this round [OPEN]. *Conjecture (evidence: 19/19):* in an admissible hard tuned board, absorbing the right factor of one class leaves at most one non-monomial group, and that group is X-type with |H| = 2. The board then reduces to the H.14 X-type situation.
 
+**H.17.12 Cancellation patterns of V′V† and more tuned boards (Oct 23 2026) [partly PROVED, partly NUMERICAL; closure OPEN] (tpat.py, tclass.py/.json, tbcheck.log, tbmerge.py/.log).**
+
+*(a) Coincidence types [EXACT enumeration] (tpat.py).* Take two genuine 3-term classes V = α+i(βA+γB) and V′ = α′+i(β′A′+γ′B′), all coefficients nonzero. Let K = {1,A,B,AB} and K′ be their Klein groups. Over all 1,008² ordered pairs of anticommuting generator pairs, the 9 products {1,A′,B′}·{1,A,B} fall into exactly three types:
+- |K∩K′| = 1 (876,960 pairs): all 9 products are distinct, so **no cancellation is possible** [PROVED: each coefficient is a single nonzero product].
+- |K∩K′| = 2 (136,080 pairs): 7 strings, two of which collect two products each.
+- K = K′ (3,024 pairs): 4 strings with multiplicities (3,2,2,2).
+
+*(b) The same-group case K = K′ [PROVED].* Put I = iA and J = iB. Then 1, I, J, IJ multiply like the quaternions, V = α+βI+γJ, and V′V† = (v·v′) + (terms whose coefficients are the components of v×v′, up to sign) on the strings 1, B, A, AB, with v = (α,β,γ) and v′ = (α′,β′,γ′) unit vectors with all components nonzero. Two components of v×v′ vanishing forces v′ ∥ v, hence all three vanish. v·v′ = 0 and v×v′ = 0 cannot hold together. So the only possible supports of V′V† are:
+- {1}, which means V′ = ±V, so the two classes are the same class;
+- all 4 strings;
+- any 3 of the 4 strings;
+- exactly {A,B}, {A,AB} or {B,AB} (v ⊥ v′ together with one vanishing cross component).
+tclass.py found exactly these patterns, by explicit construction on 60 instances of the type.
+
+*(c) The |K∩K′| = 2 case [NUMERICAL, 60 sampled instances] (tclass.py).* Either collided string can be cancelled on its own (support 7 → 6), but never both at once with all coefficients nonzero. A proof of the "never both" statement is OPEN. Pairs involving 2-term classes (products {1,A′}·{1,A,B}, and two commuting 2-term classes) were not classified this round.
+
+*(d) More tuned boards (7 more nsearch2b runs, seeds 31–37, 480 s each; 51 boards in total with H.17.11) [NUMERICAL supports; exact F₂ tests].*
+- SH_grp fails on 45 of the 51. **SH_grp^r holds on all 51**, so by H.17.11(a) every one of them is a PF blend for every source state.
+- The largest facet value is 5.9·10⁻¹⁵. LP PF-blend decompositions were found at 4 source states each, with rational-rounding residual ≤ 3·10⁻⁷.
+- *Conjecture of H.17.11(c) [NUMERICAL, 51/51].* After right absorption there is at most one non-monomial group, and it has |H| = 2. 41 boards collapse to one group; 10 have the pattern {monomial, |H|=2}.
+- *Where the SH_grp failures come from (tbmerge.log):*
+  - In 33 of the 50 saved boards the "tuned" class is V′ = ±V, so V′V† = 1 and nsearch2 simply gave one class two labels. Their SH_grp failures are artefacts of that labelling: the pairs are really same-class pairs.
+  - In 8 boards V′V† has 2 terms with one common X-part: a monomial, so the classes merge.
+  - In 7 it has 2 terms with two X-parts, which is pattern (b) {A,B}-type or a Z-string pair, |H| = 2.
+  - The remaining 2 boards involve 2-term classes.
+  - So the genuinely tuned boards found so far all reduce to X-type |H| = 2 after absorption.
+
+*(e) Closure [OPEN].* (a)–(c) reduce the tuned case to a finite list of modified pair supports. For |K∩K′| = 1 the support is generic. For |K∩K′| = 2 it is generic minus one collided string, assuming (c). For K = K′ it is one of the supports in (b); 2-term classes are still to be classified. The remaining step was not done this round (time-box). It is to rerun shgrp_exh → shgrp_cube → shgrp_dfs with these supports, with each pair of states accepted if any allowed pattern passes the Pauli rule, testing SH_grp^r with r ranging over the classes. "Every admissible ≤3-term board is a PF blend" therefore remains **OPEN for tuned parameters**, with no counterexample candidate among 51 tuned boards.
+
 **H.17.7 Status after this round.**
 - PROVED: the sign-variant lemma H.17.3, with the stated scope; the Pauli coset-transport theorem and the reduction SH_grp ⇒ PF blend (H.17.8a–b); in the generic-support model, every admissible ≤3-term board, non-X boards included, satisfies SH_grp and is therefore a PF blend for every source state (H.17.9, exhaustive exact enumeration).
 - PROVED: right-absorbed coset transport, SH_grp^r ⇒ PF blend (H.17.11a). Each of the 19 regenerated tuned boards passes it, so each is a PF blend (supports read numerically, H.17.11b).
@@ -1269,7 +1298,7 @@ This contains H.17.8 (take r in any class and note V_c V_c† = 1). It also cont
   - the 19 tuned boards have explicit LP PF-blend decompositions at 4 source states each (H.17.11b);
   - no Z₁₆, continuous-phase or locally rotated X-type board violates any of the 22 genuine orbits.
 - OPEN:
-  - "non-X ≤3-term ⇒ PF blend" for tuned (non-generic) parameters. SH_grp fails on tuned boards (H.17.10), but the right-absorbed version SH_grp^r (H.17.11, proved sufficient) holds on all 19 regenerated tuned boards. That it holds on every admissible tuned board is open (H.17.11c);
+  - "non-X ≤3-term ⇒ PF blend" for tuned (non-generic) parameters. SH_grp fails on tuned boards (H.17.10), but the right-absorbed version SH_grp^r (H.17.11, proved sufficient) holds on all 19 regenerated tuned boards. That it holds on every admissible tuned board is open. It now holds on all 51 tuned boards (H.17.12d), and the cancellation patterns are classified for K=K′ [proved] and |K∩K′|=2 [numerical] (H.17.12a–c); the rerun of the exhaustive pipeline on the modified supports is the remaining step (H.17.12e);
   - the 22 genuine never-crossed orbits on general purifiable processes.
 
 Runs were cut off at the time limit: nsearch2 seeds 13 and 14 ran with `timeout 840`, and their logs are the last checkpoints.

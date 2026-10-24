@@ -1,0 +1,4 @@
+8   (|supp V|,|supp V2|,|supp V2 V^dag|,#X-parts): ((3, 3, 2, 1),)
+33   (|supp V|,|supp V2|,|supp V2 V^dag|,#X-parts): ((3, 3, 1, 1),)
+7   (|supp V|,|supp V2|,|supp V2 V^dag|,#X-parts): ((3, 3, 2, 2),)
+2   (|supp V|,|supp V2|,|supp V2 V^dag|,#X-parts): ((2, 3, 4, 2), (2, 2, 1, 1), (3, 2, 4, 2))
