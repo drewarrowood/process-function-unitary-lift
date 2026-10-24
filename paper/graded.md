@@ -1440,3 +1440,8 @@ We checked the literature on Oct 23 2026, by web search and by reading the prima
 - **Ten of them do not [PROVED, exact arithmetic].** Take the time-reversed Lugano loop of Guérin and Brukner (2018), and let each agent read and write its qubit in a tilted basis: one tilt for what it reads and an independent one for what it writes. With the right tilts the resulting classical statistics break ten of the 22 families. We checked this with exact fractions: the loop is exactly reversible, the statistics are exactly a valid classical process, and an inequality value is exactly negative.
 - **Why it was missed.** Earlier searches only tilted what agents read, or used special tilts. Tilting what they write is what breaks the pattern. The loop itself is well known; what changes is only how it is read.
 - **Still open.** Twelve families remain unbroken. A wider search on them is running.
+
+## 95. Plain-language note: a missing tool was not missing (Oct 24 2026)
+
+- **The claim (Round 13).** One remaining gap in the computer-checked proofs was said to need a theorem (diagonalising compact symmetric operators) that the Lean maths library lacks.
+- **The fact [checked in the library].** The library has had it since early 2026, and our own Lean files already use it. The gap is still not closed, but it is now ordinary work rather than a missing foundation.
