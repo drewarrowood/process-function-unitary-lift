@@ -919,6 +919,14 @@ table{border-collapse:collapse;font-size:.9rem;display:block;overflow-x:auto} th
 <li><strong>Every process function lifts to a unitary process: partly known.</strong> It had been asserted without a full proof (Baumeler, Gilani and Rashid). It had been proved for Lugano (Araújo et al. 2017), for a family of loops (Araújo, Guérin and Baumeler 2017), and for a subclass (Daher Ahmed and Kunjwal 2026). Daher Ahmed and Kunjwal state the general case as Conjecture VII.1, which our proof appears to settle. The extension to countably infinite alphabets is, as far as we found, new.</li>
 <li><strong>The three-term threshold (H.14): new.</strong> It is phrased in this note's own Switchboard terms.</li>
 <li><strong>No single-use fine-grained model (H.15.7b): an application.</strong> The underlying principle is known (Wechs et al. 2021). Only the exact certificate for this example is ours.</li>
+<li><strong>Update after H.15.7e: the H.13.2 machine was already known (H.15.8).</strong> Guérin and Brukner (2018) studied &quot;the Lugano process run backwards in time&quot;. They showed it is a legitimate reversible quantum loop and that it fails a causal test. Our H.13.2 machine is that same loop, viewed through Hadamard-rotated glasses on every agent's wires.
+<ul>
+<li>What we found no one saying is this. If you read that known loop's wires in the rotated way (the Hadamard basis), the classical statistics it produces are <em>not</em> a mixture of classical deterministic loops. If you read it the ordinary way (the computational basis), they are, trivially: each agent just gets a copy of the starting bits.</li>
+<li>So our &quot;beyond process-function mixtures&quot; claim survives. For H.13.2, though, it is a new reading of a known machine, not a new machine.</li>
+<li>The Switchboard (H.12) is not of this rotated form [PROVED in that frame], so the main example is unaffected.</li>
+<li>Among all 744 three-party deterministic classical loops, only the Lugano family gives a non-mixture when rotated this way [NUMERICAL].</li>
+</ul>
+</li>
 </ul>
 <h2>80. Plain-language note: the Switchboard fails a causal test too, and why symmetry saves work (Oct 23 2026)</h2>
 <ul>
@@ -933,7 +941,11 @@ table{border-collapse:collapse;font-size:.9rem;display:block;overflow-x:auto} th
 <li><strong>The H.13.2 board, turned sideways (H.15.7d) [PROVED].</strong> Apply a Hadamard rotation to every agent wire and the board becomes very simple. Each agent receives a bit straight from the past. The machine then flips agent k's outgoing bit according to the <em>other two</em> agents' incoming bits. For example, Alice's bit is flipped exactly when Bob's and Charlie's are both 1. No agent's flip depends on its own input. This echoes the Lugano rule that a majority for Alice never depends on Alice's own vote [INTERPRETIVE].</li>
 <li><strong>Routed graphs, still open.</strong> We checked that our validity checker accepts the published valid diagram for Lugano. We then tried two natural diagrams for the sideways H.13.2 board, and both fail the same way. In each, the agents can &quot;choose&quot; both what they send and what they received, and those two kinds of choice chase each other around a loop. Whether some other diagram works is still OPEN.
 <ul>
-<li><em>Update (H.15.7e): solved, and the answer is surprising [PROVED; one step CITED].</em> The sideways H.13.2 board is the famous Lugano process <em>run backwards in time</em>, up to a few local bit flips. Its flipping rule &quot;flip Alice when Bob and Charlie are both 1, …&quot; is exactly the Lugano majority rule after renaming 0 ↔ 1 on some wires. Running the published Lugano diagram backwards gives a valid diagram for H.13.2: every arrow is reversed, and the &quot;forward&quot; and &quot;backward&quot; kinds of choice swap roles, so the loop rule still holds. Our two failed diagrams had pointed time the wrong way. They put the flip-controlling bits on what the agents <em>receive</em>, but they belong on what the agents <em>send</em>.</li>
+<li><em>Update (H.15.7e): solved, and the answer is surprising [PROVED; one step CITED].</em> The sideways H.13.2 board is the famous Lugano process <em>run backwards in time</em>, up to a few local bit flips. Its flipping rule &quot;flip Alice when Bob and Charlie are both 1, …&quot; is exactly the Lugano majority rule after renaming 0 ↔ 1 on some wires. Running the published Lugano diagram backwards gives a valid diagram for H.13.2: every arrow is reversed, and the &quot;forward&quot; and &quot;backward&quot; kinds of choice swap roles, so the loop rule still holds. Our two failed diagrams had pointed time the wrong way. They put the flip-controlling bits on what the agents <em>receive</em>, but they belong on what the agents <em>send</em>.
+<ul>
+<li><em>Credit (H.15.8):</em> the backwards-in-time Lugano process itself, and the fact that it is a valid reversible loop failing a causal test, are due to Guérin and Brukner (2018). What is ours is noticing that H.13.2 <em>is</em> that process, and the diagram that follows.</li>
+</ul>
+</li>
 </ul>
 </li>
 <li><strong>How small can the Switchboard's measurements be? (H.15.7e).</strong>

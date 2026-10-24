@@ -28,9 +28,14 @@ Earlier versions of this note stated the "only if" direction as a conjecture and
 
 **Novelty and prior work (literature check of Oct 23 2026).** Status of each main claim, as far as we could find:
 - *Purifiable classical processes beyond conv(PF) (H.12.1, H.13.2) and convexity of Purif (H.13.1): new, as far as we can tell.* The inclusion conv(PF) ⊆ Purif was asserted earlier by Baumeler, Gilani and Rashid (Quantum 6, 673 (2022), ref. 27), without a separate proof for the coherent operator. We found no published statement of the converse ("purifiable classical = mixture of PFs"); it appears to be our own conjecture (C.3), and we found no earlier proof or counterexample. AFNB 2017 ask a different question (are all extensibly causal processes purifiable?). The nearest open question is Kunjwal and Oreshkov's (arXiv:2307.02565, ref. 36): can correlations from unitarily extendible process matrices be antinomic? We do not answer it. The H.13.2 correlation lies inside the (3,2,2) nomic polytope (H.13.5).
+  - *Update after H.15.7e (literature recheck, Oct 23 2026; see H.15.8).*
+    - The H.13.2 **board is not new**. Up to Hadamards and Pauli-X flips on the agent wires (and unitaries on source and sink), it is the time-reversed Lugano process |w_r⟩. Guérin and Brukner (NJP 20, 103031 (2018), arXiv:1805.12429, Sec. IV and App. D; ref. 38) define it, prove that it is a valid pure process, and show numerically that it violates a causal inequality.
+    - What we did not find stated anywhere is the *classical* fact: read in the Hadamard basis on the agent wires, this known pure process induces a classical process outside conv(PF). Read in the computational basis, it induces a PF mixture (H.15.8).
+    - So the claim "purifiable classical processes beyond conv(PF)" stands, as far as we can tell. For H.13.2, however, it rests on a known board read in a non-standard basis, not on a new board.
+    - The H.12 board is not of this form in the Hadamard frame (H.15.8). Whether it is equivalent to a time-reversed PF purification in some other local frame is OPEN.
 - *Every process function lifts to a unitary process (Section 1, Appendix A; countable alphabets, Appendix F): partly known.* Baumeler, Gilani and Rashid asserted it without a coherent-level proof. It was proved for the Lugano process (AFNB 2017, Section 7), for an n-party family (Araújo, Guérin and Baumeler, PRA 96, 052315 (2017), Appendix B, ref. 37), and for MECC unitaries (Daher Ahmed and Kunjwal, arXiv:2610.00579, Theorem VII.1, ref. 24). Those last authors state the general case as Conjecture VII.1. Our general proof appears to settle it (Section 6). We found no earlier treatment of countable alphabets.
 - *The X-type term threshold (H.14.1: boards with at most three terms always give PF blends; four terms can leave the hull): new.* It is stated in terms of this note's Switchboard definitions, and we found nothing comparable.
-- *No single-use fine-grained model for H.13.2 (H.15.7b): an application of known results.* That single-use acyclic and QC-QC realisations give causal correlations is due to Wechs, Dourdent, Abbott and Branciard (PRX Quantum 2, 030335 (2021)) and related work. What is ours is the exact causal-inequality certificate for this particular purifiable non-blend. Lugano, a PF, already violates causal inequalities, so "purifiable but not QC-QC" is not new in itself.
+- *No single-use fine-grained model for H.13.2 (H.15.7b): an application of known results.* That single-use acyclic and QC-QC realisations give causal correlations is due to Wechs, Dourdent, Abbott and Branciard (PRX Quantum 2, 030335 (2021)) and related work. What is ours is the exact causal-inequality certificate for this particular purifiable non-blend. Lugano, a PF, already violates causal inequalities, so "purifiable but not QC-QC" is not new in itself. Moreover, the board of H.13.2 is locally equivalent to the time-reversed Lugano process, and Guérin and Brukner (2018, ref. 38) already found a causal-inequality violation for that process (a numerical seesaw, I₁ ≈ −1/4, with a uniform-superposition source). Our contribution there is only an exact certificate in a different frame, with a different inequality and source. Likewise, the valid routed graph for H.13.2 (H.15.7e) is a direct corollary of VOKB's Lugano graph plus time reversal.
 
 Coverage caveat: we searched by web search and read the primary sources cited here. We did not run a systematic citation-graph or Google Scholar search, and preprints from the last few weeks may be missing.
 
@@ -1078,6 +1083,8 @@ The boards of H.12 and H.13.2 are *quantum* unitary extensions of classical proc
 
 Code: code/stochastic/cyclic/nomic/ (nomic_check.py, nomic_check.log). So the H.13.2 correlation is nomic (though, by H.15.7b, not causal). The H.12 correlation and other quantum instruments on these boards have not been tested. Whether any instruments on a purifiable board give antinomic correlations remains open.
 
+*Update (H.15.7e, H.15.8).* The H.13.2 board is the time-reversed Lugano process of Guérin and Brukner (ref. 38), up to local unitaries on the agent wires and the source and sink. In the computational basis that process induces a PF mixture; in the Hadamard basis it induces the H.13.2 process outside conv(PF). The nomic-polytope check above concerns the latter reading only. Kunjwal and Oreshkov's question is unaffected.
+
 ### H.14 Three-term boards, wider phase groups, exact per-orbit maxima (Oct 22 2026) [proved: H.14.1, H.14.2; exact algebraic values: H.14.3; numerical: H.14.4]
 
 Code: code/stochastic/cyclic/switchboard/h13/ (z8enum.py, canonN.py, analyzeN.py, cert_z8.py, exactmax.py, threeterm.py; logs alongside).
@@ -1329,7 +1336,7 @@ This suggests, but does not show, that Purif (convex by H.13.1) is not a polytop
   - Rule of thumb (INTERPRETIVE): when the classical skeleton of a rotated board is a process function g of the agents' inputs, look for the graph of the time reverse, where g reads outputs.
   - We did not separately encode the forward-orientation variant suggested in H.15.7d (stations X_k carrying f_k as an index); the reversed construction supersedes it. Whether that forward variant can be made valid is not claimed either way.
 - **Consequences.**
-  - [PROVED/CITED] H.13.2 is a routed-circuit-realisable (VOKB-valid) unitary process that violates causal inequalities (H.15.7b), exactly as Lugano does.
+  - [PROVED/CITED] H.13.2 is a routed-circuit-realisable (VOKB-valid) unitary process that violates causal inequalities (H.15.7b), exactly as Lugano does. *Prior work (H.15.8): the time-reversed Lugano process, its validity and a numerical causal-inequality violation are due to Guérin and Brukner (2018, ref. 38).*
   - [PROVED] The classical statistics p(i|o) of H.13.2 in the computational basis lie outside conv(PF) (H.13), even though the board is a Lugano process in the rotated frame. Membership in conv(PF) is basis-dependent, and the PF structure here lives in the Hadamard frame.
   - [conditional] This is consistent with VOKB Conjectures 1 and 2: the valid graph has loops, and they are weak.
   - H.12 remains without a routed graph (OPEN). Its skeleton is not of this permutation type: the dials have phases i, not only ±1.
@@ -1352,6 +1359,44 @@ This suggests, but does not show, that Purif (convex by H.13.1) is not a polytop
   - This is a much smaller certificate than H.15.7d's.
 - **Other sets [NUMERICAL; instr3_nice.log].** Best pool values: icosahedral (12 directions) −0.4165; icosahedral + dodecahedral (32 directions) −0.5143; continuous directions (projective, exact per-coordinate minimisation) −0.6874.
 - **Maximal violation over the pool [NUMERICAL lower bound only; instr3_h12_more_a.log, instr3_h12_more_b.log].** General 4-outcome POVM instruments, seeds 1–12 with 8 restarts each (96 runs). The best value is y·P = −0.7235 (seed 12, restart 3), and the earlier best was −0.7058. No upper bound on the violation is proved, so the maximal violation remains OPEN. For comparison, H.13.2's φ_A reaches −1.405.
+
+**H.15.8 Novelty recheck after H.15.7e: time reversal, frames, and what is new (Oct 23 2026) [labels per item].**
+
+*(A) Literature (CITED; each source fetched on Oct 23 2026 and searched in full text).*
+- **Guérin and Brukner, "Observer-dependent locality of quantum events", NJP 20, 103031 (2018), arXiv:1805.12429v4 (ref. 38).**
+  - App. D defines the time reversal of a pure process: |w_r⟩ := (SWAP_{PF} ⊗ ⊗_k SWAP_{I_k O_k}) |w*⟩. They prove it is a valid pure process, with induced map G_r(U, V) = G(U†, V†)†.
+  - Sec. IV applies this to the Lugano purification: |w_r⟩ = Σ_{x,y} |y⟩_P |x⟩_O |y⟩_I |x ⊕ f(y)⟩_F (their Eqs. (58)–(64)). This is our L^T of H.15.7e.2, with their f being the Lugano function in another labelling.
+  - With source Σ_u |u⟩/√8 they find, by seesaw, a violation I₁ ≈ −1/4 of a three-party causal inequality (their Eq. (70)) They note that classically the process has a simple causal realisation (copy the input), and they attribute the quantum violation to no-cloning.
+- **Baumann, Krumm, Guérin and Brukner, "Noncausal Page-Wootters circuits", PRR 4, 013180 (2022), arXiv:2105.02304 (ref. 39).** Their Sec. V.4 discusses the same "time reversed version of the Lugano process". They leave its realisation in their Page-Wootters framework open.
+- **Chiribella and Liu, "Quantum operations with indefinite time direction", Commun. Phys. (2022), doi:10.1038/s42005-022-00967-3.** Up to unitary equivalence, the input-output inversion of a unitary channel is the adjoint or the transpose; for a general bidirectional (bistochastic) channel it is C ↦ C† or C ↦ C^T.
+- **Oreshkov and Cerf (Nature Phys. (2015), doi:10.1038/nphys3414; NJP 18, 073037 (2016)).** A time-symmetric, and then time-neutral, operational formulation that extends the process-matrix framework.
+- **arXiv:2406.18489 (time-symmetric process matrices and causal inequalities).** Works out time-reversed process matrices and "backward" causal inequalities in that setting.
+- **Baumeler, Costa, Ralph, Wolf and Zych, CQG 36, 224002 (2019), arXiv:1703.00779.** Every process function extends to an invertible one with a source and a sink, and "the time-reversed process is then compatible with arbitrary reversed local operations". This is the classical time reversal.
+- **BGR 2022 (Quantum 6, 673) and Daher Ahmed–Kunjwal (arXiv:2610.00579).**
+  - A full-text search for time reversal or transposition found only a party-order reversal (BGR, Lemma 8) and a transposition step inside a proof (DAK, App. A).
+  - Neither discusses time-reversed PF purifications or their classical restrictions.
+  - DAK's SHIFT/PFU unitaries apply Hadamards controlled by a PF, which is a different construction from the phase lift below.
+- **Not found.** In any of these, or by web search, we found no statement that a time-reversed PF purification, read in a rotated local basis, induces a classical process outside conv(PF). Coverage caveat as in Section 0.
+
+*(B) Exact conceptual check.*
+- **Proposition H.15.8.1 [PROVED].** Let g be any process function and L_g: |s⟩|o⟩ ↦ |s ⊕ g(o)⟩|o⟩ its purification. In L_g^T each agent's input is a copy of the past register. So with any source ψ, decohering every agent wire in the computational basis gives p(i|o) = |ψ(i)|², independent of o. This is a mixture of the 8 constant functions, which are PFs (phase_lift.py checks that they are among the 744). Hence the computational-basis classical restriction of every time-reversed PF purification lies in conv(PF). This matches Guérin and Brukner's remark that the process is classically causal.
+- **Consequence.** H.13.2 is outside conv(PF) *only because* it reads L_lug^T in the Hadamard basis on the agent wires (Theorem H.15.7e.2). The two candidate framings fare as follows:
+  - Rejected: "purifiability is not closed under classical time reversal". It is not supported. Pure processes are closed under time reversal (Guérin–Brukner App. D), and the classical time reverse of a PF purification restricts to a PF mixture.
+  - Correct reading: classical restriction is basis-dependent. The same pure process gives a PF mixture in one local basis and a non-mixture in the conjugate basis [PROVED for L_lug^T, by Proposition H.15.8.1 and H.13.2].
+- **Phase lifts of all 744 PFs [NUMERICAL; phase_lift.py, phase_lift.log].**
+  - For a PF g, set U_o^g = Hd·diag((−1)^{o·g(z)})·Hd. Its purity follows for every g by the argument of H.15.7e.2 [PROVED].
+  - For each g, we computed the maximum over source states of all 29,344 facet violations, as in H.13.3.
+  - Result: U^g yields a process outside conv(PF) **exactly when g is one of the 64 PFs equivalent to Lugano** (that is, the non-causal ones). All 64 reach relative violation 0.140388; every other PF gives at most 5·10⁻¹⁵.
+  - The best ±1 class of H.13.3 (0.1404) is therefore precisely this family. Causal PFs, phase-lifted, stay inside the hull.
+- **H.12 is not a phase lift in this frame [PROVED, exact integer test; h12_frame.py, h12_frame.log].** For z = 101 and 111, the map o ↦ i^{m_o(z)} is not a constant times a character (−1)^{o·c}. So in the Hadamard frame the H.12 board is not a phased permutation, and not the phase lift of any PF. Whether H.12 is locally equivalent to some time-reversed PF purification in another frame is OPEN.
+
+*(C) What H.13.2's novelty now consists in [INTERPRETIVE summary of (A) and (B)].*
+- *Known:* the board (time-reversed Lugano, up to local unitaries), its purity, and the fact that it violates a causal inequality (Guérin–Brukner 2018).
+- *Ours (as far as found):*
+  - (i) Its classical restriction in the Hadamard basis is a purifiable classical process outside conv(PF), with an exact rational certificate (H.13.2).
+  - (ii) Among phase lifts of three-party binary PFs, exactly the Lugano class does this (numerical).
+  - (iii) Exact causal-inequality certificates (H.15.7b) and the routed-graph corollary (H.15.7e), both of which are applications.
+- *Unaffected:* H.12.1 (its board is not of this form in the Hadamard frame), the lifting theorem (Section 1), and the structural results of H.8–H.14 and H.17.
 
 ### H.16 Round 10 status (Oct 23 2026) [proved in Lean unless marked]
 - **Unitarity closed.** The H.12.3 gap "isometry, not unitary, for infinite ancillas" is now closed. `isUnitaryInf_Vsb` proves the Switchboard loop is unitary against every family of countable ancillas. `purification_conjecture_false_unitaryInf` then gives the counterexample in the unitary form. The proof checks row orthonormality (`row_scalar_key`, an exact kernel check) and shows that an isometry with orthonormal rows is onto.
@@ -1921,3 +1966,5 @@ Board class 10515 (ζ_8 phases listed in cert_z8.log) satisfies the Pauli rule e
 35. N. Paunković and M. Vojinović, Causal orders, quantum circuits and spacetime: distinguishing between definite and superposed causal orders, Quantum 4, 275 (2020); arXiv:1905.09682.
 36. R. Kunjwal and O. Oreshkov, Nonclassicality in correlations without causal order, arXiv:2307.02565 (2023; v3 2025).
 37. M. Araújo, P. A. Guérin and Ä. Baumeler, Quantum computation with indefinite causal structures, Physical Review A 96, 052315 (2017); arXiv:1706.09854.
+38. P. A. Guérin and Č. Brukner, Observer-dependent locality of quantum events, New Journal of Physics 20, 103031 (2018); arXiv:1805.12429.
+39. V. Baumann, M. Krumm, P. A. Guérin and Č. Brukner, Noncausal Page-Wootters circuits, Physical Review Research 4, 013180 (2022); arXiv:2105.02304.
