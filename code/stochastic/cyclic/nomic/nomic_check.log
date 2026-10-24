@@ -1,0 +1,15 @@
+(0) H.13.2 p valid (exact); entries x16:
+    [4, 4, 4, 0, 0, 4, 0, 0]
+    [0, 4, 0, 0, 4, 4, 4, 0]
+    [1, 1, 1, 1, 9, 1, 1, 1]
+    [9, 1, 1, 1, 1, 1, 1, 1]
+    [9, 1, 1, 1, 1, 1, 1, 1]
+    [1, 1, 1, 1, 9, 1, 1, 1]
+    [0, 4, 0, 0, 4, 4, 4, 0]
+    [4, 4, 4, 0, 0, 4, 0, 0]
+nomic vertices in (3,2,2): 152128 (from 186 PF partition triples)
+(1) max GYNIN over nomic vertices: 0.625 (K-O bound 5/8 = 0.625)
+(2) LP membership status: 0 Optimization terminated successfully. (HiGHS Status 7: Optimal)
+    support size: 23
+(3) exact rational decomposition: weights >= 0, sum 1, reproduces p exactly: ['1/144', '1/16', '1/18', '1/24', '1/48']
+CONCLUSION: the H.13.2 correlation (identity instruments) is NOMIC; it does not answer K-O's question.
