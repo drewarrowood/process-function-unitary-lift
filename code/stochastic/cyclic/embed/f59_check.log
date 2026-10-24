@@ -1,0 +1,8 @@
+(1a) Lugano on bits: unique fixed point for all 64 local function triples: True
+(1b) lifted w on Z_4^3: unique fixed point, 3000 random local map triples: True
+(2,3) DFT x haar: |M - F.2 matrix| = 0.00e+00, |M M^+ - 1| = 2.11e-15, |M^+ M - 1| = 1.78e-15
+(2,3) haar: |M - F.2 matrix| = 0.00e+00, |M M^+ - 1| = 1.11e-15, |M^+ M - 1| = 1.67e-15
+(4) trial 0: max commutator 0.37, |sum_c (x) F - 1| = 2.22e-16
+(4) trial 1: max commutator 0.34, |sum_c (x) F - 1| = 2.22e-16
+(4) trial 2: max commutator 0.39, |sum_c (x) F - 1| = 2.22e-16
+(5) decomposition (m=3 inputs, r=3 outcomes, dim 4): max |F - sum G| = 1.57e-16, |sum_f G_f - 1| = 4.44e-16
