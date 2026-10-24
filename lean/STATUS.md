@@ -319,3 +319,19 @@ Gaps:
 - The F.5.5 result needs ρ > 0 everywhere and a global bijection. It does not cover local diffeomorphisms or a degenerate Jacobian.
 - Ancillas of uncountable dimension are still not covered.
 - Math goals 4 (non-X 3-term boards) and 5 (the 23 never-crossed inequalities) were not attempted this round.
+
+## Round 11 (Oct 23 2026)
+
+New files: `CounterexampleAuto.lean`, `LiftAuto.lean`, `ContinuousLocal.lean`. All sorry-free, no `native_decide`, axioms only propext, Classical.choice and Quot.sound (checked with `#print axioms`).
+- **Automatic boundedness.** `PFUL.Counterexample.unitary_of_unitaryKernel`: a kernel with orthonormal columns and rows, over an index set of any cardinality, is the matrix of a bounded unitary of ℓ². No operator or boundedness hypothesis.
+- `IsUnitaryKer` / `isUnitaryKer_Vsb`: the Switchboard loop is unitary for local operations given only as unitary kernels, with ancillas of **any cardinality**. `IsUnitaryAll` / `isUnitaryAll_Vsb`: Round 10's `IsUnitaryInf` without the `Countable` hypothesis (it was never used). `purification_conjecture_false_unitaryKer`: strongest form of H.12.1.
+- `PFUL.LiftAuto.permPhaseUnitary`, `closedLoop_l2_unitary`: for any index set and any bijection, ψ ↦ φ·(ψ∘e) is a unitary of ℓ²; for every process function on groups of any cardinality, ψ ↦ φ(o)ψ(o − w o) is a unitary of ℓ²(∏ G_k), with no measurability, countability or boundedness assumed.
+- `PFUL.Continuous.densityIsoₗᵢ`: √ρ-multiplication is an isometry L²(ρμ) → L²(μ) for every measurable ρ ≥ 0.
+- `closedLoop_isometry`: any measurable g (not necessarily injective) with g_*(ρμ) = μ gives an isometry ψ ↦ φ√ρ(ψ∘g). `closedLoop_unitary_ae`: unitary if g is a measurable bijection and ρ ≠ 0 a.e.
+- `closedLoop_jacobian_isometry`: g measurable, injective and differentiable (within s) on a conull measurable s with conull image; Jacobian may vanish; weight √|det g'|; isometry. `closedLoop_jacobian_unitary_ae`: measurable bijection, differentiable off a null set, conull image of s, det g' ≠ 0 a.e.: unitary. Covers piecewise-smooth bijections (e.g. threshold Lugano lifts).
+
+Gaps:
+- Hypotheses kept: measurability of |det g'| and the conull image of s (Lusin (N)); the latter is necessary (singular homeomorphisms). Non-injective local diffeomorphisms are not isometries (degree factor), so they are outside the point-map class.
+- The composite F.5.5 statement (point map g composed with τ_w in one formula) is not restated in Lean; it is a composition of `closedLoop_unitary` with `closedLoop_jacobian_unitary_ae`.
+- Conjecture F.5.7: Proposition F.5.8 (causal w, strong convergence of discretisations to the circuit loop) is proved on paper only; for Fourier-type V_k it is conditional on fixing strongly convergent unitary grid approximants. The non-causal case is OPEN.
+- Automatic boundedness/normality of positive TP maps on trace class (Round 8 gap) is unchanged.
