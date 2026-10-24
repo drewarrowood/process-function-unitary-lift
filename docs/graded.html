@@ -931,7 +931,18 @@ table{border-collapse:collapse;font-size:.9rem;display:block;overflow-x:auto} th
 </ul>
 </li>
 <li><strong>The H.13.2 board, turned sideways (H.15.7d) [PROVED].</strong> Apply a Hadamard rotation to every agent wire and the board becomes very simple. Each agent receives a bit straight from the past. The machine then flips agent k's outgoing bit according to the <em>other two</em> agents' incoming bits. For example, Alice's bit is flipped exactly when Bob's and Charlie's are both 1. No agent's flip depends on its own input. This echoes the Lugano rule that a majority for Alice never depends on Alice's own vote [INTERPRETIVE].</li>
-<li><strong>Routed graphs, still open.</strong> We checked that our validity checker accepts the published valid diagram for Lugano. We then tried two natural diagrams for the sideways H.13.2 board, and both fail the same way. In each, the agents can &quot;choose&quot; both what they send and what they received, and those two kinds of choice chase each other around a loop. Whether some other diagram works is still OPEN.</li>
+<li><strong>Routed graphs, still open.</strong> We checked that our validity checker accepts the published valid diagram for Lugano. We then tried two natural diagrams for the sideways H.13.2 board, and both fail the same way. In each, the agents can &quot;choose&quot; both what they send and what they received, and those two kinds of choice chase each other around a loop. Whether some other diagram works is still OPEN.
+<ul>
+<li><em>Update (H.15.7e): solved, and the answer is surprising [PROVED; one step CITED].</em> The sideways H.13.2 board is the famous Lugano process <em>run backwards in time</em>, up to a few local bit flips. Its flipping rule &quot;flip Alice when Bob and Charlie are both 1, …&quot; is exactly the Lugano majority rule after renaming 0 ↔ 1 on some wires. Running the published Lugano diagram backwards gives a valid diagram for H.13.2: every arrow is reversed, and the &quot;forward&quot; and &quot;backward&quot; kinds of choice swap roles, so the loop rule still holds. Our two failed diagrams had pointed time the wrong way. They put the flip-controlling bits on what the agents <em>receive</em>, but they belong on what the agents <em>send</em>.</li>
+</ul>
+</li>
+<li><strong>How small can the Switchboard's measurements be? (H.15.7e).</strong>
+<ul>
+<li>With only the six &quot;textbook&quot; directions (±x, ±y, ±z), none of our 2,432 scorecards is failed [NUMERICAL].</li>
+<li>Add the cube's edge and corner directions and it fails, with a short exact proof. The score is 131/48 − (13√6 + 19√2 + 7√3)/24 ≈ −0.222. You can check that this is negative using three decimal places of each square root [PROVED].</li>
+<li>The best score we found with any measurements is about −0.72 [NUMERICAL]. Whether that is the true limit is OPEN.</li>
+</ul>
+</li>
 <li><strong>Symmetry and orbits, gently (H.17.15).</strong> Suppose you have to check 1,071 tile designs for a flaw, and you know that rotating or mirroring a tile can never create or remove the flaw. Then you only need to check one tile from each family of designs that are rotations or mirror images of one another. Here, literally:
 <ul>
 <li>A <em>class</em> is the list of Pauli strings that appear in one of the board's dials. There are 63 one-string lists and 1,008 two-string lists, which gives 1,071 classes.</li>

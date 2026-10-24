@@ -1750,7 +1750,7 @@ Every board proved to be a PF blend has a classical realisation as a mixture of 
 <li>The mechanism is the same in both. With full agent routes, each agent has a forward choice (its output w<sub>k</sub>), which gives green arrows into the stations. It also has a backward choice (its input z<sub>k</sub>), which gives red arrows out of the stations. In Lugano the agents have no backward choice: the agent's output index carries a copy of its classical input l, and the quantum content sits in a separate two-dimensional sector. For W′ the agent's input z<sub>k</sub> is itself the coherent qubit, so that trick needs a different sector structure.</li>
 </ul>
 </li>
-<li><strong>Status of (A): OPEN.</strong> No valid routed graph for H.13.2 is found, and no obstruction is proved. Excluded so far (by exact check, not by a general argument): the Fourier-station graphs of H.15.7c; the single-station and per-agent-station graphs for W′ with one-dimensional per-agent computational sectors. The structural fact &quot;f<sub>k</sub> does not depend on z<sub>k</sub>&quot; is the analogue of Lugano's &quot;a majority for Alice does not depend on Alice's vote&quot;. That analogy is INTERPRETIVE. The natural next try is a Lugano-type graph in which the stations X<sub>k</sub> carry the value of f<sub>k</sub> as an index (&quot;did agent k's bit get flipped&quot;), and each agent's coherent qubit sits in a non-trivial sector.</li>
+<li><strong>Status of (A): OPEN.</strong> No valid routed graph for H.13.2 is found, and no obstruction is proved. Excluded so far (by exact check, not by a general argument): the Fourier-station graphs of H.15.7c; the single-station and per-agent-station graphs for W′ with one-dimensional per-agent computational sectors. The structural fact &quot;f<sub>k</sub> does not depend on z<sub>k</sub>&quot; is the analogue of Lugano's &quot;a majority for Alice does not depend on Alice's vote&quot;. That analogy is INTERPRETIVE. The natural next try is a Lugano-type graph in which the stations X<sub>k</sub> carry the value of f<sub>k</sub> as an index (&quot;did agent k's bit get flipped&quot;), and each agent's coherent qubit sits in a non-trivial sector. <em>Update: settled in H.15.7e. W′ is, up to local Pauli flips, the time reverse of the Lugano purification, and the reversed VOKB graph is valid [PROVED, with the fleshing-out of VOKB's circuit CITED and re-checked exactly].</em></li>
 </ul>
 <p><em>(B) Instruments: H.12 violates a causal inequality.</em></p>
 <ul>
@@ -1777,9 +1777,74 @@ Every board proved to be a PF blend has a classical realisation as a mixture of 
 <li>[PROVED] By Lemma H.15.7a (classical carriers) and the Wechs-Dourdent-Abbott-Branciard theorem (QC-QCs) [CITED], H.12 has no single-use fine-grained causally ordered model, exactly like H.13.2. This settles the H.12 item left open in H.15.7(B) and H.15.7c.</li>
 <li>[conditional] VOKB Conjectures 1 and 2 then predict that any valid routed graph for H.12 has weak loops.</li>
 <li>Why H.15.7c missed it: its 13-direction grid with output g<sub>x</sub>(b) contains the right kind of operation (emit the setting) but not the right directions. In addition, hill climbing on t is stuck on the t = 1 plateau. The fixed-facet objective removes both problems.</li>
-<li>Still OPEN: Z8 class 10515 (no violation found in this family); whether H.12's violation is attained at &quot;nice&quot; directions; and the maximal violation.</li>
+<li>Still OPEN: Z8 class 10515 (no violation found in this family). <em>Update (H.15.7e): &quot;nice&quot; directions settled (cube-26 directions violate, exactly; octahedral ones do not violate the pool); maximal violation estimated, not settled.</em></li>
 </ul>
 </li>
+</ul>
+<p><strong>H.15.7e Fourth pass (Oct 23 2026): H.13.2 is a time-reversed Lugano process, hence has a valid routed graph; &quot;nice&quot; directions for H.12 [labels per item].</strong></p>
+<p><em>(A) A valid routed graph for H.13.2.</em></p>
+<ul>
+<li><strong>Lemma H.15.7e.1 [PROVED; exhaustive check in rg_h13_lugano.py, rg_h13_lugano.log].</strong> The function f(z) = (z<sub>B</sub> z<sub>C</sub>, z<sub>A</sub>(1 + z<sub>C</sub>), z<sub>A</sub> ∨ z<sub>B</sub>) of H.15.7d is a <em>process function</em>: for each of the 4³ choices of local maps h<sub>k</sub>: {0,1} → {0,1}, the loop z = f(h(z)) has exactly one fixed point. Moreover f is the Lugano function up to relabelling. With lug(a, b, c) = ((1−b)c, (1−c)a, (1−a)b), we have f(o) = lug(o ⊕ f<sub>o</sub>) ⊕ f<sub>i</sub> for all o, where f<sub>o</sub> = (0,1,0) and f<sub>i</sub> = (0,0,1). No party permutation is needed.</li>
+<li><strong>Theorem H.15.7e.2 [PROVED; exact 64×64 integer check, rg_h13_lugano.py].</strong> Let L: |s⟩<sub>P</sub> |o⟩<sub>AO</sub> ↦ |s ⊕ lug(o)⟩<sub>AI</sub> |o⟩<sub>F</sub> be the Lugano purification (a permutation), and let L<sup>T</sup> be its time reverse. In L<sup>T</sup>, the old future F is the past, the old agent outputs AO are the agent inputs, the old agent inputs AI are the agent outputs, and the old past P is the future. Then the H.13.2 purification is
+V<sub>13</sub>.2 = (Hd X<sup>f<sub>o</sub></sup>)_AI (Hd X<sup>f<sub>i</sub></sup>)_F · L<sup>T</sup> · (Hd)_AO (X<sup>f<sub>o</sub></sup> Hd)_P,
+where the brackets are local unitaries: Hadamards and Pauli-X flips on each agent's input and output wires and on the past and future.
+<ul>
+<li>Proof sketch: W′ (H.15.7d) sends (z, w) to (z, w ⊕ f(z)). Substitute f(z) = lug(z ⊕ f<sub>o</sub>) ⊕ f<sub>i</sub> and compare with L<sup>T</sup>: (p, q) ↦ (p, q ⊕ lug(p)). The integer check confirms the identity entry by entry.</li>
+<li>In words: H.13.2 <em>is</em> the Lugano process, run backwards in time and viewed in the Hadamard basis.</li>
+</ul>
+</li>
+<li><strong>Corollary H.15.7e.3 (valid routed graph) [PROVED, with one CITED step].</strong>
+<ul>
+<li><em>The graph.</em> Reverse every arrow of VOKB's Lugano graph (Fig. 27) and transpose every route. The checker (rg_check.py) reports: univocal and adjoint univocal; branches A, B, C: 2, X: 5, F: 1; 38 branch-graph arrows; weak-loops principle satisfied. This is expected, because both principles are symmetric under reversal, which swaps green and red arrows.</li>
+<li><em>The fleshing-out.</em> We reconstructed VOKB's Lugano circuit (Fig. 30, eqs. (20)–(21)): a CNOT l → p<sub>A</sub> giving A<sub>in</sub> = p<sub>A</sub> ⊕ l; node V sending (vote = A<sub>out</sub>, l = 0) or (vote 0, l = 1; A<sub>out</sub> to F); and station X on the constraint set. Every node is a permutation of basis states. So the link product on a basis input is the sum over consistent internal assignments. We checked (rg_lugano_flesh.py, rg_lugano_flesh.log) that for every past p and agent-output a there is exactly one consistent assignment, that A<sub>in</sub> = p ⊕ lug(a), and that the F record determines a. Hence the composite is L [exact]. That this reconstruction is VOKB's figure is CITED.</li>
+<li><em>Reversal.</em> Transposing every node gives a routed circuit on the reversed graph whose composite is L<sup>T</sup>. Any agent unitary T corresponds bijectively to T<sup>T</sup>, so the agent slots are unchanged as sets. Absorbing the local unitaries of Theorem H.15.7e.2 into the agent nodes and the global past and future gives a valid routed circuit for H.13.2.</li>
+</ul>
+</li>
+<li><strong>The obstruction pattern behind H.15.7c–d [PROVED for the listed graphs; general statement INTERPRETIVE].</strong>
+<ul>
+<li>The failed graphs used the forward orientation, where the arguments of f (the z's) are agent <em>inputs</em>. Then each agent has a backward choice (red arrows out of the stations) and a forward choice (green arrows into them), and these close mixed loops.</li>
+<li>The valid graph uses the reversed orientation, in which the arguments of f are agent <em>outputs</em>, as in Lugano's votes. There the agents have no backward choice.</li>
+<li>Rule of thumb (INTERPRETIVE): when the classical skeleton of a rotated board is a process function g of the agents' inputs, look for the graph of the time reverse, where g reads outputs.</li>
+<li>We did not separately encode the forward-orientation variant suggested in H.15.7d (stations X<sub>k</sub> carrying f<sub>k</sub> as an index); the reversed construction supersedes it. Whether that forward variant can be made valid is not claimed either way.</li>
+</ul>
+</li>
+<li><strong>Consequences.</strong>
+<ul>
+<li>[PROVED/CITED] H.13.2 is a routed-circuit-realisable (VOKB-valid) unitary process that violates causal inequalities (H.15.7b), exactly as Lugano does.</li>
+<li>[PROVED] The classical statistics p(i|o) of H.13.2 in the computational basis lie outside conv(PF) (H.13), even though the board is a Lugano process in the rotated frame. Membership in conv(PF) is basis-dependent, and the PF structure here lives in the Hadamard frame.</li>
+<li>[conditional] This is consistent with VOKB Conjectures 1 and 2: the valid graph has loops, and they are weak.</li>
+<li>H.12 remains without a routed graph (OPEN). Its skeleton is not of this permutation type: the dials have phases i, not only ±1.</li>
+</ul>
+</li>
+</ul>
+<p><em>(B) H.12: nice directions and the size of the violation.</em></p>
+<ul>
+<li><strong>Octahedral (Clifford) directions do not violate the pool [NUMERICAL; instr3_nice.py, instr3_nice.log].</strong>
+<ul>
+<li>Exhaustive search over all 6⁶ assignments of the six stabiliser directions ±x, ±y, ±z, with o = setting, gives min over the pool of y·P = +0.232233 &gt; 0.</li>
+<li>Coordinate descent over directions × output modes g ∈ {0, 1, a, 1−a} (30 seeds) gives the same value.</li>
+<li>This does not exclude violations of causal inequalities outside the 2,432-member pool.</li>
+</ul>
+</li>
+<li><strong>Cube-26 directions (faces, edges and vertices of the cube) already violate [PROVED; exact in Q(√2, √3); instr3_exact.py, instr3_exact.log].</strong>
+<ul>
+<li><em>Instrument.</em> Agent k, setting x measures along n<sub>k,x</sub> and emits a constant output:
+<ul>
+<li>A: n<sub>A,0</sub> = (1, −1, −1)/√3 with o = 0; n<sub>A,1</sub> = (0, −1, −1)/√2 with o = 1.</li>
+<li>B: n<sub>B,0</sub> = (1, −1, −1)/√3 with o = 0; n<sub>B,1</sub> = (0, −1, 1)/√2 with o = 1.</li>
+<li>C: n<sub>C,0</sub> = n<sub>C,1</sub> = (0, 0, 1) with o = 1 and o = 0 respectively.</li>
+<li>So A and B emit their setting and C emits its negation.</li>
+</ul>
+</li>
+<li><em>Inequality.</em> y is a ±1 integer vector, listed in the log. Its minimum over all 138,304 deterministic causal strategies is exactly 0.</li>
+<li><em>Exactness.</em> P(a|x) has entries in Q(√2, √3) (listed in the log), and its rows sum to 1 exactly.</li>
+<li><em>Value.</em> y·P = 131/48 − (13√6 + 19√2 + 7√3)/24 ≈ −0.22241.</li>
+<li><em>Sign, by hand.</em> Since 2.449² &lt; 6, 1.414² &lt; 2 and 1.732² &lt; 3, we have 13√6 + 19√2 + 7√3 &gt; 31.837 + 26.866 + 12.124 = 70.827 &gt; 65.5 = 24·131/48.</li>
+<li>This is a much smaller certificate than H.15.7d's.</li>
+</ul>
+</li>
+<li><strong>Other sets [NUMERICAL; instr3_nice.log].</strong> Best pool values: icosahedral (12 directions) −0.4165; icosahedral + dodecahedral (32 directions) −0.5143; continuous directions (projective, exact per-coordinate minimisation) −0.6874.</li>
+<li><strong>Maximal violation over the pool [NUMERICAL lower bound only; instr3_h12_more_a.log, instr3_h12_more_b.log].</strong> General 4-outcome POVM instruments, seeds 1–12 with 8 restarts each (96 runs). The best value is y·P = −0.7235 (seed 12, restart 3), and the earlier best was −0.7058. No upper bound on the violation is proved, so the maximal violation remains OPEN. For comparison, H.13.2's φ_A reaches −1.405.</li>
 </ul>
 <h3>H.16 Round 10 status (Oct 23 2026) [proved in Lean unless marked]</h3>
 <ul>
