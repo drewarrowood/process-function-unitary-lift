@@ -34,6 +34,7 @@ def lp(p):
     lam=r.x[:n]; fr=[Fraction(x).limit_denominator(10**12) for x in lam]; fr=[max(f,Fraction(0)) for f in fr]; S=sum(fr); fr=[f/S for f in fr]
     rec=np.array([float(sum(fr[t]*int(PFf[t,j]) for t in range(n) if fr[t])) for j in range(64)])
     return r.fun, int((lam>1e-12).sum()), np.abs(rec-p).max()
+if __name__!="__main__": raise SystemExit  # library use stops here
 rng=np.random.default_rng(0); out=[]
 files=sorted(glob.glob('tb_*.npz'))+['shp_11_3339.npy']
 for f in files:
