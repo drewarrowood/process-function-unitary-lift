@@ -1,0 +1,11 @@
+rank of validity equalities 27 -> affine dim 37
+facet index 6928 range on PFs 1 g0 1/16
+dual LP 0 0.0
+simple rationalisation failed; exact solve on tight set
+EXACT: min r = 0  g0+b.y = 0  => certificate True
+y (nonzero): {0: '-1/128', 1: '3/128', 2: '3/128', 3: '-1/128', 4: '3/128', 5: '-1/128', 6: '-1/128', 7: '3/128', 9: '-1/8', 12: '-1/8', 14: '1/16', 17: '1/16', 24: '-1/8', 26: '1/16', 29: '-1/32', 32: '1/16', 34: '-1/32', 41: '1/16', 44: '1/16', 46: '-1/32', 49: '-1/32'}
+r>0 on 1 coordinates (i,o): [((1, 1, 1), (0, 0, 0), '1')]
+extra forced zeros 0 ; dim Valid = 37 ; dim F = 36 ; facet of Valid: True
+coordinates identically 0 on Valid: 0
+coords zero on F but not on Valid: [((1, 1, 1), (0, 0, 0))]
+PFs on the face (r.p=0): 651 of 744

@@ -1626,26 +1626,34 @@ This is a lower bound on the violation over Purif, not the maximum. General boar
 <li><em>Scope.</em> The statement covers same-class type-3 sign-variant pairs in the <em>generic-support</em> model: a board with generic parameters whose only SH failures would come from sign variants of one class cannot be admissible. It says nothing about tuned parameters. sigsearch agrees: of 60,000 structures, 4,098 contain sign variants and 59 are hard, and none fails SH.</li>
 </ul>
 <p><strong>H.17.4 Tuned boards do violate SH, but not SH⁺⁺, and stay in the hull [NUMERICAL].</strong> With tuned parameters the conservative SH test failed on 35 hard boards across the nsearch2 seeds. The best facet value among them was 5.9·10⁻¹⁵, so none is a violation. Only one board failed SH⁺ (seed 11, board 3339, saved as shp_11_3339.npy). It fails SH⁺ on 6 pairs and satisfies SH⁺⁺ for a suitable common right factor (0 bad pairs; shpcheck.log). Seeds 12–14 had no SH⁺ failures. <em>Every hard board found satisfies SH⁺⁺</em> [NUMERICAL]. A proof that SH⁺⁺ always holds is <strong>OPEN</strong>.</p>
-<p><strong>H.17.5 What validity alone gives on the facets [EXACT-CERTIFIED for 22 orbits; NUMERICAL for orbit 92].</strong> Let Valid be the polytope of p(i|o) ≥ 0, normalised, such that every deterministic local intervention has fixed-point probability 1. The validity equalities have rank 27, so Valid has affine dimension 37. Purif ⊆ Valid.</p>
+<p><strong>H.17.5 What validity alone gives on the facets [EXACT-CERTIFIED for 22 orbits; PROVED for orbit 92].</strong> Let Valid be the polytope of p(i|o) ≥ 0, normalised, such that every deterministic local intervention has fixed-point probability 1. The validity equalities have rank 27, so Valid has affine dimension 37. Purif ⊆ Valid.</p>
 <ul>
 <li><em>Exact certificates</em> (validcert): for each of the 22 never-crossed orbits other than 92 there is an exact rational point of Valid where the facet functional is negative. The functional is rationalised and checked to reproduce the integer facet values on all 744 PFs. The relative values are −2/9 for orbits 4–11, 14 and 25, and −1/6 for orbits 26, 28, 30, 31, 53, 54, 57, 66, 69, 75, 79 and 81. So validity alone does not imply these 22 inequalities. Any proof that they hold on Purif must use purity [EXACT-CERTIFIED].</li>
-<li><em>LP screen over all 93 orbits</em> (validlp): 92 of the 93 facet orbits have strictly negative LP minimum on Valid (relative values between −1/3 and −1/6). For orbit 92 the minimum is −6·10⁻¹⁶, which is 0 to round-off. So orbit 92 appears to hold on <em>all</em> of Valid, and hence trivially on Purif [NUMERICAL]. An exact dual certificate for orbit 92 is <strong>OPEN</strong>. If one is found, orbit 92 moves from &quot;never crossed&quot; to &quot;proved for every purifiable process&quot;.</li>
+<li><em>LP screen over all 93 orbits</em> (validlp): 92 of the 93 facet orbits have strictly negative LP minimum on Valid (relative values between −1/3 and −1/6). For orbit 92 the minimum is 0.</li>
+<li><em>Orbit 92 is just positivity [PROVED, exact dual certificate; cert92.py, cert92.log].</em> The orbit-92 representative (facet 6928) has range 1 on the PFs and g₀=1/16. Exact rational multipliers y were found for the 72 validity equalities (normalisation and fixed-point equalities, denominators ≤128). They satisfy g − Aᵀy = e_(111|000) and g₀ + b·y = 0 exactly in Fractions. Hence <strong>on all of Valid the orbit-92 functional equals p(111|000)</strong>, which is ≥ 0 for every process. Consequences:
+<ul>
+<li>The minimisers on Valid are exactly the valid processes with p(111|000)=0. This face has dimension 36 (dim Valid = 37), and no coordinate vanishes identically on Valid. So the face is a facet of Valid, namely the positivity facet p(111|000) ≥ 0.</li>
+<li>651 of the 744 PFs lie on it.</li>
+<li>Orbit 92 (64 facets) is the orbit of the 64 positivity facets p(i|o) ≥ 0. J.1's representative already reads p(111|000) ≥ 0.</li>
+<li>It holds for every classical process, purifiable or not. It was never a genuine open inequality. <strong>The never-crossed open list is therefore the 22 orbits 4–11, 14, 25, 26, 28, 30, 31, 53, 54, 57, 66, 69, 75, 79, 81.</strong> Every one of these is violated somewhere on Valid at an exact rational point, so a proof that they hold on Purif needs purity.</li>
+</ul>
+</li>
 </ul>
 <p><strong>H.17.6 The 23 orbits under wider board families [NUMERICAL].</strong> None of the following produced a violation.</p>
 <ul>
 <li><em>Z₁₆ X-type boards</em> (z16sample): 2 runs, more than 5,500 sampled pure boards each, scored on every facet of the 23 orbits. The best value was 3.9·10⁻¹⁵.</li>
-<li><em>Continuous X-type phases</em> (xcont): the violation was maximised with a penalty on the Pauli-rule residual, starting from the best Z₈ boards. The largest values were 2.3·10⁻⁷ (orbit 25, residual 3·10⁻¹¹), 3·10⁻⁸ (orbit 92) and ≤ 10⁻⁸ for the others. These are consistent with penalty/round-off artefacts, below the 10⁻⁶ threshold for exact certification, and were not pursued.</li>
+<li><em>Continuous X-type phases</em> (xcont): the violation was maximised with a penalty on the Pauli-rule residual, starting from the best Z₈ boards. The largest values were 2.3·10⁻⁷ (orbit 25, residual 3·10⁻¹¹), 3·10⁻⁸ (orbit 92, which is positivity by H.17.5, so this value is purely an artefact) and ≤ 10⁻⁸ for the others. These are consistent with penalty/round-off artefacts, below the 10⁻⁶ threshold for exact certification, and were not pursued.</li>
 <li><em>Local rotations</em> L=L<sub>A</sub>⊗L<sub>B</sub>⊗L<sub>C</sub> applied on the left. These preserve the Pauli rule exactly, so every L·U is pure, but p changes. locrot tried the 216 local Clifford cosets on all 193 Z₄ classes (2 runs) and got a best value of 4.4·10⁻¹⁵. locopt optimised continuously over SU(2)³ from Z₄ starts (2 runs) and got a best value of 3.6·10⁻¹⁵.</li>
 </ul>
 <p><strong>H.17.7 Status after this round.</strong></p>
 <ul>
 <li>PROVED: the sign-variant lemma H.17.3, with the stated scope.</li>
-<li>EXACT-CERTIFIED: 22 of the 23 never-crossed orbits are not implied by validity alone (H.17.5).</li>
+<li>PROVED (exact dual certificate): orbit 92 is the positivity orbit and holds on all of Valid (H.17.5).</li>
+<li>EXACT-CERTIFIED: the other 22 never-crossed orbits are not implied by validity alone (H.17.5).</li>
 <li>NUMERICAL:
 <ul>
 <li>pure non-X ≤3-term boards exist and all tested ones lie in the PF hull;</li>
 <li>every hard board found satisfies SH⁺⁺;</li>
-<li>orbit 92 holds on Valid;</li>
 <li>no Z₁₆, continuous-phase or locally rotated X-type board violates any of the 23 orbits.</li>
 </ul>
 </li>
@@ -1653,8 +1661,7 @@ This is a lower bound on the violation over Purif, not the maximum. General boar
 <ul>
 <li>&quot;non-X ≤3-term ⇒ PF blend&quot;;</li>
 <li>the reduction SH⁺⁺ ⇒ PF blend, and whether SH⁺⁺ always holds;</li>
-<li>an exact certificate for orbit 92 on Valid;</li>
-<li>the 23 orbits on general purifiable processes.</li>
+<li>the 22 genuine never-crossed orbits on general purifiable processes.</li>
 </ul>
 </li>
 </ul>
@@ -1736,7 +1743,7 @@ This is a lower bound on the violation over Purif, not the maximum. General boar
 <p><em>Maxima.</em> &quot;Rel.&quot; means the largest violation found divided by the facet's range on process functions. The Z<sub>4</sub> exact column gives the minimal polynomial of λ_min, the least eigenvalue of the facet operator Σ g P<sub>o,i</sub> + g0 in the facet's normalisation. The violation is its root at the float-selected maximising board; this exact value is [proved, exact] for that board, while the claim that it is the maximum over the class is [numerical]. The Z<sub>8</sub> column is [numerical].</p>
 <h3>J.1 The 23 never-crossed orbits [numerical]</h3>
 <p>Status for all 23 orbits: never violated by the Z<sub>4</sub> (386 classes) and Z<sub>8</sub> (10,603 classes) X-type boards, maximised over source states [numerical].</p>
-<p><em>Update (H.17, Oct 23 2026).</em> None of the 23 orbits is violated by Z<sub>16</sub> X-type boards, continuous X-type phases, locally rotated (local Clifford and SU(2)<sup>3</sup>) X-type boards, or pure non-X boards with ≤3 terms per outcome [numerical]. Orbits 4–11, 14, 25, 26, 28, 30, 31, 53, 54, 57, 66, 69, 75, 79 and 81 are violated at exact rational points of the valid polytope, so validity alone does not imply them [exact-certified, H.17.5]. Orbit 92 holds on all of Valid by LP [numerical, exact certificate open]. If certified, orbit 92 holds for every purifiable process.</p>
+<p><em>Update (H.17, Oct 23 2026).</em> None of the 23 orbits is violated by Z<sub>16</sub> X-type boards, continuous X-type phases, locally rotated (local Clifford and SU(2)<sup>3</sup>) X-type boards, or pure non-X boards with ≤3 terms per outcome [numerical]. Orbits 4–11, 14, 25, 26, 28, 30, 31, 53, 54, 57, 66, 69, 75, 79 and 81 are violated at exact rational points of the valid polytope, so validity alone does not imply them [exact-certified, H.17.5]. Orbit 92 is the positivity orbit p(i|o) ≥ 0. On Valid its functional equals p(111|000) exactly, so it holds for every process [proved, H.17.5]. Only the other 22 orbits are genuinely open.</p>
 <table>
 <thead>
 <tr>
@@ -2536,7 +2543,7 @@ This is a lower bound on the violation over Purif, not the maximum. General boar
 <td>-</td>
 <td>0</td>
 <td>0</td>
-<td>never violated by Z4/Z8 X-type boards [numerical]; holds on all of Valid by LP (H.17.5) [numerical]</td>
+<td>positivity facet p(i</td>
 </tr>
 </tbody>
 </table>
