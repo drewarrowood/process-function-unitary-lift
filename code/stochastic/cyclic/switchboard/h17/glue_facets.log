@@ -1,0 +1,5 @@
+facets 29344 equality space dim 27
+minimal corner support size -> number of facets: {1: 64, 3: 192, 4: 2944, 5: 8608, 6: 17408, 7: 128}
+H.13.2 (4-term) : violated facets 20320 ; corner-support sizes of violated facets: {4: 1536, 5: 7008, 6: 11648, 7: 128} ; min lambda -0.2808
+sanity: constant identity board (must be 0) : violated facets 0 ; corner-support sizes of violated facets: {} ; min lambda -0.0000
+facet 16962 (the H.13.2 certificate) corner support 5 (0, 1, 2, 4, 6)
