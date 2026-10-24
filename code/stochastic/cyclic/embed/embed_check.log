@@ -1,0 +1,20 @@
+Lugano PF:
+  pairwise signalling ['A->B', 'A->C', 'B->A', 'B->C', 'C->A', 'C->B']
+  set signalling ['A->BC', 'B->AC', 'C->AB', 'BC->A', 'AC->B', 'AB->C']
+  first parties none
+  compatible fixed orders none (not a fixed-order process)
+  reduced 2-way-signalling (BCRWZ Thm 3 fails) at none
+H.13.2 p, phi=(|0>+|1>+|2>-|5>)/2:
+  pairwise signalling ['A->C', 'B->A', 'B->C', 'C->A']
+  set signalling ['A->BC', 'B->AC', 'C->AB', 'BC->A', 'AB->C']
+  first parties ['B']
+  compatible fixed orders none (not a fixed-order process)
+  reduced 2-way-signalling (BCRWZ Thm 3 fails) at ['B=0', 'B=1']
+H.13.2 p, phi=(|0>+|1>+|2>)/sqrt3:
+  pairwise signalling ['A->B', 'A->C', 'B->A', 'B->C', 'C->A', 'C->B']
+  set signalling ['A->BC', 'B->AC', 'C->AB', 'BC->A', 'AC->B', 'AB->C']
+  first parties none
+  compatible fixed orders none (not a fixed-order process)
+  reduced 2-way-signalling (BCRWZ Thm 3 fails) at ['A=0', 'A=1', 'B=0', 'C=0']
+OK: none of the three is a fixed-order process; VR Thm 3 => cyclic signalling certified; VR Thm 4 / Cor 1-2 apply (finite dim).
+(4) p(i_B)= ['3/4', '1/4'] ; invalid conditional A-C loops (i_B,o_B,f_A,f_C,total): 32 [(0, 0, 2, 0, '5/6'), (0, 0, 2, 1, '7/6'), (0, 0, 2, 2, '5/6'), (0, 0, 2, 3, '7/6'), (0, 0, 3, 0, '7/6'), (0, 0, 3, 1, '5/6')]
