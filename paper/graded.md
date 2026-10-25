@@ -1515,3 +1515,8 @@ We checked the literature on Oct 23 2026, by web search and by reading the prima
 - **Where we were.** Boards with at most three Pauli terms per outcome had been shown to be classical mixtures in every case except boards with four distinct "classes", and those had been reduced to a finite search over 2,722 shapes.
 - **New [PROVED, exhaustive computer search].** That search has finished. All 2,722 shapes were checked, with no counterexample and no case left undecided. So in our model of how the terms can combine, every board with at most three terms per outcome is a mixture of classical consistent histories. Four terms are needed, and four are enough (H.13.2).
 - **Caveat.** The search uses a slightly generous description of which term patterns can occur. That can only add cases, so a clean result is sound for the model. The enumeration has not been checked in Lean.
+
+## 107. Plain-language note: a slightly better floor for the first counterexample (Oct 24 2026)
+
+- **New [PROVED, exact computer certificate].** Combining all three "copied party" relaxations, not just two, shows that the score of the first counterexample's causal-inequality test can never go below −1.1586 (before: −1.1656).
+- **So** the true value lies in [−1.1586, −0.7058]. The gain is small, so adding more copies of the same kind is unlikely to close the gap.

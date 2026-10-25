@@ -1,0 +1,35 @@
+variables 855040 0s
+cones 3072 1s
+A (1622016, 855040) nnz 13893632 2s
+------------------------------------------------------------------
+	       SCS v3.3.1 - Splitting Conic Solver
+	(c) Brendan O'Donoghue, Stanford University, 2012
+------------------------------------------------------------------
+problem:  variables n: 855040, constraints m: 1622016
+cones: 	  s: psd vars: 1622016, ssize: 3072
+settings: eps_abs: 1.0e-05, eps_rel: 1.0e-05, eps_infeas: 1.0e-07
+	  alpha: 1.50, scale: 1.00e-01, adaptive_scale: 1
+	  max_iters: 200000, normalize: 1, rho_x: 1.00e-06
+	  acceleration_lookback: 10, acceleration_interval: 5
+lin-sys:  sparse-indirect-scs
+	  nnz(A): 13893632, nnz(P): 0
+------------------------------------------------------------------
+ iter | pri res | dua res |   gap   |   obj   |  scale  | time (s)
+------------------------------------------------------------------
+     0| 5.00e-01  1.67e+00  2.19e+01 -5.77e+00  1.00e-01  7.12e+01 
+   250| 1.64e-04  7.14e-04  1.63e-03  1.16e+00  2.58e-02  1.27e+03 
+   500| 5.72e-05  2.89e-05  7.35e-05  1.16e+00  2.58e-02  2.98e+03 
+   750| 2.79e-05  1.80e-05  2.22e-05  1.16e+00  8.39e-02  5.53e+03 
+   975| 1.32e-05  1.62e-05  1.17e-05  1.16e+00  8.39e-02  7.87e+03 
+------------------------------------------------------------------
+status:  solved
+timings: total: 7.87e+03s = setup: 1.95e+00s + solve: 7.87e+03s
+	 lin-sys: 2.29e+03s, cones: 7.91e+02s, accel: 2.73e+01s
+------------------------------------------------------------------
+objective = 1.155752
+------------------------------------------------------------------
+status solved pobj -1.155757722358497 9067s
+family A: sum Tr Lam 1.3929600, min eigs ['-2.62e-05', '-2.72e-05', '-2.47e-05', '-2.74e-05'], contribution 1.3912731
+family B: sum Tr Lam -1.6320496, min eigs ['-1.40e-05', '-1.24e-05', '-1.40e-05', '-1.22e-05'], contribution -1.6328891
+family C: sum Tr Lam -0.9166682, min eigs ['-3.32e-06', '-6.70e-06', '-6.71e-06', '-3.16e-06'], contribution -0.9169866
+LIFT-ABC (SCS indirect): float bound -1.1586026, time 9067s

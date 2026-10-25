@@ -1,0 +1,16 @@
+family A (xM,xN)=(0,0): min_v t_v = -0.000026226 (float min eig -2.618e-05)
+family A (xM,xN)=(0,1): min_v t_v = -0.000027180 (float min eig -2.716e-05)
+family A (xM,xN)=(1,0): min_v t_v = -0.000024736 (float min eig -2.469e-05)
+family A (xM,xN)=(1,1): min_v t_v = -0.000027418 (float min eig -2.740e-05)
+family A: sum Tr Lam (rounded) = 1.392960006, contribution 1.391271049
+family B (xM,xN)=(0,0): min_v t_v = -0.000014007 (float min eig -1.396e-05)
+family B (xM,xN)=(0,1): min_v t_v = -0.000012398 (float min eig -1.239e-05)
+family B (xM,xN)=(1,0): min_v t_v = -0.000014007 (float min eig -1.397e-05)
+family B (xM,xN)=(1,1): min_v t_v = -0.000012219 (float min eig -1.215e-05)
+family B: sum Tr Lam (rounded) = -1.632049562, contribution -1.632891657
+family C (xM,xN)=(0,0): min_v t_v = -0.000003338 (float min eig -3.323e-06)
+family C (xM,xN)=(0,1): min_v t_v = -0.000006735 (float min eig -6.704e-06)
+family C (xM,xN)=(1,0): min_v t_v = -0.000006735 (float min eig -6.714e-06)
+family C (xM,xN)=(1,1): min_v t_v = -0.000003219 (float min eig -3.164e-06)
+family C: sum Tr Lam (rounded) = -0.916668167, contribution -0.916988602
+CERTIFIED (exact integer arithmetic): min over all instruments of y_A.P >= -151861226318490447/131072000000000000 ~ -1.1586092095832097
