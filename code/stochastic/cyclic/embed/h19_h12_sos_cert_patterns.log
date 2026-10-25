@@ -47,6 +47,16 @@ CERTIFIED: for output pattern 44, min over (S^2)^6 of f_O >= 12580409/10000000 -
 CERTIFIED: for output pattern 45, min over (S^2)^6 of f_O >= 5008753/10000000 - errsum >= 0.5008753
 CERTIFIED: for output pattern 46, min over (S^2)^6 of f_O >= 1252187/2500000 - errsum >= 0.5008748
 CERTIFIED: for output pattern 47, min over (S^2)^6 of f_O >= 1258041/1000000 - errsum >= 1.258041
+CERTIFIED: for output pattern 48, min over (S^2)^6 of f_O >= 3982183/2000000 - errsum >= 1.9910915
 CERTIFIED: for output pattern 49, min over (S^2)^6 of f_O >= 60944/78125 - errsum >= 0.7800832
 CERTIFIED: for output pattern 50, min over (S^2)^6 of f_O >= 59811/80000 - errsum >= 0.7476375
-# certified patterns: 50/64; missing: [48, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63]; min certified bound -0.7060707; min over patterns other than 21, 41: -0.6650886
+CERTIFIED: for output pattern 51, min over (S^2)^6 of f_O >= 994669/1000000 - errsum >= 0.994669
+CERTIFIED: for output pattern 52, min over (S^2)^6 of f_O >= 13582429/10000000 - errsum >= 1.3582429
+CERTIFIED: for output pattern 53, min over (S^2)^6 of f_O >= 7944063/10000000 - errsum >= 0.7944063
+CERTIFIED: for output pattern 54, min over (S^2)^6 of f_O >= 7186831/10000000 - errsum >= 0.7186831
+CERTIFIED: for output pattern 55, min over (S^2)^6 of f_O >= 321873/312500 - errsum >= 1.0299936
+CERTIFIED: for output pattern 57, min over (S^2)^6 of f_O >= 3972031/5000000 - errsum >= 0.7944062
+CERTIFIED: for output pattern 58, min over (S^2)^6 of f_O >= 7186831/10000000 - errsum >= 0.7186831
+CERTIFIED: for output pattern 59, min over (S^2)^6 of f_O >= 321873/312500 - errsum >= 1.0299936
+CERTIFIED: for output pattern 63, min over (S^2)^6 of f_O >= 643681/500000 - errsum >= 1.287362
+# certified patterns: 60/64; missing: [56, 60, 61, 62]; min certified bound -0.7060707; min over patterns other than 21, 41: -0.6650886
