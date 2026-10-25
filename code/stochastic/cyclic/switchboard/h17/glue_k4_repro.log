@@ -1,0 +1,24 @@
+H.26.1a reproduction (Oct 25 2026, box): fresh scratch copy /tmp/r19repro of the h17 *.py files; ran glue_adj.py, glue_k4enum.py, glue_k4canon.py in sequence (about 166 s wall in total, one core).
+== glue_adj.py (last lines)
+3-term orbit reps: 61 mean |N_q| over reps 10.0
+analytic rigid set nonempty for 1071 labels; contained in computed rigid set for 1071 ; equal for 1071 of 1071
+== glue_k4enum.py (last lines)
+labelled geometries 21906 distinct label tuples 21906
+tuples by number of three-term classes: {0: 360, 1: 1242, 2: 5058, 3: 6822, 4: 8424}
+== glue_k4canon.py (last lines)
+geometries 21906 distinct up to translations x G48 2722
+== sha256 of outputs (equal to the committed files)
+e0595bed773bb17fa07b4cb6d7704532d191b38374229a51b4623717c55d2ace  /tmp/glue_adj.pkl
+9accd2a014ffb841d08a657701716b0b375d4ddd45d904a08c743b975daa2650  glue_k4_tuples.json
+69f0f8307db39b7ff50ec9b70c56210f6bbb41430761a7652c6c9555aaa93b64  glue_k4_canon.json
+== committed:
+9accd2a014ffb841d08a657701716b0b375d4ddd45d904a08c743b975daa2650  glue_k4_tuples.json
+69f0f8307db39b7ff50ec9b70c56210f6bbb41430761a7652c6c9555aaa93b64  glue_k4_canon.json
+== sha256 of the other glue_k4 files at H.26.1a
+46a6b430ccf6e0c32281394e8d417243684da0c26c0896ea6222a9588a19a78d  glue_k4.py
+a22397691aabc9c0b5dcab0c2e33f3b61c1aa5c2998f64e36a92d26dbb433bc8  glue_k4enum.py
+88251c25072e884b02e96f0ffed88749f8b5133412dfe0ebce6aa9eb6020295c  glue_k4canon.py
+f91347a66a23245c894348ca1cfb8995533162fb4a0c2b464d738219679034e1  glue_k4_audit.py
+cac852c2b2f1bc1a2026b521af79c9bf46f47d3e279ec309cbcffa6e0e87794f  glue_k4_done.jsonl
+8fe7a88578c22b3c7cff4bc6e8c69d59589f5048df49fa081fb230e4e9a9cbd7  glue_k4.log
+9d72fce778ebab4c9bc1894965c969862ee3c4254a4d1b77c4d52989cb4583fa  glue_k4_audit.log

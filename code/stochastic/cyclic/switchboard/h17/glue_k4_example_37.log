@@ -1,0 +1,61 @@
+geometry g = 37 (raw index into glue_k4_tuples.json): {'cls': [[1], [], [2], [2, 16]], 'geo': ['[(0, 1), (2, 3), (4, 6), (5, 7)]']}
+Pauli strings are written qubit A, B, C (= parties 0, 1, 2); s = x-bits + 8*z-bits.
+  class 0: vertices [0, 1] (o = ['000', '100'] as bits A B C), edge direction e_0, label (1,) = ['XII']: two-term class  alpha + i beta XII
+  class 1: vertices [2, 3] (o = ['010', '110'] as bits A B C), edge direction e_0, label () = []: identity class (label ())
+  class 2: vertices [4, 6] (o = ['001', '011'] as bits A B C), edge direction e_1, label (2,) = ['IXI']: two-term class  alpha + i beta IXI
+  class 3: vertices [5, 7] (o = ['101', '111'] as bits A B C), edge direction e_1, label (2, 16) = ['IXI', 'IZI']: three-term class alpha + i(beta IXI + gamma IZI)
+orbit under 8 translations x |G48| = 48 symmetries: 24 labelled geometries [37, 42, 97, 218, 244, 295, 567, 575, 615, 791, 1207, 1225, 1272, 2936, 3091, 3130, 3408, 3606, 3621, 3629, 3669, 3845, 4518, 6402]; canonical representative(s) in glue_k4_canon.json: [37]
+  e.g. orbit member 42: {'cls': [[1], [], [2, 16], [2]], 'geo': ['[(0, 1), (2, 3), (4, 6), (5, 7)]']}
+  e.g. orbit member 97: {'cls': [[1], [], [4], [1, 8]], 'geo': ['[(0, 1), (2, 6), (3, 7), (4, 5)]']}
+  e.g. orbit member 218: {'cls': [[1], [], [16, 18], [18]], 'geo': ['[(0, 1), (2, 3), (4, 6), (5, 7)]']}
+
+jobs (support assignments surviving Lemmas A, B, C and the H.17.12(b) list): 3
+job 0: supports S_cd of V_d V_c^dag (as Pauli strings):
+    S_01 = {III, XII}
+    S_02 = {III, XII, IXI, XXI}
+    S_03 = {III, XII, IXI, XXI, IZI, XZI}
+    S_12 = {III, IXI}
+    S_13 = {III, IXI, IZI}
+    S_23 = {III, IXI, IZI, IYI}
+    Pauli domains after plain arc consistency (P_0 = I fixed): [1, 1, 4, 4, 16, 16, 16, 16]
+    root pairs (u,w) where SH_grp^r can fail for r = class of vertex 0: 24 of 28 (4 impossible from the supports alone)
+    roots emptied by arc consistency: 20; roots searched by DFS: 4 [(4, 5), (4, 7), (5, 6), (6, 7)]
+    DFS nodes 2604, arc-consistency prunes 0, complete admissible boards (leaves) reached 1024
+    leaves rejected as non-hard (PF blend by H.1/H.6.2): {"('operator-first party', 2)": 1024}; leaves rejected because SH_grp^r HOLDS for some class r (PF blend by H.17.11a): {}
+    verdict: no candidate (agrees with glue_k4.solve)
+job 1: supports S_cd of V_d V_c^dag (as Pauli strings):
+    S_01 = {III, XII}
+    S_02 = {III, XII, IXI, XXI}
+    S_03 = {III, XII, IXI, XXI, IZI, XZI}
+    S_12 = {III, IXI}
+    S_13 = {III, IXI, IZI}
+    S_23 = {IXI, IZI, IYI}
+    Pauli domains after plain arc consistency (P_0 = I fixed): [1, 1, 4, 4, 16, 16, 16, 16]
+    root pairs (u,w) where SH_grp^r can fail for r = class of vertex 0: 24 of 28 (4 impossible from the supports alone)
+    roots emptied by arc consistency: 20; roots searched by DFS: 4 [(4, 5), (4, 7), (5, 6), (6, 7)]
+    DFS nodes 2604, arc-consistency prunes 0, complete admissible boards (leaves) reached 1024
+    leaves rejected as non-hard (PF blend by H.1/H.6.2): {"('operator-first party', 2)": 1024}; leaves rejected because SH_grp^r HOLDS for some class r (PF blend by H.17.11a): {}
+    verdict: no candidate (agrees with glue_k4.solve)
+job 2: supports S_cd of V_d V_c^dag (as Pauli strings):
+    S_01 = {III, XII}
+    S_02 = {III, XII, IXI, XXI}
+    S_03 = {III, XII, IXI, XXI, IZI, XZI}
+    S_12 = {III, IXI}
+    S_13 = {III, IXI, IZI}
+    S_23 = {III, IZI, IYI}
+    Pauli domains after plain arc consistency (P_0 = I fixed): [1, 1, 4, 4, 16, 16, 16, 16]
+    root pairs (u,w) where SH_grp^r can fail for r = class of vertex 0: 24 of 28 (4 impossible from the supports alone)
+    roots emptied by arc consistency: 20; roots searched by DFS: 4 [(4, 5), (4, 7), (5, 6), (6, 7)]
+    DFS nodes 2604, arc-consistency prunes 0, complete admissible boards (leaves) reached 1024
+    leaves rejected as non-hard (PF blend by H.1/H.6.2): {"('operator-first party', 2)": 1024}; leaves rejected because SH_grp^r HOLDS for some class r (PF blend by H.17.11a): {}
+    verdict: no candidate (agrees with glue_k4.solve)
+
+brute force, job 0: 256 admissible boards with P_0 = I; 0 hard; hard boards by the set of absorbed classes r for which SH_grp^r FAILS: {}; failing for all four classes: 0
+
+brute force, job 1: 256 admissible boards with P_0 = I; 0 hard; hard boards by the set of absorbed classes r for which SH_grp^r FAILS: {}; failing for all four classes: 0
+
+brute force, job 2: 256 admissible boards with P_0 = I; 0 hard; hard boards by the set of absorbed classes r for which SH_grp^r FAILS: {}; failing for all four classes: 0
+
+LOOSEN control (leaf = any hard admissible board, no root, no SH test): 0 of 3 jobs contain a hard admissible board 
+
+record(s) in glue_k4_done.jsonl: [{'g': 37, 'jobs': 3, 'cand': [], 'unres': 0}]
