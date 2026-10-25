@@ -1,0 +1,17 @@
+labelled geometries in glue_k4_tuples.json: 21906  distinct (cls,geo) entries: 21906
+ keyed 0
+ keyed 5000
+ keyed 10000
+ keyed 15000
+ keyed 20000
+orbits under translations x G48: 2722 ; glue_k4_canon.json entries: 2722 distinct 2722
+orbits with exactly one canonical representative: 2722 ; with none: 0 ; with more than one: 0
+canonical entries outside range: 0
+done.jsonl: records 2889 ; distinct raw indices 2889 ; range 0 .. 21892
+canonical geometries with a done record: 2722 / 2722 ; missing: []
+canonical geometries with a candidate or UNRESOLVED job: 0 ; any record in done.jsonl with cand/unres: 0
+jobs over canonical geometries (first record each): 2896784
+non-canonical raw indices in done.jsonl (from the pre-canonical first run): 167
+orbits with at least one done geometry (any index): 2722 / 2722
+AUDIT COMPLETE
+Re-enumeration check (Round 19): glue_k4enum.py rerun in a scratch copy (/tmp/r19enum, same /tmp/glue_adj.pkl) gives 21906 labelled geometries and a glue_k4_tuples.json byte-identical to the committed one.

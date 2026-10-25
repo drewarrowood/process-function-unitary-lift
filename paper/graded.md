@@ -1520,3 +1520,8 @@ We checked the literature on Oct 23 2026, by web search and by reading the prima
 
 - **New [PROVED, exact computer certificate].** Combining all three "copied party" relaxations, not just two, shows that the score of the first counterexample's causal-inequality test can never go below −1.1586 (before: −1.1656).
 - **So** the true value lies in [−1.1586, −0.7058]. The gain is small, so adding more copies of the same kind is unlikely to close the gap.
+
+## 108. Plain-language note: double-checking the "four terms" search (Oct 24 2026)
+
+- **Audit [PROVED, exhaustive check].** An independent script recounted the shapes and matched them against the search's record. There are 21,906 labelled shapes, and up to symmetry exactly 2,722. Every one of the 2,722 was searched, with no counterexample and nothing left undecided. The record also holds 167 extra shapes from an early run that went through the unsymmetrised list; they are clean too.
+- **So** note 106 stands: the counts (2,722 shapes; 2,896,784 sub-cases) are correct.
