@@ -1474,3 +1474,9 @@ We checked the literature on Oct 23 2026, by web search and by reading the prima
 - **Where we were (note 92).** The best score y_A that H.12 can reach was known to lie between −1.2033 (a proved floor) and −0.7058 (the best strategy found).
 - **A better floor [PROVED, exact arithmetic].** Earlier floors came from giving one agent's two measurements a common home, first for agent A and then for agent B. Now both are done at once, with the requirement that the two pictures agree on every observable statistic. The floor rises to −1.16564, and a computer certificate in exact integer arithmetic confirms it.
 - **So** the true value lies in [−1.1656, −0.7058]. It is still open.
+
+## 100. Plain-language note: continuous dependence in the infinite-dimensional lift (Oct 24 2026)
+
+- **Where we were (note 98).** For a process function on continuous outputs whose dependence on the outputs can be described with countably many cells, the closed loop with any local unitaries is a well-defined unitary.
+- **New [PROVED, paper].** Suppose the dependence is continuous, but can be approximated uniformly by such cell-based functions. Then the closed loops of the approximations converge, the limit does not depend on the approximation chosen, and it preserves lengths (an isometry). Example: the Lugano pattern, where each translation amount is any smoothly varying function of the other outputs.
+- **Still open.** We have not shown that the limit is reversible (unitary). That would follow if the reversed loops did not leak probability towards ever higher momenta. We have no example where they do. Process functions that cannot be approximated this way are also still open.
