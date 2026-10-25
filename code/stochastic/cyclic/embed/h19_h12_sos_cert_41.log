@@ -1,0 +1,8 @@
+pattern 41 [[1, 0], [1, 0], [0, 1]] ; monomials in f: 289 ; rounding error bound errsum = 2.0801e-29
+/workspace/pful-graded/code/stochastic/cyclic/embed/h19_h12_sos_cert.py:55: UserWarning: Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.
+  pr.solve(solver='SCS',eps=float(sys.argv[3]) if len(sys.argv)>3 else 1e-9,max_iters=100000)
+SCS: optimal_inaccurate lambda = -0.7060706745880873
+max exact residual before repair: 1.5890691429376602e-07
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 41, min over (S^2)^6 of f_O >= -7060707/10000000 - errsum >= -0.7060707
