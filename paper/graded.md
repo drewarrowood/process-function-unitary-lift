@@ -1525,3 +1525,9 @@ We checked the literature on Oct 23 2026, by web search and by reading the prima
 
 - **Audit [PROVED, exhaustive check].** An independent script recounted the shapes and matched them against the search's record. There are 21,906 labelled shapes, and up to symmetry exactly 2,722. Every one of the 2,722 was searched, with no counterexample and nothing left undecided. The record also holds 167 extra shapes from an early run that went through the unsymmetrised list; they are clean too.
 - **So** note 106 stands: the counts (2,722 shapes; 2,896,784 sub-cases) are correct.
+
+## 109. Plain-language note: the best H.12 strategy is the best of its kind (Oct 24 2026)
+
+- **Where we were (note 104).** The best strategy was certified as a local optimum: small changes make it worse.
+- **New [PROVED for the main case, exact certificate; the rest being certified].** Among all strategies of the same kind (each party picks its output from its setting and measures its qubit along a fixed direction), we proved with a sum-of-squares certificate that nothing beats −0.70607, and −0.70580 is achieved. Numerically the gap closes completely, and the runner-up of this kind is the other local optimum we had seen, −0.6597.
+- **Still open.** Strategies of a different kind, such as outputs that depend on the measurement result, are not covered. Over all strategies the range is still [−1.1586, −0.7058].
