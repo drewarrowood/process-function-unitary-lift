@@ -1509,3 +1509,9 @@ We checked the literature on Oct 23 2026, by web search and by reading the prima
 - **Checked [PROVED, exact].** Each of the ten remaining inequalities fails on some consistent classical process, by exactly 1/6 of its range. So no argument that uses only "the process is consistent" can prove them. A proof would have to use that the process is pure (reversible), and in a way that convex methods such as semidefinite programs cannot capture directly.
 - **Tested [NUMERICAL].** Adding an entangling gate to the Lugano-type processes, even just phases, always makes them inconsistent. So the natural one-qubit-per-wire family of candidates is already exhausted by earlier searches.
 - **So** the ten orbits are still open.
+
+## 106. Plain-language note: four terms really is the minimum (Oct 24 2026)
+
+- **Where we were.** Boards with at most three Pauli terms per outcome had been shown to be classical mixtures in every case except boards with four distinct "classes", and those had been reduced to a finite search over 2,722 shapes.
+- **New [PROVED, exhaustive computer search].** That search has finished. All 2,722 shapes were checked, with no counterexample and no case left undecided. So in our model of how the terms can combine, every board with at most three terms per outcome is a mixture of classical consistent histories. Four terms are needed, and four are enough (H.13.2).
+- **Caveat.** The search uses a slightly generous description of which term patterns can occur. That can only add cases, so a clean result is sound for the model. The enumeration has not been checked in Lean.

@@ -7,3 +7,14 @@ geometries 2437 to do; budget 2000000
 0 geometries 24 jobs 0 cand 0 unres 27 s
 200 geometries 126664 jobs 0 cand 0 unres 985 s
 400 geometries 132349 jobs 0 cand 0 unres 1486 s
+600 geometries 176517 jobs 0 cand 0 unres 1758 s
+800 geometries 2106400 jobs 0 cand 0 unres 12398 s
+1000 geometries 2143071 jobs 0 cand 0 unres 14191 s
+1200 geometries 2505218 jobs 0 cand 0 unres 21105 s
+1400 geometries 2528906 jobs 0 cand 0 unres 41811 s
+1600 geometries 2558792 jobs 0 cand 0 unres 51239 s
+1800 geometries 2599614 jobs 0 cand 0 unres 54217 s
+2000 geometries 2640498 jobs 0 cand 0 unres 54926 s
+2200 geometries 2670771 jobs 0 cand 0 unres 55872 s
+2400 geometries 2716489 jobs 0 cand 0 unres 56242 s
+SUMMARY geometries 2437 jobs 2719567 cand 0 unres 0 57025 s
