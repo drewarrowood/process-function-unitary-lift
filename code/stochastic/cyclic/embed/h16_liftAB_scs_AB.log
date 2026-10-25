@@ -1,0 +1,33 @@
+variables 559104 1s
+cones 2048 2s
+A (1081344, 559104) nnz 8912896 5s
+------------------------------------------------------------------
+	       SCS v3.3.1 - Splitting Conic Solver
+	(c) Brendan O'Donoghue, Stanford University, 2012
+------------------------------------------------------------------
+problem:  variables n: 559104, constraints m: 1081344
+cones: 	  s: psd vars: 1081344, ssize: 2048
+settings: eps_abs: 1.0e-05, eps_rel: 1.0e-05, eps_infeas: 1.0e-07
+	  alpha: 1.50, scale: 1.00e-01, adaptive_scale: 1
+	  max_iters: 200000, normalize: 1, rho_x: 1.00e-06
+	  acceleration_lookback: 10, acceleration_interval: 5
+lin-sys:  sparse-direct-mkl-pardiso
+	  nnz(A): 8912896, nnz(P): 0
+------------------------------------------------------------------
+ iter | pri res | dua res |   gap   |   obj   |  scale  | time (s)
+------------------------------------------------------------------
+     0| 5.07e-01  2.26e+00  2.19e+01 -2.53e+00  1.00e-01  6.35e+01 
+   250| 1.12e-04  4.57e-04  6.41e-03  1.17e+00  2.82e-02  3.61e+02 
+   500| 3.15e-05  4.06e-05  4.69e-04  1.16e+00  2.82e-02  6.32e+02 
+   750| 1.38e-05  1.28e-06  1.28e-05  1.16e+00  2.82e-02  1.00e+03 
+------------------------------------------------------------------
+status:  solved
+timings: total: 1.00e+03s = setup: 6.04e+01s + solve: 9.40e+02s
+	 lin-sys: 4.23e+02s, cones: 3.27e+02s, accel: 8.74e+00s
+------------------------------------------------------------------
+objective = 1.163219
+------------------------------------------------------------------
+status solved pobj -1.1632122948998864 1122s
+family A: sum Tr Lam 1.6113435, min eigs ['-2.01e-05', '-2.68e-05', '-2.01e-05', '-2.50e-05'], contribution 1.6098709
+family B: sum Tr Lam -2.7745558, min eigs ['-8.30e-06', '-1.92e-05', '-8.28e-06', '-2.38e-05'], contribution -2.7755088
+LIFT-AB (SCS direct): float bound -1.1656379, time 1122s

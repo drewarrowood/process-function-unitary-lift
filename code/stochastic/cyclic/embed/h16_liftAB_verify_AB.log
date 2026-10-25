@@ -1,0 +1,11 @@
+family A (xM,xN)=(0,0): min_v t_v = -0.000020146 (float min eig -2.013e-05)
+family A (xM,xN)=(0,1): min_v t_v = -0.000026822 (float min eig -2.677e-05)
+family A (xM,xN)=(1,0): min_v t_v = -0.000020146 (float min eig -2.009e-05)
+family A (xM,xN)=(1,1): min_v t_v = -0.000025094 (float min eig -2.504e-05)
+family A: sum Tr Lam (rounded) = 1.611343535, contribution 1.609868200
+family B (xM,xN)=(0,0): min_v t_v = -0.000008345 (float min eig -8.296e-06)
+family B (xM,xN)=(0,1): min_v t_v = -0.000019252 (float min eig -1.919e-05)
+family B (xM,xN)=(1,0): min_v t_v = -0.000008285 (float min eig -8.274e-06)
+family B (xM,xN)=(1,1): min_v t_v = -0.000023842 (float min eig -2.380e-05)
+family B: sum Tr Lam (rounded) = -2.774555830, contribution -2.775511412
+CERTIFIED (exact integer arithmetic): min over all instruments of y_A.P >= -76391593505924911/65536000000000000 ~ -1.1656432114551531

@@ -1,0 +1,6 @@
+family A (xM,xN)=(0,0): min_v t_v = -0.000020206 (float min eig -2.018e-05)
+family A (xM,xN)=(0,1): min_v t_v = -0.000012577 (float min eig -1.253e-05)
+family A (xM,xN)=(1,0): min_v t_v = -0.000019789 (float min eig -1.973e-05)
+family A (xM,xN)=(1,1): min_v t_v = -0.000012159 (float min eig -1.209e-05)
+family A: sum Tr Lam (rounded) = -1.277165453, contribution -1.278201143
+CERTIFIED (exact integer arithmetic): min over all instruments of y_A.P >= -335072760498309019/262144000000000000 ~ -1.27820114325832

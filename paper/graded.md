@@ -1468,3 +1468,9 @@ We checked the literature on Oct 23 2026, by web search and by reading the prima
 - **New [PROVED, paper].** Yes also when it reacts to which of *countably many* zones each dial is in, even if the loop's responses grow without bound. The proof is shorter than the old one. Testing the whole on independent states of the agents turns the question into an ordinary probability statement: "a consistent loop has exactly one history". A standard algebraic trick then extends the answer to all states.
 - **Example [PROVED; checked numerically].** A Lugano-type loop on the integer parts of three real dials, with ever larger jumps. It is not causally ordered and does not fit the finitely-many-zones case. A computer test with 3,000 random choices always found exactly one consistent history.
 - **Still open.** Loops that respond continuously, or in uncountably many ways, to the dials.
+
+## 99. Plain-language note: a better floor for the first counterexample (Oct 24 2026)
+
+- **Where we were (note 92).** The best score y_A that H.12 can reach was known to lie between −1.2033 (a proved floor) and −0.7058 (the best strategy found).
+- **A better floor [PROVED, exact arithmetic].** Earlier floors came from giving one agent's two measurements a common home, first for agent A and then for agent B. Now both are done at once, with the requirement that the two pictures agree on every observable statistic. The floor rises to −1.16564, and a computer certificate in exact integer arithmetic confirms it.
+- **So** the true value lies in [−1.1656, −0.7058]. It is still open.
