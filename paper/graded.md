@@ -1491,3 +1491,15 @@ We checked the literature on Oct 23 2026, by web search and by reading the prima
 
 - **Search [NUMERICAL].** We ran about 6,000 fresh optimisations of the measurements in H.12, some general and some restricted to the simplest (rank-one) measurements. Every round found the same best score, −0.70580, and nothing lower.
 - **So** the best strategy found in Round 14 is very likely optimal. The proved range is still [−1.1656, −0.7058], because a search can only show what is achievable, not what is impossible.
+
+## 103. Plain-language note: the continuous Lugano loop is reversible (Oct 24 2026)
+
+- **Where we were (note 100).** With continuous outputs and smoothly varying shifts, the closed loop of the Lugano-type example was known to preserve lengths, but not to be reversible.
+- **New [PROVED, paper].** It is reversible (unitary), and the shifts can even be arbitrary measurable functions, as long as one party at a time is "activated" and only the activated party's shift varies. When we check that the loop preserves lengths, the shifts cancel out completely, so their form does not matter.
+- **Still open.** Process functions in which several parties' shifts vary at once.
+
+## 104. Plain-language note: the best H.12 strategy is a certified local optimum (Oct 24 2026)
+
+- **Shape of the strategy.** Each party simply announces its own setting as its output, and measures its qubit along one direction per setting.
+- **Certified [PROVED, interval arithmetic].** A computer-assisted proof shows that an exact optimum of this kind exists, with value −0.705802238872487294515…. Every small change of the six measurement directions makes the score worse. Numerically, no single party can do better with any measurement, given what the others do.
+- **Still open.** Whether some completely different strategy does better. The value is not a simple closed-form number.

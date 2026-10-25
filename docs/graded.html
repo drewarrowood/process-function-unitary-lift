@@ -1179,6 +1179,18 @@ table{border-collapse:collapse;font-size:.9rem;display:block;overflow-x:auto} th
 <li><strong>Search [NUMERICAL].</strong> We ran about 6,000 fresh optimisations of the measurements in H.12, some general and some restricted to the simplest (rank-one) measurements. Every round found the same best score, −0.70580, and nothing lower.</li>
 <li><strong>So</strong> the best strategy found in Round 14 is very likely optimal. The proved range is still [−1.1656, −0.7058], because a search can only show what is achievable, not what is impossible.</li>
 </ul>
+<h2>103. Plain-language note: the continuous Lugano loop is reversible (Oct 24 2026)</h2>
+<ul>
+<li><strong>Where we were (note 100).</strong> With continuous outputs and smoothly varying shifts, the closed loop of the Lugano-type example was known to preserve lengths, but not to be reversible.</li>
+<li><strong>New [PROVED, paper].</strong> It is reversible (unitary), and the shifts can even be arbitrary measurable functions, as long as one party at a time is &quot;activated&quot; and only the activated party's shift varies. When we check that the loop preserves lengths, the shifts cancel out completely, so their form does not matter.</li>
+<li><strong>Still open.</strong> Process functions in which several parties' shifts vary at once.</li>
+</ul>
+<h2>104. Plain-language note: the best H.12 strategy is a certified local optimum (Oct 24 2026)</h2>
+<ul>
+<li><strong>Shape of the strategy.</strong> Each party simply announces its own setting as its output, and measures its qubit along one direction per setting.</li>
+<li><strong>Certified [PROVED, interval arithmetic].</strong> A computer-assisted proof shows that an exact optimum of this kind exists, with value −0.705802238872487294515…. Every small change of the six measurement directions makes the score worse. Numerically, no single party can do better with any measurement, given what the others do.</li>
+<li><strong>Still open.</strong> Whether some completely different strategy does better. The value is not a simple closed-form number.</li>
+</ul>
 
 <footer>Source: <a href="https://github.com/drewarrowood/process-function-unitary-lift">github.com/drewarrowood/process-function-unitary-lift</a> · <a href="https://github.com/drewarrowood/process-function-unitary-lift/raw/main/paper/lift.pdf">PDF</a> · <a href="https://drewarrowood.github.io/process-function-unitary-lift/">Technical note</a> · <a href="https://drewarrowood.github.io/process-function-unitary-lift/graded.html">Gentle version</a></footer>
 </main></body></html>
