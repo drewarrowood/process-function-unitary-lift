@@ -1529,5 +1529,5 @@ We checked the literature on Oct 23 2026, by web search and by reading the prima
 ## 109. Plain-language note: the best H.12 strategy is the best of its kind (Oct 24 2026)
 
 - **Where we were (note 104).** The best strategy was certified as a local optimum: small changes make it worse.
-- **New [PROVED for the main case, exact certificate; the rest being certified].** Among all strategies of the same kind (each party picks its output from its setting and measures its qubit along a fixed direction), we proved with a sum-of-squares certificate that nothing beats −0.70607, and −0.70580 is achieved. Numerically the gap closes completely, and the runner-up of this kind is the other local optimum we had seen, −0.6597.
+- **New [PROVED, exact certificates for all 64 output choices].** Consider all strategies of the same kind: each party picks its output from its setting, and measures its qubit along one direction per setting, possibly with noise but without bias. A sum-of-squares certificate proves that none of them beats −0.70607, and −0.70580 is achieved. Numerically the gap closes completely, and the runner-up of this kind is the other local optimum we had seen, −0.6597.
 - **Still open.** Strategies of a different kind, such as outputs that depend on the measurement result, are not covered. Over all strategies the range is still [−1.1586, −0.7058].

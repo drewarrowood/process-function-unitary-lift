@@ -1,0 +1,379 @@
+pattern 1 [[0, 0], [0, 0], [0, 1]] ; monomials in f: 289 ; rounding error bound errsum = 1.8254e-29
+SCS: optimal lambda = 0.5475431613063865
+max exact residual before repair: 1.1909945314087822e-07
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 1, min over (S^2)^6 of f_O >= 5475431/10000000 - errsum >= 0.5475431
+pattern 3 [[0, 0], [0, 0], [1, 1]] ; monomials in f: 289 ; rounding error bound errsum = 1.316e-29
+SCS: optimal lambda = 0.9946145909023278
+max exact residual before repair: 4.5019477297319097e-07
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 3, min over (S^2)^6 of f_O >= 1989229/2000000 - errsum >= 0.9946145
+pattern 5 [[0, 0], [0, 1], [0, 1]] ; monomials in f: 289 ; rounding error bound errsum = 1.8891e-29
+SCS: optimal lambda = 0.622243162387388
+max exact residual before repair: 3.158224600886723e-07
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 5, min over (S^2)^6 of f_O >= 6222431/10000000 - errsum >= 0.6222431
+pattern 7 [[0, 0], [0, 1], [1, 1]] ; monomials in f: 289 ; rounding error bound errsum = 1.4434e-29
+pattern 5 [[0, 0], [0, 1], [0, 1]] ; monomials in f: 289 ; rounding error bound errsum = 1.8891e-29
+SCS: optimal lambda = 0.622243162387388
+max exact residual before repair: 3.158224600886723e-07
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 5, min over (S^2)^6 of f_O >= 6222431/10000000 - errsum >= 0.6222431
+pattern 9 [[0, 0], [1, 0], [0, 1]] ; monomials in f: 289 ; rounding error bound errsum = 1.8891e-29
+SCS: optimal lambda = 0.6222433672940778
+max exact residual before repair: 2.5609048605503345e-07
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 9, min over (S^2)^6 of f_O >= 6222433/10000000 - errsum >= 0.6222433
+pattern 13 [[0, 0], [1, 1], [0, 1]] ; monomials in f: 289 ; rounding error bound errsum = 1.8254e-29
+SCS: optimal lambda = 0.5326772959238759
+max exact residual before repair: 1.209144448628649e-07
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 13, min over (S^2)^6 of f_O >= 1331693/2500000 - errsum >= 0.5326772
+pattern 17 [[0, 1], [0, 0], [0, 1]] ; monomials in f: 289 ; rounding error bound errsum = 1.9316e-29
+SCS: optimal lambda = 0.5766944255117628
+max exact residual before repair: 3.616130022878454e-07
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 17, min over (S^2)^6 of f_O >= 180217/312500 - errsum >= 0.5766944
+pattern 22 [[0, 1], [0, 1], [1, 0]] ; monomials in f: 289 ; rounding error bound errsum = 2.1438e-29
+SCS: optimal lambda = -0.6650885218611375
+max exact residual before repair: 8.675057047512382e-08
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 22, min over (S^2)^6 of f_O >= -3325443/5000000 - errsum >= -0.6650886
+pattern 26 [[0, 1], [1, 0], [1, 0]] ; monomials in f: 289 ; rounding error bound errsum = 2.1651e-29
+SCS: optimal lambda = -0.5734560417588984
+max exact residual before repair: 4.347050882911614e-07
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 26, min over (S^2)^6 of f_O >= -5734561/10000000 - errsum >= -0.5734561
+pattern 30 [[0, 1], [1, 1], [1, 0]] ; monomials in f: 289 ; rounding error bound errsum = 1.974e-29
+SCS: optimal lambda = 0.5008753416644899
+max exact residual before repair: 1.960574692751078e-07
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 30, min over (S^2)^6 of f_O >= 5008753/10000000 - errsum >= 0.5008753
+pattern 34 [[1, 0], [0, 0], [1, 0]] ; monomials in f: 289 ; rounding error bound errsum = 2.0165e-29
+SCS: optimal lambda = 0.4815026302867693
+max exact residual before repair: 3.22668369137682e-07
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 34, min over (S^2)^6 of f_O >= 2407513/5000000 - errsum >= 0.4815026
+pattern 38 [[1, 0], [0, 1], [1, 0]] ; monomials in f: 289 ; rounding error bound errsum = 2.1651e-29
+SCS: optimal lambda = -0.5734560462491352
+max exact residual before repair: 4.3415666298599233e-07
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 38, min over (S^2)^6 of f_O >= -5734561/10000000 - errsum >= -0.5734561
+pattern 43 [[1, 0], [1, 0], [1, 1]] ; monomials in f: 289 ; rounding error bound errsum = 1.7405e-29
+SCS: optimal lambda = 0.710582709265381
+max exact residual before repair: 4.220755727146752e-07
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 43, min over (S^2)^6 of f_O >= 7105827/10000000 - errsum >= 0.7105827
+pattern 47 [[1, 0], [1, 1], [1, 1]] ; monomials in f: 289 ; rounding error bound errsum = 1.6132e-29
+SCS: optimal lambda = 1.2580410510873685
+max exact residual before repair: 9.532532133518968e-08
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 47, min over (S^2)^6 of f_O >= 1258041/1000000 - errsum >= 1.258041
+pattern 51 [[1, 1], [0, 0], [1, 1]] ; monomials in f: 289 ; rounding error bound errsum = 1.6556e-29
+SCS: optimal lambda = 0.9946690155873941
+max exact residual before repair: 2.0138516283334966e-08
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 51, min over (S^2)^6 of f_O >= 994669/1000000 - errsum >= 0.994669
+pattern 55 [[1, 1], [0, 1], [1, 1]] ; monomials in f: 289 ; rounding error bound errsum = 1.5707e-29
+SCS: optimal lambda = 1.0299936316624352
+max exact residual before repair: 2.4169570096106187e-07
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 55, min over (S^2)^6 of f_O >= 321873/312500 - errsum >= 1.0299936
+pattern 59 [[1, 1], [1, 0], [1, 1]] ; monomials in f: 289 ; rounding error bound errsum = 1.5707e-29
+SCS: optimal lambda = 1.0299936190696473
+max exact residual before repair: 2.4018775874552235e-07
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 59, min over (S^2)^6 of f_O >= 321873/312500 - errsum >= 1.0299936
+pattern 63 [[1, 1], [1, 1], [1, 1]] ; monomials in f: 289 ; rounding error bound errsum = 1.4009e-29
+SCS: optimal lambda = 1.287362090053513
+max exact residual before repair: 9.161888837115839e-08
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 63, min over (S^2)^6 of f_O >= 643681/500000 - errsum >= 1.287362
+pattern 0 [[0, 0], [0, 0], [0, 0]] ; monomials in f: 289 ; rounding error bound errsum = 1.4009e-29
+SCS: optimal_inaccurate lambda = 1.991431096295655
+max exact residual before repair: 1.198532064567553e-05
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 0, min over (S^2)^6 of f_O >= 1991431/1000000 - errsum >= 1.991431
+pattern 6 [[0, 0], [0, 1], [1, 0]] ; monomials in f: 289 ; rounding error bound errsum = 1.8254e-29
+SCS: optimal lambda = 0.5874322042660224
+max exact residual before repair: 2.1216658945195378e-08
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 6, min over (S^2)^6 of f_O >= 2937161/5000000 - errsum >= 0.5874322
+pattern 10 [[0, 0], [1, 0], [1, 0]] ; monomials in f: 289 ; rounding error bound errsum = 1.8254e-29
+SCS: optimal lambda = 0.5874322177524312
+max exact residual before repair: 3.324381688144058e-08
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 10, min over (S^2)^6 of f_O >= 2937161/5000000 - errsum >= 0.5874322
+pattern 14 [[0, 0], [1, 1], [1, 0]] ; monomials in f: 289 ; rounding error bound errsum = 1.6556e-29
+SCS: optimal lambda = 0.4255372393699544
+max exact residual before repair: 4.9305042175835196e-08
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 14, min over (S^2)^6 of f_O >= 1063843/2500000 - errsum >= 0.4255372
+pattern 18 [[0, 1], [0, 0], [1, 0]] ; monomials in f: 289 ; rounding error bound errsum = 2.0165e-29
+SCS: optimal lambda = 0.48150260950708634
+max exact residual before repair: 3.0416197094600646e-07
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 18, min over (S^2)^6 of f_O >= 2407513/5000000 - errsum >= 0.4815026
+pattern 23 [[0, 1], [0, 1], [1, 1]] ; monomials in f: 289 ; rounding error bound errsum = 1.7405e-29
+SCS: optimal lambda = 0.7105825508155296
+max exact residual before repair: 3.6211965053538874e-07
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 23, min over (S^2)^6 of f_O >= 284233/400000 - errsum >= 0.7105825
+pattern 27 [[0, 1], [1, 0], [1, 1]] ; monomials in f: 289 ; rounding error bound errsum = 1.7618e-29
+SCS: optimal lambda = 0.8548720860962019
+max exact residual before repair: 4.3984324875949964e-07
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 27, min over (S^2)^6 of f_O >= 106859/125000 - errsum >= 0.854872
+pattern 31 [[0, 1], [1, 1], [1, 1]] ; monomials in f: 289 ; rounding error bound errsum = 1.6132e-29
+SCS: optimal lambda = 1.258040967069511
+max exact residual before repair: 1.1395353211824699e-07
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 31, min over (S^2)^6 of f_O >= 12580409/10000000 - errsum >= 1.2580409
+pattern 35 [[1, 0], [0, 0], [1, 1]] ; monomials in f: 289 ; rounding error bound errsum = 1.6556e-29
+SCS: optimal lambda = 1.0760378515823126
+max exact residual before repair: 7.564403319265693e-08
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 35, min over (S^2)^6 of f_O >= 5380189/5000000 - errsum >= 1.0760378
+pattern 39 [[1, 0], [0, 1], [1, 1]] ; monomials in f: 289 ; rounding error bound errsum = 1.7618e-29
+SCS: optimal lambda = 0.8548722180896335
+max exact residual before repair: 3.728844298255731e-07
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 39, min over (S^2)^6 of f_O >= 4274361/5000000 - errsum >= 0.8548722
+pattern 44 [[1, 0], [1, 1], [0, 0]] ; monomials in f: 289 ; rounding error bound errsum = 1.6132e-29
+SCS: optimal lambda = 1.258040967069511
+max exact residual before repair: 1.1395353211824699e-07
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 44, min over (S^2)^6 of f_O >= 12580409/10000000 - errsum >= 1.2580409
+pattern 48 [[1, 1], [0, 0], [0, 0]] ; monomials in f: 289 ; rounding error bound errsum = 1.4009e-29
+SCS: optimal_inaccurate lambda = 1.9910915008240835
+max exact residual before repair: 1.501192950172117e-05
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 48, min over (S^2)^6 of f_O >= 3982183/2000000 - errsum >= 1.9910915
+pattern 52 [[1, 1], [0, 1], [0, 0]] ; monomials in f: 289 ; rounding error bound errsum = 1.4858e-29
+SCS: optimal lambda = 1.3582429380622205
+max exact residual before repair: 3.7395147955976427e-07
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 52, min over (S^2)^6 of f_O >= 13582429/10000000 - errsum >= 1.3582429
+pattern 56 [[1, 1], [1, 0], [0, 0]] ; monomials in f: 289 ; rounding error bound errsum = 1.4858e-29
+SCS: optimal lambda = 1.3582429496630424
+max exact residual before repair: 3.752738848561421e-07
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 56, min over (S^2)^6 of f_O >= 13582429/10000000 - errsum >= 1.3582429
+pattern 60 [[1, 1], [1, 1], [0, 0]] ; monomials in f: 289 ; rounding error bound errsum = 1.316e-29
+SCS: optimal lambda = 1.2872929882997368
+max exact residual before repair: 8.202870268141851e-08
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 60, min over (S^2)^6 of f_O >= 12872929/10000000 - errsum >= 1.2872929
+pattern 2 [[0, 0], [0, 0], [1, 0]] ; monomials in f: 289 ; rounding error bound errsum = 1.6556e-29
+SCS: optimal lambda = 0.38820826734937
+max exact residual before repair: 8.547522978624328e-08
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 2, min over (S^2)^6 of f_O >= 1941041/5000000 - errsum >= 0.3882082
+pattern 7 [[0, 0], [0, 1], [1, 1]] ; monomials in f: 289 ; rounding error bound errsum = 1.4434e-29
+SCS: optimal lambda = 1.0569067250666484
+max exact residual before repair: 4.4702246214728806e-08
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 7, min over (S^2)^6 of f_O >= 10569067/10000000 - errsum >= 1.0569067
+pattern 11 [[0, 0], [1, 0], [1, 1]] ; monomials in f: 289 ; rounding error bound errsum = 1.4434e-29
+SCS: optimal lambda = 1.0569067764884224
+max exact residual before repair: 1.1082796800183132e-07
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 11, min over (S^2)^6 of f_O >= 10569067/10000000 - errsum >= 1.0569067
+pattern 15 [[0, 0], [1, 1], [1, 1]] ; monomials in f: 289 ; rounding error bound errsum = 1.316e-29
+SCS: optimal lambda = 1.2872929882997368
+max exact residual before repair: 8.202870268141851e-08
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 15, min over (S^2)^6 of f_O >= 12872929/10000000 - errsum >= 1.2872929
+pattern 19 [[0, 1], [0, 0], [1, 1]] ; monomials in f: 289 ; rounding error bound errsum = 1.6556e-29
+SCS: optimal lambda = 1.0760378630640466
+max exact residual before repair: 8.676260592183098e-08
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 19, min over (S^2)^6 of f_O >= 5380189/5000000 - errsum >= 1.0760378
+pattern 24 [[0, 1], [1, 0], [0, 0]] ; monomials in f: 289 ; rounding error bound errsum = 1.8042e-29
+SCS: optimal lambda = 1.0816828285588302
+max exact residual before repair: 2.558115433292565e-07
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 24, min over (S^2)^6 of f_O >= 2704207/2500000 - errsum >= 1.0816828
+pattern 28 [[0, 1], [1, 1], [0, 0]] ; monomials in f: 289 ; rounding error bound errsum = 1.6132e-29
+SCS: optimal lambda = 1.2580410510873685
+max exact residual before repair: 9.532532133518968e-08
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 28, min over (S^2)^6 of f_O >= 1258041/1000000 - errsum >= 1.258041
+pattern 32 [[1, 0], [0, 0], [0, 0]] ; monomials in f: 289 ; rounding error bound errsum = 1.7405e-29
+SCS: optimal lambda = 1.2017017694773837
+max exact residual before repair: 6.860756328096613e-08
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 32, min over (S^2)^6 of f_O >= 12017017/10000000 - errsum >= 1.2017017
+pattern 36 [[1, 0], [0, 1], [0, 0]] ; monomials in f: 289 ; rounding error bound errsum = 1.8042e-29
+SCS: optimal lambda = 1.0816828290175726
+max exact residual before repair: 2.556896710392189e-07
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 36, min over (S^2)^6 of f_O >= 2704207/2500000 - errsum >= 1.0816828
+pattern 40 [[1, 0], [1, 0], [0, 0]] ; monomials in f: 289 ; rounding error bound errsum = 1.783e-29
+SCS: optimal lambda = 0.8932041076306232
+max exact residual before repair: 1.2967847605545708e-08
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 40, min over (S^2)^6 of f_O >= 8932041/10000000 - errsum >= 0.8932041
+pattern 45 [[1, 0], [1, 1], [0, 1]] ; monomials in f: 289 ; rounding error bound errsum = 1.974e-29
+SCS: optimal lambda = 0.5008753416644899
+max exact residual before repair: 1.960574692751078e-07
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 45, min over (S^2)^6 of f_O >= 5008753/10000000 - errsum >= 0.5008753
+pattern 49 [[1, 1], [0, 0], [0, 1]] ; monomials in f: 289 ; rounding error bound errsum = 1.5707e-29
+SCS: optimal lambda = 0.7800832094830601
+max exact residual before repair: 1.702782268403098e-08
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 49, min over (S^2)^6 of f_O >= 60944/78125 - errsum >= 0.7800832
+pattern 53 [[1, 1], [0, 1], [0, 1]] ; monomials in f: 289 ; rounding error bound errsum = 1.7618e-29
+SCS: optimal lambda = 0.7944063579937042
+max exact residual before repair: 2.1800406102556735e-07
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 53, min over (S^2)^6 of f_O >= 7944063/10000000 - errsum >= 0.7944063
+pattern 57 [[1, 1], [1, 0], [0, 1]] ; monomials in f: 289 ; rounding error bound errsum = 1.7618e-29
+SCS: optimal lambda = 0.7944062600504851
+max exact residual before repair: 2.1867708710487932e-07
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 57, min over (S^2)^6 of f_O >= 3972031/5000000 - errsum >= 0.7944062
+pattern 61 [[1, 1], [1, 1], [0, 1]] ; monomials in f: 289 ; rounding error bound errsum = 1.6556e-29
+SCS: optimal lambda = 0.4255372393699544
+max exact residual before repair: 4.9305042175835196e-08
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 61, min over (S^2)^6 of f_O >= 1063843/2500000 - errsum >= 0.4255372
+pattern 4 [[0, 0], [0, 1], [0, 0]] ; monomials in f: 289 ; rounding error bound errsum = 1.4434e-29
+SCS: optimal lambda = 1.3742503853081645
+max exact residual before repair: 1.6980881483490663e-07
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 4, min over (S^2)^6 of f_O >= 13742503/10000000 - errsum >= 1.3742503
+pattern 8 [[0, 0], [1, 0], [0, 0]] ; monomials in f: 289 ; rounding error bound errsum = 1.4434e-29
+SCS: optimal lambda = 1.374250388373661
+max exact residual before repair: 1.7220442387937653e-07
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 8, min over (S^2)^6 of f_O >= 13742503/10000000 - errsum >= 1.3742503
+pattern 12 [[0, 0], [1, 1], [0, 0]] ; monomials in f: 289 ; rounding error bound errsum = 1.4009e-29
+SCS: optimal lambda = 1.2873620843818374
+max exact residual before repair: 8.275131502887234e-08
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 12, min over (S^2)^6 of f_O >= 643681/500000 - errsum >= 1.287362
+pattern 16 [[0, 1], [0, 0], [0, 0]] ; monomials in f: 289 ; rounding error bound errsum = 1.7405e-29
+SCS: optimal lambda = 1.2017017268865766
+max exact residual before repair: 2.6264387997798622e-08
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 16, min over (S^2)^6 of f_O >= 12017017/10000000 - errsum >= 1.2017017
+pattern 20 [[0, 1], [0, 1], [0, 0]] ; monomials in f: 289 ; rounding error bound errsum = 1.783e-29
+SCS: optimal lambda = 0.8932043228873052
+max exact residual before repair: 6.865138156649361e-09
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 20, min over (S^2)^6 of f_O >= 8932043/10000000 - errsum >= 0.8932043
+pattern 25 [[0, 1], [1, 0], [0, 1]] ; monomials in f: 289 ; rounding error bound errsum = 2.1014e-29
+SCS: optimal lambda = -0.44076297113070145
+max exact residual before repair: 4.6292583274551766e-08
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 25, min over (S^2)^6 of f_O >= -440763/1000000 - errsum >= -0.440763
+pattern 29 [[0, 1], [1, 1], [0, 1]] ; monomials in f: 289 ; rounding error bound errsum = 1.974e-29
+SCS: optimal lambda = 0.5008748799177983
+max exact residual before repair: 1.7924294367774139e-07
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 29, min over (S^2)^6 of f_O >= 1252187/2500000 - errsum >= 0.5008748
+pattern 33 [[1, 0], [0, 0], [0, 1]] ; monomials in f: 289 ; rounding error bound errsum = 1.9316e-29
+SCS: optimal lambda = 0.5766944194263283
+max exact residual before repair: 3.637630477628366e-07
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 33, min over (S^2)^6 of f_O >= 180217/312500 - errsum >= 0.5766944
+pattern 37 [[1, 0], [0, 1], [0, 1]] ; monomials in f: 289 ; rounding error bound errsum = 2.1014e-29
+SCS: optimal lambda = -0.44076281275176615
+max exact residual before repair: 6.747428998082028e-08
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 37, min over (S^2)^6 of f_O >= -4407629/10000000 - errsum >= -0.4407629
+pattern 42 [[1, 0], [1, 0], [1, 0]] ; monomials in f: 289 ; rounding error bound errsum = 2.1438e-29
+SCS: optimal lambda = -0.6650885287533145
+max exact residual before repair: 8.440862161805853e-08
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 42, min over (S^2)^6 of f_O >= -3325443/5000000 - errsum >= -0.6650886
+pattern 46 [[1, 0], [1, 1], [1, 0]] ; monomials in f: 289 ; rounding error bound errsum = 1.974e-29
+SCS: optimal lambda = 0.5008748799177983
+max exact residual before repair: 1.7924294367774139e-07
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 46, min over (S^2)^6 of f_O >= 1252187/2500000 - errsum >= 0.5008748
+pattern 50 [[1, 1], [0, 0], [1, 0]] ; monomials in f: 289 ; rounding error bound errsum = 1.9103e-29
+SCS: optimal lambda = 0.7476375734011274
+max exact residual before repair: 4.186653924810497e-07
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 50, min over (S^2)^6 of f_O >= 59811/80000 - errsum >= 0.7476375
+pattern 54 [[1, 1], [0, 1], [1, 0]] ; monomials in f: 289 ; rounding error bound errsum = 1.9528e-29
+SCS: optimal lambda = 0.7186831359893779
+max exact residual before repair: 4.634411945007741e-08
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 54, min over (S^2)^6 of f_O >= 7186831/10000000 - errsum >= 0.7186831
+pattern 58 [[1, 1], [1, 0], [1, 0]] ; monomials in f: 289 ; rounding error bound errsum = 1.9528e-29
+SCS: optimal lambda = 0.7186831406619519
+max exact residual before repair: 5.168921981239691e-08
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 58, min over (S^2)^6 of f_O >= 7186831/10000000 - errsum >= 0.7186831
+pattern 62 [[1, 1], [1, 1], [1, 0]] ; monomials in f: 289 ; rounding error bound errsum = 1.8254e-29
+SCS: optimal lambda = 0.5326772959238759
+max exact residual before repair: 1.209144448628649e-07
+identity f_q = lambda + m^T G m + sum h_i(|n_i|^2-1) holds exactly: True
+G - (eps/4)*1 positive definite (exact Sylvester/Bareiss): True 190
+CERTIFIED: for output pattern 62, min over (S^2)^6 of f_O >= 1331693/2500000 - errsum >= 0.5326772
