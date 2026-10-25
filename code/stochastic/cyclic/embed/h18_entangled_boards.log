@@ -1,0 +1,3 @@
+trial 0: G=1 (control) 5.6e-30; G=Haar(8) 26.4; G=Haar(4) on AB 12.5; G=random diagonal phases 13.4; G=CZ_AB 10.7; Lugano (U=X) with G=CZ_AB 40; with G=Haar(4) on AB 34.8
+trial 1: G=1 (control) 4.97e-30; G=Haar(8) 45.6; G=Haar(4) on AB 32.7; G=random diagonal phases 30.5; G=CZ_AB 16; Lugano (U=X) with G=CZ_AB 40; with G=Haar(4) on AB 31.7
+trial 2: G=1 (control) 8.15e-30; G=Haar(8) 32.7; G=Haar(4) on AB 24.1; G=random diagonal phases 16.3; G=CZ_AB 20.1; Lugano (U=X) with G=CZ_AB 40; with G=Haar(4) on AB 39.7

@@ -1503,3 +1503,9 @@ We checked the literature on Oct 23 2026, by web search and by reading the prima
 - **Shape of the strategy.** Each party simply announces its own setting as its output, and measures its qubit along one direction per setting.
 - **Certified [PROVED, interval arithmetic].** A computer-assisted proof shows that an exact optimum of this kind exists, with value −0.705802238872487294515…. Every small change of the six measurement directions makes the score worse. Numerically, no single party can do better with any measurement, given what the others do.
 - **Still open.** Whether some completely different strategy does better. The value is not a simple closed-form number.
+
+## 105. Plain-language note: what a proof for the ten stubborn orbits would need (Oct 24 2026)
+
+- **Checked [PROVED, exact].** Each of the ten remaining inequalities fails on some consistent classical process, by exactly 1/6 of its range. So no argument that uses only "the process is consistent" can prove them. A proof would have to use that the process is pure (reversible), and in a way that convex methods such as semidefinite programs cannot capture directly.
+- **Tested [NUMERICAL].** Adding an entangling gate to the Lugano-type processes, even just phases, always makes them inconsistent. So the natural one-qubit-per-wire family of candidates is already exhausted by earlier searches.
+- **So** the ten orbits are still open.

@@ -1,0 +1,12 @@
+PF array shape (744, 8, 8)  row sums over axis 1: {1}  axis 2: {0, 2, 4, 6, 8}
+affine basis of PFs: 38
+orbit 26: representative facet 240; LP min over Valid (relative) -0.166667; exact rational valid point: True, affine coords exact: True, exact relative facet value -1/6 = -0.166667
+orbit 28: representative facet 242; LP min over Valid (relative) -0.166667; exact rational valid point: True, affine coords exact: True, exact relative facet value -1/6 = -0.166667
+orbit 30: representative facet 245; LP min over Valid (relative) -0.166667; exact rational valid point: True, affine coords exact: True, exact relative facet value -1/6 = -0.166667
+orbit 31: representative facet 247; LP min over Valid (relative) -0.166667; exact rational valid point: True, affine coords exact: True, exact relative facet value -1/6 = -0.166667
+orbit 54: representative facet 514; LP min over Valid (relative) -0.166667; exact rational valid point: True, affine coords exact: True, exact relative facet value -1/6 = -0.166667
+orbit 57: representative facet 521; LP min over Valid (relative) -0.166667; exact rational valid point: True, affine coords exact: True, exact relative facet value -1/6 = -0.166667
+orbit 66: representative facet 561; LP min over Valid (relative) -0.166667; exact rational valid point: True, affine coords exact: True, exact relative facet value -1/6 = -0.166667
+orbit 69: representative facet 571; LP min over Valid (relative) -0.166667; exact rational valid point: True, affine coords exact: True, exact relative facet value -1/6 = -0.166667
+orbit 75: representative facet 595; LP min over Valid (relative) -0.166667; exact rational valid point: True, affine coords exact: True, exact relative facet value -1/6 = -0.166667
+orbit 81: representative facet 706; LP min over Valid (relative) -0.166667; exact rational valid point: True, affine coords exact: True, exact relative facet value -1/6 = -0.166667

@@ -3055,6 +3055,27 @@ All nine new theorems depend only on propext, Classical.choice and Quot.sound (R
 <p><em>Block optimality [NUMERICAL].</em> For each party and setting, the SDP over all 4-outcome POVMs with the other parties fixed improves the value by at most 4·10⁻¹². So no single party, in any one setting, can do better with any instrument.</p>
 <p><em>Closed form [NUMERICAL, negative].</em> A 50-digit integer-relation search (PSLQ via mpmath.findpoly) finds no integer polynomial of degree ≤ 10 with coefficients ≤ 10⁴ having this root, and no ℚ(√2)-linear form. The value is algebraic, as a critical value of a polynomial system with coefficients in ℚ(√2), but apparently of high degree, unlike the ℚ(√2) value of H.15.7d. The Bloch vectors look generic.</p>
 <p><em>Status.</em> −0.70580 is certified as an exact local optimum within the natural family, and as a Nash point over all instruments. Global optimality, i.e. closing [−1.16564, −0.70580], remains <strong>OPEN</strong>. A relaxation tight at −0.70580 is not in sight: the best lifted relaxation is at −1.16564 (H.24.4 and H.25.3). Literature: the Krawczyk operator (Krawczyk 1969; Moore, Kearfott and Cloud, <em>Introduction to Interval Analysis</em>, 2009) and mpmath's interval arithmetic.</p>
+<p><strong>H.25.4 The never-crossed orbits: where a proof must come from, and entangling dressings of Lugano are invalid [validity-only obstruction PROVED (exact rational certificate; reproduces H.17.5 for the 10 open orbits); dressing family NUMERICAL; the 10 orbits stay OPEN; embed/h18_orbits_valid.py/.log, embed/h18_entangled_boards.py/.log].</strong> Target 4 of Round 18.</p>
+<ul>
+<li>
+<p><em>Proof route tested: validity alone [PROVED, negative].</em> Suppose a proof that a representative facet holds on Purif used only that the process matrix is valid, for example an SDP certificate over mixed valid W with a positivity or validity dual. Such a proof would also cover diagonal W, whose statistics are exactly the classical valid processes, so it would prove the facet on the Baumeler–Wolf polytope Valid. h18_orbits_valid.py rules this out for each of the 10 orbits. It builds Valid from normalisation plus the 64 deterministic-intervention constraints Σ<sub>i</sub> p(i|f(i)) = 1, minimises the representative facet (H.23.1a) by LP, and checks the minimiser exactly: it is a rational valid process, and its exact affine coordinates over 38 affinely independent PFs give the facet value from the integer facet values on PFs. For all 10 orbits the minimum relative value is exactly <strong>−1/6</strong>. This matches the H.17.5 validcert values; here it is recomputed independently, for the representatives. So any proof has to use purity, i.e. the rank-one (unitary-dilation) condition, in an essentially non-convex way. Two further facts point the same way. Valid ≠ conv(PF): Valid has 64 facets and 710,760 vertices. And the Lemma B factorisation (H.17.17) is a statement about Pauli boards, not about general unitaries. The natural &quot;unitarity of the lift + Lemma B&quot; route therefore reaches only boards already in the H.17 classification. We did not find a way to make it cover general Purif.</p>
+</li>
+<li>
+<p><em>New non-XOR family: entangling dressings [NUMERICAL, negative].</em> Boards |s⟩<sub>P</sub>|o⟩ ↦ G·(⊗<sub>k</sub> U<sub>k</sub><sup>lug_k(o)</sup>)|s⟩<sub>I</sub> |o⟩<sub>F</sub>, where G is a fixed entangling gate on the three input wires. Local gates G are absorbed into the frames already searched in H.23.1. The Araújo et al. validity penalty (h16_gen_search.penalty; ≈10⁻²⁹ means valid) is as follows, over 3 draws each:</p>
+<ul>
+<li>G = 1 (control): 5–8·10⁻³⁰, valid;</li>
+<li>G Haar on all three inputs: 26–46;</li>
+<li>G Haar on inputs A and B: 12–33;</li>
+<li>G random diagonal phases: 13–31;</li>
+<li>G = CZ on AB: 11–20;</li>
+<li>Lugano itself (U = X) with CZ_AB or Haar(4)_AB: 32–40.</li>
+</ul>
+<p>Every entangling dressing tested is invalid. Even a diagonal (computational-basis) phase gate, which does not change the classical routing, destroys validity, because the parties can measure in rotated frames. Together with H.24.2 this suggests that within qubit boards the valid ones are, up to local frames, exactly the generalised Lugano boards already searched by H.23.1 (never22_lugU_3_open10.log, no crossing). This is evidence, not a theorem.</p>
+</li>
+<li>
+<p><em>Status.</em> All 10 orbits (26, 28, 30, 31, 54, 57, 66, 69, 75, 81) remain <strong>OPEN</strong>. A proof must use purity non-convexly. The remaining crossing candidates lie beyond single-qubit-per-wire Lugano dressings, e.g. qudit wires or process functions with more than one active party per region. Literature: Baumeler and Wolf (New J. Phys. 18, 035014, 2016) for the classical polytope and its deterministic-intervention description; Araújo, Feix, Navascués and Brukner (Quantum 1, 10, 2017) for validity and the purification postulate.</p>
+</li>
+</ul>
 <h2>Appendix I. Robustness: approximately blended versus approximately liftable (Oct 22 2026)</h2>
 <p>Norm: for classical processes, ||p - q||_1 = sum over (i,o) of |p(i|o) - q(i|o)|. For machines, the switchboard residual is rho(U) := sqrt(R(U)), the l2 norm of the forbidden Pauli coefficients (H.8.1).</p>
 <p><strong>I.1 Blend-close implies liftable-close [proved, trivial].</strong> If ||p - q||_1 ≤ eps with q in conv(PF), then p is within eps of a purifiable process, namely q (C.1). So delta = eps, in any norm. This uses only conv(PF) ⊆ Purif.</p>
