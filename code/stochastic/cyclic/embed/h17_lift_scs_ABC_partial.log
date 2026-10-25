@@ -1,0 +1,21 @@
+variables 855040 0s
+cones 3072 1s
+A (1622016, 855040) nnz 13893632 2s
+------------------------------------------------------------------
+	       SCS v3.3.1 - Splitting Conic Solver
+	(c) Brendan O'Donoghue, Stanford University, 2012
+------------------------------------------------------------------
+problem:  variables n: 855040, constraints m: 1622016
+cones: 	  s: psd vars: 1622016, ssize: 3072
+settings: eps_abs: 1.0e-05, eps_rel: 1.0e-05, eps_infeas: 1.0e-07
+	  alpha: 1.50, scale: 1.00e-01, adaptive_scale: 1
+	  max_iters: 200000, normalize: 1, rho_x: 1.00e-06
+	  acceleration_lookback: 10, acceleration_interval: 5
+lin-sys:  sparse-indirect-scs
+	  nnz(A): 13893632, nnz(P): 0
+------------------------------------------------------------------
+ iter | pri res | dua res |   gap   |   obj   |  scale  | time (s)
+------------------------------------------------------------------
+     0| 5.00e-01  1.67e+00  2.19e+01 -5.77e+00  1.00e-01  7.12e+01 
+   250| 1.64e-04  7.14e-04  1.63e-03  1.16e+00  2.58e-02  1.27e+03 
+   500| 5.72e-05  2.89e-05  7.35e-05  1.16e+00  2.58e-02  2.98e+03 
