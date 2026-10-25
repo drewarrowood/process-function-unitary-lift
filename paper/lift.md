@@ -1883,7 +1883,7 @@ Still open are boards with three classes none of which is the identity, and boar
   - no operator-first party (every ratio acts trivially on that qubit; PF blends by H.6.2);
   - SH_grp^r fails for every absorbed class (Lemma D).
 - *Why the hardness filter is needed.* Without it, the search returns boards such as all four classes stacked along one direction with all P_o = 0. Those fail SH_grp^r for every r, but one party is W-level last, so they are PF blends anyway.
-- **Final result (Round 19, H.26.1) [PROVED, exhaustive exact search]:** all **2,722 of 2,722** canonical geometries finished (2,896,784 jobs), with **0 candidates and 0 UNRESOLVED** (glue_k4_done.jsonl; glue_k4.log ends with SUMMARY … cand 0 unres 0).
+- **Final result (Round 19, H.26.1) [PROVED, exhaustive exact search]:** all **2,722 of 2,722** canonical geometries finished (2,896,784 jobs), with **0 candidates and 0 UNRESOLVED** (glue_k4_done.jsonl; glue_k4.log ends with SUMMARY … cand 0 unres 0). How the exhaustive proof works, with a worked example, is in H.26.1a.
 - **Result (status at the Round 8 commit, superseded):** 401 of 2,722 canonical geometries finished (248,597 jobs), **0 candidates and 0 UNRESOLVED** (glue_k4_done.jsonl, glue_k4.log). The remaining geometries run in the background on 3 cores at about 140 jobs/s, an estimated 5 hours more (about 2.8·10⁶ jobs in total). Each finished geometry is checkpointed to glue_k4_done.jsonl, and rerunning `cd code/stochastic/cyclic/switchboard/h17 && NPROC=3 nohup nice -n 5 python3 glue_k4.py >> glue_k4.log 2>&1 &` resumes the run.
 - *Control [NUMERICAL]:* with the leaf loosened to "hard board" (no SH test, no root), the first 200 geometries in enumeration order (1,768 jobs) give a hard admissible board in 18 of them. So the search space is not empty.
 
@@ -2385,6 +2385,140 @@ On this family, y_A·P is a cubic polynomial f(n) = Σ_x Σ_μ W_x[μ] ∏_k (1,
 - *Scope.* This holds in the per-class-pair model of H.17.13–H.17.16: supports of V_yV_x† are over-approximated by the H.17.12 pattern lists and filtered by Lemmas A–C, and the leaf test is the one in glue_k4.py. An over-approximation can only add jobs, so a clean run is sound for the model. Two things are not proved: that the model captures every admissible board without the pattern classification's hypotheses, and a formal (Lean) check of the enumeration.
 - *Literature.* No comparable term-count threshold for purifiable processes is known to us. The Pauli-support viewpoint follows the stabiliser/Pauli-group literature (e.g. Gottesman 1997), and purifiability is from Araújo, Feix, Navascués and Brukner (2017).
 
+**H.26.1a How the exhaustive proof works, with a worked example (Oct 25 2026) [exposition of H.26.1; the statement is PROVED in the per-class-pair model; worked-example numbers are exact reruns; h17/glue_k4_example.py, glue_k4_example.log (g = 3424), glue_k4_example_37.log (g = 37), glue_k4_example_orbit.py/.log, glue_k4_repro.log].** This subsection explains why "0 candidates and 0 UNRESOLVED over 2,722 geometries" proves H.26.1. It says what is computed, what is exact, and what is assumed, and it walks through one geometry by hand.
+
+*(a) The statement and the model.*
+- **Statement [PROVED, per-class-pair model].** Every admissible board with at most three Pauli terms per outcome is a PF blend: p_φ ∈ conv(PF) for every source state φ. Since H.13.2 gives an admissible four-term board outside conv(PF), four terms per outcome is the minimum. *Wording note:* the search does not look for "three-term decompositions" of anything. It looks for a **counterexample**, a ≤3-term board that is not a PF blend, and shows there is none.
+- **Boards.** U_o = P_o V_κ(o) for the 8 outputs o ∈ {0,1}³. P_o is a Pauli string (the left Pauli) and V_κ(o) is a class operator of one of the three shapes of H.17.15(a): 1, α + iβA, or α + i(βA + γB) with A, B anticommuting.
+- **What the search sees.** The search sees only *support data*:
+  - (i) the class map o ↦ κ(o), and each class's label;
+  - (ii) the seven left Paulis P_1, …, P_7, with P_0 = I (a common left Pauli changes nothing; H.17.17);
+  - (iii) for each pair of classes c ≠ d, the support S_cd of V_dV_c†.
+
+  The real parameters α, β, γ are forgotten. Every test the proof uses is a function of these data alone: admissibility through the Pauli rule (H.8.1), hardness, and SH_grp^r through Lemma D.
+- **The model.** "Per-class-pair" means that each S_cd may be any pattern on the H.17.12 list for its two labels, chosen independently for each pair, subject only to Lemmas A–C. H.17.12(b), (c) are PROVED, so the lists contain every support that real parameters can produce. They may also contain supports that no parameters produce (over-approximation). So every real board's data occur in some job, and extra jobs can only add work.
+- **The proof, in four steps.** Suppose some board B in the model is not a PF blend.
+  1. B is *hard*. Otherwise a W-level-last party (H.1) or an operator-first party (H.6.2) makes it a PF blend.
+  2. SH_grp^r fails for **every** absorbed class r. If it held for one r, H.17.11a would make B a PF blend.
+  3. B has at most four classes, and ≤3 classes are closed (H.17.9, H.17.13–H.17.15). So B has exactly four classes, each on two vertices, and each non-identity class sits on an edge along its rigid direction (Theorem H.17.17, also in Lean).
+  4. The search shows that no four-class support data pass 1 and 2. This contradicts the assumption.
+
+*(b) From a large question to a finite list.*
+- **Why a reduction is needed.** The data space is finite but large. There are 1,072 labels per class, 64 Paulis for each of 7 vertices (64⁷ ≈ 4.4·10¹²), and several patterns per class pair.
+- **Geometries.** Step 3 fixes the shape. A *labelled geometry* is a pairing of the 8 vertices into 4 classes (105 pairings), with a label for each class. It must satisfy the class bound and Lemmas A and B: across every class-changing edge along q, some admissible pattern of the two labels is q-constant. Vertex 0 carries a non-identity class whose label is a G₄₈-orbit representative. This gives 21,906 labelled geometries (glue_k4enum.py).
+- **Symmetries.** The group Γ has 8 × 48 = 384 elements:
+  - the cube translations o ↦ o ⊕ t, which relabel the outcomes of the parties in t;
+  - G₄₈, which permutes the qubits by π and S-conjugates the qubits in a mask m. It acts on Pauli strings and, through π, on cube coordinates and differences D at the same time (H.17.15(b), (d)).
+
+  Every γ ∈ Γ maps admissible boards to admissible boards and PF blends to PF blends (H.17.15(d) [PROVED]). It also preserves hardness and the SH_grp tests, which are defined from the same supports, X-parts and differences D (a direct check from the definitions, argued here rather than machine-checked). γ preserves Pauli multiplication up to phase, so it maps the pattern list of (a, b) onto that of (γa, γb), and it maps the Lemma A–C filters onto themselves. Hence if a geometry Λ′ = γΛ, then γ is a bijection from the jobs of Λ to the jobs of Λ′ that carries counterexamples to counterexamples. **Every member of an orbit has the same answer**, so one geometry per orbit is enough.
+- **Canonical representatives.** glue_k4canon.py applies all 384 elements of Γ to a geometry and renames the class ids in order of first appearance. The **orbit key** is the lexicographically smallest resulting tuple. The **canonical representative** of an orbit is its first geometry in enumeration order. There are 2,722 orbits, and glue_k4_canon.json lists their representatives (raw indices into glue_k4_tuples.json).
+- **Empirical check of "same answer" [exact rerun] (glue_k4_example_orbit.log).** Running glue_k4.work on every member of two orbits, not just the representative, gives the same answer each time:
+  - all 8 members of the orbit of g = 3424 give 1 job each, with 0 candidates and 0 UNRESOLVED;
+  - all 24 members of the orbit of g = 37 give 3 jobs each, with 0 candidates and 0 UNRESOLVED;
+  - the 167 non-canonical geometries from the first run are clean as well (H.26.1, audit).
+
+*(c) What one job checks, and why "0 and 0" is a proof.*
+- **A job.** A job is one canonical geometry together with one choice of S_cd for each of its 6 class pairs. The choices must survive Lemma A (|S| ≥ 2), Lemma B (a pair adjacent along q has a q-constant support), Lemma C (triple consistency: S_ab ⊆ S_ac·S_bc and cyclically) and the exact K = K′ list of H.17.12(b).
+- **Unknowns and constraints.** The unknowns are P_1, …, P_7. Each ranges over the 64 Pauli strings, encoded as 6-bit integers s = x + 8z. For every ordered pair u ≠ w the board must obey the Pauli rule: no string of P_u ⊕ P_w ⊕ S_κ(u)κ(w) may be non-identity on every party of D = u ⊕ w. This is a 64 × 64 Boolean table for each pair.
+- **Solver steps.** One job is solved in four steps:
+  1. **Quick exit.** Run arc consistency on the Pauli rule alone. If some domain becomes empty, the job has no admissible board and is closed.
+  2. **Root.** Any counterexample fails SH_grp^r for r = κ(0) at some pair (u₀, w₀) (step 2 of (a)). So the solver loops over the 28 pairs. For each pair it adds the Lemma D failure condition, which is a Boolean function of x(P_u₀ ⊕ P_w₀), as one more constraint. A counterexample is found under at least one of its failing pairs.
+  3. **Search.** Arc consistency deletes a value only if it has no compatible value in some other domain, so it never deletes part of a complete solution. A depth-first search then fixes the vertex with the smallest domain, tries every remaining value, and re-runs arc consistency. Every complete assignment satisfying all constraints is reached; these are the leaves.
+  4. **Leaf test.** At a leaf the solver discards the board if it is non-hard (W-level-last or operator-first party), or if SH_grp^r **holds** for some class r (Lemma D for all four classes). Both outcomes are PF blends.
+- **Candidates and UNRESOLVED.** A *candidate* is a leaf that survives the leaf test. A job is *UNRESOLVED* if its DFS exceeds the node budget (BUDGET = 2,000,000 nodes, summed over the job's roots) before it finishes.
+- **Why "0 and 0" is a proof.** A job with no candidate that is not UNRESOLVED has had its whole search space covered. So no counterexample has that job's data. If this holds for every job of every canonical geometry, then by (a) and (b) no counterexample exists in the model.
+- **Exact or floating point? [exact; honest accounting].** Every step of glue_k4enum.py, glue_k4canon.py, glue_k4.py, glue_k4_audit.py and glue_k4_example.py is integer or Boolean arithmetic:
+  - Pauli strings are bit vectors, and products up to phase are XORs;
+  - the Pauli rule test is a bitwise AND;
+  - the affine hulls of Lemma D are computed over F₂;
+  - the numpy arrays are Boolean.
+
+  There is no floating point and no tolerance anywhere in the proof chain. Phases and real parameters enter only through which supports are possible, and that was settled earlier: H.17.12(b) analytically, and H.17.12(c) by an exact enumeration with exact Pauli phases ±1, ±i. Floating point does appear in the H.17 numerics: the board searches, the NUMERICAL Lemma D cross-check on saved boards, and the facet checks a candidate would have needed. None of these is used by the proof.
+- **What the computation relies on.** It relies on the correctness of the code, which is not formally verified, unlike the class bound (Lean). The mitigations are:
+  - the independent audit (d);
+  - the LOOSEN control, which shows the search does find hard boards when they exist;
+  - the brute-force cross-check of the worked example (e);
+  - the orbit-member reruns (b);
+  - byte-identical re-enumeration (f).
+
+*(d) Completeness: raw versus canonical indices.*
+- **The possible confusion.** The search processes the 2,722 canonical geometries, but its checkpoint glue_k4_done.jsonl records each geometry by its **raw** index g, its position among the 21,906 entries of glue_k4_tuples.json. The log also prints "geometries N to do" at each restart: 21,706 at the first run, which started in raw order before the canonical filter existed, then 2,541 and 2,437 at restarts with the filter. The final SUMMARY counts only the last restart: 2,437 geometries and 2,719,567 jobs in 57,025 s on 3 cores. So no single log line says "2,722".
+- **The resolution [PROVED by exhaustive check] (glue_k4_audit.py, glue_k4_audit.log).** The audit:
+  - recomputes the orbit key of all 21,906 geometries, with its own key and bookkeeping code but the same group code (G, cls_act, pbits of t3sym.py);
+  - finds exactly 2,722 orbits, with exactly one canonical entry in each;
+  - finds a done record for 2,722 of the 2,722 canonical geometries, totalling 2,896,784 jobs, with no record (of 2,889, including 167 non-canonical) having a candidate or an UNRESOLVED job.
+
+  The 167 non-canonical records are extra, not missing coverage.
+
+*(e) Worked example: geometry g = 3424 [exact rerun] (glue_k4_example.log).*
+- **The data.** glue_k4_tuples.json entry 3424 is cls = [[1, 8], [], [4, 32], [2, 16]], with pairing [(0,1), (2,5), (3,7), (4,6)]. In words, writing qubits as A B C and vertices as bit strings o_A o_B o_C:
+
+  | class | vertices | edge | label | operator |
+  |---|---|---|---|---|
+  | 0 | 000, 100 | e_A | (XII, ZII) | α + i(β XII + γ ZII) |
+  | 1 | 010, 101 | none (identity class; need not be an edge) | () | 1 |
+  | 2 | 110, 111 | e_C | (IIX, IIZ) | α′ + i(β′ IIX + γ′ IIZ) |
+  | 3 | 001, 011 | e_B | (IXI, IZI) | α″ + i(β″ IXI + γ″ IZI) |
+
+  Each non-identity class acts on a single qubit, and sits on the edge along that qubit's direction (Lemma H).
+- **Canonicalisation.** The orbit of this geometry under Γ meets the enumeration in 8 labelled geometries: 3424, 3430, 3598, 3604, 4576, 4582, 6205 and 6211. All 8 have the same orbit key. 3424 comes first in enumeration order, so it is the canonical representative, and the only one in glue_k4_canon.json.
+- **Its single job.** Each class pair has only one admissible pattern, so the geometry spawns exactly **1 job**:
+  - S_01 = {III, XII, ZII} (V_1V_0† = V_0†);
+  - S_13 = {III, IXI, IZI} and S_12 = {III, IIX, IIZ}, likewise;
+  - S_02, S_03 and S_23 are 9-string product supports such as S_03 = {III, XII, ZII, IXI, IZI, XXI, XZI, ZXI, ZZI}. Their Klein groups meet only in 1, so no cancellation is possible (H.17.12(a)).
+- **The solver on this job:**
+  - After plain arc consistency the domain sizes of P_0, …, P_7 are [1, 1, 4, 16, 16, 4, 16, 16].
+  - For r = class 0, the Lemma D failure condition is possible at 24 of the 28 root pairs. Arc consistency empties 16 of them. The DFS searches the other 8: (2,3), (2,7), (3,4), (3,6), (4,5), (4,7), (5,6) and (6,7).
+  - The search uses 1,368 DFS nodes and reaches 512 leaves, far below the budget.
+  - **All 512 leaves are rejected because SH_grp^r holds for r = class 1 (the identity class)**, so each is a PF blend by H.17.11a. None is rejected for non-hardness.
+  - The instrumented solver is a line-by-line copy of glue_k4.solve with counters, and its verdict is asserted equal to glue_k4.solve's. The checkpoint record is {'g': 3424, 'jobs': 1, 'cand': [], 'unres': 0}.
+- **Brute-force cross-check [exact; independent of arc consistency and of the root logic, though it uses the same Pauli-rule tables and Lemma D formula].** Enumerating all P_1, …, P_7 directly gives exactly **64 admissible boards**, all of them hard. Each fails SH_grp^r for classes 0, 2 and 3, at 8 pairs each, and passes it for class 1. The two counts agree: 512 = 8 roots × 64 boards, because each board fails the class-0 test at all 8 searched root pairs.
+- **Why the identity class rescues these boards.** Take the board with all P_o = I. Absorbing class 1 (V = 1) leaves W_o = V_κ(o), so Aff_o is spanned by the X-parts of the class's own strings: A for class 0, C for class 2, B for class 3. Each class sits on the edge along its own qubit. For every pair of vertices in different classes, D = o ⊕ q contains a qubit that neither class touches (checked for all 24 such pairs), so no vector of Aff_o ⊕ Aff_q covers D, and SH_grp^1 holds. Absorbing class 0 instead, the ratios V_κ(o)V_0† have the larger 9-string supports, and the test fails at 8 pairs. *The choice of absorbed class matters, which is why the leaf asks for failure for every r.*
+- **The search is not vacuous here.** The LOOSEN = 1 control on this job (leaf = any hard admissible board) finds one immediately, all P_o = I. These hard boards are excluded by the SH test, not by an empty search space.
+- **A contrast, g = 37 (glue_k4_example_37.log).** Classes (XII) on {000, 100}, identity on {010, 110}, (IXI) on {001, 011}, and (IXI, IZI) on {101, 111}.
+  - This geometry spawns 3 jobs (S_23 ∈ {III, IXI, IZI, IYI}, {IXI, IZI, IYI}, {III, IZI, IYI}).
+  - Each job has 256 admissible boards (brute force) and reaches 1,024 = 4 × 256 leaves.
+  - Every leaf is discarded because **party C is operator-first**: no class acts on qubit C. So this geometry is closed by H.6.2, not by SH_grp. The LOOSEN control finds 0 hard boards.
+- **Four terms, by contrast.** The H.13.2 board, which is not a PF blend (certificate facet 16962), cannot be written in this model at all: its outcome unitaries have four Pauli terms, so they are not of the shapes in (a). The threshold sits exactly at the boundary of the model's shapes.
+
+*(f) How to reproduce [exact; box timings].*
+- **Commands.** Run from code/stochastic/cyclic/switchboard/h17, with Python 3 and numpy:
+  - `python3 glue_adj.py` writes /tmp/glue_adj.pkl (rigid sets and neighbour lists);
+  - `python3 glue_k4enum.py` writes glue_k4_tuples.json;
+  - `python3 glue_k4canon.py` writes glue_k4_canon.json.
+
+  These three take about 166 s in total on one core. A fresh scratch rerun reproduces all three outputs byte for byte (glue_k4_repro.log).
+- **The search.** `NPROC=3 nohup nice -n 5 python3 glue_k4.py >> glue_k4.log 2>&1 &` is resumable from glue_k4_done.jsonl. The last segment, 2,437 geometries, took 57,025 s (about 15.8 h) on 3 cores. Earlier segments covered the rest.
+- **Checks.**
+  - `python3 glue_k4_audit.py` takes about 30 s.
+  - `python3 glue_k4_example.py 3424` (and `… 37`) takes about 30 s, mostly spent recomputing orbit keys.
+  - `python3 glue_k4_example_orbit.py` takes about 65 s.
+- **sha256 of the inputs and outputs:**
+  - glue_k4_tuples.json 9accd2a0…a2650;
+  - glue_k4_canon.json 69f0f830…93b64;
+  - glue_k4_done.jsonl cac852c2…7794f;
+  - glue_k4.log 8fe7a885…cbd7;
+  - glue_k4_audit.log 9d72fce7…83fa;
+  - /tmp/glue_adj.pkl e0595bed…2ace;
+  - glue_k4.py 46a6b430…a78d.
+
+  The full hashes are in glue_k4_repro.log and in the commit history.
+
+*(g) What the result does not say.*
+- **Scope.** It is PROVED in the per-class-pair model only. Two things are assumed, not proved here:
+  - that every ≤3-term outcome unitary of an admissible board has one of the three shapes with the H.17.12 pair supports (the model's hypotheses);
+  - that the code is correct; it is not formally verified, and only the class bound and Lemma H are in Lean.
+- **It is about boards.** It says nothing about non-Switchboard processes, about more than three parties, or about H.12's causal-inequality value.
+- **Labels.** Labels as in H.21:
+  - the class bound and the symmetries are PROVED (paper, and Lean for the class bound);
+  - the enumeration, canonicalisation, search and audit are PROVED by exact computation;
+  - the worked-example counts are exact reruns;
+  - the cross-checks of H.17.12(d) and Lemma D on saved boards are NUMERICAL and are not used.
+- **Literature.**
+  - Exhaustive computer proofs that combine a symmetry reduction with a complete, budgeted search and an independent audit are a standard pattern; the four-colour theorem (Appel and Haken 1977; Robertson, Sanders, Seymour and Thomas 1997) is the classic example.
+  - Arc consistency is from constraint satisfaction (Mackworth 1977).
+  - We claim only this application.
+
 **H.26.2 The H.12 lower end: lift-A ∩ lift-B ∩ lift-C certifies y_A ≥ −1.15861 [lower bound PROVED, exact integer certificate; solver values NUMERICAL; embed/h17_lift_scs.py, h17_lift_verify.py, h17_lift_scs_ABC.log, h17_lift_verify_ABC.log].** Target 1 of Round 19, completing H.24.4. The three-family solve, started in Round 17 with SCS's indirect solver at eps 10⁻⁵, finished as "solved" after 9,067 s (about 1,000 iterations; residuals 2.8·10⁻⁵ and 1.8·10⁻⁵ at iteration 750). Its primal objective was −1.155758, and the float dual bound, with eigenvalue deficits subtracted, was −1.1586026.
 - *Exact verification [PROVED].* h17_lift_verify.py rounds every multiplier to the dyadic grid 2⁻³⁰, applies all maps exactly in integers, and certifies each cone shift by Bareiss–Sylvester, as in H.23.3. The family contributions are +1.391271 (A), −1.632892 (B) and −0.916989 (C). Result: **min over all instruments of y_A·P ≥ −151861226318490447/131072000000000000 ≈ −1.1586092**.
 - **Status.** The optimum of y_A over all instruments lies in **[−1.15861, −0.70580]** [PROVED both ends]. The gap shrinks from 0.4598 to 0.4528. Adding the third family gains only 0.0070, against 0.038 for the second (H.23.3). So the lift-family hierarchy seems to saturate far from −0.70580: one more copied party per family will not close the gap. A relaxation that sees the rank-one (projective) structure of the optimum, as in H.26.3, is needed.
@@ -2688,14 +2822,17 @@ Board class 10515 (ζ_8 phases listed in cert_z8.log) satisfies the Pauli rule e
 This appendix defines the main technical terms of the paper, in alphabetical order. Each entry gives the definition as the paper uses it, the notation, where it is defined ("Defined in"), and the source in the reference list. A *Usage note* marks places where the paper's usage differs from the literature, or where one word has several meanings in the paper. "See also" points to other entries. References 47–55 were added for this glossary only: they credit standard notions the paper uses but did not cite. The glossary adds no results. Where it and the body text differ, the body text is authoritative.
 
 - **Absorbed class, absorbed vertex** (r; W_o = U_oU_r†). Fix an output r and absorb U_r† into the source state, so that the board becomes W_o = U_oU_r†. The class of r is the absorbed class, and r the absorbed vertex. Vertices o and q are in the same *group* when W_oW_q† is monomial. Each group has a representative ρ and an F₂-subspace H_ρ, spanned by the X-parts of the Pauli support of W_ρ. Defined in H.17.11(a); used in Lemma D (H.17.17). Paper's own construction. See also *SH, SH⁺, SH⁺⁺, SH_grp, SH_grp^r*; *Monomial*.
+- **Arc consistency.** A pruning step for finite constraint problems. A value in one variable's domain is deleted when some other variable has no value compatible with it. It never deletes part of a complete solution, so a search that combines it with full branching is still exhaustive. The four-class search uses it on the Pauli-rule tables (one 64 × 64 Boolean table per vertex pair). Used in H.17.13–H.17.17; explained in H.26.1a. Source: constraint satisfaction (Mackworth 1977).
 - **Activation-controlled (measurable process function).** A process function whose output space splits into countably many product regions. In each region at most one party is *active*, its own output is unconstrained, and its translation amount is an arbitrary measurable function of the other outputs, while the inactive amounts are constant. Two further conditions apply: Lugano-type exclusivity, and the skeleton with zero amounts is a process function. Example: the Lugano pattern on parities with continuous or even nowhere-continuous amounts. The closed loop with arbitrary local unitaries is unitary (F.5.12, Round 18). Paper's own term. See also *Countably controlled*; *Uniformly approximable*.
 - **Admissible board.** A board {U_o} in which every U_o is unitary and every pair o ≠ o′ obeys the Pauli rule. This is equivalent to purity of the Switchboard built from it (H.7.1, H.8.1). *Pairwise admissible* (H.17.3, H.17.9) means that the Pauli rule holds for one given pair. Defined in the H.17 preamble. Paper's own term. See also *Board*; *Hard board*; *Pauli rule*.
 - **AFNB.** Araújo, Feix, Navascués and Brukner [17], the source of the paper's notions of pure process and purification. See *Pure process*; *Purification*.
 - **Ancilla.** An auxiliary system on which a party's local operation may also act. Local ancillas are X_k, Y_k in Appendix A. A shared, possibly entangled ancilla is treated in Appendix A Step 3 and H.8.2 ("ancillas add nothing" for Switchboards). The Lean counterexample is checked for finite ancilla types, for ancilla index sets of any cardinality (unitary kernels), for ancillas in arbitrary Hilbert spaces (`isPureHilbert_Vsb`), and for normal CPTP local channels with ancillas of any cardinality (`valid_normalCPTP_Vsb`, countable; `valid_normalCPTP_Vsb_any`, Round 13) (H.12.3, H.19, H.20). With infinite-dimensional ancillas, "pure" means that the closed loop is a unitary of C^P ⊗ ⨂K_k for all Hilbert spaces K_k and unitaries on C² ⊗ K_k (H.19.3). For finite V this is equivalent to purity against finite ancillas (H.19.4; Lean: `isPure_iff_isPureHilbert`, H.20.1). In the process-matrix framework, ancillas of any cardinality are allowed by `IsValidPMInf` and `IsPurePMInf`, which agree with the finite-ancilla notions (`isValidPMInf_iff`, `isPurePMInf_iff`, H.20.4). Standard [14, 17].
 - **Antinomic** → *Nomic, antinomic*.
+- **Audit (completeness audit).** A separate check that an exhaustive search covered everything it claims to cover. It recounts the cases (here, recomputing the orbit key of all 21,906 labelled geometries) and matches them against the search's checkpoint records. For glue_k4 it found all 2,722 canonical geometries done, with 0 candidates and 0 UNRESOLVED (glue_k4_audit.py). Defined in H.26.1; explained in H.26.1a(d). Paper's own usage.
 - **Baumeler–Wolf polytope** → *Valid (polytope)*.
 - **Board** (U_o, also written C_o; "the board"). In a Switchboard, U_o := C_o is the 8×8 unitary that the joint output o applies to the source (H.8 notation). In H.12, "eight 8×8 boards" means the eight U_o. Elsewhere "a board" means the whole family {U_o}_{o∈{0,1}³}, as in "X-type board" and "≤3-term board". Defined in H.8, H.17 preamble. *Usage note:* the paper's own term, not used in the literature. See also *Switchboard*; *Admissible board*; *Term*.
-- **Candidate, job, UNRESOLVED** (search outcomes). In the exact searches of H.17.13–H.17.17, a *job* is one assignment of classes (or labels) and pair supports, handed to an exact finite-domain solver. A *candidate* is a complete assignment that passes every search filter. Each candidate is then checked against the full test (H.17.11a) and the hull facets. A job is *UNRESOLVED* if the solver's node budget runs out first. A run counts as "clean" when it has 0 candidates and 0 UNRESOLVED. Defined in H.17.15, H.17.17. Paper's own terms.
+- **Canonical representative; orbit key.** For a finite set acted on by a symmetry group, the *orbit key* of an element is the lexicographically smallest of its images, so two elements are in one orbit exactly when their keys are equal. The *canonical representative* of an orbit is one fixed member: in glue_k4canon.py, the first geometry in enumeration order with that key. A search over canonical representatives is complete when every orbit member has the same answer, which holds for symmetries of the problem (H.17.15(d)). Defined in H.17.17; explained in H.26.1a(b). Standard technique.
+- **Candidate, job, UNRESOLVED** (search outcomes). In the exact searches of H.17.13–H.17.17, a *job* is one assignment of classes (or labels) and pair supports, handed to an exact finite-domain solver. A *candidate* is a complete assignment that passes every search filter. Each candidate is then checked against the full test (H.17.11a) and the hull facets. A job is *UNRESOLVED* if the solver's node budget runs out first. A run counts as "clean" when it has 0 candidates and 0 UNRESOLVED. Defined in H.17.15, H.17.17. Paper's own terms. A worked example is in H.26.1a(e).
 - **Causal box.** A quantum system that receives and emits messages at positions of a partially ordered set, closed under composition [42]. Mentioned in H.18.4 as a framework the paper does not use.
 - **Causal correlations; dynamic-order causal polytope.** Correlations P(i|o) between the parties' outputs o and inputs i that can arise with a possibly dynamical causal order: a party acts first, and its output can decide the order of the rest. For three binary parties they form a polytope with 138,304 deterministic vertices. Defined in H.15.7a. Sources: [14] for two parties; [52, 53] for the multipartite definition and polytopes. See also *Causal inequality*.
 - **Causal inequality.** A linear inequality satisfied by every causal correlation. Its violation certifies that no causal order explains the data. The paper's inequalities have integer coefficients and minimum 0 over the 138,304 deterministic causal strategies. They are certified by LP plus an exact rational Farkas vector. Defined in H.15.7b, H.15.7d. Source: [14]; for the polytope approach, [53].
@@ -2793,6 +2930,7 @@ This appendix defines the main technical terms of the paper, in alphabetical ord
   - The *Lugano orbit* (64 PFs, H.7).
   - *Class orbits* under G₄₈: 61 (H.17.15).
   - *K-orbits*: 21 (H.17.16).
+  - *Geometry orbits*: 2,722, the orbits of the 21,906 labelled four-class geometries under cube translations × G₄₈ (H.17.17, H.26.1a).
   - Facet orbit numbers and vertex orbit numbers are separate numberings: "orbit 7" in C.2 is a vertex orbit, "orbit 82" in D.7 a facet orbit.
 - **P, F (global past and future); source and sink.** The extra wires of a process matrix: P carries the initial state into the process, and F carries the final state out. In the Switchboard, the source state φ is on P and the register F records the outputs. Sources: global past and future, [17]; source and sink regions, [16]. See also *Source state*.
 - **p-constant.** A set S of Pauli strings is p-constant if all its strings have the same qubit-p part. Lemma B says the ratio support across a class-changing edge along p is p-constant. Defined in H.17.16, restated in H.17.17. Paper's own term.
@@ -2827,6 +2965,7 @@ This appendix defines the main technical terms of the paper, in alphabetical ord
   - Defined in Section 9, the Appendix D and H headers, H.15 and H.18 headers.
 - **Reversible extension (classical).** Extending a PF w to an invertible map on (inputs and outputs) × (source and sink), e.g. U|o, e⟩ = |w(o) ⊕ e, o⟩, which is a permutation lift. Sources: [16, Thm 2]; [45, Thm 6] for the quantum analogue. Used in Section 6 and D.6. *Usage note:* the paper says "reversible extension"; it does not use "reversible completion". See also *Unitary lift*.
 - **Rigid qubit, rigid direction.** A qubit p is rigid for a non-identity class x if the strings in supp V_x have pairwise distinct qubit-p parts. The cube direction e_p is then rigid for x. Defined in H.17.17. Paper's own term. See also *Lemma H*; *Class bound*.
+- **Root, leaf (of an exact search).** In the four-class search a *root* is a vertex pair (u₀, w₀) at which the solver requires SH_grp^r to fail for the class of vertex 0. Every counterexample has such a pair, so looping over roots loses nothing. A *leaf* is a complete assignment of the left Paulis that satisfies every constraint, and the leaf test then decides whether it is a candidate. Defined in H.17.17; explained in H.26.1a(c). Paper's own terms.
 - **Routed graph; bi-univocal; strong and weak loops; fleshing out.** In Vanrietvelde, Ormrod, Kristjánsson and Barrett [18], a routed graph is a graph with routes (index constraints) on its arrows. It is *valid* if it is bi-univocal and its branch graph has no strong loops, i.e. every loop is weak [18, Sec. 2.4]. Any process obtained by *fleshing out* a valid routed graph is consistent. H.15.7 checks these conditions by brute force [18, Defs 3.1–3.7]. Applied to H.13.2 in H.15.7. CITED.
 - **Run budget** (classical model with run budget r). An acyclic classical stochastic network that calls the agents' instruments r times in total, each call time-local, and reports for each agent one of its calls on the announced input. r = 3 (one call each) gives only causal correlations (Lemma H.15.7a); r = 4 (one agent called on both inputs) reproduces every valid three-party binary classical process (H.22.3). Defined in H.22.3. See also *Classical multiple-use model*; *Single-use realisation*.
 - **Sector algebra.** For a bipartite unitary process V with past P, the algebra of operators X on P such that X ⊗ 1 commutes with every operator on the agents' inputs pulled back through V. Its central projectors split P into sectors with a definite order ("A first" or "B first"); this is the decomposition of Barrett, Lorenz and Oreshkov [45] and Yokojima et al. [43] that WBO use [41]. For H.12 with U_C fixed it is M₂ ⊕ M₂ (dimension 8). Defined in H.21.1 (as a computational device). See also *TDS*.
