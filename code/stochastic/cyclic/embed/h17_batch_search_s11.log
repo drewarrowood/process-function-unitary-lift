@@ -1,0 +1,3 @@
+seed 11 round 0: min -0.705802, 5 smallest [-0.7058, -0.7058, -0.65969, -0.65969, -0.65969], frac within 1e-3 of min 0.002; best -0.705802
+seed 11 round 1: min -0.705802, 5 smallest [-0.7058, -0.65969, -0.65969, -0.65969, -0.65969], frac within 1e-3 of min 0.001; best -0.705802
+seed 11 round 2: min -0.705802, 5 smallest [-0.7058, -0.7058, -0.65969, -0.65969, -0.65969], frac within 1e-3 of min 0.002; best -0.705802

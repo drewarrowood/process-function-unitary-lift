@@ -2277,6 +2277,12 @@ H.18.6 left two things open for H.12: an explicit circuit on time-delocalised su
 
 So, within this family, validity seems to force the control to factor through the Lugano activation bit. The valid members are Lugano boards dressed with local unitaries, and H.23.1 already searched those (`never22_lugU_3_open10.log`) without crossing any of the 10 orbits 26, 28, 30, 31, 54, 57, 66, 69, 75, 81. This is evidence, not a proof. The sample is small, and the boards and the purification argument of H.23.1a were not combined into a proof that the orbits hold on Purif. **Status:** all 10 orbits remain OPEN. Neither a crossing nor a proof was found this round. Literature: the validity criterion is from Araújo, Feix, Navascués and Brukner (Quantum 1, 10, 2017). Classical control of local operations by a process function follows Baumeler and Wolf (2016).
 
+**H.24.3 The H.12 upper end: a massively multistart search does not beat −0.70580 [NUMERICAL; embed/h17_batch_search.py, h17_batch_search_s11.log, h17_batch_search_s12r1.log].** Target 1 of Round 17, achievable side. By H.15.7d every instrument strategy reduces to 4-outcome qubit POVMs E_{a,o|x}, so higher-dimensional instruments cannot help, and the search runs over exactly that set. `h17_batch_search.py` optimises batches of 1024 random POVM products with Adam: 1500 steps, learning rate 0.05 then 0.01, POVMs parametrised as normalised Gram products. As a check, it reproduces −0.7058021862 on the Round 14 seesaw optimum (h12_bound_warm_E.npy). Two runs were made:
+- general rank, seed 11;
+- rank-1 POVM elements, seed 12.
+
+Each was stopped after 3 of 8 planned rounds, i.e. 3 × 1024 starts each, to free the CPU for the lift solve. Both reach exactly −0.705802 in every round, and nothing lower. The general-rank run also finds a second local optimum at −0.65969. The rank-1 run reaches −0.705802 from 0.7–1.7% of starts. The value is therefore very likely the true optimum of the instrument problem, but this is not proved: the interval for min y_A·P stays [−1.16564, −0.70580] unless H.24.4 improves the lower end. Literature: seesaw and multistart local optimisation for process-matrix and causal-inequality problems are standard (e.g. Branciard et al., New J. Phys. 18, 013008, 2016).
+
 ## Appendix I. Robustness: approximately blended versus approximately liftable (Oct 22 2026)
 
 Norm: for classical processes, ||p - q||_1 = sum over (i,o) of |p(i|o) - q(i|o)|. For machines, the switchboard residual is rho(U) := sqrt(R(U)), the l2 norm of the forbidden Pauli coefficients (H.8.1).

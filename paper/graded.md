@@ -1486,3 +1486,8 @@ We checked the literature on Oct 23 2026, by web search and by reading the prima
 - **Question.** Can boards beyond the "XOR" kind cross any of the ten facet orbits that no strategy has crossed so far?
 - **Test [NUMERICAL].** We let each party apply a qubit rotation chosen by the other parties' classical outputs. Almost every way of choosing makes the process inconsistent. The only consistent pattern we found is the Lugano one: one rotation when the party is "activated", another otherwise. Those boards were already searched in Round 16, so this family brings nothing new.
 - **So** the ten orbits are still open. Neither a crossing nor a proof was found.
+
+## 102. Plain-language note: the best strategy for the first counterexample looks final (Oct 24 2026)
+
+- **Search [NUMERICAL].** We ran about 6,000 fresh optimisations of the measurements in H.12, some general and some restricted to the simplest (rank-one) measurements. Every round found the same best score, −0.70580, and nothing lower.
+- **So** the best strategy found in Round 14 is very likely optimal. The proved range is still [−1.1656, −0.7058], because a search can only show what is achievable, not what is impossible.
