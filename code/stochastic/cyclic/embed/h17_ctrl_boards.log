@@ -1,0 +1,14 @@
+generic 4-per-party 73.6956188237515
+depends on next party only 54.74433631269154
+lugano two-valued 1.9640479482541205e-29
+generic 4-per-party 84.59053306750823
+depends on next party only 41.82803488756977
+lugano two-valued 1.812875919437015e-29
+generic 4-per-party 98.9478066412234
+depends on next party only 57.91774690272102
+lugano two-valued 1.8016041149803028e-29
+--- refinements of the Lugano cells
+inactive cells distinct 86.10293991795393
+inactive cells distinct diagonal 56.97704151780154
+inactive cells distinct 69.4766302845131
+inactive cells distinct diagonal 42.919749097338055

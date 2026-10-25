@@ -1480,3 +1480,9 @@ We checked the literature on Oct 23 2026, by web search and by reading the prima
 - **Where we were (note 98).** For a process function on continuous outputs whose dependence on the outputs can be described with countably many cells, the closed loop with any local unitaries is a well-defined unitary.
 - **New [PROVED, paper].** Suppose the dependence is continuous, but can be approximated uniformly by such cell-based functions. Then the closed loops of the approximations converge, the limit does not depend on the approximation chosen, and it preserves lengths (an isometry). Example: the Lugano pattern, where each translation amount is any smoothly varying function of the other outputs.
 - **Still open.** We have not shown that the limit is reversible (unitary). That would follow if the reversed loops did not leak probability towards ever higher momenta. We have no example where they do. Process functions that cannot be approximated this way are also still open.
+
+## 101. Plain-language note: why the ten stubborn orbits resist one more family (Oct 24 2026)
+
+- **Question.** Can boards beyond the "XOR" kind cross any of the ten facet orbits that no strategy has crossed so far?
+- **Test [NUMERICAL].** We let each party apply a qubit rotation chosen by the other parties' classical outputs. Almost every way of choosing makes the process inconsistent. The only consistent pattern we found is the Lugano one: one rotation when the party is "activated", another otherwise. Those boards were already searched in Round 16, so this family brings nothing new.
+- **So** the ten orbits are still open. Neither a crossing nor a proof was found.
