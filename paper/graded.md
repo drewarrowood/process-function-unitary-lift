@@ -1342,6 +1342,7 @@ We checked the literature on Oct 23 2026, by web search and by reading the prima
   - *An exact search of the most "cancellation-prone" family [PROVED for that family].* Here all dials are built from the same three flip patterns, a so-called Klein group, which gives the most room for cancellations. Using the symmetries, there are 21 such families. The search covered all 21 families with four dials each: 1,862,595 combinations, and none of them gives a machine that escapes the classical loops [PROVED for this family]. A random check of 1,200 combinations found something stronger: the rules force every one of them to be trivial (one agent simply acts last).
   - *Random search [NUMERICAL].* Among 39,206 random admissible three-term machines, 5,800 were "hard" (no agent is trivially first or last). Almost all of them collapse to a single dial; ten have two dials and none has three or more. None beats the classical loops.
   - *What stays open.* We found no gluing argument that reduces four dials to three, and the full search is far too big for one machine (roughly 10⁹ cases). So "four terms is the minimum" is **still OPEN** in general. No three-term counterexample is known.
+  - *Update (notes 85, 106, 108, 112; H.17.17, H.26.1).* Settled since: there are at most four dials, and the four-dial search finished clean. So four terms is the minimum, PROVED in the same model.
 
 ## 84. Plain-language note: running a time loop on an ordinary clock, and the four-dial search continues (Oct 24 2026)
 
@@ -1355,9 +1356,10 @@ We checked the literature on Oct 23 2026, by web search and by reading the prima
 - **The four-dial search (H.17.16b).**
   - We rewrote the search so that it builds cases one at a time instead of all at once, which used to run out of memory. It also skips cases that are mirror images under the symmetries.
   - With five dials in one family, half of the batches (52 of 104, about 417,000 cases) are finished and clean: no suspects, nothing left unresolved [PROVED for those batches]. The rest runs overnight.
+    - *Update (note 112, H.17.16c).* All 104 batches finished clean (38,135,448 cases), and the coverage was audited.
   - A random sample of four-dial cases across families was also clean [NUMERICAL]. The full cross-family search would take about 10⁵ processor-hours, far beyond this machine.
   - A small counting fact: with five dials on eight corners, at least two dials sit on a single corner [PROVED].
-  - "Four terms is the minimum" is **still OPEN**.
+  - "Four terms is the minimum" is **still OPEN**. *Update (H.26.1):* now PROVED in this model.
 
 ## 85. Plain-language note: every dial is stiff in one direction, so there are at most four dials (Oct 24 2026)
 
@@ -1367,6 +1369,7 @@ We checked the literature on Oct 23 2026, by web search and by reading the prima
 - **Checked by computer proof [PROVED (Lean)].** The stiffness lemma and the at-most-four-dials count are also checked line by line by the Lean proof assistant (lean/PFUL/LemmaH.lean). Lean takes a few facts from earlier notes as given: what three-term dials look like, and rule (2) of note 83 in the form the proof uses. Everything from there to "at most four dials, two corners each" is machine-checked.
 - **Four dials is now a finite search.** With four dials, each covers exactly two neighbouring corners. Up to symmetry there are only **2,722** ways to place and label them. A computer search checks every way exactly [PROVED for the cases finished so far]. As a control, the same program without the final test finds ordinary "hard" machines easily, so it is not searching an empty space [NUMERICAL].
 - **Status.** At the time of writing, a few hundred of the 2,722 cases are finished, and all are clean: no suspect and nothing left unresolved. The rest runs in the background for a few more hours on this machine. If it finishes clean, "four terms is the minimum" is proved for this model of three-term machines. Until then it is **still OPEN**, but what is left is now a running search, not a missing idea.
+  - *Update (notes 106 and 108; H.26.1, H.26.1a).* The search finished: all 2,722 cases clean (2,896,784 sub-cases, no suspect, nothing unresolved), and an independent audit confirmed the coverage. "Four terms is the minimum" is PROVED in this model.
 - **What did not work [NUMERICAL].** We checked whether the tests that separate quantum from classical behaviour (hull facets) look only at a few corners at a time. They do not: the ones the four-term counterexample violates all involve at least four corners. That is why the argument has to use the whole cube, as the stiffness argument does.
 
 ## 86. Plain-language note: a glossary for the technical note (Oct 24 2026)
