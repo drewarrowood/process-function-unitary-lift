@@ -1,0 +1,12 @@
+maximal refined PFs with (2,2,2) blocks: 8
+orbit 26 facet 240: (dual feasible, exact NS lower bound, local min) per Lugano variant: [(True, '0', '0'), (True, '0', '0'), (True, '0', '0'), (True, '0', '0'), (True, '0', '0'), (True, '0', '0'), (True, '0', '0'), (True, '0', '0')]
+orbit 28 facet 242: (dual feasible, exact NS lower bound, local min) per Lugano variant: [(True, '0', '0'), (True, '0', '0'), (True, '0', '0'), (True, '0', '0'), (True, '0', '0'), (True, '0', '0'), (True, '0', '0'), (True, '0', '0')]
+orbit 30 facet 245: (dual feasible, exact NS lower bound, local min) per Lugano variant: [(True, '0', '0'), (True, '0', '0'), (True, '0', '0'), (True, '0', '0'), (True, '0', '0'), (True, '0', '0'), (True, '0', '0'), (True, '0', '0')]
+orbit 31 facet 247: (dual feasible, exact NS lower bound, local min) per Lugano variant: [(True, '0', '0'), (True, '0', '0'), (True, '0', '0'), (True, '0', '0'), (True, '0', '0'), (True, '0', '0'), (True, '0', '0'), (True, '0', '0')]
+orbit 54 facet 514: (dual feasible, exact NS lower bound, local min) per Lugano variant: [(True, '0', '0'), (True, '0', '0'), (True, '0', '0'), (True, '0', '0'), (True, '0', '0'), (True, '0', '0'), (True, '0', '0'), (True, '0', '0')]
+orbit 57 facet 521: (dual feasible, exact NS lower bound, local min) per Lugano variant: [(True, '0', '0'), (True, '0', '0'), (True, '0', '0'), (True, '0', '0'), (True, '0', '0'), (True, '0', '0'), (True, '0', '0'), (True, '0', '0')]
+orbit 66 facet 561: (dual feasible, exact NS lower bound, local min) per Lugano variant: [(True, '0', '0'), (True, '0', '0'), (True, '0', '0'), (True, '0', '0'), (True, '0', '0'), (True, '0', '0'), (True, '0', '0'), (True, '0', '0')]
+orbit 69 facet 571: (dual feasible, exact NS lower bound, local min) per Lugano variant: [(True, '0', '0'), (True, '1', '1'), (True, '0', '0'), (True, '1', '1'), (True, '0', '0'), (True, '0', '0'), (True, '0', '0'), (True, '0', '0')]
+orbit 75 facet 595: (dual feasible, exact NS lower bound, local min) per Lugano variant: [(True, '0', '0'), (True, '0', '0'), (True, '0', '0'), (True, '1', '1'), (True, '1', '1'), (True, '0', '0'), (True, '0', '0'), (True, '0', '0')]
+orbit 81 facet 706: (dual feasible, exact NS lower bound, local min) per Lugano variant: [(True, '1', '1'), (True, '1', '1'), (True, '0', '0'), (True, '1', '1'), (True, '0', '0'), (True, '0', '0'), (True, '0', '0'), (True, '0', '0')]
+ALL CERTIFIED (dual feasible, NS bound = local min >= 0): True
