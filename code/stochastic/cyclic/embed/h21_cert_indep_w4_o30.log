@@ -1,0 +1,7 @@
+phases have modulus exactly 1; frames exactly unitary
+(1) V' exactly unitary (64x64)
+(2) Araujo validity projector residual exactly 0; Tr W = 64
+(3) p exactly valid (positivity, 64 deterministic interventions)
+(4) EXACT facet 245 (orbit 30) value: -2.6894964776e-02 (relative -8.9649882587e-03)  VIOLATED
+(5) 384 group images of p; facets of each open orbit violated by some image: {30: 192}  orbit sizes: {26: 192, 28: 192, 30: 192, 31: 192, 54: 96, 57: 192, 66: 96, 69: 192, 75: 96, 81: 96}
+    facets violated by p itself: {30: 1}
