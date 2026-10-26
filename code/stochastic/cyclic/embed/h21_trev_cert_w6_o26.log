@@ -1,0 +1,10 @@
+all node unitaries and frames exactly unitary (Gaussian rationals); max |exact - float| = 1.03e-06
+float relative facet value with the exact board: -2.4287203531e-05 (orbit 26, facet 240)
+p is exactly a valid classical process (positivity, normalisation, 64 deterministic interventions)
+facet functional exact on all 744 PFs; max PF value 3
+EXACT facet value at p: (436 digits / 439 digits) ~ -7.2861609526e-05   relative: -2.4287203175e-05
+CERTIFIED: facet 240 (orbit 26) is violated.
+
+real	0m3.885s
+user	0m7.110s
+sys	0m0.634s
