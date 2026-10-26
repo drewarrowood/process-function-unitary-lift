@@ -1,0 +1,9 @@
+(a) arbitrary theta_k(t_k,f_-k), 5 random draws: penalties [39.2983, 52.2963, 88.3971, 26.6404, 37.2908]
+    only party 0 nonzero: 2.465190328815662e-32
+    only party 1 nonzero: 4.406527712757996e-31
+    only party 2 nonzero: 9.213648853948536e-31
+(b) Hessian at 0: null space dim 64  (nonzero eigenvalues: 0 )
+    span{theta_k(t_k,f_-k)}: dim 19
+    is that span inside the null space? residual 0.00e+00
+    span of all refined-PF phase functions: dim 19 ; null-space dim 64
+    null space inside span{theta_k(t_k,f_-k)}? residual 7.03e-01
