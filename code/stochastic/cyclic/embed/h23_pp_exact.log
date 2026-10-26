@@ -1,0 +1,10 @@
+1219 branches; 1217 exactly valid on the whole torus; 2 not
+all 34 components exactly valid: True
+non-valid branch: free coordinates [1, 2, 5] ; failing conditions 8 (sets S: [(0, 1, 2)] )
+  x_1 = 0: exactly valid True; contained in components [0]
+  x_2 = 0: exactly valid True; contained in components [30]
+  x_5 = 0: exactly valid True; contained in components [6]
+non-valid branch: free coordinates [0, 3, 4] ; failing conditions 8 (sets S: [(0, 1, 2)] )
+  x_0 = 0: exactly valid True; contained in components [3]
+  x_3 = 0: exactly valid True; contained in components [27]
+  x_4 = 0: exactly valid True; contained in components [33]
