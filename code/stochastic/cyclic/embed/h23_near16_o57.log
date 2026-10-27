@@ -1,0 +1,5 @@
+orbit 57 facet 521: Valid minimum -0.166667
+  start 0: lam 6.1806e-09 pen 7.3e-15  25s
+  start 1: lam 2.6858e-08 pen 2.2e-13  47s
+  start 2: lam 2.7681e-08 pen 8.1e-14  70s
+orbit 57: best valid lam 6.180650e-09 (pen 7.3e-15); valid starts below -1e-7: 0/3; 70s

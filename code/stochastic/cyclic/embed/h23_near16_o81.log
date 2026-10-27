@@ -1,0 +1,5 @@
+orbit 81 facet 706: Valid minimum -0.166667
+  start 0: lam 4.5345e-09 pen 1.3e-17  22s
+  start 1: lam 8.0231e-09 pen 2.0e-17  40s
+  start 2: lam 1.8019e-08 pen 7.8e-17  62s
+orbit 81: best valid lam 4.534538e-09 (pen 1.3e-17); valid starts below -1e-7: 0/3; 62s

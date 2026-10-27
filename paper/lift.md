@@ -2663,7 +2663,7 @@ On this family, y_A·P is a cubic polynomial f(n) = Σ_x Σ_μ W_x[μ] ∏_k (1,
   - 8 three-dimensional components that use the g-monomials o_j o_k z_l instead of c. These are **new**: they are not PF phase boards;
   - 18 five-dimensional components that mix the three types.
   Penalty projection from random starts lands on valid points in 200 of 200 starts, and only 4% of those points have all g = 0 (h22_phaseproc.py scan). So the g-directions are generic, not exceptional.
-- *Caveats.* The three-party condition was checked at random points, not symbolically. The two failing branches might still contain valid subsets outside the 34 components. Whether the new g-components are equivalent to PF phase boards under a symmetry outside the 384-element group (for example a change of frame that exchanges the roles of inputs and outputs) was not analysed [OPEN].
+- *Caveats.* The three-party condition was checked at random points, not symbolically. The two failing branches might still contain valid subsets outside the 34 components. *Update (Round 23, H.30.3): both caveats are closed. The three-party condition is now checked exactly by a character-class argument, and the two failing branches (the cyclic patterns) are valid only on six subtori, each inside one of the 34 components, so the classification is PROVED.* Whether the new g-components are equivalent to PF phase boards under a symmetry outside the 384-element group (for example a change of frame that exchanges the roles of inputs and outputs) was not analysed [OPEN].
 
 **H.29.4 Searches on the seven orbits: nothing crosses; the exact phase-process search passes validation, penalty searches do not [NUMERICAL, negative; h22_pp_comp_search.py, h22_ppc_*.log, h22_copp_search.py, h22_phaseproc.py, h22_pp_o*.log].**
 - *Exact per-component search (passes validation).* Inside each of the 34 components validity is exact (φ = N y), so no penalty is needed. We minimise the Rayleigh quotient over (y, frames, ψ) by L-BFGS and report the exact minimum over ψ (the smallest eigenvalue), re-checking validity at the best point (penalty ≤ 5·10⁻²⁶ everywhere).
@@ -2681,6 +2681,77 @@ On this family, y_A·P is a cubic polynomial f(n) = Σ_x Σ_μ W_x[μ] ∏_k (1,
 - the exact search over all 34 components of valid three-qubit phase processes finds no crossing, while it does reproduce both crossings of orbits 26 and 30 (NUMERICAL).
 Whether the seven hold on Purif is **OPEN**. *Reading [INTERPRETIVE].* Every crossing found so far, in any round, lies on a Lugano-type component. On the families examined, the seven open orbits behave like constraints of process functions. A purity-based proof would have to explain why the Lugano components cross 26, 30 and 31 but not these seven.
 - *Correction recorded this round.* The H.28.2 instrument paragraph first stated the meaning of the wiring mask R backwards (R is the set of time-reversed parties). It was corrected in commit 1e95e03, and a note in the text records the correction.
+
+**H.30 Round 23: a span lemma proves the seven open orbits on every non-Lugano family; the phase-process classification is now exact; the seven stay open on Purif (Oct 26 2026).** Round 23 tried to prove the seven open orbits 28, 54, 57, 66, 69, 75 and 81 (960 facets) using purity. A proof for all of Purif was not reached. **What is proved is a statement on an explicit subclass.** On every valid three-qubit phase process outside the eight Lugano-type components, and on every time-reversed PF lift (H.27.2) on the twelve single-block refined PFs, every facet of the seven orbits holds. So do the facets of orbits 26, 30 and 31. Each family's statistics lie in an exactly computed linear space S (Lemma H.30.1). On Valid ∩ S, two independently written programs certify every facet with exact LP duality (Theorem H.30.2). The round also completes the enumeration of H.29.3 exactly (H.30.3). A search started at the −1/6 points of Valid failed validation (H.30.4). The counts are unchanged: **15 of 22 genuine orbits crossed, 7 open.** Code and logs are in code/stochastic/cyclic/embed/h23_*.
+
+**H.30.1 The statistics span of a family [Lemma PROVED by derivation; integer generators, exact ranks; sampled spans agree NUMERICALLY; h23_span.py, h23_span_lp.py, h23_span_lp_comp.log, h23_span_lp_rule.log, h23_affhull.py/.log/.json].**
+- *Expansion.* For a COPP (H.29.1) read in SU(2) frames e_k with source ψ on the three input qubits,
+  p(i|o) = Σ_{z,z′} conj(ψ_z) ψ_{z′} χ_{zz′}(o) Π_k conj(e_k[i_k, z_k]) e_k[i_k, z′_k].
+  This covers two families. For a phase process, χ_{zz′}(o) = e^{i(φ(o,z′) − φ(o,z))}. For the time-reversed PF lift on a refined PF w′ (H.27.2, Lemma H.29.2a), χ_{zz′}(o) = Π_k K_k(o_k)[w′_k(z_{−k}), w′_k(z′_{−k})].
+- *Frame factor.* As a function of i_k, the k-th frame factor lies in span{1, (−1)^{i_k}} if z_k = z′_k. If z_k ≠ z′_k it lies in span{(−1)^{i_k}}, because two columns of a unitary are orthogonal, so the constant part vanishes.
+- *Output factor, phase processes.* On a component {x : Mx ∈ 2πZ^r}, φ = x · m(o, z), where m is the vector of the 12 mixed monomials. All 34 components are torsion-free (H.30.3), so the valid set is ker M + 2πZ^12. Then χ_{zz′}(o) = e^{i x·(m(o,z′) − m(o,z))} takes the same value on any two outputs o, o′ whose integer difference vectors differ by an element of rowspace(M). So χ lies in the span of the indicators of these classes of o.
+- *Output factor, time-reversed lifts.* The k-th factor is 1 if z and z′ lie in the same block of party k. Otherwise it is an arbitrary function of o_k.
+- **Lemma H.30.1.** For each family, all statistics, for every source (pure or mixed), every frame and every point of the family, lie in the linear space S spanned by the integer vectors (o-pattern) ⊗ (i-pattern) over all pairs (z, z′). If a facet's minimum over Valid ∩ S is ≥ 0, the facet holds on the whole family and on its convex hull.
+- *Dimensions [exact; sampled check NUMERICAL].*
+  - The 26 non-Lugano phase components have dim S = 20, 22 or 24.
+  - The 12 single-block rules have dim S = 22 or 24.
+  - The 8 Lugano components (7–10, 22–25) and the 8 Lugano-type rules (4, 5, 6, 7, 10, 11, 14, 15) have dim S = 38, which is the full affine hull of Valid (Valid has affine dimension 37, the same as the PFs).
+  - For every family, 300 random members span exactly S (residual ≤ 6·10⁻¹⁵), so S is not larger than it needs to be.
+  - The 38 non-Lugano families give 23 distinct spaces. Several rules and components share a space: rule 0 = comp 0, rules 1, 2 = comps 1, 2, rule 3 = comp 3, rule 8 = comp 27, rules 9, 17 = comps 28, 29, rule 12 = comp 6, rules 13, 16 = comps 11, 26, rule 18 = comp 30, rule 19 = comp 33. The remaining spaces belong to comps 4, 5, 12–21, 31, 32.
+- *Why the method stops at Lugano.* On the Lugano-type families S is the whole space, so Valid ∩ S = Valid. There the LP minimum is the −1/6 of H.17.5 for all ten orbits, and the method gives no information. These are exactly the families on which orbits 26, 30 and 31 are crossed (H.28.1, H.29.4).
+
+**H.30.2 Exact certificates on every non-Lugano family [Theorem PROVED in exact rational arithmetic by two independent checkers; all-facet extension NUMERICAL; h23_span_cert.py, h23_span_cert_{1..5}.log, h23_span_certB.py, h23_span_certB_{1,2,3}.log, h23_span_certB_lugano_control.log, h23_span_allfac.py, h23_span_allfac_rules.log, h23_span_allfac_comps.log].**
+- **Theorem H.30.2.** Let p be the statistics of any of the following, with any SU(2) frames and any source state, or a convex mixture of such statistics:
+  - (a) a valid three-qubit phase process (H.29.3) whose phase vector lies in one of the 26 non-Lugano components (0–6, 11–21, 26–33);
+  - (b) a time-reversed PF lift (H.27.2: any node dimension, node unitaries and states, so any correlation matrices K_k(o)) on one of the 12 single-block refined PFs (0, 1, 2, 3, 8, 9, 12, 13, 16, 17, 18, 19).
+
+  Then p satisfies **every one of the 1,536 facets** of orbits 26, 28, 30, 31, 54, 57, 66, 69, 75 and 81. This includes all 960 facets of the seven open orbits. In integer facet units the certified minimum on Valid ∩ S is 0 or 1 for every facet. 1 means the facet cannot even be made tight in that family; it corresponds to the relative value 1/3 seen in H.28.2 and H.29.2.
+- *Proof.* By Lemma H.30.1, p ∈ Valid ∩ S. For each of the 23 distinct spaces S and each of the 1,536 facets, the checkers certify min_{Valid ∩ S} (g·p + g₀) ≥ 0, giving 23 × 1,536 = 35,328 certificates per checker. Here g is the facet's affine functional, which is fixed on Valid because Valid and the PFs have the same affine hull.
+- *Checker A (h23_span_cert.py).*
+  - It writes p = Bc with an integer basis B of S.
+  - It takes the dual support from a HiGHS simplex solve and solves exactly for ν ≥ 0 and λ with Bᵀ(g − ν − Aeqᵀλ) = 0 and Σλ + g₀ = t, where t ∈ {0, 1}.
+  - It re-verifies the identity in Fraction arithmetic against every basis column.
+- *Checker B (h23_span_certB.py), written separately.* It differs from checker A at every step:
+  - S is built from different generators: class indicators from an integer basis of ker M for components, and block-output and equal-bit indicators for rules. B then computes S^⊥ = N exactly with DomainMatrix over ℚ.
+  - The functional g is solved exactly from 38 affinely independent PFs and checked on all 744 PFs. A instead rationalises a least-squares fit.
+  - The LP is posed in p-space, min g·p subject to Aeq p = 1, Nᵀp = 0 and p ≥ 0, and solved by the interior-point method.
+  - The certificate g = Aeqᵀλ + Nᵀμ + ν with ν ≥ 0 and Σλ + g₀ = t ≥ 0 is checked coordinate by coordinate in exact rationals. Then g·p + g₀ = t + ν·p ≥ t on Valid ∩ S.
+- *Results.* Both checkers certify all 1,536 facets on all 23 spaces with 0 failures (logs above). The two checkers return the same bound set {0, 1} on every space.
+- *Negative control.* Run on Lugano rule 4 and Lugano component 7 for orbits 26 and 30, checker B certifies nothing. All 384 facets come back "LP<0" at −1/2 in integer units, which is −1/6 relative. This is what H.30.1 predicts.
+- *Beyond the ten orbits [NUMERICAL].* A float LP over all 29,344 facets on all 12 single-block rules and on comps 4, 5, 12–21, 31 and 32 finds no facet with minimum below −10⁻⁹; the most negative value is −1.3·10⁻¹³. These cover every one of the 23 spaces. So numerically Valid ∩ S ⊆ conv(PF): on every non-Lugano family the statistics are PF blends.
+- *What this covers and what it does not.*
+  - Combined with H.30.3, part (a) covers every valid three-qubit phase process except those lying only in Lugano components.
+  - Part (b) covers all of H.27.2 on the single-block rules, not just the extreme points of Lemma H.29.2a.
+  - It does **not** cover:
+    - the 8 Lugano-type rules and components, which is where every known crossing lives;
+    - time-reversed lifts on Lugano-type rules;
+    - COPPs that are not phase processes;
+    - pure processes whose future does not record the outputs;
+    - agents with general instruments.
+  - On all of these the seven orbits remain **OPEN**.
+- *Novelty [cautious].* The span argument is elementary: unitarity kills the constant part of an off-diagonal frame factor, and characters of a torus are linearly independent. We have not seen it used for causal-inequality or PF-hull questions, but we have not searched the literature thoroughly.
+- *SDP/SOS on the Lugano families [not done, OPEN].* On the Lugano families, purity enters only through the positive semidefinite correlation matrices K_k(o) (Lemma H.29.2a) and the rank-one source. A moment relaxation in these variables would be the natural next step. It was not set up this round.
+
+**H.30.3 The phase-process classification of H.29.3 is now exact [PROVED, exact integer and rational arithmetic; h23_pp_enum2.py/.log/.json, h23_pp_enum2_rows.py, h23_pp_exact.py/.log].**
+- *Torsion.* The Smith normal form of all 1219 branch lattices has every invariant equal to 1. So every branch is a subtorus ker M + 2πZ^12, and no torsion cosets exist.
+- *Three-party condition, exactly.* On a branch, each COPP condition (H.29.1) is a signed sum of characters e^{i x·v} of the torus ker M. Two characters coincide iff the difference of their integer vectors is orthogonal to ker M, and distinct characters are linearly independent. So a condition holds on the whole branch iff, in every class of equal characters, the signed count Σ(−1)^{|o_S|} vanishes. h23_pp_exact.py checks this for every party set S, every c, z and z′, using an integer kernel basis.
+  - 1217 of the 1219 branches are exactly valid on their whole torus.
+  - All 34 components of H.29.3 are exactly valid.
+- *The two failing branches.* These are the two cyclic one-way patterns. One has free coordinates {1, 2, 5}, the other {0, 3, 4}; in each, every party's phase is steered by exactly one other party around a cycle. The three-party condition factorises as (1 − e^{iαΔ₁})(1 − e^{iβΔ₂})(1 − e^{iγΔ₃}). So a point is valid iff one of the three coefficients vanishes mod 2π. Each of the six resulting two-dimensional subtori is exactly valid and contained in a component: 0, 30 and 6 for the first branch, 3, 27 and 33 for the second. Earlier, 300 + 300 penalty-minimisation starts on these branches all landed inside the 34 components (h23_pp_enum2.log), which agrees with this.
+- **Result.** The valid three-qubit phase processes are exactly the union of the 34 subtori of H.29.3. This upgrades the classification from "three-party condition NUMERICAL" to PROVED. It rests on the one- and two-party reductions of H.29.3, which were already PROVED. One question from H.29.3 remains OPEN: whether the eight g-components are equivalent to PF phase boards under a symmetry outside the 384-element group. By H.30.2 they cannot cross any of the ten orbits.
+
+**H.30.4 Search started at the −1/6 points of Valid: fails validation [NUMERICAL, negative and uninformative; h23_near16.py, h23_near16_val_o26.log, h23_near16_val_o30.log, h23_near16_o*.log].**
+- *Method.* For the representative facet, take a vertex p* of Valid with relative value −1/6. Build a COPP with exactly these statistics: ψ = |0⟩, U_o a Householder map with U_o|0⟩ = √p*(·|o) and random phases. Such a start is invalid. Then minimise the facet value plus μ·(validity penalty) with μ increased from 10⁻² to 10⁴, as in h22_copp_search.py, and report the exact minimum over ψ at the end.
+- *Validation [fails].* Each orbit got 10 starts. On orbit 30 every start reached a valid point (penalty ≤ 2·10⁻¹²), with values between −2·10⁻⁹ and +9·10⁻⁹. On orbit 26 the penalties were ≤ 3·10⁻¹¹ and the values lay between −2·10⁻¹⁰ and +4·10⁻⁶. **Neither re-finds the known crossings** (−8.96·10⁻³ and −2.43·10⁻⁵). The penalty drives the process to nearly trivial valid points, as in H.29.4.
+- *The seven orbits.* Run anyway with 3 starts per orbit (h23_near16_o{28,54,57,66,69,75,81}.log). Every start ends at a valid point (penalty ≤ 2·10⁻¹³), with best values between −3.7·10⁻¹¹ (orbit 28) and +4·10⁻⁸. No start falls below −10⁻⁷.
+- *Conclusion.* Because validation failed, these runs say nothing about the seven orbits. A perturbative search that keeps validity exactly near the −1/6 points remains **not done**.
+
+**H.30.5 Status after Round 23 [summary].** Still **15 of 22 genuine orbits crossed** (exactly certified) and **7 open** (28, 54, 57, 66, 69, 75, 81; 960 facets). The following hold:
+- the seven, and in fact all ten H.27 orbits, hold on forward PF lifts (Theorem H.27.1, PROVED);
+- they hold on every non-Lugano valid phase process and on all time-reversed PF lifts on single-block rules (Theorem H.30.2, PROVED, two exact checkers);
+- the phase-process classification is exact (H.30.3, PROVED).
+
+So for the families studied, the open question has been reduced exactly to **the Lugano-type families**: Lugano phase components and time-reversed lifts on the eight Lugano-type rules, whose extreme points are PF phase boards (Lemma H.29.2a). It also remains open for every pure process outside these families. *Reading [INTERPRETIVE].* Everything that crosses any facet in this paper sits on a Lugano-type family, and everything off those families is (numerically) a PF blend. A proof for the seven would need to use the PSD structure of the Lugano correlation matrices, since linear span arguments see all of Valid there.
 
 ## Appendix I. Robustness: approximately blended versus approximately liftable (Oct 22 2026)
 

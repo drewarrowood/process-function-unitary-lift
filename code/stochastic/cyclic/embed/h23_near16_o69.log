@@ -1,0 +1,5 @@
+orbit 69 facet 571: Valid minimum -0.166667
+  start 0: lam 6.4018e-09 pen 2.3e-17  19s
+  start 1: lam 3.5738e-08 pen 1.7e-17  37s
+  start 2: lam 6.5120e-08 pen 1.8e-17  60s
+orbit 69: best valid lam 6.401766e-09 (pen 2.3e-17); valid starts below -1e-7: 0/3; 60s

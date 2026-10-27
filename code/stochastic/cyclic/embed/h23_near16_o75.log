@@ -1,0 +1,5 @@
+orbit 75 facet 595: Valid minimum -0.166667
+  start 0: lam 4.1154e-08 pen 2.0e-17  19s
+  start 1: lam 4.1536e-08 pen 9.3e-17  42s
+  start 2: lam 5.2630e-08 pen 1.5e-17  62s
+orbit 75: best valid lam 4.115394e-08 (pen 2.0e-17); valid starts below -1e-7: 0/3; 62s

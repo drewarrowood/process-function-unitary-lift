@@ -1,0 +1,5 @@
+orbit 54 facet 514: Valid minimum -0.166667
+  start 0: lam 3.2708e-08 pen 8.8e-14  22s
+  start 1: lam 2.1551e-09 pen 6.6e-14  49s
+  start 2: lam 4.0337e-09 pen 7.0e-14  72s
+orbit 54: best valid lam 2.155114e-09 (pen 6.6e-14); valid starts below -1e-7: 0/3; 72s

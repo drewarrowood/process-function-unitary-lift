@@ -1,0 +1,5 @@
+orbit 66 facet 561: Valid minimum -0.166667
+  start 0: lam 3.9061e-08 pen 8.7e-14  26s
+  start 1: lam 3.7390e-08 pen 2.1e-17  45s
+  start 2: lam 6.4001e-08 pen 1.5e-17  64s
+orbit 66: best valid lam 3.739019e-08 (pen 2.1e-17); valid starts below -1e-7: 0/3; 64s

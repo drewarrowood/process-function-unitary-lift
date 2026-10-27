@@ -1,0 +1,5 @@
+orbit 28 facet 242: Valid minimum -0.166667
+  start 0: lam 3.6210e-08 pen 1.5e-13  25s
+  start 1: lam -2.4125e-11 pen 1.4e-16  47s
+  start 2: lam -3.6705e-11 pen 1.2e-14  73s
+orbit 28: best valid lam -3.670467e-11 (pen 1.2e-14); valid starts below -1e-7: 0/3; 73s
