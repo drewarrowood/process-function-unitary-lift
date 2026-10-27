@@ -1,0 +1,22 @@
+# Round 27 (H.34.2): Clarabel.jl 0.11.1 (Julia 1.11.7, Float64, h27_solve.jl) on the torus-reduced Hermitian SOS
+# 2x2 test SDP: Float64 SOLVED 1.41421355 (0.3 s); BigFloat 256 bits SOLVED 1.41421355 (20 s incl. compilation)
+# subproblems of the orbit-57 export keeping only the first k of 216 weight blocks (all 1206 rows, restricted terms; not a valid relaxation, timing only):
+k=27   vars n/a   SOLVED gamma*=-2.9585457065806575  solve 1.9 s
+k=54   vars 7265   SOLVED gamma*=-1.3267593022710864  solve 7.4 s   (wall 14 s)
+k=108  vars 14529  SOLVED gamma*=-0.30382541539319974 solve 123.7 s (wall 131 s)
+# full problem, 216 blocks, vars 29057, nnz 56768:
+orbit 57: first attempt stopped by hand after >10 min, no iteration output (stdout block-buffered when redirected)
+orbit 30 (second run, timeout 1800 s, started 14:01 EDT): killed by timeout after 8 interior-point iterations (output flushed only at kill).
+  iterate 8: pcost 1.9459e-02 dcost 1.9718e-02 (objective = -gamma, so gamma ~ -0.0195, not converged; Rust Clarabel gives -0.018799, SCS ~ -0.0189)
+  i.e. the full problem is slow per iteration in Clarabel.jl here, not stuck in setup; iteration trace:
+iter    pcost        dcost       gap       pres      dres      k/t        μ       step      
+---------------------------------------------------------------------------------------------
+  0  -3.7500e-01  -3.7500e-01  2.78e-16  9.63e-01  9.47e-01  1.00e+00  1.18e+00   ------   
+  1   1.6534e-01   8.6593e-01  7.01e-01  6.78e-01  6.26e-01  8.12e-01  9.51e-01  9.12e-01  
+  2  -3.2038e-01   2.0849e-01  5.29e-01  2.81e-01  2.75e-01  5.62e-01  8.25e-01  4.27e-01  
+  3   3.5527e-03   8.1134e-02  7.76e-02  7.40e-02  8.29e-02  8.62e-02  3.24e-01  7.56e-01  
+  4   1.7721e-02   3.2942e-02  1.52e-02  1.93e-02  2.30e-02  1.77e-02  1.10e-01  8.88e-01  
+  5   2.0892e-02   2.7377e-02  6.48e-03  1.07e-02  1.27e-02  7.88e-03  6.40e-02  5.72e-01  
+  6   2.1323e-02   2.3118e-02  1.79e-03  6.02e-03  7.15e-03  2.63e-03  3.86e-02  6.86e-01  
+  7   1.9213e-02   1.9718e-02  5.05e-04  2.11e-03  2.47e-03  8.08e-04  1.44e-02  6.88e-01  
+  8   1.9459e-02   1.9718e-02  2.59e-04  1.83e-03  2.10e-03  5.23e-04  1.25e-02  3.63e-01  
