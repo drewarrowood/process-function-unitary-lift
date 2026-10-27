@@ -1,0 +1,2 @@
+# h24_sdp2r.py 75,69,28,81,26,30,31 under timeout 3000 s: only orbit 75 finished (SCS max_iters, inaccurate); the rest were cut off by the timeout
+75 solved (inaccurate - reached max_iters) -2.8488262643344697e-07 -1.7067580926344306e-07 2401s
