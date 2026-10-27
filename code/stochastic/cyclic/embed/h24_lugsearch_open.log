@@ -1,0 +1,7 @@
+orbit 28 facet 242: starts 6000; after Adam: below -1e-7: 0, min -1.191994e-15; polished best -1.191993707e-15 params [-0.0733, -2.2137, 0.1767, -0.0, -0.1606, 0.1209, -2.3482, 1.5148, -0.2586]  590s
+orbit 54 facet 514: starts 6000; after Adam: below -1e-7: 0, min -1.332268e-15; polished best -1.332267630e-15 params [-0.6699, -3.1416, -3.1416, -1.5708, 0.7453, -0.0, 1.3435, 0.2491, -2.1262]  1217s
+orbit 57 facet 521: starts 6000; after Adam: below -1e-7: 0, min -1.443290e-15; polished best -1.443289932e-15 params [0.4073, 3.1416, 3.1416, -1.5708, 0.0006, -0.0, 0.5746, 0.4213, 2.9658]  1854s
+orbit 66 facet 561: starts 6000; after Adam: below -1e-7: 0, min -1.862860e-15; polished best -1.862859700e-15 params [-3.1416, 1.0114, 3.1416, 0.0, -1.5708, 0.0336, -0.1652, 1.8761, 1.2238]  2492s
+orbit 69 facet 571: starts 6000; after Adam: below -1e-7: 0, min -3.885781e-16; polished best -3.885780586e-16 params [1.3323, 3.1416, -3.1416, 1.5708, 0.0, -3.2167, 0.7983, -2.7107, -1.0694]  3110s
+orbit 75 facet 595: starts 6000; after Adam: below -1e-7: 0, min -9.992007e-16; polished best -9.992007222e-16 params [-3.5287, 3.1416, 3.1416, -1.5708, 1.7055, 0.0, 0.411, -2.3207, -0.1594]  3721s
+orbit 81 facet 706: starts 6000; after Adam: below -1e-7: 0, min -5.793977e-16; polished best -5.793977313e-16 params [-0.5588, 3.1416, 3.1416, 1.5708, 0.0, -2.7138, 0.8819, -1.0684, -2.5507]  4326s

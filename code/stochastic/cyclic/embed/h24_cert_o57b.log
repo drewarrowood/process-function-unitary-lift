@@ -1,0 +1,6 @@
+SCS solved bound (relative) -1.2094603096812762e-10 316s
+Traceback (most recent call last):
+  File "/workspace/pful-graded/code/stochastic/cyclic/embed/h24_cert.py", line 50, in <module>
+    assert np.abs(np.array([[complex(float(a),float(b)) for a,b in row] for row in Rq])-R).max()<1e-4, 'kernel not rational'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: kernel not rational
