@@ -1,0 +1,7 @@
+# Round 24/25: h24_cert.py 75 1e-9 b (SCS dual of R, ~4000 s): the dual has no clear rank gap, so the Round-24 rounding route fails for orbit 75 (as for 57). See h25_* for the zero-set/facial-reduction route.
+SCS solved (inaccurate - reached max_iters) bound (relative) -1.2632821122515736e-08 5454s
+Traceback (most recent call last):
+  File "/workspace/pful-graded/code/stochastic/cyclic/embed/h24_cert.py", line 53, in <module>
+    assert rat[rr-1]>1e4, 'no clear rank gap'
+           ^^^^^^^^^^^^^
+AssertionError: no clear rank gap

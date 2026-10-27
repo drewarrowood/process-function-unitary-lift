@@ -25,16 +25,20 @@ g0=gq[64]; scale=float(valsI[:,f].max())
 # exact kernels from the zero set (h25_zeroset.py): complementary slackness forces span{w_i} into ker H_i (H.32.1)
 def ratc(x,D=64): return (Fr(float(x.real)).limit_denominator(D),Fr(float(x.imag)).limit_denominator(D))
 import os
+RATD=int(os.environ.get('RATD','64'))   # max denominator when rationalising kernel bases
 MARGIN=float(os.environ.get('MARGIN','1e-5'))   # a margin below this is treated as 0 (solver tolerance ~1e-7)
 KEXTRA=np.load(os.environ['KEXTRA']) if os.environ.get('KEXTRA') else None
 ZS=np.load(ZSFILE); Ps=[]; Kdims=[]
 for i in range(8):
     W=ZS[f'W{i}']
-    if KEXTRA is not None and f'K{i}' in KEXTRA and len(KEXTRA[f'K{i}']): W=np.r_[W/np.abs(W).max(),KEXTRA[f'K{i}']/np.abs(KEXTRA[f'K{i}']).max()]
-    _,sv,Vh=np.linalg.svd(W); r_=int((sv/sv[0]>1e-4).sum()); assert r_==len(sv) or sv[r_-1]/sv[r_]>1e3, 'no clear gap in the zero-set span'; Kt=Vh[:r_]     # rows span the zero-set vectors
+    _,sv,Vh=np.linalg.svd(W); r_=int((sv/sv[0]>1e-4).sum()); assert r_==len(sv) or sv[r_-1]/sv[r_]>1e3, 'no clear gap in the zero-set span'; Kt=Vh[:r_]   # unit rows spanning the zero-set vectors
+    if KEXTRA is not None and f'K{i}' in KEXTRA and len(KEXTRA[f'K{i}']):
+        Kx=KEXTRA[f'K{i}']; Kt=np.r_[Kt,Kx/np.linalg.norm(Kx,axis=1)[:,None]]       # facial-reduction vectors, unit norm
+        svx=np.linalg.svd(Kt,compute_uv=False); assert svx[-1]>1e-3, f'facial-reduction vectors dependent on the kernel (sv {svx[-1]:.1e})'
+        r_=Kt.shape[0]; W=np.r_[W,Kx]
     from scipy.linalg import qr
     _,_,piv=qr(Kt,pivoting=True); R=np.linalg.solve(Kt[:,piv[:r_]],Kt)
-    Rq=[[ratc(x,64) for x in row] for row in R]
+    Rq=[[ratc(x,RATD) for x in row] for row in R]
     assert np.abs(np.array([[complex(float(a),float(b)) for a,b in row] for row in Rq])-R).max()<1e-5, 'zero-set span not rational'
     assert all(b==0 for row in Rq for a,b in row), 'complex kernel (not handled)'
     K=flint.fmpq_mat([[fq(a) for a,b in row] for row in Rq])
