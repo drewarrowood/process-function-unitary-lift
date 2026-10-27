@@ -13,3 +13,7 @@ orbit 28 started 11:09 timeout 3000s: no output
 orbit 69 started 11:09 timeout 3000s: no output
 orbit 30 EPS=1e-5 MAXIT=30000 started 11:38 timeout 2400s: no output
 orbit 57 h26_qspec EPS=1e-9 started 11:50 timeout 1500s: no output
+# Later runs (Oct 27 2026 EDT):
+orbit 30 VERB=1 EPS=1e-6 MAXIT=20000 started 12:18 timeout 2400s: killed at iteration ~18,600; SCS objective -gamma = 1.89e-2 (pri res 3e-6), i.e. gamma ~ -0.0189 < true min -0.00896: not certified (h26_hsos_o30_scs.log)
+orbit 57 h26_qspec EPS=1e-8 started 12:18: optimal gamma*=5.49e-9 48s (h26_qspec_o57.log)
+orbit 75 h26_qspec EPS=1e-8 started 12:28 timeout 2400s: see below
