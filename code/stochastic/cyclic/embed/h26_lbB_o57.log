@@ -1,0 +1,9 @@
+ S=0: tau=2^-31, fflu identity perm and positive leading minors: True
+ S=1: tau=2^-30, fflu identity perm and positive leading minors: True
+ S=2: tau=2^-31, fflu identity perm and positive leading minors: True
+ S=3: tau=2^-30, fflu identity perm and positive leading minors: True
+ S=4: tau=2^-30, fflu identity perm and positive leading minors: True
+ S=5: tau=2^-30, fflu identity perm and positive leading minors: True
+ S=6: tau=2^-30, fflu identity perm and positive leading minors: True
+ S=7: tau=2^-30, fflu identity perm and positive leading minors: True
+orbit 57: checker B: n_m max 4, residual L1 5.126e-11, PROVED facet value >= -2.613e-08
