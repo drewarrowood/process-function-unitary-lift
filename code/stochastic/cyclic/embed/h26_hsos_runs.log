@@ -1,0 +1,15 @@
+# Round 26 Hermitian SOS relaxation (h26_hsos.py, SCS). Runs Oct 27 2026 EDT. Default basis (176/block), 8 blocks.
+# Certified-side (converged):
+orbit 54 facet 514 MB=x blocks=[0, 1, 2, 3, 4, 5, 6, 7]: basis 176/block, keys 23040, optimal, gamma* = 3.3152062506495177e-09  68s
+orbit 57 facet 521 MB=x blocks=[0, 1, 2, 3, 4, 5, 6, 7]: basis 176/block, keys 23040, optimal, gamma* = 5.487551262911258e-09  49s
+orbit 66 facet 561 MB=x blocks=[0, 1, 2, 3, 4, 5, 6, 7]: basis 176/block, keys 23040, optimal, gamma* = 5.339888740446184e-09  409s
+# Single block S=0 only (control: must be weaker):
+orbit 30 facet 245 MB=x blocks=[0]: basis 176/block, keys 23040, optimal, gamma* = -1.9058558157458105  7s
+orbit 66 facet 561 MB=x blocks=[0]: basis 176/block, keys 23040, optimal, gamma* = -1.5038235914673233  5s
+# Not converged (killed by timeout, no output, SCS eps 1e-8 maxit 200000):
+orbit 30,66 run started 10:47 timeout 3000s: no output (30 did not finish)
+orbit 26 started 10:59 timeout 3000s: no output
+orbit 28 started 11:09 timeout 3000s: no output
+orbit 69 started 11:09 timeout 3000s: no output
+orbit 30 EPS=1e-5 MAXIT=30000 started 11:38 timeout 2400s: no output
+orbit 57 h26_qspec EPS=1e-9 started 11:50 timeout 1500s: no output

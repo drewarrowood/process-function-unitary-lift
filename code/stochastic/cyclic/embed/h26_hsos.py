@@ -63,7 +63,7 @@ def solve(T,c,blocks=range(8),eps=1e-8):
         A=sp.csr_matrix((np.ones(len(R)),(R,C)),shape=(K,n*n)); lhs=lhs+A@cp.vec(Q,order='F')
     cons=[lhs==bvec-g*nv]+[Q>>0 for Q in Qs]
     pr=cp.Problem(cp.Maximize(g),cons); t0=time.time()
-    pr.solve(solver='SCS',eps=eps,max_iters=int(os.environ.get('MAXIT','200000')),verbose=False)
+    pr.solve(solver='SCS',eps=eps,max_iters=int(os.environ.get('MAXIT','200000')),verbose=os.environ.get('VERB','')=='1')
     return n,K,pr.status,g.value,time.time()-t0,Qs
 if __name__=='__main__':
     blocks=[int(b) for b in os.environ.get('NB','0,1,2,3,4,5,6,7').split(',')]
