@@ -1,0 +1,5 @@
+/workspace/pful-graded/code/stochastic/cyclic/embed/h24_lugsearch.py:46: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+  o2.step(clo); best.append((float(lam(x,Tf,cf)),x.detach().numpy()[0]))
+orbit 26 facet 240: starts 4000; after Adam: below -1e-7: 2, min -2.428720e-05; polished best -2.428720415e-05 params [3.2788, 2.8427, -1.5869, 0.1162, -0.6817, 1.4507, 2.8546, 0.4492, 1.1082]  286s
+orbit 31 facet 247: starts 4000; after Adam: below -1e-7: 135, min -8.964988e-03; polished best -8.964988259e-03 params [2.0857, -2.0857, 3.1416, -0.88, -0.88, -1.5708, -1.0865, -2.0415, -2.2841]  552s

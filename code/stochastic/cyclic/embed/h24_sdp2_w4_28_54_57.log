@@ -1,0 +1,4 @@
+rule 4 classes 360 vars 3240 eqs 1719 built 0s
+rule 4 orbit 28: facets 1 SDP2 min -2.302238e-02 below -1e-7: 1 statuses ['solved'] 62s
+rule 4 orbit 54: facets 1 SDP2 min 3.137102e-08 below -1e-7: 0 statuses ['solved'] 62s
+rule 4 orbit 57: facets 1 SDP2 min -1.285012e-08 below -1e-7: 0 statuses ['solved'] 65s
