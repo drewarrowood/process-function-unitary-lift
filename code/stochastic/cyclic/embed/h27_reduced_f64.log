@@ -1,0 +1,5 @@
+# Round 27: symmetry-reduced Hermitian SOS (h27_export.py; 216 blocks <= 22, 1206 rows), Rust Clarabel 0.x Float64 via h27_pyclar.py, tol 1e-10, Oct 27 2026 ~13:50 EDT
+57 AlmostSolved gamma*= 8.105771125778534e-08 88.9s
+66 AlmostSolved gamma*= 3.8979378621627846e-11 76.3s
+54 AlmostSolved gamma*= 6.033910285737474e-10 65.9s
+30 Solved gamma*= -0.018799040148289984 79.4s
