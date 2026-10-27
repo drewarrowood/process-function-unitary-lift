@@ -1,0 +1,18 @@
+face dims 1204 sum d^2 10844 1s
+params 10844 rows 1206
+numerical rank 1152 float residual of rounded g0 1.094381332222838e-06
+gram built 3s
+solved 4s
+max correction 1.1126028716114036e-07
+exact rows violated after correction: 0
+ block 20 d=2 lambda_min(G) 2.40e-03 exact PD True
+ block 40 d=19 lambda_min(G) 4.55e-04 exact PD True
+ block 60 d=1 lambda_min(G) 1.20e-03 exact PD True
+ block 80 d=4 lambda_min(G) 2.40e-03 exact PD True
+ block 100 d=5 lambda_min(G) 1.20e-03 exact PD True
+ block 120 d=11 lambda_min(G) 2.40e-03 exact PD True
+ block 140 d=3 lambda_min(G) 6.00e-04 exact PD True
+ block 160 d=6 lambda_min(G) 1.20e-03 exact PD True
+ block 180 d=4 lambda_min(G) 2.40e-03 exact PD True
+ block 200 d=1 lambda_min(G) 1.20e-03 exact PD True
+all blocks exactly positive definite: True 6s
