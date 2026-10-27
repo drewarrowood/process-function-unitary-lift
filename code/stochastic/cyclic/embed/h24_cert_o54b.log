@@ -1,0 +1,32 @@
+SCS solved bound (relative) -1.4677231652271416e-11 2s
+H 0 rank 21 kernel rows 43
+H 1 rank 21 kernel rows 43
+H 2 rank 21 kernel rows 43
+H 3 rank 21 kernel rows 43
+H 4 rank 21 kernel rows 43
+H 5 rank 21 kernel rows 43
+H 6 rank 21 kernel rows 43
+H 7 rank 21 kernel rows 43
+equations 1206 unknowns 3528 4s
+  G 0 min eig 0.00027002346499834445
+  G 1 min eig 0.000274244347428173
+  G 2 min eig 0.00028427197727167895
+  G 3 min eig 0.0002689640644490611
+  G 4 min eig 0.0002729861644455946
+  G 5 min eig 0.00029830924122912887
+  G 6 min eig 0.0002968483612851401
+  G 7 min eig 0.0002848604358745957
+numeric residual (projected SCS dual) 3.5225156125306967e-10 (scale 12.0 )
+  pr=cp.Problem(cp.Maximize(tv),cons); pr.solve(solver='CLARABEL')
+max-margin solve optimal_inaccurate margin t 0.0038230157947729258 37s
+rank 1172
+exact solve done; max correction 3.108194257528396e-11 71s
+  G 0 exactly positive definite: True
+  G 1 exactly positive definite: True
+  G 2 exactly positive definite: True
+  G 3 exactly positive definite: True
+  G 4 exactly positive definite: True
+  G 5 exactly positive definite: True
+  G 6 exactly positive definite: True
+  G 7 exactly positive definite: True
+CHECKER A orbit 54 facet 514: certificate VALID; bound mu+g0 = 0  86s

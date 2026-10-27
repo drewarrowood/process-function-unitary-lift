@@ -1,0 +1,31 @@
+SCS solved bound (relative) 2.9140023727336484e-12 2s
+H 0 rank 21 kernel rows 43
+H 1 rank 21 kernel rows 43
+H 2 rank 21 kernel rows 43
+H 3 rank 21 kernel rows 43
+H 4 rank 20 kernel rows 44
+H 5 rank 20 kernel rows 44
+H 6 rank 20 kernel rows 44
+H 7 rank 20 kernel rows 44
+equations 1206 unknowns 3364 3s
+  G 0 min eig 6.189454756293024e-07
+  G 1 min eig 7.090166090422591e-07
+  G 2 min eig 8.663600325178858e-07
+  G 3 min eig 1.0064242974602554e-06
+  G 4 min eig 1.1011967822244814e-06
+  G 5 min eig 1.4649741884890933e-06
+  G 6 min eig 1.4585650255623155e-06
+  G 7 min eig 1.115853004823263e-06
+numeric residual (projected SCS dual) 6.994227419454546e-11 (scale 12.0 )
+max-margin solve failed ( SolverError ); using the projected SCS dual
+rank 1140
+exact solve done; max correction 2.1864732246967833e-12 40s
+  G 0 exactly positive definite: True
+  G 1 exactly positive definite: True
+  G 2 exactly positive definite: True
+  G 3 exactly positive definite: True
+  G 4 exactly positive definite: True
+  G 5 exactly positive definite: True
+  G 6 exactly positive definite: True
+  G 7 exactly positive definite: True
+CHECKER A orbit 66 facet 561: certificate VALID; bound mu+g0 = 0  63s
