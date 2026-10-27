@@ -1,0 +1,13 @@
+== h27_face.py p57.json zp57.npz gamma  (zero-set face)
+face dims 1216 sum d^2 11056
+equality rows 1206 rank 1157 dropped 49 max inconsistency of dropped rhs 4.66e-15
+57 gamma AlmostSolved objective -3.09501149392714e-12 25.1s
+== h27_face.py p57.json zp57.npz margin 0   (gamma=0 fixed, max t: G_b >= t I)
+equality rows 1206 rank 1156 dropped 50 max inconsistency of dropped rhs 3.33e-15
+57 margin Solved objective -2.482900783487933e-13 28.1s
+   dual Z has rank 2 (one complex direction) in 12 blocks: 10,22,40,67,91,103,119,131,149,176,200,212; values 3/80 or 1/20
+== h27_aug.py: extra kernel vectors (rational: (1,-1) patterns, 2/3, 1/6), |G g| <= 3e-7
+== h27_face.py p57.json zp57b.npz margin 0   (face after one facial-reduction step)
+face dims 1204 sum d^2 10844
+equality rows 1206 rank 1152 dropped 54 max inconsistency of dropped rhs 1.1e-06 (numerical kernel vectors)
+57 margin Solved objective 0.0011998230849303928 44.9s   <- strictly feasible on the reduced face
