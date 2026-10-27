@@ -1,0 +1,10 @@
+orbit 57: basis 176, K=48, exact residual L1 r1 = 5.126e-11
+ S=0: float lambda_min -1.83e-10, tau = 2^-31, exact PD: True
+ S=1: float lambda_min -2.51e-10, tau = 2^-30, exact PD: True
+ S=2: float lambda_min -1.84e-10, tau = 2^-31, exact PD: True
+ S=3: float lambda_min -2.85e-10, tau = 2^-30, exact PD: True
+ S=4: float lambda_min -2.80e-10, tau = 2^-30, exact PD: True
+ S=5: float lambda_min -3.01e-10, tau = 2^-30, exact PD: True
+ S=6: float lambda_min -2.66e-10, tau = 2^-30, exact PD: True
+ S=7: float lambda_min -3.48e-10, tau = 2^-30, exact PD: True
+orbit 57: PROVED (checker A) facet value >= -2.613e-08  (4*sum tau = 2.608e-08, r1 = 5.126e-11)
