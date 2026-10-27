@@ -1,4 +1,4 @@
-"""Round 24 (H.31.1): the reduced class-lift relaxation R (h24_sdp2 without the X cone; X enters only linearly) for the
+"""Round 24 (H.31.2): the reduced class-lift relaxation R (h24_sdp2 without the X cone; X enters only linearly) for the
 representative facets on Lugano rule 4, SCS eps 1e-9.  R is weaker than or equal to SDP2.  usage: orbits"""
 import numpy as np, time, sys
 import h24_sdp2 as S, h24_conic as C

@@ -1,4 +1,4 @@
-"""Round 24 (H.31.1): exact dual certificates for the reduced class-lift relaxation R(w') of PF phase boards on Lugano rule 4.
+"""Round 24 (H.31.3): exact dual certificates for the reduced class-lift relaxation R(w') of PF phase boards on Lugano rule 4.
 Relaxation R (no X cone): complex numbers Z_c(i) (i = 0..7, c a class (z,z',e) of h24_sdp2.classes), with Z_{c*}(i) = conj Z_c(i);
   (1) the 64 x 64 Hermitian Z(i)[(o,z),(o',z')] = Z_{class}(i) is PSD;  (2) i -> Z_c(i) lies in span_C ipat(z,z');  (3) sum_z sum_i Z_{(z,z,0)}(i) = 1.
 Every PF phase board on rule 4 gives a point of R (Z(i) = diag(1(x)conj f_i) X diag(1(x)f_i), X = v v^dag lifted; mixed sources by convexity)

@@ -1,4 +1,4 @@
-"""Round 24 (H.31.1): a purity-based SDP relaxation for the Lugano-type families (level 1, "entrywise span + PSD").
+"""Round 24 (H.31.2): a purity-based SDP relaxation for the Lugano-type families (level 1, "entrywise span + PSD").
 For a time-reversed PF lift on rule w' (H.27.2) with source rho (mixed allowed) the statistics are p(i|o) = 1^T Z(i,o) 1, where
 Z(i,o) = rho o G_{io} (Schur product), G_{io}[z,z'] = chi_{zz'}(o) prod_k conj(e_k[i_k,z_k]) e_k[i_k,z'_k].  Exact properties used:
   (P1) Z(i,o) is PSD (Schur product of PSD rho and the PSD G_{io} = Schur product of rank-one frame and PSD K factors);

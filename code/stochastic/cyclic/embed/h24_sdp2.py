@@ -1,4 +1,4 @@
-"""Round 24 (H.31.1): purity-based SDP relaxation ("level-2 class lift") for PF phase boards on a Lugano-type rule w' (blocks (2,2,2)).
+"""Round 24 (H.31.2): purity-based SDP relaxation ("level-2 class lift") for PF phase boards on a Lugano-type rule w' (blocks (2,2,2)).
 By Lemma H.29.2a (n_k = 2: elementary) the minimum of any facet over the time-reversed PF lifts on w' is attained at PF phase boards;
 after absorbing z-only phases into the source, v_o = D_o psi with D_o = diag(prod_k u_k^{o_k x_k(z)}), |u_k| = 1, x_k(z) = w'_k(z_{-k}).
 Statistics p(i|o) = f_i^dag v_o v_o^dag f_i with the product frame vector f_i = (x)_k e_k(i_k).

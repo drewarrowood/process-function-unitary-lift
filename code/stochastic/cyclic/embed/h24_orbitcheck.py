@@ -1,4 +1,4 @@
-"""Round 24 (H.31.2): numerical sanity check of the orbit-invariance argument: minimise EVERY facet of the given orbits over rule-4
+"""Round 24 (H.31.1): numerical sanity check of the orbit-invariance argument: minimise EVERY facet of the given orbits over rule-4
 phase boards (exact parametrisation of h24_lugsearch, NS starts each, Adam then best-of-batch).  Expected: no value below -1e-9.
 usage: orbits NS seed"""
 import sys, numpy as np, torch, time

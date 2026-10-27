@@ -1,4 +1,4 @@
-"""Round 24 (H.31.1): independent checker B for h24_cert_o<orbit>.json.
+"""Round 24 (H.31.3): independent checker B for h24_cert_o<orbit>.json.
 Recomputes from scratch (no h24_sdp2 / h24_cert code): the rule-4 phase-board exponents, the classes (z,z',e), the frame spans,
 checks that the certificate's facet functional reproduces the facet on all 744 PFs, and checks
  (i)  every H_i = P_i G_i P_i^T is PSD: G_i's real embedding is positive definite, by strict sign alternation of its exact

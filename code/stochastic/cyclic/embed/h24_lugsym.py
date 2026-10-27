@@ -1,4 +1,4 @@
-"""Round 24 (H.31.2): the 16 Lugano-type cases reduce to one.
+"""Round 24 (H.31.1): the 16 Lugano-type cases reduce to one.
 (a) Input-bit flips z -> z xor m (absorbed into the frames, X_k e_k is again a frame, and into the source) map PF phase boards on a
     Lugano-type rule w' to PF phase boards on the rule with blocks x_k(z xor m): the statistic sets are identical (no relabelling of i or o).
     We check that the 8 flips of rule 4 give exactly the 8 Lugano-type rules.

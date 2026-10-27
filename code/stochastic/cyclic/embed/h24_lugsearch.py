@@ -1,5 +1,5 @@
-"""Round 24 (H.31.3): exhaustive-style search over the whole Lugano-type problem in its exact minimal parametrisation.
-By H.31.2 every Lugano-type case (8 components, 8 rules, all time-reversed lifts on them) has, for each facet orbit, the same minimum as
+"""Round 24 (H.31.5): exhaustive-style search over the whole Lugano-type problem in its exact minimal parametrisation.
+By H.31.1 every Lugano-type case (8 components, 8 rules, all time-reversed lifts on them) has, for each facet orbit, the same minimum as
 PF phase boards on rule 4 at the orbit's representative facet.  Exact parametrisation (validity automatic): three phases u_k = e^{i a_k},
 three frames given by Bloch angles (t_k, p_k) (a frame's remaining phase is absorbed into the source); the source is eliminated exactly:
 value = lambda_min( sum_{i,o} T[i,o] D_o^dag |f_i><f_i| D_o ) + c,  D_o = diag(prod_k u_k^{o_k x_k(z)}).
