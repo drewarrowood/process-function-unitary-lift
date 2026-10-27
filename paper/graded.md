@@ -1595,3 +1595,12 @@ We checked the literature on Oct 23 2026, by web search and by reading the prima
 - **Close but not proved (H.31.4).** For orbit 57 the program also says zero, to ten decimal places. But its certificate would not round to exact fractions, so this one stays numerical. For orbits 28, 69, 75 and 81 the program is too weak to decide.
 - **A search that passed its test (H.31.5).** We also searched the nine-angle family directly. Every angle setting is a legitimate loop, so no penalty tricks are needed. This search re-finds all three known breaks exactly, including the rare one (orbit 26, found by about one start in 2,000). On the seven it finds no break.
 - **The tally.** Unchanged on all pure processes: 15 of 22 broken, 7 open. But on the families studied, only five (28, 57, 69, 75, 81) are still open, and all five sit on one nine-angle family.
+
+## 117. Plain-language note: a sturdier proof for orbit 66, two near-misses, and a second search (Oct 27 2026)
+
+- **Where we were.** After Round 24, five of the seven unbroken families of inequalities (orbits 28, 57, 69, 75, 81) were still open on one nine-angle family of Lugano-type loops. Orbits 54 and 66 were already proved there.
+- **Where a proof must be tight (H.32.1).** If an inequality is exactly tight at some loops, any exact proof must "vanish" in the directions those loops point to. Those directions can be read directly from the loops, with no solver.
+- **A sturdier proof for 66 (H.32.2).** If we build these directions in from the start, orbit 66 has a certificate with lots of room to spare, and two independent programs check it in exact fractions. This is not a new result: 66 was already proved. But it is a second, independent proof, and it is much less fragile.
+- **57 and 75 don't give way (H.32.3–H.32.4).** For orbit 57 the same method gets to within about 10⁻⁷ of zero on every one of the 126 facets we tried, but never clearly above zero. Its proof, if one exists, seems to need irrational numbers. For orbit 75 the margin is slightly negative, which suggests our relaxation is just too weak for it. We stopped here, by design, and both stay numerical.
+- **A second search (H.32.5).** We started from a fixed grid of angle settings and slid downhill from the best points in every cell. This search re-finds all three known breaks, including the rare one on orbit 26. It finds no break of the five.
+- **The tally.** Unchanged: 15 of 22 broken on all pure processes, 7 open. On the families studied, five are open (28, 57, 69, 75, 81).
