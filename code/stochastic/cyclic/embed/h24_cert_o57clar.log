@@ -1,0 +1,2 @@
+# CERT_SOLVER=clarabel h24_cert.py 57 0 clar, ulimit -v 7.5e6 then 1.1e7 kB: Clarabel KKT allocation (8 dense PSD cones of order 128) fails; interior-point route infeasible on this box (16 GB)
+memory allocation of 2182074008 bytes failed

@@ -29,13 +29,21 @@ g0=gq[64]; scale=float(valsI[:,f].max())
 M=Model(4); T=Tn[f,:64].reshape(8,8); W=T@M.cnt; q=np.zeros(M.nv)
 for i in range(8):
     for c in range(M.n): q[M.va[1+i][M.rep(c)]]+=W[i,c]
-sol=C.solve_scs(q,M.Aeq,M.beq,M.blocks[1:],M.nv,eps=EPS,max_iters=400000)
-print('SCS',sol['info']['status'],'bound (relative)',sol['info']['dobj']+Tn[f,64],f'{time.time()-t0:.0f}s',flush=True)
-y=sol['y']; off=M.Aeq.shape[0]; il=[(a,b) for b in range(128) for a in range(b,128)]
+import os
+CLAR=os.environ.get('CERT_SOLVER','scs')=='clarabel'
+if CLAR:   # interior point: the dual tends to the relative interior of the optimal face (maximal rank), best for facial reduction
+    sol=C.solve(q,M.Aeq,M.beq,M.blocks[1:],M.nv,tol=1e-10)
+    print('Clarabel',sol.status,'bound (relative)',sol.obj_val+Tn[f,64],f'{time.time()-t0:.0f}s',flush=True)
+    zz=np.array(sol.z); iu,_=C.svec_index(128)
+else:
+    sol=C.solve_scs(q,M.Aeq,M.beq,M.blocks[1:],M.nv,eps=EPS,max_iters=400000)
+    print('SCS',sol['info']['status'],'bound (relative)',sol['info']['dobj']+Tn[f,64],f'{time.time()-t0:.0f}s',flush=True)
+    zz=sol['y']; iu=[(a,b) for b in range(128) for a in range(b,128)]
+off=M.Aeq.shape[0]
 Hs=[]
 for m in range(8):
-    vv=y[off:off+len(il)]; off+=len(il); S=np.zeros((128,128))
-    for k,(a,b) in enumerate(il): S[a,b]=S[b,a]=vv[k]/(1 if a==b else np.sqrt(2))
+    vv=zz[off:off+len(iu)]; off+=len(iu); S=np.zeros((128,128))
+    for k,(a,b) in enumerate(iu): S[a,b]=S[b,a]=vv[k]/(1 if a==b else np.sqrt(2))
     Hs.append((S[:64,:64]+S[64:,64:]+1j*(S[64:,:64]-S[:64,64:]))*scale)   # <S,emb(Z)> = Re tr(H Z) with this H
 # exact kernels: rref of numerical kernel basis, rounded to small denominators
 def ratc(x,D=64): return (Fr(float(x.real)).limit_denominator(D),Fr(float(x.imag)).limit_denominator(D))
