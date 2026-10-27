@@ -7,3 +7,15 @@ H 5 kernel (zero-set span) dim 2 (max rel. residual of zero vectors 3.9e-15) -> 
 H 6 kernel (zero-set span) dim 2 (max rel. residual of zero vectors 2.0e-15) -> G size 62
 H 7 kernel (zero-set span) dim 2 (max rel. residual of zero vectors 3.5e-15) -> G size 62
 equations 1206 unknowns 30752 25s
+/workspace/pful-graded/code/stochastic/cyclic/embed/h25_cert.py:126: UserWarning: Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.
+  pr=cp.Problem(cp.Maximize(tv),cons); pr.solve(solver=SOLVER,**SOPTS)
+max-margin solve optimal_inaccurate margin t -7.31757977599583e-07 2852s
+  Y_0: trace 1.689e-01, top eigs [0.13 0.02 0.01 0.   0.   0.  ], numerical rank 15
+  Y_1: trace 8.109e-02, top eigs [0.06 0.01 0.   0.   0.   0.  ], numerical rank 15
+  Y_2: trace 8.109e-02, top eigs [0.06 0.01 0.   0.   0.   0.  ], numerical rank 15
+  Y_3: trace 1.689e-01, top eigs [0.13 0.02 0.01 0.   0.   0.  ], numerical rank 15
+  Y_4: trace 8.107e-02, top eigs [0.06 0.01 0.   0.   0.   0.  ], numerical rank 15
+  Y_5: trace 1.689e-01, top eigs [0.13 0.02 0.01 0.   0.   0.  ], numerical rank 15
+  Y_6: trace 1.689e-01, top eigs [0.13 0.02 0.01 0.   0.   0.  ], numerical rank 15
+  Y_7: trace 8.109e-02, top eigs [0.06 0.01 0.   0.   0.   0.  ], numerical rank 15
+margin -7.32e-07 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o75d1e-6.npz
