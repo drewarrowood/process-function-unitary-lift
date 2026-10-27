@@ -6,7 +6,7 @@ with facet value  sum_{i,c} W[i,c] Z_c(i) + g0,   W = g (8x8, [i,o]) @ cnt,  cnt
 Certificate: Hermitian H_i >= 0 and mu with, for every class c:  ipat(z,z') . (W[:,c] - conj h_c - mu [c=(z,z,0)]) = 0,  h_c(i) = sum_{(a,b) in c} H_i[a,b].
 Then value - g0 = sum_i <H_i, Z(i)> + mu >= mu, so mu + g0 >= 0 proves the facet on R.
 Construction: SCS dual -> exact rational kernels (facial reduction) -> H_i = P_i G_i P_i^dag -> rounded G -> exact correction (flint) -> exact PD check.
-usage: orbit [eps] [tag]   (writes h24_cert_o<orbit><tag>.json; checker A runs at the end)"""
+usage: orbit [eps] [tag] [facet]   (writes h24_cert_o<orbit><tag>.json; checker A runs at the end)"""
 import sys, json, itertools as it, numpy as np, time
 from fractions import Fraction as Fr
 import flint
@@ -15,7 +15,7 @@ from h24_sdp2 import classes, Model
 from h23_span import ipat
 from h20_common import canon, Tn, valsI, PF
 import h24_conic as C
-orb=int(sys.argv[1]); EPS=float(sys.argv[2]) if len(sys.argv)>2 else 1e-9; TAG=sys.argv[3] if len(sys.argv)>3 else ''; f=int(np.where(canon==orb)[0][0]); t0=time.time()
+orb=int(sys.argv[1]); EPS=float(sys.argv[2]) if len(sys.argv)>2 else 1e-9; TAG=sys.argv[3] if len(sys.argv)>3 else ''; f=int(sys.argv[4]) if len(sys.argv)>4 else int(np.where(canon==orb)[0][0]); assert canon[f]==orb; t0=time.time()
 X=np.c_[PF.reshape(744,-1),np.ones(744,int)]
 v=[int(x) for x in valsI[:,f]]; g=np.linalg.lstsq(X.astype(float),np.array(v,float),rcond=None)[0]
 gq=[Fr(x).limit_denominator(10**4) for x in g]

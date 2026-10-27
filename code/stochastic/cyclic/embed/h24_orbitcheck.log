@@ -1,0 +1,3 @@
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:820.)
+orbit 66: 96 facets x 100 starts; min over all -2.802e-15 (facet 12417)  229s
+orbit 54: 96 facets x 100 starts; min over all -2.220e-15 (facet 12193)  472s
