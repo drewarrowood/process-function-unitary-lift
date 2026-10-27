@@ -1,0 +1,19 @@
+H 0 kernel (zero-set span) dim 2 (max rel. residual of zero vectors 2.0e-15) -> G size 62
+H 1 kernel (zero-set span) dim 2 (max rel. residual of zero vectors 3.5e-15) -> G size 62
+H 2 kernel (zero-set span) dim 2 (max rel. residual of zero vectors 1.9e-15) -> G size 62
+H 3 kernel (zero-set span) dim 2 (max rel. residual of zero vectors 3.9e-15) -> G size 62
+H 4 kernel (zero-set span) dim 2 (max rel. residual of zero vectors 1.9e-15) -> G size 62
+H 5 kernel (zero-set span) dim 2 (max rel. residual of zero vectors 3.9e-15) -> G size 62
+H 6 kernel (zero-set span) dim 2 (max rel. residual of zero vectors 2.0e-15) -> G size 62
+H 7 kernel (zero-set span) dim 2 (max rel. residual of zero vectors 3.5e-15) -> G size 62
+equations 1206 unknowns 30752 6s
+max-margin solve optimal margin t -8.134162156540741e-08 18s
+  Y_0: trace 1.681e-01, top eigs [0.13 0.02 0.01 0.   0.   0.  ], numerical rank 18
+  Y_1: trace 8.190e-02, top eigs [0.06 0.01 0.   0.   0.   0.  ], numerical rank 17
+  Y_2: trace 8.190e-02, top eigs [0.06 0.01 0.   0.   0.   0.  ], numerical rank 17
+  Y_3: trace 1.681e-01, top eigs [0.13 0.02 0.01 0.   0.   0.  ], numerical rank 18
+  Y_4: trace 8.188e-02, top eigs [0.06 0.01 0.   0.   0.   0.  ], numerical rank 17
+  Y_5: trace 1.681e-01, top eigs [0.13 0.02 0.01 0.   0.   0.  ], numerical rank 18
+  Y_6: trace 1.681e-01, top eigs [0.13 0.02 0.01 0.   0.   0.  ], numerical rank 18
+  Y_7: trace 8.190e-02, top eigs [0.06 0.01 0.   0.   0.   0.  ], numerical rank 17
+margin -8.13e-08 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o75zs.npz

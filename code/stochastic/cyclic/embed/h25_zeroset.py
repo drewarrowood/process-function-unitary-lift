@@ -53,5 +53,5 @@ if __name__=='__main__':
         gap=s[r-1]/s[r] if r<len(s) else np.inf
         print(f'  i={i}: {len(W[i])} zero vectors; span rank {r} (gap {gap:.1e}; sv[r-1]={s[r-1]:.1e}, sv[r]={s[r] if r<len(s) else 0:.1e})',flush=True)
         out[f'W{i}']=W[i]
-    np.savez_compressed(f'/tmp/r25/h25_zs_o{orb}.npz',**out)
+    np.savez_compressed(f'/tmp/r25/h25_zs_o{orb}'+(f'f{f}' if len(sys.argv)>4 else '')+'.npz',**out)
     print(f'done {time.time()-t0:.0f}s')

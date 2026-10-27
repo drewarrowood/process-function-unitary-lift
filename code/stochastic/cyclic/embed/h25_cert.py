@@ -2,7 +2,7 @@
 Same certificate format and checker A as h24_cert.py (checker B = h24_certB.py works on the json unchanged).  Steps: exact rational basis of
 span{w_i over the zero set} = K_i;  H_i = P_i G_i P_i^T with P_i an exact basis of K_i^perp;  max-margin  max t: equations, G_i >= t I  (SCS or
 CLARABEL);  if t > 0: round, exact correction on pivot columns (flint), exact PD check.
-usage: orbit zeroset.npz [tag] [SCS|CLARABEL]   (writes h25_cert_o<orbit><tag>.json)"""
+usage: orbit zeroset.npz [tag] [SCS|CLARABEL] [facet]   (writes h25_cert_o<orbit><tag>.json)"""
 import sys, json, itertools as it, numpy as np, time
 from fractions import Fraction as Fr
 import flint
@@ -12,7 +12,7 @@ from h24_sdp2 import classes, Model
 from h23_span import ipat
 from h20_common import canon, Tn, valsI, PF
 import h24_conic as C
-orb=int(sys.argv[1]); ZSFILE=sys.argv[2]; TAG=sys.argv[3] if len(sys.argv)>3 else ''; SOLVER=sys.argv[4] if len(sys.argv)>4 else 'SCS'; SOPTS=dict(eps=1e-7,max_iters=200000,verbose=False) if SOLVER=='SCS' else {}; f=int(np.where(canon==orb)[0][0]); assert canon[f]==orb; t0=time.time()
+orb=int(sys.argv[1]); ZSFILE=sys.argv[2]; TAG=sys.argv[3] if len(sys.argv)>3 else ''; SOLVER=sys.argv[4] if len(sys.argv)>4 else 'SCS'; SOPTS=dict(eps=1e-7,max_iters=200000,verbose=False) if SOLVER=='SCS' else {}; f=int(sys.argv[5]) if len(sys.argv)>5 else int(np.where(canon==orb)[0][0]); assert canon[f]==orb; assert canon[f]==orb; t0=time.time()
 X=np.c_[PF.reshape(744,-1),np.ones(744,int)]
 v=[int(x) for x in valsI[:,f]]; g=np.linalg.lstsq(X.astype(float),np.array(v,float),rcond=None)[0]
 gq=[Fr(x).limit_denominator(10**4) for x in g]
@@ -74,7 +74,8 @@ for a in range(64):
     for b in range(64): mem[idx[a,b]].append((a,b))
 reps=[c for c in range(n) if conj[c]>=c]
 rows=[]; rhs=[]   # equations over Q: sum coef*var = rhs  (coef scaled by den^2 -> integers)
-mu=-g0           # bound exactly 0
+DELTA=Fr(os.environ.get('DELTA','0'))   # diagnostic only: certify facet >= -DELTA (relative units x scale); 0 for proofs
+mu=-g0-DELTA*Fr(scale).limit_denominator(1)  # bound mu+g0 = -DELTA*scale
 for c in reps:
     z,zp,e=inv[c]; Gp=ipat(z,zp); isr=(z==zp and e==(0,0,0))
     # CCi[i] (integer, = den^2 * P^T E_c P)
@@ -109,7 +110,8 @@ x0=np.zeros(len(var))
 bn=np.array([float(b) for b in rhs])
 # max-margin interior point on the reduced face (Clarabel): max t s.t. L x = b, E_i(x) - t I PSD (real embedding of G_i)
 import cvxpy as cp, scipy.sparse as sps
-psdc=[]; xv=cp.Variable(len(var)); tv=cp.Variable(); cons=[sps.csr_matrix(L)@xv==bn, cp.abs(xv)<=1e3]
+psdc=[]; xv=cp.Variable(len(var)); tv=cp.Variable(); rn=np.maximum(np.abs(L).max(1),1e-300); Ln=L/rn[:,None]; bnn=bn/rn   # row scaling for the numerics only
+cons=[sps.csr_matrix(Ln)@xv==bnn, cp.abs(xv)<=1e3]
 for i in range(8):
     r=Pi[i].shape[1]; Ri=[];Ci=[];Vi=[]
     for (ii,kind,s_,t_),j in vid.items():
@@ -124,7 +126,7 @@ try:
     pr=cp.Problem(cp.Maximize(tv),cons); pr.solve(solver=SOLVER,**SOPTS)
     print('max-margin solve',pr.status,'margin t',tv.value,f'{time.time()-t0:.0f}s',flush=True)
     if pr.status in ('optimal','optimal_inaccurate') and tv.value>MARGIN:
-        x0=xv.value; print('numeric residual (max-margin point)',np.abs(L@x0-bn).max(),flush=True)
+        x0=xv.value; print('numeric residual (max-margin point, row-scaled)',np.abs(Ln@x0-bnn).max(),flush=True)
     else:
         # facial reduction step: the PSD multipliers Y_i (sum tr Y_i = 1) of the max-margin problem satisfy the homogeneous adjoint equations;
         # any certificate on this face has <G_i, Y_i> = 0, so range(P_i Y_i P_i^T) must join ker H_i.  Save P_i * range(Y_i) as new kernel vectors.
@@ -142,8 +144,8 @@ try:
 except Exception as ex: sys.exit(f'max-margin solve failed ({type(ex).__name__}: {ex})')
 # rows/cols to pivot on
 from scipy.linalg import qr
-_,Rr,pr=qr(L.T,pivoting=True,mode='economic'); rk=int((np.abs(np.diag(Rr))>1e-8*abs(Rr[0,0])).sum()); R_=sorted(pr[:rk])
-_,Rc,pc=qr(L[R_],pivoting=True,mode='economic'); Cp=sorted(pc[:rk]); print('rank',rk,flush=True)
+_,Rr,pr=qr(Ln.T,pivoting=True,mode='economic'); rk=int((np.abs(np.diag(Rr))>1e-8*abs(Rr[0,0])).sum()); R_=sorted(pr[:rk])
+_,Rc,pc=qr(Ln[R_],pivoting=True,mode='economic'); Cp=sorted(pc[:rk]); print('rank',rk,flush=True)
 xq=[Fr(int(round(float(x)*2**24)),2**24) for x in x0]   # coarse dyadic rounding: the margin t >> rounding error
 Cs=set(Cp); res=[rhs[k]-sum(cf*xq[j] for j,cf in rows[k].items() if j not in Cs) for k in R_]
 Am=flint.fmpq_mat([[fq(rows[k].get(j,0)) for j in Cp] for k in R_]); bm=flint.fmpq_mat([[fq(r_)] for r_ in res])

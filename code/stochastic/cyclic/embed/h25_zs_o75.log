@@ -1,0 +1,11 @@
+orbit 75 facet 595: 2000 starts; min -9.992e-16; below 1e-9: 1240, below 1e-11: 1239  166s
+polished 1240: max 4.61e-10; kept (<1e-12) 1239; min over all -1.055e-15
+  i=0: 1239 zero vectors; span rank 2 (gap 1.5e+15; sv[r-1]=5.7e-01, sv[r]=3.7e-16)
+  i=1: 1239 zero vectors; span rank 2 (gap 1.3e+15; sv[r-1]=5.9e-01, sv[r]=4.6e-16)
+  i=2: 1239 zero vectors; span rank 2 (gap 1.6e+15; sv[r-1]=5.8e-01, sv[r]=3.5e-16)
+  i=3: 1239 zero vectors; span rank 2 (gap 1.1e+15; sv[r-1]=5.9e-01, sv[r]=5.2e-16)
+  i=4: 1239 zero vectors; span rank 2 (gap 1.6e+15; sv[r-1]=5.7e-01, sv[r]=3.6e-16)
+  i=5: 1239 zero vectors; span rank 2 (gap 1.1e+15; sv[r-1]=5.6e-01, sv[r]=5.3e-16)
+  i=6: 1239 zero vectors; span rank 2 (gap 1.6e+15; sv[r-1]=5.8e-01, sv[r]=3.7e-16)
+  i=7: 1239 zero vectors; span rank 2 (gap 1.3e+15; sv[r-1]=5.6e-01, sv[r]=4.2e-16)
+done 169s

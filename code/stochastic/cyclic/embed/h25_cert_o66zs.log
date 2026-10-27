@@ -1,0 +1,22 @@
+H 0 kernel (zero-set span) dim 1 -> G size 63
+H 1 kernel (zero-set span) dim 1 -> G size 63
+H 2 kernel (zero-set span) dim 1 -> G size 63
+H 3 kernel (zero-set span) dim 1 -> G size 63
+H 4 kernel (zero-set span) dim 2 -> G size 62
+H 5 kernel (zero-set span) dim 2 -> G size 62
+H 6 kernel (zero-set span) dim 2 -> G size 62
+H 7 kernel (zero-set span) dim 2 -> G size 62
+equations 1206 unknowns 31252 18s
+max-margin solve optimal margin t 0.0035744210447959924 49s
+numeric residual (max-margin point) 5.613176590202329e-11
+rank 1140
+exact solve done; max correction 6.259133285967545e-07 72s
+  G 0 exactly positive definite: True
+  G 1 exactly positive definite: True
+  G 2 exactly positive definite: True
+  G 3 exactly positive definite: True
+  G 4 exactly positive definite: True
+  G 5 exactly positive definite: True
+  G 6 exactly positive definite: True
+  G 7 exactly positive definite: True
+CHECKER A orbit 66 facet 561: certificate VALID; bound mu+g0 = 0  77s
