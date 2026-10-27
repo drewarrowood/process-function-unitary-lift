@@ -1,0 +1,9 @@
+(a) z-flip images of rule 4 -> [4, 6, 10, 14, 5, 7, 11, 15] all 8 Lugano rules: True
+(b,c) component 7 dim 3 -> rules (w, converse): [(4, True)]
+(b,c) component 8 dim 3 -> rules (w, converse): [(5, True)]
+(b,c) component 9 dim 3 -> rules (w, converse): [(10, True)]
+(b,c) component 10 dim 3 -> rules (w, converse): [(11, True)]
+(b,c) component 22 dim 3 -> rules (w, converse): [(6, True)]
+(b,c) component 23 dim 3 -> rules (w, converse): [(7, True)]
+(b,c) component 24 dim 3 -> rules (w, converse): [(14, True)]
+(b,c) component 25 dim 3 -> rules (w, converse): [(15, True)]
