@@ -10,6 +10,7 @@ usage: orbit [json]"""
 import sys, json, itertools as it, numpy as np
 from fractions import Fraction as Fr
 import flint
+sys.set_int_max_str_digits(0)
 fq=lambda x: flint.fmpq(int(Fr(x).numerator),int(Fr(x).denominator))
 orb=int(sys.argv[1]); d=json.load(open(sys.argv[2] if len(sys.argv)>2 else f'h24_cert_o{orb}.json')); f=d['facet']
 bits=lambda n:((n>>2)&1,(n>>1)&1,n&1)
