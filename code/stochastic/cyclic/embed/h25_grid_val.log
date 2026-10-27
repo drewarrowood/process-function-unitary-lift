@@ -1,0 +1,2 @@
+# FAILED VALIDATION (Round 25): pure grid + coupled L-BFGS polish misses the orbit-26 crossing (grid min -1e-15); run stopped by hand after orbit 26. Superseded by h25_gridms.py.
+orbit 26 facet 240: grid 12^3 phases x 20^3 frames = 13824000 points, grid min -9.968968e-16; polished 2000: min -7.664073035e-16, below -1e-7: 0; params [5.7596, -0.0, 0.0, 2.4189, 0.3176, 2.824, 1.9829, 5.0832, 3.4662]  174s
