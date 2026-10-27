@@ -1,0 +1,12 @@
+# full H.34 pipeline rerun with zero-sample seed 2 (zs -> face margin -> aug -> face margin -> exact -> chkA -> chkB)
+total face dimension 1216 of 1408; sum face^2 11056  2s
+57 margin Solved objective -2.3258987821203097e-13 28.3s
+26
+57 margin Solved objective 0.0011998230927785147 43.5s
+ block 180 d=4 lambda_min(G) 2.40e-03 exact PD True
+ block 200 d=1 lambda_min(G) 1.20e-03 exact PD True
+all blocks exactly positive definite: True 12s
+orbit 57: 208 blocks exactly PD (face dim 1204); identity residual: 0 nonzero coefficients of 1206
+orbit 57: PROVED (checker A) facet value >= 0
+orbit 57: checker B: 208 blocks PD (fflu/Sylvester), 0 nonzero residual coefficients of 1206
+orbit 57: PROVED (checker B) facet value >= 0
