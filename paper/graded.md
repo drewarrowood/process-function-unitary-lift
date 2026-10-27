@@ -1609,6 +1609,15 @@ We checked the literature on Oct 23 2026, by web search and by reading the prima
 - **The other four (H.33.4).** On 28, 69 and 75 the solver did not settle within its time limit, and 81 was not run. Nothing new.
 - **The tally.** Unchanged: 15 of 22 broken on all pure processes, 7 open. On the families studied, five are open (28, 57, 69, 75, 81), and 57 is now pinned to within 2.6·10⁻⁸ of holding.
 
+## 119. Plain-language note: orbit 57 proved on every family studied (Oct 27 2026)
+
+- **What changed (H.34).** Round 26 got within 2.6·10⁻⁸ of a proof for orbit 57 but could not close the gap. Round 27 closes it: the expression is now written exactly as a sum of squares, with fractions throughout, so it is never negative on the loops of the reduced family.
+- **How (H.34.1–H.34.4).** First, a symmetry of the problem splits each of the big matrices into small pieces of size at most 22. Second, the places where orbit 57's expression is exactly zero turn out to form an explicit family, which tells us exactly which directions every proof must leave out. Third, one more such direction was hiding in twelve of the pieces. Once those are removed too, the solver finds a proof with room to spare (margin 1.2·10⁻³), and room to spare is what lets a floating-point answer be rounded to an exact one.
+- **The check (H.34.6).** Two separately written programs check the rounded proof in exact fractions: every coefficient matches, and every piece is positive definite. Both programs reject the proof if the claimed bound is raised by 10⁻⁶, or if a single entry is changed by 10⁻¹².
+- **What it means.** Like 54 and 66, orbit 57 now holds on every family of pure processes studied here. It is still open on pure processes in general.
+- **Julia.** Julia and its Clarabel solver were installed for high-precision solving, but on the full problem the solver did not get past setup, and in the end high precision was not needed.
+- **The tally.** On all pure processes it is unchanged: 15 of 22 broken, 7 open. On the families studied, four are open (28, 69, 75, 81).
+
 ## Appendix: superseded readings (written assuming the conjecture)
 
 These passages were written while the conjecture (every purifiable classical process is a mixture of process functions) was still open. Section 58h shows that it is false. They are kept as a record only, and nothing else in this guide relies on them.
