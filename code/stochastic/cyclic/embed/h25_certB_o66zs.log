@@ -1,0 +1,6 @@
+g reproduces the facet on all 744 PFs; PF affine rank 38
+mu+g0 = 0 (iii) True
+(i) all G_i positive definite (charpoly sign test): True
+(ii) class conditions violated: 0 of classes 360
+(iv) max |value - (sum<H,Z> + mu + g0)| over 20 random boards: 6.661338147750939e-16
+CHECKER B orbit 66 facet 561: certificate VALID; proves facet >= 0 on all PF phase boards on rule 4
