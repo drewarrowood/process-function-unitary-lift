@@ -4,7 +4,7 @@ projection spreads each key's residual evenly over its entries), Hermitise, roun
 (2) exact residual r = p - sum_S v_S^dag Qr_S v_S with rational T (Fractions), r1 = sum_key (|Re r|+|Im r|);
 (3) for each S a dyadic tau_S with Qr_S + tau_S I positive definite, proved by exact fraction-free elimination of the real
 352x352 form [[A,-B],[B,A]] (all pivots > 0).  For unit psi, unit spinors, |u_k|=1: |v_S|^2 = sum_w |psi_w|^2 n_m(w) <= 4 and every
-monomial has modulus <= 1, hence  facet value = min p >= -(4 sum_S tau_S + r1).   usage: orbit q.npz"""
+monomial has modulus <= 1, hence  facet value = min p >= -(4 sum_S tau_S + r1).   usage: orbit q.npz [cert_out.npz]  (writes the rounded certificate: integer Gram numerators over 2^K and tau exponents)"""
 import sys, numpy as np, itertools as it
 from fractions import Fraction as F
 from flint import fmpz
@@ -57,11 +57,12 @@ def posdef(M):   # fraction-free Gaussian elimination, integer symmetric M (list
             for j in range(k+1,m): M[i][j]=(M[i][j]*M[k][k]-M[i][k]*M[k][j])//prev
         prev=M[k][k]
     return True
-tot=F(0)
+tot=F(0); TJ=[]
 for S in range(8):
     lam=np.linalg.eigvalsh(Zr[S]/2**K+1j*Zi[S]/2**K)[0]; j=int(np.floor(np.log2(max(-lam,1e-13))))+2; tau=F(1,2**(-j)) if j<0 else F(2**j)
     A=Zr[S]+int(tau*2**K)*np.eye(n,dtype=np.int64); Bm=Zi[S]
     R=np.block([[A,-Bm],[Bm,A]]); ok=posdef([[fmpz(int(x)) for x in row] for row in R])
-    print(f' S={S}: float lambda_min {lam:.2e}, tau = 2^{j}, exact PD: {ok}',flush=True); assert ok; tot+=tau
+    print(f' S={S}: float lambda_min {lam:.2e}, tau = 2^{j}, exact PD: {ok}',flush=True); assert ok; tot+=tau; TJ.append(j)
 delta=4*tot+r1
+if len(sys.argv)>3: np.savez_compressed(sys.argv[3],Zr=Zr,Zi=Zi,K=K,tauexp=np.array(TJ),orb=orb)
 print(f'orbit {orb}: PROVED (checker A) facet value >= -{float(delta):.3e}  (4*sum tau = {float(4*tot):.3e}, r1 = {float(r1):.3e})')
