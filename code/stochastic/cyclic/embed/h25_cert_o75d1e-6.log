@@ -1,0 +1,9 @@
+H 0 kernel (zero-set span) dim 2 (max rel. residual of zero vectors 2.0e-15) -> G size 62
+H 1 kernel (zero-set span) dim 2 (max rel. residual of zero vectors 3.5e-15) -> G size 62
+H 2 kernel (zero-set span) dim 2 (max rel. residual of zero vectors 1.9e-15) -> G size 62
+H 3 kernel (zero-set span) dim 2 (max rel. residual of zero vectors 3.9e-15) -> G size 62
+H 4 kernel (zero-set span) dim 2 (max rel. residual of zero vectors 1.9e-15) -> G size 62
+H 5 kernel (zero-set span) dim 2 (max rel. residual of zero vectors 3.9e-15) -> G size 62
+H 6 kernel (zero-set span) dim 2 (max rel. residual of zero vectors 2.0e-15) -> G size 62
+H 7 kernel (zero-set span) dim 2 (max rel. residual of zero vectors 3.5e-15) -> G size 62
+equations 1206 unknowns 30752 25s

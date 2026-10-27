@@ -1,0 +1,1 @@
+h25_cert_o57fr1.json is NOT a certificate. It is the output of an early Round-25 facial-reduction step on orbit 57 (facet 521, step 1) and is INVALID (fails exact checker A; the face margin was <= 0, h25_frloop_o57.log). Kept only as a record of the failed attempt; orbit 57 remains NUMERICAL (lift.md H.32.3).
