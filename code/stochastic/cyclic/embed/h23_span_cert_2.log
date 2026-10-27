@@ -1,0 +1,5 @@
+rule:12 dim S 22 facets certified 1536 bounds ['0', '1'] failed 0 []
+rule:13 dim S 24 facets certified 1536 bounds ['0', '1'] failed 0 []
+rule:18 dim S 22 facets certified 1536 bounds ['0', '1'] failed 0 []
+rule:19 dim S 22 facets certified 1536 bounds ['0', '1'] failed 0 []
+comp:4 dim S 22 facets certified 1536 bounds ['0', '1'] failed 0 []

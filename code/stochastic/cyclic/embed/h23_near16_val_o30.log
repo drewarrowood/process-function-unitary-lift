@@ -1,0 +1,12 @@
+orbit 30 facet 245: Valid minimum -0.166667
+  start 0: lam 2.2114e-09 pen 2.1e-15  59s
+  start 1: lam -7.6502e-12 pen 2.9e-17  110s
+  start 2: lam 6.6204e-09 pen 8.0e-15  166s
+  start 3: lam -1.6695e-11 pen 1.6e-14  232s
+  start 4: lam 9.1608e-09 pen 1.5e-14  289s
+  start 5: lam 6.6047e-11 pen 8.9e-15  345s
+  start 6: lam -2.0497e-09 pen 1.6e-12  418s
+  start 7: lam 5.3652e-09 pen 1.1e-14  479s
+  start 8: lam -1.6851e-11 pen 2.5e-17  533s
+  start 9: lam -8.4717e-10 pen 6.4e-15  603s
+orbit 30: best valid lam -8.471666e-10 (pen 6.4e-15); valid starts below -1e-7: 0/10; 603s

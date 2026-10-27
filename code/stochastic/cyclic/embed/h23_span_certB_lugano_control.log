@@ -1,0 +1,2 @@
+rule:4 dim S 38 facets certified 0 bounds [] failed 384 [(240, 'LP<0', -0.5), (245, 'LP<0', -0.5), (248, 'LP<0', -0.5), (253, 'LP<0', -0.5), (314, 'LP<0', -0.5)]
+comp:7 dim S 38 facets certified 0 bounds [] failed 384 [(240, 'LP<0', -0.5), (245, 'LP<0', -0.5), (248, 'LP<0', -0.5), (253, 'LP<0', -0.5), (314, 'LP<0', -0.5)]

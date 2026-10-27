@@ -1,0 +1,12 @@
+orbit 26 facet 240: Valid minimum -0.166667
+  start 0: lam 3.7336e-06 pen 2.6e-11  75s
+  start 1: lam -2.9237e-11 pen 3.3e-16  139s
+  start 2: lam -2.8236e-11 pen 1.4e-16  201s
+  start 3: lam -1.8625e-10 pen 2.6e-15  264s
+  start 4: lam -1.1772e-11 pen 3.6e-12  321s
+  start 5: lam 2.2417e-08 pen 2.6e-17  373s
+  start 6: lam -2.8985e-12 pen 2.1e-17  435s
+  start 7: lam 6.2967e-09 pen 2.6e-12  501s
+  start 8: lam -1.9491e-11 pen 1.1e-17  552s
+  start 9: lam 1.5572e-09 pen 2.0e-12  621s
+orbit 26: best valid lam -1.862543e-10 (pen 2.6e-15); valid starts below -1e-7: 0/10; 621s
