@@ -1,0 +1,28 @@
+== rule 5
+orbit 30 facet 245: starts 400; after Adam: below -1e-7: 17, min -8.964988e-03; polished best -8.964988259e-03 params [2
+orbit 54 facet 514: starts 400; after Adam: below -1e-7: 0, min -1.401575e-15; polished best -1.401575253e-15 params [1.
+orbit 66 facet 561: starts 400; after Adam: below -1e-7: 0, min -1.541519e-15; polished best -1.541518649e-15 params [-3
+== rule 6
+orbit 30 facet 245: starts 400; after Adam: below -1e-7: 16, min -8.964988e-03; polished best -8.964988259e-03 params [-
+orbit 54 facet 514: starts 400; after Adam: below -1e-7: 0, min -1.518317e-15; polished best -1.518316722e-15 params [-1
+orbit 66 facet 561: starts 400; after Adam: below -1e-7: 0, min -1.443290e-15; polished best -1.443289932e-15 params [3.
+== rule 7
+orbit 30 facet 245: starts 400; after Adam: below -1e-7: 16, min -8.964988e-03; polished best -8.964988259e-03 params [-
+orbit 54 facet 514: starts 400; after Adam: below -1e-7: 0, min -1.498801e-15; polished best -1.498801083e-15 params [2.
+orbit 66 facet 561: starts 400; after Adam: below -1e-7: 0, min -1.720846e-15; polished best -1.720845688e-15 params [3.
+== rule 10
+orbit 30 facet 245: starts 400; after Adam: below -1e-7: 16, min -8.964988e-03; polished best -8.964988259e-03 params [-
+orbit 54 facet 514: starts 400; after Adam: below -1e-7: 0, min -1.492858e-15; polished best -1.492857589e-15 params [0.
+orbit 66 facet 561: starts 400; after Adam: below -1e-7: 0, min -1.594776e-15; polished best -1.594776348e-15 params [-3
+== rule 11
+orbit 30 facet 245: starts 400; after Adam: below -1e-7: 21, min -8.964988e-03; polished best -8.964988259e-03 params [2
+orbit 54 facet 514: starts 400; after Adam: below -1e-7: 0, min -1.415534e-15; polished best -1.415534356e-15 params [-2
+orbit 66 facet 561: starts 400; after Adam: below -1e-7: 0, min -1.506933e-15; polished best -1.506932603e-15 params [-3
+== rule 14
+orbit 30 facet 245: starts 400; after Adam: below -1e-7: 21, min -8.964988e-03; polished best -8.964988259e-03 params [2
+orbit 54 facet 514: starts 400; after Adam: below -1e-7: 0, min -1.554312e-15; polished best -1.554312234e-15 params [-1
+orbit 66 facet 561: starts 400; after Adam: below -1e-7: 0, min -1.443290e-15; polished best -1.443289932e-15 params [-3
+== rule 15
+orbit 30 facet 245: starts 400; after Adam: below -1e-7: 12, min -8.964988e-03; polished best -8.964988259e-03 params [2
+orbit 54 facet 514: starts 400; after Adam: below -1e-7: 0, min -1.455108e-15; polished best -1.455107736e-15 params [-3
+orbit 66 facet 561: starts 400; after Adam: below -1e-7: 0, min -1.609823e-15; polished best -1.609823386e-15 params [3.

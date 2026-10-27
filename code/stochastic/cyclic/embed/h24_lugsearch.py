@@ -8,7 +8,9 @@ import sys, time, numpy as np, torch
 from h23_span import MAXI
 from h20_common import Tn, canon, B3, others
 torch.set_default_dtype(torch.float64)
-X=torch.tensor([[MAXI[4][k][others(k,z)] for k in range(3)] for z in range(8)],dtype=torch.float64)   # [z,k]
+import os
+RULE=int(os.environ.get("LUGRULE","4"))
+X=torch.tensor([[MAXI[RULE][k][others(k,z)] for k in range(3)] for z in range(8)],dtype=torch.float64)   # [z,k]
 OB=torch.tensor([[B3[o][k] for k in range(3)] for o in range(8)],dtype=torch.float64)                 # [o,k]
 IB=[[B3[i][k] for k in range(3)] for i in range(8)]
 def Mmat(th,Tf,cf):
