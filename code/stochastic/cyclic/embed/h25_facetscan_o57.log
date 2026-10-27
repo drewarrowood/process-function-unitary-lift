@@ -379,3 +379,196 @@ facet 22468: margin 8.74e-08 <= 0 on this face: facial-reduction vectors saved t
 facet 22514 zero-set: vectors; span rank 4 vectors; span rank 4 vectors; span rank 1 vectors; span rank 1 vectors; span rank 4 vectors; span rank 4 vectors; span rank 1 vectors; span rank 1 
 facet 22514: max-margin solve optimal margin t -7.903504513395157e-08 11s
 facet 22514: margin -7.90e-08 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f22514.npz
+facet 22526 zero-set: vectors; span rank 4 vectors; span rank 4 vectors; span rank 4 vectors; span rank 4 vectors; span rank 1 vectors; span rank 1 vectors; span rank 1 vectors; span rank 1 
+facet 22526: max-margin solve optimal margin t -5.017482266427164e-08 11s
+facet 22526: margin -5.02e-08 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f22526.npz
+facet 22568 zero-set: vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 
+facet 22568: max-margin solve optimal margin t 5.2851093204928214e-08 12s
+facet 22568: margin 5.29e-08 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f22568.npz
+facet 22602 zero-set: vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 
+facet 22602: max-margin solve optimal margin t 7.888125527650499e-08 11s
+facet 22602: margin 7.89e-08 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f22602.npz
+facet 22753 zero-set: vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 
+facet 22753: max-margin solve optimal margin t -4.375020649923654e-09 13s
+facet 22753: margin -4.38e-09 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f22753.npz
+facet 22760 zero-set: vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 
+facet 22760: max-margin solve optimal margin t 7.004839441381962e-08 11s
+facet 22760: margin 7.00e-08 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f22760.npz
+facet 25697 zero-set: vectors; span rank 2 vectors; span rank 1 vectors; span rank 2 vectors; span rank 1 vectors; span rank 2 vectors; span rank 1 vectors; span rank 2 vectors; span rank 1 
+facet 25697: max-margin solve optimal margin t -1.69924179938639e-12 11s
+facet 25697: margin -1.70e-12 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f25697.npz
+facet 25702 zero-set: vectors; span rank 1 vectors; span rank 2 vectors; span rank 1 vectors; span rank 2 vectors; span rank 1 vectors; span rank 2 vectors; span rank 1 vectors; span rank 2 
+facet 25702: max-margin solve optimal margin t -5.574870752893298e-09 9s
+facet 25702: margin -5.57e-09 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f25702.npz
+facet 25712 zero-set: vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 
+facet 25712: max-margin solve optimal margin t 1.478088874978865e-08 12s
+facet 25712: margin 1.48e-08 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f25712.npz
+facet 25771 zero-set: vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 
+facet 25771: max-margin solve optimal margin t 7.388544395852019e-08 10s
+facet 25771: margin 7.39e-08 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f25771.npz
+facet 25823 zero-set: vectors; span rank 1 vectors; span rank 1 vectors; span rank 4 vectors; span rank 4 vectors; span rank 1 vectors; span rank 1 vectors; span rank 4 vectors; span rank 4 
+facet 25823: max-margin solve optimal margin t 9.714977042944441e-08 13s
+facet 25823: margin 9.71e-08 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f25823.npz
+facet 25844 zero-set: vectors; span rank 1 vectors; span rank 1 vectors; span rank 4 vectors; span rank 4 vectors; span rank 1 vectors; span rank 1 vectors; span rank 4 vectors; span rank 4 
+facet 25844: max-margin solve optimal margin t -4.4879725153483347e-08 12s
+facet 25844: margin -4.49e-08 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f25844.npz
+facet 25892 zero-set: vectors; span rank 2 vectors; span rank 1 vectors; span rank 2 vectors; span rank 1 vectors; span rank 2 vectors; span rank 1 vectors; span rank 2 vectors; span rank 1 
+facet 25892: max-margin solve optimal margin t 2.131513458404701e-09 11s
+facet 25892: margin 2.13e-09 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f25892.npz
+facet 25907 zero-set: vectors; span rank 1 vectors; span rank 2 vectors; span rank 1 vectors; span rank 2 vectors; span rank 1 vectors; span rank 2 vectors; span rank 1 vectors; span rank 2 
+facet 25907: max-margin solve optimal margin t -3.210793921628577e-08 15s
+facet 25907: margin -3.21e-08 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f25907.npz
+facet 26317 zero-set: vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 
+facet 26317: max-margin solve optimal margin t 2.438375224951992e-09 11s
+facet 26317: margin 2.44e-09 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f26317.npz
+
+facet 26329: FileNotFoundError: [Errno 2] No such file or directory: '/tmp/r25/h25_zs_o57f26329.npz'
+facet 26334 zero-set: vectors; span rank 1 vectors; span rank 2 vectors; span rank 1 vectors; span rank 2 vectors; span rank 1 vectors; span rank 2 vectors; span rank 1 vectors; span rank 2 
+facet 26334: max-margin solve optimal margin t -3.0504342021209385e-09 10s
+facet 26334: margin -3.05e-09 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f26334.npz
+facet 26392 zero-set: vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 
+facet 26392: max-margin solve optimal margin t 7.69171324441958e-08 11s
+facet 26392: margin 7.69e-08 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f26392.npz
+facet 26463 zero-set: vectors; span rank 1 vectors; span rank 1 vectors; span rank 1 vectors; span rank 1 vectors; span rank 4 vectors; span rank 4 vectors; span rank 4 vectors; span rank 4 
+facet 26463: max-margin solve optimal margin t 9.623724862034475e-08 11s
+facet 26463: margin 9.62e-08 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f26463.npz
+facet 26478 zero-set: vectors; span rank 1 vectors; span rank 1 vectors; span rank 1 vectors; span rank 1 vectors; span rank 4 vectors; span rank 4 vectors; span rank 4 vectors; span rank 4 
+facet 26478: max-margin solve optimal margin t 8.513552033268697e-08 12s
+facet 26478: margin 8.51e-08 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f26478.npz
+facet 26516 zero-set: vectors; span rank 2 vectors; span rank 1 vectors; span rank 2 vectors; span rank 1 vectors; span rank 2 vectors; span rank 1 vectors; span rank 2 vectors; span rank 1 
+facet 26516: max-margin solve optimal margin t 6.253575201209898e-08 9s
+facet 26516: margin 6.25e-08 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f26516.npz
+facet 26531 zero-set: vectors; span rank 1 vectors; span rank 2 vectors; span rank 1 vectors; span rank 2 vectors; span rank 1 vectors; span rank 2 vectors; span rank 1 vectors; span rank 2 
+facet 26531: max-margin solve optimal margin t 7.230942308273455e-08 14s
+facet 26531: margin 7.23e-08 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f26531.npz
+facet 27267 zero-set: vectors; span rank 4 vectors; span rank 4 vectors; span rank 4 vectors; span rank 4 vectors; span rank 1 vectors; span rank 1 vectors; span rank 1 vectors; span rank 1 
+facet 27267: max-margin solve optimal margin t 3.8016805520268166e-08 11s
+facet 27267: margin 3.80e-08 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f27267.npz
+facet 27271 zero-set: vectors; span rank 4 vectors; span rank 4 vectors; span rank 1 vectors; span rank 1 vectors; span rank 4 vectors; span rank 4 vectors; span rank 1 vectors; span rank 1 
+facet 27271: max-margin solve optimal margin t 9.0667110855421e-08 12s
+facet 27271: margin 9.07e-08 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f27271.npz
+facet 27308 zero-set: vectors; span rank 4 vectors; span rank 4 vectors; span rank 4 vectors; span rank 4 vectors; span rank 1 vectors; span rank 1 vectors; span rank 1 vectors; span rank 1 
+facet 27308: max-margin solve optimal margin t 9.686146157997348e-08 15s
+facet 27308: margin 9.69e-08 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f27308.npz
+facet 27320 zero-set: vectors; span rank 4 vectors; span rank 4 vectors; span rank 1 vectors; span rank 1 vectors; span rank 4 vectors; span rank 4 vectors; span rank 1 vectors; span rank 1 
+facet 27320: max-margin solve optimal margin t 6.645387223441225e-08 12s
+facet 27320: margin 6.65e-08 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f27320.npz
+facet 27340 zero-set: vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 
+facet 27340: max-margin solve optimal margin t 7.663918711547703e-08 11s
+facet 27340: margin 7.66e-08 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f27340.npz
+facet 27361 zero-set: vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 
+facet 27361: max-margin solve optimal margin t 5.84946873510545e-08 11s
+facet 27361: margin 5.85e-08 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f27361.npz
+facet 27382 zero-set: vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 
+facet 27382: max-margin solve optimal margin t -3.067231058370494e-08 12s
+facet 27382: margin -3.07e-08 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f27382.npz
+facet 27395 zero-set: vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 
+facet 27395: max-margin solve optimal margin t 4.031670295139178e-08 11s
+facet 27395: margin 4.03e-08 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f27395.npz
+facet 27870 zero-set: vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 
+facet 27870: max-margin solve optimal margin t 8.839684951426884e-08 11s
+facet 27870: margin 8.84e-08 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f27870.npz
+facet 27875 zero-set: vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 
+facet 27875: max-margin solve optimal margin t 8.909326883343853e-08 11s
+facet 27875: margin 8.91e-08 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f27875.npz
+facet 27951 zero-set: vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 
+facet 27951: max-margin solve optimal margin t -9.615367631605805e-09 11s
+facet 27951: margin -9.62e-09 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f27951.npz
+facet 27954 zero-set: vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 
+facet 27954: max-margin solve optimal margin t 5.126378702435125e-08 11s
+facet 27954: margin 5.13e-08 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f27954.npz
+facet 27981 zero-set: vectors; span rank 1 vectors; span rank 2 vectors; span rank 1 vectors; span rank 2 vectors; span rank 1 vectors; span rank 2 vectors; span rank 1 vectors; span rank 2 
+facet 27981: max-margin solve optimal margin t 6.947969231782231e-09 10s
+facet 27981: margin 6.95e-09 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f27981.npz
+facet 27998 zero-set: vectors; span rank 2 vectors; span rank 1 vectors; span rank 2 vectors; span rank 1 vectors; span rank 2 vectors; span rank 1 vectors; span rank 2 vectors; span rank 1 
+facet 27998: max-margin solve optimal margin t 1.1607628158051641e-10 11s
+facet 27998: margin 1.16e-10 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f27998.npz
+facet 28019 zero-set: vectors; span rank 1 vectors; span rank 2 vectors; span rank 1 vectors; span rank 2 vectors; span rank 1 vectors; span rank 2 vectors; span rank 1 vectors; span rank 2 
+facet 28019: max-margin solve optimal margin t 5.848082564641359e-09 9s
+facet 28019: margin 5.85e-09 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f28019.npz
+facet 28032 zero-set: vectors; span rank 2 vectors; span rank 1 vectors; span rank 2 vectors; span rank 1 vectors; span rank 2 vectors; span rank 1 vectors; span rank 2 vectors; span rank 1 
+facet 28032: max-margin solve optimal margin t 1.1108845255827727e-10 10s
+facet 28032: margin 1.11e-10 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f28032.npz
+facet 28072 zero-set: vectors; span rank 1 vectors; span rank 1 vectors; span rank 1 vectors; span rank 1 vectors; span rank 4 vectors; span rank 4 vectors; span rank 4 vectors; span rank 4 
+facet 28072: max-margin solve optimal margin t -2.6520364050293735e-09 11s
+facet 28072: margin -2.65e-09 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f28072.npz
+facet 28080 zero-set: vectors; span rank 1 vectors; span rank 1 vectors; span rank 4 vectors; span rank 4 vectors; span rank 1 vectors; span rank 1 vectors; span rank 4 vectors; span rank 4 
+facet 28080: max-margin solve optimal margin t 2.8491674978954656e-08 10s
+facet 28080: margin 2.85e-08 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f28080.npz
+facet 28096 zero-set: vectors; span rank 4 vectors; span rank 4 vectors; span rank 1 vectors; span rank 1 vectors; span rank 4 vectors; span rank 4 vectors; span rank 1 vectors; span rank 1 
+facet 28096: max-margin solve optimal margin t -3.306995342337487e-08 10s
+facet 28096: margin -3.31e-08 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f28096.npz
+facet 28100 zero-set: vectors; span rank 4 vectors; span rank 4 vectors; span rank 4 vectors; span rank 4 vectors; span rank 1 vectors; span rank 1 vectors; span rank 1 vectors; span rank 1 
+facet 28100: max-margin solve optimal margin t 6.863120306380922e-08 11s
+facet 28100: margin 6.86e-08 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f28100.npz
+facet 28258 zero-set: vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 
+facet 28258: max-margin solve optimal margin t 8.533157813877146e-08 283s
+facet 28258: margin 8.53e-08 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f28258.npz
+facet 28269 zero-set: vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 
+facet 28269: max-margin solve optimal margin t 6.972637445184123e-08 14s
+facet 28269: margin 6.97e-08 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f28269.npz
+facet 28307 zero-set: vectors; span rank 4 vectors; span rank 4 vectors; span rank 4 vectors; span rank 4 vectors; span rank 1 vectors; span rank 1 vectors; span rank 1 vectors; span rank 1 
+facet 28307: max-margin solve optimal margin t 1.8788967287533324e-09 12s
+facet 28307: margin 1.88e-09 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f28307.npz
+facet 28325 zero-set: vectors; span rank 4 vectors; span rank 4 vectors; span rank 1 vectors; span rank 1 vectors; span rank 4 vectors; span rank 4 vectors; span rank 1 vectors; span rank 1 
+facet 28325: max-margin solve optimal margin t 9.984541266861483e-08 12s
+facet 28325: margin 9.98e-08 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f28325.npz
+facet 28339 zero-set: vectors; span rank 2 vectors; span rank 1 vectors; span rank 2 vectors; span rank 1 vectors; span rank 2 vectors; span rank 1 vectors; span rank 2 vectors; span rank 1 
+facet 28339: max-margin solve optimal margin t -2.468784022608044e-09 12s
+facet 28339: margin -2.47e-09 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f28339.npz
+facet 28350 zero-set: vectors; span rank 1 vectors; span rank 2 vectors; span rank 1 vectors; span rank 2 vectors; span rank 1 vectors; span rank 2 vectors; span rank 1 vectors; span rank 2 
+facet 28350: max-margin solve optimal margin t 6.190713856688387e-09 10s
+facet 28350: margin 6.19e-09 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f28350.npz
+facet 28353 zero-set: vectors; span rank 1 vectors; span rank 1 vectors; span rank 1 vectors; span rank 1 vectors; span rank 4 vectors; span rank 4 vectors; span rank 4 vectors; span rank 4 
+facet 28353: max-margin solve optimal margin t -2.9046848884505916e-08 11s
+facet 28353: margin -2.90e-08 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f28353.npz
+facet 28361 zero-set: vectors; span rank 1 vectors; span rank 1 vectors; span rank 4 vectors; span rank 4 vectors; span rank 1 vectors; span rank 1 vectors; span rank 4 vectors; span rank 4 
+facet 28361: max-margin solve optimal margin t -4.5053794670607025e-09 12s
+facet 28361: margin -4.51e-09 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f28361.npz
+facet 28374 zero-set: vectors; span rank 1 vectors; span rank 2 vectors; span rank 1 vectors; span rank 2 vectors; span rank 1 vectors; span rank 2 vectors; span rank 1 vectors; span rank 2 
+facet 28374: max-margin solve optimal margin t -1.5970686937355513e-09 9s
+facet 28374: margin -1.60e-09 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f28374.npz
+facet 28379 zero-set: vectors; span rank 2 vectors; span rank 1 vectors; span rank 2 vectors; span rank 1 vectors; span rank 2 vectors; span rank 1 vectors; span rank 2 vectors; span rank 1 
+facet 28379: max-margin solve optimal margin t 1.4904186058755842e-08 11s
+facet 28379: margin 1.49e-08 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f28379.npz
+facet 28410 zero-set: vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 
+facet 28410: max-margin solve optimal margin t 4.959094943712287e-08 12s
+facet 28410: margin 4.96e-08 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f28410.npz
+facet 28427 zero-set: vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 
+facet 28427: max-margin solve optimal margin t 6.327205016499852e-08 13s
+facet 28427: margin 6.33e-08 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f28427.npz
+facet 28561 zero-set: vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 
+facet 28561: max-margin solve optimal margin t 7.173342059756217e-08 12s
+facet 28561: margin 7.17e-08 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f28561.npz
+facet 28565 zero-set: vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 
+facet 28565: max-margin solve optimal margin t 4.3277539854583876e-08 13s
+facet 28565: margin 4.33e-08 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f28565.npz
+facet 28623 zero-set: vectors; span rank 4 vectors; span rank 4 vectors; span rank 4 vectors; span rank 4 vectors; span rank 1 vectors; span rank 1 vectors; span rank 1 vectors; span rank 1 
+facet 28623: max-margin solve optimal margin t 9.134916459179395e-08 15s
+facet 28623: margin 9.13e-08 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f28623.npz
+facet 28630 zero-set: vectors; span rank 4 vectors; span rank 4 vectors; span rank 1 vectors; span rank 1 vectors; span rank 4 vectors; span rank 4 vectors; span rank 1 vectors; span rank 1 
+facet 28630: max-margin solve optimal margin t 8.792632058029553e-08 12s
+facet 28630: margin 8.79e-08 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f28630.npz
+
+facet 28673: FileNotFoundError: [Errno 2] No such file or directory: '/tmp/r25/h25_zs_o57f28673.npz'
+facet 28677 zero-set: vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 vectors; span rank 2 
+facet 28677: max-margin solve optimal margin t 4.5414889005779585e-08 12s
+facet 28677: margin 4.54e-08 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f28677.npz
+facet 28691 zero-set: vectors; span rank 1 vectors; span rank 1 vectors; span rank 1 vectors; span rank 1 vectors; span rank 4 vectors; span rank 4 vectors; span rank 4 vectors; span rank 4 
+facet 28691: max-margin solve optimal margin t 8.975616838267279e-10 11s
+facet 28691: margin 8.98e-10 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f28691.npz
+facet 28695 zero-set: vectors; span rank 1 vectors; span rank 2 vectors; span rank 1 vectors; span rank 2 vectors; span rank 1 vectors; span rank 2 vectors; span rank 1 vectors; span rank 2 
+facet 28695: max-margin solve optimal margin t 9.101908264145482e-08 10s
+facet 28695: margin 9.10e-08 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f28695.npz
+facet 28707 zero-set: vectors; span rank 2 vectors; span rank 1 vectors; span rank 2 vectors; span rank 1 vectors; span rank 2 vectors; span rank 1 vectors; span rank 2 vectors; span rank 1 
+facet 28707: max-margin solve optimal margin t 1.4397251874308843e-08 10s
+facet 28707: margin 1.44e-08 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f28707.npz
+facet 28718 zero-set: vectors; span rank 2 vectors; span rank 1 vectors; span rank 2 vectors; span rank 1 vectors; span rank 2 vectors; span rank 1 vectors; span rank 2 vectors; span rank 1 
+facet 28718: max-margin solve optimal margin t -2.1804810769281334e-09 12s
+facet 28718: margin -2.18e-09 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f28718.npz
+facet 28722 zero-set: vectors; span rank 1 vectors; span rank 1 vectors; span rank 4 vectors; span rank 4 vectors; span rank 1 vectors; span rank 1 vectors; span rank 4 vectors; span rank 4 
+facet 28722: max-margin solve optimal margin t -5.257335482010347e-08 11s
+facet 28722: margin -5.26e-08 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f28722.npz
+facet 28726 zero-set: vectors; span rank 1 vectors; span rank 2 vectors; span rank 1 vectors; span rank 2 vectors; span rank 1 vectors; span rank 2 vectors; span rank 1 vectors; span rank 2 
+facet 28726: max-margin solve optimal margin t 6.395055992902407e-09 10s
+facet 28726: margin 6.40e-09 <= 0 on this face: facial-reduction vectors saved to /tmp/r25/h25_fr_o57f28726.npz
