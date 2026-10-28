@@ -8,6 +8,7 @@ v entries: psi_w * prod_k phi_k * u^m, with phi_k one of xi_kb ('h') or conj xi_
 xi_Ka xi_Kb ('hh', a<=b), xi_Ka conj xi_Kb ('hc') or conj xi_Ka conj xi_Kb ('cc');  m in {0..X[w][k]} (default) or {0,1}^3 (MB=full).
 Each pattern is its own Gram family, split further by torus weight (the symmetry of H.34.1, asserted on every coefficient).
 On the unit spheres |xi_K| = 1, so any feasible gamma is a lower bound on the facet value.  Level 0 (K unset) reproduces H.33.1.
+JSON also lists every basis monomial (mono: [psi, psibar, xi, xibar, u-exponents]) for h29_zs.py and the h29 checkers.
 usage: orbit out.json"""
 import sys, os, json, itertools as it, numpy as np
 from fractions import Fraction as F
@@ -93,6 +94,6 @@ for k in ent:
     if kc<k: continue
     rows.append(dict(part='re',rhs=str(F(P.get(k,0))),nv=str(F(NV.get(k,0))),terms=[[bi,r,s] for bi,r,s in ent[k]]))
     if kc!=k: rows.append(dict(part='im',rhs='0',nv='0',terms=[[bi,r,s] for bi,r,s in ent[k]]))
-json.dump(dict(orbit=orb,facet=f,level=('K=%d'%K if K is not None else '0'),mb=('full' if full else 'default'),blocks=blocks,rows=rows),open(sys.argv[2],'w'))
+json.dump(dict(orbit=orb,facet=f,level=('K=%d'%K if K is not None else '0'),mb=('full' if full else 'default'),blocks=blocks,rows=rows,mono=[[list(x) for x in m] for m in vm]),open(sys.argv[2],'w'))
 sz=[len(b['basis']) for b in blocks]
 print(f'orbit {orb} facet {f} level {K}: {len(blocks)} blocks, sizes max {max(sz)} sum {sum(sz)} sum n^2 {sum(x*x for x in sz)}; rows {len(rows)}; keys of p {len(P)}')

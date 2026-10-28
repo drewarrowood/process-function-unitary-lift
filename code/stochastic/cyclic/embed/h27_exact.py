@@ -6,7 +6,10 @@
     independent row subset; afterwards ALL rows are re-checked exactly (dropped rows must hold identically);
 (4) exact positive-definiteness of every G_b (Hermitian, real form [[Re,-Im],[Im,Re]], fraction-free elimination).
 Nothing here is trusted: the output JSON is re-verified by h27_chkA.py and h27_chkB.py.
+Round 29: works unchanged on h29_export.py problems.  Env REAL=1: kernel rows are [Re W; Im W] (real kernels, matching
+h27_face.py REAL=1).  If the problem lists its monomials (h29), the certificate carries level, mb and each block's monomials.
 usage: problem.json zeros.npz face_out.npz cert_out.json"""
+import os
 import sys, math, json, time, numpy as np, scipy.linalg as sl
 from fractions import Fraction as F
 from flint import fmpq_mat, fmpz_mat, fmpq, fmpz
@@ -20,6 +23,7 @@ def unsvec(v,m):
 xs=FO['x']; xo=1; Kb=[];Nb=[];G0=[]
 for b in range(nbk):
     n=len(D['blocks'][b]['basis']); W=Z[f'W{b}'].conj()
+    if os.environ.get('REAL'): W=np.r_[W.real,W.imag]
     s=np.linalg.svd(W,compute_uv=False) if W.size else np.zeros(1); r=int((s>1e-10*max(s[0],1e-300)).sum())
     if r:
         Vh=np.linalg.svd(W)[2][:r]; M=Vh.copy(); piv=[]; rr=0
@@ -134,7 +138,7 @@ for b in range(nbk):
         ok=posdef(Rm); allok&=ok
         ev=np.linalg.eigvalsh(np.array([[float(x) for x in r_] for r_ in Gr])+1j*np.array([[float(x) for x in r_] for r_ in Gi]))[0]
         if not ok or b%20==0: print(f' block {b} d={db} lambda_min(G) {ev:.2e} exact PD {ok}',flush=True)
-    out.append(dict(S=D['blocks'][b]['S'],wt=D['blocks'][b]['wt'],basis=D['blocks'][b]['basis'],N=Nb[b].tolist(),
+    out.append(dict(S=D['blocks'][b]['S'],wt=D['blocks'][b]['wt'],basis=D['blocks'][b]['basis'],N=Nb[b].tolist(),**({'mono':[D['mono'][i] for i in D['blocks'][b]['basis']]} if 'mono' in D else {}),
                     Gr=[[str(x) for x in r_] for r_ in Gr],Gi=[[str(x) for x in r_] for r_ in Gi]))
 print('all blocks exactly positive definite:',allok,f'{time.time()-t0:.0f}s')
-json.dump(dict(orbit=D['orbit'],facet=D['facet'],gamma='0',blocks=out),open(sys.argv[4],'w'))
+json.dump(dict(orbit=D['orbit'],facet=D['facet'],gamma='0',**({'level':D['level'],'mb':D['mb']} if 'level' in D else {}),blocks=out),open(sys.argv[4],'w'))
