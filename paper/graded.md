@@ -1635,6 +1635,14 @@ We checked the literature on Oct 23 2026, by web search and by reading the prima
 - **Orbit 28 (H.36.4).** The new method improves its bound from −0.023 to −0.008 but does not reach zero. Two more variants did not help. Searches have never found a point that breaks it.
 - **The tally.** On all pure processes it is unchanged: 15 of 22 broken, 7 open. On the families studied, only 28 is open.
 
+## 122. Plain-language note: orbit 28, still open; the corner is not the problem (Oct 28 2026)
+
+- **What was tried (H.37.1–H.37.2).** The proof method was built around the places where orbit 28's expression is exactly zero, by giving the proof extra terms that vanish there. That did not help. In fact, these extra terms can never beat simply raising the degree of the proof (Remark H.37.1). The best bound stays at −0.00065, short of the 0 a proof needs.
+- **Where the gap is (H.37.2–H.37.3).** Cutting out strips around the zero set barely changes the gap. So the trouble is not at the zeros themselves, but in a wide region where the expression is positive but tiny (around 10⁻⁷). That also rules out a brute-force interval proof, which would need about 10²¹ boxes.
+- **The corner (H.37.4).** Where two of the zero surfaces cross, the leading term of the expression was computed exactly, and it is proved never to be negative. It vanishes only along the directions of the known zero surfaces.
+- **But it does not decide anything (H.37.5).** Orbit 30, which is known to be broken, has exactly the same leading corner behaviour. So the corner is not where 28 and 30 differ. The difference lies along the zero surfaces, away from the corner, in a quantity that is zero at worst on 28 and negative on 30.
+- **Status.** Orbit 28 remains open, both on the families studied and on pure processes in general. The tally is unchanged: on all pure processes, 15 of 22 broken and 7 open; on the families studied, only 28 is open.
+
 ## Appendix: superseded readings (written assuming the conjecture)
 
 These passages were written while the conjecture (every purifiable classical process is a mixture of process functions) was still open. Section 58h shows that it is false. They are kept as a record only, and nothing else in this guide relies on them.

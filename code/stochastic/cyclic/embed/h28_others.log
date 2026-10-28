@@ -165,3 +165,7 @@ Round 31 h31_real, orbit 28 (SCS; "inaccurate" = stopped at max_iters, primal an
   kappa >= 0 (min 2e-11 over 20000 points), kappa vanishes on all of {sin t2 = 0} (every minimiser has t2 in {0,pi}, a arbitrary) and quadratically on the traces.
   Orbit 30 gives the SAME numbers (kappa median 8.014e-4 both): the corner structure does not separate 28 from 30, so a local corner expansion cannot by itself
   decide 28; the separating object is the transverse coefficient g = lim lambda/sin^2 t0 on {sin t0=0} (Round 30: 28 min g = 0, 30 min g = -0.042).
+  Round 32 corner (h32_local*.py, exact sympy): leading Schur form L at t=0 (y=eps*eta, y_k=tan(t_k/2)):
+    36 det L = eta0^2 eta1^2 [eta0^2|1-u2|^2|1-u1u2|^2 + eta1^2|1-u2|^4 + eta2^2|2-u0-u1-u2+u0u1u2|^2] >= 0  (PROVED; L PSD)
+    zero directions = tangents of the five known components. Orbit 30: same A and det L exactly (corner does not separate 28/30).
+  D=6,6,1 plain and sw runs still running at H.37 write-up (h32_zs_D661*.log).
