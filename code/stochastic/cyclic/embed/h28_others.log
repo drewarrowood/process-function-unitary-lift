@@ -81,3 +81,10 @@ orbit 81 min -5.826858036564175e-16 quantiles [-5.82685804e-16 -1.11022302e-16  
    Spectra of 28 and 30 at random points agree to ~1e-3 (both near {0,0,1/3,1/3,1/3,2/3,2/3,2/3}; trace 3).
    Witness search next to the hypersurfaces (h30_kappa.py, 400 starts, delta = 1e-2 and 1e-3): 28 min lambda/delta^2 >= -1.3e-9 (no crossing); control 30 finds -0.0422 at t0 = delta and t1 = delta (its crossing).
    Facial reduction at KP=0,1 with these 921 zeros (991 kernel vectors): face dimension 41 of 8800 -> the hypersurface zero set leaves almost no room for a certificate in this basis.
+   Further zero component: lambda_min = 0 identically on {a2 = 0, sin t2 = 0} (codim 2; 20,000 random points each for t2 = 0 and pi), not on a2 = pi or a0/a1 = 0 with t2 = 0. Same three components for 30. (h30_ratio.py: minimising lambda/(sin^2 t0 sin^2 t1) lands on a2 = 0, sin t2 = 0.)
+   At t0 = 0, M + c is block diagonal in z0 (off-diagonal block exactly 0); the z0 = 0 block has spectrum {0, 1/3, x, 2/3 - x} (trace 1), the z0 = 1 block trace 2.
+   Weighted terms |xi_k0 xi_k1|^2 sigma (= sin^2 t_k sigma / 4): already contained in the KP basis (monomials xi_k0 xi_k1 * v), so they add nothing new.
+   Face problems at gamma = 0 with these zeros (h27_face.py REAL=1 gamma):
+     KP=0,1:   face 41 of 8800, equality rows rank 45, dropped rows inconsistent by 1.27 -> PrimalInfeasible
+     KP=0,1,2: face 172 of 22000, rank 210, inconsistency 1.42 -> PrimalInfeasible
+   So no gamma = 0 certificate exists in these bases (NUMERICAL: depends on the zeros being exact zeros, value < 1e-12): the codim-1 zero set is an obstruction, not a solver-accuracy problem.
