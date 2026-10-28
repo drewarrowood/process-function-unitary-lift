@@ -1,0 +1,2 @@
+orbit 75 random-start minima (zlook seed 1, 600 starts): min -1.25e-15 max 1.24e-09 quantiles(.5,.9) [5.55111512e-16 1.13638986e-10]
+on A: 418 on B: 417 on both: 235 on neither: 0 max value of those on neither: None min value of neither: None

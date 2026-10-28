@@ -1,11 +1,18 @@
-# Round 28 (H.35), orbit 75 (facet 595), PF phase boards on rule 4
-== /tmp/r28/zlook.py 75 600 1: random-start minima (Adam 2500 + L-BFGS): min -8.9e-16, 90% quantile 1.1e-10;
-   classification: every one of the 600 lies on family A (a1=a2=pi, t0=pi/2, t2=0) or its 0<->1 swap B (418 / 417, overlap counted twice), none elsewhere
-== h27_export.py 75: 216 blocks, max 22, rows 1206
-== h27_zs.py 75 p75.json -300 1: 600 exact zeros, |value| <= 1.3e-15; total face dimension 1216 of 1408 (sum face^2 10912)
-== h27_face.py p75 zp75 gamma:  equality rank 1139 (67 dependent rows, inconsistency 4.9e-15); AlmostSolved gamma* = -1.65e-11
-   primal Q on the face has 12 eigenvalues >= 0.1 (2, 10/3 (x4 blocks); 8/3 (x4 blocks)), all others <= 1.4e-5: the optimal Gram is rank 12
-== h27_face.py p75 zp75 margin 0: AlmostSolved t = -5.9e-10 (no strictly feasible point on the zero-set face; dual Z has no rank gap)
-== h28_lowrank.py fg75 p75 cert 1e-3 12: 12 rank-one terms, integer vectors, mu in {1/6, 1/3}
-== h27_chkA.py / h27_chkB.py: residual 0 on all 514 keys, 8 blocks PD -> facet value >= 0 PROVED
-== negative controls (both checkers reject): gamma=1e-6 -> 64 nonzero residuals; mu_0 + 1e-12 -> 73 nonzero residuals; mu_0 -> -mu_0 -> G not PD
+# Round 28 (H.35), orbit 75 (facet 595), PF phase boards on rule 4.  Seed-1 run (temp outputs in /tmp/r28, not committed).
+== random-start minima (Adam 2500 + L-BFGS, 600 starts, seed 1): see h28_zeros_o75.log
+   min -1.25e-15, all 600 on zero family A (a1=a2=pi, t0=pi/2, t2=0) or its 0<->1 swap B (418 on A, 417 on B, 235 on both, 0 on neither)
+== h27_export.py 75: 216 weight blocks (max 22), 1206 real rows
+== h27_zs.py 75 p75.json -300 1  (exact A u B family, 300 points per component); total face dimension 1216 of 1408
+== h27_face.py ... gamma: AlmostSolved, gamma* = -1.65e-11
+   primal Q on the face: 12 eigenvalues >= 0.1 (blocks S=0,3,5,6: two each; S=1,2,4,7: one each), every other eigenvalue <= 1.4e-5
+== h27_face.py ... margin: AlmostSolved, t = -5.9e-10 (no strictly feasible point on the zero-set face; dual has no clean rank gap,
+   so the Round-27 dual augmentation h27_aug.py does not apply - its 1e-7 threshold selects the whole face)
+== h28_lowrank.py fg75 p75 cert 1e-3 12 -> h28_lowrank_o75.log: 12 rank-one terms, integer vectors (entries 0,+-1,+-2), mu in {1/6, 1/3}
+== h27_chkA.py, h27_chkB.py (h28_chkA_o75.log, h28_chkB_o75.log): residual 0 on all 514 keys, 8 blocks PD -> facet value >= 0 PROVED
+== negative controls (both checkers reject):
+   gamma = 1e-6                -> 64 nonzero residual coefficients (AssertionError)
+   first mu + 1e-12            -> 73 nonzero residual coefficients (AssertionError)
+   first mu -> -first mu       -> 'G not PD' (AssertionError)
+== h28_numcheck.py (independent of h26_hsos.poly): 2000 random points, max |lambda_min(SOS form in psi) - facet value| = 1.7e-15
+== seed-2 rerun (h28_pipeline_seed2_o75.log): gamma* = -1.44e-12, same 12 terms, certificate byte-identical (cmp)
+== explicit squares: h28_sos_o75.txt (h28_print_sos.py)
