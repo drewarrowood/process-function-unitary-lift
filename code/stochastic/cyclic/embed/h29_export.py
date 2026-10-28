@@ -19,6 +19,8 @@ T=np.array([[F(x).limit_denominator(10**4) for x in row] for row in Tn[f,:64].re
 assert max(abs(float(T[i,j])-Tn[f,8*i+j]) for i in range(8) for j in range(8))<1e-13 and abs(float(c)-Tn[f,64])<1e-13
 K=os.environ.get('K'); KS=[int(x) for x in K.split(',')] if K not in (None,'') else []   # K=0,1,2: multiplier sum_K |xi_K|^2, union of the patterns
 K=KS[0] if KS else None
+KP=os.environ.get('KP'); KP=[int(x) for x in KP.split(',')] if KP not in (None,'') else []   # Round 30: multiplier prod_{k in KP} |xi_k|^2, degree 2 in each k in KP
+assert not (KS and KP), 'use K or KP, not both'
 # monomial: (psi 8, psibar 8, xi 6, xibar 6, d 3) exponent tuples; xi index 2k+b
 Z8=(0,)*8; Z6=(0,)*6
 def mono(psi=None,psib=None,xi=(),xib=(),d=(0,0,0)):
@@ -62,6 +64,10 @@ if KS:
     mK={}
     for k_ in KS: mK=padd(mK,{mono(xi=(2*k_,),xib=(2*k_,)):F(1),mono(xi=(2*k_+1,),xib=(2*k_+1,)):F(1)})
     P=pmul(P,mK); NV=pmul(nsq,mK)
+elif KP:
+    NV=nsq
+    for k_ in KP:
+        mK={mono(xi=(2*k_,),xib=(2*k_,)):F(1),mono(xi=(2*k_+1,),xib=(2*k_+1,)):F(1)}; P=pmul(P,mK); NV=pmul(NV,mK)
 else: NV=nsq
 def wt(m):   # torus weight: psi_w -> e^{i phi.w}, xi_k1 -> e^{i phi_k} xi_k1
     return tuple(sum(B3[w][k]*(m[0][w]-m[1][w]) for w in range(8))+m[2][2*k+1]-m[3][2*k+1] for k in range(3))
@@ -70,10 +76,10 @@ assert all(conjm(m) in P and P[conjm(m)]==v for m,v in P.items()), 'p not real'
 # basis
 full=os.environ.get('MB','')=='full'
 blocks=[]; vm=[]
-for K in (KS or [None]):
+for K in ([KP] if KP else (KS or [None])):
   pats=[]
   for k in range(3):
-    if k==K: pats.append([('hh',[(a,b) for a in (0,1) for b in (0,1) if a<=b]),('hc',[(a,b) for a in (0,1) for b in (0,1)]),('cc',[(a,b) for a in (0,1) for b in (0,1) if a<=b])])
+    if k==K or (isinstance(K,list) and k in K): pats.append([('hh',[(a,b) for a in (0,1) for b in (0,1) if a<=b]),('hc',[(a,b) for a in (0,1) for b in (0,1)]),('cc',[(a,b) for a in (0,1) for b in (0,1) if a<=b])])
     else: pats.append([('h',[(a,) for a in (0,1)]),('c',[(a,) for a in (0,1)])])
   for pat in it.product(*pats):
     name=''.join(p[0]+'.' for p in pat); cls={}
@@ -98,6 +104,6 @@ for k in ent:
     if kc<k: continue
     rows.append(dict(part='re',rhs=str(F(P.get(k,0))),nv=str(F(NV.get(k,0))),terms=[[bi,r,s] for bi,r,s in ent[k]]))
     if kc!=k: rows.append(dict(part='im',rhs='0',nv='0',terms=[[bi,r,s] for bi,r,s in ent[k]]))
-json.dump(dict(orbit=orb,facet=f,level=('K='+','.join(map(str,KS)) if KS else '0'),mb=('full' if full else 'default'),blocks=blocks,rows=rows,mono=[[list(x) for x in m] for m in vm]),open(sys.argv[2],'w'))
+json.dump(dict(orbit=orb,facet=f,level=('K='+','.join(map(str,KS)) if KS else 'KP='+','.join(map(str,KP)) if KP else '0'),mb=('full' if full else 'default'),blocks=blocks,rows=rows,mono=[[list(x) for x in m] for m in vm]),open(sys.argv[2],'w'))
 sz=[len(b['basis']) for b in blocks]
-print(f'orbit {orb} facet {f} level {KS or 0}: {len(blocks)} blocks, sizes max {max(sz)} sum {sum(sz)} sum n^2 {sum(x*x for x in sz)}; rows {len(rows)}; keys of p {len(P)}')
+print(f'orbit {orb} facet {f} level {KS or (('KP',KP) if KP else 0)}: {len(blocks)} blocks, sizes max {max(sz)} sum {sum(sz)} sum n^2 {sum(x*x for x in sz)}; rows {len(rows)}; keys of p {len(P)}')
