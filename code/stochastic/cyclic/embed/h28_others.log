@@ -66,3 +66,9 @@ orbit 81 min -5.826858036564175e-16 quantiles [-5.82685804e-16 -1.11022302e-16  
 == Round 30: 28, MB=full + K=0 multiplier (368,640 Gram entries), SCS eps 1e-7 20000 iters, REAL, no zero-set restriction: 28 gamma scs:solved (inaccurate - reached max_iters) objective -0.0042203557950468195 dual -0.004220386208867337 1133.6s
 == Round 30, KP=0,1 (multiplier |xi_0|^2|xi_1|^2, degree 2 in parties 0 and 1; 864 blocks, max 58, sum n^2 150208, 3330 rows), Clarabel REAL, no zero-set restriction:
 28 gamma AlmostSolved objective -0.002579132068439259 388.0s
+   KP=0,1 validation (same settings): crossed orbit 30 (true min -0.00896) -> -0.008965 (tight, correctly not certified); 57, 75, 69, 81 -> ~0:
+30 gamma AlmostSolved objective -0.008964988258979612 246.5s
+57 gamma AlmostSolved objective 4.555451248116808e-09 144.4s
+75 gamma AlmostSolved objective 1.2580469462990614e-08 192.8s
+69 gamma AlmostSolved objective 4.9855961864160785e-08 229.6s
+81 gamma AlmostSolved objective 8.359929377497394e-09 146.5s
