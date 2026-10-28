@@ -1,0 +1,6 @@
+28 det B0 - claimed decomposition = 0
+28 p real roots: []  p(0) = 8
+28 row2 - p - [12(K+3)+8(1-s0s1)]Y - 8(K+3)Y^2 - 4(1+s0s1)Y^3 = 0
+28 K+3 = (1+cos a0)+(1+cos a1)+(1-cos(a0+a1)) >= 0; 1 +- s0s1 >= 0.  Hence det B0 >= 0, with det B0 > 0 when y1 != 0.
+28 eig B0 at a=0,y1=1,y2=0: [0.666667 0.666667 1.333333 1.333333]
+28 eig B0 at a=0,y1=-1,y2=0: [0.666667 0.666667 1.333333 1.333333]
