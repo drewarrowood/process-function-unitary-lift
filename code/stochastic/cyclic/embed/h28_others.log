@@ -138,3 +138,4 @@ Round 31 h31_real, orbit 28 (SCS; "inaccurate" = stopped at max_iters, primal an
      D=2,2,1 -0.0025083 (Clarabel; vs -0.0025793 without region);  D=3,3,1 -0.0011241 (dual -0.0011256, inaccurate; vs -0.0013387)
   Control 30 D=3,3,1: -0.0089649 (solved, = true min -0.00896, not certified); D=2,2,1 REG=sw: -0.0089650.
   Sequence for 28: D=1 -0.0230, D=2 -0.00258, D=3 -0.00134, D=4 -0.00087 (degree in parties 0,1); the region term gains ~15%.
+  D=4,4,1 REG=sw: -0.0007065 (dual -0.0007143, inaccurate, 60000 it), 2210 s.   (Region validation D=2,2,1 REG=sw: 75 -4.4e-9, 57 -3.9e-9, 69 -2.5e-8, 81 -2.0e-8.)
