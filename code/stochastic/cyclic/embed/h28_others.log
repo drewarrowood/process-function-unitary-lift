@@ -64,3 +64,5 @@ orbit 81 min -5.826858036564175e-16 quantiles [-5.82685804e-16 -1.11022302e-16  
 30 gamma Solved objective -0.018485429867014177 95.5s
    (28: worse than K=0/1 alone, -0.0080; the combined identity is a different, not a stronger, relaxation. 30 stays uncertified.)
 == Round 30: 28, MB=full + K=0 multiplier (368,640 Gram entries), SCS eps 1e-7 20000 iters, REAL, no zero-set restriction: 28 gamma scs:solved (inaccurate - reached max_iters) objective -0.0042203557950468195 dual -0.004220386208867337 1133.6s
+== Round 30, KP=0,1 (multiplier |xi_0|^2|xi_1|^2, degree 2 in parties 0 and 1; 864 blocks, max 58, sum n^2 150208, 3330 rows), Clarabel REAL, no zero-set restriction:
+28 gamma AlmostSolved objective -0.002579132068439259 388.0s
