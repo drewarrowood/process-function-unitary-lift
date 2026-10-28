@@ -39,3 +39,19 @@ orbit 81 min -5.826858036564175e-16 quantiles [-5.82685804e-16 -1.11022302e-16  
 == 69, MB=full, Clarabel (dense assembly, before the sparse rewrite): killed for memory (15.6 GB limit)
 == Reading: the zero-set face is a restriction of the full problem, so its max gamma is <= the full one. With full max gamma = -0.0230 (28), -0.0292 (81) at level 0 and -0.0100 (28), -0.0292 (81) at MB=full, no gamma = 0 certificate of either basis exists on any face, whatever zeros are used; the earlier near-zero face values for 69/81 came with NumericalError and Gram eigenvalues down to -1.2e-3 / -2.8e-2 (infeasible points).
 == 69, MB=full, REAL=1, Clarabel (no zero-set restriction): 69 gamma AlmostSolved objective -7.779971405669473e-07 689.8s
+== Round 29 ==
+69, MB=full, REAL=1, Clarabel on its zero-set face (600 random zeros, face 3432): 69 gamma NumericalError objective 0.0003611792664737884 271.6s
+== h29_export.py level-K relaxation (multiplier |xi_K|^2), h27_face.py REAL=1 NOQR=1 gamma, Clarabel, no zero-set restriction:
+30 (crossed, true min -0.00896): level 0 -0.018799 (H.33.2 ~ -0.019); K=0 -0.011890, K=1 -0.011890, K=2 -0.018485 -> correctly not certified
+28 K=0: 28 gamma Solved objective -0.008007308683310118 28.3s
+28 K=1: 28 gamma Solved objective -0.008007308688414486 28.7s
+28 K=2: 28 gamma Solved objective -0.022607912067137984 31.7s
+81 K=0: 81 gamma AlmostSolved objective 2.1004898973932597e-08 19.4s
+81 K=1: 81 gamma AlmostSolved objective 1.4641565627013807e-08 32.1s
+81 K=2: 81 gamma AlmostSolved objective 4.704853789450717e-09 26.6s
+57 K=0: 57 gamma AlmostSolved objective 6.151493198817788e-09 18.5s
+57 K=1: 57 gamma AlmostSolved objective 2.9390744673354598e-08 18.0s
+57 K=2: 57 gamma AlmostSolved objective 4.280421555596375e-08 32.3s
+75 K=0: 75 gamma AlmostSolved objective 1.623497125802951e-08 30.2s
+75 K=1: 75 gamma AlmostSolved objective 1.6623768287174734e-08 26.6s
+75 K=2: 75 gamma AlmostSolved objective 3.2091240157106046e-08 40.3s
