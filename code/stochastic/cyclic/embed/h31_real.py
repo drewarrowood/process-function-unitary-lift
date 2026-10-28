@@ -139,6 +139,20 @@ for Q,R,C,V_,n in terms:
 Ri.append(np.arange(m0)); Ci.append(np.zeros(m0,int)); Vv.append(gv[sel])
 A=sp.csc_matrix((np.concatenate(Vv+PV),(np.concatenate(Ri+PR),np.concatenate(Ci+PC))),shape=(prow,off))
 b=np.r_[tv[sel],np.zeros(prow-m0)]; q=np.zeros(off); q[0]=-1.0
+if os.environ.get('SOLVER')=='scs':   # SCS: same cone data (ZeroCone rows first, then PSD triangles; SCS svec = lower triangle column-major = upper row... same order for symmetric)
+    import scs
+    # SCS 's' cone uses lower-triangular column-major with sqrt2 scaling; reorder our upper-column-major svec rows into it
+    rows=[];o=m0
+    perm=np.arange(prow)
+    for Q,R,C,V_,n in terms:
+        nt=n*(n+1)//2; up=[(i,j) for j in range(n) for i in range(j+1)]; pos={ij:t for t,ij in enumerate(up)}
+        lo=[(j,i) for i in range(n) for j in range(i,n)]   # column-major lower: (row j >= col i) -> symmetric partner (i,j) upper
+        perm[o:o+nt]=o+np.array([pos[(i,j)] for (j,i) in lo]); o+=nt
+    A2=A[perm,:]; b2=b[perm]
+    data=dict(A=sp.csc_matrix(A2),b=b2,c=q); cone=dict(z=m0,s=[t[4] for t in terms])
+    sv=scs.SCS(data,cone,eps_abs=float(os.environ.get('SCS_EPS','1e-7')),eps_rel=float(os.environ.get('SCS_EPS','1e-7')),max_iters=int(os.environ.get('SCS_ITERS','50000')),verbose=False)
+    r=sv.solve()
+    print(f"orbit {orb} D={D} U={U} REG={REG!r}: scs:{r['info']['status']} gamma {r['x'][0]} dual {-r['info']['dobj']} iters {r['info']['iter']} {time.time()-t0:.1f}s",flush=True); sys.exit()
 st=clarabel.DefaultSettings(); st.verbose=False; st.max_iter=int(os.environ.get('ITERS','200'))
 sol=clarabel.DefaultSolver(sp.csc_matrix((off,off)),q,A,b,cones,st).solve()
 print(f'orbit {orb} D={D} U={U} REG={REG!r}: {sol.status} gamma {sol.x[0] if sol.x is not None else None} {time.time()-t0:.1f}s',flush=True)
