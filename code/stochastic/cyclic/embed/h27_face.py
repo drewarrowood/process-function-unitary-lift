@@ -12,7 +12,8 @@ converted back to the standard 2d_b layout ([[G/2,0],[0,G/2]]), so downstream sc
 import os
 import json, sys, numpy as np, scipy.sparse as sp, clarabel, time
 from fractions import Fraction as F
-D=json.load(open(sys.argv[1])); Z=np.load(sys.argv[2]); mode=sys.argv[3]; nbk=len(D['blocks']); REAL=bool(os.environ.get('REAL'))
+D=json.load(open(sys.argv[1])); Z=np.load(sys.argv[2]) if sys.argv[2]!='-' else {f'W{b}':np.zeros((1,len(bl['basis'])),complex) for b,bl in enumerate(D['blocks'])}  # "-" = no zeros (Round 29)
+mode=sys.argv[3]; nbk=len(D['blocks']); REAL=bool(os.environ.get('REAL'))
 if REAL:
     assert all(F(r['rhs'])==0 and F(r['nv'])==0 for r in D['rows'] if r['part']=='im'), 'REAL needs real coefficients'
     D['rows']=[r for r in D['rows'] if r['part']=='re']
