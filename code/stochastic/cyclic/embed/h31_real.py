@@ -82,6 +82,7 @@ def kid(k):
     if k not in keys: keys[k]=len(keys)
     return keys[k]
 for k in list(target)+list(gpart): kid(k)
+BASES=[]
 terms=[]   # (Qvar, rows, cols(r*n+s), coefficient)
 def add_family(blks,gpoly):
     for bl in blks:
@@ -92,7 +93,7 @@ def add_family(blks,gpoly):
                 for (ga,gm),gv in gpoly.items():
                     k=(wr,ws,tuple(x+y for x,y in zip(ax,ga)),tuple(x+y for x,y in zip(um,gm)))
                     R.append(kid(k)); C.append(r*n+s); V_.append(gv)
-        terms.append((Q,R,C,V_,n))
+        terms.append((Q,R,C,V_,n)); BASES.append(bl)
 add_family(blocks_for(D),{(Z6,Z3):1.0})
 if REG:
     if REG in('sw','sw-'):
@@ -156,4 +157,4 @@ if os.environ.get('SOLVER')=='scs':   # SCS: same cone data (ZeroCone rows first
 st=clarabel.DefaultSettings(); st.verbose=False; st.max_iter=int(os.environ.get('ITERS','200'))
 sol=clarabel.DefaultSolver(sp.csc_matrix((off,off)),q,A,b,cones,st).solve()
 print(f'orbit {orb} D={D} U={U} REG={REG!r}: {sol.status} gamma {sol.x[0] if sol.x is not None else None} {time.time()-t0:.1f}s',flush=True)
-if len(sys.argv)>2: np.savez(sys.argv[2],x=np.array(sol.x),z=np.array(sol.z),sel=sel)
+if len(sys.argv)>2: import json as _j; np.savez(sys.argv[2],x=np.array(sol.x),z=np.array(sol.z),sel=sel,m0=m0,sizes=np.array([t[4] for t in terms]),bases=_j.dumps([[ [int(w),list(a),list(m)] for (w,a,m) in bl] for bl in BASES]))
