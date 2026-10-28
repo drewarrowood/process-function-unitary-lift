@@ -1643,6 +1643,15 @@ We checked the literature on Oct 23 2026, by web search and by reading the prima
 - **But it does not decide anything (H.37.5).** Orbit 30, which is known to be broken, has exactly the same leading corner behaviour. So the corner is not where 28 and 30 differ. The difference lies along the zero surfaces, away from the corner, in a quantity that is zero at worst on 28 and negative on 30.
 - **Status.** Orbit 28 remains open, both on the families studied and on pure processes in general. The tally is unchanged: on all pure processes, 15 of 22 broken and 7 open; on the families studied, only 28 is open.
 
+## 123. Plain-language note: orbit 28, half of the deciding quantity proved (Oct 28 2026)
+
+- **What was attacked (H.38.1).** Round 32 found that orbits 28 and 30 differ through one quantity, g. It measures how fast the expression grows as one moves off the surface {sin t_0 = 0}, where it is zero. That surface has two sheets, t_0 = 0 and t_0 = π. On each, g was computed exactly as a polynomial in the five remaining variables.
+- **Proved on one sheet (H.38.2).** On the sheet t_0 = π, g is exactly a sum of three squares, so it is never negative. This holds for 28 and also for 30. So this sheet is not where the two orbits differ.
+- **Numerical on the other (H.38.4–H.38.5).** On the sheet t_0 = 0, a sum-of-squares search gives zero to solver accuracy for 28 (−1·10⁻⁸), and −1.46 for 30, which is known to be broken. A 40-digit check confirms that 30's g really is −0.042 there. Turning the numerical result for 28 into an exact proof needs the zero set of the problem pinned down completely. About a quarter of the directions it forces are still unexplained, so no exact proof was obtained this round.
+- **Why even a proof of g ≥ 0 would not be enough (H.38.6).** Where g > 0, the expression is nonnegative near the surface. This is proved. But g vanishes on several curves and surfaces, and there higher-order terms decide. The nearby region where nonnegativity is guaranteed also shrinks to nothing as g approaches 0. And far from the surface the expression is positive but tiny, which is the region where previous rounds got stuck.
+- **A better bound (H.38.7).** The plain method at a higher degree improves 28's bound from −0.00065 to −0.00053. That is still short of 0.
+- **Status.** Orbit 28 remains open, both on the families studied and on pure processes in general. The tally is unchanged: on all pure processes, 15 of 22 broken and 7 open; on the families studied, only 28 is open.
+
 ## Appendix: superseded readings (written assuming the conjecture)
 
 These passages were written while the conjecture (every purifiable classical process is a mixture of process functions) was still open. Section 58h shows that it is false. They are kept as a record only, and nothing else in this guide relies on them.
