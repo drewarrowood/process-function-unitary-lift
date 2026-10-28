@@ -146,3 +146,5 @@ Round 31 h31_real, orbit 28 (SCS; "inaccurate" = stopped at max_iters, primal an
   30 overall min -0.0089650 (re-found).  Dual-moment candidate points at D=4 were NOT extracted (SCS dual not saved; Clarabel OOM at D>=3).
 (2) Decay fit of |gamma| vs D (D=2,3,4): plain: power law alpha 1.56 (successive ratios 0.52, 0.65); 3-parameter b + C D^-alpha fits exactly with
   alpha 1.81, limit b = 2.0e-4.  Region: alpha 1.84; 3-parameter limit 2.9e-4.  Three inaccurate points cannot tell a zero limit from ~2e-4.
+  D=5,5,1: -0.0006526 (dual -0.0006905, inaccurate, 60000 it), 4075 s.  Refit D=2..5: power alpha 1.51; local slopes 1.62, 1.48, 1.31 (decreasing);
+  b + C D^-alpha: b 2.07e-4, alpha 1.83 (D=3..5 only: b 2.25e-4).  Cannot distinguish a 0 limit from ~2e-4 (INTERPRETIVE).
