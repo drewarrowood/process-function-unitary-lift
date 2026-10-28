@@ -9,7 +9,7 @@ from flint import fmpz_mat, fmpq_mat, fmpq
 from h23_span import MAXI
 from h20_common import Tn, canon, B3, others
 op=gzip.open if sys.argv[1].endswith('.gz') else open
-C=json.load(op(sys.argv[1],'rt')); orb=int(C['orbit']); gam=F(C['gamma']); lev=C.get('level','0'); K=int(lev[2:]) if lev.startswith('K=') else None
+C=json.load(op(sys.argv[1],'rt')); orb=int(C['orbit']); gam=F(C['gamma']); lev=C.get('level','0'); KSUM=[int(x) for x in lev[2:].split(',')] if lev.startswith('K=') else []; KPR=[int(x) for x in lev[3:].split(',')] if lev.startswith('KP=') else []   # Round 31: K=... sum, KP=... product
 f=int(np.where(canon==orb)[0][0]); X=[[MAXI[4][k][others(k,z)] for k in range(3)] for z in range(8)]
 T=[[F(Tn[f,8*i+o]).limit_denominator(10**4) for o in range(8)] for i in range(8)]; c=F(Tn[f,64]).limit_denominator(10**4)
 assert all(abs(float(T[i][o])-Tn[f,8*i+o])<1e-13 for i in range(8) for o in range(8))
@@ -46,7 +46,13 @@ for k in range(3): psi2=mul(psi2,{(-1,-1,e6(k,0),e6(k,0),U0):(F(1),F(0)),(-1,-1,
 lhs=dict(p)
 for m,(r,im) in psi2.items():
     pr,pi=lhs.get(m,(F(0),F(0))); lhs[m]=(pr+(c-gam)*r,pi+(c-gam)*im)
-if K is not None: lhs=mul(lhs,{(-1,-1,e6(K,0),e6(K,0),U0):(F(1),F(0)),(-1,-1,e6(K,1),e6(K,1),U0):(F(1),F(0))})
+def nK(K): return {(-1,-1,e6(K,0),e6(K,0),U0):(F(1),F(0)),(-1,-1,e6(K,1),e6(K,1),U0):(F(1),F(0))}
+if KSUM:
+    msum={}
+    for K in KSUM:
+        for m,v in nK(K).items(): msum[m]=v if m not in msum else (msum[m][0]+v[0],msum[m][1]+v[1])
+    lhs=mul(lhs,msum)
+for K in KPR: lhs=mul(lhs,nK(K))
 def toexp(m):
     a=[0]*8; ab=[0]*8
     if m[1]>=0: a[m[1]]+=1

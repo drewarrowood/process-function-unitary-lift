@@ -13,6 +13,7 @@ import h26_hsos as H
 op=gzip.open if sys.argv[1].endswith('.gz') else open
 C=json.load(op(sys.argv[1],'rt')); orb=C['orbit']; gam=F(C['gamma']); f=int(np.where(H.canon==orb)[0][0])
 lev=C.get('level','0'); KS=[int(x) for x in lev[2:].split(',')] if lev.startswith('K=') else []
+KPS=[int(x) for x in lev[3:].split(',')] if lev.startswith('KP=') else []   # Round 31: product multiplier prod_{k in KP} |xi_k|^2
 Tq=np.array([[F(x).limit_denominator(10**4) for x in row] for row in H.Tn[f,:64].reshape(8,8)],dtype=object)
 cq=F(H.Tn[f,64]).limit_denominator(10**4)
 assert max(abs(float(Tq[i,j])-H.Tn[f,8*i+j]) for i in range(8) for j in range(8))<1e-13 and abs(float(cq)-H.Tn[f,64])<1e-13
@@ -34,6 +35,9 @@ P={};NV={}
 for k,v in P26.items(): kk=conv(k); P[kk]=P.get(kk,0)+F(v)
 for k,v in N26.items(): kk=conv(k); NV[kk]=NV.get(kk,0)+F(v)
 P=mulK(P); NV=mulK(NV)
+for K_ in KPS:
+    KS=[K_]; P=mulK(P); NV=mulK(NV)
+if KPS: KS=[]
 res={k:[v,F(0)] for k,v in P.items()}
 for k,v in NV.items(): res.setdefault(k,[F(0),F(0)])[0]-=gam*v
 def posdef(M):
@@ -68,4 +72,4 @@ for bl in C['blocks']:
 bad=[k for k,(a,b) in res.items() if a or b]
 print(f'orbit {orb} level {lev}: {npd} blocks exactly PD (face dim {dims}); identity residual: {len(bad)} nonzero coefficients of {len(res)}')
 assert not bad
-print(f'orbit {orb}: PROVED (checker A) facet value >= {gam}  [identity multiplied by sum over K in {KS} of |xi_K|^2; |xi_k|=1 on the domain]')
+print(f'orbit {orb}: PROVED (checker A) facet value >= {gam}  [identity multiplied by sum over K in {KS} / product over {KPS} of |xi_K|^2; |xi_k|=1 on the domain]')
