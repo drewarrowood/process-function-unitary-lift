@@ -1,0 +1,25 @@
+# Round 28 (H.35.5): orbits 28, 69, 81 on PF phase boards on rule 4 (reduced family H.31.1)
+== random-start minima, /tmp/r28/zlook.py ORB 600 1 (Adam 2500 + L-BFGS):
+orbit 28 min -1.2839820664057032e-15 quantiles [-1.28398207e-15 -7.41414187e-16 -3.82030407e-16  4.37614030e-13]
+orbit 69 min -2.6020852139652106e-16 quantiles [-2.60208521e-16  0.00000000e+00  4.44073674e-16  8.15146561e-16]
+orbit 81 min -6.670427526532522e-16 quantiles [-6.67042753e-16 -1.30024057e-16  2.12649314e-16  1.00008912e-15]
+== h27_export.py + h27_face.py gamma on the full torus-block problem (no zero-set restriction; Rust Clarabel):
+equality rows 1206 rank 1206 dropped 0 max inconsistency of dropped rhs 0
+28 gamma Solved objective -0.023022298649091975 69.6s
+equality rows 1206 rank 1206 dropped 0 max inconsistency of dropped rhs 0
+69 gamma AlmostSolved objective -4.989085213447162e-05 109.1s
+equality rows 1206 rank 1206 dropped 0 max inconsistency of dropped rhs 0
+81 gamma Solved objective -0.02921359413706376 63.7s
+== h27_zs.py ORB 600 1 (random zeros, rank threshold 1e-6) + h27_face.py gamma on the zero-set face:
+orbit 28 facet 242: 216 blocks, sizes max 22 sum 1408 sum n^2 13824; rows 1206 (full problem: 8 x 176)
+total face dimension 131 of 1408; sum face^2 699  40s
+equality rows 1206 rank 1 dropped 1205 max inconsistency of dropped rhs 1.0
+28 gamma Solved objective -0.0 0.0s
+orbit 69 facet 571: 216 blocks, sizes max 22 sum 1408 sum n^2 13824; rows 1206 (full problem: 8 x 176)
+total face dimension 896 of 1408; sum face^2 7824  36s
+equality rows 1206 rank 1096 dropped 110 max inconsistency of dropped rhs 5.714063948887319e-15
+69 gamma NumericalError objective 3.231197372343059e-08 29.6s
+orbit 81 facet 706: 216 blocks, sizes max 22 sum 1408 sum n^2 13824; rows 1206 (full problem: 8 x 176)
+total face dimension 952 of 1408; sum face^2 8112  34s
+equality rows 1206 rank 1074 dropped 132 max inconsistency of dropped rhs 5.671437813823434e-15
+81 gamma NumericalError objective -6.010381432240941e-10 19.7s
