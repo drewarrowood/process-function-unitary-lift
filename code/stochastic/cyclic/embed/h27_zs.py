@@ -19,7 +19,7 @@ if NS>0:
     def clo():
         o2.zero_grad(); l=lam(x,Tf,cf).sum(); l.backward(); return l
     o2.step(clo)
-else:   # exact 4-parameter zero family found in H.34.3 (orbit 57): a1=a2=pi, t0=pi/2, t2=0; plus its k0<->k1 swap
+else:   # exact 4-parameter zero family found in H.34.3 (orbit 57; Round 28: also every random-start zero of orbit 75 lies on it): a1=a2=pi, t0=pi/2, t2=0; plus its k0<->k1 swap
     N=-NS; th=np.zeros((2*N,9))
     for c_,(k,l) in enumerate([(0,1),(1,0)]):
         R=th[c_*N:(c_+1)*N]; R[:,k]=rng.uniform(-np.pi,np.pi,N); R[:,l]=np.pi; R[:,2]=np.pi
