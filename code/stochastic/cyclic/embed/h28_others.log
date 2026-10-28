@@ -88,3 +88,19 @@ orbit 81 min -5.826858036564175e-16 quantiles [-5.82685804e-16 -1.11022302e-16  
      KP=0,1:   face 41 of 8800, equality rows rank 45, dropped rows inconsistent by 1.27 -> PrimalInfeasible
      KP=0,1,2: face 172 of 22000, rank 210, inconsistency 1.42 -> PrimalInfeasible
    So no gamma = 0 certificate exists in these bases (NUMERICAL: depends on the zeros being exact zeros, value < 1e-12): the codim-1 zero set is an obstruction, not a solver-accuracy problem.
+
+== Round 30 correction and update (2026-10-27 ~01:45 EDT) ==
+CORRECTION: earlier "face 41/172, inconsistent equality system (1.27/1.42), obstruction" lines used
+approximate optimiser zeros (zeros28.npy); those points are only ~1e-3..2e-2 from the true zero set and
+force spurious kernel vectors. That obstruction claim is WITHDRAWN (unverified artifact).
+Orbit 28 zero set (exact sampling, 20000 pts each, lam_min < 1e-9 at 100%): 5 components
+  {sin t0=0}, {sin t1=0}, {a2=0, sin t2=0}, {a1=a2=0}, {a0=a2=0}   ({a0=a1=0} is NOT a component: 0.5%).
+  All 948 optimiser zeros lie within 0.019 of these; the farthest are near intersections {sin t0=sin t1=0}
+  where lam vanishes to higher order (scaling test lam ~ off^2 with coefficient ~1e-7, or ~off^4).
+Exact-zero faces (150 pts per component piece, 8 pieces = 1200 pts, exz28b.npy):
+  KP=0,1: face 4456/8800, equality rank 1139 of 1737, max inconsistency 2.4e-11 (CONSISTENT);
+          Clarabel gamma NumericalError (objective -0.0). SCS face gamma run: face28_kp01_scs.log.
+  (earlier, 3 components only: K0 1175/3520, KP01 4028/8800 consistent, KP012 11580/22000)
+KP=0,1,2 full (no face), SCS 20000 it: gamma -0.0024931 (dual -0.0024937), inaccurate/max_iters, 1827 s.
+Summary 28 (NUMERICAL lower bounds, none certify): K=2 -0.0080; combined K=0,1,2 -0.0226;
+  MB=full+K=0 -0.00422; KP=0,1 -0.00258 (30: -0.008965 = true min, 57/75/69/81 ~ +1e-8); KP=0,1,2 -0.00249.
