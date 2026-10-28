@@ -104,3 +104,11 @@ Exact-zero faces (150 pts per component piece, 8 pieces = 1200 pts, exz28b.npy):
 KP=0,1,2 full (no face), SCS 20000 it: gamma -0.0024931 (dual -0.0024937), inaccurate/max_iters, 1827 s.
 Summary 28 (NUMERICAL lower bounds, none certify): K=2 -0.0080; combined K=0,1,2 -0.0226;
   MB=full+K=0 -0.00422; KP=0,1 -0.00258 (30: -0.008965 = true min, 57/75/69/81 ~ +1e-8); KP=0,1,2 -0.00249.
+Near-hypersurface test (user suggestion): minimise g = lam/sin^2 t0 at t0 = 1e-3 over the other 8 angles, 40 starts.
+  28: min g = -0.0 (>= -1e-9); minimisers lie on the other components (sin t1 = 0 or a2 = sin t2 = 0), i.e.
+      lam ~ sin^2 t0 * g with g >= 0 vanishing exactly on intersections -> NUMERICAL support for a sin^2-weighted
+      structure, but g itself has zeros, so a plain sin^2 t0 * SOS term needs g to be certified recursively.
+  30: min g = -0.04219 (crossing near t0 = 0, matches kappa witness -0.0422).
+KP=0,1 exact-zero face, SCS gamma: scs:infeasible after 5150 iters (124 s). Not informative beyond the full
+  KP=0,1 bound -0.00258 < 0 (which already rules out a gamma = 0 certificate in this basis; face restriction is only
+  valid for gamma = 0 certificates).
