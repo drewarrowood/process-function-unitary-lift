@@ -9,7 +9,7 @@ Blocks split by the parity of (s_k-degree + bit k of w) (the symmetry s_k -> -s_
 Coefficient matching is over monomials in the REAL x (so c_k^2 and s_k^2 terms of different Gram entries may combine), Laurent in u.
 REG (region term, needs d0,d1 >= 2):  'sw'  g = sin^2 t0 |x1|^4 - sin^2 t1 |x0|^4   (region |sin t0| >= |sin t1|; the swap symmetry of 28/30 covers the rest)
                                        'sw-' g = -that.   'a2' g = 1 - cos a2 (always >= 0; control).
-Any feasible gamma is a lower bound for the facet value (on the region, if REG).  usage: orbit [solver]"""
+Any feasible gamma is a lower bound for the facet value (on the region, if REG).  usage: orbit [out.npz]   (CVX=1: solve through cvxpy instead of direct Clarabel)"""
 import sys, os, time, itertools as it, numpy as np, scipy.sparse as sp, cvxpy as cp
 from h20_common import Tn, canon, B3
 from h26_hsos import X
@@ -107,10 +107,7 @@ if REG:
     if REG=='a2': dd=[D[0],D[1],D[2]]
     if REG in ('sw','sw-'): dd=[D[0]-2,D[1]-2,D[2]]
     add_family(blocks_for(dd),gm)
-nk=len(keys); cons=[]
-expr=0
-for Q,R,C,V_,n in terms:
-    M=sp.csr_matrix((np.array(V_,dtype=float),(R,C)),shape=(nk,n*n)); expr=expr+M@cp.vec(Q.T)   # vec(Q.T) row-major
+nk=len(keys)
 tv=np.zeros(nk); gv=np.zeros(nk)
 for k,v in target.items(): tv[keys[k]]+=v
 for k,v in gpart.items(): gv[keys[k]]+=v
@@ -119,10 +116,30 @@ for k,i in keys.items():
     kk=min(k,(k[1],k[0],k[2],tuple(-x for x in k[3])))
     if kk not in seen: seen.add(kk); rep[i]=True
 sel=np.where(rep)[0]
-cons=[expr[sel]==tv[sel]-gamma*gv[sel]]+[Q>>0 for Q,*_ in terms]
-print(f'orbit {orb} D={D} U={U} REG={REG!r}: blocks {len(terms)} sizes {sorted(t[4] for t in terms)[-5:]} sum n^2 {sum(t[4]**2 for t in terms)} keys {nk}',flush=True)
-t0=time.time(); prob=cp.Problem(cp.Maximize(gamma),cons)
-solver=sys.argv[2] if len(sys.argv)>2 else 'CLARABEL'
-try: prob.solve(solver=solver,verbose=False)
-except Exception as ex: print('solver error',ex)
-print(f'orbit {orb} D={D} U={U} REG={REG!r}: {prob.status} gamma {gamma.value} {time.time()-t0:.1f}s',flush=True)
+print(f'orbit {orb} D={D} U={U} REG={REG!r}: blocks {len(terms)} sizes {sorted(t[4] for t in terms)[-5:]} sum n^2 {sum(t[4]**2 for t in terms)} keys {nk} rows {len(sel)}',flush=True)
+t0=time.time()
+if os.environ.get('CVX'):
+    expr=0
+    for Q,R,C,V_,n in terms:
+        M=sp.csr_matrix((np.array(V_,dtype=float),(R,C)),shape=(nk,n*n)); expr=expr+M@cp.vec(Q.T,order='F')
+    cons=[expr[sel]==tv[sel]-gamma*gv[sel]]+[Q>>0 for Q,*_ in terms]
+    prob=cp.Problem(cp.Maximize(gamma),cons); prob.solve(solver='CLARABEL')
+    print(f'orbit {orb} D={D} U={U} REG={REG!r}: {prob.status} gamma {gamma.value} {time.time()-t0:.1f}s',flush=True); sys.exit()
+# direct Clarabel: x = [gamma, svec(Q_1), ...]  (svec: upper triangle column-major, off-diagonal scaled by sqrt 2)
+import clarabel
+rowmap=-np.ones(nk,int); rowmap[sel]=np.arange(len(sel)); m0=len(sel)
+Ri=[];Ci=[];Vv=[]; off=1; PR=[];PC=[];PV=[]; cones=[clarabel.ZeroConeT(m0)]; prow=m0
+r2=np.sqrt(2.0)
+for Q,R,C,V_,n in terms:
+    R=np.array(R); C=np.array(C); V_=np.array(V_,float); r=C//n; s_=C%n
+    i=np.minimum(r,s_); j=np.maximum(r,s_); idx=off+j*(j+1)//2+i; sc=np.where(i==j,1.0,1/r2)
+    keep=rowmap[R]>=0
+    Ri.append(rowmap[R[keep]]); Ci.append(idx[keep]); Vv.append(V_[keep]*sc[keep])
+    nt=n*(n+1)//2; PR.append(prow+np.arange(nt)); PC.append(off+np.arange(nt)); PV.append(-np.ones(nt)); cones.append(clarabel.PSDTriangleConeT(n)); prow+=nt; off+=nt
+Ri.append(np.arange(m0)); Ci.append(np.zeros(m0,int)); Vv.append(gv[sel])
+A=sp.csc_matrix((np.concatenate(Vv+PV),(np.concatenate(Ri+PR),np.concatenate(Ci+PC))),shape=(prow,off))
+b=np.r_[tv[sel],np.zeros(prow-m0)]; q=np.zeros(off); q[0]=-1.0
+st=clarabel.DefaultSettings(); st.verbose=False; st.max_iter=int(os.environ.get('ITERS','200'))
+sol=clarabel.DefaultSolver(sp.csc_matrix((off,off)),q,A,b,cones,st).solve()
+print(f'orbit {orb} D={D} U={U} REG={REG!r}: {sol.status} gamma {sol.x[0] if sol.x is not None else None} {time.time()-t0:.1f}s',flush=True)
+if len(sys.argv)>2: np.savez(sys.argv[2],x=np.array(sol.x),z=np.array(sol.z),sel=sel)
