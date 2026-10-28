@@ -139,3 +139,10 @@ Round 31 h31_real, orbit 28 (SCS; "inaccurate" = stopped at max_iters, primal an
   Control 30 D=3,3,1: -0.0089649 (solved, = true min -0.00896, not certified); D=2,2,1 REG=sw: -0.0089650.
   Sequence for 28: D=1 -0.0230, D=2 -0.00258, D=3 -0.00134, D=4 -0.00087 (degree in parties 0,1); the region term gains ~15%.
   D=4,4,1 REG=sw: -0.0007065 (dual -0.0007143, inaccurate, 60000 it), 2210 s.   (Region validation D=2,2,1 REG=sw: 75 -4.4e-9, 57 -3.9e-9, 69 -2.5e-8, 81 -2.0e-8.)
+(3) h31_corner.py 28/30 200 5 (h31_corner_o28.log, h31_corner_o30.log): witness search at all 10 pairwise intersections of the 5 zero components,
+  perturbation delta in {1e-3,1e-2,1e-1,0.3}, 200 starts each (8000 runs, Adam 800 steps, p = 0):  28 min lambda -1.24e-15, no point < -1e-10.
+  Ratio searches: min lambda/(sin^2 t0 sin^2 t1) near {s0}&{s1}: 28 -9.7e-12 (i.e. 0; the cofactor itself vanishes -> higher-order zero),
+  30 -0.0732 (crossing, control works).  min lambda/(sin^2 t0 (sin^2 a2/2 + sin^2 t2)) near {s0}&{a2s2}: 28 -4.4e-11, 30 -4.4e-11.
+  30 overall min -0.0089650 (re-found).  Dual-moment candidate points at D=4 were NOT extracted (SCS dual not saved; Clarabel OOM at D>=3).
+(2) Decay fit of |gamma| vs D (D=2,3,4): plain: power law alpha 1.56 (successive ratios 0.52, 0.65); 3-parameter b + C D^-alpha fits exactly with
+  alpha 1.81, limit b = 2.0e-4.  Region: alpha 1.84; 3-parameter limit 2.9e-4.  Three inaccurate points cannot tell a zero limit from ~2e-4.
