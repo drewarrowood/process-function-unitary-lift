@@ -1,0 +1,2 @@
+orbit 81 level K=2: 358 blocks exactly PD (face dim 2548); identity residual: 0 nonzero coefficients of 2028
+orbit 81: PROVED (checker A) facet value >= 0  [identity multiplied by |xi_2|^2; |xi_k|=1 on the domain]

@@ -1,0 +1,43 @@
+# Round 29, orbit 81 (facet 706), level K=2 (|xi_2|^2 multiplier), seed 1
+K=2 h29_export.py 81 q81_K2.json -> 432 blocks, max 33, sum 3520, 2028 rows
+h29_zs.py 81 q81_K2.json 600 1: 600 zeros (value<1e-12), real face dim 2548/3520
+REAL=1 h27_face.py gamma: Solved -4.1e-16; margin: Solved t=1.1775e-3 (seed 1 and seed 2 both 0.00118)
+REAL=1 h27_exact.py: numerical rank 1898, float residual 1.12e-11, max correction 3.15e-13, 0 exact rows violated, all blocks exactly PD
+--- negative controls (checkers A and B on mutated cert):
+== A gamma
+           ^^^^^^^
+AssertionError
+== B gamma
+           ^^^^^^^
+AssertionError
+== A pert
+           ^^^^^^^
+AssertionError
+== B pert
+           ^^^^^^^
+AssertionError
+== A neg
+           ~~~~~~^^^
+AssertionError: ('G not PD', 'h.h.hh.', [0, 1, 1])
+== B neg
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ('G not PD', 'h.h.hh.', [0, 1, 1])
+--- independent seed 2 (zeros, face, margin, exact, checker A):
+orbit 81: 600 points, kept 600 with value < 1e-12 (min -6.07e-16)  38s
+600 zero vectors
+real face dimension (threshold 1e-10) 2548 of 3520  39s
+face dims 2548 sum d^2 30024
+equality rows 1062 rank 994 dropped 68 max inconsistency of dropped rhs 8.147357007090384e-15
+81 margin Solved objective 0.0011774915314051873 51.5s
+face dims 2548 sum d^2 30024 60s
+params 30024 rows 2028
+numerical rank 1898 float residual of rounded g0 1.3036072221694894e-11
+gram built 133s
+solved 139s
+max correction 3.5215296995109585e-13
+exact rows violated after correction: 0
+all blocks exactly positive definite: True 215s
+orbit 81 level K=2: 358 blocks exactly PD (face dim 2548); identity residual: 0 nonzero coefficients of 2028
+orbit 81: PROVED (checker A) facet value >= 0  [identity multiplied by |xi_2|^2; |xi_k|=1 on the domain]
+orbit 81 level K=2: checker B: 358 blocks PD (fflu/Sylvester), 0 nonzero residual coefficients of 2028
+orbit 81: PROVED (checker B) facet value >= 0
