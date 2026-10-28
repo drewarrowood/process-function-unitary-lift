@@ -129,3 +129,12 @@ KP=0,1 exact-zero face, SCS gamma: scs:infeasible after 5150 iters (124 s). Not 
   D=1,1,1: 30 -0.018799, 69 -4.99e-5.
 Round 31 h31_real validation, D=2,2,1 (Clarabel Solved): 30 -0.0089650 (= true min, not certified); 57 -1.1e-9; 75 -2.0e-8; 69 -4.2e-9; 81 -2.4e-8.
 28 D=3,3,1 (SCS 60000 it, inaccurate/max_iters): gamma -0.0013387 (dual -0.0013401), 560 s.   (Clarabel direct OOM at this size; U=full D=2,2,1 OOM.)
+Round 31 h31_real, orbit 28 (SCS; "inaccurate" = stopped at max_iters, primal and dual objectives shown):
+  D=2,2,1 U=full ({0,1}^3 u-basis for every w): -0.0022568 (dual -0.0022568, solved), 708 s
+  D=3,3,2: -0.0013009 (dual -0.0013033, inaccurate), 1206 s
+  D=4,4,1: -0.0008746 (dual -0.0008844, inaccurate), 1257 s
+  Region split (a), REG=sw: certificate valid on {sin^2 t0 >= sin^2 t1}; the 0<->1 swap (with t2 -> pi - t2) covers the complement
+     (REG=sw- gives the identical value at D=2,2,1: -0.00250834 both, Clarabel):
+     D=2,2,1 -0.0025083 (Clarabel; vs -0.0025793 without region);  D=3,3,1 -0.0011241 (dual -0.0011256, inaccurate; vs -0.0013387)
+  Control 30 D=3,3,1: -0.0089649 (solved, = true min -0.00896, not certified); D=2,2,1 REG=sw: -0.0089650.
+  Sequence for 28: D=1 -0.0230, D=2 -0.00258, D=3 -0.00134, D=4 -0.00087 (degree in parties 0,1); the region term gains ~15%.
