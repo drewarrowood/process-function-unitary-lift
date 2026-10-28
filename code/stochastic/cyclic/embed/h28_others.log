@@ -148,3 +148,20 @@ Round 31 h31_real, orbit 28 (SCS; "inaccurate" = stopped at max_iters, primal an
   alpha 1.81, limit b = 2.0e-4.  Region: alpha 1.84; 3-parameter limit 2.9e-4.  Three inaccurate points cannot tell a zero limit from ~2e-4.
   D=5,5,1: -0.0006526 (dual -0.0006905, inaccurate, 60000 it), 4075 s.  Refit D=2..5: power alpha 1.51; local slopes 1.62, 1.48, 1.31 (decreasing);
   b + C D^-alpha: b 2.07e-4, alpha 1.83 (D=3..5 only: b 2.25e-4).  Cannot distinguish a 0 limit from ~2e-4 (INTERPRETIVE).
+
+== Round 32 (2026-10-28 ~09:20-11:00 EDT) ==
+(1) h32_zs.py = h31_real.py + zero-set weight families h_j * SOS (h_j in sin^2 t0, sin^2 t1, sin^2 t0 sin^2 t1, sin^2(a_k/2), products) and region families.
+  Cone inclusion (PROVED, one line): every h_j is a sum of Hermitian squares ((2cs)^2, |1-u|^2/4), so h_j W^dag R W is a Gram form in (2cs)W or (1-u)W/2:
+  at matched degree the structured cone lies inside the plain cone (u-support widened by the a-weights).  D=(2,2,1), orbit 28:
+    plain -0.0025793 (Clarabel); W=s0,s1,s01 -0.0025792 (Clarabel; identical); W=a0,a1,a2 -0.0026044 (SCS inaccurate; no gain).
+  Controls with W=s0,s1,s01,a0,a1,a2: 30 -0.0089648 (SCS solved; = true min, not certified); 57 -9.1e-9.  All runs: h32_zs_runs.log.
+  Region tests (certificate valid only on the region), D=(2,2,1): |sin t0|,|sin t1|>=0.3: -0.0024518; |sin t0|>=0.3: -0.0025145; |sin t0|>=0.1,|sin t1|>=0.1: -0.0025809;
+    |sin(a2/2)|>=0.3: -0.0025790; all three (excludes every zero component): -0.0024480.  D=(2,2,2): plain -0.0024841, |sin t2|>=0.3 -0.0024849.
+  => the degree-2 gap is NOT localised at the zero components.  h32_regmin.py: min lambda on {|sin t0|,|sin t1|,|sin(a2/2)| >= 0.3} is 5.0e-7 (on its boundary),
+     on the 0.1-region 1.9e-10: the facet value is extremely flat near the zero set (h32_regmin_o28.log).
+(2) h32_corner.py (h32_corner_o28.log, h32_corner_o30.log): on the 8 corner tori t in {0,pi}^3 the matrix is diagonal and a-independent
+  (diag(rowsum T)+c; PROVED: frames are computational basis vectors up to sign, D_o diagonal), kernel dim 2 for 28 and 30.
+  lambda_1 ~ eps^4 (median 1.34e-3 eps^4), lambda_2 ~ eps^2 (4.7e-2 eps^2) in every direction.  At {t0=t1=0}: lambda_1 lambda_2 = kappa(a,t2) tau0^2 tau1^2 eps^4,
+  kappa >= 0 (min 2e-11 over 20000 points), kappa vanishes on all of {sin t2 = 0} (every minimiser has t2 in {0,pi}, a arbitrary) and quadratically on the traces.
+  Orbit 30 gives the SAME numbers (kappa median 8.014e-4 both): the corner structure does not separate 28 from 30, so a local corner expansion cannot by itself
+  decide 28; the separating object is the transverse coefficient g = lim lambda/sin^2 t0 on {sin t0=0} (Round 30: 28 min g = 0, 30 min g = -0.042).

@@ -1,0 +1,2 @@
+28 region |sin t0|,|sin t1|,|sin(a2/2)| >= 0.3: min lambda 4.9614e-07 over 1000 feasible endpoints
+28 region |sin t0|,|sin t1|,|sin(a2/2)| >= 0.1: min lambda 1.9380e-10 over 1000 feasible endpoints

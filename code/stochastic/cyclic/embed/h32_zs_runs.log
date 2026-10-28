@@ -1,0 +1,25 @@
+== Round 32 h32_zs.py D=2 runs (orbit 28; SOLVER as shown; 2026-10-28 ~09:25-10:10 EDT) ==
+orbit 28 D=[2, 2, 1] DP=[2, 2, 1] W=[] U=X REG='': blocks 8 sizes [50, 50, 50, 58, 58] sum n^2 19928 keys 3330 rows 1737
+orbit 28 D=[2, 2, 1] DP=[2, 2, 1] W=[] U=X REG='': Solved gamma -0.002579254908803469 84.5s
+orbit 28 D=[2, 2, 1] DP=[2, 2, 1] W=['s0', 's1', 's01'] U=X REG='': blocks 32 sizes [50, 50, 50, 58, 58] sum n^2 24928 keys 3330 rows 1737
+orbit 28 D=[2, 2, 1] DP=[2, 2, 1] W=['s0', 's1', 's01'] U=X REG='': Solved gamma -0.0025792302047018983 94.9s
+(Clarabel runs with a-weights crashed without output; rerun with SCS:)
+orbit 28 D=[2, 2, 1] DP=[2, 2, 1] W=['a0', 'a1', 'a2'] U=X REG='': scs:solved (inaccurate - reached max_iters) gamma -0.002604431498224233 dual -0.0026053366297909613 iters 20000 225.5s
+orbit 28 D=[2, 2, 1] DP=[2, 2, 1] W=['r0_0.1', 'r1_0.1'] U=X REG='': blocks 24 sizes [50, 50, 50, 58, 58] sum n^2 24648 keys 3330 rows 1737
+orbit 28 D=[2, 2, 1] DP=[2, 2, 1] W=['r0_0.1', 'r1_0.1'] U=X REG='': scs:solved (inaccurate - reached max_iters) gamma -0.002580855375007293 dual -0.0025816084586150756 iters 20000 71.5s
+orbit 28 D=[2, 2, 1] DP=[2, 2, 1] W=['r0_0.3', 'r1_0.3'] U=X REG='': blocks 24 sizes [50, 50, 50, 58, 58] sum n^2 24648 keys 3330 rows 1737
+orbit 28 D=[2, 2, 1] DP=[2, 2, 1] W=['r0_0.3', 'r1_0.3'] U=X REG='': scs:solved (inaccurate - reached max_iters) gamma -0.0024517541133074394 dual -0.0024521732662470524 iters 20000 73.3s
+orbit 28 D=[2, 2, 1] DP=[2, 2, 1] W=['r0_0.3'] U=X REG='': blocks 16 sizes [50, 50, 50, 58, 58] sum n^2 22288 keys 3330 rows 1737
+orbit 28 D=[2, 2, 1] DP=[2, 2, 1] W=['r0_0.3'] U=X REG='': scs:solved (inaccurate - reached max_iters) gamma -0.002514462091848828 dual -0.002514788905655553 iters 20000 62.8s
+orbit 28 D=[2, 2, 1] DP=[2, 2, 1] W=['q2_0.3'] U=X REG='': blocks 16 sizes [50, 58, 58, 58, 58] sum n^2 39856 keys 5830 rows 2987
+orbit 28 D=[2, 2, 1] DP=[2, 2, 1] W=['q2_0.3'] U=X REG='': scs:solved (inaccurate - reached max_iters) gamma -0.0025789749155646653 dual -0.002579606153318108 iters 20000 120.9s
+orbit 28 D=[2, 2, 1] DP=[2, 2, 1] W=['q2_0.3', 'r0_0.3', 'r1_0.3'] U=X REG='': blocks 32 sizes [50, 58, 58, 58, 58] sum n^2 44576 keys 5830 rows 2987
+orbit 28 D=[2, 2, 1] DP=[2, 2, 1] W=['q2_0.3', 'r0_0.3', 'r1_0.3'] U=X REG='': scs:solved (inaccurate - reached max_iters) gamma -0.0024480367879881762 dual -0.002448560814209639 iters 20000 139.7s
+orbit 28 D=[2, 2, 2] DP=[2, 2, 2] W=['r2_0.3'] U=X REG='': blocks 16 sizes [72, 78, 78, 87, 87] sum n^2 49892 keys 5600 rows 2908
+orbit 28 D=[2, 2, 2] DP=[2, 2, 2] W=['r2_0.3'] U=X REG='': scs:solved (inaccurate - reached max_iters) gamma -0.0024848880605361917 dual -0.002485655834660788 iters 20000 143.7s
+orbit 28 D=[2, 2, 2] DP=[2, 2, 2] W=[] U=X REG='': blocks 8 sizes [72, 78, 78, 87, 87] sum n^2 44874 keys 5600 rows 2908
+orbit 28 D=[2, 2, 2] DP=[2, 2, 2] W=[] U=X REG='': scs:solved (inaccurate - reached max_iters) gamma -0.0024840621117333084 dual -0.002485032796944268 iters 20000 124.4s
+orbit 30 D=[2, 2, 1] DP=[2, 2, 1] W=['s0', 's1', 's01', 'a0', 'a1', 'a2'] U=X REG='': blocks 56 sizes [58, 58, 58, 58, 58] sum n^2 84712 keys 15190 rows 7667
+orbit 30 D=[2, 2, 1] DP=[2, 2, 1] W=['s0', 's1', 's01', 'a0', 'a1', 'a2'] U=X REG='': scs:solved gamma -0.008964767173194442 dual -0.008964798018764842 iters 7050 82.5s
+orbit 57 D=[2, 2, 1] DP=[2, 2, 1] W=['s0', 's1', 's01', 'a0', 'a1', 'a2'] U=X REG='': blocks 56 sizes [58, 58, 58, 58, 58] sum n^2 84712 keys 15190 rows 7667
+orbit 57 D=[2, 2, 1] DP=[2, 2, 1] W=['s0', 's1', 's01', 'a0', 'a1', 'a2'] U=X REG='': scs:solved gamma -9.067194637243963e-09 dual -8.956379186335857e-09 iters 125 2.0s

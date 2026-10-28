@@ -1,0 +1,10 @@
+28 kappa on 20000 random (a,t2): min 2.104e-11 median 8.014e-04; radius/direction consistency (rel, median) 6.92e-07
+28 minimised kappa (400 starts, Adam 1500): min -2.621e-10; minimisers with kappa < 1e-6: 400, max distance of those to the traces 3.138e+00
+28 trace a2=t2=0: kappa on trace max |.| 3.77e-10; transverse slope (log10 ratio, h 0.1->0.01): median 2.00 min -0.38; min kappa/h^2 at h=0.01 -2.399e-06
+28 trace a1=a2=0: kappa on trace max |.| 1.27e-10; transverse slope (log10 ratio, h 0.1->0.01): median 2.00 min -0.11; min kappa/h^2 at h=0.01 -8.832e-07
+28 trace a0=a2=0: kappa on trace max |.| 2.51e-10; transverse slope (log10 ratio, h 0.1->0.01): median 2.00 min 1.44; min kappa/h^2 at h=0.01 -7.701e-07
+28 corner t=0: max |offdiag M| 0.0e+00; diag spread over a 3.3e-16; diag [ 0.       -0.        0.666667  0.333333  0.666667  0.333333  0.333333
+  0.666667]
+28 corner t = eps*tau, eps 0.1: lambda1/eps^4 min 1.753e-11 median 1.344e-03; lambda2/eps^2 median 4.690e-02
+28 corner t = eps*tau, eps 0.03: lambda1/eps^4 min -9.247e-10 median 1.351e-03; lambda2/eps^2 median 4.695e-02
+28 corner t = eps*tau, eps 0.01: lambda1/eps^4 min -6.661e-08 median 1.357e-03; lambda2/eps^2 median 4.696e-02
