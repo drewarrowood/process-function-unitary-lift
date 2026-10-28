@@ -1,0 +1,2 @@
+orbit 28 D=[3, 3, 1] DP=[3, 3, 1] W=['q2_0.3', 'r0_0.3', 'r1_0.3'] U=X REG='': blocks 32 sizes [88, 88, 88, 88, 88] sum n^2 154880 keys 11410 rows 5833
+orbit 28 D=[3, 3, 1] DP=[3, 3, 1] W=['q2_0.3', 'r0_0.3', 'r1_0.3'] U=X REG='': scs:solved (inaccurate - reached max_iters) gamma -0.0011028846408792036 dual -0.0011035962567910046 iters 60000 1476.0s
