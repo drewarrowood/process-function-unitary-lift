@@ -1618,6 +1618,13 @@ We checked the literature on Oct 23 2026, by web search and by reading the prima
 - **Julia.** Julia and its Clarabel solver were installed for high-precision solving. On the full problem that solver was too slow here: about 8 steps in 30 minutes, against 80 seconds for the Rust version of the same solver. In the end high precision was not needed. The proof was found with ordinary double precision on the smaller reduced problem, then made exact with fractions in Python. Julia played no part in the final proof.
 - **The tally.** On all pure processes it is unchanged: 15 of 22 broken, 7 open. On the families studied, four are open (28, 69, 75, 81).
 
+## 120. Plain-language note: orbit 75 proved on every family studied (Oct 27 2026)
+
+- **What changed (H.35).** Orbit 75 now has the same status as 54, 57 and 66: it holds on every family of pure processes studied here. It is still open on pure processes in general.
+- **How (H.35.1–H.35.3).** Orbit 75's expression is zero at exactly the same places as orbit 57's. The Round 27 trick for 57 (removing one more hidden direction) did not work here. But the solver's answer turned out to be very simple: of more than a thousand possible directions it uses only 12, each with small whole-number coefficients. Taking those 12 at face value writes the expression exactly as a sum of 12 squares, with weights 1/6 and 1/3. No correction step was needed.
+- **The check (H.35.4).** The two exact checkers from Round 27, unchanged, accept the proof. They reject it if the bound is raised by 10⁻⁶, if one weight is changed by 10⁻¹², or if one weight is made negative. A separate floating-point test compares the sum of squares with the original quantity at 2,000 random points and agrees to about 10⁻¹⁵. A rerun from a different random seed gives exactly the same proof.
+- **The tally.** On all pure processes it is unchanged: 15 of 22 broken, 7 open. On the families studied, three are open (28, 69, 81).
+
 ## Appendix: superseded readings (written assuming the conjecture)
 
 These passages were written while the conjecture (every purifiable classical process is a mixture of process functions) was still open. Section 58h shows that it is false. They are kept as a record only, and nothing else in this guide relies on them.
