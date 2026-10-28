@@ -1626,6 +1626,15 @@ We checked the literature on Oct 23 2026, by web search and by reading the prima
 - **The other three (H.35.5).** For 28, 69 and 81 the same method gives a strictly negative bound, so it cannot prove them as it stands. For 28 and 81 the shortfall is large, about 0.01 to 0.03. For 69 it shrinks to about 3·10⁻⁷ when more terms are allowed, so 69 might be provable with a more accurate solver. Searches with 4,600 random starts per orbit found no point that breaks any of the three.
 - **The tally.** On all pure processes it is unchanged: 15 of 22 broken, 7 open. On the families studied, three are open (28, 69, 81).
 
+## 121. Plain-language note: orbits 69 and 81 proved on every family studied (Oct 27 2026)
+
+- **What changed (H.36).** Orbits 69 and 81 now have the same status as 54, 57, 66 and 75: they hold on every family of pure processes studied here. They are still open on pure processes in general. Of the seven open orbits, only 28 is still open on the studied families.
+- **How (H.36.1).** Before, the method tried to write the facet expression directly as a sum of squares, and for 69 and 81 that fell short. This round multiplies the expression first by |ξ_K|², a quantity that equals 1 everywhere it matters, so the bound is not changed. The product has more room to be written as a sum of squares. This is a standard trick and not new. It closes the gap for both orbits: from −0.0292 (81) and −5·10⁻⁵ (69) to zero within solver accuracy.
+- **Controls (H.36.2).** The strengthened method still fails, as it must, on orbit 30, which is known to be broken. On 57 and 75, which are already proved, it gives zero as expected.
+- **The check (H.36.3).** As for 57, the zero set of each expression fixes which directions the proof must leave out. On what remains the proof has room to spare, with a margin of about 10⁻³, so it can be rounded to exact fractions. Two separately written checkers, each building the expression in its own way, accept both proofs. Both reject them if the bound is raised by 10⁻⁶, if one entry is changed by 10⁻¹², or if one entry is negated. Reruns from a different random seed give different proofs, and both checkers accept those too.
+- **Orbit 28 (H.36.4).** The new method improves its bound from −0.023 to −0.008 but does not reach zero. Two more variants did not help. Searches have never found a point that breaks it.
+- **The tally.** On all pure processes it is unchanged: 15 of 22 broken, 7 open. On the families studied, only 28 is open.
+
 ## Appendix: superseded readings (written assuming the conjecture)
 
 These passages were written while the conjecture (every purifiable classical process is a mixture of process functions) was still open. Section 58h shows that it is false. They are kept as a record only, and nothing else in this guide relies on them.
