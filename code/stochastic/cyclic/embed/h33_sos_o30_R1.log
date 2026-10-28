@@ -1,0 +1,2 @@
+30 H: terms 1485 half degrees 4 6 blocks {(0, 0): 324, (0, 1): 243, (1, 0): 216, (1, 1): 162} constraints 2205
+30 R=1: SCS solved gamma -1.462248e+00 dual -1.462248e+00 iters 200 (9.5s)
