@@ -112,3 +112,12 @@ Near-hypersurface test (user suggestion): minimise g = lam/sin^2 t0 at t0 = 1e-3
 KP=0,1 exact-zero face, SCS gamma: scs:infeasible after 5150 iters (124 s). Not informative beyond the full
   KP=0,1 bound -0.00258 < 0 (which already rules out a gamma = 0 certificate in this basis; face restriction is only
   valid for gamma = 0 certificates).
+
+== Round 31 (2026-10-28 ~02:00 EDT) ==
+(2) Symmetries of the reduced family (scan over party permutations x a_k -> +-a_k x t_k -> t or pi - t x p_k -> +-p_k (+pi); 200 random points, tol 1e-9):
+  * lambda_min is INDEPENDENT of p_0, p_1, p_2 for every orbit (500 random resamplings of each p_k: max change 8e-16).
+    PROVED (one line): e0 = P_k (c,s), e1 = e^{-ip_k} P_k (-s,c) with P_k = diag(1, e^{ip_k}); P = (x)P_k is diagonal, commutes with D_o,
+    and |<f_i|D_o psi>| = |<f_i^0|D_o P^dag psi>|, so M(a,t,p) = P M(a,t,0) P^dag.  The family is really 6-dimensional (a, t), xi_k real.
+  * 28 (and 30) have the party swap 0<->1 combined with t2 -> pi - t2 (a unchanged; sign flips of all a also allowed).
+    57, 69: no party permutation; 75: swap 0<->1; 81: swap 0<->2.  For 28 the swap maps {a1=a2=0} <-> {a0=a2=0}, fixes the other components,
+    and maps the region {sin^2 t0 >= sin^2 t1} onto its complement, so a region split by |sin t0| vs |sin t1| needs only one region.
