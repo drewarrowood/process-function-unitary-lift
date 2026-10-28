@@ -1,0 +1,6 @@
+30 t0=0.01: lambda_min = -4.217930285e-6, lambda/sin^2 t0 = -0.04218070885
+30 t0=0.001: lambda_min = -4.219237896e-8, lambda/sin^2 t0 = -0.04219239302
+30 t0=0.0001: lambda_min = -4.219250976e-10, lambda/sin^2 t0 = -0.0421925099
+28 t0=0.01: lambda_min = 3.040376165e-6, lambda/sin^2 t0 = 0.03040477513
+28 t0=0.001: lambda_min = 3.040403901e-8, lambda/sin^2 t0 = 0.03040404914
+28 t0=0.0001: lambda_min = 3.040404178e-10, lambda/sin^2 t0 = 0.03040404188

@@ -1,0 +1,5 @@
+28 (0, 0) kernel rank 124 face dim 119 RREF rationalisation err 1.6e-14 residual |Mz N| 3.1e-16 max denominator 12
+28 (0, 1) kernel rank 132 face dim 111 RREF rationalisation err 2.9e-14 residual |Mz N| 1.0e-15 max denominator 12
+28 (1, 0) kernel rank 38 face dim 124 RREF rationalisation err 6.5e-15 residual |Mz N| 1.2e-16 max denominator 1
+28 (1, 1) kernel rank 62 face dim 100 RREF rationalisation err 9.4e-15 residual |Mz N| 3.1e-16 max denominator 1
+28 face max-margin (SCS): solved (inaccurate - reached max_iters) t = -3.301853e-08 dual -3.178082e-07 iters 20000 (181.9s), face dims [119, 111, 124, 100]

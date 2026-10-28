@@ -1,7 +1,7 @@
 """Round 33 (H.38): zero-set facial reduction for the t0 = 0 SOS of h33_sos.py.
 Homogenised basis vector V_b(t1,t2,u): y1^i y2^j u^m scaled by cos(t1/2)^d1 cos(t2/2)^d2, i.e. s1^i c1^(d1-i) s2^j c2^(d2-j) u^m.
 Zero families of H (homogenised; h33_face.py checks H = 0 on samples):
-  F1 {u2=1, y2=0}; F2 {u0=u2=1}; F3 {u1=u2=1}; Y0 {y1=y2=0}; Yp {y1=0, u0u1u2-u0-u1-u2+2=0}; YE {y1=0, a0=a1=pi, y2=1};
+  F1 {u2=1, y2=0}; F2 {u0=u2=1}; F3 {u1=u2=1}; Y0 {y1=y2=0}; YE {y1=0, a0=a1=pi, y2=1};
   I1 {y1=inf} x ({y2=0} | {u1=1} | {u0u2=1}); I2 {y2=inf} x ({y1=0} | {u2=1} | {u0u2=1}).
 Kernel K_b = span of Re/Im V_b(z) over samples; compared with the numerical kernel of the SCS Gram (h33_sos.py).  usage: orbit"""
 import sys
@@ -28,7 +28,7 @@ def pt(fam):
         if w=='u2': a[2]=0
         if w=='u02': a[2]=-a[0]
     return a,t
-fams=['F1','F2','F3','Y0','Yp','YE','I1:y0','I1:u1','I1:u02','I2:y0','I2:u2','I2:u02']
+fams=['F1','F2','F3','Y0','YE','I1:y0','I1:u1','I1:u02','I2:y0','I2:u2','I2:u02']
 def V(b,a,t):
     s1,c1,s2,c2=np.sin(t[0]/2),np.cos(t[0]/2),np.sin(t[1]/2),np.cos(t[1]/2)
     return np.array([s1**i*c1**(d1-i)*s2**j*c2**(d2-j)*np.exp(1j*np.dot(m,a)) for i,j,m in b])

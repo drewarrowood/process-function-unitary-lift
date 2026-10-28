@@ -2,15 +2,14 @@
 28 F2 H(sample) = -0j
 28 F3 H(sample) = 0j
 28 Y0 H(sample) = 0j
-28 Yp H(sample) = (0.072739490057+0j)
-28 YE H(sample) = 0j
+28 YE H(sample) = (-0-0j)
 28 I1:y0 H(sample) = 0j
 28 I1:u1 H(sample) = 0j
-28 I1:u02 H(sample) = 0j
+28 I1:u02 H(sample) = (-0-0j)
 28 I2:y0 H(sample) = 0j
 28 I2:u2 H(sample) = 0j
-28 I2:u02 H(sample) = (-0-0j)
-28 (0, 0) zero-set kernel rank 158 sv around gap [4.61042823e-02 2.73349076e-02 4.58158060e-15 3.80964267e-15]
-28 (0, 1) zero-set kernel rank 166 sv around gap [4.17443871e-02 2.65255445e-02 7.60725933e-15 7.33451307e-15]
-28 (1, 0) zero-set kernel rank 38 sv around gap [2.63227338e-01 2.56808407e-01 4.29420520e-15 3.57535027e-15]
-28 (1, 1) zero-set kernel rank 62 sv around gap [3.23495726e-01 3.17721526e-01 3.97071591e-15 3.09027516e-15]
+28 I2:u02 H(sample) = -0j
+28 (0, 0) zero-set kernel rank 124 sv around gap [3.14526855e-01 3.11497854e-01 8.37879995e-15 7.59876306e-15]
+28 (0, 1) zero-set kernel rank 132 sv around gap [2.82758452e-01 2.64063710e-01 1.38792960e-14 1.25135462e-14]
+28 (1, 0) zero-set kernel rank 38 sv around gap [2.98332090e-01 2.82263534e-01 4.46139553e-15 4.09512722e-15]
+28 (1, 1) zero-set kernel rank 62 sv around gap [3.02084288e-01 3.00789717e-01 3.03044928e-15 2.93499419e-15]
