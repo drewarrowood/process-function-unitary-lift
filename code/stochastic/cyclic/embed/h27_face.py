@@ -4,11 +4,18 @@ Q_b = N_b G_b N_b^dag, G_b >= 0.  Solves (mode gamma) max gamma, or (mode margin
 usage: problem.json zeros.npz mode [out.npz]
 Round 28 options (env): NOQR=1 skips the dense dependent-row check (use only when the rows are known independent, e.g. no zeros);
 SOLVER=scs uses SCS (indirect-free, low memory) instead of Clarabel, with SCS_EPS (default 1e-7) and SCS_ITERS (default 200000).
-The constraint matrix is assembled sparse, so large bases (MB=full) fit in memory."""
+The constraint matrix is assembled sparse, so large bases (MB=full) fit in memory.
+REAL=1 (Round 29): all coefficients of p are real (asserted: every 'im' row has rhs = nv = 0), so p is invariant under conjugating
+psi, xi, u; averaging a certificate with its conjugate gives a real Gram matrix.  Then G_b is real symmetric (PSD cone of size d_b
+instead of 2d_b), the 'im' rows vanish identically and are dropped, and N_b is a real basis of {v real: W v = 0}.  The saved x is
+converted back to the standard 2d_b layout ([[G/2,0],[0,G/2]]), so downstream scripts are unchanged (the saved dual z is not)."""
 import os
 import json, sys, numpy as np, scipy.sparse as sp, clarabel, time
 from fractions import Fraction as F
-D=json.load(open(sys.argv[1])); Z=np.load(sys.argv[2]); mode=sys.argv[3]; nbk=len(D['blocks'])
+D=json.load(open(sys.argv[1])); Z=np.load(sys.argv[2]); mode=sys.argv[3]; nbk=len(D['blocks']); REAL=bool(os.environ.get('REAL'))
+if REAL:
+    assert all(F(r['rhs'])==0 and F(r['nv'])==0 for r in D['rows'] if r['part']=='im'), 'REAL needs real coefficients'
+    D['rows']=[r for r in D['rows'] if r['part']=='re']
 Ns=[]
 for b in range(nbk):
     W=Z[f'W{b}']; n=W.shape[1]; U,s,Vh=np.linalg.svd(W); s=s/max(s[0],1e-300); r=int((s>1e-10).sum())
@@ -16,7 +23,9 @@ for b in range(nbk):
     Ns.append(Vh[r:].conj().T if False else None)
     # range of Q must be orthogonal to v: use null space of W (as map C^n -> C^m, columns v^T): N = null(W) means W N = 0
     Ns[-1]=Vh[r:].conj().T          # columns satisfy W @ N = 0
-d=[N.shape[1] for N in Ns]; m=[2*x for x in d]; sv=[x*(x+1)//2 for x in m]
+    if REAL:
+        Wr=np.r_[W.real,W.imag]; U,s,Vh=np.linalg.svd(Wr); s=s/max(s[0],1e-300) if len(s) else s; r=int((s>1e-10).sum()); Ns[-1]=Vh[r:].T.astype(complex)
+d=[N.shape[1] for N in Ns]; m=[(1 if REAL else 2)*x for x in d]; sv=[x*(x+1)//2 for x in m]
 print('face dims', sum(d), 'sum d^2', sum(x*x for x in d), flush=True)
 rowsR=[[] for _ in range(nbk)]
 for ri,row in enumerate(D['rows']):
@@ -31,10 +40,10 @@ for b in range(nbk):
     for ri,r,s,w in rowsR[b]: R[ri,r*n+s]+=w
     # svec(X) of real 2db x 2db -> G -> Q
     L=[]
-    for j in range(2*db):
+    for j in range(m[b]):
         for i in range(j+1):
-            X=np.zeros((2*db,2*db)); X[i,j]=X[j,i]=(1.0 if i==j else 1/np.sqrt(2))
-            G=X[:db,:db]+X[db:,db:]+1j*(X[db:,:db]-X[:db,db:]); L.append((N@G@N.conj().T).ravel())
+            X=np.zeros((m[b],m[b])); X[i,j]=X[j,i]=(1.0 if i==j else 1/np.sqrt(2))
+            G=X if REAL else X[:db,:db]+X[db:,db:]+1j*(X[db:,:db]-X[:db,db:]); L.append((N@G@N.conj().T).ravel())
     Bk=np.real(R@np.array(L).T); Bk[np.abs(Bk)<1e-14]=0; blocks.append(sp.csc_matrix(Bk)); del Bk, L, R
 nx=1+sum(sv)+(1 if mode=='margin' else 0)
 bvec=np.array([float(F(r['rhs'])) for r in D['rows']]); nv=np.array([float(F(r['nv'])) for r in D['rows']])
@@ -105,4 +114,14 @@ else:
     t=time.time(); s=clarabel.DefaultSolver(sp.csc_matrix((nx,nx)),q,Aall,ball,cones,st); sol=s.solve()
     x=np.array(sol.x); print(D['orbit'], mode, sol.status, 'objective', -sol.obj_val, f'{time.time()-t:.1f}s', flush=True)
 if len(sys.argv)>4 and sys.argv[4]!='-':
+    if REAL:   # convert to the standard layout: svec of [[G/2,0],[0,G/2]] (2d x 2d), G = smat(svec)
+        xs=[x[:1]]; o=1
+        for b in range(nbk):
+            if not d[b]: continue
+            mm=d[b]; k=mm*(mm+1)//2; v=x[o:o+k]; o+=k; Gm=np.zeros((mm,mm)); kk=0
+            for j in range(mm):
+                for i in range(j+1): Gm[i,j]=Gm[j,i]=v[kk]*(1 if i==j else 1/np.sqrt(2)); kk+=1
+            X2=np.zeros((2*mm,2*mm)); X2[:mm,:mm]=X2[mm:,mm:]=Gm/2
+            xs.append(np.array([X2[i,j]*(1 if i==j else np.sqrt(2)) for j in range(2*mm) for i in range(j+1)]))
+        x=np.concatenate(xs+[x[o:]])
     np.savez(sys.argv[4], x=x, z=np.array(sol.z), mk=mk, **{f'N{b}':Ns[b] for b in range(nbk)}, d=np.array(d))
