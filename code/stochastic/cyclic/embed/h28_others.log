@@ -59,3 +59,7 @@ orbit 81 min -5.826858036564175e-16 quantiles [-5.82685804e-16 -1.11022302e-16  
 69 K=1: 69 gamma AlmostSolved objective 5.5555415900843435e-08 35.1s
 69 K=2: 69 gamma AlmostSolved objective 9.964043724793435e-09 28.5s
 == 81 at K=2: exact certificate, see h29_pipeline_o81.log (zero face 2548/3520; face gamma -4.1e-16 Solved; margin t=1.1775e-3 Solved; checkers A/B PROVED)
+== Round 29, combined multiplier |xi_0|^2+|xi_1|^2+|xi_2|^2 (K=0,1,2 h29_export.py; union of the three pattern sets; 1296 blocks, 6036 rows), Clarabel REAL, no zero-set restriction:
+28 gamma Solved objective -0.022607911787930878 130.2s
+30 gamma Solved objective -0.018485429867014177 95.5s
+   (28: worse than K=0/1 alone, -0.0080; the combined identity is a different, not a stronger, relaxation. 30 stays uncertified.)

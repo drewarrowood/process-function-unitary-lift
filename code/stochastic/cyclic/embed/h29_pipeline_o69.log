@@ -1,0 +1,55 @@
+# Round 29, orbit 69 (facet 571), level K=2 (|xi_2|^2 multiplier), seed 1
+level-K gamma without zero-set restriction (Clarabel REAL): K=0 +2.1e-8, K=1 +5.6e-8, K=2 +1.0e-8 (AlmostSolved)
+orbit 69: 600 points, kept 600 with value < 1e-12 (min -3.77e-16)  40s
+600 zero vectors
+real face dimension (threshold 1e-10) 2446 of 3520  41s
+face dims 2446 sum d^2 29654
+equality rows 1062 rank 1006 dropped 56 max inconsistency of dropped rhs 1.655737966828225e-14
+69 gamma Solved objective -1.002235735184068e-14 18.6s
+face dims 2446 sum d^2 29654
+equality rows 1062 rank 1005 dropped 57 max inconsistency of dropped rhs 1.258729810197738e-14
+69 margin AlmostSolved objective 0.0011919507169431776 33.2s
+face dims 2446 sum d^2 29654 4s
+params 29654 rows 2028
+numerical rank 1916 float residual of rounded g0 1.7280399333685637e-11
+gram built 20s
+solved 27s
+max correction 3.6209744853733655e-13
+exact rows violated after correction: 0
+all blocks exactly positive definite: True 82s
+--- negative controls:
+== A gamma
+AssertionError
+== B gamma
+AssertionError
+== A pert
+AssertionError
+== B pert
+AssertionError
+== A neg
+AssertionError: ('G not PD', 'h.h.hh.', [0, 0, 1])
+== B neg
+AssertionError: ('G not PD', 'h.h.hh.', [0, 0, 1])
+69 A gamma: orbit 69 level K=2: 362 blocks exactly PD (face dim 2446); identity residual: 96 nonzero coefficients of 2028
+69 B gamma: orbit 69 level K=2: checker B: 362 blocks PD (fflu/Sylvester), 96 nonzero residual coefficients of 2028
+69 A pert: orbit 69 level K=2: 362 blocks exactly PD (face dim 2446); identity residual: 1 nonzero coefficients of 2028
+69 B pert: orbit 69 level K=2: checker B: 362 blocks PD (fflu/Sylvester), 1 nonzero residual coefficients of 2028
+--- independent seed 2 (zeros, margin, exact, checkers A and B):
+orbit 69: 600 points, kept 600 with value < 1e-12 (min -6.35e-16)  42s
+600 zero vectors
+real face dimension (threshold 1e-10) 2446 of 3520  44s
+face dims 2446 sum d^2 29654
+equality rows 1062 rank 1005 dropped 57 max inconsistency of dropped rhs 2.334322254024844e-14
+69 margin AlmostSolved objective 0.001191950693506247 38.8s
+face dims 2446 sum d^2 29654 18s
+params 29654 rows 2028
+numerical rank 1916 float residual of rounded g0 9.094947017729282e-12
+gram built 33s
+solved 39s
+max correction 3.4523712498840034e-13
+exact rows violated after correction: 0
+all blocks exactly positive definite: True 95s
+orbit 69 level K=2: 362 blocks exactly PD (face dim 2446); identity residual: 0 nonzero coefficients of 2028
+orbit 69: PROVED (checker A) facet value >= 0  [identity multiplied by sum over K in [2] of |xi_K|^2; |xi_k|=1 on the domain]
+orbit 69 level K=2: checker B: 362 blocks PD (fflu/Sylvester), 0 nonzero residual coefficients of 2028
+orbit 69: PROVED (checker B) facet value >= 0

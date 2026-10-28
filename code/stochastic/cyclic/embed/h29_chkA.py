@@ -3,7 +3,7 @@ The certificate lists, per weight block b, its monomials v_b (exponent vectors [
 an integer matrix N_b and a Gaussian-rational Hermitian G_b.  Claimed identity (Laurent polynomials in u, |u_k| = 1):
     |xi_K|^2 (p - gamma |psi|^2 prod_k |xi_k|^2) = sum_b v_b^dag N_b G_b N_b^T v_b .
 Here p is taken from h26_hsos.poly (the Round-26 coefficient table, NOT the h29 export) and converted to exponent vectors, then
-multiplied by |xi_K|^2 = |xi_K0|^2 + |xi_K1|^2.  All arithmetic in Fractions; G_b PD by fraction-free elimination of the real form
+multiplied by sum_{K in level} |xi_K|^2 (level 'K=2' or 'K=0,1,2').  All arithmetic in Fractions; G_b PD by fraction-free elimination of the real form
 [[Re,-Im],[Im,Re]].  Any monomial vector v gives v^dag Q v >= 0, so on |xi_k| = 1 the facet value is >= gamma.
 usage: cert.json[.gz]"""
 import sys, json, gzip, math, numpy as np
@@ -12,7 +12,7 @@ from flint import fmpz
 import h26_hsos as H
 op=gzip.open if sys.argv[1].endswith('.gz') else open
 C=json.load(op(sys.argv[1],'rt')); orb=C['orbit']; gam=F(C['gamma']); f=int(np.where(H.canon==orb)[0][0])
-lev=C.get('level','0'); K=int(lev[2:]) if lev.startswith('K=') else None
+lev=C.get('level','0'); KS=[int(x) for x in lev[2:].split(',')] if lev.startswith('K=') else []
 Tq=np.array([[F(x).limit_denominator(10**4) for x in row] for row in H.Tn[f,:64].reshape(8,8)],dtype=object)
 cq=F(H.Tn[f,64]).limit_denominator(10**4)
 assert max(abs(float(Tq[i,j])-H.Tn[f,8*i+j]) for i in range(8) for j in range(8))<1e-13 and abs(float(cq)-H.Tn[f,64])<1e-13
@@ -23,9 +23,10 @@ def conv(key):   # (z psibar, w psi, xi party-indices, xibar party-indices, u-ex
     for k in range(3): x[2*k+xi[k]]+=1; xbv[2*k+xb[k]]+=1
     return (tuple(a),tuple(ab),tuple(x),tuple(xbv),tuple(int(t) for t in d))
 def mulK(D):
-    if K is None: return D
+    if not KS: return D
     R={}
     for m,v in D.items():
+      for K in KS:
         for b in (0,1):
             x=list(m[2]); xb=list(m[3]); x[2*K+b]+=1; xb[2*K+b]+=1; k=(m[0],m[1],tuple(x),tuple(xb),m[4]); R[k]=R.get(k,0)+v
     return R
@@ -67,4 +68,4 @@ for bl in C['blocks']:
 bad=[k for k,(a,b) in res.items() if a or b]
 print(f'orbit {orb} level {lev}: {npd} blocks exactly PD (face dim {dims}); identity residual: {len(bad)} nonzero coefficients of {len(res)}')
 assert not bad
-print(f'orbit {orb}: PROVED (checker A) facet value >= {gam}  [identity multiplied by |xi_{K}|^2; |xi_k|=1 on the domain]')
+print(f'orbit {orb}: PROVED (checker A) facet value >= {gam}  [identity multiplied by sum over K in {KS} of |xi_K|^2; |xi_k|=1 on the domain]')

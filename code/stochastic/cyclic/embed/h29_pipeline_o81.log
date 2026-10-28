@@ -41,3 +41,8 @@ orbit 81 level K=2: 358 blocks exactly PD (face dim 2548); identity residual: 0 
 orbit 81: PROVED (checker A) facet value >= 0  [identity multiplied by |xi_2|^2; |xi_k|=1 on the domain]
 orbit 81 level K=2: checker B: 358 blocks PD (fflu/Sylvester), 0 nonzero residual coefficients of 2028
 orbit 81: PROVED (checker B) facet value >= 0
+--- residual counts of the negative controls:
+81 A gamma: orbit 81 level K=2: 358 blocks exactly PD (face dim 2548); identity residual: 96 nonzero coefficients of 2028
+81 B gamma: orbit 81 level K=2: checker B: 358 blocks PD (fflu/Sylvester), 96 nonzero residual coefficients of 2028
+81 A pert: orbit 81 level K=2: 358 blocks exactly PD (face dim 2548); identity residual: 1 nonzero coefficients of 2028
+81 B pert: orbit 81 level K=2: checker B: 358 blocks PD (fflu/Sylvester), 1 nonzero residual coefficients of 2028
