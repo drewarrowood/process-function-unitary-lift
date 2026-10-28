@@ -127,3 +127,5 @@ KP=0,1 exact-zero face, SCS gamma: scs:infeasible after 5150 iters (124 s). Not 
 (1) h31_real.py (real-x SOS, Gram real symmetric, blocks by s-parity): reproduces KP=0,1 exactly at D=2,2,1 (-0.0025794, Clarabel optimal, 28.5 s vs 388 s).
   28: D=1,1,1 -0.023022; D=2,2,1 -0.0025794; D=2,2,2 -0.0024827 (Clarabel optimal, 263 s; KP=0,1,2 SCS gave -0.0024931).
   D=1,1,1: 30 -0.018799, 69 -4.99e-5.
+Round 31 h31_real validation, D=2,2,1 (Clarabel Solved): 30 -0.0089650 (= true min, not certified); 57 -1.1e-9; 75 -2.0e-8; 69 -4.2e-9; 81 -2.4e-8.
+28 D=3,3,1 (SCS 60000 it, inaccurate/max_iters): gamma -0.0013387 (dual -0.0013401), 560 s.   (Clarabel direct OOM at this size; U=full D=2,2,1 OOM.)
