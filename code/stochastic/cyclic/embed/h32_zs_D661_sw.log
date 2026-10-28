@@ -1,0 +1,2 @@
+orbit 28 D=[6, 6, 1] DP=[6, 6, 1] W=[] U=X REG='sw': blocks 16 sizes [270, 270, 270, 290, 290] sum n^2 734960 keys 22386 rows 11585
+orbit 28 D=[6, 6, 1] DP=[6, 6, 1] W=[] U=X REG='sw': scs:solved (inaccurate - reached max_iters) gamma -0.00046751782445923106 dual -0.000506945245829024 iters 60000 8857.2s
