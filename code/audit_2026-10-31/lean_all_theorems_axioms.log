@@ -1,0 +1,26 @@
+theorems audited: 779; with nonstandard axioms: 0
+== Lift
+theorems audited: 12; with nonstandard axioms: 0
+== Full
+NONSTD Full hadamard_rows_orthogonal: [hadamard_rows_orthogonal._native.native_decide.ax_1_1]
+theorems audited: 8; with nonstandard axioms: 1
+== Gaps
+NONSTD Gaps hadamard_rows: [hadamard_rows._native.native_decide.ax_1_1]
+NONSTD Gaps trace_identity_ancilla: [trace_identity_ancilla._native.native_decide.ax_1_1]
+theorems audited: 4; with nonstandard axioms: 2
+== Cancel
+NONSTD Cancel lugano_lemma: [lugano_lemma._native.native_decide.ax_1_1]
+NONSTD Cancel ident_cancellation_fails: [ident_cancellation_fails._native.native_decide.ax_1_1]
+NONSTD Cancel ident_fails_lemma: [ident_fails_lemma._native.native_decide.ax_1_1]
+NONSTD Cancel lugano_is_process: [lugano_is_process._native.native_decide.ax_1_1]
+NONSTD Cancel cycle_fails_lemma: [cycle_fails_lemma._native.native_decide.ax_1_1]
+NONSTD Cancel lugano_cancellation: [lugano_cancellation._native.native_decide.ax_1_1]
+NONSTD Cancel cycle_cancellation_fails: [cycle_cancellation_fails._native.native_decide.ax_1_1]
+theorems audited: 12; with nonstandard axioms: 7
+== GramGeneral
+theorems audited: 27; with nonstandard axioms: 0
+== ComplexGram
+theorems audited: 15; with nonstandard axioms: 0
+== StinespringBoundary
+NONSTD StinespringBoundary StinespringBoundary.closed_not_every_w: [StinespringBoundary.closed_not_every_w._native.native_decide.ax_1_1]
+theorems audited: 14; with nonstandard axioms: 1

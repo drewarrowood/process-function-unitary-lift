@@ -1,0 +1,7 @@
+(a) n=2 d=2: max |MM^dag - prod_k G_k| over 20 random (w,V) = 2.29e-16
+(a) n=3 d=2: max |MM^dag - prod_k G_k| over 20 random (w,V) = 4.45e-16
+(a) n=2 d=3: max |MM^dag - prod_k G_k| over 20 random (w,V) = 3.35e-16
+(a) n=2 d=4: max |MM^dag - prod_k G_k| over 20 random (w,V) = 4.44e-16
+(b) n=2 d=2 exhaustive: PF 12, exclusive 12, mismatches 0
+(b) n=3 d=2 exhaustive (16,777,216 maps): PF 744, exclusive 744, mismatches 0
+(b) n=2 d=3 random 300k: PF 0, exclusive 0, mismatches 0

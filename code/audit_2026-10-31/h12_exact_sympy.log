@@ -1,0 +1,8 @@
+(1) all 8 U_o unitary (exact, entries in Z[i]/8)
+(2) forbidden Pauli coefficients: 2232 nonzero: 0
+(3) p real, >=0, columns sum to 1, all 64 deterministic interventions total exactly 1: valid
+(4) g.p + g0 = 1/4 - 3*sqrt(2)/16  == 1/4 - 3*sqrt(2)/16 : True  <0: True
+    on pfs744.npy: min 0 tight 418 ; max|g| = 2 -> certified L1 margin |L|/max|g| = -1/8 + 3*sqrt(2)/32 ~ 0.00758252
+(5) trial 0 ancilla dim 1 per party, M is 64x64: M M^dag=1 True  M^dag M=1 True
+(5) trial 1 ancilla dim 1 per party, M is 64x64: M M^dag=1 True  M^dag M=1 True
+(5) trial 2 ancilla dim 1 per party, M is 64x64: M M^dag=1 True  M^dag M=1 True

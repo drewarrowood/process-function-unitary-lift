@@ -1,0 +1,75 @@
+import Lean
+import PFUL.UnitaryLift
+import PFUL.Column
+import PFUL.Countable
+import PFUL.Rows
+import PFUL.Assemble
+import PFUL.Validity
+import PFUL.Isometry
+import PFUL.Channels
+import PFUL.Choi
+import PFUL.ChoiAnc
+import PFUL.ChoiThm
+import PFUL.Bookkeeping
+import PFUL.TraceClass
+import PFUL.TraceValidity
+import PFUL.BornPairing
+import PFUL.Polar
+import PFUL.Schmidt
+import PFUL.ChoiConverse
+import PFUL.CPTP
+import PFUL.SchmidtTraceNorm
+import PFUL.TraceNormDense
+import PFUL.KrausNormal
+import PFUL.CommutingBlend
+import PFUL.CounterexampleData
+import PFUL.Counterexample
+import PFUL.CounterexampleLink
+import PFUL.Continuous
+import PFUL.ContinuousMeasure
+import PFUL.ContinuousUnitary
+import PFUL.ChoiLink
+import PFUL.CounterexampleInf
+import PFUL.CounterexampleRows
+import PFUL.CounterexampleUnitary
+import PFUL.CounterexampleValidity
+import PFUL.ContinuousJacobian
+import PFUL.CounterexampleAuto
+import PFUL.LiftAuto
+import PFUL.ContinuousLocal
+import PFUL.LemmaH
+import PFUL.ProcessMatrix
+import PFUL.CounterexampleChoi
+import PFUL.CounterexampleHilbert
+import PFUL.Compression
+import PFUL.PureFiniteInf
+import PFUL.AFNBPure
+import PFUL.KrausAny
+import PFUL.InfiniteLink
+import PFUL.QubitTensor
+import PFUL.CounterexampleInfLink
+import PFUL.AutoBounded
+import PFUL.AutoBoundedKraus
+import MathlibPR.PolarDecomposition
+open Lean Elab Command in
+elab "audit_all" : command => do
+  let env ← getEnv
+  let mods := env.header.moduleNames
+  let mut nstd := 0
+  let mut total := 0
+  let std : List Name := [``propext, ``Classical.choice, ``Quot.sound]
+  for (n, ci) in env.constants.toList do
+    let some idx := env.getModuleIdxFor? n | continue
+    let m := mods[idx.toNat]!
+    let ms := m.toString
+    unless (ms.startsWith "PFUL" || ms.startsWith "MathlibPR" || ["Lift","Full","Gaps","Cancel","GramGeneral","ComplexGram","StinespringBoundary"].contains ms) do continue
+    unless ci matches .thmInfo _ do continue
+    if n.isInternal then continue
+    total := total + 1
+    let axs ← liftCoreM <| Lean.collectAxioms n
+    let bad := axs.filter (fun a => !std.contains a)
+    if bad.size > 0 then
+      nstd := nstd + 1
+      logInfo m!"NONSTD {ms} {n}: {bad.toList}"
+  logInfo m!"theorems audited: {total}; with nonstandard axioms: {nstd}"
+audit_all
