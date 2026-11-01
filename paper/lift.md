@@ -71,7 +71,7 @@ In the language of Araújo, Feix, Navascués and Brukner (2017, Definition 1), t
 
 *Checks [computed, float64; Gödel check, 29 Oct 2026, godel-check-scratch/].* "M unitary for all copy-gadget interventions" was compared with brute-force PF status: all 256 two-party binary maps (12 PFs), exhaustively; and about 13,000 further maps (three-party binary: all 744 PFs, 1,800 single-entry mutants and 1,500 random maps; two-party ternary: 153 causal PFs, 1,440 mutants and 3,000 random maps; unequal alphabets I = (2,3), O = (3,2) and I = (2,2), O = (3,3), 1,500 random maps each). There were 0 mismatches, and in every run the squared norm of column (0,0) equalled the fixed-point count. The ternary sample contains only causally ordered PFs.
 
-*Update (Oct 31 2026): the converse without ancillas is now proved on paper for equal finite local alphabets (Theorem N.1, Appendix L), and the countable case with ancillas by Claim C.1. Theorem N.1 and the copy-gadget direction of Theorem 1.2 are now formalised in Lean (`PFUL.NoAncilla.unitary_noAncilla_iff_pf`, `PFUL.CopyGadget.unitary_iff_pf`); Claim C.1 is not.* *Earlier text:* The converse **without ancillas** (non-PF ⇒ some ancilla-free local unitaries break unitarity) was not proved; it is only sampled (one Haar draw per map failed unitarity for every sampled non-PF, and code/check.py found the same in the 2- and 3-party binary cases). Countable or continuous alphabets are not covered by Theorem 1.2. The "open/closed" contrast is the point: U is a bijection for every w; closing the loop is unitary exactly when w is consistent.
+*Update (Oct 31 2026): the converse without ancillas is now proved on paper for equal finite local alphabets (Theorem N.1, Appendix L), and the countable case with ancillas by Claim C.1. Theorem N.1 and the copy-gadget direction of Theorem 1.2 are now formalised in Lean (`PFUL.NoAncilla.unitary_noAncilla_iff_pf`, `PFUL.CopyGadget.unitary_iff_pf`), and so is Claim C.1 (`PFUL.Countable.unitary_l2_iff_pf`, Nov 1; countable alphabets, finitely many parties, ancillas X = O, Y = I). Continuous alphabets and the countable case without ancillas remain uncovered/open.* *Earlier text:* The converse **without ancillas** (non-PF ⇒ some ancilla-free local unitaries break unitarity) was not proved; it is only sampled (one Haar draw per map failed unitarity for every sampled non-PF, and code/check.py found the same in the 2- and 3-party binary cases). Countable or continuous alphabets are not covered by Theorem 1.2. The "open/closed" contrast is the point: U is a bijection for every w; closing the loop is unitary exactly when w is consistent.
 
 **Checks.** code/check.py enumerates all 12 binary 2-party and 744 binary 3-party process functions, verifies ||MM^dagger - 1|| < 1e-13 for Haar-random local unitaries (with and without qubit ancillas) and for ternary 2-party examples, and verifies that non-process functions fail. Lean status is in lean/STATUS.md.
 
@@ -3549,7 +3549,7 @@ This appendix defines the main technical terms of the paper, in alphabetical ord
 
 ## Appendix L. Axiom audit, exact H.12.1 re-check, and converses without ancillas or with countable alphabets (Oct 31 2026)
 
-This appendix adds to Theorem 1.2 and H.12; it rewrites neither. Theorem N.1 and the copy-gadget converse of Theorem 1.2 are now also formalised in Lean (see the end of L.3); Claim C.1 is paper only. Scripts and logs: code/audit_2026-10-31/.
+This appendix adds to Theorem 1.2 and H.12; it rewrites neither. Theorem N.1 and the copy-gadget converse of Theorem 1.2 are now also formalised in Lean (see the end of L.3); Claim C.1 (countable alphabets, with ancillas) is formalised too, as `PFUL.Countable.unitary_l2_iff_pf` (see L.4). Scripts and logs: code/audit_2026-10-31/.
 Status labels: **[proved]** = paper proof given here, checked numerically/exactly as stated; **[exact]** = exact-arithmetic
 computation; **[numerical]** = float64; **[open]**. Nothing here has been peer reviewed. Scripts and logs:
 `code/audit_2026-10-31/`.
@@ -3660,9 +3660,9 @@ machine-checked (Lean 4.34.1, Mathlib v4.34.1; no `sorry`, no `native_decide`; e
   term of the Gram factor is ≥ 0 and the term at c = p is 12/25 > 0. At every other party take a permutation
   (swap(e s_k, e s'_k + δ_k) ∘ e), whose Gram factor is exactly 1. Then (M M†)[s,s'] ≠ 0, so M is not unitary. The Haar
   argument above remains valid (it gives (iii)), but it is no longer needed for (ii) ⇒ (iv).
-- Not in Lean: (iii) (genericity of one Haar draw), and the countable-alphabet claims of L.4.
+- Not in Lean: (iii) (genericity of one Haar draw). The countable-alphabet claim C.1 of L.4 is now in Lean (Nov 1 2026, `PFUL.Countable.unitary_l2_iff_pf`); the ancilla-free countable case is open.
 
-### L.4. Converse for countable alphabets [proved (paper) with ancillas; ancilla-free version open]
+### L.4. Converse for countable alphabets [proved, Lean, with ancillas; ancilla-free version open]
 
 Finitely many parties, I_k, O_k countable (finite or ℕ), PF = every f has exactly one fixed point (as in
 `PFUL.Countable`). Give each O_k a group structure (Z_n or Z).
@@ -3672,7 +3672,7 @@ basis vectors, hence unitary on ℓ²) gives a closed loop with no unitary (inde
 products, no series. Column (0,0) is the indicator of {(s, w(s)) : f(w(s)) = s}, with N(f) ∈ {0,1,2,…,∞} entries. Any
 isometry Φ with Φδ_c = M(·,c) needs ‖M(·,(0,0))‖² = 1; but it is N(f) ≠ 1 (for N = ∞ the column is not even in ℓ², so
 no bounded operator has these matrix entries). ∎ So with ancillas, Theorem 1.2 holds for countable alphabets:
-(⇐) is `PFUL.Countable.induced_unitary_l2` (Lean), (⇒) is C.1 (paper only). Nothing in the finite proof used finiteness
+(⇐) is `PFUL.Countable.induced_unitary_l2` (Lean), (⇒) is C.1 (now also Lean, see below). Nothing in the finite proof used finiteness
 except the target statement "M not an isometry", which C.1 replaces by the column-norm obstruction.
 Example of the N = ∞ case: one party, I = O = ℕ, w = id, f = id.
 **Where it breaks.** (a) Continuous alphabets: the gadget is still unitary on L² (shear+swap preserves Lebesgue measure,
@@ -3681,6 +3681,8 @@ measure-theoretic replacement (cf. F.5). (b) Without ancillas on countable alpha
 "exclusivity ⇒ N(f) ≤ 1" survive, but the averaging step Σ_f N(f) = #f needs finiteness, and there is no Haar measure on
 U(ℓ²) (genericity would have to be redone, e.g. with finite-rank perturbations). For two parties exclusivity forces one
 of w_A, w_B to be constant, hence a PF, so a countable counterexample to "exclusive ⇒ PF" would need ≥ 3 parties. [open]
+
+**Lean (added Nov 1 2026) [PROVED, Lean; standard axioms only].** Claim C.1 is formalised in `lean/PFUL/CopyGadgetL2.lean` as `PFUL.Countable.unitary_l2_iff_pf`: the closed loop is a unitary of ℓ² (a linear isometric equivalence whose matrix entries on basis vectors are the induced kernel) for every admissible tuple of local kernels (square-summable rows, orthonormal rows, unit columns, i.e. the hypotheses of `induced_unitary_l2`) iff w is a PF. Supporting theorems: `not_isometry_of_not_pf_l2` (for a non-PF the copy gadget satisfies all those hypotheses, yet **no linear isometry** of ℓ², not merely no unitary, has the induced kernel as matrix) and `existsUnique_of_isometry_l2` (an isometric realisation forces exactly one fixed point; zero gives column norm 0, two distinct ones give ≥ 2, and N = ∞ is excluded by square-summability of the column). Scope: finitely many parties; countable (finite or infinite) alphabets; `AddCommGroup` on both I_k and O_k; ancillas fixed to X_k = O_k, Y_k = I_k (the quantifier over V ranges over this ancilla shape). Still uncovered or open: continuous alphabets (not covered: basis vectors are not in L²) and the countable case without ancillas (open, (b) below).
 
 
 ## References
