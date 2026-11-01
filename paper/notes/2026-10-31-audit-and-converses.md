@@ -31,7 +31,7 @@ computation; **[numerical]** = float64; **[open]**. Nothing here has been peer r
   isPure_Vsb, valid_pcl, pcl_not_mem_convexHull, isPureHilbert_Vsb, valid_normalCPTP_Vsb, isPurePM_choiMat_Vsb}`.
 - `decide` / `decide +kernel` (LemmaH, Counterexample*) are kernel-checked and add no axioms.
 - **Not covered by the audit:** whether the Lean definitions faithfully express the paper's notions (an axiom audit
-  cannot see this). **The (⇒) half of Theorem 1.2 (copy gadget) is not formalised in Lean**; only (⇐) is.
+  cannot see this). Update: the (⇒) half of Theorem 1.2 (copy gadget) is now formalised too (`PFUL.CopyGadget.unitary_iff_pf`; see the Lean formalisation paragraph at the end).
 
 ## 2. H.12.1 exact re-check in sympy [exact]
 
@@ -91,7 +91,26 @@ and on 300k random two-party ternary maps. `noanc_enum.py` / `.log`: exhaustive 
 three-party binary (all 8^8 maps); every non-PF fails ancilla-free unitarity, either by a permutation intervention or,
 for the 12 (n=2) and 39,576 (n=3) maps passing all permutation interventions, by a Haar draw (smallest residual
 ‖MM†−1‖_F found ≥ 0.016, far above float error ~1e-15). 2M random two-party ternary maps: all non-PFs caught.
-Not done: Lean formalisation; exact (non-float) witnesses for the enumerated survivors (the proof makes them unnecessary).
+Lean: done (see below). Not done: exact (non-float) witnesses for the enumerated survivors (the proof makes them unnecessary).
+
+**Lean formalisation (added Oct 31 2026, late) [PROVED, Lean; standard axioms only].** Both converses are now
+machine-checked (Lean 4.34.1, Mathlib v4.34.1; no `sorry`, no `native_decide`; every theorem below depends only on
+`propext`, `Classical.choice`, `Quot.sound`).
+- *Theorem 1.2, copy-gadget converse* (`lean/PFUL/CopyGadget.lean`): `PFUL.CopyGadget.colnorm_eq_card` (column (0,0) of
+  the closed loop has squared norm N(f)), `not_isometry_of_not_pf`, and `unitary_iff_pf` (both directions). Scope: finite
+  alphabets, output alphabets O_k with an `AddCommGroup` structure (ancillas X_k = O_k, Y_k = I_k).
+- *Theorem N.1, no ancillas* (`lean/PFUL/NoAncilla.lean`): `PFUL.NoAncilla.unitary_noAncilla_iff_pf` (M M† = 1 and
+  M† M = 1 for every tuple of ancilla-free local unitaries ⇔ w is a PF), with the row Gram identity `gram` (any
+  ancillas), `pf_imp_unitary_noAncilla`, and `exclusivity_of_unitary_noAncilla`; the counting step Σ_f N(f) = #f and
+  exclusivity ⇒ PF are in `lean/PFUL/ExclusivityCount.lean` (`sum_N_eq_card`, `exclusive_imp_existsUnique`). Scope:
+  finite alphabets, an equivalence O_k ≃ I_k, an additive group structure on I_k.
+- *The exclusivity step uses an explicit witness instead of the Haar draw.* If (iv) fails for s ≠ s', put δ_k = w_k(s) − w_k(s'),
+  p = e_k(s_k). At parties with s_k = s'_k and δ_k ≠ 0, take the real rational Householder reflection
+  H = 1 − 2vvᵀ/‖v‖² with v = 2e_p + e_{p+δ_k} (‖v‖² = 5): row p is (−3/5 at p, −4/5 at p+δ_k, 0 elsewhere), so every
+  term of the Gram factor is ≥ 0 and the term at c = p is 12/25 > 0. At every other party take a permutation
+  (swap(e s_k, e s'_k + δ_k) ∘ e), whose Gram factor is exactly 1. Then (M M†)[s,s'] ≠ 0, so M is not unitary. The Haar
+  argument above remains valid (it gives (iii)), but it is no longer needed for (ii) ⇒ (iv).
+- Not in Lean: (iii) (genericity of one Haar draw), and the countable-alphabet claims of L.4.
 
 ## 4. Converse for countable alphabets [proved (paper) with ancillas; ancilla-free version open]
 
@@ -112,3 +131,9 @@ measure-theoretic replacement (cf. F.5). (b) Without ancillas on countable alpha
 "exclusivity ⇒ N(f) ≤ 1" survive, but the averaging step Σ_f N(f) = #f needs finiteness, and there is no Haar measure on
 U(ℓ²) (genericity would have to be redone, e.g. with finite-rank perturbations). For two parties exclusivity forces one
 of w_A, w_B to be constant, hence a PF, so a countable counterexample to "exclusive ⇒ PF" would need ≥ 3 parties. [open]
+
+## 5. Follow-ups (Oct 31 2026, late)
+- Lean: both converses formalised (commits 491cbf5, 7cd062f, 7e0eb00 on main); see the Lean formalisation paragraph in §3.
+- Dimension-2 ancilla trials of H.12.1 (pid 1271572): the process has finished (no longer running). Its result is
+  trials 3 and 4 in `h12_exact_sympy.log`: qubit ancilla per party, M is 512×512, M M† = 1 and M† M = 1 exactly, both
+  passed; together with the three 64×64 trials, 5/5 passed and the log ends "ALL EXACT CHECKS PASSED".

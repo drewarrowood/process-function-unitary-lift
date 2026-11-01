@@ -1673,13 +1673,15 @@ We checked the literature on Oct 23 2026, by web search and by reading the prima
 
 ## 124. Plain-language note: an audit, a recheck, and two more converses (Oct 31 2026)
 
-**The machine-checked proofs were audited.** Every one of the 779 theorems in the main Lean library rests only on Lean's three standard axioms: no gaps, no shortcuts. Eleven theorems in older, separate files use a shortcut called `native_decide`, which trusts the compiler rather than the proof checker. Nothing in the main results depends on them. The half of Theorem 1.2 that says "only consistent loops are unitary" is still a paper proof, not a Lean proof.
+**The machine-checked proofs were audited.** Every one of the 779 theorems in the main Lean library rests only on Lean's three standard axioms: no gaps, no shortcuts. Eleven theorems in older, separate files use a shortcut called `native_decide`, which trusts the compiler rather than the proof checker. Nothing in the main results depends on them. The half of Theorem 1.2 that says "only consistent loops are unitary" is now machine-checked too (update below).
 
 **The counterexample was rechecked from scratch,** in exact arithmetic with a different tool (sympy), starting from the table printed in the paper. Everything came out as claimed. The inequality value is exactly 1/4 − (3/16)√2. A new direct test plugged exactly unitary local operations into the machine, with and without an extra qubit per party, and got an exactly unitary result every time (5 of 5). The two "distance" numbers in the paper, 0.0076 and 0.0607, measure the same gap: one is the other divided by 8.
 
 **Ancillas are not needed for the converse (proved on paper).** If every party's input and output have the same finite size, a loop that stays unitary for every choice of local unitaries, with no extra systems, must be a process function. In fact one randomly chosen set of local unitaries already tells you, with certainty. The key fact is that two different histories must always disagree somewhere their inputs agree. A computer check over all 16.8 million three-party binary loops found no exception.
 
 **Infinite alphabets (proved on paper, with ancillas).** The "copy gadget" argument carries over to countably infinite alphabets: an inconsistent loop gives a column whose length is its number of fixed points, which is not 1 (it can even be infinite). Without ancillas, the infinite case is **open**. Two parties cannot give a counterexample, so one would need at least three. Details: lift.md Appendix L.
+
+**Update, later the same day: both converses are now machine-checked.** The proof checker now confirms both "only consistent loops are unitary" results: the one with extra systems (the copy trick, Theorem 1.2) and the one without (Theorem N.1). The only assumptions are finite alphabets with the usual arithmetic on them. The no-extra-systems proof no longer needs a random choice of local unitaries. When a loop is inconsistent, a concrete choice exposes it: a simple reflection, built from the vector 2e_p + e_{p+δ}, at parties whose outputs agree but whose inputs differ, and a reshuffling (permutation) everywhere else.
 
 ## Appendix: superseded readings (written assuming the conjecture)
 

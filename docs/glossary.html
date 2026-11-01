@@ -272,7 +272,7 @@ table{border-collapse:collapse;font-size:.9rem;display:block;overflow-x:auto} th
 <li><strong>ℤ_N boards</strong> (ℤ_4, ℤ_8, ℤ_16). X-type boards whose Hadamard-frame phases are N-th roots of unity. ℤ_4 boards are surveyed exhaustively (386 symmetry classes, H.13.3), ℤ_8 boards in 10,603 classes (H.14.2, J.2–J.3), and ℤ_16 boards by sampling (H.17). Paper's own family.</li>
 </ul>
 <h2>Appendix L. Axiom audit, exact H.12.1 re-check, and converses without ancillas or with countable alphabets (Oct 31 2026)</h2>
-<p>This appendix adds to Theorem 1.2 and H.12; it rewrites neither. Theorem N.1 and Claim C.1 are paper proofs, <strong>not Lean</strong>. Scripts and logs: code/audit_2026-10-31/.
+<p>This appendix adds to Theorem 1.2 and H.12; it rewrites neither. Theorem N.1 and the copy-gadget converse of Theorem 1.2 are now also formalised in Lean (see the end of L.3); Claim C.1 is paper only. Scripts and logs: code/audit_2026-10-31/.
 Status labels: <strong>[proved]</strong> = paper proof given here, checked numerically/exactly as stated; <strong>[exact]</strong> = exact-arithmetic
 computation; <strong>[numerical]</strong> = float64; <strong>[open]</strong>. Nothing here has been peer reviewed. Scripts and logs:
 <code>code/audit_2026-10-31/</code>.</p>
@@ -303,7 +303,7 @@ should say it uses <code>native_decide</code>.</li>
 <code>Column.sum_prod_eq_one</code>, <code>Countable.{tsum_prod_eq_one, induced_colnorm, induced_rows, induced_unitary_l2, valid_born_l2}</code>, <code>valid</code>, <code>valid_kraus</code>, <code>valid_instrument</code>, <code>Choi.{bornC_anc_eq_one, afnb_iff_density, isCP_iff_choi, validity_package}</code>, <code>Counterexample.{purification_conjecture_false, purification_conjecture_false_choi, isPure_Vsb, valid_pcl, pcl_not_mem_convexHull, isPureHilbert_Vsb, valid_normalCPTP_Vsb, isPurePM_choiMat_Vsb}</code>.</li>
 <li><code>decide</code> / <code>decide +kernel</code> (LemmaH, Counterexample*) are kernel-checked and add no axioms.</li>
 <li><strong>Not covered by the audit:</strong> whether the Lean definitions faithfully express the paper's notions (an axiom audit
-cannot see this). <strong>The (⇒) half of Theorem 1.2 (copy gadget) is not formalised in Lean</strong>; only (⇐) is.</li>
+cannot see this). Update: the (⇒) half of Theorem 1.2 (copy gadget) is now formalised too (<code>PFUL.CopyGadget.unitary_iff_pf</code>; see the Lean formalisation paragraph at the end).</li>
 </ul>
 <h3>L.2. H.12.1 exact re-check in sympy [exact]</h3>
 <p><code>h12_exact_sympy.py</code> (log <code>h12_exact_sympy.log</code>) rebuilds the board from the m<sub>o</sub>(z) table printed in lift.md H.12 (not
@@ -358,7 +358,27 @@ and on 300k random two-party ternary maps. <code>noanc_enum.py</code> / <code>.l
 three-party binary (all 8<sup>8</sup> maps); every non-PF fails ancilla-free unitarity, either by a permutation intervention or,
 for the 12 (n=2) and 39,576 (n=3) maps passing all permutation interventions, by a Haar draw (smallest residual
 ‖MM†−1‖_F found ≥ 0.016, far above float error ~1e-15). 2M random two-party ternary maps: all non-PFs caught.
-Not done: Lean formalisation; exact (non-float) witnesses for the enumerated survivors (the proof makes them unnecessary).</p>
+Lean: done (see below). Not done: exact (non-float) witnesses for the enumerated survivors (the proof makes them unnecessary).</p>
+<p><strong>Lean formalisation (added Oct 31 2026, late) [PROVED, Lean; standard axioms only].</strong> Both converses are now
+machine-checked (Lean 4.34.1, Mathlib v4.34.1; no <code>sorry</code>, no <code>native_decide</code>; every theorem below depends only on
+<code>propext</code>, <code>Classical.choice</code>, <code>Quot.sound</code>).</p>
+<ul>
+<li><em>Theorem 1.2, copy-gadget converse</em> (<code>lean/PFUL/CopyGadget.lean</code>): <code>PFUL.CopyGadget.colnorm_eq_card</code> (column (0,0) of
+the closed loop has squared norm N(f)), <code>not_isometry_of_not_pf</code>, and <code>unitary_iff_pf</code> (both directions). Scope: finite
+alphabets, output alphabets O<sub>k</sub> with an <code>AddCommGroup</code> structure (ancillas X<sub>k</sub> = O<sub>k</sub>, Y<sub>k</sub> = I<sub>k</sub>).</li>
+<li><em>Theorem N.1, no ancillas</em> (<code>lean/PFUL/NoAncilla.lean</code>): <code>PFUL.NoAncilla.unitary_noAncilla_iff_pf</code> (M M† = 1 and
+M† M = 1 for every tuple of ancilla-free local unitaries ⇔ w is a PF), with the row Gram identity <code>gram</code> (any
+ancillas), <code>pf_imp_unitary_noAncilla</code>, and <code>exclusivity_of_unitary_noAncilla</code>; the counting step Σ<sub>f</sub> N(f) = #f and
+exclusivity ⇒ PF are in <code>lean/PFUL/ExclusivityCount.lean</code> (<code>sum_N_eq_card</code>, <code>exclusive_imp_existsUnique</code>). Scope:
+finite alphabets, an equivalence O<sub>k</sub> ≃ I<sub>k</sub>, an additive group structure on I<sub>k</sub>.</li>
+<li><em>The exclusivity step uses an explicit witness instead of the Haar draw.</em> If (iv) fails for s ≠ s', put δ_k = w<sub>k</sub>(s) − w<sub>k</sub>(s'),
+p = e<sub>k</sub>(s<sub>k</sub>). At parties with s<sub>k</sub> = s'<sub>k</sub> and δ_k ≠ 0, take the real rational Householder reflection
+H = 1 − 2vvᵀ/‖v‖² with v = 2e_p + e<sub>p+δ_k</sub> (‖v‖² = 5): row p is (−3/5 at p, −4/5 at p+δ_k, 0 elsewhere), so every
+term of the Gram factor is ≥ 0 and the term at c = p is 12/25 &gt; 0. At every other party take a permutation
+(swap(e s<sub>k</sub>, e s'<sub>k</sub> + δ_k) ∘ e), whose Gram factor is exactly 1. Then (M M†)[s,s'] ≠ 0, so M is not unitary. The Haar
+argument above remains valid (it gives (iii)), but it is no longer needed for (ii) ⇒ (iv).</li>
+<li>Not in Lean: (iii) (genericity of one Haar draw), and the countable-alphabet claims of L.4.</li>
+</ul>
 <h3>L.4. Converse for countable alphabets [proved (paper) with ancillas; ancilla-free version open]</h3>
 <p>Finitely many parties, I<sub>k</sub>, O<sub>k</sub> countable (finite or ℕ), PF = every f has exactly one fixed point (as in
 <code>PFUL.Countable</code>). Give each O<sub>k</sub> a group structure (Z<sub>n</sub> or Z).
