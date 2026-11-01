@@ -1,4 +1,4 @@
--- Stinespring boundary. Lean 4.34.1, no Mathlib, no sorry, no axiom.
+-- Stinespring boundary. Lean 4.34.1, no Mathlib, no sorry; `closed_not_every_w` uses `native_decide` (trusts the compiler).
 -- Closed contraction is not an isometry for every w.
 -- The source-sink extension is a bijection for every w.
 -- Ancilla-input 0 inherits column orthonormality from the full columns.

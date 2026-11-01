@@ -6,3 +6,6 @@
 (5) trial 0 ancilla dim 1 per party, M is 64x64: M M^dag=1 True  M^dag M=1 True
 (5) trial 1 ancilla dim 1 per party, M is 64x64: M M^dag=1 True  M^dag M=1 True
 (5) trial 2 ancilla dim 1 per party, M is 64x64: M M^dag=1 True  M^dag M=1 True
+(5) trial 3 ancilla dim 2 per party, M is 512x512: M M^dag=1 True  M^dag M=1 True
+(5) trial 4 ancilla dim 2 per party, M is 512x512: M M^dag=1 True  M^dag M=1 True
+ALL EXACT CHECKS PASSED

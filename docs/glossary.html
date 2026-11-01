@@ -271,6 +271,112 @@ table{border-collapse:collapse;font-size:.9rem;display:block;overflow-x:auto} th
 <li><strong>Zero-set-structured certificate.</strong> A certificate F = Σ<sub>j</sub> h<sub>j</sub>·S<sub>j</sub> + SOS in which the weights h<sub>j</sub> are built from the known zero components of the facet value (sin²t_k, sin²(a<sub>k</sub>/2) and products), and each S<sub>j</sub> is an SOS. Tried for orbit 28 in Round 32; it gives no improvement, as Remark H.37.1 predicts. Defined in H.37.1. Paper's own term. See also <em>Cone inclusion</em>; <em>Region test</em>.</li>
 <li><strong>ℤ_N boards</strong> (ℤ_4, ℤ_8, ℤ_16). X-type boards whose Hadamard-frame phases are N-th roots of unity. ℤ_4 boards are surveyed exhaustively (386 symmetry classes, H.13.3), ℤ_8 boards in 10,603 classes (H.14.2, J.2–J.3), and ℤ_16 boards by sampling (H.17). Paper's own family.</li>
 </ul>
+<h2>Appendix L. Axiom audit, exact H.12.1 re-check, and converses without ancillas or with countable alphabets (Oct 31 2026)</h2>
+<p>This appendix adds to Theorem 1.2 and H.12; it rewrites neither. Theorem N.1 and Claim C.1 are paper proofs, <strong>not Lean</strong>. Scripts and logs: code/audit_2026-10-31/.
+Status labels: <strong>[proved]</strong> = paper proof given here, checked numerically/exactly as stated; <strong>[exact]</strong> = exact-arithmetic
+computation; <strong>[numerical]</strong> = float64; <strong>[open]</strong>. Nothing here has been peer reviewed. Scripts and logs:
+<code>code/audit_2026-10-31/</code>.</p>
+<h3>L.1. Lean axiom audit [exact; Lean 4.34.1, Mathlib v4.34.1 at d13f23b]</h3>
+<ul>
+<li><code>lake build</code> of all three libraries (PFUL, Legacy, MathlibPR) from the Mathlib cache: success, 8987 jobs, 0 errors,
+0 &quot;declaration uses 'sorry'&quot; warnings (only deprecation/style warnings). The Mathlib package checkout differs from its
+pinned commit only by 7 deleted files under <code>scripts/bench/</code> (no Lean sources).</li>
+<li>Text search of every project <code>.lean</code> file: no <code>sorry</code>, <code>admit</code>, <code>axiom</code>, <code>implemented_by</code>, <code>extern</code> or <code>unsafe</code>.
+<code>native_decide</code> occurs only in the Legacy files <code>Gaps.lean</code>, <code>Cancel.lean</code>, <code>Full.lean</code>, <code>StinespringBoundary.lean</code>.</li>
+<li><strong>All-declarations audit</strong> (<code>AuditAll.lean.txt</code>: a metaprogram running <code>Lean.collectAxioms</code> on every theorem whose
+module is in the project, rather than a hand-picked list):
+<ul>
+<li>PFUL + MathlibPR: <strong>779 theorems, all depend only on <code>propext</code>, <code>Classical.choice</code>, <code>Quot.sound</code>.</strong></li>
+<li>Legacy (each file audited separately, since <code>Full</code> and <code>Gaps</code> cannot be imported together): Lift 12/12, GramGeneral
+27/27, ComplexGram 15/15 standard. <strong>11 Legacy theorems use <code>native_decide</code></strong> (each pulls in an auxiliary
+<code>*._native.native_decide.ax_*</code> axiom, i.e. trusts the compiler): <code>Full.hadamard_rows_orthogonal</code>;
+<code>Gaps.hadamard_rows</code>, <code>Gaps.trace_identity_ancilla</code>; <code>Cancel.lugano_is_process</code>, <code>lugano_lemma</code>,
+<code>ident_fails_lemma</code>, <code>cycle_fails_lemma</code>, <code>lugano_cancellation</code>, <code>ident_cancellation_fails</code>,
+<code>cycle_cancellation_fails</code>; <code>StinespringBoundary.closed_not_every_w</code>.
+None of these is used by any PFUL theorem (PFUL does not import Legacy). The comment headers of <code>Full.lean</code>
+(&quot;no sorry&quot;) and <code>StinespringBoundary.lean</code> (&quot;no sorry, no axiom&quot;) are literally true for <code>sorry</code> but the latter
+should say it uses <code>native_decide</code>.</li>
+</ul>
+</li>
+<li>Named main theorems (<code>MainAxioms.lean.txt</code>, log <code>lean_main_axioms.log</code>), all standard axioms only: <code>exclusivity</code>,
+<code>induced_mul_conjTranspose(_complex)</code>, <code>induced_unitary</code>, <code>induced_conjTranspose_mul(_of_colnorm)</code>,
+<code>Column.sum_prod_eq_one</code>, <code>Countable.{tsum_prod_eq_one, induced_colnorm, induced_rows, induced_unitary_l2, valid_born_l2}</code>, <code>valid</code>, <code>valid_kraus</code>, <code>valid_instrument</code>, <code>Choi.{bornC_anc_eq_one, afnb_iff_density, isCP_iff_choi, validity_package}</code>, <code>Counterexample.{purification_conjecture_false, purification_conjecture_false_choi, isPure_Vsb, valid_pcl, pcl_not_mem_convexHull, isPureHilbert_Vsb, valid_normalCPTP_Vsb, isPurePM_choiMat_Vsb}</code>.</li>
+<li><code>decide</code> / <code>decide +kernel</code> (LemmaH, Counterexample*) are kernel-checked and add no axioms.</li>
+<li><strong>Not covered by the audit:</strong> whether the Lean definitions faithfully express the paper's notions (an axiom audit
+cannot see this). <strong>The (⇒) half of Theorem 1.2 (copy gadget) is not formalised in Lean</strong>; only (⇐) is.</li>
+</ul>
+<h3>L.2. H.12.1 exact re-check in sympy [exact]</h3>
+<p><code>h12_exact_sympy.py</code> (log <code>h12_exact_sympy.log</code>) rebuilds the board from the m<sub>o</sub>(z) table printed in lift.md H.12 (not
+from <code>cex_phases.json</code>) and uses sympy symbolic arithmetic (Q(ζ₈) via <code>I</code>, <code>sqrt(2)</code>, <code>exp(-iπ/4)</code>) instead of the
+hand-written Q8 class of <code>exact_cex.py</code>.</p>
+<ol>
+<li>All eight U<sub>o</sub> are exactly unitary (entries in Z[i]/8).</li>
+<li>All <strong>2,232</strong> forbidden Pauli coefficients of K<sub>o,o'</sub> vanish exactly (Pauli rule H.8.1). Purity then follows via the
+paper lemmas H.7.1 + H.8.1 + H.8.2 (as before; Lean's <code>isPure_Vsb</code> does not use them).</li>
+<li>p is real, ≥ 0, columns sum to 1, and all 64 deterministic interventions give total probability exactly 1 (valid).</li>
+<li>With the facet functional g of <code>exact_cex.log</code> (facet 1741): <strong>g·p + g₀ = 1/4 − (3/16)√2 exactly</strong> (&lt; 0); on the 744
+PFs of <code>pfs744.npy</code> min = 0, tight on 418. max|g| = 2, so the certified L1 margin is exactly <strong>3√2/32 − 1/8 ≈
+0.0075825</strong>. (Coincidence worth noting: this equals the per-o-averaged LP distance 0.0606602/8 quoted in H.12, i.e.
+(3√2−4)/32; the unaveraged LP value 0.0607 remains a float LP figure, not re-certified here.)</li>
+<li><strong>New, direct exact purity spot-check, independent of H.7.1/H.8:</strong> the closed-loop M with exactly unitary local maps
+over Q(i) (Cayley transforms of random rational Hermitian matrices) satisfies M M† = 1 and M† M = 1 <strong>exactly</strong>
+(sympy DomainMatrix over QQ_I): 3 trials without ancillas (64×64) and 2 trials with a qubit ancilla per party
+(512×512): <strong>all 5 trials passed exactly</strong>. Negative control (<code>neg_control.py</code>): changing one exponent m<sub>000</sub>(000) from
+0 to 1 makes the same exact test fail.
+Scope: finitely many exact samples; this corroborates, but does not replace, the Pauli-rule proof or <code>isPure_Vsb</code>.
+Not re-checked: the enumeration count 744 (taken from <code>pfs744.npy</code>), that g is a facet, the LP distance.</li>
+</ol>
+<h3>L.3. Converse without ancillas [proved for finite equal local alphabets; numerically corroborated]</h3>
+<p>Setting: |I<sub>k</sub>| = |O<sub>k</sub>| = d<sub>k</sub> finite (otherwise no ancilla-free local unitaries exist and the question is vacuous),
+I<sub>k</sub> = O<sub>k</sub> = Z<sub>d<sub>k</sub></sub>, M[s,e] = ∏_k V<sub>k</sub>[s<sub>k</sub>, w<sub>k</sub>(s) + e<sub>k</sub>].</p>
+<p><strong>Theorem N.1.</strong> For w : ∏O<sub>k</sub> → ∏I<sub>k</sub> the following are equivalent:
+(i) w is a process function; (ii) M is unitary for every tuple of ancilla-free local unitaries;
+(iii) M is unitary for one Haar-random tuple (with probability 1); (iv) pairwise exclusivity: for all s ≠ s' there is
+k with s<sub>k</sub> ≠ s'<sub>k</sub> and w<sub>k</sub>(s) = w<sub>k</sub>(s').</p>
+<p><em>Proof.</em> Row Gram identity (summing over e factorises over parties):
+(M M†)[s,s'] = ∏_k Σ_{e<sub>k</sub>} V<sub>k</sub>[s<sub>k</sub>, w<sub>k</sub>(s)+e<sub>k</sub>] conj V<sub>k</sub>[s'<sub>k</sub>, w<sub>k</sub>(s')+e<sub>k</sub>] = ∏_k (V<sub>k</sub> T<sup>δ_k</sup> V<sub>k</sub>†)[s<sub>k</sub>, s'<sub>k</sub>],
+δ_k = w<sub>k</sub>(s) − w<sub>k</sub>(s'), T the cyclic shift. Diagonal entries are always 1 (rows are always unit vectors), and M is
+square, so M unitary ⇔ all off-diagonal products vanish.
+(iv)⇒(ii): the factor with δ_k = 0, s<sub>k</sub> ≠ s'<sub>k</sub> is (V V†)[s<sub>k</sub>,s'<sub>k</sub>] = 0. (This is the Theorem of §1 with trivial ancillas.)
+(iii)⇒(iv): if (iv) fails for s ≠ s', every factor has either δ_k = 0, s<sub>k</sub> = s'<sub>k</sub> (factor 1) or δ_k ≠ 0. For δ ≠ 0, T^δ
+is not scalar, so V ↦ (V T^δ V†)[a,b] is a real-analytic function on the connected manifold U(d) that is not identically
+zero (diagonal: take v an eigenvector of T^δ; off-diagonal: take v not an eigenvector and u in the direction of the
+component of T^δ v orthogonal to v); its zero set is Haar-null. A finite union of null sets is null, so for Haar-a.e. V
+the product is nonzero and M is not unitary. (ii)⇒(iii) trivial.
+(i)⇔(iv): (i)⇒(iv) is the exclusivity Lemma (<code>PFUL.exclusivity</code>). (iv)⇒(i): if s ≠ s' were both fixed points of f∘w,
+take k from (iv): s<sub>k</sub> = f<sub>k</sub>(w<sub>k</sub>(s)) = f<sub>k</sub>(w<sub>k</sub>(s')) = s'<sub>k</sub>, contradiction; so N(f) ≤ 1 for every f. And
+Σ<sub>f</sub> N(f) = Σ<sub>s</sub> ∏_k d<sub>k</sub><sup>d<sub>k</sub>−1</sup> = ∏_k d<sub>k</sub><sup>d<sub>k</sub></sup> = #interventions, so the mean of N is 1 and N ≡ 1. ∎</p>
+<p>So: <strong>every PF lifts with no party ancilla (equal alphabets), and every map whose ancilla-free loop is unitary for all
+local unitaries is a PF.</strong> Ancillas are not needed for the converse; a single generic draw is a complete test. What the
+ancillas buy in the copy gadget is a <em>deterministic, explicit</em> witness (column norm = fixed-point count).
+Side remark: column norms alone cannot do it without ancillas. Σ<sub>s</sub> ∏_k |V<sub>k</sub>[s<sub>k</sub>,w<sub>k</sub>(s)]|² is multilinear in the
+unistochastic matrices |V<sub>k</sub>|², so it equals 1 on all of them iff N(f) = 1 for all <em>bijective</em> f; the 39,576 three-party
+binary non-PFs below pass that test, and only the row (orthogonality) conditions detect them.</p>
+<p>Evidence: <code>excl_vs_pf.py</code> / <code>.log</code>: Gram identity to 4e-16 (n=2,3 binary; n=2, d=3,4); exclusivity ⇔ PF with 0
+mismatches on all 256 two-party binary maps (12 PFs) and all <strong>16,777,216</strong> three-party binary maps (744 PFs both ways),
+and on 300k random two-party ternary maps. <code>noanc_enum.py</code> / <code>.log</code>: exhaustive one-party d=2,3,4, two-party binary,
+three-party binary (all 8<sup>8</sup> maps); every non-PF fails ancilla-free unitarity, either by a permutation intervention or,
+for the 12 (n=2) and 39,576 (n=3) maps passing all permutation interventions, by a Haar draw (smallest residual
+‖MM†−1‖_F found ≥ 0.016, far above float error ~1e-15). 2M random two-party ternary maps: all non-PFs caught.
+Not done: Lean formalisation; exact (non-float) witnesses for the enumerated survivors (the proof makes them unnecessary).</p>
+<h3>L.4. Converse for countable alphabets [proved (paper) with ancillas; ancilla-free version open]</h3>
+<p>Finitely many parties, I<sub>k</sub>, O<sub>k</sub> countable (finite or ℕ), PF = every f has exactly one fixed point (as in
+<code>PFUL.Countable</code>). Give each O<sub>k</sub> a group structure (Z<sub>n</sub> or Z).
+<strong>Claim C.1.</strong> If w is not a PF, the copy gadget V<sub>k</sub>|i,x⟩ = |f<sub>k</sub>(i)+x, i⟩ on ℓ²(I<sub>k</sub> × O<sub>k</sub>) → ℓ²(O<sub>k</sub> × I<sub>k</sub>) (a bijection of
+basis vectors, hence unitary on ℓ²) gives a closed loop with no unitary (indeed no isometric) realisation.
+<em>Proof.</em> The loop wiring is a permutation, so the entries M[(s,y),(e,x)] = ∏_k V<sub>k</sub>[(s<sub>k</sub>,y<sub>k</sub>),(w<sub>k</sub>(s)+e<sub>k</sub>,x<sub>k</sub>)] are finite
+products, no series. Column (0,0) is the indicator of {(s, w(s)) : f(w(s)) = s}, with N(f) ∈ {0,1,2,…,∞} entries. Any
+isometry Φ with Φδ_c = M(·,c) needs ‖M(·,(0,0))‖² = 1; but it is N(f) ≠ 1 (for N = ∞ the column is not even in ℓ², so
+no bounded operator has these matrix entries). ∎ So with ancillas, Theorem 1.2 holds for countable alphabets:
+(⇐) is <code>PFUL.Countable.induced_unitary_l2</code> (Lean), (⇒) is C.1 (paper only). Nothing in the finite proof used finiteness
+except the target statement &quot;M not an isometry&quot;, which C.1 replaces by the column-norm obstruction.
+Example of the N = ∞ case: one party, I = O = ℕ, w = id, f = id.
+<strong>Where it breaks.</strong> (a) Continuous alphabets: the gadget is still unitary on L² (shear+swap preserves Lebesgue measure,
+for measurable f), but basis vectors δ_c are not in L², so &quot;column norm = fixed-point count&quot; has no meaning; one needs a
+measure-theoretic replacement (cf. F.5). (b) Without ancillas on countable alphabets: the Gram identity and
+&quot;exclusivity ⇒ N(f) ≤ 1&quot; survive, but the averaging step Σ<sub>f</sub> N(f) = #f needs finiteness, and there is no Haar measure on
+U(ℓ²) (genericity would have to be redone, e.g. with finite-rank perturbations). For two parties exclusivity forces one
+of w<sub>A</sub>, w<sub>B</sub> to be constant, hence a PF, so a countable counterexample to &quot;exclusive ⇒ PF&quot; would need ≥ 3 parties. [open]</p>
 <h2>References</h2>
 <ol>
 <li>M. Dummett, Can an effect precede its cause?, Aristotelian Society Supplementary Volume 28, 27 (1954); Bringing about the past, Philosophical Review 73, 338 (1964).</li>

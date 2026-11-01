@@ -49,7 +49,7 @@ hand-written Q8 class of `exact_cex.py`.
 5. **New, direct exact purity spot-check, independent of H.7.1/H.8:** the closed-loop M with exactly unitary local maps
    over Q(i) (Cayley transforms of random rational Hermitian matrices) satisfies M M† = 1 and M† M = 1 **exactly**
    (sympy DomainMatrix over QQ_I): 3 trials without ancillas (64×64) and 2 trials with a qubit ancilla per party
-   (512×512) — see log for which finished. Negative control (`neg_control.py`): changing one exponent m_000(000) from
+   (512×512): **all 5 trials passed exactly**. Negative control (`neg_control.py`): changing one exponent m_000(000) from
    0 to 1 makes the same exact test fail.
    Scope: finitely many exact samples; this corroborates, but does not replace, the Pauli-rule proof or `isPure_Vsb`.
 Not re-checked: the enumeration count 744 (taken from `pfs744.npy`), that g is a facet, the LP distance.
