@@ -110,9 +110,9 @@ machine-checked (Lean 4.34.1, Mathlib v4.34.1; no `sorry`, no `native_decide`; e
   term of the Gram factor is ≥ 0 and the term at c = p is 12/25 > 0. At every other party take a permutation
   (swap(e s_k, e s'_k + δ_k) ∘ e), whose Gram factor is exactly 1. Then (M M†)[s,s'] ≠ 0, so M is not unitary. The Haar
   argument above remains valid (it gives (iii)), but it is no longer needed for (ii) ⇒ (iv).
-- Not in Lean: (iii) (genericity of one Haar draw), and the countable-alphabet claims of L.4.
+- Not in Lean: (iii) (genericity of one Haar draw). The countable-alphabet claim C.1 of L.4 is now in Lean (Nov 1 2026, `PFUL.Countable.unitary_l2_iff_pf`); the ancilla-free countable case is open.
 
-## 4. Converse for countable alphabets [proved (paper) with ancillas; ancilla-free version open]
+## 4. Converse for countable alphabets [proved, Lean, with ancillas; ancilla-free version open]
 
 Finitely many parties, I_k, O_k countable (finite or ℕ), PF = every f has exactly one fixed point (as in
 `PFUL.Countable`). Give each O_k a group structure (Z_n or Z).
@@ -122,7 +122,7 @@ basis vectors, hence unitary on ℓ²) gives a closed loop with no unitary (inde
 products, no series. Column (0,0) is the indicator of {(s, w(s)) : f(w(s)) = s}, with N(f) ∈ {0,1,2,…,∞} entries. Any
 isometry Φ with Φδ_c = M(·,c) needs ‖M(·,(0,0))‖² = 1; but it is N(f) ≠ 1 (for N = ∞ the column is not even in ℓ², so
 no bounded operator has these matrix entries). ∎ So with ancillas, Theorem 1.2 holds for countable alphabets:
-(⇐) is `PFUL.Countable.induced_unitary_l2` (Lean), (⇒) is C.1 (paper only). Nothing in the finite proof used finiteness
+(⇐) is `PFUL.Countable.induced_unitary_l2` (Lean), (⇒) is C.1 (now also Lean, see below). Nothing in the finite proof used finiteness
 except the target statement "M not an isometry", which C.1 replaces by the column-norm obstruction.
 Example of the N = ∞ case: one party, I = O = ℕ, w = id, f = id.
 **Where it breaks.** (a) Continuous alphabets: the gadget is still unitary on L² (shear+swap preserves Lebesgue measure,
@@ -132,8 +132,11 @@ measure-theoretic replacement (cf. F.5). (b) Without ancillas on countable alpha
 U(ℓ²) (genericity would have to be redone, e.g. with finite-rank perturbations). For two parties exclusivity forces one
 of w_A, w_B to be constant, hence a PF, so a countable counterexample to "exclusive ⇒ PF" would need ≥ 3 parties. [open]
 
+**Lean (added Nov 1 2026) [PROVED, Lean; standard axioms only].** Claim C.1 is formalised in `lean/PFUL/CopyGadgetL2.lean` as `PFUL.Countable.unitary_l2_iff_pf`: the closed loop is a unitary of ℓ² (a linear isometric equivalence whose matrix entries on basis vectors are the induced kernel) for every admissible tuple of local kernels (square-summable rows, orthonormal rows, unit columns, i.e. the hypotheses of `induced_unitary_l2`) iff w is a PF. Supporting theorems: `not_isometry_of_not_pf_l2` (for a non-PF the copy gadget satisfies all those hypotheses, yet **no linear isometry** of ℓ², not merely no unitary, has the induced kernel as matrix) and `existsUnique_of_isometry_l2` (an isometric realisation forces exactly one fixed point; zero gives column norm 0, two distinct ones give ≥ 2, and N = ∞ is excluded by square-summability of the column). Scope: finitely many parties; countable (finite or infinite) alphabets; `AddCommGroup` on both I_k and O_k; ancillas fixed to X_k = O_k, Y_k = I_k (the quantifier over V ranges over this ancilla shape). Still uncovered or open: continuous alphabets (not covered: basis vectors are not in L²) and the countable case without ancillas (open, (b) below).
+
 ## 5. Follow-ups (Oct 31 2026, late)
 - Lean: both converses formalised (commits 491cbf5, 7cd062f, 7e0eb00 on main); see the Lean formalisation paragraph in §3.
 - Dimension-2 ancilla trials of H.12.1 (pid 1271572): the process has finished (no longer running). Its result is
   trials 3 and 4 in `h12_exact_sympy.log`: qubit ancilla per party, M is 512×512, M M† = 1 and M† M = 1 exactly, both
   passed; together with the three 64×64 trials, 5/5 passed and the log ends "ALL EXACT CHECKS PASSED".
+- Nov 1 2026: Claim C.1 formalised in Lean (commit 0385c42, `lean/PFUL/CopyGadgetL2.lean`, `PFUL.Countable.unitary_l2_iff_pf`); see §4.
