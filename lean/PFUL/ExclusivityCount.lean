@@ -6,7 +6,7 @@ Uses Σ_f N(f) = #f, proved by explicit relabelling bijections. -/
 
 namespace PFUL.ExclusivityCount
 
-variable {n : ℕ} {I O : Fin n → Type} [∀ k, Fintype (I k)] [∀ k, DecidableEq (I k)]
+variable {ι : Type*} [Fintype ι] [DecidableEq ι] {I O : ι → Type*} [∀ k, Fintype (I k)] [∀ k, DecidableEq (I k)]
   [∀ k, Fintype (O k)] [∀ k, DecidableEq (O k)]
 
 /-- number of `f` with prescribed values `s` at input point `a`. -/
