@@ -90,3 +90,39 @@ Status labels:
 - P2, P4, P5 are machine-checked (`lean/PFUL/FiniteBox.lean`, standard axioms only).
 - P1 and P3 are paper proofs, rigorous but not in Lean.
 - §3 is heuristic exploration.
+
+## 4. Resolution (2026-10-31): the countable no-ancilla converse holds
+
+**Theorem.** Let ι be finite, and give each I_k a countable abelian group structure, with O_k ≃ I_k. Then the induced map is unitary on ℓ² for every family of local unitaries without ancillas (X_k = Y_k = Unit) if and only if w is a process function.
+- Lean: `PFUL.Countable.unitary_l2_noAncilla_iff_pf` in `lean/PFUL/NoAncillaL2.lean`.
+- Axioms: only propext, Classical.choice, Quot.sound. No sorry, no native_decide.
+
+**Key new lemma (counting-free): exclusive ⇒ PF, on any alphabets.**
+- Lean: `PFUL.FiniteBox.existsUnique_of_exclusive` in `lean/PFUL/ExclusiveInduction.lean`. It uses finite ι, DecidableEq, and nonempty O_k. No cardinality assumptions.
+- Uniqueness is P2 (`fixed_unique`).
+- Existence goes by induction on a set T of "active" parties (`exists_partial_fixed`). The parties outside T are frozen at given values u.
+  - Add a party n to T.
+  - For each value c of party n, the induction hypothesis gives a configuration s(c): it is fixed on T, has s(c)_n = c, and equals u elsewhere.
+  - Claim: g(c) = f_n(w_n(s(c))) does not depend on c.
+    - Take c ≠ c′. Exclusivity gives a party k where s(c) and s(c′) differ but w_k agrees.
+    - k cannot lie outside T ∪ {n}, because both configurations equal u there.
+    - k cannot lie in T, because both configurations are fixed there and w_k agrees, so their values at k are equal.
+    - So k = n, and w_n agrees, so g(c) = g(c′).
+  - Set c* = g(c₀). Then s(c*) is fixed on T ∪ {n}.
+- This also gives a proof of the finite case that does not use counting (cf. N.1).
+
+**P1 is now in Lean: unitary for all V ⇒ exclusive.**
+- Lean: `exclusive_of_unitary_l2`.
+- Suppose exclusivity fails at s ≠ s′. Then at every party k, either s_k ≠ s′_k and w_k(s) ≠ w_k(s′), or s_k = s′_k.
+- `local_witness` builds a local unitary at each k for which the row-overlap factor ∑_i V(s_k, w_k(s)+i) · conj V(s′_k, w_k(s′)+i) is nonzero:
+  - **Case s_k = s′_k and w_k(s) ≠ w_k(s′):** use a real 2×2 rotation (3/5, 4/5) on {p, p + w_k(s) − w_k(s′)} with p = e(s_k), and the identity elsewhere.
+    - Row p is nonnegative, so the overlap is a nonnegative series.
+    - It contains the term (4/5)(3/5) > 0, so the overlap is positive.
+  - **Otherwise:** use a permutation e followed by a transposition, chosen so that σ(s′_k) − w_k(s′) = σ(s_k) − w_k(s). The overlap is then 1.
+- The row Gram sum of the induced map factorises into the product of these local overlaps, by `hasSum_pi_prod`. So the product is nonzero.
+- But orthonormal rows (`rows_of_lie`, read off from the isometry Φ) force the Gram sum to be 0, since (s, ·) ≠ (s′, ·). Contradiction.
+
+**What is rigorous and what is heuristic.**
+- Everything in this section is machine-checked.
+- L.4(b) is closed for countable abelian-group alphabets with |O_k| = |I_k|, no ancillas, and finitely many parties.
+- The ℕ-Lugano search mentioned in §3 is heuristic only. It found w = (c·[b=0], a·[c=0], b·[a=0]), which is exclusive on the box N=12, and every f tested there had a unique fixed point. That is now explained by the theorem, so no counterexample with three or more parties exists in this setting (Direction B is ruled out).
