@@ -31,7 +31,7 @@ table{border-collapse:collapse;font-size:.9rem;display:block;overflow-x:auto} th
 <li><strong>Activation-controlled (measurable process function).</strong> A process function whose output space splits into countably many product regions. In each region at most one party is <em>active</em>, its own output is unconstrained, and its translation amount is an arbitrary measurable function of the other outputs, while the inactive amounts are constant. Two further conditions apply: Lugano-type exclusivity, and the skeleton with zero amounts is a process function. Example: the Lugano pattern on parities with continuous or even nowhere-continuous amounts. The closed loop with arbitrary local unitaries is unitary (F.5.12, Round 18). Paper's own term. See also <em>Countably controlled</em>; <em>Uniformly approximable</em>.</li>
 <li><strong>Admissible board.</strong> A board {U<sub>o</sub>} in which every U<sub>o</sub> is unitary and every pair o ≠ o′ obeys the Pauli rule. This is equivalent to purity of the Switchboard built from it (H.7.1, H.8.1). <em>Pairwise admissible</em> (H.17.3, H.17.9) means that the Pauli rule holds for one given pair. Defined in the H.17 preamble. Paper's own term. See also <em>Board</em>; <em>Hard board</em>; <em>Pauli rule</em>.</li>
 <li><strong>AFNB.</strong> Araújo, Feix, Navascués and Brukner [17], the source of the paper's notions of pure process and purification. See <em>Pure process</em>; <em>Purification</em>.</li>
-<li><strong>Ancilla.</strong> An auxiliary system on which a party's local operation may also act. Local ancillas are X<sub>k</sub>, Y<sub>k</sub> in Appendix A. A shared, possibly entangled ancilla is treated in Appendix A Step 3 and H.8.2 (&quot;ancillas add nothing&quot; for Switchboards). The Lean counterexample is checked for finite ancilla types, for ancilla index sets of any cardinality (unitary kernels), for ancillas in arbitrary Hilbert spaces (<code>isPureHilbert_Vsb</code>), and for normal CPTP local channels with ancillas of any cardinality (<code>valid_normalCPTP_Vsb</code>, countable; <code>valid_normalCPTP_Vsb_any</code>, Round 13) (H.12.3, H.19, H.20). With infinite-dimensional ancillas, &quot;pure&quot; means that the closed loop is a unitary of C<sup>P</sup> ⊗ ⨂K<sub>k</sub> for all Hilbert spaces K<sub>k</sub> and unitaries on C² ⊗ K<sub>k</sub> (H.19.3). For finite V this is equivalent to purity against finite ancillas (H.19.4; Lean: <code>isPure_iff_isPureHilbert</code>, H.20.1). In the process-matrix framework, ancillas of any cardinality are allowed by <code>IsValidPMInf</code> and <code>IsPurePMInf</code>, which agree with the finite-ancilla notions (<code>isValidPMInf_iff</code>, <code>isPurePMInf_iff</code>, H.20.4). Standard [14, 17].</li>
+<li><strong>Ancilla.</strong> An auxiliary system on which a party's local operation may also act. Local ancillas are X<sub>k</sub>, Y<sub>k</sub> in Appendix A. A shared, possibly entangled ancilla is treated in Appendix A Step 3 and H.8.2 (&quot;ancillas add nothing&quot; for Switchboards). The Lean counterexample is checked for finite ancilla types, for ancilla index sets of any cardinality (unitary kernels), for ancillas in arbitrary Hilbert spaces (<code>isPureHilbert_Vsb</code> <a href="#L-099">L-099</a>), and for normal CPTP local channels with ancillas of any cardinality (<code>valid_normalCPTP_Vsb</code> <a href="#L-101">L-101</a>, countable; <code>valid_normalCPTP_Vsb_any</code> <a href="#L-152">L-152</a>, Round 13) (H.12.3, H.19, H.20). With infinite-dimensional ancillas, &quot;pure&quot; means that the closed loop is a unitary of C<sup>P</sup> ⊗ ⨂K<sub>k</sub> for all Hilbert spaces K<sub>k</sub> and unitaries on C² ⊗ K<sub>k</sub> (H.19.3). For finite V this is equivalent to purity against finite ancillas (H.19.4; Lean: <code>isPure_iff_isPureHilbert</code> <a href="#L-193">L-193</a>, H.20.1). In the process-matrix framework, ancillas of any cardinality are allowed by <code>IsValidPMInf</code> and <code>IsPurePMInf</code>, which agree with the finite-ancilla notions (<code>isValidPMInf_iff</code> <a href="#L-141">L-141</a>, <code>isPurePMInf_iff</code> <a href="#L-139">L-139</a>, H.20.4). Standard [14, 17].</li>
 <li><strong>Antinomic</strong> → <em>Nomic, antinomic</em>.</li>
 <li><strong>Audit (completeness audit).</strong> A separate check that an exhaustive search covered everything it claims to cover. It recounts the cases (here, recomputing the orbit key of all 21,906 labelled geometries) and matches them against the search's checkpoint records. For glue_k4 it found all 2,722 canonical geometries done, with 0 candidates and 0 UNRESOLVED (glue_k4_audit.py). Defined in H.26.1; explained in H.26.1a(d). Paper's own usage.</li>
 <li><strong>Baumeler–Wolf polytope</strong> → <em>Valid (polytope)</em>.</li>
@@ -42,7 +42,7 @@ table{border-collapse:collapse;font-size:.9rem;display:block;overflow-x:auto} th
 <li><strong>Causal correlations; dynamic-order causal polytope.</strong> Correlations P(i|o) between the parties' outputs o and inputs i that can arise with a possibly dynamical causal order: a party acts first, and its output can decide the order of the rest. For three binary parties they form a polytope with 138,304 deterministic vertices. Defined in H.15.7a. Sources: [14] for two parties; [52, 53] for the multipartite definition and polytopes. See also <em>Causal inequality</em>.</li>
 <li><strong>Causal inequality.</strong> A linear inequality satisfied by every causal correlation. Its violation certifies that no causal order explains the data. The paper's inequalities have integer coefficients and minimum 0 over the 138,304 deterministic causal strategies. They are certified by LP plus an exact rational Farkas vector. Defined in H.15.7b, H.15.7d. Source: [14]; for the polytope approach, [53].</li>
 <li><strong>Causally separable; classically causally separable.</strong> A quantum process is causally separable if it is a mixture of processes with a definite or recursively dynamical order [14, 52, 55]. The paper's <em>classically causally separable</em> is a classical process that is a convex combination of processes, each with some party first with valid conditionals. Defined in H.1. <em>Usage note:</em> this is the diagonal (classical) analogue of the recursive definition of Wechs, Abbott and Branciard [55, Def. 5] and of the extensible causal separability of [52]. It is not the quantum notion. See also <em>First party</em>.</li>
-<li><strong>Choi matrix; Choi vector</strong> (J<sub>A</sub>; |U⟩⟩). The Choi matrix of a linear map A on L(H) is J<sub>A</sub> = Σ_{ij} |i⟩⟨j| ⊗ A(|i⟩⟨j|). Choi's theorem says A is completely positive iff J<sub>A</sub> ≥ 0 [48]. For a unitary U, J is |U⟩⟩⟨⟨U| with |U⟩⟩ = Σ<sub>i</sub> |i⟩ ⊗ U|i⟩. Defined in Appendix A (Lean: <code>PFUL.Choi.isCP_iff_choi</code>); used in Lemma D.1 and Appendix F (countable alphabets). In the process-matrix framework of H.19.1, a local operation is CPTP iff its Choi matrix C ⪰ 0 and Σ<sub>b</sub> C((a,b),(a',b)) = δ_{aa'} (<code>PFUL.PM.IsCPTPChoi</code>, <code>isCPTPChoi_choiOf_iff</code>). The counterexample's Choi vector is <code>choiVec Vsb</code>, and its process matrix is <code>choiMat Vsb</code> = |Vsb⟩⟩⟨⟨Vsb| (H.19.2). For channels with infinite ancillas the Choi operator is not trace class, and the Kraus/kernel form is used (H.19.5). Round 13 allows Choi kernels on ancillas of any cardinality (<code>IsCPTPKer</code>: PSD finite sections, unconditional partial trace; H.20.4).</li>
+<li><strong>Choi matrix; Choi vector</strong> (J<sub>A</sub>; |U⟩⟩). The Choi matrix of a linear map A on L(H) is J<sub>A</sub> = Σ_{ij} |i⟩⟨j| ⊗ A(|i⟩⟨j|). Choi's theorem says A is completely positive iff J<sub>A</sub> ≥ 0 [48]. For a unitary U, J is |U⟩⟩⟨⟨U| with |U⟩⟩ = Σ<sub>i</sub> |i⟩ ⊗ U|i⟩. Defined in Appendix A (Lean: <code>PFUL.Choi.isCP_iff_choi</code> <a href="#L-044">L-044</a>); used in Lemma D.1 and Appendix F (countable alphabets). In the process-matrix framework of H.19.1, a local operation is CPTP iff its Choi matrix C ⪰ 0 and Σ<sub>b</sub> C((a,b),(a',b)) = δ_{aa'} (<code>PFUL.PM.IsCPTPChoi</code>, <code>isCPTPChoi_choiOf_iff</code> <a href="#L-186">L-186</a>). The counterexample's Choi vector is <code>choiVec Vsb</code>, and its process matrix is <code>choiMat Vsb</code> = |Vsb⟩⟩⟨⟨Vsb| (H.19.2). For channels with infinite ancillas the Choi operator is not trace class, and the Kraus/kernel form is used (H.19.5). Round 13 allows Choi kernels on ancillas of any cardinality (<code>IsCPTPKer</code>: PSD finite sections, unconditional partial trace; H.20.4).</li>
 <li><strong>Clarabel.jl; BigFloat.</strong> Clarabel is an interior-point conic solver, with a Rust implementation (used through Python) and a Julia implementation, Clarabel.jl, that is generic in the number type. Run with Julia's BigFloat, Clarabel.jl solves SDPs in arbitrary precision. Installed user-locally for Round 27 (H.34.2). On the full 216-cone problem it did not converge within 30 minutes in Float64. The exact certificate of H.34 needed only a double-precision solve on the reduced face, done with the Rust Clarabel. CITED software (Goulart and Chen).</li>
 <li><strong>Class</strong> (κ; V_κ). <em>Usage note:</em> the word has several meanings in the paper, depending on the section.
 <ul>
@@ -126,7 +126,7 @@ table{border-collapse:collapse;font-size:.9rem;display:block;overflow-x:auto} th
 <li><strong>Hermitian (decomposable) SOS relaxation.</strong> For a Hermitian form p(ψ, ξ, u) that is bihomogeneous in spinors ξ_k and a Laurent polynomial in unit phases u<sub>k</sub>, a certificate p − γ|ψ|²Π|ξ_k|² = Σ_S v<sub>S</sub>†Q_Sv_S with Q<sub>S</sub> ⪰ 0, where in block S the spinors k ∈ S enter conjugated (a partial-transpose, or decomposable, term). Any feasible γ is a lower bound on min p. Rounding a near-feasible Gram set exactly gives a proved bound min p ≥ −δ (H.33.3). Defined in H.33.1. Made exact at level 0 for orbit 57 in H.34.6. See also <em>Facial reduction</em>; <em>Zero-set kernel</em>; <em>Torus-weight block</em>.</li>
 <li><strong>Instrument</strong> ({A<sub>k</sub><sup>a<sub>k</sub></sup>}). A family of completely positive maps, indexed by a classical outcome a<sub>k</sub>, whose sum is trace preserving. Defined in Appendix A Step 4. Source: Davies and Lewis [54]; in the process-matrix setting [14].</li>
 <li><strong>Intersected lift (lift-A ∩ lift-B).</strong> Two lifted relaxations imposed together (H.23.3): lift-A and lift-B families, each with its own constraints, linked by equality of the no-signalling families they induce on (A, B, C). Each is a relaxation of the set of instrument strategies, so the intersection is a tighter one. For y<sub>A</sub> on H.12 it certifies −1.16564 (exact integer certificate), against −1.20330 for lift-B alone. With lift-C added as well (lift-A ∩ lift-B ∩ lift-C, H.26.2), it certifies −1.15861. Paper's own construction, in the spirit of NPA-type hierarchies. See also <em>Lifted relaxation</em>; <em>Lift-B, lift-C</em>.</li>
-<li><strong>Jordan decomposition</strong> (S = S⁺ − S⁻). For a self-adjoint trace-class operator S, S^± = ½(|S| ± S) are positive and trace class, with S⁺ − S⁻ = S and Tr S⁺ + Tr S⁻ = ‖S‖₁. Standard; formalised from Mathlib's continuous functional calculus in <code>PFUL.TraceClass.jordan</code> (H.23.2).</li>
+<li><strong>Jordan decomposition</strong> (S = S⁺ − S⁻). For a self-adjoint trace-class operator S, S^± = ½(|S| ± S) are positive and trace class, with S⁺ − S⁻ = S and Tr S⁺ + Tr S⁻ = ‖S‖₁. Standard; formalised from Mathlib's continuous functional calculus in <code>PFUL.TraceClass.jordan</code> <a href="#L-007">L-007</a> (H.23.2).</li>
 <li><strong>K<sub>o,o′</sub></strong> (= U_oU_{o′}†). The ratio of two boards. The Switchboard is pure iff each K<sub>o,o′</sub> obeys the Pauli rule for D(o,o′). Defined in H.8 notation. <em>Usage note:</em> not the Klein group K. See also <em>Pauli rule</em>.</li>
 <li><strong>Kernel-jump set.</strong> On a sheet of orbit 28's zero set, the set where the kernel of the singular base block (A<sub>0</sub> at t<sub>0</sub> = 0, B<sub>2</sub> at t<sub>0</sub> = π) is two-dimensional instead of one. There the transverse coefficient is given by a 2 × 2 second-order form, not by G<sub>0</sub> or G_π. It is PSD and singular on every such set (H.38.2, Lemma H.38.3). Defined in H.38.1. Paper's own term. See also <em>Sheet</em>; <em>Transverse Schur form</em>.</li>
 <li><strong>Klein group; Klein cluster</strong> (K = {1, A, B, AB}; KC). For a three-term class α + i(βA + γB), K is the set of Pauli strings {1, A, B, AB} up to phase, a copy of (ℤ₂)². Its support is K minus AB. A <em>Klein cluster</em> KC is the set of six classes built from one Klein group: (A), (B), (AB), (A,B), (A,AB), (B,AB). Klein groups fall into 21 G₄₈-orbits (&quot;K-orbits&quot;). Defined in H.17.12(a) (Klein group) and H.17.16 (cluster). Searches confined to one cluster: k = 4 (H.17.16), k = 5 (H.17.16b–c, finished, a consistency check of the class bound). Paper's own terms for a standard group.</li>
@@ -146,7 +146,7 @@ table{border-collapse:collapse;font-size:.9rem;display:block;overflow-x:auto} th
 <li><strong>Lift-B, lift-C.</strong> The lifted relaxation of H.21.8 with party B (respectively C) as the copied party, obtained by an exact relabelling of the parties. For y<sub>A</sub> on H.12, lift-B gives the best certified single-lift bound, −1.20330 (the intersection with lift-A gives −1.16564, H.23.3; see <em>Intersected lift</em>); lift-C is weaker (about −1.30, not certified). Defined in H.22.1. See also <em>Lifted relaxation</em>.</li>
 <li><strong>Liftable.</strong> Used in Appendix I only, informally, for &quot;purifiable&quot;. &quot;Approximately liftable&quot; there means a small purity residual. <em>Usage note:</em> informal; the defined notion is <em>Purifiable</em>. See also <em>Unitary lift</em>.</li>
 <li><strong>Lifted relaxation (lifted-A).</strong> A relaxation of the set of instrument products in which one party's measurements for both of its settings act on two copies of its system, so that they must coexist in one positive operator. It is at least as tight as the NS relaxation. For H.12 lifting A certifies y<sub>A</sub> ≥ −1.27720. Lifting B instead (lift-B) certifies y<sub>A</sub> ≥ −1.20330 (H.22.1). Defined in H.21.8. See also <em>Lift-B, lift-C</em>. See also <em>NS relaxation; PPT relaxation</em>; <em>Dual certificate</em>.</li>
-<li><strong>Link product</strong> (∗). The composition of operators in the Choi picture, G<sub>A</sub> = W ∗ (A<sub>1</sub> ⊗ … ⊗ A<sub>n</sub>): a partial trace over the shared spaces, with a partial transpose. Used in Appendix A. Source: Chiribella, D'Ariano and Perinotti [49]; in the form used here, [17, Sec. 2]. Lean: <code>PFUL.PM.link</code>, written in indices (H.19.1). For pure local operations, |V⟩⟩⟨⟨V| ∗ |A⟩⟩⟨⟨A| = |compose V A⟩⟩⟨⟨compose V A| (<code>link_choiMat_vecOp</code>). Its entries are finite sums over W's wires, so it is also defined for local kernels on ancillas of any cardinality; positivity and trace preservation carry over (<code>link_posSemidef_any</code>, <code>isValidPMInf_iff</code>; H.20.4). This is an entrywise (kernel) link product, not an operator identity for non-trace-class Choi operators.</li>
+<li><strong>Link product</strong> (∗). The composition of operators in the Choi picture, G<sub>A</sub> = W ∗ (A<sub>1</sub> ⊗ … ⊗ A<sub>n</sub>): a partial trace over the shared spaces, with a partial transpose. Used in Appendix A. Source: Chiribella, D'Ariano and Perinotti [49]; in the form used here, [17, Sec. 2]. Lean: <code>PFUL.PM.link</code>, written in indices (H.19.1). For pure local operations, |V⟩⟩⟨⟨V| ∗ |A⟩⟩⟨⟨A| = |compose V A⟩⟩⟨⟨compose V A| (<code>link_choiMat_vecOp</code> <a href="#L-091">L-091</a>). Its entries are finite sums over W's wires, so it is also defined for local kernels on ancillas of any cardinality; positivity and trace preservation carry over (<code>link_posSemidef_any</code> <a href="#L-143">L-143</a>, <code>isValidPMInf_iff</code> <a href="#L-141">L-141</a>; H.20.4). This is an entrywise (kernel) link product, not an operator identity for non-trace-class Choi operators.</li>
 <li><strong>LU-equivalent.</strong> Two pure processes are LU-equivalent if one becomes the other under a unitary on each of the eight systems (P, F, AI_k, AO_k) and a permutation of the parties. Spectra of reduced states are LU invariants. Defined in H.15.9(B). Standard notion; the precise scope is stated there.</li>
 <li><strong>Level-K relaxation (multiplier |ξ_K|²).</strong> The sum-of-squares relaxation of H.33.1 applied to |ξ_K|²·p in place of p, with party K's spinor appearing to degree two in the monomial vector. Because |ξ_K| = 1 on the domain, it gives the same kind of lower bound. Because p has real coefficients, its Gram matrices can be taken real (conjugation symmetry), which halves their size. Used in H.36. Standard idea; not new.</li>
 <li><strong>Low-rank rounding.</strong> Rounding a numerical sum-of-squares certificate whose Gram matrix has only a few significant eigenvalues by keeping just those eigenvectors, rationalised, with rational weights, and dropping the rest. It succeeds only if the result satisfies the identity exactly, which the exact checkers test. Used in H.35.3. Standard idea; not new.</li>
@@ -192,9 +192,9 @@ table{border-collapse:collapse;font-size:.9rem;display:block;overflow-x:auto} th
 <li><strong>Process function</strong> → <em>PF (process function)</em>.</li>
 <li><strong>Projective coordinates (y<sub>k</sub> = tan(t<sub>k</sub>/2)).</strong> M is homogeneous of degree 2 in each spinor x<sub>k</sub> = (cos t<sub>k</sub>/2, sin t<sub>k</sub>/2), so M ⪰ 0 if and only if Mh(y) = M/∏_k cos²(t<sub>k</sub>/2) ⪰ 0, with y<sub>k</sub> = tan(t<sub>k</sub>/2). Used for the local expansion at t = 0. Defined in H.37.4. Standard. See also <em>Corner form</em>.</li>
 <li><strong>PROVED, NUMERICAL, CITED, INTERPRETIVE, OPEN</strong> → <em>Result labels</em>.</li>
-<li><strong>Pure process</strong> (W = |U⟩⟩⟨⟨U|). A process for which G<sub>A</sub> is unitary whenever every A<sub>k</sub> is unitary [17, Def. 1]. By [17, Thm 2] a process is pure iff its process matrix is the Choi projector of a unitary. Lean (Round 13): <code>isPurePM_iff</code>, for equal local input and output dimensions and |P| = |F| (H.20.2). Used in Appendix A. Lean: <code>PFUL.PM.IsPurePM</code> (valid, and the link with local unitaries on any finite ancillas is |M⟩⟩⟨⟨M| with M unitary). <code>isPure_iff_unitaryLink</code> shows that this agrees with the counterexample's <code>IsPure</code>, and <code>isPurePM_choiMat_Vsb</code> holds. For infinite-dimensional ancillas see <code>IsPureHilbert</code> (H.19.3) and <code>IsPurePMInf</code> (H.20.4); both agree with finite purity (<code>isPure_iff_isPureHilbert</code>, <code>isPurePMInf_iff</code>). See also <em>Purification</em>.</li>
+<li><strong>Pure process</strong> (W = |U⟩⟩⟨⟨U|). A process for which G<sub>A</sub> is unitary whenever every A<sub>k</sub> is unitary [17, Def. 1]. By [17, Thm 2] a process is pure iff its process matrix is the Choi projector of a unitary. Lean (Round 13): <code>isPurePM_iff</code> <a href="#L-001">L-001</a>, for equal local input and output dimensions and |P| = |F| (H.20.2). Used in Appendix A. Lean: <code>PFUL.PM.IsPurePM</code> (valid, and the link with local unitaries on any finite ancillas is |M⟩⟩⟨⟨M| with M unitary). <code>isPure_iff_unitaryLink</code> <a href="#L-087">L-087</a> shows that this agrees with the counterexample's <code>IsPure</code>, and <code>isPurePM_choiMat_Vsb</code> <a href="#L-086">L-086</a> holds. For infinite-dimensional ancillas see <code>IsPureHilbert</code> (H.19.3) and <code>IsPurePMInf</code> (H.20.4); both agree with finite purity (<code>isPure_iff_isPureHilbert</code> <a href="#L-193">L-193</a>, <code>isPurePMInf_iff</code> <a href="#L-139">L-139</a>). See also <em>Purification</em>.</li>
 <li><strong>Purifiable; Purif.</strong> A classical process is purifiable if it has a purification, read in the computational frame on the agent wires unless another frame is named (Definition before Section 1). Purif is the set of purifiable classical processes. It is convex, and conv(PF) ⊊ Purif ⊊ Valid (H.13.1, C.2, H.12.1). Defined in H.13 (Lean: <code>Purifiable</code>, H.12.3). Source: AFNB [17, Def. 3]. <em>Usage note:</em> the same idea is &quot;unitary extension&quot; or &quot;unitarily extendible&quot; in [36, 45, 18]. See also <em>Liftable</em>; <em>Unitary extension</em>.</li>
-<li><strong>Purification</strong> ((V, ψ)). A purification of a classical process p is a unitary V: P ⊗ O → F ⊗ I with a fixed source state ψ on P such that (i) p is the reduced record, p(i|o) = Σ<sub>f</sub> |⟨i, f|V|o, ψ⟩|², and (ii) every closing with local unitaries and ancillas gives a unitary. Defined in the Appendix D setting. Source: AFNB [17, Def. 3]; this is the classical-input specialisation used throughout. In process-matrix form, (i) is the Born rule p(i|o) = Σ W(π,φ,(i,o); π',φ,(i,o)) ψ_π conj(ψ_π') (<code>inducedP_eq_born</code>), and (ii) is <code>IsPurePM W</code>. Theorem H.12.1 is stated in these terms as <code>purification_conjecture_false_choi</code> (H.19.2), and with ancillas of any cardinality as <code>purification_conjecture_false_choiInf</code> (H.20.4). See also <em>Pure process</em>; <em>Switchboard</em>.</li>
+<li><strong>Purification</strong> ((V, ψ)). A purification of a classical process p is a unitary V: P ⊗ O → F ⊗ I with a fixed source state ψ on P such that (i) p is the reduced record, p(i|o) = Σ<sub>f</sub> |⟨i, f|V|o, ψ⟩|², and (ii) every closing with local unitaries and ancillas gives a unitary. Defined in the Appendix D setting. Source: AFNB [17, Def. 3]; this is the classical-input specialisation used throughout. In process-matrix form, (i) is the Born rule p(i|o) = Σ W(π,φ,(i,o); π',φ,(i,o)) ψ_π conj(ψ_π') (<code>inducedP_eq_born</code> <a href="#L-085">L-085</a>), and (ii) is <code>IsPurePM W</code>. Theorem H.12.1 is stated in these terms as <code>purification_conjecture_false_choi</code> <a href="#L-092">L-092</a> (H.19.2), and with ancillas of any cardinality as <code>purification_conjecture_false_choiInf</code> <a href="#L-106">L-106</a> (H.20.4). See also <em>Pure process</em>; <em>Switchboard</em>.</li>
 <li><strong>Purification conjecture.</strong> The conjecture that every purifiable classical process is a PF blend, i.e. Purif = conv(PF). Stated in C.3, refuted by Theorem H.12.1. Its two sub-claims (C1) (Switchboard boards give PF blends) and (C2) (every purification reduces to Switchboard form) are in H.9. Paper's own conjecture. The inclusion conv(PF) ⊆ Purif was asserted in [27] and is proved in C.1.</li>
 <li><strong>QC-QC</strong> (quantum circuits with quantum control of causal order). The class of processes realisable by quantum circuits with coherently controlled order, defined by Wechs, Dourdent, Abbott and Branciard [51]. Their correlations are causal, so they cannot realise H.13.2 in a single use (H.15.7b).</li>
 <li><strong>Quantum box</strong> (P<sub>Q</sub>(i|x)). A no-signalling box of the form Tr[ρ ⊗<sub>k</sub> M^k<sub>i<sub>k</sub>|x<sub>k</sub></sub>], from a shared state and local measurements. In H.27.1 the statistics of a forward PF lift are a quantum box wired by a refined PF. Standard.</li>
@@ -203,16 +203,14 @@ table{border-collapse:collapse;font-size:.9rem;display:block;overflow-x:auto} th
 <li><strong>Refined process function</strong> (w′). A map from binary outputs to settings, x<sub>k</sub> = w′_k(o<sub>−k</sub>) with up to four values, such that every local 2-colouring of the settings gives a binary PF; equivalently a PF composed with local deterministic output maps. Only the partition of the four values of o<sub>−k</sub> into fibres matters: there are 186 such partition triples, 20 of them maximal (h20_fwd_enum.log). Defined in H.27.1. Paper's own term.</li>
 <li><strong>Region test.</strong> A run of the relaxation that adds region multipliers r<sub>k</sub> = sin²t_k − δ²|x<sub>k</sub>|⁴ or q<sub>k</sub> = sin²(a<sub>k</sub>/2) − δ², so that it bounds the value only on {r<sub>k</sub> ≥ 0} or {q<sub>k</sub> ≥ 0}. A gap that barely changes when strips around the zero components are removed shows that the slack is not located there. Defined in H.37.1; results in H.37.2. Paper's own usage.</li>
 <li><strong>Residual</strong> (R(U); ρ(U) = √R). A nonnegative measure of how far a board is from satisfying the purity (Pauli-rule) conditions. R = 0 exactly for pure boards. Defined in H.8 and Appendix I, where the trade-off between violation and residual is measured. Paper's own quantity.</li>
-<li><strong>Result labels</strong> (PROVED, NUMERICAL, CITED, INTERPRETIVE, OPEN; EXACT-CERTIFIED; [proved], [numerical], [cited], [conjecture], [gap], [failed]).
+<li><strong>Result labels</strong> (Lean ✓ with an index label [L-nnn]; [proved, refereed]; [proved]; [exact]; [numerical]; [cited]; [open]; INTERPRETIVE).
 <ul>
-<li>PROVED: proved in this paper (by hand, exact arithmetic, exhaustive exact search, or Lean, as marked).</li>
-<li>NUMERICAL: floating-point or sampled evidence.</li>
-<li>CITED: taken from a reference and checked against it.</li>
-<li>INTERPRETIVE: a reading, not a theorem.</li>
-<li>OPEN: not settled.</li>
-<li>EXACT-CERTIFIED (or &quot;certified exact&quot;): a numerical result with an exact certificate.</li>
-<li>Lower-case labels mark the same categories in older sections.</li>
-<li>Defined in Section 9, the Appendix D and H headers, H.15 and H.18 headers.</li>
+<li>Lean ✓ [L-nnn]: machine-checked in Lean 4 with Mathlib, standard axioms only; the label points to the Lean results index (Appendix M).</li>
+<li>[proved, refereed]: paper proof checked by an independent referee pass. [proved]: paper proof (by hand, or with exact arithmetic or exhaustive exact search, as marked).</li>
+<li>[exact]: exact certificate (rational or algebraic) or exhaustive computation in ordinary code, not Lean.</li>
+<li>[numerical]: floating-point or sampled evidence. [cited]: taken from a reference and checked against it. [open]: not settled. INTERPRETIVE: a reading, not a theorem.</li>
+<li>Older labels (before Nov 2 2026) map as follows: PROVED (Lean) → Lean ✓; PROVED → proved; NUMERICAL → numerical; CITED → cited; EXACT-CERTIFIED or &quot;certified exact&quot; → exact. Upper-case forms survive in this glossary and in quoted older text.</li>
+<li>Defined in Section 9.</li>
 </ul>
 </li>
 <li><strong>Reversible extension (classical).</strong> Extending a PF w to an invertible map on (inputs and outputs) × (source and sink), e.g. U|o, e⟩ = |w(o) ⊕ e, o⟩, which is a permutation lift. Sources: [16, Thm 2]; [45, Thm 6] for the quantum analogue. Used in Section 6 and D.6. <em>Usage note:</em> the paper says &quot;reversible extension&quot;; it does not use &quot;reversible completion&quot;. See also <em>Unitary lift</em>.</li>
@@ -272,7 +270,7 @@ table{border-collapse:collapse;font-size:.9rem;display:block;overflow-x:auto} th
 <li><strong>ℤ_N boards</strong> (ℤ_4, ℤ_8, ℤ_16). X-type boards whose Hadamard-frame phases are N-th roots of unity. ℤ_4 boards are surveyed exhaustively (386 symmetry classes, H.13.3), ℤ_8 boards in 10,603 classes (H.14.2, J.2–J.3), and ℤ_16 boards by sampling (H.17). Paper's own family.</li>
 </ul>
 <h2>Appendix L. Axiom audit, exact H.12.1 re-check, and converses without ancillas or with countable alphabets (Oct 31 2026)</h2>
-<p>This appendix adds to Theorem 1.2 and H.12; it rewrites neither. Theorem N.1 and the copy-gadget converse of Theorem 1.2 are now also formalised in Lean (see the end of L.3); Claim C.1 (countable alphabets, with ancillas) is formalised too, as <code>PFUL.Countable.unitary_l2_iff_pf</code> (see L.4). The countable converse without ancillas is proved and formalised as <code>PFUL.Countable.unitary_l2_noAncilla_iff_pf</code> (Nov 1 2026, L.4(b)). <em>Independent read-only check (2026-11-01): the Lean definitions and quantifiers match the paper's notions.</em> Scripts and logs: code/audit_2026-10-31/.
+<p>This appendix adds to Theorem 1.2 and H.12; it rewrites neither. Theorem N.1 and the copy-gadget converse of Theorem 1.2 are now also formalised in Lean (see the end of L.3); Claim C.1 (countable alphabets, with ancillas) is formalised too, as <code>PFUL.Countable.unitary_l2_iff_pf</code> <a href="#L-069">L-069</a> (see L.4). The countable converse without ancillas is proved and formalised as <code>PFUL.Countable.unitary_l2_noAncilla_iff_pf</code> <a href="#L-177">L-177</a> (Nov 1 2026, L.4(b)). <em>Independent read-only check (2026-11-01): the Lean definitions and quantifiers match the paper's notions.</em> Scripts and logs: code/audit_2026-10-31/.
 Status labels: <strong>[proved]</strong> = paper proof given here, checked numerically/exactly as stated; <strong>[exact]</strong> = exact-arithmetic
 computation; <strong>[numerical]</strong> = float64; <strong>[open]</strong>. Nothing here has been peer reviewed. Scripts and logs:
 <code>code/audit_2026-10-31/</code>.</p>
@@ -298,12 +296,12 @@ None of these is used by any PFUL theorem (PFUL does not import Legacy). The com
 should say it uses <code>native_decide</code>.</li>
 </ul>
 </li>
-<li>Named main theorems (<code>MainAxioms.lean.txt</code>, log <code>lean_main_axioms.log</code>), all standard axioms only: <code>exclusivity</code>,
-<code>induced_mul_conjTranspose(_complex)</code>, <code>induced_unitary</code>, <code>induced_conjTranspose_mul(_of_colnorm)</code>,
-<code>Column.sum_prod_eq_one</code>, <code>Countable.{tsum_prod_eq_one, induced_colnorm, induced_rows, induced_unitary_l2, valid_born_l2}</code>, <code>valid</code>, <code>valid_kraus</code>, <code>valid_instrument</code>, <code>Choi.{bornC_anc_eq_one, afnb_iff_density, isCP_iff_choi, validity_package}</code>, <code>Counterexample.{purification_conjecture_false, purification_conjecture_false_choi, isPure_Vsb, valid_pcl, pcl_not_mem_convexHull, isPureHilbert_Vsb, valid_normalCPTP_Vsb, isPurePM_choiMat_Vsb}</code>.</li>
+<li>Named main theorems (<code>MainAxioms.lean.txt</code>, log <code>lean_main_axioms.log</code>), all standard axioms only: <code>exclusivity</code> <a href="#L-226">L-226</a>,
+<code>induced_mul_conjTranspose(_complex)</code>, <code>induced_unitary</code> <a href="#L-229">L-229</a>, <code>induced_conjTranspose_mul(_of_colnorm)</code>,
+<code>Column.sum_prod_eq_one</code> <a href="#L-045">L-045</a>, <code>Countable.{tsum_prod_eq_one, induced_colnorm, induced_rows, induced_unitary_l2, valid_born_l2}</code>, <code>valid</code> <a href="#L-231">L-231</a>, <code>valid_kraus</code> <a href="#L-030">L-030</a>, <code>valid_instrument</code> <a href="#L-029">L-029</a>, <code>Choi.{bornC_anc_eq_one, afnb_iff_density, isCP_iff_choi, validity_package}</code>, <code>Counterexample.{purification_conjecture_false, purification_conjecture_false_choi, isPure_Vsb, valid_pcl, pcl_not_mem_convexHull, isPureHilbert_Vsb, valid_normalCPTP_Vsb, isPurePM_choiMat_Vsb}</code>.</li>
 <li><code>decide</code> / <code>decide +kernel</code> (LemmaH, Counterexample*) are kernel-checked and add no axioms.</li>
 <li><strong>Not covered by the audit:</strong> whether the Lean definitions faithfully express the paper's notions (an axiom audit
-cannot see this). Update: the (⇒) half of Theorem 1.2 (copy gadget) is now formalised too (<code>PFUL.CopyGadget.unitary_iff_pf</code>; see the Lean formalisation paragraph at the end).</li>
+cannot see this). Update: the (⇒) half of Theorem 1.2 (copy gadget) is now formalised too (<code>PFUL.CopyGadget.unitary_iff_pf</code> <a href="#L-066">L-066</a>; see the Lean formalisation paragraph at the end).</li>
 </ul>
 <h3>L.2. H.12.1 exact re-check in sympy [exact]</h3>
 <p><code>h12_exact_sympy.py</code> (log <code>h12_exact_sympy.log</code>) rebuilds the board from the m<sub>o</sub>(z) table printed in lift.md H.12 (not
@@ -312,7 +310,7 @@ hand-written Q8 class of <code>exact_cex.py</code>.</p>
 <ol>
 <li>All eight U<sub>o</sub> are exactly unitary (entries in Z[i]/8).</li>
 <li>All <strong>2,232</strong> forbidden Pauli coefficients of K<sub>o,o'</sub> vanish exactly (Pauli rule H.8.1). Purity then follows via the
-paper lemmas H.7.1 + H.8.1 + H.8.2 (as before; Lean's <code>isPure_Vsb</code> does not use them).</li>
+paper lemmas H.7.1 + H.8.1 + H.8.2 (as before; Lean's <code>isPure_Vsb</code> <a href="#L-075">L-075</a> does not use them).</li>
 <li>p is real, ≥ 0, columns sum to 1, and all 64 deterministic interventions give total probability exactly 1 (valid).</li>
 <li>With the facet functional g of <code>exact_cex.log</code> (facet 1741): <strong>g·p + g₀ = 1/4 − (3/16)√2 exactly</strong> (&lt; 0); on the 744
 PFs of <code>pfs744.npy</code> min = 0, tight on 418. max|g| = 2, so the certified L1 margin is exactly <strong>3√2/32 − 1/8 ≈
@@ -323,7 +321,7 @@ over Q(i) (Cayley transforms of random rational Hermitian matrices) satisfies M 
 (sympy DomainMatrix over QQ_I): 3 trials without ancillas (64×64) and 2 trials with a qubit ancilla per party
 (512×512): <strong>all 5 trials passed exactly</strong>. Negative control (<code>neg_control.py</code>): changing one exponent m<sub>000</sub>(000) from
 0 to 1 makes the same exact test fail.
-Scope: finitely many exact samples; this corroborates, but does not replace, the Pauli-rule proof or <code>isPure_Vsb</code>.
+Scope: finitely many exact samples; this corroborates, but does not replace, the Pauli-rule proof or <code>isPure_Vsb</code> <a href="#L-075">L-075</a>.
 Not re-checked: the enumeration count 744 (taken from <code>pfs744.npy</code>), that g is a facet, the LP distance.</li>
 </ol>
 <h3>L.3. Converse without ancillas [proved for finite equal local alphabets; numerically corroborated]</h3>
@@ -343,7 +341,7 @@ is not scalar, so V ↦ (V T^δ V†)[a,b] is a real-analytic function on the co
 zero (diagonal: take v an eigenvector of T^δ; off-diagonal: take v not an eigenvector and u in the direction of the
 component of T^δ v orthogonal to v); its zero set is Haar-null. A finite union of null sets is null, so for Haar-a.e. V
 the product is nonzero and M is not unitary. (ii)⇒(iii) trivial.
-(i)⇔(iv): (i)⇒(iv) is the exclusivity Lemma (<code>PFUL.exclusivity</code>). (iv)⇒(i): if s ≠ s' were both fixed points of f∘w,
+(i)⇔(iv): (i)⇒(iv) is the exclusivity Lemma (<code>PFUL.exclusivity</code> <a href="#L-226">L-226</a>). (iv)⇒(i): if s ≠ s' were both fixed points of f∘w,
 take k from (iv): s<sub>k</sub> = f<sub>k</sub>(w<sub>k</sub>(s)) = f<sub>k</sub>(w<sub>k</sub>(s')) = s'<sub>k</sub>, contradiction; so N(f) ≤ 1 for every f. And
 Σ<sub>f</sub> N(f) = Σ<sub>s</sub> ∏_k d<sub>k</sub><sup>d<sub>k</sub>−1</sup> = ∏_k d<sub>k</sub><sup>d<sub>k</sub></sup> = #interventions, so the mean of N is 1 and N ≡ 1. ∎</p>
 <p>So: <strong>every PF lifts with no party ancilla (equal alphabets), and every map whose ancilla-free loop is unitary for all
@@ -359,17 +357,17 @@ three-party binary (all 8<sup>8</sup> maps); every non-PF fails ancilla-free uni
 for the 12 (n=2) and 39,576 (n=3) maps passing all permutation interventions, by a Haar draw (smallest residual
 ‖MM†−1‖_F found ≥ 0.016, far above float error ~1e-15). 2M random two-party ternary maps: all non-PFs caught.
 Lean: done (see below). Not done: exact (non-float) witnesses for the enumerated survivors (the proof makes them unnecessary).</p>
-<p><strong>Lean formalisation (added Oct 31 2026, late) [PROVED, Lean; standard axioms only].</strong> Both converses are now
+<p><strong>Lean formalisation (added Oct 31 2026, late) [proved, Lean; standard axioms only].</strong> Both converses are now
 machine-checked (Lean 4.34.1, Mathlib v4.34.1; no <code>sorry</code>, no <code>native_decide</code>; every theorem below depends only on
 <code>propext</code>, <code>Classical.choice</code>, <code>Quot.sound</code>).</p>
 <ul>
-<li><em>Theorem 1.2, copy-gadget converse</em> (<code>lean/PFUL/CopyGadget.lean</code>): <code>PFUL.CopyGadget.colnorm_eq_card</code> (column (0,0) of
-the closed loop has squared norm N(f)), <code>not_isometry_of_not_pf</code>, and <code>unitary_iff_pf</code> (both directions). Scope: finite
+<li><em>Theorem 1.2, copy-gadget converse</em> (<code>lean/PFUL/CopyGadget.lean</code>): <code>PFUL.CopyGadget.colnorm_eq_card</code> <a href="#L-064">L-064</a> (column (0,0) of
+the closed loop has squared norm N(f)), <code>not_isometry_of_not_pf</code> <a href="#L-065">L-065</a>, and <code>unitary_iff_pf</code> <a href="#L-066">L-066</a> (both directions). Scope: finite
 alphabets, output alphabets O<sub>k</sub> with an <code>AddCommGroup</code> structure (ancillas X<sub>k</sub> = O<sub>k</sub>, Y<sub>k</sub> = I<sub>k</sub>).</li>
-<li><em>Theorem N.1, no ancillas</em> (<code>lean/PFUL/NoAncilla.lean</code>): <code>PFUL.NoAncilla.unitary_noAncilla_iff_pf</code> (M M† = 1 and
-M† M = 1 for every tuple of ancilla-free local unitaries ⇔ w is a PF), with the row Gram identity <code>gram</code> (any
-ancillas), <code>pf_imp_unitary_noAncilla</code>, and <code>exclusivity_of_unitary_noAncilla</code>; the counting step Σ<sub>f</sub> N(f) = #f and
-exclusivity ⇒ PF are in <code>lean/PFUL/ExclusivityCount.lean</code> (<code>sum_N_eq_card</code>, <code>exclusive_imp_existsUnique</code>). Scope:
+<li><em>Theorem N.1, no ancillas</em> (<code>lean/PFUL/NoAncilla.lean</code>): <code>PFUL.NoAncilla.unitary_noAncilla_iff_pf</code> <a href="#L-174">L-174</a> (M M† = 1 and
+M† M = 1 for every tuple of ancilla-free local unitaries ⇔ w is a PF), with the row Gram identity <code>gram</code> <a href="#L-172">L-172</a> (any
+ancillas), <code>pf_imp_unitary_noAncilla</code> <a href="#L-173">L-173</a>, and <code>exclusivity_of_unitary_noAncilla</code> <a href="#L-171">L-171</a>; the counting step Σ<sub>f</sub> N(f) = #f and
+exclusivity ⇒ PF are in <code>lean/PFUL/ExclusivityCount.lean</code> (<code>sum_N_eq_card</code> <a href="#L-124">L-124</a>, <code>exclusive_imp_existsUnique</code> <a href="#L-123">L-123</a>). Scope:
 finite alphabets, an equivalence O<sub>k</sub> ≃ I<sub>k</sub>, an additive group structure on I<sub>k</sub>.</li>
 <li><em>The exclusivity step uses an explicit witness instead of the Haar draw.</em> If (iv) fails for s ≠ s', put δ_k = w<sub>k</sub>(s) − w<sub>k</sub>(s'),
 p = e<sub>k</sub>(s<sub>k</sub>). At parties with s<sub>k</sub> = s'<sub>k</sub> and δ_k ≠ 0, take the real rational Householder reflection
@@ -377,7 +375,7 @@ H = 1 − 2vvᵀ/‖v‖² with v = 2e_p + e<sub>p+δ_k</sub> (‖v‖² = 5): r
 term of the Gram factor is ≥ 0 and the term at c = p is 12/25 &gt; 0. At every other party take a permutation
 (swap(e s<sub>k</sub>, e s'<sub>k</sub> + δ_k) ∘ e), whose Gram factor is exactly 1. Then (M M†)[s,s'] ≠ 0, so M is not unitary. The Haar
 argument above remains valid (it gives (iii)), but it is no longer needed for (ii) ⇒ (iv).</li>
-<li>Not in Lean: (iii) (genericity of one Haar draw). The countable-alphabet claim C.1 of L.4 is now in Lean (Nov 1 2026, <code>PFUL.Countable.unitary_l2_iff_pf</code>); the ancilla-free countable case is now also in Lean (<code>PFUL.Countable.unitary_l2_noAncilla_iff_pf</code>, L.4(b)).</li>
+<li>Not in Lean: (iii) (genericity of one Haar draw). The countable-alphabet claim C.1 of L.4 is now in Lean (Nov 1 2026, <code>PFUL.Countable.unitary_l2_iff_pf</code> <a href="#L-069">L-069</a>); the ancilla-free countable case is now also in Lean (<code>PFUL.Countable.unitary_l2_noAncilla_iff_pf</code> <a href="#L-177">L-177</a>, L.4(b)).</li>
 </ul>
 <h3>L.4. Converse for countable alphabets [proved, Lean, with and without ancillas]</h3>
 <p>Finitely many parties, I<sub>k</sub>, O<sub>k</sub> countable (finite or ℕ), PF = every f has exactly one fixed point (as in
@@ -388,54 +386,54 @@ basis vectors, hence unitary on ℓ²) gives a closed loop with no unitary (inde
 products, no series. Column (0,0) is the indicator of {(s, w(s)) : f(w(s)) = s}, with N(f) ∈ {0,1,2,…,∞} entries. Any
 isometry Φ with Φδ_c = M(·,c) needs ‖M(·,(0,0))‖² = 1; but it is N(f) ≠ 1 (for N = ∞ the column is not even in ℓ², so
 no bounded operator has these matrix entries). ∎ So with ancillas, Theorem 1.2 holds for countable alphabets:
-(⇐) is <code>PFUL.Countable.induced_unitary_l2</code> (Lean), (⇒) is C.1 (now also Lean, see below). Nothing in the finite proof used finiteness
+(⇐) is <code>PFUL.Countable.induced_unitary_l2</code> <a href="#L-002">L-002</a> (Lean), (⇒) is C.1 (now also Lean, see below). Nothing in the finite proof used finiteness
 except the target statement &quot;M not an isometry&quot;, which C.1 replaces by the column-norm obstruction.
 Example of the N = ∞ case: one party, I = O = ℕ, w = id, f = id.
 <strong>Where it breaks.</strong> (a) Continuous alphabets: the gadget is still unitary on L² (shear+swap preserves Lebesgue measure,
 for measurable f), but basis vectors δ_c are not in L², so &quot;column norm = fixed-point count&quot; has no meaning; one needs a
 measure-theoretic replacement (cf. F.5). (b) Without ancillas on countable alphabets (superseded by L.4(b) below; original text kept): the Gram identity and
-&quot;exclusivity ⇒ N(f) ≤ 1&quot; survive, but the averaging step Σ<sub>f</sub> N(f) = #f needs finiteness (this obstacle is now obsolete: the converse goes through without any counting, via the induction <code>existsUnique_of_exclusive</code>; see L.4(b) below), and there is no Haar measure on
+&quot;exclusivity ⇒ N(f) ≤ 1&quot; survive, but the averaging step Σ<sub>f</sub> N(f) = #f needs finiteness (this obstacle is now obsolete: the converse goes through without any counting, via the induction <code>existsUnique_of_exclusive</code> <a href="#L-121">L-121</a>; see L.4(b) below), and there is no Haar measure on
 U(ℓ²) (genericity would have to be redone, e.g. with finite-rank perturbations). For two parties exclusivity forces one
 of w<sub>A</sub>, w<sub>B</sub> to be constant, hence a PF, so a countable counterexample to &quot;exclusive ⇒ PF&quot; would need ≥ 3 parties. [was open; resolved in L.4(b) below]</p>
-<p><strong>Lean (added Nov 1 2026) [PROVED, Lean; standard axioms only].</strong> Claim C.1 is formalised in <code>lean/PFUL/CopyGadgetL2.lean</code> as <code>PFUL.Countable.unitary_l2_iff_pf</code>: the closed loop is a unitary of ℓ² (a linear isometric equivalence whose matrix entries on basis vectors are the induced kernel) for every admissible tuple of local kernels (square-summable rows, orthonormal rows, unit columns, i.e. the hypotheses of <code>induced_unitary_l2</code>) iff w is a PF. Supporting theorems: <code>not_isometry_of_not_pf_l2</code> (for a non-PF the copy gadget satisfies all those hypotheses, yet <strong>no linear isometry</strong> of ℓ², not merely no unitary, has the induced kernel as matrix) and <code>existsUnique_of_isometry_l2</code> (an isometric realisation forces exactly one fixed point; zero gives column norm 0, two distinct ones give ≥ 2, and N = ∞ is excluded by square-summability of the column). Scope: finitely many parties; countable (finite or infinite) alphabets; <code>AddCommGroup</code> on both I<sub>k</sub> and O<sub>k</sub>; ancillas fixed to X<sub>k</sub> = O<sub>k</sub>, Y<sub>k</sub> = I<sub>k</sub> (the quantifier over V ranges over this ancilla shape). Still uncovered or open: continuous alphabets (not covered: basis vectors are not in L²) and, at the time, the countable case without ancillas (now resolved, L.4(b) below).</p>
-<p><strong>L.4(b). Converse without ancillas for countable alphabets [PROVED, Lean; standard axioms only] (Nov 1 2026).</strong> <code>PFUL.Countable.unitary_l2_noAncilla_iff_pf</code> (<code>lean/PFUL/NoAncillaL2.lean</code>): with finitely many parties, countable alphabets with an abelian-group structure on each input alphabet I<sub>k</sub> (<code>AddCommGroup (I k)</code>, as in Lean; via the bijection this is equivalent to putting it on O<sub>k</sub>), a bijection e<sub>k</sub> : O<sub>k</sub> ≃ I<sub>k</sub> given as a parameter, decidable equality on ι, I<sub>k</sub>, O<sub>k</sub> (harmless, as everything is classical), and no ancillas (X<sub>k</sub> = Y<sub>k</sub> = Unit), the closed loop is a unitary of ℓ² for every admissible tuple of local unitaries (square-summable orthonormal rows, unit columns) iff w is a PF. The closed loop Φ (wiring o ↦ shift by w(o) in I) depends on the chosen group law on I<sub>k</sub>; it does not depend on e, which is used only to build the witnesses and to show O<sub>k</sub> is nonempty. The proof has two pieces, neither of which counts fixed points, so neither needs finiteness or Haar measure:</p>
+<p><strong>Lean (added Nov 1 2026) [proved, Lean; standard axioms only].</strong> Claim C.1 is formalised in <code>lean/PFUL/CopyGadgetL2.lean</code> as <code>PFUL.Countable.unitary_l2_iff_pf</code> <a href="#L-069">L-069</a>: the closed loop is a unitary of ℓ² (a linear isometric equivalence whose matrix entries on basis vectors are the induced kernel) for every admissible tuple of local kernels (square-summable rows, orthonormal rows, unit columns, i.e. the hypotheses of <code>induced_unitary_l2</code> <a href="#L-002">L-002</a>) iff w is a PF. Supporting theorems: <code>not_isometry_of_not_pf_l2</code> <a href="#L-068">L-068</a> (for a non-PF the copy gadget satisfies all those hypotheses, yet <strong>no linear isometry</strong> of ℓ², not merely no unitary, has the induced kernel as matrix) and <code>existsUnique_of_isometry_l2</code> <a href="#L-067">L-067</a> (an isometric realisation forces exactly one fixed point; zero gives column norm 0, two distinct ones give ≥ 2, and N = ∞ is excluded by square-summability of the column). Scope: finitely many parties; countable (finite or infinite) alphabets; <code>AddCommGroup</code> on both I<sub>k</sub> and O<sub>k</sub>; ancillas fixed to X<sub>k</sub> = O<sub>k</sub>, Y<sub>k</sub> = I<sub>k</sub> (the quantifier over V ranges over this ancilla shape). Still uncovered or open: continuous alphabets (not covered: basis vectors are not in L²) and, at the time, the countable case without ancillas (now resolved, L.4(b) below).</p>
+<p><strong>L.4(b). Converse without ancillas for countable alphabets [proved, Lean; standard axioms only] (Nov 1 2026).</strong> <code>PFUL.Countable.unitary_l2_noAncilla_iff_pf</code> <a href="#L-177">L-177</a> (<code>lean/PFUL/NoAncillaL2.lean</code>): with finitely many parties, countable alphabets with an abelian-group structure on each input alphabet I<sub>k</sub> (<code>AddCommGroup (I k)</code>, as in Lean; via the bijection this is equivalent to putting it on O<sub>k</sub>), a bijection e<sub>k</sub> : O<sub>k</sub> ≃ I<sub>k</sub> given as a parameter, decidable equality on ι, I<sub>k</sub>, O<sub>k</sub> (harmless, as everything is classical), and no ancillas (X<sub>k</sub> = Y<sub>k</sub> = Unit), the closed loop is a unitary of ℓ² for every admissible tuple of local unitaries (square-summable orthonormal rows, unit columns) iff w is a PF. The closed loop Φ (wiring o ↦ shift by w(o) in I) depends on the chosen group law on I<sub>k</sub>; it does not depend on e, which is used only to build the witnesses and to show O<sub>k</sub> is nonempty. The proof has two pieces, neither of which counts fixed points, so neither needs finiteness or Haar measure:</p>
 <ul>
-<li><em>Exclusive ⇒ PF on any alphabets</em> (<code>PFUL.FiniteBox.existsUnique_of_exclusive</code>, <code>lean/PFUL/ExclusiveInduction.lean</code>). Uniqueness is <code>fixed_unique</code>. Existence is by induction on a set T of active parties, the rest frozen (<code>exists_partial_fixed</code>): adding party n, for each value c of n take the configuration s(c) fixed on T; for c ≠ c′ the exclusivity witness k cannot be frozen (both configurations agree there) nor in T (both fixed there, w<sub>k</sub> agrees), so k = n, hence f<sub>n</sub>(w<sub>n</sub>(s(c))) is independent of c, and its common value closes the loop. This also gives a counting-free proof of the finite case.</li>
-<li><em>Unitary for all local unitaries ⇒ exclusive</em> (P1, <code>PFUL.Countable.exclusive_of_unitary_l2</code>). If exclusivity fails at s ≠ s′, at each party choose a local unitary whose row overlap Σ<sub>i</sub> V(s<sub>k</sub>, w<sub>k</sub>(s)+i)·conj V(s′_k, w<sub>k</sub>(s′)+i) is nonzero: where s<sub>k</sub> = s′_k but w<sub>k</sub>(s) ≠ w<sub>k</sub>(s′), the real rotation with entries 3/5, 4/5 on the two points {p, p + w<sub>k</sub>(s) − w<sub>k</sub>(s′)} (p = e(s<sub>k</sub>)), identity elsewhere (its row p is nonnegative and the overlap contains the term (4/5)(3/5) &gt; 0); elsewhere a permutation adjusted by one transposition, giving overlap 1. The row Gram sum of the closed loop factorises into these overlaps (<code>hasSum_pi_prod</code>), so it is nonzero, contradicting orthonormality of the rows of a unitary (<code>rows_of_lie</code>).
+<li><em>Exclusive ⇒ PF on any alphabets</em> (<code>PFUL.FiniteBox.existsUnique_of_exclusive</code> <a href="#L-121">L-121</a>, <code>lean/PFUL/ExclusiveInduction.lean</code>). Uniqueness is <code>fixed_unique</code> <a href="#L-125">L-125</a>. Existence is by induction on a set T of active parties, the rest frozen (<code>exists_partial_fixed</code> <a href="#L-122">L-122</a>): adding party n, for each value c of n take the configuration s(c) fixed on T; for c ≠ c′ the exclusivity witness k cannot be frozen (both configurations agree there) nor in T (both fixed there, w<sub>k</sub> agrees), so k = n, hence f<sub>n</sub>(w<sub>n</sub>(s(c))) is independent of c, and its common value closes the loop. This also gives a counting-free proof of the finite case.</li>
+<li><em>Unitary for all local unitaries ⇒ exclusive</em> (P1, <code>PFUL.Countable.exclusive_of_unitary_l2</code> <a href="#L-175">L-175</a>). If exclusivity fails at s ≠ s′, at each party choose a local unitary whose row overlap Σ<sub>i</sub> V(s<sub>k</sub>, w<sub>k</sub>(s)+i)·conj V(s′_k, w<sub>k</sub>(s′)+i) is nonzero: where s<sub>k</sub> = s′_k but w<sub>k</sub>(s) ≠ w<sub>k</sub>(s′), the real rotation with entries 3/5, 4/5 on the two points {p, p + w<sub>k</sub>(s) − w<sub>k</sub>(s′)} (p = e(s<sub>k</sub>)), identity elsewhere (its row p is nonnegative and the overlap contains the term (4/5)(3/5) &gt; 0); elsewhere a permutation adjusted by one transposition, giving overlap 1. The row Gram sum of the closed loop factorises into these overlaps (<code>hasSum_pi_prod</code> <a href="#L-200">L-200</a>), so it is nonzero, contradicting orthonormality of the rows of a unitary (<code>rows_of_lie</code> <a href="#L-176">L-176</a>).
 Continuous alphabets remain uncovered. <em>Independent read-only check (2026-11-01): the Lean definitions and quantifiers match the paper's notions.</em></li>
 </ul>
-<p><strong>L.4(c). Arbitrary discrete alphabets (any cardinality) [PROVED, Lean; standard axioms only] (Nov 2 2026).</strong> <code>lean/PFUL/GeneralAlphabets.lean</code>, namespace <code>PFUL.General</code> (commit db5ebc8). Every <code>Countable</code> hypothesis of L.4 and L.4(b) is removed; ℓ²(T) is Mathlib's <code>lp (fun _ : T ⇒ ℂ) 2</code> for an arbitrary type T, with orthonormal basis <code>lp.single</code> (an <code>example</code> instantiates the copy-gadget theorem with discrete alphabet ℝ).</p>
+<p><strong>L.4(c). Arbitrary discrete alphabets (any cardinality) [proved, Lean; standard axioms only] (Nov 2 2026).</strong> <code>lean/PFUL/GeneralAlphabets.lean</code>, namespace <code>PFUL.General</code> (commit db5ebc8). Every <code>Countable</code> hypothesis of L.4 and L.4(b) is removed; ℓ²(T) is Mathlib's <code>lp (fun _ : T ⇒ ℂ) 2</code> for an arbitrary type T, with orthonormal basis <code>lp.single</code> (an <code>example</code> instantiates the copy-gadget theorem with discrete alphabet ℝ).</p>
 <ul>
-<li><em>Combinatorics</em> (<code>exclusive_iff_pf</code>): for finitely many parties (<code>Finite ι</code>) and nonempty output alphabets of arbitrary types, with no finiteness, countability, decidability or algebraic structure on any I<sub>k</sub>, O<sub>k</sub>, w is exclusive iff every f has exactly one fixed point. (⇒) is the induction <code>existsUnique_of_exclusive</code>; (⇐) is <code>Countable.exclusivity</code>. Nonemptiness is used only in (⇒) and is necessary (<code>exclusive_not_pf_of_empty</code>: one party, I = O = ∅, vacuously exclusive, the unique f has no fixed point).</li>
-<li><em>Factorisation</em> (<code>hasSum_pi_prod_any</code>): absolutely summable families have countable support, so the product sum reduces to the countable lemma.</li>
-<li><em>Column identity</em> (<code>tsum_prod_eq_one_anc_any</code>): for a PF w and probability vectors p<sub>k</sub>(i) on arbitrary O<sub>k</sub> × Y<sub>k</sub>, Σ<sub>r</sub> Π_k p<sub>k</sub>(w<sub>k</sub>(r₁))(r₁k, r₂k) = 1. The product-measure proof of L.4 does not transfer (an uncountable union of null cylinders need not be null). Instead: each p<sub>k</sub>(i) has countable support; from a countable seed, repeatedly add the supports of p<sub>k</sub>(w<sub>k</sub>(s)) for s in the current box; the union C is a countable box closed under these supports. On C (inputs restricted to the range of w) the restriction of w is still a PF (an intervention with values in C has its fixed point in C), so the countable theorem gives sum 1 over C. Every finite set of terms lies in such a box (seed it with them), giving ≤ 1; one box gives ≥ 1.</li>
-<li><em>Unitary layer</em>: <code>induced_unitary_l2_any</code>, <code>unitary_l2_iff_pf_any</code> (copy gadget, X = O, Y = I), <code>exclusive_of_unitary_l2_any</code>, <code>unitary_l2_noAncilla_iff_pf_any</code> (no ancillas, e<sub>k</sub> : O<sub>k</sub> ≃ I<sub>k</sub>): the L.4/L.4(b) proofs with the two lemmas above substituted.</li>
+<li><em>Combinatorics</em> (<code>exclusive_iff_pf</code> <a href="#L-126">L-126</a>): for finitely many parties (<code>Finite ι</code>) and nonempty output alphabets of arbitrary types, with no finiteness, countability, decidability or algebraic structure on any I<sub>k</sub>, O<sub>k</sub>, w is exclusive iff every f has exactly one fixed point. (⇒) is the induction <code>existsUnique_of_exclusive</code> <a href="#L-121">L-121</a>; (⇐) is <code>Countable.exclusivity</code> <a href="#L-199">L-199</a>. Nonemptiness is used only in (⇒) and is necessary (<code>exclusive_not_pf_of_empty</code> <a href="#L-127">L-127</a>: one party, I = O = ∅, vacuously exclusive, the unique f has no fixed point).</li>
+<li><em>Factorisation</em> (<code>hasSum_pi_prod_any</code> <a href="#L-129">L-129</a>): absolutely summable families have countable support, so the product sum reduces to the countable lemma.</li>
+<li><em>Column identity</em> (<code>tsum_prod_eq_one_anc_any</code> <a href="#L-131">L-131</a>): for a PF w and probability vectors p<sub>k</sub>(i) on arbitrary O<sub>k</sub> × Y<sub>k</sub>, Σ<sub>r</sub> Π_k p<sub>k</sub>(w<sub>k</sub>(r₁))(r₁k, r₂k) = 1. The product-measure proof of L.4 does not transfer (an uncountable union of null cylinders need not be null). Instead: each p<sub>k</sub>(i) has countable support; from a countable seed, repeatedly add the supports of p<sub>k</sub>(w<sub>k</sub>(s)) for s in the current box; the union C is a countable box closed under these supports. On C (inputs restricted to the range of w) the restriction of w is still a PF (an intervention with values in C has its fixed point in C), so the countable theorem gives sum 1 over C. Every finite set of terms lies in such a box (seed it with them), giving ≤ 1; one box gives ≥ 1.</li>
+<li><em>Unitary layer</em>: <code>induced_unitary_l2_any</code> <a href="#L-130">L-130</a>, <code>unitary_l2_iff_pf_any</code> <a href="#L-132">L-132</a> (copy gadget, X = O, Y = I), <code>exclusive_of_unitary_l2_any</code> <a href="#L-128">L-128</a>, <code>unitary_l2_noAncilla_iff_pf_any</code> <a href="#L-133">L-133</a> (no ancillas, e<sub>k</sub> : O<sub>k</sub> ≃ I<sub>k</sub>): the L.4/L.4(b) proofs with the two lemmas above substituted.</li>
 <li><em>Scope</em>: finitely many parties; discrete alphabets of any cardinality; the abelian-group law on I<sub>k</sub> (and O<sub>k</sub> for the gadget) is still in the statements (kernels evaluated at w<sub>k</sub>(f)+e<sub>k</sub>). Open: continuous alphabets (no basis-vector histories; fixed points are generically null sets, so &quot;exactly one fixed point&quot; is invisible at the L² level and the formulation must change, see paper/notes/2026-11-02-general-alphabets.md) and infinitely many parties (now partly settled, see L.4(e)).</li>
 </ul>
-<p><strong>L.4(d). Bijection law in place of the group law [PROVED, Lean; standard axioms only] (Nov 2 2026).</strong> <code>lean/PFUL/BijectionLaw.lean</code> (commit 3f5ba8e). The loop is evaluated at σ_k(w<sub>k</sub>(f))(e<sub>k</sub>), where σ_k : I<sub>k</sub> → Perm(I<sub>k</sub>) is an arbitrary family of bijections. The group case is σ_k(a) = (a + ·), which is free (<code>free_addLeft</code>).</p>
+<p><strong>L.4(d). Bijection law in place of the group law [proved, Lean; standard axioms only] (Nov 2 2026).</strong> <code>lean/PFUL/BijectionLaw.lean</code> (commit 3f5ba8e). The loop is evaluated at σ_k(w<sub>k</sub>(f))(e<sub>k</sub>), where σ_k : I<sub>k</sub> → Perm(I<sub>k</sub>) is an arbitrary family of bijections. The group case is σ_k(a) = (a + ·), which is free (<code>free_addLeft</code> <a href="#L-015">L-015</a>).</p>
 <ul>
-<li>PF ⇒ unitary (<code>induced_unitary_l2_σ</code>) needs no condition on σ.</li>
-<li>The copy-gadget converse (<code>unitary_l2_iff_pf_σ</code>) needs σ <em>free</em> (σ a c = σ a′ c ⇒ a = a′) and O<sub>k</sub> nonempty. The output alphabets need no algebra, because the gadget uses <code>Equiv.swap</code>.</li>
-<li>The no-ancilla converse (<code>exclusive_of_unitary_l2_σ</code>, <code>unitary_l2_noAncilla_iff_pf_σ</code>) needs σ free, e<sub>k</sub> : O<sub>k</sub> ≃ I<sub>k</sub>, and O<sub>k</sub> nonempty. Nonemptiness is necessary: if O is empty, ℓ² is trivial.</li>
+<li>PF ⇒ unitary (<code>induced_unitary_l2_σ</code> <a href="#L-016">L-016</a>) needs no condition on σ.</li>
+<li>The copy-gadget converse (<code>unitary_l2_iff_pf_σ</code> <a href="#L-017">L-017</a>) needs σ <em>free</em> (σ a c = σ a′ c ⇒ a = a′) and O<sub>k</sub> nonempty. The output alphabets need no algebra, because the gadget uses <code>Equiv.swap</code>.</li>
+<li>The no-ancilla converse (<code>exclusive_of_unitary_l2_σ</code> <a href="#L-014">L-014</a>, <code>unitary_l2_noAncilla_iff_pf_σ</code> <a href="#L-018">L-018</a>) needs σ free, e<sub>k</sub> : O<sub>k</sub> ≃ I<sub>k</sub>, and O<sub>k</sub> nonempty. Nonemptiness is necessary: if O is empty, ℓ² is trivial.</li>
 <li>So the simply-transitive restatement weakens to free; transitivity is never used.</li>
 <li>Scope: finitely many parties, discrete alphabets of any cardinality.</li>
 </ul>
 <p><strong>L.4(e). Infinitely many parties (Nov 2 2026).</strong></p>
 <ul>
-<li><em>Reduction [PROVED, Lean]</em> (<code>lean/PFUL/InfiniteParties.lean</code>):
+<li><em>Reduction [proved, Lean]</em> (<code>lean/PFUL/InfiniteParties.lean</code>):
 <ul>
-<li><code>fixed_unique</code>: for any index set ι, exclusivity gives at most one fixed point.</li>
-<li><code>exists_exclusive_not_pf_iff</code>: an exclusive non-PF w exists iff there is a fixed-point-free exclusive self-map F of ∏_k O<sub>k</sub>.</li>
+<li><code>fixed_unique</code> <a href="#L-147">L-147</a>: for any index set ι, exclusivity gives at most one fixed point.</li>
+<li><code>exists_exclusive_not_pf_iff</code> <a href="#L-146">L-146</a>: an exclusive non-PF w exists iff there is a fixed-point-free exclusive self-map F of ∏_k O<sub>k</sub>.</li>
 </ul>
 </li>
-<li><em>Continuous case [PROVED, Lean; standard axioms only]</em> (<code>lean/PFUL/InfiniteCompact.lean</code>, <code>pf_of_exclusive_continuous</code>, commit 67b75be).
+<li><em>Continuous case [proved, Lean; standard axioms only]</em> (<code>lean/PFUL/InfiniteCompact.lean</code>, <code>pf_of_exclusive_continuous</code> <a href="#L-134">L-134</a>, commit 67b75be).
 <ul>
 <li>Hypotheses: ι arbitrary; O<sub>k</sub> finite, nonempty and discrete; I<sub>k</sub> discrete; each coordinate s ↦ w<sub>k</sub>(s) continuous in the product topology; w exclusive.</li>
 <li>Conclusion: every intervention has exactly one fixed point.</li>
-<li>Proof: fix a finite T and a background t. Then u ↦ (f∘w)(u ⊔ t)|<sub>T</sub> is exclusive on T, so by <code>exclusive_iff_pf</code> it has a fixed point. The clopen sets {s : f<sub>k</sub>(w<sub>k</sub>(s)) = s<sub>k</sub>} therefore have the finite intersection property in the compact space ∏O<sub>k</sub>.</li>
+<li>Proof: fix a finite T and a background t. Then u ↦ (f∘w)(u ⊔ t)|<sub>T</sub> is exclusive on T, so by <code>exclusive_iff_pf</code> <a href="#L-126">L-126</a> it has a fixed point. The clopen sets {s : f<sub>k</sub>(w<sub>k</sub>(s)) = s<sub>k</sub>} therefore have the finite intersection property in the compact space ∏O<sub>k</sub>.</li>
 </ul>
 </li>
-<li><em>Discontinuous case: consistent counterexample [PROVED, Lean, under the explicit hypothesis cov(M) = 𝔠; standard axioms only] (<code>lean/PFUL/CovMCounterexample.lean</code>, <code>exists_exclusive_not_pf_of_covM</code>, CH corollary <code>exists_exclusive_not_pf_of_CH</code>). The paper proof was refereed by a Gödel likeness (/workspace/leibniz-likeness/godel-check-E.md, verdict correct). The hypothesis is <code>CovMEqC</code>: no family of fewer than 𝔠 meagre subsets of ℕ → Bool, indexed by a type in <code>Type</code>, covers it. The Lean recursion runs over the sequences themselves, in a well-order of type ord 𝔠. A sequence with an earlier finite-difference neighbour copies that neighbour's value, which gives the same class-constant F.</em>
+<li><em>Discontinuous case: consistent counterexample [proved, Lean, under the explicit hypothesis cov(M) = 𝔠; standard axioms only] (<code>lean/PFUL/CovMCounterexample.lean</code>, <code>exists_exclusive_not_pf_of_covM</code> <a href="#L-119">L-119</a>, CH corollary <code>exists_exclusive_not_pf_of_CH</code> <a href="#L-118">L-118</a>). The paper proof was refereed by a Gödel likeness (/workspace/leibniz-likeness/godel-check-E.md, verdict correct). The hypothesis is <code>CovMEqC</code>: no family of fewer than 𝔠 meagre subsets of ℕ → Bool, indexed by a type in <code>Type</code>, covers it. The Lean recursion runs over the sequences themselves, in a well-order of type ord 𝔠. A sequence with an earlier finite-difference neighbour copies that neighbour's value, which gives the same class-constant F.</em>
 <ul>
 <li>Under cov(M) = 𝔠 (e.g. CH or MA) there is a fixed-point-free exclusive F : 2^ℕ → 2^ℕ, so there is an exclusive non-PF w with countably many binary parties.</li>
 <li>Construction: F is constant on E₀-classes, F(s) = rep(g([s])), where g : P(ℕ)/fin → P(ℕ)/fin satisfies g x ≠ x and, for x ≠ y, (x+y) ∧ ¬(gx+gy) ≠ 0.</li>
@@ -451,6 +449,1871 @@ Continuous alphabets remain uncovered. <em>Independent read-only check (2026-11-
 </ul>
 </li>
 </ul>
+<h2>Appendix M. Lean results index (Nov 2 2026)</h2>
+<p>Every Lean theorem cited in this paper or in the gentle version (graded.md), with its index label, full Lean name, file in lean/PFUL, abridged hypotheses (explicit and instance binders; implicit type arguments omitted) and conclusion, and the axioms reported by <code>#print axioms</code>. The table is generated from the Lean sources: every cited name was resolved to its declaration, and <code>#print axioms</code> was run on all of them in one file importing the listed modules (Lean 4.34.1, Mathlib). No entry depends on <code>sorryAx</code>, <code>Lean.ofReduceBool</code> or any axiom beyond propext, Classical.choice and Quot.sound; &quot;none&quot; means no axioms at all. In the text a label such as [L-123] follows the Lean name it refers to. Signatures are abridged; the Lean file is authoritative.</p>
+<p>The results the main line rests on: the lift (<code>PFUL.induced_unitary</code> <a href="#L-229">L-229</a>, <code>PFUL.Choi.validity_package</code> <a href="#L-022">L-022</a>); the converse (<code>PFUL.CopyGadget.unitary_iff_pf</code> <a href="#L-066">L-066</a>, <code>PFUL.NoAncilla.unitary_noAncilla_iff_pf</code> <a href="#L-174">L-174</a>); the general-alphabet and bijection-law forms (<code>PFUL.General.exclusive_iff_pf</code> <a href="#L-126">L-126</a>, <code>PFUL.General.unitary_l2_iff_pf_any</code> <a href="#L-132">L-132</a>, <code>PFUL.General.unitary_l2_noAncilla_iff_pf_any</code> <a href="#L-133">L-133</a>, <code>PFUL.General.unitary_l2_iff_pf_σ</code> <a href="#L-017">L-017</a>, <code>PFUL.General.unitary_l2_noAncilla_iff_pf_σ</code> <a href="#L-018">L-018</a>); infinitely many parties (<code>PFUL.Infinite.exists_exclusive_not_pf_iff</code> <a href="#L-146">L-146</a>, <code>PFUL.Infinite.pf_of_exclusive_continuous</code> <a href="#L-134">L-134</a>, <code>PFUL.Infinite.exists_exclusive_fixedPointFree_of_covM</code> <a href="#L-117">L-117</a>, <code>PFUL.Infinite.exists_exclusive_not_pf_of_covM</code> <a href="#L-119">L-119</a>, <code>PFUL.Infinite.covMEqC_of_CH</code> <a href="#L-116">L-116</a>, <code>PFUL.Infinite.exists_exclusive_not_pf_of_CH</code> <a href="#L-118">L-118</a>, <code>PFUL.Infinite.forb_isMeagre</code> <a href="#L-120">L-120</a>); and the counterexample (<code>PFUL.Counterexample.purification_conjecture_false</code> <a href="#L-078">L-078</a>, <code>PFUL.Counterexample.purification_conjecture_false_choi</code> <a href="#L-092">L-092</a>, <code>PFUL.Counterexample.purification_conjecture_false_choiInf</code> <a href="#L-106">L-106</a>).</p>
+<table>
+<thead>
+<tr>
+<th>Label</th>
+<th>Lean name</th>
+<th>File</th>
+<th>Hypotheses (abridged)</th>
+<th>Conclusion (abridged)</th>
+<th>Axioms</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="L-001"></a>L-001</td>
+<td><code>PFUL.PM.isPurePM_iff</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/AFNBPure.lean">AFNBPure.lean</a></td>
+<td><code>(σ : ∀ k, I k ≃ O k) (hPF : Fintype.card P = Fintype.card F) (W : Matrix (PIdx P F I O) (PIdx P F I O) ℂ)</code></td>
+<td><code>IsPurePM W ↔ IsValidPM W ∧ ∃ U : Matrix (F × ∀ k, I k) (P × ∀ k, O k) ℂ, IsUnitaryM U ∧ W = choiPM U</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-002"></a>L-002</td>
+<td><code>PFUL.Countable.induced_unitary_l2</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/Assemble.lean">Assemble.lean</a></td>
+<td><code>[∀ k, AddCommGroup (I k)] [∀ k, Countable (I k)] [∀ k, Countable (X k)] [∀ k, Countable (O k)] [∀ k, Countable (Y k)] [∀ k, DecidableEq (I k)] [∀ k, …</code></td>
+<td><code>∃ Φ : lp (fun _ : (∀ k, I k) × (∀ k, X k) ⇒ ℂ) 2 ≃ₗᵢ[ℂ] lp (fun _ : (∀ k, O k) × (∀ k, Y k) ⇒ ℂ) 2, (∀ v r, HasSum (fun c ⇒ (∏ k, V k (r.1 k, r.2 …</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-003"></a>L-003</td>
+<td><code>PFUL.TraceClass.IsCPTP.isNormalCPTP</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/AutoBounded.lean">AutoBounded.lean</a></td>
+<td><code>(H →L[ℂ] H) (K →L[ℂ] K) (h : IsCPTP Φ)</code></td>
+<td><code>IsNormalCPTP Φ where toIsCPTP</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-004"></a>L-004</td>
+<td><code>PFUL.TraceClass.IsPTP.traceNorm_le</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/AutoBounded.lean">AutoBounded.lean</a></td>
+<td><code>(H →L[ℂ] H) (K →L[ℂ] K) (h : IsPTP Φ) [ℂ] (hT : T ∈ traceClass H)</code></td>
+<td><code>traceNorm (Φ T) ≤ 2 * traceNorm T</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-005"></a>L-005</td>
+<td><code>PFUL.TraceClass.IsPTP.traceNorm_le_selfAdjoint</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/AutoBounded.lean">AutoBounded.lean</a></td>
+<td><code>(H →L[ℂ] H) (K →L[ℂ] K) (h : IsPTP Φ) [ℂ] (hS : S ∈ traceClass H) (hsa : IsSelfAdjoint S)</code></td>
+<td><code>traceNorm (Φ S) ≤ traceNorm S</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-006"></a>L-006</td>
+<td><code>PFUL.TraceClass.isNormalCPTP_iff</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/AutoBounded.lean">AutoBounded.lean</a></td>
+<td><code>(H →L[ℂ] H) (K →L[ℂ] K)</code></td>
+<td><code>IsNormalCPTP Φ ↔ IsCPTP Φ</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-007"></a>L-007</td>
+<td><code>PFUL.TraceClass.jordan</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/AutoBounded.lean">AutoBounded.lean</a></td>
+<td><code>[ℂ] (hS : S ∈ traceClass H) (hsa : IsSelfAdjoint S)</code></td>
+<td><code>S⁺ ∈ traceClass H ∧ S⁻ ∈ traceClass H ∧ (S⁺).IsPositive ∧ (S⁻).IsPositive ∧ S⁺ - S⁻ = S ∧ S⁺ + S⁻ = absOp S</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-008"></a>L-008</td>
+<td><code>PFUL.TraceClass.traceNorm_adjoint_le</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/AutoBounded.lean">AutoBounded.lean</a></td>
+<td><code>[ℂ] (hT : T ∈ traceClass H)</code></td>
+<td><code>traceNorm (adjoint T) ≤ traceNorm T</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-009"></a>L-009</td>
+<td><code>PFUL.TraceClass.traceNorm_of_isPositive</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/AutoBounded.lean">AutoBounded.lean</a></td>
+<td><code>[ℂ] (hT : T ∈ traceClass H) (hp : T.IsPositive)</code></td>
+<td><code>traceNorm T = ‖trace T‖ₑ</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-010"></a>L-010</td>
+<td><code>PFUL.TraceClass.trace_adjoint</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/AutoBounded.lean">AutoBounded.lean</a></td>
+<td><code>(A : H →L[ℂ] H)</code></td>
+<td><code>trace (adjoint A) = star (trace A)</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-011"></a>L-011</td>
+<td><code>PFUL.TraceClass.trace_of_isPositive</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/AutoBounded.lean">AutoBounded.lean</a></td>
+<td><code>[ℂ] (hT : T ∈ traceClass H) (hp : T.IsPositive)</code></td>
+<td><code>∃ r : ℝ, 0 ≤ r ∧ trace T = r</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-012"></a>L-012</td>
+<td><code>PFUL.Counterexample.valid_CPTP_Vsb_any</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/AutoBoundedKraus.lean">AutoBoundedKraus.lean</a></td>
+<td><code>[∀ k, DecidableEq (X k)] [∀ k, DecidableEq (X' k)] (lp (fun _ : Bool × X k ⇒ ℂ) 2 →L[ℂ] lp (fun _ : Bool × X k ⇒ ℂ) 2) (lp (fun _ : Bool × X' k ⇒ …</code></td>
+<td><code>∃ (Y : Fin 3 → Type) (_ : ∀ k, DecidableEq (Y k)) (V : ∀ k, (Bool × X' k) × Y k → Bool × X k → ℂ) (hiso : ∀ k c c', HasSum (fun r ⇒ star (V k r c) *…</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-013"></a>L-013</td>
+<td><code>isCPTP_iff_kraus_any</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/AutoBoundedKraus.lean">AutoBoundedKraus.lean</a></td>
+<td><code>[DecidableEq O] [DecidableEq A] (lp (fun _ : A ⇒ ℂ) 2 →L[ℂ] lp (fun _ : A ⇒ ℂ) 2) (lp (fun _ : O ⇒ ℂ) 2 →L[ℂ] lp (fun _ : O ⇒ ℂ) 2)</code></td>
+<td><code>IsCPTP Φ ↔ ∃ (Y : Type u) (_ : DecidableEq Y) (V : O × Y → A → ℂ) (hiso : ∀ a a', HasSum (fun r ⇒ star (V r a) * V r a') (if a = a' then 1 else 0)),…</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-014"></a>L-014</td>
+<td><code>PFUL.General.exclusive_of_unitary_l2_σ</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/BijectionLaw.lean">BijectionLaw.lean</a></td>
+<td><code>(hσ : ∀ k, Free (σ k)) (e : ∀ k, O k ≃ I k) (w : (∀ k, O k) → (∀ k, I k)) (∀ k a, Summable fun c ⇒ ‖V k a c‖ ^ 2) (fun c ⇒ V k a c * star (V k b c)…</code></td>
+<td><code>FiniteBox.Exclusive w</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-015"></a>L-015</td>
+<td><code>PFUL.General.free_addLeft</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/BijectionLaw.lean">BijectionLaw.lean</a></td>
+<td><code>[AddCommGroup B]</code></td>
+<td><code>Free (fun a : B ⇒ Equiv.addLeft a)</code></td>
+<td>propext,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-016"></a>L-016</td>
+<td><code>PFUL.General.induced_unitary_l2_σ</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/BijectionLaw.lean">BijectionLaw.lean</a></td>
+<td><code>[∀ k, DecidableEq (I k)] [∀ k, DecidableEq (X k)] [∀ k, DecidableEq (O k)] [∀ k, DecidableEq (Y k)] (w : (∀ k, O k) → (∀ k, I k)) (hw : IsProcessFunc…</code></td>
+<td><code>∃ Φ : lp (fun _ : (∀ k, I k) × (∀ k, X k) ⇒ ℂ) 2 ≃ₗᵢ[ℂ] lp (fun _ : (∀ k, O k) × (∀ k, Y k) ⇒ ℂ) 2, (∀ v r, HasSum (fun c ⇒ (∏ k, V k (r.1 k, r.2 …</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-017"></a>L-017</td>
+<td><code>PFUL.General.unitary_l2_iff_pf_σ</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/BijectionLaw.lean">BijectionLaw.lean</a></td>
+<td><code>(hσ : ∀ k, Free (σ k)) [∀ k, Nonempty (O k)] (w : (∀ k, O k) → (∀ k, I k))</code></td>
+<td><code>(∀ V : ∀ k, O k × I k → I k × O k → ℂ, (∀ k a, Summable fun c ⇒ ‖V k a c‖ ^ 2) → (∀ k a b, HasSum (fun c ⇒ V k a c * star (V k b c)) (if a = b then…</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-018"></a>L-018</td>
+<td><code>PFUL.General.unitary_l2_noAncilla_iff_pf_σ</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/BijectionLaw.lean">BijectionLaw.lean</a></td>
+<td><code>(hσ : ∀ k, Free (σ k)) [∀ k, Nonempty (O k)] (e : ∀ k, O k ≃ I k) (w : (∀ k, O k) → (∀ k, I k))</code></td>
+<td><code>(∀ V : ∀ k, O k × Unit → I k × Unit → ℂ, (∀ k a, Summable fun c ⇒ ‖V k a c‖ ^ 2) → (∀ k a b, HasSum (fun c ⇒ V k a c * star (V k b c)) (if a = b th…</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-019"></a>L-019</td>
+<td><code>PFUL.Choi.afnb_iff_density_split</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/Bookkeeping.lean">Bookkeeping.lean</a></td>
+<td><code>[∀ k, Fintype (J k)] [∀ k, DecidableEq (J k)] (w : (∀ k, O k) → (∀ k, I k)) (K : ∀ k, J k → Matrix (O k × Y k) (I k × X k) ℂ)</code></td>
+<td><code>(∀ σ, IsDensity σ → bornSplit w σ (fun k ⇒ choi (K k)) = 1) ↔ (∀ σ, IsDensity σ → IsDensity (indSplit w K * σ * (indSplit w K)ᴴ))</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-020"></a>L-020</td>
+<td><code>PFUL.Choi.bornAnc_eq_one</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/Bookkeeping.lean">Bookkeeping.lean</a></td>
+<td><code>(w : (∀ k, O k) → (∀ k, I k)) (hw : IsProcessFunction w) (ρ : Matrix (∀ k, I k × X k) (∀ k, I k × X k) ℂ) (hρ : ρ.trace = 1) ((I k × X k) × (O k × Y …</code></td>
+<td><code>bornAnc w ρ C = 1</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-021"></a>L-021</td>
+<td><code>PFUL.Choi.bornSplit_eq_one</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/Bookkeeping.lean">Bookkeeping.lean</a></td>
+<td><code>(w : (∀ k, O k) → (∀ k, I k)) (hw : IsProcessFunction w) ((∀ k, I k) × (∀ k, X k)) ((∀ k, I k) × (∀ k, X k)) (hσ : σ.trace = 1) ((I k × X k) × (O k ×…</code></td>
+<td><code>bornSplit w σ C = 1</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-022"></a>L-022</td>
+<td><code>PFUL.Choi.validity_package</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/Bookkeeping.lean">Bookkeeping.lean</a></td>
+<td><code>(w : (∀ k, O k) → (∀ k, I k)) (hw : IsProcessFunction w)</code></td>
+<td><code>ValidWith w X Y ∧ (∀ {J : ι → Type*} [∀ k, Fintype (J k)] [∀ k, DecidableEq (J k)] (K : ∀ k, J k → Matrix (O k × Y k) (I k × X k) ℂ), (∀ k, ∑ j, (K k…</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-023"></a>L-023</td>
+<td><code>PFUL.Countable.rowVec_apply</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/BornPairing.lean">BornPairing.lean</a></td>
+<td><code>(U : lp (fun _ : S ⇒ ℂ) 2 →L[ℂ] lp (fun _ : R ⇒ ℂ) 2) (r : R) (c : S)</code></td>
+<td><code>rowVec U r c = star (U (lp.single 2 c 1) r)</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-024"></a>L-024</td>
+<td><code>PFUL.Countable.valid_born_l2</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/BornPairing.lean">BornPairing.lean</a></td>
+<td><code>[∀ k, AddCommGroup (I k)] [∀ k, Countable (I k)] [∀ k, Countable (X k)] [∀ k, Countable (O k)] [∀ k, Countable (Y k)] [∀ k, DecidableEq (I k)] [∀ k, …</code></td>
+<td><code>∃ Φ : lp (fun _ : (∀ k, I k) × (∀ k, X k) ⇒ ℂ) 2 ≃ₗᵢ[ℂ] lp (fun _ : (∀ k, O k) × (∀ k, Y k) ⇒ ℂ) 2, let U : lp (fun _ : (∀ k, I k) × (∀ k, X k) ⇒ …</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-025"></a>L-025</td>
+<td><code>PFUL.TraceClass.IsCPTP.isDensity</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CPTP.lean">CPTP.lean</a></td>
+<td><code>(H →L[ℂ] H) (K →L[ℂ] K) (h : IsCPTP Φ) [ℂ] (hρ : IsDensity ρ)</code></td>
+<td><code>IsDensity (Φ ρ)</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-026"></a>L-026</td>
+<td><code>PFUL.TraceClass.isCPTP_stinespring</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CPTP.lean">CPTP.lean</a></td>
+<td><code>(V : H →L[ℂ] lp (fun _ : J ⇒ K) 2) (hV : adjoint V ∘L V = ContinuousLinearMap.id ℂ H)</code></td>
+<td><code>IsCPTP (stinespring V) where mem T hT</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-027"></a>L-027</td>
+<td><code>PFUL.krausDilP_isometry</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/Channels.lean">Channels.lean</a></td>
+<td><code>[Fintype O'] [Fintype Y'] [Fintype J] [DecidableEq C] (K : J → Matrix (O' × Y') C ℂ) (hK : ∑ j, (K j)ᴴ * K j = 1)</code></td>
+<td><code>(krausDilP K)ᴴ * krausDilP K = 1</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-028"></a>L-028</td>
+<td><code>PFUL.ptrace_krausDil</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/Channels.lean">Channels.lean</a></td>
+<td><code>[Fintype C] [Fintype J] (K : J → Matrix R C ℂ) (ρ : Matrix C C ℂ)</code></td>
+<td><code>ptrace (krausDil K * ρ * (krausDil K)ᴴ) = ∑ j, K j * ρ * (K j)ᴴ</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-029"></a>L-029</td>
+<td><code>PFUL.valid_instrument</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/Channels.lean">Channels.lean</a></td>
+<td><code>(w : (∀ k, O k) → (∀ k, I k)) (hw : IsProcessFunction w) [∀ k, Fintype (A k)] [∀ k, DecidableEq (A k)] [∀ k, Fintype (J k)] [∀ k, DecidableEq (J k)] …</code></td>
+<td><code>let ρ</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-030"></a>L-030</td>
+<td><code>PFUL.valid_kraus</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/Channels.lean">Channels.lean</a></td>
+<td><code>(w : (∀ k, O k) → (∀ k, I k)) (hw : IsProcessFunction w) [∀ k, Fintype (J k)] [∀ k, DecidableEq (J k)] (K : ∀ k, J k → Matrix (O k × Y k) (I k × X k)…</code></td>
+<td><code>IsDensity (induced ℂ w (fun k ⇒ krausDilP (K k)) * σ * (induced ℂ w (fun k ⇒ krausDilP (K k)))ᴴ) ∧ IsDensity (ptrace (induced ℂ w (fun k ⇒ krausDi…</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-031"></a>L-031</td>
+<td><code>PFUL.Choi.bornC_eq_one</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/Choi.lean">Choi.lean</a></td>
+<td><code>(w : (∀ k, O k) → (∀ k, I k)) (hw : IsProcessFunction w) (ρ : Matrix (∀ k, I k) (∀ k, I k) ℂ) (hρ : ρ.trace = 1) (C : ∀ k, Matrix (I k × O k) (I k × …</code></td>
+<td><code>bornC w ρ C = 1</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-032"></a>L-032</td>
+<td><code>PFUL.Choi.born_eq_trace</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/Choi.lean">Choi.lean</a></td>
+<td><code>(w : (∀ k, O k) → (∀ k, I k)) (ρ : Matrix (∀ k, I k) (∀ k, I k) ℂ) (K : ∀ k, J k → Matrix (O k) (I k) ℂ)</code></td>
+<td><code>born w ρ K = (indM w K * ρ * (indM w K)ᴴ).trace</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-033"></a>L-033</td>
+<td><code>PFUL.Choi.kraus_of_choi</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/Choi.lean">Choi.lean</a></td>
+<td><code>[Fintype I'] [Fintype O'] [DecidableEq I'] [DecidableEq O'] (C : Matrix (I' × O') (I' × O') ℂ) (hC : C.PosSemidef)</code></td>
+<td><code>∃ K : (I' × O') → Matrix O' I' ℂ, choi K = C ∧ ((∀ i i', ∑ o, C (i', o) (i, o) = if i = i' then 1 else 0) → ∑ j, (K j)ᴴ * K j = 1)</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-034"></a>L-034</td>
+<td><code>PFUL.Choi.afnb_iff_density</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/ChoiAnc.lean">ChoiAnc.lean</a></td>
+<td><code>[∀ k, AddCommGroup (I' k)] [∀ k, Fintype (I' k)] [∀ k, DecidableEq (I' k)] [∀ k, Fintype (O' k)] [∀ k, DecidableEq (O' k)] [∀ k, Fintype (J k)] [∀ k,…</code></td>
+<td><code>(∀ ρ, IsDensity ρ → born w ρ K = 1) ↔ (∀ ρ, IsDensity ρ → IsDensity (indM w K * ρ * (indM w K)ᴴ))</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-035"></a>L-035</td>
+<td><code>PFUL.Choi.bornC_anc_eq_one</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/ChoiAnc.lean">ChoiAnc.lean</a></td>
+<td><code>(w : (∀ k, O k) → (∀ k, I k)) (hw : IsProcessFunction w) (ρ : Matrix (∀ k, I k × X k) (∀ k, I k × X k) ℂ) (hρ : ρ.trace = 1) ((I k × X k) × (O k × Y …</code></td>
+<td><code>bornC (wAnc (X := X) (Y := Y) w) ρ C = 1</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-036"></a>L-036</td>
+<td><code>PFUL.Choi.born_anc_eq_one</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/ChoiAnc.lean">ChoiAnc.lean</a></td>
+<td><code>(w : (∀ k, O k) → (∀ k, I k)) (hw : IsProcessFunction w) [∀ k, Fintype (J k)] [∀ k, DecidableEq (J k)] (ρ : Matrix (∀ k, I k × X k) (∀ k, I k × X k) …</code></td>
+<td><code>born (wAnc (X := X) (Y := Y) w) ρ K = 1</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-037"></a>L-037</td>
+<td><code>PFUL.Choi.procMat_posSemidef</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/ChoiAnc.lean">ChoiAnc.lean</a></td>
+<td><code>[∀ k, AddCommGroup (I' k)] [∀ k, Fintype (I' k)] [∀ k, DecidableEq (I' k)] [∀ k, Fintype (O' k)] [∀ k, DecidableEq (O' k)] (w : (∀ k, O' k) → (∀ k, I…</code></td>
+<td><code>(procMat w).PosSemidef</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-038"></a>L-038</td>
+<td><code>PFUL.Countable.exists_kraus_of_choi</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/ChoiConverse.lean">ChoiConverse.lean</a></td>
+<td><code>[Countable O] [Countable A] [DecidableEq O] [DecidableEq A] (hJ : KernelPSD J) (fun o ⇒ J (o, a) (o, a')) (if a' = a then 1 else 0)</code></td>
+<td><code>∃ (Y : Type u) (_ : Countable Y) (V : O × Y → A → ℂ), (∀ a a', HasSum (fun r ⇒ star (V r a) * V r a') (if a = a' then 1 else 0)) ∧ choiKernel V = J</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-039"></a>L-039</td>
+<td><code>PFUL.Countable.choiKernel_psd</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/ChoiL2.lean">ChoiL2.lean</a></td>
+<td><code>(fun r ⇒ star (V r a) * V r a') (if a = a' then 1 else 0) (s : Finset (O × A)) (c : O × A → ℂ)</code></td>
+<td><code>0 ≤ ∑ p ∈ s, ∑ q ∈ s, star (c p) * choiKernel V p q * c q</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-040"></a>L-040</td>
+<td><code>PFUL.Countable.choiKernel_tp</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/ChoiL2.lean">ChoiL2.lean</a></td>
+<td><code>(fun r ⇒ star (V r a) * V r a') (if a = a' then 1 else 0) (a a' : A)</code></td>
+<td><code>HasSum (fun o ⇒ choiKernel V (o, a) (o, a')) (if a' = a then 1 else 0)</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-041"></a>L-041</td>
+<td><code>PFUL.Counterexample.Vsb_pure_choi</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/ChoiLink.lean">ChoiLink.lean</a></td>
+<td><code>—</code></td>
+<td><code>IsPure Vsb ∧ choiMat Vsb = vecMulVec (choiVec Vsb) (star (choiVec Vsb)) ∧ choiMat Vsb * choiMat Vsb = (choiMat Vsb).trace • choiMat Vsb ∧ (choiMat Vs…</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-042"></a>L-042</td>
+<td><code>PFUL.Counterexample.compose_congr_choiVec</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/ChoiLink.lean">ChoiLink.lean</a></td>
+<td><code>(h : choiVec V = choiVec V') (A : ∀ k, Matrix (Bool × a k) (Bool × a k) ℂ)</code></td>
+<td><code>compose V A = compose V' A</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-043"></a>L-043</td>
+<td><code>PFUL.Counterexample.compose_eq_link</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/ChoiLink.lean">ChoiLink.lean</a></td>
+<td><code>(V : Proc P F) (A : ∀ k, Matrix (Bool × a k) (Bool × a k) ℂ) (φβ : F × (∀ k, a k)) (πα : P × (∀ k, a k))</code></td>
+<td><code>compose V A φβ πα = ∑ o : Fin 8, ∑ e : Fin 8, choiVec V (πα.1, φβ.1, fun k ⇒ (bit k e, bit k o)) * ∏ k, A k (bit k o, φβ.2 k) (bit k e, πα.2 k)</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-044"></a>L-044</td>
+<td><code>PFUL.Choi.isCP_iff_choi</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/ChoiThm.lean">ChoiThm.lean</a></td>
+<td><code>(Φ : Matrix I I ℂ →ₗ[ℂ] Matrix O O ℂ)</code></td>
+<td><code>IsCP Φ ↔ (choiOf Φ).PosSemidef</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-045"></a>L-045</td>
+<td><code>PFUL.Column.sum_prod_eq_one</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/Column.lean">Column.lean</a></td>
+<td><code>[CommRing R] (w : (∀ k, O k) → (∀ k, I k)) (hw : IsProcessFunction w) (q : ∀ k, I k → O k → R) (hq : ∀ k i, ∑ o, q k i o = 1)</code></td>
+<td><code>∑ s : (∀ k, O k), ∏ k, q k (w s k) (s k) = 1</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-046"></a>L-046</td>
+<td><code>PFUL.induced_colnorm</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/Column.lean">Column.lean</a></td>
+<td><code>(w : (∀ k, O k) → (∀ k, I k)) (hw : IsProcessFunction w) (V : ∀ k, Matrix (O k × Y k) (I k × X k) ℂ) (hV' : ∀ k, (V k)ᴴ * V k = 1) (c : (∀ k, I k) × …</code></td>
+<td><code>((induced ℂ w V)ᴴ * induced ℂ w V) c c = 1</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-047"></a>L-047</td>
+<td><code>PFUL.induced_conjTranspose_mul_of_colnorm</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/Column.lean">Column.lean</a></td>
+<td><code>(w : (∀ k, O k) → (∀ k, I k)) (hw : IsProcessFunction w) (V : ∀ k, Matrix (O k × Y k) (I k × X k) ℂ) (hV : ∀ k, V k * (V k)ᴴ = 1) (hV' : ∀ k, (V k)ᴴ …</code></td>
+<td><code>(induced ℂ w V)ᴴ * induced ℂ w V = 1</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-048"></a>L-048</td>
+<td><code>PFUL.Switchboard.commuting_blend</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CommutingBlend.lean">CommutingBlend.lean</a></td>
+<td><code>(u : Ω → OrthonormalBasis ι ℂ E) (b : OrthonormalBasis κ ℂ E) (hcomm : ∀ o i j, InnerProductSpace.rankOne ℂ (u o i) (u o i) ∘L InnerProductSpace.rank…</code></td>
+<td><code>∃ f : κ → Ω → ι, (∀ o i, ‖⟪u o i, φ⟫_ℂ‖ ^ 2 = ∑ j, ‖⟪b j, φ⟫_ℂ‖ ^ 2 * (if f j o = i then 1 else 0)) ∧ ∑ j, ‖⟪b j, φ⟫_ℂ‖ ^ 2 = ‖φ‖ ^ 2</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-049"></a>L-049</td>
+<td><code>PFUL.Continuous.c<sub>indep</sub></code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/Continuous.lean">Continuous.lean</a></td>
+<td><code>(hw : PFUL.Countable.IsProcessFunction (I := G) (O := G) w) (a : ι) (h : ∀ k, k ≠ a → e k = e' k)</code></td>
+<td><code>c hw a e = c hw a e'</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-050"></a>L-050</td>
+<td><code>PFUL.Continuous.fiber_const</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/Continuous.lean">Continuous.lean</a></td>
+<td><code>(hw : PFUL.Countable.IsProcessFunction (I := G) (O := G) w) (a : ι) (h : ∀ k, k ≠ a → tau w o k = tau w o' k)</code></td>
+<td><code>w o a = w o' a</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-051"></a>L-051</td>
+<td><code>PFUL.Continuous.tauInv_apply</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/Continuous.lean">Continuous.lean</a></td>
+<td><code>(hw : PFUL.Countable.IsProcessFunction (I := G) (O := G) w) (e : ∀ k, G k) (a : ι)</code></td>
+<td><code>tauInv hw e a = e a + c hw a e</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-052"></a>L-052</td>
+<td><code>PFUL.Continuous.tau_bijective</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/Continuous.lean">Continuous.lean</a></td>
+<td><code>(hw : PFUL.Countable.IsProcessFunction (I := G) (O := G) w)</code></td>
+<td><code>Function.Bijective (tau w)</code></td>
+<td>propext,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-053"></a>L-053</td>
+<td><code>PFUL.Continuous.closedLoop_general_unitary</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/ContinuousJacobian.lean">ContinuousJacobian.lean</a></td>
+<td><code>(g : X ≃ᵐ X) (hg : MeasurePreserving g ν μ) (hφ : Measurable φ) (h1 : ∀ x, ‖φ x‖ = 1)</code></td>
+<td><code>∃ U : Lp ℂ 2 μ ≃ₗᵢ[ℂ] Lp ℂ 2 μ, ∀ ψ, (U ψ : X → ℂ) =ᵐ[μ] fun o ⇒ φ o * (sqd ρ o * ψ (g o))</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-054"></a>L-054</td>
+<td><code>PFUL.Continuous.closedLoop_jacobian_unitary</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/ContinuousJacobian.lean">ContinuousJacobian.lean</a></td>
+<td><code>(g : E ≃ᵐ E) (g' : E → E →L[ℝ] E) (hg' : ∀ x, HasFDerivAt g (g' x) x) (hdet : ∀ x, (g' x).det ≠ 0) (hdm : Measurable fun x ⇒ |(g' x).det|) (hφ : Mea…</code></td>
+<td><code>∃ U : Lp ℂ 2 μ ≃ₗᵢ[ℂ] Lp ℂ 2 μ, ∀ ψ, (U ψ : E → ℂ) =ᵐ[μ] fun o ⇒ φ o * ((Real.sqrt |(g' o).det| : ℂ) * ψ (g o))</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-055"></a>L-055</td>
+<td><code>PFUL.Continuous.closedLoop_isometry</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/ContinuousLocal.lean">ContinuousLocal.lean</a></td>
+<td><code>(g : X → X) (hg : MeasurePreserving g ν μ) (hφ : Measurable φ) (h1 : ∀ x, ‖φ x‖ = 1)</code></td>
+<td><code>∃ U : Lp ℂ 2 μ →ₗᵢ[ℂ] Lp ℂ 2 μ, ∀ ψ, (U ψ : X → ℂ) =ᵐ[μ] fun o ⇒ φ o * (sqd ρ o * ψ (g o))</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-056"></a>L-056</td>
+<td><code>PFUL.Continuous.closedLoop_jacobian_isometry</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/ContinuousLocal.lean">ContinuousLocal.lean</a></td>
+<td><code>(g : E → E) (hgm : Measurable g) (g' : E → E →L[ℝ] E) (hs : MeasurableSet s) (hsc : μ sᶜ = 0) (hg' : ∀ x ∈ s, HasFDerivWithinAt g (g' x) s x) (hinj :…</code></td>
+<td><code>∃ U : Lp ℂ 2 μ →ₗᵢ[ℂ] Lp ℂ 2 μ, ∀ ψ, (U ψ : E → ℂ) =ᵐ[μ] fun o ⇒ φ o * ((Real.sqrt |(g' o).det| : ℂ) * ψ (g o))</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-057"></a>L-057</td>
+<td><code>PFUL.Continuous.closedLoop_jacobian_unitary_ae</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/ContinuousLocal.lean">ContinuousLocal.lean</a></td>
+<td><code>(g : E ≃ᵐ E) (g' : E → E →L[ℝ] E) (hs : MeasurableSet s) (hsc : μ sᶜ = 0) (hg' : ∀ x ∈ s, HasFDerivWithinAt g (g' x) s x) (himg : μ (g '' s)ᶜ = 0) (h…</code></td>
+<td><code>∃ U : Lp ℂ 2 μ ≃ₗᵢ[ℂ] Lp ℂ 2 μ, ∀ ψ, (U ψ : E → ℂ) =ᵐ[μ] fun o ⇒ φ o * ((Real.sqrt |(g' o).det| : ℂ) * ψ (g o))</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-058"></a>L-058</td>
+<td><code>PFUL.Continuous.closedLoop_unitary_ae</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/ContinuousLocal.lean">ContinuousLocal.lean</a></td>
+<td><code>(hpos : ∀ᵐ x ∂μ, ρ x ≠ 0) (g : X ≃ᵐ X) (hg : MeasurePreserving g ν μ) (hφ : Measurable φ) (h1 : ∀ x, ‖φ x‖ = 1)</code></td>
+<td><code>∃ U : Lp ℂ 2 μ ≃ₗᵢ[ℂ] Lp ℂ 2 μ, ∀ ψ, (U ψ : X → ℂ) =ᵐ[μ] fun o ⇒ φ o * (sqd ρ o * ψ (g o))</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-059"></a>L-059</td>
+<td><code>PFUL.Continuous.tauInv_measurable</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/ContinuousMeasure.lean">ContinuousMeasure.lean</a></td>
+<td><code>[Countable ι] [∀ k, StandardBorelSpace (G k)] (∀ k, G k) (∀ k, G k) (hwm : Measurable w) (hw : PFUL.Countable.IsProcessFunction (I := G) (O := G) w)</code></td>
+<td><code>Measurable (tauInv hw)</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-060"></a>L-060</td>
+<td><code>PFUL.Continuous.tau_measurePreserving</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/ContinuousMeasure.lean">ContinuousMeasure.lean</a></td>
+<td><code>[Fintype ι] [DecidableEq ι] [∀ k, AddCommGroup (G k)] [∀ k, MeasurableSpace (G k)] [∀ k, MeasurableAdd (G k)] [∀ k, MeasurableSub₂ (G k)] [∀ k, Stand…</code></td>
+<td><code>MeasurePreserving (tau w) (Measure.pi μ) (Measure.pi μ)</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-061"></a>L-061</td>
+<td><code>PFUL.Continuous.tau_measurePreserving_circle</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/ContinuousMeasure.lean">ContinuousMeasure.lean</a></td>
+<td><code>[Fintype ι] [DecidableEq ι] (T : ℝ) [Fact (0 &lt; T)] (ι → AddCircle T) (ι → AddCircle T) (hwm : Measurable w) (hw : PFUL.Countable.IsProcessFunction (I…</code></td>
+<td><code>MeasurePreserving (tau w) (Measure.pi fun _ ⇒ volume) (Measure.pi fun _ ⇒ volume)</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-062"></a>L-062</td>
+<td><code>PFUL.Continuous.tau_measurePreserving_real</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/ContinuousMeasure.lean">ContinuousMeasure.lean</a></td>
+<td><code>[Fintype ι] [DecidableEq ι] (ι → ℝ) (ι → ℝ) (hwm : Measurable w) (hw : PFUL.Countable.IsProcessFunction (I := fun _ : ι ⇒ ℝ) (O := fun _ ⇒ ℝ) w)</code></td>
+<td><code>MeasurePreserving (tau w) volume volume</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-063"></a>L-063</td>
+<td><code>PFUL.Continuous.closedLoop_unitary</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/ContinuousUnitary.lean">ContinuousUnitary.lean</a></td>
+<td><code>(hwm : Measurable w) (hw : PFUL.Countable.IsProcessFunction (I := G) (O := G) w) (∀ k, G k) (hφ : Measurable φ) (h1 : ∀ x, ‖φ x‖ = 1)</code></td>
+<td><code>∃ U : Lp ℂ 2 (Measure.pi μ) ≃ₗᵢ[ℂ] Lp ℂ 2 (Measure.pi μ), ∀ ψ, (U ψ : (∀ k, G k) → ℂ) =ᵐ[Measure.pi μ] fun o ⇒ φ o * ψ (tau w o)</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-064"></a>L-064</td>
+<td><code>PFUL.CopyGadget.colnorm_eq_card</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CopyGadget.lean">CopyGadget.lean</a></td>
+<td><code>(w : (∀ k, O k) → (∀ k, I k)) (f : ∀ k, I k → O k)</code></td>
+<td><code>((induced ℂ w (gadget f))ᴴ * induced ℂ w (gadget f)) (0, 0) (0, 0) = ((Finset.univ.filter fun s : ∀ k, O k ⇒ ∀ k, f k (w s k) = s k).card : ℂ)</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-065"></a>L-065</td>
+<td><code>PFUL.CopyGadget.not_isometry_of_not_pf</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CopyGadget.lean">CopyGadget.lean</a></td>
+<td><code>(w : (∀ k, O k) → (∀ k, I k)) (hw : ¬ IsProcessFunction w)</code></td>
+<td><code>∃ V : ∀ k, Matrix (O k × I k) (I k × O k) ℂ, (∀ k, V k * (V k)ᴴ = 1 ∧ (V k)ᴴ * V k = 1) ∧ (induced ℂ w V)ᴴ * induced ℂ w V ≠ 1</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-066"></a>L-066</td>
+<td><code>PFUL.CopyGadget.unitary_iff_pf</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CopyGadget.lean">CopyGadget.lean</a></td>
+<td><code>(w : (∀ k, O k) → (∀ k, I k))</code></td>
+<td><code>(∀ V : ∀ k, Matrix (O k × I k) (I k × O k) ℂ, (∀ k, V k * (V k)ᴴ = 1 ∧ (V k)ᴴ * V k = 1) → induced ℂ w V * (induced ℂ w V)ᴴ = 1 ∧ (induced ℂ w V)ᴴ * …</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-067"></a>L-067</td>
+<td><code>PFUL.Countable.existsUnique_of_isometry_l2</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CopyGadgetL2.lean">CopyGadgetL2.lean</a></td>
+<td><code>(w : (∀ k, O k) → (∀ k, I k)) (f : ∀ k, I k → O k) (fun _ : (∀ k, I k) × (∀ k, O k) ⇒ ℂ) [ℂ] (fun _ : (∀ k, O k) × (∀ k, I k) ⇒ ℂ) (lp.single 2 c (…</code></td>
+<td><code>∃! s : ∀ k, O k, ∀ k, f k (w s k) = s k</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-068"></a>L-068</td>
+<td><code>PFUL.Countable.not_isometry_of_not_pf_l2</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CopyGadgetL2.lean">CopyGadgetL2.lean</a></td>
+<td><code>(w : (∀ k, O k) → (∀ k, I k)) (hw : ¬ IsProcessFunction w)</code></td>
+<td><code>∃ V : ∀ k, O k × I k → I k × O k → ℂ, (∀ k a, Summable fun c ⇒ ‖V k a c‖ ^ 2) ∧ (∀ k a b, HasSum (fun c ⇒ V k a c * star (V k b c)) (if a = b then …</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-069"></a>L-069</td>
+<td><code>PFUL.Countable.unitary_l2_iff_pf</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CopyGadgetL2.lean">CopyGadgetL2.lean</a></td>
+<td><code>(w : (∀ k, O k) → (∀ k, I k))</code></td>
+<td><code>(∀ V : ∀ k, O k × I k → I k × O k → ℂ, (∀ k a, Summable fun c ⇒ ‖V k a c‖ ^ 2) → (∀ k a b, HasSum (fun c ⇒ V k a c * star (V k b c)) (if a = b then…</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-070"></a>L-070</td>
+<td><code>PFUL.Countable.induced_colnorm</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/Countable.lean">Countable.lean</a></td>
+<td><code>[∀ k, AddCommGroup (I k)] [∀ k, Countable (O k)] [∀ k, Countable (Y k)] (w : (∀ k, O k) → (∀ k, I k)) (hw : IsProcessFunction w) (V : ∀ k, O k × Y k …</code></td>
+<td><code>∑' r : (∀ k, O k) × (∀ k, Y k), ((‖∏ k, V k (r.1 k, r.2 k) (w r.1 k + e k, x k)‖₊ : ℝ≥0∞)) ^ 2 = 1</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-071"></a>L-071</td>
+<td><code>PFUL.Countable.tsum_prod_eq_one</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/Countable.lean">Countable.lean</a></td>
+<td><code>[∀ k, Countable (O k)] (w : (∀ k, O k) → (∀ k, I k)) (hw : IsProcessFunction w) (q : ∀ k, I k → O k → ℝ≥0∞) (hq : ∀ k i, ∑' o, q k i o = 1)</code></td>
+<td><code>∑' s : (∀ k, O k), ∏ k, q k (w s k) (s k) = 1</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-072"></a>L-072</td>
+<td><code>PFUL.Counterexample.Lg_nonneg_of_isPF</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/Counterexample.lean">Counterexample.lean</a></td>
+<td><code>(hw : IsPF w)</code></td>
+<td><code>0 ≤ Lg (pfPoint w)</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-073"></a>L-073</td>
+<td><code>PFUL.Counterexample.Lg_pcl_neg</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/Counterexample.lean">Counterexample.lean</a></td>
+<td><code>—</code></td>
+<td><code>Lg pcl &lt; 0</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-074"></a>L-074</td>
+<td><code>PFUL.Counterexample.board_mem_unitaryGroup</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/Counterexample.lean">Counterexample.lean</a></td>
+<td><code>(o : Fin 8)</code></td>
+<td><code>board o ∈ Matrix.unitaryGroup (Fin 8) ℂ</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-075"></a>L-075</td>
+<td><code>PFUL.Counterexample.isPure_Vsb</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/Counterexample.lean">Counterexample.lean</a></td>
+<td><code>—</code></td>
+<td><code>IsPure Vsb</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-076"></a>L-076</td>
+<td><code>PFUL.Counterexample.pcl_not_mem_convexHull</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/Counterexample.lean">Counterexample.lean</a></td>
+<td><code>—</code></td>
+<td><code>pcl ∉ convexHull ℝ PFset</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-077"></a>L-077</td>
+<td><code>PFUL.Counterexample.purifiable_pcl</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/Counterexample.lean">Counterexample.lean</a></td>
+<td><code>—</code></td>
+<td><code>Purifiable pcl</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-078"></a>L-078</td>
+<td><code>PFUL.Counterexample.purification_conjecture_false</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/Counterexample.lean">Counterexample.lean</a></td>
+<td><code>—</code></td>
+<td><code>∃ p : Fin 8 → Fin 8 → ℝ, Valid p ∧ Purifiable p ∧ p ∉ convexHull ℝ PFset</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-079"></a>L-079</td>
+<td><code>PFUL.Counterexample.valid_pcl</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/Counterexample.lean">Counterexample.lean</a></td>
+<td><code>—</code></td>
+<td><code>Valid pcl</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-080"></a>L-080</td>
+<td><code>PFUL.Counterexample.isUnitaryAll_Vsb</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CounterexampleAuto.lean">CounterexampleAuto.lean</a></td>
+<td><code>—</code></td>
+<td><code>IsUnitaryAll Vsb</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-081"></a>L-081</td>
+<td><code>PFUL.Counterexample.isUnitaryKer_Vsb</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CounterexampleAuto.lean">CounterexampleAuto.lean</a></td>
+<td><code>—</code></td>
+<td><code>IsUnitaryKer Vsb</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-082"></a>L-082</td>
+<td><code>PFUL.Counterexample.purification_conjecture_false_unitaryKer</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CounterexampleAuto.lean">CounterexampleAuto.lean</a></td>
+<td><code>—</code></td>
+<td><code>∃ p : Fin 8 → Fin 8 → ℝ, Valid p ∧ PurifiableUnitaryKer p ∧ p ∉ convexHull ℝ {x | ∃ w, PFUL.Countable.IsProcessFunction (I := fun _ : Fin 3 ⇒ Bool) …</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-083"></a>L-083</td>
+<td><code>PFUL.Counterexample.unitary_of_unitaryKernel</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CounterexampleAuto.lean">CounterexampleAuto.lean</a></td>
+<td><code>[DecidableEq X] (M : Matrix X X ℂ) (hc : IsIsoKernel M) (hr : IsCoIsoKernel M)</code></td>
+<td><code>∃ U : L2 X ≃ₗᵢ[ℂ] L2 X, ∀ r c, U (lp.single 2 c (1 : ℂ)) r = M r c</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-084"></a>L-084</td>
+<td><code>PFUL.Counterexample.Wcl_mem_convexHull_iff</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CounterexampleChoi.lean">CounterexampleChoi.lean</a></td>
+<td><code>(p : Fin 8 → Fin 8 → ℝ) (S : Set (Fin 8 → Fin 8 → ℝ))</code></td>
+<td><code>Wcl p ∈ convexHull ℝ (Wcl '' S) ↔ p ∈ convexHull ℝ S</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-085"></a>L-085</td>
+<td><code>PFUL.Counterexample.inducedP_eq_born</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CounterexampleChoi.lean">CounterexampleChoi.lean</a></td>
+<td><code>[Fintype P] [Fintype F] (V : Proc P F) (ψ : P → ℂ) (i o : Fin 8)</code></td>
+<td><code>(inducedP V ψ i o : ℂ) = ∑ φ : F, ∑ π : P, ∑ π' : P, choiMat V (π, φ, wires i o) (π', φ, wires i o) * ψ π * star (ψ π')</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-086"></a>L-086</td>
+<td><code>PFUL.Counterexample.isPurePM_choiMat_Vsb</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CounterexampleChoi.lean">CounterexampleChoi.lean</a></td>
+<td><code>—</code></td>
+<td><code>IsPurePM (I := BW) (O := BW) (choiMat Vsb)</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-087"></a>L-087</td>
+<td><code>PFUL.Counterexample.isPure_iff_unitaryLink</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CounterexampleChoi.lean">CounterexampleChoi.lean</a></td>
+<td><code>[Fintype P] [DecidableEq P] (V : Proc P P)</code></td>
+<td><code>IsPure V ↔ UnitaryLink (I := BW) (O := BW) (choiMat V)</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-088"></a>L-088</td>
+<td><code>PFUL.Counterexample.isValidPM_Wcl_iff</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CounterexampleChoi.lean">CounterexampleChoi.lean</a></td>
+<td><code>(p : Fin 8 → Fin 8 → ℝ)</code></td>
+<td><code>IsValidPM (Wcl p) ↔ Valid p</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-089"></a>L-089</td>
+<td><code>PFUL.Counterexample.isValidPM_Wcl_pfPoint_iff</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CounterexampleChoi.lean">CounterexampleChoi.lean</a></td>
+<td><code>(w : Fin 8 → Fin 8)</code></td>
+<td><code>IsValidPM (Wcl (pfPoint w)) ↔ PFUL.Countable.IsProcessFunction (I := fun _ : Fin 3 ⇒ Bool) (O := fun _ : Fin 3 ⇒ Bool) (wBits w)</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-090"></a>L-090</td>
+<td><code>PFUL.Counterexample.isValidPM_choiMat_Vsb</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CounterexampleChoi.lean">CounterexampleChoi.lean</a></td>
+<td><code>—</code></td>
+<td><code>IsValidPM (I := BW) (O := BW) (choiMat Vsb)</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-091"></a>L-091</td>
+<td><code>PFUL.Counterexample.link_choiMat_vecOp</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CounterexampleChoi.lean">CounterexampleChoi.lean</a></td>
+<td><code>[Fintype P] [Fintype F] [DecidableEq P] [DecidableEq F] (V : Proc P F) (A : ∀ k, Matrix (Bool × X k) (Bool × X k) ℂ)</code></td>
+<td><code>link (I := BW) (O := BW) (choiMat V) (fun k ⇒ vecOp (A k)) = vecOp (compose V A)</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-092"></a>L-092</td>
+<td><code>PFUL.Counterexample.purification_conjecture_false_choi</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CounterexampleChoi.lean">CounterexampleChoi.lean</a></td>
+<td><code>—</code></td>
+<td><code>∃ p : Fin 8 → Fin 8 → ℝ, IsValidPM (Wcl p) ∧ (∃ (P F : Type) (_ : Fintype P) (_ : Fintype F) (_ : DecidableEq P) (_ : DecidableEq F) (W : Matrix (PId…</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-093"></a>L-093</td>
+<td><code>PFUL.Counterexample.trace_link_Vsb</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CounterexampleChoi.lean">CounterexampleChoi.lean</a></td>
+<td><code>[∀ k, Fintype (Y k)] [∀ k, DecidableEq (X k)] ((Bool × X k) × (Bool × Y k)) ((Bool × X k) × (Bool × Y k)) (hC : ∀ k a a', ∑ b, C k (a, b) (a', b) = i…</code></td>
+<td><code>∑ b : (Fin 8 × Fin 8) × (∀ k, Y k), link (choiMat Vsb) C ((π, ξ), b) ((π', ξ'), b) = if π = π' ∧ ξ = ξ' then 1 else 0</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-094"></a>L-094</td>
+<td><code>PFUL.Counterexample.valid_sum_complex</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CounterexampleChoi.lean">CounterexampleChoi.lean</a></td>
+<td><code>(hp : Valid p) (q : Fin 3 → Bool → Bool → ℂ) (c : Fin 3 → ℂ) (hq : ∀ k x, q k x false + q k x true = c k)</code></td>
+<td><code>∑ i : Fin 8, ∑ o : Fin 8, (p i o : ℂ) * ∏ k, q k (bit k i) (bit k o) = ∏ k, c k</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-095"></a>L-095</td>
+<td><code>PFUL.Counterexample.isCoIsoKernel_kerOf</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CounterexampleHilbert.lean">CounterexampleHilbert.lean</a></td>
+<td><code>(b : HilbertBasis X ℂ H) (A : H ≃ₗᵢ[ℂ] H)</code></td>
+<td><code>IsCoIsoKernel (kerOf b A)</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-096"></a>L-096</td>
+<td><code>PFUL.Counterexample.isIsoKernel_compose2_Vsb</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CounterexampleHilbert.lean">CounterexampleHilbert.lean</a></td>
+<td><code>[∀ k, DecidableEq (X k)] (a : ∀ k, Matrix (Bool × Y k) (Bool × X k) ℂ) (ha : ∀ k, IsIsoKernel (a k))</code></td>
+<td><code>IsIsoKernel (compose2 Vsb a)</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-097"></a>L-097</td>
+<td><code>PFUL.Counterexample.isIsoKernel_kerOf</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CounterexampleHilbert.lean">CounterexampleHilbert.lean</a></td>
+<td><code>(b : HilbertBasis X ℂ H) (A : H ≃ₗᵢ[ℂ] H)</code></td>
+<td><code>IsIsoKernel (kerOf b A)</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-098"></a>L-098</td>
+<td><code>PFUL.Counterexample.isIsoKernel_krausLoop</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CounterexampleHilbert.lean">CounterexampleHilbert.lean</a></td>
+<td><code>[∀ k, DecidableEq (X k)] (V : ∀ k, (Bool × X' k) × Y k → Bool × X k → ℂ) (fun r ⇒ star (V k r c) * V k r c') (if c = c' then 1 else 0)</code></td>
+<td><code>∀ c c', HasSum (fun r ⇒ star (krausLoop V r c) * krausLoop V r c') (if c = c' then 1 else 0)</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-099"></a>L-099</td>
+<td><code>PFUL.Counterexample.isPureHilbert_Vsb</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CounterexampleHilbert.lean">CounterexampleHilbert.lean</a></td>
+<td><code>—</code></td>
+<td><code>IsPureHilbert Vsb</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-100"></a>L-100</td>
+<td><code>PFUL.Counterexample.isPureHilbert_iff_isUnitaryKer</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CounterexampleHilbert.lean">CounterexampleHilbert.lean</a></td>
+<td><code>[Fintype P] [DecidableEq P] (V : Proc P P)</code></td>
+<td><code>IsPureHilbert V ↔ IsUnitaryKer V</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-101"></a>L-101</td>
+<td><code>PFUL.Counterexample.valid_normalCPTP_Vsb</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CounterexampleHilbert.lean">CounterexampleHilbert.lean</a></td>
+<td><code>[∀ k, Countable (X k)] [∀ k, Countable (X' k)] [∀ k, DecidableEq (X k)] [∀ k, DecidableEq (X' k)] (lp (fun _ : Bool × X k ⇒ ℂ) 2 →L[ℂ] lp (fun _ : B…</code></td>
+<td><code>∃ (Y : Fin 3 → Type) (_ : ∀ k, DecidableEq (Y k)) (V : ∀ k, (Bool × X' k) × Y k → Bool × X k → ℂ) (hiso : ∀ k c c', HasSum (fun r ⇒ star (V k r c) *…</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-102"></a>L-102</td>
+<td><code>PFUL.Counterexample.IsPureKer.isPure</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CounterexampleInf.lean">CounterexampleInf.lean</a></td>
+<td><code>[Fintype P] [DecidableEq P] (h : IsPureKer V)</code></td>
+<td><code>IsPure V</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-103"></a>L-103</td>
+<td><code>PFUL.Counterexample.hasSum_pi_prod</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CounterexampleInf.lean">CounterexampleInf.lean</a></td>
+<td><code>—</code></td>
+<td><code>∀ (n : ℕ) {κ : Fin n → Type} (g : ∀ k, κ k → ℂ) (s : Fin n → ℂ), (∀ k, Summable fun b ⇒ ‖g k b‖) → (∀ k, HasSum (g k) (s k)) → (Summable fun β : (∀ …</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-104"></a>L-104</td>
+<td><code>PFUL.Counterexample.isPurePMInf_choiMat_Vsb</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CounterexampleInfLink.lean">CounterexampleInfLink.lean</a></td>
+<td><code>—</code></td>
+<td><code>IsPurePMInf (I := BW) (O := BW) (choiMat Vsb)</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-105"></a>L-105</td>
+<td><code>PFUL.Counterexample.isValidPMInf_Wcl_iff</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CounterexampleInfLink.lean">CounterexampleInfLink.lean</a></td>
+<td><code>(p : Fin 8 → Fin 8 → ℝ)</code></td>
+<td><code>IsValidPMInf (Wcl p) ↔ Valid p</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-106"></a>L-106</td>
+<td><code>PFUL.Counterexample.purification_conjecture_false_choiInf</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CounterexampleInfLink.lean">CounterexampleInfLink.lean</a></td>
+<td><code>—</code></td>
+<td><code>∃ p : Fin 8 → Fin 8 → ℝ, IsValidPMInf (Wcl p) ∧ (∃ (P F : Type) (_ : Fintype P) (_ : Fintype F) (_ : DecidableEq P) (_ : DecidableEq F) (W : Matrix (…</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-107"></a>L-107</td>
+<td><code>PFUL.Counterexample.isPF_iff</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CounterexampleLink.lean">CounterexampleLink.lean</a></td>
+<td><code>(w : Fin 8 → Fin 8)</code></td>
+<td><code>IsPF w ↔ PFUL.Countable.IsProcessFunction (I := fun _ : Fin 3 ⇒ Bool) (O := fun _ : Fin 3 ⇒ Bool) (wBits w)</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-108"></a>L-108</td>
+<td><code>PFUL.Counterexample.purification_conjecture_false'</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CounterexampleLink.lean">CounterexampleLink.lean</a></td>
+<td><code>—</code></td>
+<td><code>∃ p : Fin 8 → Fin 8 → ℝ, Valid p ∧ Purifiable p ∧ p ∉ convexHull ℝ {x | ∃ w, PFUL.Countable.IsProcessFunction (I := fun _ : Fin 3 ⇒ Bool) (O := fun …</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-109"></a>L-109</td>
+<td><code>PFUL.Counterexample.valid_of_mem_convexHull</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CounterexampleLink.lean">CounterexampleLink.lean</a></td>
+<td><code>(hp : p ∈ convexHull ℝ PFset)</code></td>
+<td><code>Valid p</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-110"></a>L-110</td>
+<td><code>PFUL.Counterexample.valid_pfPoint</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CounterexampleLink.lean">CounterexampleLink.lean</a></td>
+<td><code>(hw : IsPF w)</code></td>
+<td><code>Valid (pfPoint w)</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-111"></a>L-111</td>
+<td><code>PFUL.Counterexample.row_scalar_key</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CounterexampleRows.lean">CounterexampleRows.lean</a></td>
+<td><code>(R : Fin 3 → Bool → Bool → ℂ) (c : Fin 3 → ℂ) (o o' δ : Fin 8) (hR : ∀ k, R k false false + R k true true = if bit k o = bit k o' then c k else 0)</code></td>
+<td><code>∑ e : Fin 8, ∑ s : Fin 8, board o e s * star (board o' (e ^^^ δ) s) * ∏ k, R k (bit k e) (bit k (e ^^^ δ)) = if o = o' ∧ δ = 0 then ∏ k, c k else 0</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-112"></a>L-112</td>
+<td><code>PFUL.Counterexample.isUnitaryInf_Vsb</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CounterexampleUnitary.lean">CounterexampleUnitary.lean</a></td>
+<td><code>—</code></td>
+<td><code>IsUnitaryInf Vsb</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-113"></a>L-113</td>
+<td><code>PFUL.Counterexample.purification_conjecture_false_unitaryInf</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CounterexampleUnitary.lean">CounterexampleUnitary.lean</a></td>
+<td><code>—</code></td>
+<td><code>∃ p : Fin 8 → Fin 8 → ℝ, Valid p ∧ PurifiableUnitaryInf p ∧ p ∉ convexHull ℝ {x | ∃ w, PFUL.Countable.IsProcessFunction (I := fun _ : Fin 3 ⇒ Bool) …</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-114"></a>L-114</td>
+<td><code>PFUL.Counterexample.validWith_of_valid_pfPoint</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CounterexampleValidity.lean">CounterexampleValidity.lean</a></td>
+<td><code>(h : Valid (pfPoint w)) (X Y : Fin 3 → Type) [∀ k, Fintype (X k)] [∀ k, DecidableEq (X k)] [∀ k, Fintype (Y k)] [∀ k, DecidableEq (Y k)]</code></td>
+<td><code>PFUL.ValidWith (I := fun _ : Fin 3 ⇒ Bool) (O := fun _ : Fin 3 ⇒ Bool) (wBits w) X Y</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-115"></a>L-115</td>
+<td><code>PFUL.Counterexample.valid_pfPoint_iff</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CounterexampleValidity.lean">CounterexampleValidity.lean</a></td>
+<td><code>(w : Fin 8 → Fin 8)</code></td>
+<td><code>Valid (pfPoint w) ↔ IsPF w</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-116"></a>L-116</td>
+<td><code>PFUL.Infinite.covMEqC_of_CH</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CovMCounterexample.lean">CovMCounterexample.lean</a></td>
+<td><code>(hCH : (𝔠 : Cardinal.{0}) = ℵ₁)</code></td>
+<td><code>CovMEqC</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-117"></a>L-117</td>
+<td><code>PFUL.Infinite.exists_exclusive_fixedPointFree_of_covM</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CovMCounterexample.lean">CovMCounterexample.lean</a></td>
+<td><code>(hH : CovMEqC)</code></td>
+<td><code>∃ F : (ℕ → Bool) → (ℕ → Bool), (∀ s, F s ≠ s) ∧ Exclusive F</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-118"></a>L-118</td>
+<td><code>PFUL.Infinite.exists_exclusive_not_pf_of_CH</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CovMCounterexample.lean">CovMCounterexample.lean</a></td>
+<td><code>(hCH : (𝔠 : Cardinal.{0}) = ℵ₁)</code></td>
+<td><code>∃ (I : ℕ → Type) (w : (ℕ → Bool) → (∀ k, I k)), Exclusive w ∧ ¬ IsProcessFunction w</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-119"></a>L-119</td>
+<td><code>PFUL.Infinite.exists_exclusive_not_pf_of_covM</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CovMCounterexample.lean">CovMCounterexample.lean</a></td>
+<td><code>(hH : CovMEqC)</code></td>
+<td><code>∃ (I : ℕ → Type) (w : (ℕ → Bool) → (∀ k, I k)), Exclusive w ∧ ¬ IsProcessFunction w</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-120"></a>L-120</td>
+<td><code>PFUL.Infinite.forb_isMeagre</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CovMCounterexample.lean">CovMCounterexample.lean</a></td>
+<td><code>(hD : D.Infinite) (b : ℕ → Bool)</code></td>
+<td><code>IsMeagre (Forb D b)</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-121"></a>L-121</td>
+<td><code>PFUL.FiniteBox.existsUnique_of_exclusive</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/ExclusiveInduction.lean">ExclusiveInduction.lean</a></td>
+<td><code>(w : (∀ k, O k) → (∀ k, I k)) (hex : Exclusive w) [∀ k, Nonempty (O k)] (f : ∀ k, I k → O k)</code></td>
+<td><code>∃! s : ∀ k, O k, ∀ k, f k (w s k) = s k</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-122"></a>L-122</td>
+<td><code>PFUL.FiniteBox.exists_partial_fixed</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/ExclusiveInduction.lean">ExclusiveInduction.lean</a></td>
+<td><code>(w : (∀ k, O k) → (∀ k, I k)) (hex : Exclusive w) [∀ k, Nonempty (O k)] (f : ∀ k, I k → O k) (T : Finset ι)</code></td>
+<td><code>∀ u : ∀ k, O k, ∃ s : ∀ k, O k, (∀ k, k ∉ T → s k = u k) ∧ ∀ k ∈ T, f k (w s k) = s k</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-123"></a>L-123</td>
+<td><code>PFUL.ExclusivityCount.exclusive_imp_existsUnique</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/ExclusivityCount.lean">ExclusivityCount.lean</a></td>
+<td><code>(a0 : ∀ k, I k) (s0 : ∀ k, O k) (hex : ∀ f, N w f ≤ 1) (f : ∀ k, I k → O k)</code></td>
+<td><code>∃! s : ∀ k, O k, ∀ k, f k (w s k) = s k</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-124"></a>L-124</td>
+<td><code>PFUL.ExclusivityCount.sum_N_eq_card</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/ExclusivityCount.lean">ExclusivityCount.lean</a></td>
+<td><code>(a0 : ∀ k, I k) (s0 : ∀ k, O k)</code></td>
+<td><code>∑ f, N w f = Fintype.card (∀ k, I k → O k)</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-125"></a>L-125</td>
+<td><code>PFUL.FiniteBox.fixed_unique</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/FiniteBox.lean">FiniteBox.lean</a></td>
+<td><code>(∀ k, O k) (∀ k, I k) (hex : Exclusive w) (f : ∀ k, I k → O k) (hs : ∀ k, f k (w s k) = s k) (hs' : ∀ k, f k (w s' k) = s' k)</code></td>
+<td><code>s = s'</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-126"></a>L-126</td>
+<td><code>PFUL.General.exclusive_iff_pf</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/GeneralAlphabets.lean">GeneralAlphabets.lean</a></td>
+<td><code>[Finite ι] [∀ k, Nonempty (O k)] (w : (∀ k, O k) → (∀ k, I k))</code></td>
+<td><code>FiniteBox.Exclusive w ↔ ∀ f : ∀ k, I k → O k, ∃! s : ∀ k, O k, ∀ k, f k (w s k) = s k</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-127"></a>L-127</td>
+<td><code>PFUL.General.exclusive_not_pf_of_empty</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/GeneralAlphabets.lean">GeneralAlphabets.lean</a></td>
+<td><code>—</code></td>
+<td><code>FiniteBox.Exclusive (I := fun _ : Unit ⇒ Empty) (O := fun _ : Unit ⇒ Empty) (fun s ⇒ s) ∧ ¬ ∀ f : ∀ _ : Unit, Empty → Empty, ∃! s : ∀ _ : Unit, Em…</code></td>
+<td>none</td>
+</tr>
+<tr>
+<td><a id="L-128"></a>L-128</td>
+<td><code>PFUL.General.exclusive_of_unitary_l2_any</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/GeneralAlphabets.lean">GeneralAlphabets.lean</a></td>
+<td><code>(e : ∀ k, O k ≃ I k) (w : (∀ k, O k) → (∀ k, I k)) (∀ k a, Summable fun c ⇒ ‖V k a c‖ ^ 2) (fun c ⇒ V k a c * star (V k b c)) (if a = b then 1 else…</code></td>
+<td><code>FiniteBox.Exclusive w</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-129"></a>L-129</td>
+<td><code>PFUL.General.hasSum_pi_prod_any</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/GeneralAlphabets.lean">GeneralAlphabets.lean</a></td>
+<td><code>[Fintype K] (g : ∀ k, X k → ℂ) (hg : ∀ k, Summable fun x ⇒ ‖g k x‖)</code></td>
+<td><code>HasSum (fun x : (∀ k, X k) ⇒ ∏ k, g k (x k)) (∏ k, ∑' x, g k x)</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-130"></a>L-130</td>
+<td><code>PFUL.General.induced_unitary_l2_any</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/GeneralAlphabets.lean">GeneralAlphabets.lean</a></td>
+<td><code>[∀ k, AddCommGroup (I k)] [∀ k, DecidableEq (I k)] [∀ k, DecidableEq (X k)] [∀ k, DecidableEq (O k)] [∀ k, DecidableEq (Y k)] (w : (∀ k, O k) → (∀ k,…</code></td>
+<td><code>∃ Φ : lp (fun _ : (∀ k, I k) × (∀ k, X k) ⇒ ℂ) 2 ≃ₗᵢ[ℂ] lp (fun _ : (∀ k, O k) × (∀ k, Y k) ⇒ ℂ) 2, (∀ v r, HasSum (fun c ⇒ (∏ k, V k (r.1 k, r.2 …</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-131"></a>L-131</td>
+<td><code>PFUL.General.tsum_prod_eq_one_anc_any</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/GeneralAlphabets.lean">GeneralAlphabets.lean</a></td>
+<td><code>[∀ k, Nonempty (I k)] (w : (∀ k, O k) → (∀ k, I k)) (hw : IsProcessFunction w) (p : ∀ k, I k → O k × Y k → ℝ≥0∞) (hp : ∀ k i, ∑' z, p k i z = 1)</code></td>
+<td><code>∑' r : (∀ k, O k) × (∀ k, Y k), ∏ k, p k (w r.1 k) (r.1 k, r.2 k) = 1</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-132"></a>L-132</td>
+<td><code>PFUL.General.unitary_l2_iff_pf_any</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/GeneralAlphabets.lean">GeneralAlphabets.lean</a></td>
+<td><code>(w : (∀ k, O k) → (∀ k, I k))</code></td>
+<td><code>(∀ V : ∀ k, O k × I k → I k × O k → ℂ, (∀ k a, Summable fun c ⇒ ‖V k a c‖ ^ 2) → (∀ k a b, HasSum (fun c ⇒ V k a c * star (V k b c)) (if a = b then…</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-133"></a>L-133</td>
+<td><code>PFUL.General.unitary_l2_noAncilla_iff_pf_any</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/GeneralAlphabets.lean">GeneralAlphabets.lean</a></td>
+<td><code>(e : ∀ k, O k ≃ I k) (w : (∀ k, O k) → (∀ k, I k))</code></td>
+<td><code>(∀ V : ∀ k, O k × Unit → I k × Unit → ℂ, (∀ k a, Summable fun c ⇒ ‖V k a c‖ ^ 2) → (∀ k a b, HasSum (fun c ⇒ V k a c * star (V k b c)) (if a = b th…</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-134"></a>L-134</td>
+<td><code>PFUL.Infinite.pf_of_exclusive_continuous</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/InfiniteCompact.lean">InfiniteCompact.lean</a></td>
+<td><code>[∀ k, TopologicalSpace (O k)] [∀ k, DiscreteTopology (O k)] [∀ k, Finite (O k)] [∀ k, Nonempty (O k)] [∀ k, TopologicalSpace (I k)] [∀ k, DiscreteTop…</code></td>
+<td><code>∃! s : ∀ k, O k, ∀ k, f k (w s k) = s k</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-135"></a>L-135</td>
+<td><code>PFUL.PM.hasSum_pi_prod_any</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/InfiniteLink.lean">InfiniteLink.lean</a></td>
+<td><code>[Fintype ι] (g : ∀ k, κ k → ℂ) (hg : ∀ k, Summable fun b ⇒ ‖g k b‖)</code></td>
+<td><code>HasSum (fun β : (∀ k, κ k) ⇒ ∏ k, g k (β k)) (∏ k, ∑' b, g k b)</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-136"></a>L-136</td>
+<td><code>PFUL.PM.isCPTPChoi_reduceKer</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/InfiniteLink.lean">InfiniteLink.lean</a></td>
+<td><code>[Fintype A] [DecidableEq A] [Fintype B] [Fintype X'] [DecidableEq X'] [DecidableEq X] ((A × X) × (B × Y)) ((A × X) × (B × Y)) (hJ : IsCPTPKer J) (he …</code></td>
+<td><code>IsCPTPChoi (reduceKer J e)</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-137"></a>L-137</td>
+<td><code>PFUL.PM.isCPTPKer_iff</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/InfiniteLink.lean">InfiniteLink.lean</a></td>
+<td><code>[Fintype B] [DecidableEq A] (J : Matrix (A × B) (A × B) ℂ)</code></td>
+<td><code>IsCPTPKer J ↔ IsCPTPChoi J</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-138"></a>L-138</td>
+<td><code>PFUL.PM.isIsoKernel_lmat</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/InfiniteLink.lean">InfiniteLink.lean</a></td>
+<td><code>(σ : ∀ k, I k ≃ O k) (F × ∀ k, I k) (P × ∀ k, O k) (hU : FinPureU U) [∀ k, DecidableEq (X k)] (A : ∀ k, Matrix (O k × X k) (I k × X k) ℂ) (hA : ∀ k, …</code></td>
+<td><code>IsIsoKernel (lmat U A)</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-139"></a>L-139</td>
+<td><code>PFUL.PM.isPurePMInf_iff</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/InfiniteLink.lean">InfiniteLink.lean</a></td>
+<td><code>(σ : ∀ k, I k ≃ O k) (W : Matrix (PIdx P F I O) (PIdx P F I O) ℂ)</code></td>
+<td><code>IsPurePMInf W ↔ IsPurePM W</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-140"></a>L-140</td>
+<td><code>PFUL.PM.isUnitaryKer_lmat</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/InfiniteLink.lean">InfiniteLink.lean</a></td>
+<td><code>(σ : ∀ k, I k ≃ O k) (F × ∀ k, I k) (P × ∀ k, O k) (hU : FinPureU U) [∀ k, DecidableEq (X k)] (A : ∀ k, Matrix (O k × X k) (I k × X k) ℂ) (hc : ∀ k, …</code></td>
+<td><code>IsIsoKernel (lmat U A) ∧ IsCoIsoKernel (lmat U A)</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-141"></a>L-141</td>
+<td><code>PFUL.PM.isValidPMInf_iff</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/InfiniteLink.lean">InfiniteLink.lean</a></td>
+<td><code>(W : Matrix (PIdx P F I O) (PIdx P F I O) ℂ)</code></td>
+<td><code>IsValidPMInf W ↔ IsValidPM W</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-142"></a>L-142</td>
+<td><code>PFUL.PM.link_choiPM_vecOp</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/InfiniteLink.lean">InfiniteLink.lean</a></td>
+<td><code>(U : Matrix (F × ∀ k, I k) (P × ∀ k, O k) ℂ) (A : ∀ k, Matrix (O k × X k) (I k × X k) ℂ)</code></td>
+<td><code>link (choiPM U) (fun k ⇒ vecOp (A k)) = vecOp (lmat U A)</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-143"></a>L-143</td>
+<td><code>PFUL.PM.link_posSemidef_any</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/InfiniteLink.lean">InfiniteLink.lean</a></td>
+<td><code>(PIdx P F I O) (PIdx P F I O) (hW : W.PosSemidef) [∀ k, DecidableEq (X k)] [∀ k, DecidableEq (Y k)] ((I k × X k) × (O k × Y k)) ((I k × X k) × (O k ×…</code></td>
+<td><code>(link W C).PosSemidef</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-144"></a>L-144</td>
+<td><code>PFUL.PM.posSemidef_of_sections</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/InfiniteLink.lean">InfiniteLink.lean</a></td>
+<td><code>(M : Matrix n n ℂ) ((↑) : S → n) ((↑) : S → n)</code></td>
+<td><code>M.PosSemidef</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-145"></a>L-145</td>
+<td><code>PFUL.PM.psd_norm_le</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/InfiniteLink.lean">InfiniteLink.lean</a></td>
+<td><code>(hJ : J.PosSemidef) (p q : n)</code></td>
+<td><code>‖J p q‖ ≤ ((J p p).re + (J q q).re) / 2</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-146"></a>L-146</td>
+<td><code>PFUL.Infinite.exists_exclusive_not_pf_iff</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/InfiniteParties.lean">InfiniteParties.lean</a></td>
+<td><code>(O : ι → Type u)</code></td>
+<td><code>(∃ (I : ι → Type u) (w : (∀ k, O k) → (∀ k, I k)), Exclusive w ∧ ¬ IsProcessFunction w) ↔ ∃ F : (∀ k, O k) → (∀ k, O k), (∀ s, F s ≠ s) ∧ Exclusive F</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-147"></a>L-147</td>
+<td><code>PFUL.Infinite.fixed_unique</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/InfiniteParties.lean">InfiniteParties.lean</a></td>
+<td><code>(∀ k, O k) (∀ k, I k) (hex : Exclusive w) (f : ∀ k, I k → O k) (hs : ∀ k, f k (w s k) = s k) (hs' : ∀ k, f k (w s' k) = s' k)</code></td>
+<td><code>s = s'</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-148"></a>L-148</td>
+<td><code>PFUL.Column.sum_prod_eq_prod</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/Isometry.lean">Isometry.lean</a></td>
+<td><code>(w : (∀ k, O k) → (∀ k, I k)) (hw : Column.IsProcessFunction w) [∀ k, Nonempty (I k)] (q : ∀ k, I k → O k → ℂ) (lam : ι → ℂ) (hq : ∀ k i, ∑ o, q k i …</code></td>
+<td><code>∑ s : (∀ k, O k), ∏ k, q k (w s k) (s k) = ∏ k, lam k</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-149"></a>L-149</td>
+<td><code>PFUL.induced_isometry</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/Isometry.lean">Isometry.lean</a></td>
+<td><code>[∀ k, AddCommGroup (I k)] (w : (∀ k, O k) → (∀ k, I k)) (hw : IsProcessFunction w) (V : ∀ k, Matrix (O k × Y k) (I k × X k) ℂ) (hV' : ∀ k, (V k)ᴴ * V…</code></td>
+<td><code>(induced ℂ w V)ᴴ * induced ℂ w V = 1</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-150"></a>L-150</td>
+<td><code>PFUL.Countable.KernelPSD.exists_factor_any</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/KrausAny.lean">KrausAny.lean</a></td>
+<td><code>[DecidableEq P] (hJ : KernelPSD J)</code></td>
+<td><code>∃ (Y : Type u) (W : P → Y → ℂ), ∀ p q, HasSum (fun y ⇒ W p y * star (W q y)) (J p q)</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-151"></a>L-151</td>
+<td><code>PFUL.Countable.exists_kraus_of_choi_any</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/KrausAny.lean">KrausAny.lean</a></td>
+<td><code>[DecidableEq O] [DecidableEq A] (hJ : KernelPSD J) (fun o ⇒ J (o, a) (o, a')) (if a' = a then 1 else 0)</code></td>
+<td><code>∃ (Y : Type u) (V : O × Y → A → ℂ), (∀ a a', HasSum (fun r ⇒ star (V r a) * V r a') (if a = a' then 1 else 0)) ∧ choiKernel V = J</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-152"></a>L-152</td>
+<td><code>PFUL.Counterexample.valid_normalCPTP_Vsb_any</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/KrausAny.lean">KrausAny.lean</a></td>
+<td><code>[∀ k, DecidableEq (X k)] [∀ k, DecidableEq (X' k)] (lp (fun _ : Bool × X k ⇒ ℂ) 2 →L[ℂ] lp (fun _ : Bool × X k ⇒ ℂ) 2) (lp (fun _ : Bool × X' k ⇒ …</code></td>
+<td><code>∃ (Y : Fin 3 → Type) (_ : ∀ k, DecidableEq (Y k)) (V : ∀ k, (Bool × X' k) × Y k → Bool × X k → ℂ) (hiso : ∀ k c c', HasSum (fun r ⇒ star (V k r c) *…</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-153"></a>L-153</td>
+<td><code>exists_kraus_of_normalCPTP_any</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/KrausAny.lean">KrausAny.lean</a></td>
+<td><code>[DecidableEq O] [DecidableEq A] (lp (fun _ : A ⇒ ℂ) 2 →L[ℂ] lp (fun _ : A ⇒ ℂ) 2) (lp (fun _ : O ⇒ ℂ) 2 →L[ℂ] lp (fun _ : O ⇒ ℂ) 2) (hΦ : IsNorma…</code></td>
+<td><code>∃ (Y : Type u) (_ : DecidableEq Y) (V : O × Y → A → ℂ) (hiso : ∀ a a', HasSum (fun r ⇒ star (V r a) * V r a') (if a = a' then 1 else 0)), ∀ ρ ∈ trac…</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-154"></a>L-154</td>
+<td><code>isNormalCPTP_iff_kraus_any</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/KrausAny.lean">KrausAny.lean</a></td>
+<td><code>[DecidableEq O] [DecidableEq A] (lp (fun _ : A ⇒ ℂ) 2 →L[ℂ] lp (fun _ : A ⇒ ℂ) 2) (lp (fun _ : O ⇒ ℂ) 2 →L[ℂ] lp (fun _ : O ⇒ ℂ) 2)</code></td>
+<td><code>IsNormalCPTP Φ ↔ ∃ (Y : Type u) (_ : DecidableEq Y) (V : O × Y → A → ℂ) (hiso : ∀ a a', HasSum (fun r ⇒ star (V r a) * V r a') (if a = a' then 1 els…</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-155"></a>L-155</td>
+<td><code>PFUL.Countable.induced_gram</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/KrausL2.lean">KrausL2.lean</a></td>
+<td><code>[∀ k, AddCommGroup (I k)] [∀ k, Countable (O k)] [∀ k, Countable (Y k)] [∀ k, DecidableEq (I k)] [∀ k, DecidableEq (X k)] (w : (∀ k, O k) → (∀ k, I k…</code></td>
+<td><code>HasSum (fun r : (∀ k, O k) × (∀ k, Y k) ⇒ star (∏ k, V k (r.1 k, r.2 k) (w r.1 k + c.1 k, c.2 k)) * ∏ k, V k (r.1 k, r.2 k) (w r.1 k + c'.1 k, c'.2 …</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-156"></a>L-156</td>
+<td><code>PFUL.Countable.induced_isometry_l2</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/KrausL2.lean">KrausL2.lean</a></td>
+<td><code>[∀ k, AddCommGroup (I k)] [∀ k, Countable (O k)] [∀ k, Countable (Y k)] [∀ k, DecidableEq (I k)] [∀ k, DecidableEq (X k)] [∀ k, DecidableEq (O k)] [∀…</code></td>
+<td><code>∃ Φ : lp (fun _ : (∀ k, I k) × (∀ k, X k) ⇒ ℂ) 2 →ₗᵢ[ℂ] lp (fun _ : (∀ k, O k) × (∀ k, Y k) ⇒ ℂ) 2, ∀ r c, Φ (lp.single 2 c (1 : ℂ)) r = ∏ k, V k (…</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-157"></a>L-157</td>
+<td><code>PFUL.Countable.valid_kraus_l2</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/KrausL2.lean">KrausL2.lean</a></td>
+<td><code>[∀ k, AddCommGroup (I k)] [∀ k, Countable (O k)] [∀ k, Countable (Y k)] [∀ k, DecidableEq (I k)] [∀ k, DecidableEq (X k)] [∀ k, DecidableEq (O k)] [∀…</code></td>
+<td><code>∃ Φ : lp (fun _ : (∀ k, I k) × (∀ k, X k) ⇒ ℂ) 2 →ₗᵢ[ℂ] lp (fun _ : (∀ k, O k) × (∀ k, Y k) ⇒ ℂ) 2, let U</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-158"></a>L-158</td>
+<td><code>PFUL.Countable.isNormalCPTP_iff_kraus</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/KrausNormal.lean">KrausNormal.lean</a></td>
+<td><code>[Countable O] [Countable A] [DecidableEq O] [DecidableEq A] (lp (fun _ : A ⇒ ℂ) 2 →L[ℂ] lp (fun _ : A ⇒ ℂ) 2) (lp (fun _ : O ⇒ ℂ) 2 →L[ℂ] lp (fun …</code></td>
+<td><code>IsNormalCPTP Φ ↔ ∃ (Y : Type u) (_ : Countable Y) (_ : DecidableEq Y) (V : O × Y → A → ℂ) (hiso : ∀ a a', HasSum (fun r ⇒ star (V r a) * V r a') (if…</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-159"></a>L-159</td>
+<td><code>PFUL.Countable.krausChannel_eq_stinespring</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/KrausNormal.lean">KrausNormal.lean</a></td>
+<td><code>(V : O × Y → A → ℂ) (fun r ⇒ star (V r a) * V r a') (if a = a' then 1 else 0)</code></td>
+<td><code>krausChannel V hiso = stinespring (krausStine V hiso)</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-160"></a>L-160</td>
+<td><code>PFUL.Countable.valid_normalCPTP_l2</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/KrausNormal.lean">KrausNormal.lean</a></td>
+<td><code>[∀ k, AddCommGroup (I k)] [∀ k, Countable (I k)] [∀ k, Countable (O k)] [∀ k, Countable (X k)] [∀ k, DecidableEq (I k)] [∀ k, DecidableEq (X k)] [∀ k…</code></td>
+<td><code>∃ (Y : ι → Type u) (_ : ∀ k, Countable (Y k)) (_ : ∀ k, DecidableEq (Y k)) (V : ∀ k, O k × Y k → I k × X k → ℂ) (hiso : ∀ k c c', HasSum (fun r ⇒ st…</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-161"></a>L-161</td>
+<td><code>PFUL.LemmaH.RigidBoard.card_class_eq_two_of_four</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/LemmaH.lean">LemmaH.lean</a></td>
+<td><code>(h4 : #(Finset.univ.image b.κ) = 4) (x : L) (hx : x ∈ Finset.univ.image b.κ)</code></td>
+<td><code>#(cls b.κ x) = 2</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-162"></a>L-162</td>
+<td><code>PFUL.LemmaH.RigidBoard.card_image_le_four</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/LemmaH.lean">LemmaH.lean</a></td>
+<td><code>—</code></td>
+<td><code>#(Finset.univ.image b.κ) ≤ 4</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-163"></a>L-163</td>
+<td><code>PFUL.LemmaH.RigidBoard.class_eq_edge_of_four</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/LemmaH.lean">LemmaH.lean</a></td>
+<td><code>(h4 : #(Finset.univ.image b.κ) = 4) (o : Vert) (hx : b.κ o ≠ b.idl) (p : Fin 3) (hp : b.Rg (b.κ o) p)</code></td>
+<td><code>cls b.κ (b.κ o) = {o, o + e p}</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-164"></a>L-164</td>
+<td><code>PFUL.LemmaH.RigidBoard.rigid_unique_of_four</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/LemmaH.lean">LemmaH.lean</a></td>
+<td><code>(h4 : #(Finset.univ.image b.κ) = 4) (o : Vert) (hx : b.κ o ≠ b.idl) (p q : Fin 3) (hp : b.Rg (b.κ o) p) (hq : b.Rg (b.κ o) q)</code></td>
+<td><code>p = q</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-165"></a>L-165</td>
+<td><code>PFUL.LemmaH.card_support_tmul</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/LemmaH.lean">LemmaH.lean</a></td>
+<td><code>[DecidableEq G] (φ : G → G → ℂ) (hφ : ∀ t s, φ t s ≠ 0) (π : G →+ H) (a0 : H) (W V : G →₀ ℂ) (hW : ∀ t ∈ W.support, π t = a0) (hV : Set.InjOn π V.sup…</code></td>
+<td><code>#(tmul φ W V).support = #W.support * #V.support</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-166"></a>L-166</td>
+<td><code>PFUL.LemmaH.classBound</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/LemmaH.lean">LemmaH.lean</a></td>
+<td><code>[DecidableEq L] (φ : PStr → PStr → ℂ) (hφ : ∀ t s, φ t s ≠ 0) (V : L → PStr →₀ ℂ) (κ : Vert → L) (idl : L) (∃ A, A ≠ 0 ∧ (V x).support = {0, A}) (∃ A…</code></td>
+<td><code>#(Finset.univ.image κ) ≤ 4 ∧ (#(Finset.univ.image κ) = 4 → ∀ x ∈ Finset.univ.image κ, #(cls κ x) = 2)</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-167"></a>L-167</td>
+<td><code>PFUL.LemmaH.lemmaH_ii</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/LemmaH.lean">LemmaH.lean</a></td>
+<td><code>(φ : PStr → PStr → ℂ) (hφ : ∀ t s, φ t s ≠ 0) (p : Fin 3) (Vx W : PStr →₀ ℂ) (hW : ∃ a0, ∀ t ∈ W.support, t p = a0) (hrig : Rigid p Vx.support) (hm :…</code></td>
+<td><code>∃ t0 c0, c0 ≠ 0 ∧ W = Finsupp.single t0 c0</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-168"></a>L-168</td>
+<td><code>PFUL.LemmaH.rigid_three</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/LemmaH.lean">LemmaH.lean</a></td>
+<td><code>(A B : PStr) (h : Anticomm A B)</code></td>
+<td><code>∃ p, Rigid p {0, A, B}</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-169"></a>L-169</td>
+<td><code>PFUL.LemmaH.rigid_two</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/LemmaH.lean">LemmaH.lean</a></td>
+<td><code>(A : PStr) (hA : A ≠ 0)</code></td>
+<td><code>∃ p, Rigid p {0, A}</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-170"></a>L-170</td>
+<td><code>PFUL.LiftAuto.closedLoop_l2_unitary</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/LiftAuto.lean">LiftAuto.lean</a></td>
+<td><code>[DecidableEq ι] [∀ k, AddCommGroup (G k)] (∀ k, G k) (∀ k, G k) (hw : PFUL.Countable.IsProcessFunction (I := G) (O := G) w) (∀ k, G k) (h1 : ∀ x, ‖φ …</code></td>
+<td><code>∃ U : lp (fun _ : (∀ k, G k) ⇒ ℂ) 2 ≃ₗᵢ[ℂ] lp (fun _ : (∀ k, G k) ⇒ ℂ) 2, ∀ ψ o, U ψ o = φ o * ψ (o - w o)</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-171"></a>L-171</td>
+<td><code>PFUL.NoAncilla.exclusivity_of_unitary_noAncilla</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/NoAncilla.lean">NoAncilla.lean</a></td>
+<td><code>(w : (∀ k, O k) → (∀ k, I k)) (e : ∀ k, O k ≃ I k) (O k × Unit) (I k × Unit) (∀ k, V k * (V k)ᴴ = 1) (induced ℂ w V) (hne : s ≠ s')</code></td>
+<td><code>∃ k, s k ≠ s' k ∧ w s k = w s' k</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-172"></a>L-172</td>
+<td><code>PFUL.NoAncilla.gram</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/NoAncilla.lean">NoAncilla.lean</a></td>
+<td><code>(w : (∀ k, O k) → (∀ k, I k)) (V : ∀ k, Matrix (O k × Y k) (I k × X k) ℂ) (r r' : (∀ k, O k) × (∀ k, Y k))</code></td>
+<td><code>(induced ℂ w V * (induced ℂ w V)ᴴ) r r' = ∏ k, ∑ p : I k × X k, V k (r.1 k, r.2 k) (w r.1 k + p.1, p.2) * star (V k (r'.1 k, r'.2 k) (w r'.1 k + p.1,…</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-173"></a>L-173</td>
+<td><code>PFUL.NoAncilla.pf_imp_unitary_noAncilla</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/NoAncilla.lean">NoAncilla.lean</a></td>
+<td><code>(w : (∀ k, O k) → (∀ k, I k)) (hw : IsProcessFunction w) (V : ∀ k, Matrix (O k × Unit) (I k × Unit) ℂ) (hV : ∀ k, V k * (V k)ᴴ = 1) (hcard : ∀ k, Fin…</code></td>
+<td><code>induced ℂ w V * (induced ℂ w V)ᴴ = 1 ∧ (induced ℂ w V)ᴴ * induced ℂ w V = 1</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-174"></a>L-174</td>
+<td><code>PFUL.NoAncilla.unitary_noAncilla_iff_pf</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/NoAncilla.lean">NoAncilla.lean</a></td>
+<td><code>(w : (∀ k, O k) → (∀ k, I k)) (e : ∀ k, O k ≃ I k)</code></td>
+<td><code>(∀ V : ∀ k, Matrix (O k × Unit) (I k × Unit) ℂ, (∀ k, V k * (V k)ᴴ = 1) → induced ℂ w V * (induced ℂ w V)ᴴ = 1 ∧ (induced ℂ w V)ᴴ * induced ℂ w V = 1…</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-175"></a>L-175</td>
+<td><code>PFUL.Countable.exclusive_of_unitary_l2</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/NoAncillaL2.lean">NoAncillaL2.lean</a></td>
+<td><code>(e : ∀ k, O k ≃ I k) (w : (∀ k, O k) → (∀ k, I k)) (∀ k a, Summable fun c ⇒ ‖V k a c‖ ^ 2) (fun c ⇒ V k a c * star (V k b c)) (if a = b then 1 else…</code></td>
+<td><code>FiniteBox.Exclusive w</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-176"></a>L-176</td>
+<td><code>PFUL.Countable.rows_of_lie</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/NoAncillaL2.lean">NoAncillaL2.lean</a></td>
+<td><code>[DecidableEq R] [DecidableEq C] (Φ : lp (fun _ : C ⇒ ℂ) 2 ≃ₗᵢ[ℂ] lp (fun _ : R ⇒ ℂ) 2) (M : R → C → ℂ) (lp.single 2 c (1 : ℂ)) (r r' : R)</code></td>
+<td><code>HasSum (fun c ⇒ M r c * star (M r' c)) (if r = r' then 1 else 0)</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-177"></a>L-177</td>
+<td><code>PFUL.Countable.unitary_l2_noAncilla_iff_pf</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/NoAncillaL2.lean">NoAncillaL2.lean</a></td>
+<td><code>(e : ∀ k, O k ≃ I k) (w : (∀ k, O k) → (∀ k, I k))</code></td>
+<td><code>(∀ V : ∀ k, O k × Unit → I k × Unit → ℂ, (∀ k a, Summable fun c ⇒ ‖V k a c‖ ^ 2) → (∀ k a b, HasSum (fun c ⇒ V k a c * star (V k b c)) (if a = b th…</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-178"></a>L-178</td>
+<td><code>PFUL.Polar.absOp_mem</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/Polar.lean">Polar.lean</a></td>
+<td><code>[ℂ] (hT : T ∈ traceClass H)</code></td>
+<td><code>absOp T ∈ traceClass H</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-179"></a>L-179</td>
+<td><code>PFUL.Polar.adjoint_partialIso_comp</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/Polar.lean">Polar.lean</a></td>
+<td><code>(T : H →L[ℂ] H) (x : H)</code></td>
+<td><code>adjoint (partialIso T) (partialIso T x) = (initSp T).starProjection x</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-180"></a>L-180</td>
+<td><code>PFUL.Polar.adjoint_partialIso_comp_self</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/Polar.lean">Polar.lean</a></td>
+<td><code>(T : H →L[ℂ] H)</code></td>
+<td><code>adjoint (partialIso T) ∘L T = absOp T</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-181"></a>L-181</td>
+<td><code>PFUL.Polar.isPartialIsometry_partialIso</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/Polar.lean">Polar.lean</a></td>
+<td><code>(T : H →L[ℂ] H)</code></td>
+<td><code>IsPartialIsometry (partialIso T)</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-182"></a>L-182</td>
+<td><code>PFUL.Polar.mem_traceClass_iff</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/Polar.lean">Polar.lean</a></td>
+<td><code>[ℂ] (b : HilbertBasis ι ℂ H)</code></td>
+<td><code>T ∈ traceClass H ↔ Summable fun i ⇒ (⟪b i, absOp T (b i)⟫_ℂ).re</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-183"></a>L-183</td>
+<td><code>PFUL.Polar.polar</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/Polar.lean">Polar.lean</a></td>
+<td><code>(T : H →L[ℂ] H)</code></td>
+<td><code>partialIso T ∘L absOp T = T</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-184"></a>L-184</td>
+<td><code>PFUL.Polar.polar_unique</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/Polar.lean">Polar.lean</a></td>
+<td><code>[ℂ] (hA : A.IsPositive) (hT : W ∘L A = T) (hWiso : ∀ x, ‖W (A x)‖ = ‖A x‖) (A : H →ₗ[ℂ] H)</code></td>
+<td><code>A = absOp T ∧ W = partialIso T</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-185"></a>L-185</td>
+<td><code>PFUL.Polar.traceNorm_eq_trace_abs</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/Polar.lean">Polar.lean</a></td>
+<td><code>[ℂ] (hT : T ∈ traceClass H)</code></td>
+<td><code>traceNorm T = ‖trace (absOp T)‖ₑ</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-186"></a>L-186</td>
+<td><code>PFUL.PM.isCPTPChoi_choiOf_iff</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/ProcessMatrix.lean">ProcessMatrix.lean</a></td>
+<td><code>[Fintype A] [DecidableEq A] [Fintype B] [DecidableEq B] (Φ : Matrix A A ℂ →ₗ[ℂ] Matrix B B ℂ)</code></td>
+<td><code>IsCPTPChoi (PFUL.Choi.choiOf Φ) ↔ PFUL.Choi.IsCP Φ ∧ ∀ X, (Φ X).trace = X.trace</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-187"></a>L-187</td>
+<td><code>PFUL.PM.isUnitaryM_of_vecOp_eq</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/ProcessMatrix.lean">ProcessMatrix.lean</a></td>
+<td><code>[Fintype R] [Fintype C] [DecidableEq R] [DecidableEq C] (hM : IsUnitaryM M) (h : vecOp A = vecOp M)</code></td>
+<td><code>IsUnitaryM A</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-188"></a>L-188</td>
+<td><code>PFUL.PM.link_posSemidef</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/ProcessMatrix.lean">ProcessMatrix.lean</a></td>
+<td><code>(PIdx P F I O) (PIdx P F I O) (hW : W.PosSemidef) [∀ k, Fintype (X k)] [∀ k, DecidableEq (X k)] [∀ k, Fintype (Y k)] [∀ k, DecidableEq (Y k)] ((I k ×…</code></td>
+<td><code>(link W C).PosSemidef</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-189"></a>L-189</td>
+<td><code>PFUL.PM.link_rankOne</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/ProcessMatrix.lean">ProcessMatrix.lean</a></td>
+<td><code>(v : PIdx P F I O → ℂ) (u : ∀ k, (I k × X k) × (O k × Y k) → ℂ)</code></td>
+<td><code>link (vecMulVec v (star v)) (fun k ⇒ vecMulVec (u k) (star (u k))) = vecMulVec (linkVec v u) (star (linkVec v u))</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-190"></a>L-190</td>
+<td><code>PFUL.Counterexample.compose_conjTranspose</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/PureFiniteInf.lean">PureFiniteInf.lean</a></td>
+<td><code>[Fintype P] (V : Proc P P) (a : ∀ k, Matrix (Bool × κ k) (Bool × κ k) ℂ)</code></td>
+<td><code>(compose V a).conjTranspose = compose V.conjTranspose fun k ⇒ (a k).conjTranspose</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-191"></a>L-191</td>
+<td><code>PFUL.Counterexample.isPureHilbert_of_isPure</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/PureFiniteInf.lean">PureFiniteInf.lean</a></td>
+<td><code>[Fintype P] [DecidableEq P] (hV : IsPure V)</code></td>
+<td><code>IsPureHilbert V</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-192"></a>L-192</td>
+<td><code>PFUL.Counterexample.isPureKer_of_isPure</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/PureFiniteInf.lean">PureFiniteInf.lean</a></td>
+<td><code>[Fintype P] [DecidableEq P] (hV : IsPure V)</code></td>
+<td><code>IsPureKer V</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-193"></a>L-193</td>
+<td><code>PFUL.Counterexample.isPure_iff_isPureHilbert</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/PureFiniteInf.lean">PureFiniteInf.lean</a></td>
+<td><code>[Fintype P] [DecidableEq P] (V : Proc P P)</code></td>
+<td><code>IsPure V ↔ IsPureHilbert V</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-194"></a>L-194</td>
+<td><code>PFUL.Counterexample.isPure_iff_isPureKer</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/PureFiniteInf.lean">PureFiniteInf.lean</a></td>
+<td><code>[Fintype P] [DecidableEq P] (V : Proc P P)</code></td>
+<td><code>IsPure V ↔ IsPureKer V</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-195"></a>L-195</td>
+<td><code>PFUL.Counterexample.isPure_iff_isUnitaryKer</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/PureFiniteInf.lean">PureFiniteInf.lean</a></td>
+<td><code>[Fintype P] [DecidableEq P] (V : Proc P P)</code></td>
+<td><code>IsPure V ↔ IsUnitaryKer V</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-196"></a>L-196</td>
+<td><code>PFUL.Counterexample.isUnitaryKer_of_isPure</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/PureFiniteInf.lean">PureFiniteInf.lean</a></td>
+<td><code>[Fintype P] [DecidableEq P] (hV : IsPure V)</code></td>
+<td><code>IsUnitaryKer V</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-197"></a>L-197</td>
+<td><code>PFUL.Counterexample.isPure_qubitTensor</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/QubitTensor.lean">QubitTensor.lean</a></td>
+<td><code>[Fintype P] [DecidableEq P] (hV : IsPure V) (κ : Fin 3 → Type) [∀ k, DecidableEq (κ k)] (K : Fin 3 → Type) [∀ k, NormedAddCommGroup (K k)] [∀ k, Inne…</code></td>
+<td><code>∃ U : G ≃ₗᵢ[ℂ] G, ∀ r c, ⟪bG r, U (bG c)⟫_ℂ = compose V (fun k ⇒ kerOf (qubitBasis (B k)) (A k)) r c</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-198"></a>L-198</td>
+<td><code>PFUL.Counterexample.qubitBasis_apply</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/QubitTensor.lean">QubitTensor.lean</a></td>
+<td><code>(B : HilbertBasis κ ℂ K) (p : Bool × κ)</code></td>
+<td><code>qubitBasis B p = EuclideanSpace.single p.1 (1 : ℂ) ⊗ₜ[ℂ] B p.2</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-199"></a>L-199</td>
+<td><code>PFUL.Countable.exclusivity</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/Rows.lean">Rows.lean</a></td>
+<td><code>(w : (∀ k, O k) → (∀ k, I k)) (hw : IsProcessFunction w) (hne : s ≠ s')</code></td>
+<td><code>∃ k, s k ≠ s' k ∧ w s k = w s' k</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-200"></a>L-200</td>
+<td><code>PFUL.Countable.hasSum_pi_prod</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/Rows.lean">Rows.lean</a></td>
+<td><code>[Fintype K] [∀ k, Countable (X k)] (g : ∀ k, X k → ℂ) (hg : ∀ k, Summable fun x ⇒ ‖g k x‖)</code></td>
+<td><code>HasSum (fun x : (∀ k, X k) ⇒ ∏ k, g k (x k)) (∏ k, ∑' x, g k x)</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-201"></a>L-201</td>
+<td><code>PFUL.Countable.induced_rows</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/Rows.lean">Rows.lean</a></td>
+<td><code>[∀ k, AddCommGroup (I k)] [∀ k, Countable (I k)] [∀ k, Countable (X k)] [∀ k, DecidableEq (O k)] [∀ k, DecidableEq (Y k)] (w : (∀ k, O k) → (∀ k, I k…</code></td>
+<td><code>HasSum (fun c : (∀ k, I k) × (∀ k, X k) ⇒ (∏ k, V k (r.1 k, r.2 k) (w r.1 k + c.1 k, c.2 k)) * star (∏ k, V k (r'.1 k, r'.2 k) (w r'.1 k + c.1 k, c.…</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-202"></a>L-202</td>
+<td><code>PFUL.Polar.schmidt</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/Schmidt.lean">Schmidt.lean</a></td>
+<td><code>[ℂ] (hT : T ∈ traceClass H)</code></td>
+<td><code>∃ (ι : Type u) (v : HilbertBasis ι ℂ H) (u : ι → H) (s : ι → ℂ), (∀ n, 0 ≤ s n) ∧ (∀ n, absOp T (v n) = s n • v n) ∧ (∀ x, HasSum (fun n ⇒ (s n * ⟪v…</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-203"></a>L-203</td>
+<td><code>PFUL.TraceClass.isCompactOperator_of_mem</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/Schmidt.lean">Schmidt.lean</a></td>
+<td><code>[ℂ] (hT : T ∈ traceClass H)</code></td>
+<td><code>IsCompactOperator T</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-204"></a>L-204</td>
+<td><code>PFUL.Polar.schmidt_traceNorm</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/SchmidtTraceNorm.lean">SchmidtTraceNorm.lean</a></td>
+<td><code>[ℂ] (hT : T ∈ traceClass H)</code></td>
+<td><code>∃ (ι : Type u) (v : HilbertBasis ι ℂ H) (u : ι → H) (s : ι → ℂ), (∀ n, 0 ≤ s n) ∧ (∀ n m, s n ≠ 0 → s m ≠ 0 → ⟪u n, u m⟫_ℂ = if n = m then 1 else 0) …</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-205"></a>L-205</td>
+<td><code>PFUL.TraceClass.comp_mem_left</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/TraceClass.lean">TraceClass.lean</a></td>
+<td><code>(C : H →L[ℂ] H) [ℂ] (hT : T ∈ traceClass H)</code></td>
+<td><code>C ∘L T ∈ traceClass H</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-206"></a>L-206</td>
+<td><code>PFUL.TraceClass.comp_mem_right</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/TraceClass.lean">TraceClass.lean</a></td>
+<td><code>(C : H →L[ℂ] H) [ℂ] (hT : T ∈ traceClass H)</code></td>
+<td><code>T ∘L C ∈ traceClass H</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-207"></a>L-207</td>
+<td><code>PFUL.TraceClass.enorm_trace_le_traceNorm</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/TraceClass.lean">TraceClass.lean</a></td>
+<td><code>(T : H →L[ℂ] H)</code></td>
+<td><code>‖trace T‖ₑ ≤ traceNorm T</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-208"></a>L-208</td>
+<td><code>PFUL.TraceClass.hasSum_trace</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/TraceClass.lean">TraceClass.lean</a></td>
+<td><code>[ℂ] (hT : T ∈ traceClass H) (b : HilbertBasis ι ℂ H)</code></td>
+<td><code>HasSum (fun i ⇒ ⟪b i, T (b i)⟫_ℂ) (trace T)</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-209"></a>L-209</td>
+<td><code>PFUL.TraceClass.hsSq_indep</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/TraceClass.lean">TraceClass.lean</a></td>
+<td><code>(b : HilbertBasis ι ℂ H) (b' : HilbertBasis ι' ℂ H) (A : H →L[ℂ] K)</code></td>
+<td><code>hsSq b A = hsSq b' A</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-210"></a>L-210</td>
+<td><code>PFUL.TraceClass.ptrace_add</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/TraceClass.lean">TraceClass.lean</a></td>
+<td><code>(lp (fun _ : J ⇒ H) 2) (lp (fun _ : J ⇒ H) 2)</code></td>
+<td><code>ptrace (S + T) = ptrace S + ptrace T</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-211"></a>L-211</td>
+<td><code>PFUL.TraceClass.ptrace_isPositive</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/TraceClass.lean">TraceClass.lean</a></td>
+<td><code>(lp (fun _ : J ⇒ H) 2) (hpos : T.IsPositive)</code></td>
+<td><code>(ptrace T).IsPositive</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-212"></a>L-212</td>
+<td><code>PFUL.TraceClass.ptrace_rankOne_tensor</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/TraceClass.lean">TraceClass.lean</a></td>
+<td><code>(x x' : H) (y y' : lp (fun _ : J ⇒ ℂ) 2)</code></td>
+<td><code>ptrace (InnerProductSpace.rankOne ℂ (tensor x y) (tensor x' y')) = ⟪y', y⟫_ℂ • InnerProductSpace.rankOne ℂ x x'</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-213"></a>L-213</td>
+<td><code>PFUL.TraceClass.ptrace_smul</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/TraceClass.lean">TraceClass.lean</a></td>
+<td><code>(a : ℂ) (lp (fun _ : J ⇒ H) 2)</code></td>
+<td><code>ptrace (a • T) = a • ptrace T</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-214"></a>L-214</td>
+<td><code>PFUL.TraceClass.ptrace_unique</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/TraceClass.lean">TraceClass.lean</a></td>
+<td><code>(P : H →L[ℂ] H) (hP : ∀ C : H →L[ℂ] H, trace (P ∘L C) = trace (T ∘L amp C)) (lp (fun _ : J ⇒ H) 2)</code></td>
+<td><code>ptrace T = P</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-215"></a>L-215</td>
+<td><code>PFUL.TraceClass.traceNorm_ne_top</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/TraceClass.lean">TraceClass.lean</a></td>
+<td><code>[ℂ] (hT : T ∈ traceClass H)</code></td>
+<td><code>traceNorm T ≠ ⊤</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-216"></a>L-216</td>
+<td><code>PFUL.TraceClass.trace_comp_comm</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/TraceClass.lean">TraceClass.lean</a></td>
+<td><code>(C : H →L[ℂ] H) [ℂ] (hT : T ∈ traceClass H)</code></td>
+<td><code>trace (C ∘L T) = trace (T ∘L C)</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-217"></a>L-217</td>
+<td><code>PFUL.TraceClass.trace_conj</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/TraceClass.lean">TraceClass.lean</a></td>
+<td><code>(U : H →L[ℂ] H') (hU : adjoint U ∘L U = ContinuousLinearMap.id ℂ H) [ℂ] (hT : T ∈ traceClass H)</code></td>
+<td><code>trace (U ∘L T ∘L adjoint U) = trace T</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-218"></a>L-218</td>
+<td><code>PFUL.TraceClass.trace_nonneg</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/TraceClass.lean">TraceClass.lean</a></td>
+<td><code>[ℂ] (hT : T ∈ traceClass H) (hpos : T.IsPositive)</code></td>
+<td><code>0 ≤ trace T</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-219"></a>L-219</td>
+<td><code>PFUL.TraceClass.trace_ptrace</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/TraceClass.lean">TraceClass.lean</a></td>
+<td><code>(lp (fun _ : J ⇒ H) 2)</code></td>
+<td><code>trace (ptrace T) = trace T</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-220"></a>L-220</td>
+<td><code>PFUL.TraceClass.trace_ptraceR_comp</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/TraceClass.lean">TraceClass.lean</a></td>
+<td><code>(fun _ : I × J ⇒ ℂ) [ℂ] (fun _ : I × J ⇒ ℂ) (hT : T ∈ traceClass _) (C : lp (fun _ : I ⇒ ℂ) 2 →L[ℂ] lp (fun _ : I ⇒ ℂ) 2)</code></td>
+<td><code>trace (ptraceR T ∘L C) = trace (T ∘L (adjoint (l2ProdCLM I J) ∘L amp C ∘L l2ProdCLM I J))</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-221"></a>L-221</td>
+<td><code>PFUL.TraceClass.trace_ptrace_comp</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/TraceClass.lean">TraceClass.lean</a></td>
+<td><code>(lp (fun _ : J ⇒ H) 2) (C : H →L[ℂ] H)</code></td>
+<td><code>trace (ptrace T ∘L C) = trace (T ∘L amp C)</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-222"></a>L-222</td>
+<td><code>PFUL.TraceClass.trace_rankOne</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/TraceClass.lean">TraceClass.lean</a></td>
+<td><code>(x y : H)</code></td>
+<td><code>trace (InnerProductSpace.rankOne ℂ x y) = ⟪y, x⟫_ℂ</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-223"></a>L-223</td>
+<td><code>PFUL.TraceClass.eq_of_rankOne_basis</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/TraceNormDense.lean">TraceNormDense.lean</a></td>
+<td><code>(H →L[ℂ] H) (K →L[ℂ] K) (hΦ : IsNormalCPTP Φ) (hΨ : IsNormalCPTP Ψ) (b : HilbertBasis ι ℂ H) (InnerProductSpace.rankOne ℂ (b i) (b j)) (InnerProductS…</code></td>
+<td><code>∀ T ∈ traceClass H, Φ T = Ψ T</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-224"></a>L-224</td>
+<td><code>PFUL.TraceClass.exists_finiteRank_traceNorm_lt</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/TraceNormDense.lean">TraceNormDense.lean</a></td>
+<td><code>[ℂ] (hT : T ∈ traceClass H) (hε : ε ≠ 0)</code></td>
+<td><code>∃ (ι : Type u) (F : Finset ι) (x y : ι → H), traceNorm (T - ∑ n ∈ F, InnerProductSpace.rankOne ℂ (x n) (y n)) &lt; ε</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-225"></a>L-225</td>
+<td><code>PFUL.Countable.valid_density_l2</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/TraceValidity.lean">TraceValidity.lean</a></td>
+<td><code>[∀ k, AddCommGroup (I k)] [∀ k, Countable (I k)] [∀ k, Countable (X k)] [∀ k, Countable (O k)] [∀ k, Countable (Y k)] [∀ k, DecidableEq (I k)] [∀ k, …</code></td>
+<td><code>∃ Φ : lp (fun _ : (∀ k, I k) × (∀ k, X k) ⇒ ℂ) 2 ≃ₗᵢ[ℂ] lp (fun _ : (∀ k, O k) × (∀ k, Y k) ⇒ ℂ) 2, (∀ r c, Φ (lp.single 2 c (1 : ℂ)) r = ∏ k, V k …</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-226"></a>L-226</td>
+<td><code>PFUL.exclusivity</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/UnitaryLift.lean">UnitaryLift.lean</a></td>
+<td><code>(w : (∀ k, O k) → (∀ k, I k)) (hw : IsProcessFunction w) (hne : s ≠ s')</code></td>
+<td><code>∃ k, s k ≠ s' k ∧ w s k = w s' k</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-227"></a>L-227</td>
+<td><code>PFUL.induced_conjTranspose_mul</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/UnitaryLift.lean">UnitaryLift.lean</a></td>
+<td><code>(w : (∀ k, O k) → (∀ k, I k)) (hw : IsProcessFunction w) (V : ∀ k, Matrix (O k × Y k) (I k × X k) ℂ) (hV : ∀ k, V k * (V k)ᴴ = 1) (hcard : ∀ k, Finty…</code></td>
+<td><code>(induced ℂ w V)ᴴ * induced ℂ w V = 1</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-228"></a>L-228</td>
+<td><code>PFUL.induced_mul_conjTranspose</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/UnitaryLift.lean">UnitaryLift.lean</a></td>
+<td><code>(w : (∀ k, O k) → (∀ k, I k)) (hw : IsProcessFunction w) (V : ∀ k, Matrix (O k × Y k) (I k × X k) 𝕜) (hV : ∀ k, V k * (V k)ᴴ = 1)</code></td>
+<td><code>induced 𝕜 w V * (induced 𝕜 w V)ᴴ = 1</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-229"></a>L-229</td>
+<td><code>PFUL.induced_unitary</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/UnitaryLift.lean">UnitaryLift.lean</a></td>
+<td><code>(w : (∀ k, O k) → (∀ k, I k)) (hw : IsProcessFunction w) (V : ∀ k, Matrix (O k × Y k) (I k × X k) ℂ) (hV : ∀ k, V k * (V k)ᴴ = 1) (hcard : ∀ k, Finty…</code></td>
+<td><code>(induced ℂ w V).submatrix id e ∈ Matrix.unitaryGroup ((∀ k, O k) × (∀ k, Y k)) ℂ</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-230"></a>L-230</td>
+<td><code>PFUL.trace_ptrace</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/Validity.lean">Validity.lean</a></td>
+<td><code>[Fintype A] [Fintype B] (ρ : Matrix (A × B) (A × B) ℂ)</code></td>
+<td><code>(ptrace ρ).trace = ρ.trace</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-231"></a>L-231</td>
+<td><code>PFUL.valid</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/Validity.lean">Validity.lean</a></td>
+<td><code>(w : (∀ k, O k) → (∀ k, I k)) (hw : IsProcessFunction w) (X Y : ι → Type*) [∀ k, Fintype (X k)] [∀ k, DecidableEq (X k)] [∀ k, Fintype (Y k)] [∀ k, D…</code></td>
+<td><code>ValidWith w X Y</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+</tbody>
+</table>
 <h2>References</h2>
 <ol>
 <li>M. Dummett, Can an effect precede its cause?, Aristotelian Society Supplementary Volume 28, 27 (1954); Bringing about the past, Philosophical Review 73, 338 (1964).</li>
