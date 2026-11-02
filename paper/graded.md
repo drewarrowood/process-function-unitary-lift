@@ -1695,6 +1695,16 @@ We checked the literature on Oct 23 2026, by web search and by reading the prima
 
 **Still open.** The results cover finitely many parties and still use addition on the alphabets. Alphabets that form a genuine continuum (positions on a line) need a different formulation, because single points carry no weight there. Infinitely many parties are also open.
 
+## 126. Plain-language note: swapping out addition, and infinitely many parties (Nov 2 2026)
+
+**Addition is not needed.** The loop used to "add" a party's input to a fixed offset. Any rule that shuffles the input labels works instead, as long as different inputs always shuffle each label to different places. The proof checker confirms this (lift.md L.4(d)). Consistency always gives a unitary. The converse needs only that "different inputs move every label differently" property.
+
+**Infinitely many parties, well-behaved case: proved.** Suppose each party has finitely many possible outputs, and the loop is "continuous", meaning each party's input depends, to any given precision, on only finitely many other parties. Then consistency still means exactly one consistent history. Look at any finite group of parties with everyone else frozen: the finite theorem gives that group a consistent history. A compactness argument then glues these together into one history for everyone. The proof checker confirms it (L.4(e)).
+
+**Badly-behaved case: it can fail.** Under an extra set-theory axiom (the continuum hypothesis, or something weaker), there is a wildly discontinuous loop with infinitely many yes/no parties. It satisfies the consistency property but has no consistent history at all. The construction uses the axiom of choice and goes one step at a time through all 𝔠 possible patterns. The proof is on paper and was checked by a referee (a Gödel likeness); it is not in the proof checker.
+
+**Still open.** We don't know whether ordinary set theory alone decides the question. We also don't know about "reasonably definable" loops (Borel ones).
+
 ## Appendix: superseded readings (written assuming the conjecture)
 
 These passages were written while the conjecture (every purifiable classical process is a mixture of process functions) was still open. Section 58h shows that it is false. They are kept as a record only, and nothing else in this guide relies on them.

@@ -96,16 +96,16 @@ Freeness cannot simply be dropped. If σ a = id for every a, the loop ignores w,
 **Infinitely many parties, `lean/PFUL/InfiniteParties.lean`.** For any ι:
 - `fixed_unique`: exclusivity gives at most one fixed point.
 - `exists_exclusive_not_pf_iff`: an exclusive non-PF w exists iff there is a fixed-point-free exclusive self-map F of ∏ O_k.
-- Equivalently (O_k = Bool, F = s ⊕ a(s)): there is a : 2^ι → 2^ι \ {0} such that for all s ≠ s′, a(s) and a(s′) differ at some coordinate where s and s′ differ.
+- Equivalently (O_k = Bool, F = s ⊕ a(s); prose translation, not in Lean): there is a : 2^ι → 2^ι \ {0} such that for all s ≠ s′, a(s) and a(s′) differ at some coordinate where s and s′ differ.
 
-Status: **open; no counterexample and no proof.**
+Status: ~~open; no counterexample and no proof~~ **superseded by (E)**: the continuous case is proved, and a counterexample exists under cov(M) = 𝔠.
 - Near misses: a(s) = s fails only at s = 0, and a(s) = ¬s fails only at s = 1.
 - The Yablo map fails exclusivity on a pair (s, finite truncation of s).
 - Class-constant xor patches (c_E chosen by tail class) fail across classes.
 - Injective single-flip maps are impossible by cardinality.
-- Conjecture: PF holds for continuous w with finite alphabets (by compactness). The discontinuous/choice case is open.
+- ~~Conjecture~~ **Proved in (E)** (`pf_of_exclusive_continuous`): PF holds for continuous w with finite alphabets. The discontinuous case is treated in (E)(2).
 
-Nothing in (D) is pushed.
+Scope: BijectionLaw assumes finitely many parties (`[Fintype ι]`). Nothing in (D) is pushed.
 
 ## Addendum (E): infinitely many parties — continuous case proved; consistent counterexample
 
@@ -136,12 +136,12 @@ Paper proof only, not in Lean. By `exists_exclusive_not_pf_iff`, we need F : 2^�
   - Same-class pairs are automatically fine: F(s) = F(s′), and they differ somewhere.
   - No fixed point ⇔ g(x) ≠ x for all x.
   - Cross-class pairs are fine ⇔ for x ≠ y, (x+y) ∧ ¬(g x + g y) ≠ 0 in B. Reason: the difference set d(s,s′) ranges over all finite modifications of R = r_x Δ r_y, and some k ∈ d with F(s)_k = F(s′)_k exists for every such d iff R ∖ (c_x Δ c_y) is infinite.
-- **Building g.** Enumerate B as (x_α)_{α<𝔠} and choose z = g(x_α) by recursion. Each constraint "[z] ≠ x_α" or "(x_α+x_β) ∧ ¬([z]+g x_β) ≠ 0" (for β < α) forbids a set of the form {z : z ≡ b on R mod finite} with R infinite. Such a set is meager in 2^ℕ.
-  - At stage α only |α| < 𝔠 meager sets are forbidden, so under cov(M) = 𝔠 an admissible z exists.
+- **Building g.** Enumerate B as (x_α)_{α<𝔠} and choose z = g(x_α) by recursion. Each constraint "[z] ≠ x_α" or "(x_α+x_β) ∧ ¬([z]+g x_β) ≠ 0" (for β < α) forbids a set of the form {z : z ≡ b on R mod finite} with R infinite. In 2^ℕ with the product topology this set is ⋃_n {z : z|_{R∖n} = b|_{R∖n}}. That is a countable union of closed sets, each with empty interior because R∖n is infinite, so it is meager. The fixed-point constraint is the case R = ℕ, b = r_{x_α}; the cross constraint has R = x_α + x_β and b = ¬c_β.
+  - Each condition forbids exactly one meager set. At stage α there are |α|+1 < 𝔠 conditions, so under cov(M) = 𝔠 an admissible z exists.
   - Under CH there is also an elementary choice: pick pairwise disjoint infinite Q_n ⊆ R_n and set z = ¬b_n on Q_n.
-- **Conclusion.** Consistently (Con(ZF) ⇒ Con(ZFC + an exclusive non-PF w with countably many binary parties)), exclusivity does not imply PF for infinitely many parties.
+- **Conclusion.** Consistently (Con(ZF) ⇒ Con(ZFC + an exclusive non-PF w with countably many binary parties)), exclusivity does not imply PF for infinitely many parties. (Referee check: Gödel likeness, /workspace/leibniz-likeness/godel-check-E.md, verdict correct.) cov(M) < 𝔠 is also consistent (e.g. the random-real model), and the construction says nothing in such models.
 
 **Gaps.**
-- (a) I have no ZFC construction and no ZFC impossibility proof. The question may be independent: one would expect no counterexample in models where every set has the Baire property, but this is unproved.
+- (a) I have no ZFC construction and no ZFC impossibility proof. The question may be independent: one would expect no counterexample in models where every set has the Baire property, but this is unproved. Generic ergodicity of E₀ only makes a class-constant BP map F constant on a comeager set, which gives no contradiction. The Borel and Baire-measurable cases are open. Gap (b) is unaffected by (E).
 - (b) An affine reduction exists. It suffices to find an F₂-linear L on F₂^ℕ with u ∧ L u ≠ 0 for every u ≠ 0 and L not surjective (then a(s) = L s + c with c ∉ ran L). Continuous L is ruled out by (1). I did not find a discontinuous L.
 - (c) The CH construction is not formalised in Lean, since that would need CH or cov(M) = 𝔠 as a hypothesis plus transfinite recursion.

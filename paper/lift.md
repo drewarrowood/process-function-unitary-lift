@@ -3695,7 +3695,32 @@ Continuous alphabets remain uncovered. *Independent read-only check (2026-11-01)
 - *Factorisation* (`hasSum_pi_prod_any`): absolutely summable families have countable support, so the product sum reduces to the countable lemma.
 - *Column identity* (`tsum_prod_eq_one_anc_any`): for a PF w and probability vectors p_k(i) on arbitrary O_k × Y_k, Σ_r Π_k p_k(w_k(r₁))(r₁k, r₂k) = 1. The product-measure proof of L.4 does not transfer (an uncountable union of null cylinders need not be null). Instead: each p_k(i) has countable support; from a countable seed, repeatedly add the supports of p_k(w_k(s)) for s in the current box; the union C is a countable box closed under these supports. On C (inputs restricted to the range of w) the restriction of w is still a PF (an intervention with values in C has its fixed point in C), so the countable theorem gives sum 1 over C. Every finite set of terms lies in such a box (seed it with them), giving ≤ 1; one box gives ≥ 1.
 - *Unitary layer*: `induced_unitary_l2_any`, `unitary_l2_iff_pf_any` (copy gadget, X = O, Y = I), `exclusive_of_unitary_l2_any`, `unitary_l2_noAncilla_iff_pf_any` (no ancillas, e_k : O_k ≃ I_k): the L.4/L.4(b) proofs with the two lemmas above substituted.
-- *Scope*: finitely many parties; discrete alphabets of any cardinality; the abelian-group law on I_k (and O_k for the gadget) is still in the statements (kernels evaluated at w_k(f)+e_k). Open: continuous alphabets (no basis-vector histories; fixed points are generically null sets, so "exactly one fixed point" is invisible at the L² level and the formulation must change, see paper/notes/2026-11-02-general-alphabets.md) and infinitely many parties.
+- *Scope*: finitely many parties; discrete alphabets of any cardinality; the abelian-group law on I_k (and O_k for the gadget) is still in the statements (kernels evaluated at w_k(f)+e_k). Open: continuous alphabets (no basis-vector histories; fixed points are generically null sets, so "exactly one fixed point" is invisible at the L² level and the formulation must change, see paper/notes/2026-11-02-general-alphabets.md) and infinitely many parties (now partly settled, see L.4(e)).
+
+**L.4(d). Bijection law in place of the group law [PROVED, Lean; standard axioms only] (Nov 2 2026).** `lean/PFUL/BijectionLaw.lean` (commit 3f5ba8e). The loop is evaluated at σ_k(w_k(f))(e_k), where σ_k : I_k → Perm(I_k) is an arbitrary family of bijections. The group case is σ_k(a) = (a + ·), which is free (`free_addLeft`).
+- PF ⇒ unitary (`induced_unitary_l2_σ`) needs no condition on σ.
+- The copy-gadget converse (`unitary_l2_iff_pf_σ`) needs σ *free* (σ a c = σ a′ c ⇒ a = a′) and O_k nonempty. The output alphabets need no algebra, because the gadget uses `Equiv.swap`.
+- The no-ancilla converse (`exclusive_of_unitary_l2_σ`, `unitary_l2_noAncilla_iff_pf_σ`) needs σ free, e_k : O_k ≃ I_k, and O_k nonempty. Nonemptiness is necessary: if O is empty, ℓ² is trivial.
+- So the simply-transitive restatement weakens to free; transitivity is never used.
+- Scope: finitely many parties, discrete alphabets of any cardinality.
+
+**L.4(e). Infinitely many parties (Nov 2 2026).**
+- *Reduction [PROVED, Lean]* (`lean/PFUL/InfiniteParties.lean`):
+  - `fixed_unique`: for any index set ι, exclusivity gives at most one fixed point.
+  - `exists_exclusive_not_pf_iff`: an exclusive non-PF w exists iff there is a fixed-point-free exclusive self-map F of ∏_k O_k.
+- *Continuous case [PROVED, Lean; standard axioms only]* (`lean/PFUL/InfiniteCompact.lean`, `pf_of_exclusive_continuous`, commit 67b75be).
+  - Hypotheses: ι arbitrary; O_k finite, nonempty and discrete; I_k discrete; each coordinate s ↦ w_k(s) continuous in the product topology; w exclusive.
+  - Conclusion: every intervention has exactly one fixed point.
+  - Proof: fix a finite T and a background t. Then u ↦ (f∘w)(u ⊔ t)|_T is exclusive on T, so by `exclusive_iff_pf` it has a fixed point. The clopen sets {s : f_k(w_k(s)) = s_k} therefore have the finite intersection property in the compact space ∏O_k.
+- *Discontinuous case: consistent counterexample [paper proof, refereed by a Gödel likeness (/workspace/leibniz-likeness/godel-check-E.md, verdict correct); not in Lean].*
+  - Under cov(M) = 𝔠 (e.g. CH or MA) there is a fixed-point-free exclusive F : 2^ℕ → 2^ℕ, so there is an exclusive non-PF w with countably many binary parties.
+  - Construction: F is constant on E₀-classes, F(s) = rep(g([s])), where g : P(ℕ)/fin → P(ℕ)/fin satisfies g x ≠ x and, for x ≠ y, (x+y) ∧ ¬(gx+gy) ≠ 0.
+  - g is built by recursion of length 𝔠. At stage α each of the |α|+1 < 𝔠 conditions forbids one meager set ⋃_n {z : z|_{R∖n} = b|_{R∖n}} (R infinite).
+  - Hence Con(ZF) ⇒ Con(ZFC + exclusive ⇏ PF for infinitely many parties).
+- *Open:* the ZFC status.
+  - cov(M) < 𝔠 is also consistent, and the construction says nothing there.
+  - The Borel and Baire-measurable cases are open. Generic ergodicity of E₀ gives no contradiction by itself.
+  - No ZFC construction is known; a sufficient one would be a non-surjective F₂-linear L with u ∧ Lu ≠ 0 for all u ≠ 0.
 
 ## References
 
