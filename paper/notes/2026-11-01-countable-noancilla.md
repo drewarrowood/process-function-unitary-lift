@@ -86,9 +86,10 @@ Ideas tried, not completed:
   limit of such matrices on the relevant inputs: orthogonal columns cannot both concentrate on one row. So column
   norms do not obviously reach non-injective f. Row orthogonality gives only exclusivity.
 
-Status labels:
+Status labels (updated Nov 1 2026 after 91792fe):
 - P2, P4, P5 are machine-checked (`lean/PFUL/FiniteBox.lean`, standard axioms only).
-- P1 and P3 are paper proofs, rigorous but not in Lean.
+- P1 is machine-checked (`PFUL.Countable.exclusive_of_unitary_l2`, `lean/PFUL/NoAncillaL2.lean`); it was a paper proof when this section was written.
+- P3 is a paper proof, rigorous but not in Lean (no longer needed for the converse; see §4).
 - §3 is heuristic exploration.
 
 ## 4. Resolution (2026-10-31): the countable no-ancilla converse holds
@@ -126,3 +127,5 @@ Status labels:
 - Everything in this section is machine-checked.
 - L.4(b) is closed for countable abelian-group alphabets with |O_k| = |I_k|, no ancillas, and finitely many parties.
 - The ℕ-Lugano search mentioned in §3 is heuristic only. It found w = (c·[b=0], a·[c=0], b·[a=0]), which is exclusive on the box N=12, and every f tested there had a unique fixed point. That is now explained by the theorem, so no counterexample with three or more parties exists in this setting (Direction B is ruled out).
+
+**[Pending: an independent check of the definitions used in the Lean statements has not yet been done.]**
