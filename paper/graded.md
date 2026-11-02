@@ -1685,6 +1685,16 @@ We checked the literature on Oct 23 2026, by web search and by reading the prima
 
 **Update, later the same day: both converses are now machine-checked.** The proof checker now confirms both "only consistent loops are unitary" results: the one with extra systems (the copy trick, Theorem 1.2) and the one without (Theorem N.1). The only assumptions are finite alphabets with the usual arithmetic on them. The no-extra-systems proof no longer needs a random choice of local unitaries. When a loop is inconsistent, a concrete choice exposes it: a simple reflection, built from the vector 2e_p + e_{p+δ}, at parties whose outputs agree but whose inputs differ, and a reshuffling (permutation) everywhere else.
 
+## 125. Plain-language note: alphabets of any size (Nov 2 2026)
+
+**The results no longer need alphabets you can list.** Earlier, the infinite case covered alphabets you can count off one by one. As of Nov 2 the proof checker confirms the same results for discrete alphabets of any size at all, even ones as large as the real numbers (taken as a plain set of labels, not as a continuum). This holds for both the "consistent ⇔ unitary" theorem with the copy trick and the version with no extra systems (`PFUL.General`, lift.md Appendix L.4(c)).
+
+**Why the countable trick works.** A sum of probabilities that adds up to 1 can only have countably many nonzero terms. So start from one history, add every outcome that has a nonzero chance of happening next, then everything reachable from those, and so on. After countably many rounds you have a countable "closed box": once you are inside it, nothing with a nonzero chance takes you out. Inside the box the loop is still consistent, since a strategy that only answers within the box has its unique consistent history in the box. So the countable theorem already proved applies there. Every finite set of terms fits inside some such box, and that pins the full sum at exactly 1.
+
+**Why each party needs at least one possible output.** "Two histories always disagree somewhere their inputs agree" says nothing at all if there are no histories. A party with no possible outputs makes that property hold trivially, yet no consistent history exists. So the rule "this property ⇔ exactly one consistent history" needs every output alphabet to be nonempty, and the proof checker confirms the counterexample.
+
+**Still open.** The results cover finitely many parties and still use addition on the alphabets. Alphabets that form a genuine continuum (positions on a line) need a different formulation, because single points carry no weight there. Infinitely many parties are also open.
+
 ## Appendix: superseded readings (written assuming the conjecture)
 
 These passages were written while the conjecture (every purifiable classical process is a mixture of process functions) was still open. Section 58h shows that it is false. They are kept as a record only, and nothing else in this guide relies on them.
