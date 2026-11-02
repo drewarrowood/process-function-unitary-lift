@@ -106,3 +106,42 @@ Status: **open; no counterexample and no proof.**
 - Conjecture: PF holds for continuous w with finite alphabets (by compactness). The discontinuous/choice case is open.
 
 Nothing in (D) is pushed.
+
+## Addendum (E): infinitely many parties — continuous case proved; consistent counterexample
+
+**(1) Continuous case, Lean `lean/PFUL/InfiniteCompact.lean`, `pf_of_exclusive_continuous`**
+(standard axioms only). Hypotheses:
+- ι is an arbitrary index set;
+- the output alphabets O_k are finite, nonempty and discrete;
+- the input alphabets I_k are discrete;
+- each coordinate s ↦ w s k is continuous in the product topology;
+- w is exclusive.
+
+Conclusion: every intervention f (arbitrary local maps, which are automatically continuous on discrete I_k) has exactly one fixed point.
+
+Proof:
+- **Truncations.** The truncation of w itself is not the right object. The right object is the conditional restriction: fix a finite T and an arbitrary background t outside T, and set G(u) = (f∘w)(u ⊔ t)|_T.
+  - G is exclusive. If u ≠ u′, exclusivity of w applied to u ⊔ t and u′ ⊔ t gives a party k where these differ, and such a k must lie in T.
+  - So `exclusive_iff_pf` (finitely many parties) gives G a fixed point.
+- **Compactness.** Hence the clopen sets C_k = {s : f_k(w(s)_k) = s_k} have the finite intersection property in the compact space ∏O_k (Tychonoff), so their intersection is nonempty.
+- **Uniqueness** follows from exclusivity.
+
+Continuity is used only to make the C_k closed.
+
+**(2) Discontinuous case: a counterexample exists under cov(M) = 𝔠 (e.g. CH or MA); ι = ℕ, all alphabets Bool.**
+Paper proof only, not in Lean. By `exists_exclusive_not_pf_iff`, we need F : 2^ℕ → 2^ℕ with no fixed point that is exclusive.
+
+- **Construction.** Let B = P(ℕ)/fin. Take F constant on E₀-classes (finite-difference classes): F(s) = rep(g([s])) for some g : B → B.
+- **Requirements on g.**
+  - Same-class pairs are automatically fine: F(s) = F(s′), and they differ somewhere.
+  - No fixed point ⇔ g(x) ≠ x for all x.
+  - Cross-class pairs are fine ⇔ for x ≠ y, (x+y) ∧ ¬(g x + g y) ≠ 0 in B. Reason: the difference set d(s,s′) ranges over all finite modifications of R = r_x Δ r_y, and some k ∈ d with F(s)_k = F(s′)_k exists for every such d iff R ∖ (c_x Δ c_y) is infinite.
+- **Building g.** Enumerate B as (x_α)_{α<𝔠} and choose z = g(x_α) by recursion. Each constraint "[z] ≠ x_α" or "(x_α+x_β) ∧ ¬([z]+g x_β) ≠ 0" (for β < α) forbids a set of the form {z : z ≡ b on R mod finite} with R infinite. Such a set is meager in 2^ℕ.
+  - At stage α only |α| < 𝔠 meager sets are forbidden, so under cov(M) = 𝔠 an admissible z exists.
+  - Under CH there is also an elementary choice: pick pairwise disjoint infinite Q_n ⊆ R_n and set z = ¬b_n on Q_n.
+- **Conclusion.** Consistently (Con(ZF) ⇒ Con(ZFC + an exclusive non-PF w with countably many binary parties)), exclusivity does not imply PF for infinitely many parties.
+
+**Gaps.**
+- (a) I have no ZFC construction and no ZFC impossibility proof. The question may be independent: one would expect no counterexample in models where every set has the Baire property, but this is unproved.
+- (b) An affine reduction exists. It suffices to find an F₂-linear L on F₂^ℕ with u ∧ L u ≠ 0 for every u ≠ 0 and L not surjective (then a(s) = L s + c with c ∉ ran L). Continuous L is ruled out by (1). I did not find a discontinuous L.
+- (c) The CH construction is not formalised in Lean, since that would need CH or cov(M) = 𝔠 as a hypothesis plus transfinite recursion.
