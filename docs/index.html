@@ -5980,7 +5980,7 @@ Continuous alphabets remain uncovered. <em>Independent read-only check (2026-11-
 <li>Proof: fix a finite T and a background t. Then u ↦ (f∘w)(u ⊔ t)|<sub>T</sub> is exclusive on T, so by <code>exclusive_iff_pf</code> it has a fixed point. The clopen sets {s : f<sub>k</sub>(w<sub>k</sub>(s)) = s<sub>k</sub>} therefore have the finite intersection property in the compact space ∏O<sub>k</sub>.</li>
 </ul>
 </li>
-<li><em>Discontinuous case: consistent counterexample [paper proof, refereed by a Gödel likeness (/workspace/leibniz-likeness/godel-check-E.md, verdict correct); not in Lean].</em>
+<li><em>Discontinuous case: consistent counterexample [PROVED, Lean, under the explicit hypothesis cov(M) = 𝔠; standard axioms only] (<code>lean/PFUL/CovMCounterexample.lean</code>, <code>exists_exclusive_not_pf_of_covM</code>, CH corollary <code>exists_exclusive_not_pf_of_CH</code>). The paper proof was refereed by a Gödel likeness (/workspace/leibniz-likeness/godel-check-E.md, verdict correct). The hypothesis is <code>CovMEqC</code>: no family of fewer than 𝔠 meagre subsets of ℕ → Bool, indexed by a type in <code>Type</code>, covers it. The Lean recursion runs over the sequences themselves, in a well-order of type ord 𝔠. A sequence with an earlier finite-difference neighbour copies that neighbour's value, which gives the same class-constant F.</em>
 <ul>
 <li>Under cov(M) = 𝔠 (e.g. CH or MA) there is a fixed-point-free exclusive F : 2^ℕ → 2^ℕ, so there is an exclusive non-PF w with countably many binary parties.</li>
 <li>Construction: F is constant on E₀-classes, F(s) = rep(g([s])), where g : P(ℕ)/fin → P(ℕ)/fin satisfies g x ≠ x and, for x ≠ y, (x+y) ∧ ¬(gx+gy) ≠ 0.</li>

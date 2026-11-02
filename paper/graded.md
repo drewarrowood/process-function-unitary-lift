@@ -1752,7 +1752,7 @@ Picture an endless series of shrinking closed boxes, each sitting inside the las
 
 Continuity is used in exactly one place: to make the sets C_k closed.
 
-### (c) The badly-behaved case: it can fail (a consistency result, on paper)
+### (c) The badly-behaved case: it can fail (a consistency result, now machine-checked)
 
 **First, a simplification.** It is enough to find a single map F, sending each history to another history, that has no *fixed point* (no history s with F(s) = s) and is exclusive: any two different histories s, s′ disagree at some clerk k where F(s) and F(s′) agree. Given such an F, take it as the loop and let every clerk simply copy what they are told. Then the loop is exclusive and has no consistent history. The proof checker confirms this reduction (`exists_exclusive_not_pf_iff`). We use countably many clerks, numbered 1, 2, 3, …, each answering yes/no, so a history is an infinite yes/no sequence.
 
@@ -1771,7 +1771,7 @@ Continuity is used in exactly one place: to make the sets C_k closed.
 **Why it fools every finite check but still fails.** Freeze all but finitely many clerks, and the finite theorem from (b) says the rest can be made consistent. This loop passes that test for every finite group and every frozen background. What breaks is the gluing: F jumps wildly with far-away cards (changing infinitely many cards can move a sequence into a different class and change F's answer), so the sets C_k are not closed. The shrinking boxes of (b) have nothing to force a common point, and indeed there is none.
 
 **Status, stated carefully.**
-- This is a **paper proof**, refereed by a Gödel likeness (verdict: correct; /workspace/leibniz-likeness/godel-check-E.md). It is **not in the proof checker**, since that would need cov(M) = 𝔠 as a hypothesis plus a transfinite recursion.
+- The paper proof was refereed by a Gödel likeness (verdict: correct; /workspace/leibniz-likeness/godel-check-E.md). As of Nov 2 the **proof checker confirms it too** (`lean/PFUL/CovMCounterexample.lean`, standard axioms only). There, cov(M) = 𝔠 is an explicit assumption of the theorem, not a new axiom, and a second theorem derives that assumption from CH. The checker's version goes through the sequences one at a time in a suitable well-order: a sequence with an earlier neighbour copies that neighbour's answer, so F still gives one answer per class.
 - It is a **consistency result only**: if ordinary set theory (ZF) is consistent, so is ZFC together with "an exclusive loop with countably many yes/no parties and no consistent history". It does *not* show that such a loop exists in ordinary set theory.
 - The opposite assumption, cov(M) < 𝔠, is also consistent (for example in the random-real model), and there the construction says nothing.
 

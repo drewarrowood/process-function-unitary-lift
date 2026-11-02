@@ -145,3 +145,19 @@ Paper proof only, not in Lean. By `exists_exclusive_not_pf_iff`, we need F : 2^�
 - (a) I have no ZFC construction and no ZFC impossibility proof. The question may be independent: one would expect no counterexample in models where every set has the Baire property, but this is unproved. Generic ergodicity of E₀ only makes a class-constant BP map F constant on a comeager set, which gives no contradiction. The Borel and Baire-measurable cases are open. Gap (b) is unaffected by (E).
 - (b) An affine reduction exists. It suffices to find an F₂-linear L on F₂^ℕ with u ∧ L u ≠ 0 for every u ≠ 0 and L not surjective (then a(s) = L s + c with c ∉ ran L). Continuous L is ruled out by (1). I did not find a discontinuous L.
 - (c) The CH construction is not formalised in Lean, since that would need CH or cov(M) = 𝔠 as a hypothesis plus transfinite recursion.
+
+## Addendum (F): the cov(M) = 𝔠 counterexample in Lean
+
+`lean/PFUL/CovMCounterexample.lean` uses standard axioms only and no sorry. No axiom is added; the hypothesis is an explicit theorem hypothesis.
+
+- `CovMEqC`: ∀ (ι : Type) (A : ι → Set (ℕ → Bool)), #ι < 𝔠 → (∀ i, IsMeagre (A i)) → ⋃ i, A i ≠ univ.
+- `forb_isMeagre`: for D infinite, {z | {k ∈ D | z k = b k} finite} is meagre. It lies inside ⋃_n of closed sets, and each of these has empty interior: flip one point of D beyond n and the flipped points converge to z.
+- `exists_exclusive_fixedPointFree_of_covM`: under `CovMEqC` there is F : (ℕ → Bool) → (ℕ → Bool) that is fixed-point-free and `Exclusive`.
+- `exists_exclusive_not_pf_of_covM`: hence there is an exclusive non-PF w on countably many binary parties.
+- `covMEqC_of_CH`: 𝔠 = ℵ₁ implies `CovMEqC`. The proof uses a countable union of meagre sets and the Baire property of the Cantor space. `exists_exclusive_not_pf_of_CH` is the resulting corollary.
+
+How the Lean proof differs from the paper version:
+- It needs no quotient. It well-orders ℕ → Bool in type ord 𝔠 (`Cardinal.exists_ord_eq`), so every initial segment has size < 𝔠 (`card_typein_lt`).
+- It defines F by `WellFounded.fix`. If x has an earlier finite-difference neighbour y, it copies F y. Otherwise it takes ε of the admissible z; one exists by `CovMEqC`, applied to an `Option`-indexed family of forbidden sets.
+- It proves the pair invariant Good(x, y) by well-founded induction: the values are equal if x ~ y, and the agreement set is infinite otherwise.
+- The theorem's hypothesis is cov(M) = 𝔠 in this exact form. It says nothing in models where cov(M) < 𝔠, so the ZFC and Borel questions remain open.
