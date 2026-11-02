@@ -110,9 +110,9 @@ machine-checked (Lean 4.34.1, Mathlib v4.34.1; no `sorry`, no `native_decide`; e
   term of the Gram factor is ≥ 0 and the term at c = p is 12/25 > 0. At every other party take a permutation
   (swap(e s_k, e s'_k + δ_k) ∘ e), whose Gram factor is exactly 1. Then (M M†)[s,s'] ≠ 0, so M is not unitary. The Haar
   argument above remains valid (it gives (iii)), but it is no longer needed for (ii) ⇒ (iv).
-- Not in Lean: (iii) (genericity of one Haar draw). The countable-alphabet claim C.1 of L.4 is now in Lean (Nov 1 2026, `PFUL.Countable.unitary_l2_iff_pf`); the ancilla-free countable case is open.
+- Not in Lean: (iii) (genericity of one Haar draw). The countable-alphabet claim C.1 of L.4 is now in Lean (Nov 1 2026, `PFUL.Countable.unitary_l2_iff_pf`); the ancilla-free countable case is open. *[Update Nov 1 2026: resolved, `PFUL.Countable.unitary_l2_noAncilla_iff_pf`; see 2026-11-01-countable-noancilla.md.]*
 
-## 4. Converse for countable alphabets [proved, Lean, with ancillas; ancilla-free version open]
+## 4. Converse for countable alphabets [proved, Lean, with ancillas; ancilla-free version open — resolved Nov 1 2026, see 2026-11-01-countable-noancilla.md]
 
 Finitely many parties, I_k, O_k countable (finite or ℕ), PF = every f has exactly one fixed point (as in
 `PFUL.Countable`). Give each O_k a group structure (Z_n or Z).
