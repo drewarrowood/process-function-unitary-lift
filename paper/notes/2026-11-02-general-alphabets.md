@@ -80,3 +80,29 @@ statement for arbitrary standard Borel alphabets is open and probably needs the 
 
 Proved: finitely many parties, arbitrary discrete alphabets (any cardinality), group law kept.
 Not done: infinitely many parties; group law → general bijections; continuous alphabets.
+
+## Addendum (D): bijection law in place of the group law; infinitely many parties
+
+**Lean, `lean/PFUL/BijectionLaw.lean`** (standard axioms only, no sorry). The loop reads
+`σ k (w f k) (e k)` with `σ k : I k → Equiv.Perm (I k)` arbitrary (the group case is
+`σ k a = Equiv.addLeft a`, free by `free_addLeft`). The results:
+- `induced_unitary_l2_σ`: PF ⇒ unitary needs **no condition on σ**.
+- `unitary_l2_iff_pf_σ`: copy-gadget converse, assuming σ is **free** (`σ a c = σ a' c → a = a'`) and `[Nonempty O]`. The output alphabets need no algebra because the gadget uses `Equiv.swap`.
+- `exclusive_of_unitary_l2_σ` and `unitary_l2_noAncilla_iff_pf_σ`: the no-ancilla version, assuming σ free, `e : O ≃ I` and `Nonempty O`. Nonempty O is needed: if O is empty the ℓ² space is trivial.
+
+A simply transitive action is free. Transitivity is never used, so "simply transitive" weakens to "free".
+Freeness cannot simply be dropped. If σ a = id for every a, the loop ignores w, so every w (PF or not) gives a unitary. This is argued in prose only, not in Lean.
+
+**Infinitely many parties, `lean/PFUL/InfiniteParties.lean`.** For any ι:
+- `fixed_unique`: exclusivity gives at most one fixed point.
+- `exists_exclusive_not_pf_iff`: an exclusive non-PF w exists iff there is a fixed-point-free exclusive self-map F of ∏ O_k.
+- Equivalently (O_k = Bool, F = s ⊕ a(s)): there is a : 2^ι → 2^ι \ {0} such that for all s ≠ s′, a(s) and a(s′) differ at some coordinate where s and s′ differ.
+
+Status: **open; no counterexample and no proof.**
+- Near misses: a(s) = s fails only at s = 0, and a(s) = ¬s fails only at s = 1.
+- The Yablo map fails exclusivity on a pair (s, finite truncation of s).
+- Class-constant xor patches (c_E chosen by tail class) fail across classes.
+- Injective single-flip maps are impossible by cardinality.
+- Conjecture: PF holds for continuous w with finite alphabets (by compactness). The discontinuous/choice case is open.
+
+Nothing in (D) is pushed.
