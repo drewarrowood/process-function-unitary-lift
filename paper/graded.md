@@ -1697,13 +1697,89 @@ We checked the literature on Oct 23 2026, by web search and by reading the prima
 
 ## 126. Plain-language note: swapping out addition, and infinitely many parties (Nov 2 2026)
 
-**Addition is not needed.** The loop used to "add" a party's input to a fixed offset. Any rule that shuffles the input labels works instead, as long as different inputs always shuffle each label to different places. The proof checker confirms this (lift.md L.4(d)). Consistency always gives a unitary. The converse needs only that "different inputs move every label differently" property.
+This note covers three things: a weaker rule that can replace addition, a proof for infinitely many parties when the loop is well behaved, and a counterexample when it is not. Each step says exactly what is proved, how, and by whom. Details are in lift.md L.4(d) and L.4(e) and in paper/notes/2026-11-02-general-alphabets.md.
 
-**Infinitely many parties, well-behaved case: proved.** Suppose each party has finitely many possible outputs, and the loop is "continuous", meaning each party's input depends, to any given precision, on only finitely many other parties. Then consistency still means exactly one consistent history. Look at any finite group of parties with everyone else frozen: the finite theorem gives that group a consistent history. A compactness argument then glues these together into one history for everyone. The proof checker confirms it (L.4(e)).
+### (a) Addition is not needed: any "free shuffle" will do
 
-**Badly-behaved case: it can fail.** Under an extra set-theory axiom (the continuum hypothesis, or something weaker), there is a wildly discontinuous loop with infinitely many yes/no parties. It satisfies the consistency property but has no consistent history at all. The construction uses the axiom of choice and goes one step at a time through all 𝔠 possible patterns. The proof is on paper and was checked by a referee (a Gödel likeness); it is not in the proof checker.
+**What the addition was for.** In the induced loop each party's local operation is read at "input plus offset", w_k(f) + e_k. The plus sign was never really about arithmetic. Its only job was to let the input *move* the offset: each possible input sends the fixed offset e_k to some label, and different inputs send it to different labels. So the plus can be replaced by a family of shuffles: for each input a, a rearrangement σ_a of the input labels. The loop then reads the operation at σ_a(e_k) instead of a + e_k. Ordinary addition is the case σ_a = "add a".
 
-**Still open.** We don't know whether ordinary set theory alone decides the question. We also don't know about "reasonably definable" loops (Borel ones).
+**The one property that matters: freeness.** Call the family *free* if two different inputs never send the same label to the same place: σ_a(c) = σ_a′(c) only when a = a′. Picture a little sorting office. Every input is a clerk, and every clerk has a rule for re-shelving any parcel. Freeness says two different clerks never put the same parcel on the same shelf. So by looking where a parcel ended up, you can always tell which clerk handled it.
+
+**A tiny worked example.** Take three labels {0, 1, 2} and these three shuffles, none of which is "add a":
+- σ_0 swaps 1 and 2 and leaves 0 alone;
+- σ_1 swaps 0 and 1 and leaves 2 alone;
+- σ_2 swaps 0 and 2 and leaves 1 alone.
+
+Follow parcel 0: the three clerks put it on shelves 0, 1, 2. Parcel 1 goes to 2, 0, 1, and parcel 2 goes to 1, 2, 0. Every parcel lands on three different shelves, so the family is free. (In table form: the shuffles make a Latin square, a grid where each row and each column uses every symbol once.) None of the shuffles is "add a", and that does not matter.
+
+**What the proof checker confirms** (`lean/PFUL/BijectionLaw.lean`, standard axioms only, finitely many parties, discrete alphabets of any size):
+- *Consistent ⇒ unitary* needs **no condition at all** on the shuffles. Each one is a rearrangement, and that alone is enough (`induced_unitary_l2_σ`).
+- *Unitary for every choice of local operations ⇒ consistent* (with the copy trick) needs the family to be **free** and every output alphabet to be **nonempty**. The outputs need no arithmetic at all, because the copy trick only swaps two labels (`unitary_l2_iff_pf_σ`).
+- *The same with no extra systems* needs freeness, the same number of outputs as inputs (O_k ≃ I_k), and nonempty outputs (`unitary_l2_noAncilla_iff_pf_σ`). Nonempty is genuinely needed: with no outputs the space of states is trivial and the claim fails.
+
+The earlier plan was to require the shuffles to form a "simply transitive" action, meaning any label can be moved to any other by exactly one input. That turns out to be more than needed. Freeness alone suffices; "any label can reach any other" is never used.
+
+**Why freeness cannot simply be dropped.** Take the laziest family: every input shuffles nothing, so σ_a is the identity for every a. Then the loop reads every party's operation at the same fixed offset, whatever the input. The loop's routing w has dropped out entirely, so the result is unitary for *every* w, consistent or not. The converse fails completely: unitarity no longer tells you anything about consistency. In the sorting-office picture, every clerk leaves every parcel where it was, so you can never tell who handled it. (This is a short argument on paper; it is not in the proof checker.)
+
+### (b) Infinitely many parties, the well-behaved case: proved
+
+**The question.** So far every result has had finitely many parties. Now imagine infinitely many, each with finitely many possible outputs (say yes/no). Recall the key property, *exclusivity*: any two different histories disagree at some party whose input is the same in both. With finitely many parties, exclusivity guarantees exactly one consistent history. Does it still with infinitely many?
+
+**A story: the infinite row of clerks.** Picture an endless row of clerks, each writing yes or no on a card. What each clerk is told (their input) depends on what the others wrote. A *consistent history* is a set of cards where every clerk's card agrees with what their rule says, given what they were told.
+
+**What "continuous" means here.** Call a loop *continuous* if every clerk's input is decided by finitely many other cards. Each clerk may need a different finite set, and the sets can be as large as you like, but for each clerk there is some finite set of cards that settles it. (In general a clerk's input may only need to be known to a given precision, but here inputs are discrete labels, so "to any precision" just means "exactly".) Nothing far away can change what a given clerk is told. Mathematicians say "continuous in the product topology"; this is that phrase in plain language.
+
+**Step 1: freeze everyone outside a finite group.** Pick any finite group T of clerks, and freeze every clerk outside T with some fixed card t. Now look only at the clerks in T: given their cards u, compute what the loop tells each of them, with the rest frozen at t. This is a loop with finitely many parties.
+
+**Step 2: the frozen loop is still exclusive.** Take two different card-sets u and u′ for the group T, with everyone else frozen at t in both. By exclusivity of the whole loop, the two full histories disagree at some clerk whose input is the same in both. That clerk must be *inside* T, because outside T both histories hold the same frozen card t. So the frozen loop on T is exclusive too.
+
+**Step 3: the finite theorem applies.** For finitely many parties, exclusivity gives exactly one consistent history (`exclusive_iff_pf`). So for any finite group T there are cards that make every clerk *in T* consistent.
+
+**Step 4: compactness glues the pieces together.** For each clerk k, let C_k be the set of full histories in which clerk k is consistent. Step 3 says that any finitely many of these sets have a history in common. We want a history in *all* of them at once.
+- Because the loop is continuous, each C_k is decided by finitely many cards. That makes C_k *closed*, meaning it contains its own limits.
+- The space of all histories (one card per clerk, each from a finite alphabet) is *compact*. That is Tychonoff's theorem.
+- In a compact space, closed sets that always meet finitely many at a time all meet together. This is the *finite intersection property*.
+
+Picture an endless series of shrinking closed boxes, each sitting inside the last and none of them empty. In a compact space they cannot shrink to nothing, so there is a point in all of them. That point is a history in which every clerk is consistent.
+
+**Step 5: there is only one.** If there were two different consistent histories, exclusivity would give a clerk whose input is the same in both but whose cards differ. That is impossible when the clerk is consistent in both, because the same input gives the same card. So the consistent history is unique.
+
+**What the proof checker confirms** (`lean/PFUL/InfiniteCompact.lean`, `pf_of_exclusive_continuous`, standard axioms only):
+- any set of parties, of any size;
+- finitely many possible outputs per party, at least one;
+- a continuous loop;
+- exclusive ⇒ every choice of local actions has exactly one consistent history.
+
+Continuity is used in exactly one place: to make the sets C_k closed.
+
+### (c) The badly-behaved case: it can fail (a consistency result, on paper)
+
+**First, a simplification.** It is enough to find a single map F, sending each history to another history, that has no *fixed point* (no history s with F(s) = s) and is exclusive: any two different histories s, s′ disagree at some clerk k where F(s) and F(s′) agree. Given such an F, take it as the loop and let every clerk simply copy what they are told. Then the loop is exclusive and has no consistent history. The proof checker confirms this reduction (`exists_exclusive_not_pf_iff`). We use countably many clerks, numbered 1, 2, 3, …, each answering yes/no, so a history is an infinite yes/no sequence.
+
+**Idea 1: decide by the long run only.** Call two sequences *neighbours* if they differ in only finitely many places. Neighbours fall into classes; each class is "a long-run pattern". Let F give the *same* answer to every sequence in a class: F(s) = the chosen representative of g([s]), where [s] is the class of s and g is a rule on classes, still to be built.
+
+**Why pairs inside one class come for free.** If s and s′ are neighbours, then F(s) = F(s′), so F agrees with itself at every clerk. Since s ≠ s′, they differ somewhere, and there F's two outputs agree. Exclusivity holds automatically.
+
+**The two conditions on g.** Everything then reduces to two conditions on the class-rule g:
+1. **No fixed point:** g(x) ≠ x for every class x. Then F(s) never lands in the class of s, so F(s) ≠ s.
+2. **Different classes:** for different classes x ≠ y, the set where x and y differ must contain *infinitely many* places where g(x) and g(y) agree. "Infinitely many" is what is needed: neighbours can move any finite set of differences around, and the agreement must survive every such move.
+
+**Building g one class at a time.** There are 𝔠 classes (𝔠 is the size of the continuum). List them as a transfinite sequence x_0, x_1, …, x_α, … of length 𝔠, and choose g(x_α) in order. At step α, each earlier choice, plus the "no fixed point" rule, *forbids* one set of candidates for g(x_α): the sequences that copy a specific forbidden pattern on a specific infinite set R, apart from finitely many places. Each forbidden set is *meager*, which means "thin" in a precise sense. It is a countable union of the sets "z matches the pattern on R, beyond place n". Each of those is closed and has no interior, because R beyond n is still infinite and so can always be wiggled. At step α there are fewer than 𝔠 forbidden sets (|α| + 1 of them).
+
+**The extra axiom.** The axiom cov(M) = 𝔠 says exactly that fewer than 𝔠 meager sets can never cover all sequences. So at every step a good choice is left over, and the recursion never gets stuck. The continuum hypothesis (CH) implies cov(M) = 𝔠, and so does Martin's axiom. Under CH there is also a hands-on choice: pick disjoint infinite pieces of the R's and deliberately break each forbidden pattern on its own piece.
+
+**Why it fools every finite check but still fails.** Freeze all but finitely many clerks, and the finite theorem from (b) says the rest can be made consistent. This loop passes that test for every finite group and every frozen background. What breaks is the gluing: F jumps wildly with far-away cards (changing infinitely many cards can move a sequence into a different class and change F's answer), so the sets C_k are not closed. The shrinking boxes of (b) have nothing to force a common point, and indeed there is none.
+
+**Status, stated carefully.**
+- This is a **paper proof**, refereed by a Gödel likeness (verdict: correct; /workspace/leibniz-likeness/godel-check-E.md). It is **not in the proof checker**, since that would need cov(M) = 𝔠 as a hypothesis plus a transfinite recursion.
+- It is a **consistency result only**: if ordinary set theory (ZF) is consistent, so is ZFC together with "an exclusive loop with countably many yes/no parties and no consistent history". It does *not* show that such a loop exists in ordinary set theory.
+- The opposite assumption, cov(M) < 𝔠, is also consistent (for example in the random-real model), and there the construction says nothing.
+
+### (d) Still open
+
+- **Ordinary set theory (ZFC).** We have neither a construction that works without the extra axiom nor a proof that none exists. The question might be independent of ZFC, but that is not shown.
+- **Reasonably definable loops (Borel, or with the Baire property).** These are also open. One might expect no counterexample among them, and the construction above uses choice in an essential way. But the obvious argument does not settle it. A standard fact (generic ergodicity) only makes a class-constant F with the Baire property constant on "most" sequences, and that alone gives no contradiction.
+- **A possible shortcut.** It would suffice to find a linear map L on yes/no sequences, adding mod 2, such that L(u) shares a "yes" with u for every u that is not all "no", and such that L does not reach every sequence. No such L is known, and by (b) it could not be continuous.
 
 ## Appendix: superseded readings (written assuming the conjecture)
 
