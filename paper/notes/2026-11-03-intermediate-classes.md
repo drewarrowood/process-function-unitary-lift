@@ -100,3 +100,64 @@ a proof either way.
 For pairs that agree on ℕ, any differing coordinate off ℕ is a witness. Otherwise zfcF supplies
 one. There are no fixed points because zfcF has none. Topological classes (Baire class, Polish)
 do not apply directly for uncountable ι.
+
+## 5. Update (2026-11-03, second pass): everything above is now in Lean
+
+New file `lean/PFUL/BaireClasses.lean`. Every theorem uses only propext, Classical.choice and
+Quot.sound, with no sorry, checked with `#print axioms`. Every **[paper]** tag in §§1–4 except
+the structural remarks in §3 is now discharged. `BaireOne f` means f is a pointwise limit of
+continuous maps; for Bool-valued maps on 2^ℕ this is Baire class 1.
+
+* §1, exact complexity:
+  * `finSupp_isFσ`: E is a countable union of closed sets.
+  * `zfcF_measurable`, `zfcF_borel_measurable`: zfcF is Borel.
+  * `zfcF_coord_baireTwo`: each coordinate is a pointwise limit of class-1 maps, i.e. class 2.
+  * `exists_continuousAt_of_baireOne`: Baire's theorem for Bool-valued class-1 maps on a Baire
+    space. Every nonempty open set contains a continuity point. This is proved here from
+    Mathlib's `dense_iUnion_interior_of_closed`, so it is no longer an uncited textbook fact.
+  * `zfcF_coord0_not_baireOne`, `zfcF_not_baireOne`: zfcF is not class 1. Together these give
+    **exactly class 2 [Lean]**.
+* §2, finitely many discontinuities:
+  * `exists_subcube_fixed`: compactness on subcubes. If F is continuous at every point of
+    {x = b on T}, the frozen subproblem has a solution. It is derived from
+    `pf_of_exclusive_continuous` on the index type {k // k ∉ T}.
+  * `exists_fixed_of_finite_discontinuities` **[Lean]**. As noted in its proof, the "separating"
+    coordinates turned out to be unnecessary: a cube that contains p ∈ P uses p itself.
+* §2, constant on pieces: `exists_fixed_of_piece_constant` **[Lean]**. Formalizing it showed the
+  statement is weaker than it looked. Only F(0)_0 = 1 and F constant on {s₀ = 1} are used:
+  exclusivity for the pair (0, e₀) forces F(e₀)_0 = 1, and then F(e₀) is a fixed point.
+* §4, any infinite party set:
+  * `exists_exclusive_fixedPointFree_of_infinite` (any `[Infinite ι]`);
+  * `exists_exclusive_not_pf_of_infinite` (ι : Type).
+* §3, Yablo map: `yablo_ne`, `yablo_not_exclusive`, `yablo_baireOne` **[Lean]**.
+
+## 6. Class 1: progress on (B)
+
+Status: **still open [conjectural]**. What is now established:
+
+* **[Lean]** A class-1 counterexample F must be continuous on a dense open set in every
+  coordinate (`exists_continuousAt_of_baireOne`). Since there are countably many coordinates,
+  F is continuous on a comeagre G_δ set.
+* **[Lean]** Its set of discontinuities cannot be finite with finite defects
+  (`exists_fixed_of_finite_discontinuities`).
+* **[paper] Triangular reformulation.** Call F triangular if F(s)_k depends only on s↾(k,∞)
+  (Yablo-type maps are of this kind).
+  * For triangular F, pairs differing in finitely many places always have a witness: take the
+    largest differing coordinate.
+  * So exclusivity only constrains pairs that differ in infinitely many places.
+  * A fixed point is a "backward orbit" s_k = β_k(s↾(k,∞)).
+  * Every triangular design I tried fails: Yablo; "next-one distance"; c_k ⊕ [tail = 1_K tail].
+    In each case the pair (1_K, t), or (0, 1^ℕ), has no witness.
+  * Open sub-question: is there any Borel triangular exclusive FPF map? zfcF is not triangular
+    (F(s)_{k+1} reads s_k).
+* **[paper] A generalized hotel cannot be class 1 with E closed.** Follow the zfcF template:
+  F = 0 off E, and F(t) = e₀ ⊕ rshift(t) on E.
+  * The cross pairs force E to be closed under flipping coordinate 0, and under flipping
+    coordinate k whenever t_{k−1} = 1.
+  * Starting from 0 ∈ E, this generates e₀, e₀+e₁, … → 1^ℕ.
+  * So a closed E contains 1^ℕ, which is a fixed point.
+
+Not attempted or not reached: a transfinite-derivative (Cantor–Bendixson style) argument
+combining the comeagre continuity set with `exists_subcube_fixed`. The obstacle is that the
+discontinuity set of a class-1 map can be dense, so no subcube is free of discontinuities, and
+the subcube lemma needs continuity on the whole cube.
