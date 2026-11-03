@@ -191,3 +191,38 @@ the subcube lemma needs continuity on the whole cube.
   three binary parties and arbitrary Hilbert ancillas, with no separability assumption. The
   "paper only" tags in lift.md (Round 12 history line) and graded.md §87 were stale and are now
   updated.
+
+## 8. Class 1: countable-perturbation maps (Round of 2026-11-02)
+
+**Reduction (proved on paper).** Look at maps F that equal a constant c off a set S and are
+arbitrary on S. Conjugating by s ↦ s⊕c lets us take c = 0 and write F(s) = z(s) on S.
+* If such an F is exclusive and fixed-point free, then: 0 ∈ S; z(s) ≠ s; and for every
+  s ∈ S the box s ⊕ cube(supp z(s)) lies inside S. The box condition comes from the pairs
+  (s, t) with t ∉ S. If S is countable, every z(s) has finite support.
+* zfcF is exactly this shape, with S = E the finitely supported sequences. E is countable and
+  dense, and that is the obstruction to class 1.
+* If S is **countable and closed**, every such F is Baire class 1. Proof: any subset of a
+  countable closed set is F_σ, and it is also closed ∩ G_δ, so each set {F_k = 1} is Δ⁰₂.
+  So a class-1 counterexample of this form would need only a scattered S that is closed
+  under boxes.
+
+**Search evidence (conjectural, not a proof).** I used SAT (pysat/CaDiCaL,
+code/pf_search/countable_closed_sat.py) with S = {supp ≤ K} and locally bounded z, meaning
+max z(s) ≤ max supp(s) + X. König's lemma makes any infinite solution show up as SAT at every
+N. UNSAT is the result for:
+* K=2, X≤3: from N=6;
+* K=3, X≤2: from N=6; X=3 from N=9;
+* K=4, X≤1: from N=6; X=2 from N=8.
+The larger X are SAT only for small N. These results suggest that box closure forces
+unbounded support, i.e. a dense S as in zfcF.
+
+**Failed candidate (refuted on paper).** I tried F(s) = 1^∞ except F(0^n1^∞) = 1^∞ with
+zeros at n−1, n. It is fixed-point free, and random sampling found no violation. It is **not
+exclusive**: s = 0^n1^∞ and t = 0^{n−1}10 1^∞ have D = {n−1, n}, where F(s) = 0 and
+F(t) = 1. This is the box condition failing.
+
+**Earlier window designs.** The single-discontinuity window family φ_j with a d≥2 rule got
+down to 2 bad pairs per 300k samples but never to 0.
+
+Status: the class-1 / Borel-triangular question is still **open**. Conjecture: an exclusive
+map that is constant off a countable closed set has a fixed point.
