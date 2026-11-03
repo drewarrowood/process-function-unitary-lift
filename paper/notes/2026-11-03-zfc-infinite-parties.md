@@ -1,12 +1,12 @@
 # 2026-11-03 — Infinitely many parties: ZFC settles it (exclusive ⇏ PF)
 
 **Question (addenda D–F of 2026-11-02-general-alphabets.md; lift.md Appendix M).** With infinitely
-many parties, is every exclusive classical process (unique fixed point for every local
-intervention, `Exclusive` in `lean/PFUL/InfiniteParties.lean`) a process function?
+many parties, is every exclusive classical process (`Exclusive`: for s ≠ s′ some party k has s_k ≠ s′_k and
+w(s)_k = w(s′)_k, equivalently *at most one* fixed point for every local intervention; `Exclusive` in `lean/PFUL/InfiniteParties.lean`) a process function?
 Known before: yes for continuous `w` (InfiniteCompact.lean); no under cov(M)=𝔠 / CH
 (CovMCounterexample.lean).
 
-**Answer: ZFC alone gives a counterexample — and it is explicit and Borel; no choice-heavy
+**Answer: ZFC alone gives a counterexample — and it is explicit (and Borel [proved-on-paper], not in Lean); no choice-heavy
 diagonalisation is needed.** [proved-in-Lean: `lean/PFUL/ZFCCounterexample.lean`,
 `PFUL.Infinite.exists_exclusive_not_pf`, axioms `propext, Classical.choice, Quot.sound` only;
 no hypothesis.] Hence the cov(M)/CH hypotheses in CovMCounterexample.lean are superfluous
@@ -38,7 +38,7 @@ uses the linear map `L d = d ⊕ shiftRight d` (which satisfies `d ∧ L d ∋ m
 countable subspace `E`, where `L(E)` = even-weight vectors, so translating by `e₀` avoids 0; the
 mismatch between `E` and its complement is harmless because both images differ from `s` only
 finitely on the infinite set `supp s`. Compactness (the continuous theorem) is what fails: `F` is
-discontinuous (it is Borel, class ≤ 2, since `E` is F_σ).
+discontinuous (it is Borel, class ≤ 2, since `E` is F_σ [proved-on-paper]).
 
 ## Literature (search done 2026-11-02 evening; fetched sources only)
 
@@ -54,8 +54,8 @@ of the *conjugate* `x ⊕ f(x)`, which is exactly our `G`.
    Theorem 1 (Unique fixed points): "Given a function w: O→I that satisfies condition (2), the fixed
    point of w∘f is unique for every set of local operations f={f1,…,fN}" (with the remark that
    their proof "also holds for continuous and not only discrete variables"). This is the
-   existence ⇒ uniqueness direction (our `fixed_unique`), with finitely many parties. Also
-   Baumeler–Wolf, "The space of logically consistent classical processes without causal order",
+   existence ⇒ uniqueness direction (our `fixed_unique`), with finitely many parties. [1703.00779: fetched; quotations verified by the referee.] Also
+   [NOT fetched by me or the referee; search-snippet quotations, unverified] Baumeler–Wolf, "The space of logically consistent classical processes without causal order",
    https://arxiv.org/abs/1507.01714 (N parties, `0≤j<N`), and the 2025 recursive
    characterisation https://arxiv.org/abs/2512.23599 ("Logical consistency can hold if and only
    if, for any choice of local operations f, the system of equations x=w(f(x)) has exactly one
@@ -70,15 +70,20 @@ of the *conjugate* `x ⊕ f(x)`, which is exactly our `G`.
    Remark 5: "Each subnetwork of f has a unique fixed point if and only if the conjugate of each
    subnetwork of f is a bijection" (attributed also to P. Ruet, "Local cycles and dynamical
    properties of Boolean networks", Math. Struct. Comput. Sci.; I did not fetch Ruet's paper).
-   Background: Shih–Dong, "A combinatorial analogue of the Jacobian problem in automata networks",
+   [Richard: fetched and read (arXiv PDF); quotations verified by the referee, godel-check-F.]
+   Background [NOT fetched; abstract quoted from a search snippet, unverified]: Shih–Dong, "A combinatorial analogue of the Jacobian problem in automata networks",
    Adv. Appl. Math. 34 (2005) 30–46, https://doi.org/10.1016/j.aam.2004.06.002 ("if a mapping
    from the n-dimensional hypercube to itself has the property that all the boolean eigenvalues of
    the discrete Jacobian matrix … are zero, then it has a unique fixed point").
    *How it relates* [proved-on-paper, my observation]: for binary parties the local interventions
    are the constants, id and negation; constants give subnetworks (subcubes), negations are
    coordinate flips. Exclusivity of F in XOR form, `(s⊕s') ∧ (G s ⊕ G s') ≠ 0`, says precisely
-   that the conjugate of every subnetwork of F (and of every coordinate-flip of F) is
-   **injective**. In finite dimension injective ⇒ bijective, so exclusive ⇒ PF (this is a
+   that the conjugate of every subnetwork of F is **injective**, where (as in Richard §2.2)
+   the subnetwork on S fixes the coordinates outside S to some a **and projects G's output to S**:
+   x ↦ G(x, a)|_S injective on B^S, for every S and a (Lean: `exclusive_iff_conj_injOn`). The
+   unprojected reading (all of G injective on each subcube) is weaker and not equivalent: the
+   referee's brute force (godel-check-F) found 12 mismatches among 256 maps for n = 2 and
+   39,576 among 16,777,216 for n = 3. Negation interventions flip G_k and preserve injectivity. In finite dimension injective ⇒ bijective, so exclusive ⇒ PF (this is a
    one-line proof of the finite binary case via Richard/Ruet). In infinite dimension
    injective ⇏ surjective, and our map is exactly an injective conjugate that misses 0
    (`G(E) ⊆ odd-weight finite vectors`, `G = id` off `E`). So the counterexample is the
@@ -92,7 +97,7 @@ of the *conjugate* `x ⊕ f(x)`, which is exactly our `G`.
    it as a source; whether Yablo's map is exclusive was not checked [conjectural/unexamined].)
    Hat-puzzle / Gabay–O'Connor style results were not found to be related: those use choice to
    pick representatives of finite-difference classes, whereas our map needs no choice beyond
-   the finite/infinite-support split (it is Borel).
+   the finite/infinite-support split (it is Borel [proved-on-paper]).
 
 **Novelty status:** apparently new (not found after search), with Richard/Ruet's finite
 conjugate-bijection criterion as the closest known analogue, of which ours is the infinite failure.
@@ -100,7 +105,7 @@ conjugate-bijection criterion as the closest known analogue, of which ours is th
 ## Remaining
 - lift.md / graded.md / Appendix M not edited yet (per instructions): the Appendix M status for
   "infinitely many parties, exclusive ⇒ PF?" should change from "independent-looking / consistent
-  counterexample" to "false in ZFC (explicit Borel counterexample); true for continuous w".
+  counterexample" to "false in ZFC (explicit counterexample, Borel [proved-on-paper]); true for continuous w".
 - Possible sharpening (open, not attempted): exclusive ⇒ PF for Baire-class-1 / for w with
   finitely many outputs depending on finitely many inputs, etc.
 
@@ -110,3 +115,8 @@ injective on every subcube, any ι; finite ι ⇒ PF; ZFC map's conjugate inject
 lift.md (abstract, §0 item 6, §1 scope table, §5, §9, §10 items, L.4(e), Appendix M rows
 L-232–L-239, ref. 57) and graded.md (§126(d), Story 4 → Hilbert's hotel, open-problems list)
 updated. Fixed the author list of arXiv:1703.00779 above (Zych, not Araújo).
+
+## Referee (Nov 3)
+Refereed by a Gödel likeness: /workspace/leibniz-likeness/godel-check-F.md, verdict **correct**.
+Required fixes applied (Exclusive = at most one fixed point; projected subcube form; Borel tagged
+[proved-on-paper]; fetched vs unverified sources marked; deprecation warnings fixed).

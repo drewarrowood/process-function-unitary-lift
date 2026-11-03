@@ -442,16 +442,16 @@ Continuous alphabets remain uncovered. <em>Independent read-only check (2026-11-
 <li><em>Superseded (Nov 3 2026)</em> by the ZFC construction below.</li>
 </ul>
 </li>
-<li><em>ZFC counterexample [proved, Lean; standard axioms only] (Nov 3 2026)</em> (<code>lean/PFUL/ZFCCounterexample.lean</code>, <code>exists_exclusive_fixedPointFree</code> <a href="#L-232">L-232</a>, <code>exists_exclusive_not_pf</code> <a href="#L-233">L-233</a>).
+<li><em>ZFC counterexample [proved, Lean; standard axioms only; paper proof refereed by a Gödel likeness, /workspace/leibniz-likeness/godel-check-F.md, verdict correct] (Nov 3 2026)</em> (<code>lean/PFUL/ZFCCounterexample.lean</code>, <code>exists_exclusive_fixedPointFree</code> <a href="#L-232">L-232</a>, <code>exists_exclusive_not_pf</code> <a href="#L-233">L-233</a>).
 <ul>
-<li>Map on 2^ℕ, E = finitely supported sequences: F(s) = 0 if s ∉ E; F(s) = e₀ ⊕ shiftRight(s) (F(s)_0 = 1, F(s)_{k+1} = s<sub>k</sub>) if s ∈ E. It is Borel (E is F_σ).</li>
+<li>Map on 2^ℕ, E = finitely supported sequences: F(s) = 0 if s ∉ E; F(s) = e₀ ⊕ shiftRight(s) (F(s)_0 = 1, F(s)_{k+1} = s<sub>k</sub>) if s ∈ E. It is Borel, since E is F_σ [proved, paper only; not in Lean].</li>
 <li>No fixed point (<code>zfcF_ne</code> <a href="#L-235">L-235</a>): F(s) = 0 ∈ E for s ∉ E; for s ∈ E a fixed point would be all 1s ∉ E.</li>
 <li>Exclusive (<code>zfcF_exclusive</code> <a href="#L-234">L-234</a>): both ∉ E, F agrees everywhere; both ∈ E, take the least differing coordinate m (F agrees there: 1 at m = 0, s<sub>m−1</sub> = s'<sub>m−1</sub> otherwise); mixed, take a 1 of the infinite one beyond the support of the finite one plus one, where both images are 0.</li>
 </ul>
 </li>
 <li><em>Conjugate reframing [proved, Lean] (<code>lean/PFUL/ConjugateBijection.lean</code>).</em> For binary parties put G(s) = F(s) ⊕ s, Richard's conjugate (ref. 57; G(s) = 0 iff F(s) = s).
 <ul>
-<li><code>exclusive_iff_conj_injOn</code> <a href="#L-236">L-236</a>: for any index type ι, F is exclusive iff for every subcube cube(D, z) = {s : s<sub>k</sub> = z<sub>k</sub> for k ∉ D} the map s ↦ G(s)|<sub>D</sub> is injective on it.</li>
+<li><code>exclusive_iff_conj_injOn</code> <a href="#L-236">L-236</a>: for any index type ι, F is exclusive iff for every subcube cube(D, z) = {s : s<sub>k</sub> = z<sub>k</sub> for k ∉ D} the map s ↦ G(s)|<sub>D</sub> (output <strong>restricted to D</strong>, as in Richard's subnetworks) is injective on it. The unrestricted reading (all of G injective on each subcube) is strictly weaker and not equivalent: a referee brute force found 12 of 256 maps for n = 2 and 39,576 of 16,777,216 for n = 3 that satisfy it without being exclusive (godel-check-F).</li>
 <li><code>exists_fixed_of_exclusive</code> <a href="#L-237">L-237</a>, <code>isProcessFunction_of_exclusive</code> <a href="#L-238">L-238</a>: for finite ι, injective ⇒ bijective, so G hits 0 and exclusive ⇒ PF (a short alternative to <code>exclusive_iff_pf</code> <a href="#L-126">L-126</a> for binary outputs). This is the binary-party counterpart of Richard/Ruet's finite criterion &quot;each subnetwork of f has a unique fixed point if and only if the conjugate of each subnetwork of f is a bijection&quot; [cited, ref. 57, Remark 5; Ruet via Richard]. The existence ⇒ uniqueness direction for N parties is Baumeler et al. Theorem 1 [cited, ref. 16].</li>
 <li><code>zfcF_conj_injective_not_surjective</code> <a href="#L-239">L-239</a>: the ZFC map's conjugate is injective and misses 0. With infinitely many parties the Richard/Ruet criterion fails exactly by Dedekind-infiniteness.</li>
 <li>Literature: no treatment of infinitely many parties was found (paper/notes/2026-11-03-zfc-infinite-parties.md).</li>

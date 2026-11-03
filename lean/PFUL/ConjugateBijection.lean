@@ -53,7 +53,7 @@ theorem exclusive_iff_conj_injOn (F : (ι → Bool) → (ι → Bool)) :
     exact hc (congrFun heq ⟨k, hkD⟩)
   · intro h s s' hne
     by_contra hall
-    push_neg at hall
+    push Not at hall
     refine hne (h {k | s k ≠ s' k} s (fun k hk => rfl) (fun k hk => ?_) ?_)
     · simpa [eq_comm] using hk
     · funext ⟨k, hk⟩; exact hall k hk

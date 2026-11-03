@@ -38,9 +38,9 @@ lemma bound_of_finSupp {s : ℕ → Bool} (h : FinSupp s) : ∃ N, ∀ k, N ≤ 
   have := hN (show k ∈ {k | s k = true} by simpa using hc); omega
 
 lemma exists_true_ge {s : ℕ → Bool} (h : ¬ FinSupp s) (N : ℕ) : ∃ k, N ≤ k ∧ s k = true := by
-  by_contra hc; push_neg at hc
+  by_contra hc; push Not at hc
   refine h ((finite_lt_nat N).subset fun k hk => ?_)
-  by_contra hk'; simp only [mem_setOf_eq, not_lt] at hk hk'; simp [hc k hk'] at hk
+  by_contra hk'; simp only [mem_ofPred_eq, not_lt] at hk hk'; simp [hc k hk'] at hk
 
 lemma cross {s s' : ℕ → Bool} (hs : ¬ FinSupp s) (hs' : FinSupp s') :
     ∃ k, s k ≠ s' k ∧ zfcF s k = zfcF s' k := by
