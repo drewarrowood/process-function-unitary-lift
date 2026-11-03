@@ -256,3 +256,27 @@ countable closed family, S = {|supp s| ≤ min supp s + K}
 
 I did not attempt the Π⁰₂/Σ⁰₂ asymmetric zfcF variants or the perfect nowhere-dense
 discontinuity sets this round.
+
+## 10. Prefix-cluster theorem and one-sided Borel levels (Lean; L-269–L-276)
+
+* `exists_prefix_fixed` (L-269): freeze every coordinate ≥ n to c. The remaining finite
+  exclusive problem has a solution x_n.
+* `fixed_of_prefix_agree` (L-270): suppose y agrees with c beyond N, and F y agrees with y
+  beyond N. If some x_n with n ≥ N agrees with y below N, then x_n = y, and so F y = y.
+* `exists_fixed_of_closure_finite_diff` (L-271): suppose F is exclusive and equals c off a
+  countable S. Suppose also that every limit of points of S ∩ [c] lies in [c], where [c] is
+  the set of points that differ finitely from c. Then F has a fixed point. In the proof, the
+  x_n lie in S ∩ [c]. A convergent subsequence has a limit y in [c]. F y differs finitely
+  from y, by L-267. L-270 then applies.
+* `exists_fixed_of_bounded_diff` (L-272): the corollary for bounded support. It **proves**
+  that the K-bounded families of §8 and the growing family of §9 have no counterexample.
+  So the SAT results for large X were truncation artifacts.
+* What a counterexample of the "constant off a countable closed S" form needs: finitely
+  supported points of S must accumulate at an infinitely supported point, as the intervals
+  [0,n) accumulate at ℕ in zfcF. In zfcF the prefix solutions are exactly x_n = [0,n). This
+  case is **open**.
+* (b) One-sided levels: every coordinate of zfcF is Σ⁰₂ (L-273). The dual
+  zfcD(s) = ¬zfcF(¬s) is exclusive and fixed-point free, and every coordinate is Π⁰₂
+  (L-274–L-276). So both asymmetric versions already have counterexamples. Only Δ⁰₂ is
+  open.
+* (c) I did not attempt perfect nowhere-dense discontinuity sets this round.
