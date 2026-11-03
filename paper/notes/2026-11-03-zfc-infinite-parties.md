@@ -40,12 +40,62 @@ mismatch between `E` and its complement is harmless because both images differ f
 finitely on the infinite set `supp s`. Compactness (the continuous theorem) is what fails: `F` is
 discontinuous (it is Borel, class ≤ 2, since `E` is F_σ).
 
-## Literature (step 1)
-Not needed for the result; I make no claims of prior appearance and cite nothing. The CH →
-ZFC-by-Bernstein route (step 2) was moot once the explicit construction was found. Whether this
-construction is already known in the indefinite-causal-order literature
-(Baumeler–Wolf process functions with infinitely many parties) was **not checked** [conjectural
-that it is new].
+## Literature (search done 2026-11-02 evening; fetched sources only)
+
+**Verdict: apparently new, with a close finite analogue.** I found no source that studies process
+functions/exclusivity with infinitely many parties, and none containing this map or an equivalent
+infinite-dimensional counterexample. The closest literature is the finite Boolean-network theory
+of the *conjugate* `x ⊕ f(x)`, which is exactly our `G`.
+
+1. **Process functions, finite parties only** [cited]. Baumeler–Wolf define process functions for
+   N parties by the unique-fixed-point condition. Baumeler, Costa, Ralph, Wolf, Araújo,
+   "Reversible time travel with freedom of choice", https://arxiv.org/abs/1703.00779 :
+   "if w is a process function, then w∘f has a fixed point for every local operation f", and
+   Theorem 1 (Unique fixed points): "Given a function w: O→I that satisfies condition (2), the fixed
+   point of w∘f is unique for every set of local operations f={f1,…,fN}" (with the remark that
+   their proof "also holds for continuous and not only discrete variables"). This is the
+   existence ⇒ uniqueness direction (our `fixed_unique`), with finitely many parties. Also
+   Baumeler–Wolf, "The space of logically consistent classical processes without causal order",
+   https://arxiv.org/abs/1507.01714 (N parties, `0≤j<N`), and the 2025 recursive
+   characterisation https://arxiv.org/abs/2512.23599 ("Logical consistency can hold if and only
+   if, for any choice of local operations f, the system of equations x=w(f(x)) has exactly one
+   solution"; the paper speaks of "arbitrary local dimensions and any number of parties", meaning
+   finite n). None of these considers infinitely many parties, and I found no paper that does.
+   [Absence claim = result of searching, not proof of absence.]
+
+2. **Boolean networks: the conjugate** [cited]. A. Richard, "A fixed point theorem for Boolean
+   networks expressed in terms of forbidden subnetworks", https://arxiv.org/abs/1302.6346
+   (DMTCS, https://doi.org/10.46298/dmtcs.2978): "The conjugate of f is the network f̃ on V
+   defined by ∀x ∈ B^V, f̃(x) = f(x) ⊕ x", "f̃(x) = 0 if and only if x is a fixed point of f", and
+   Remark 5: "Each subnetwork of f has a unique fixed point if and only if the conjugate of each
+   subnetwork of f is a bijection" (attributed also to P. Ruet, "Local cycles and dynamical
+   properties of Boolean networks", Math. Struct. Comput. Sci.; I did not fetch Ruet's paper).
+   Background: Shih–Dong, "A combinatorial analogue of the Jacobian problem in automata networks",
+   Adv. Appl. Math. 34 (2005) 30–46, https://doi.org/10.1016/j.aam.2004.06.002 ("if a mapping
+   from the n-dimensional hypercube to itself has the property that all the boolean eigenvalues of
+   the discrete Jacobian matrix … are zero, then it has a unique fixed point").
+   *How it relates* [proved-on-paper, my observation]: for binary parties the local interventions
+   are the constants, id and negation; constants give subnetworks (subcubes), negations are
+   coordinate flips. Exclusivity of F in XOR form, `(s⊕s') ∧ (G s ⊕ G s') ≠ 0`, says precisely
+   that the conjugate of every subnetwork of F (and of every coordinate-flip of F) is
+   **injective**. In finite dimension injective ⇒ bijective, so exclusive ⇒ PF (this is a
+   one-line proof of the finite binary case via Richard/Ruet). In infinite dimension
+   injective ⇏ surjective, and our map is exactly an injective conjugate that misses 0
+   (`G(E) ⊆ odd-weight finite vectors`, `G = id` off `E`). So the counterexample is the
+   "Dedekind-infinite" failure of the Richard–Ruet criterion. Richard's results are stated only
+   for finite `V` / `B^n`; I found no infinite-dimensional version.
+
+3. **Set-theoretic (CH / cov(M)) analogues** [searched, none found]. I found no ZFC-vs-CH
+   statement in the process-function or Boolean-network literature that our cov(M) result echoes.
+   It is now moot: the ZFC map subsumes it. (The paradigmatic infinite "no consistent assignment"
+   example in logic is Yablo's paradox, Analysis 53 (1993); I could not fetch it and do not cite
+   it as a source; whether Yablo's map is exclusive was not checked [conjectural/unexamined].)
+   Hat-puzzle / Gabay–O'Connor style results were not found to be related: those use choice to
+   pick representatives of finite-difference classes, whereas our map needs no choice beyond
+   the finite/infinite-support split (it is Borel).
+
+**Novelty status:** apparently new (not found after search), with Richard/Ruet's finite
+conjugate-bijection criterion as the closest known analogue, of which ours is the infinite failure.
 
 ## Remaining
 - lift.md / graded.md / Appendix M not edited yet (per instructions): the Appendix M status for
