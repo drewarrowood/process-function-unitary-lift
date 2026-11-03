@@ -413,7 +413,7 @@ Continuous alphabets remain uncovered. <em>Independent read-only check (2026-11-
 <p><strong>L.4(d). Bijection law in place of the group law [proved, Lean; standard axioms only] (Nov 2 2026).</strong> <code>lean/PFUL/BijectionLaw.lean</code> (commit 3f5ba8e). The loop is evaluated at σ_k(w<sub>k</sub>(f))(e<sub>k</sub>), where σ_k : I<sub>k</sub> → Perm(I<sub>k</sub>) is an arbitrary family of bijections. The group case is σ_k(a) = (a + ·), which is free (<code>free_addLeft</code> <a href="#L-015">L-015</a>).</p>
 <ul>
 <li>PF ⇒ unitary (<code>induced_unitary_l2_σ</code> <a href="#L-016">L-016</a>) needs no condition on σ.</li>
-<li>The copy-gadget converse (<code>unitary_l2_iff_pf_σ</code> <a href="#L-017">L-017</a>) needs σ <em>free</em> (σ a c = σ a′ c ⇒ a = a′) and O<sub>k</sub> nonempty. The output alphabets need no algebra, because the gadget uses <code>Equiv.swap</code>.</li>
+<li>The copy-gadget converse (<code>unitary_l2_iff_pf_σ</code> <a href="#L-017">L-017</a>) needs σ <em>free</em> (σ a c = σ a′ c ⇒ a = a′) and O<sub>k</sub> nonempty. Freeness cannot be dropped: with the lazy family σ_k a = id (not free, <code>not_free_lazy</code> <a href="#L-259">L-259</a>) every w passes every unitarity test (<code>lazy_unitary_all</code> <a href="#L-257">L-257</a>), including the non-PF w = id on one binary party (<code>lazy_converse_fails</code> <a href="#L-258">L-258</a>). The output alphabets need no algebra, because the gadget uses <code>Equiv.swap</code>.</li>
 <li>The no-ancilla converse (<code>exclusive_of_unitary_l2_σ</code> <a href="#L-014">L-014</a>, <code>unitary_l2_noAncilla_iff_pf_σ</code> <a href="#L-018">L-018</a>) needs σ free, e<sub>k</sub> : O<sub>k</sub> ≃ I<sub>k</sub>, and O<sub>k</sub> nonempty. Nonemptiness is necessary: if O is empty, ℓ² is trivial.</li>
 <li>So the simply-transitive restatement weakens to free; transitivity is never used.</li>
 <li>Scope: finitely many parties, discrete alphabets of any cardinality.</li>
@@ -461,7 +461,8 @@ Continuous alphabets remain uncovered. <em>Independent read-only check (2026-11-
 <li>Finitary maps (each output reads finitely many inputs) satisfy exclusive ⇒ PF (<code>pf_of_exclusive_finitary</code> <a href="#L-242">L-242</a>). Monotone self-maps always have fixed points (<code>exists_fixed_of_monotone</code> <a href="#L-241">L-241</a>).</li>
 <li>Splitting lemma: if every freezing of a finite T leaves a consistent history, an exclusive F has a fixed point (<code>exists_fixed_of_frozen</code> <a href="#L-243">L-243</a>). With compactness on subcubes (<code>exists_subcube_fixed</code> <a href="#L-250">L-250</a>) this gives: exclusive F continuous off a finite P, with F(p) ⊕ p finitely supported for p ∈ P, has a fixed point (<code>exists_fixed_of_finite_discontinuities</code> <a href="#L-251">L-251</a>); see also <a href="#L-252">L-252</a>.</li>
 <li>Any infinite party set admits an exclusive non-PF (<code>exists_exclusive_not_pf_of_infinite</code> <a href="#L-253">L-253</a>). The Yablo map (party k on iff all later parties off) is class 1 and fixed-point-free but not exclusive (<a href="#L-254">L-254</a>–<a href="#L-256">L-256</a>).</li>
-<li>Open: whether a Baire-class-1 exclusive map can be fixed-point-free [conjectural].</li>
+<li>Triangular maps (party k reads only parties j &gt; k, like Yablo's) [proved, Lean; <code>lean/PFUL/Triangular.lean</code>]: continuous ones always have a fixed point, exclusive or not (<code>exists_fixed_of_triangular_continuous</code> <a href="#L-264">L-264</a>); a fixed-point-free one is inconsistent at infinitely many coordinates of every history (<code>exists_fixed_of_eventually_good</code> <a href="#L-260">L-260</a>, <code>infinite_bad_of_fixedPointFree</code> <a href="#L-261">L-261</a>); for them exclusivity constrains only infinitely-differing pairs (<code>triangular_witness_of_finite_diff</code> <a href="#L-262">L-262</a>); and any exclusivity witness is consistent for exactly one of the two histories (<code>witness_good_bad</code> <a href="#L-263">L-263</a>).</li>
+<li>Open: whether a Baire-class-1 (or any Borel triangular) exclusive map can be fixed-point-free [conjectural].</li>
 <li>Literature: no treatment of infinitely many parties was found (paper/notes/2026-11-03-zfc-infinite-parties.md).</li>
 </ul>
 </li>
@@ -469,7 +470,7 @@ Continuous alphabets remain uncovered. <em>Independent read-only check (2026-11-
 <h2>Appendix M. Lean results index (Nov 2 2026)</h2>
 <p>Every Lean theorem cited in this paper or in the gentle version (graded.md), with its index label, full Lean name, file in lean/PFUL, abridged hypotheses (explicit and instance binders; implicit type arguments omitted) and conclusion, and the axioms reported by <code>#print axioms</code>. The table is generated from the Lean sources: every cited name was resolved to its declaration, and <code>#print axioms</code> was run on all of them in one file importing the listed modules (Lean 4.34.1, Mathlib). No entry depends on <code>sorryAx</code>, <code>Lean.ofReduceBool</code> or any axiom beyond propext, Classical.choice and Quot.sound; &quot;none&quot; means no axioms at all. In the text a label such as [L-123] follows the Lean name it refers to. Signatures are abridged; the Lean file is authoritative.</p>
 <p>The results the main line rests on: the lift (<code>PFUL.induced_unitary</code> <a href="#L-229">L-229</a>, <code>PFUL.Choi.validity_package</code> <a href="#L-022">L-022</a>); the converse (<code>PFUL.CopyGadget.unitary_iff_pf</code> <a href="#L-066">L-066</a>, <code>PFUL.NoAncilla.unitary_noAncilla_iff_pf</code> <a href="#L-174">L-174</a>); the general-alphabet and bijection-law forms (<code>PFUL.General.exclusive_iff_pf</code> <a href="#L-126">L-126</a>, <code>PFUL.General.unitary_l2_iff_pf_any</code> <a href="#L-132">L-132</a>, <code>PFUL.General.unitary_l2_noAncilla_iff_pf_any</code> <a href="#L-133">L-133</a>, <code>PFUL.General.unitary_l2_iff_pf_σ</code> <a href="#L-017">L-017</a>, <code>PFUL.General.unitary_l2_noAncilla_iff_pf_σ</code> <a href="#L-018">L-018</a>); infinitely many parties (<code>PFUL.Infinite.exists_exclusive_not_pf_iff</code> <a href="#L-146">L-146</a>, <code>PFUL.Infinite.pf_of_exclusive_continuous</code> <a href="#L-134">L-134</a>, <code>PFUL.Infinite.exists_exclusive_fixedPointFree_of_covM</code> <a href="#L-117">L-117</a>, <code>PFUL.Infinite.exists_exclusive_not_pf_of_covM</code> <a href="#L-119">L-119</a>, <code>PFUL.Infinite.covMEqC_of_CH</code> <a href="#L-116">L-116</a>, <code>PFUL.Infinite.exists_exclusive_not_pf_of_CH</code> <a href="#L-118">L-118</a>, <code>PFUL.Infinite.forb_isMeagre</code> <a href="#L-120">L-120</a>); and the counterexample (<code>PFUL.Counterexample.purification_conjecture_false</code> <a href="#L-078">L-078</a>, <code>PFUL.Counterexample.purification_conjecture_false_choi</code> <a href="#L-092">L-092</a>, <code>PFUL.Counterexample.purification_conjecture_false_choiInf</code> <a href="#L-106">L-106</a>).</p>
-<p>Labels L-232–L-239 (Nov 3 2026: ZFCCounterexample.lean, ConjugateBijection.lean) are appended at the end of the table rather than interleaved, so that existing labels keep their numbers; their axioms were checked with <code>#print axioms</code>. Labels L-240–L-256 (Nov 3 2026: IntermediateClasses.lean, BaireClasses.lean) are appended the same way.</p>
+<p>Labels L-232–L-239 (Nov 3 2026: ZFCCounterexample.lean, ConjugateBijection.lean) are appended at the end of the table rather than interleaved, so that existing labels keep their numbers; their axioms were checked with <code>#print axioms</code>. Labels L-240–L-256 (Nov 3 2026: IntermediateClasses.lean, BaireClasses.lean) are appended the same way. So are L-257–L-264 (LazyCloakroom.lean, Triangular.lean).</p>
 <table>
 <thead>
 <tr>
@@ -2528,6 +2529,70 @@ Continuous alphabets remain uncovered. <em>Independent read-only check (2026-11-
 <td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/BaireClasses.lean">BaireClasses.lean</a></td>
 <td>—</td>
 <td><code>BaireOne yablo</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-257"></a>L-257</td>
+<td><code>PFUL.General.lazy_unitary_all</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/LazyCloakroom.lean">LazyCloakroom.lean</a></td>
+<td><code>[∀ k, Nonempty (I k)] (w)</code></td>
+<td>every kernel V gives a unitary closed loop with σ = lazyσ</td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-258"></a>L-258</td>
+<td><code>PFUL.General.lazy_converse_fails</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/LazyCloakroom.lean">LazyCloakroom.lean</a></td>
+<td>—</td>
+<td><code>∃ w, ¬ IsProcessFunction w ∧ (lazy loop unitary for all V)</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-259"></a>L-259</td>
+<td><code>PFUL.General.not_free_lazy</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/LazyCloakroom.lean">LazyCloakroom.lean</a></td>
+<td><code>[Nontrivial B]</code></td>
+<td><code>¬ Free (fun _ : B ⇒ Equiv.refl B)</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-260"></a>L-260</td>
+<td><code>PFUL.Infinite.exists_fixed_of_eventually_good</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/Triangular.lean">Triangular.lean</a></td>
+<td><code>(hF : Triangular F) (n s) (∀ k ≥ n, F s k = s k)</code></td>
+<td><code>∃ x, F x = x</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-261"></a>L-261</td>
+<td><code>PFUL.Infinite.infinite_bad_of_fixedPointFree</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/Triangular.lean">Triangular.lean</a></td>
+<td><code>(hF : Triangular F) (hfree : ∀ s, F s ≠ s) (s)</code></td>
+<td><code>{k | F s k ≠ s k}.Infinite</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-262"></a>L-262</td>
+<td><code>PFUL.Infinite.triangular_witness_of_finite_diff</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/Triangular.lean">Triangular.lean</a></td>
+<td><code>(hF : Triangular F) (hne : s ≠ t) (hfin : {k | s k ≠ t k}.Finite)</code></td>
+<td><code>∃ k, s k ≠ t k ∧ F s k = F t k</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-263"></a>L-263</td>
+<td><code>PFUL.Infinite.witness_good_bad</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/Triangular.lean">Triangular.lean</a></td>
+<td><code>(hk : s k ≠ t k) (hF : F s k = F t k)</code></td>
+<td><code>F s k = s k ↔ F t k ≠ t k</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-264"></a>L-264</td>
+<td><code>PFUL.Infinite.exists_fixed_of_triangular_continuous</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/Triangular.lean">Triangular.lean</a></td>
+<td><code>(hF : Triangular F) (hc : ∀ k, Continuous fun s ⇒ F s k)</code></td>
+<td><code>∃ x, F x = x</code></td>
 <td>propext,choice,Quot.sound</td>
 </tr>
 </tbody>
