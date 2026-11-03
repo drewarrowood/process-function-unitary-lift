@@ -161,3 +161,33 @@ Not attempted or not reached: a transfinite-derivative (Cantor–Bendixson style
 combining the comeagre continuity set with `exists_subcube_fixed`. The obstacle is that the
 discontinuity set of a class-1 map can be dense, so no subcube is free of discontinuities, and
 the subcube lemma needs continuity on the whole cube.
+
+## 7. Third pass (2026-11-03): triangular maps, lazy cloakroom, H.19.4
+
+* **Triangular maps [Lean, `lean/PFUL/Triangular.lean`].**
+  * `exists_fixed_of_eventually_good`: if some history is consistent at every coordinate ≥ n,
+    a fixed point exists (repair from the top down).
+  * Hence `infinite_bad_of_fixedPointFree`: every history of a fixed-point-free triangular map
+    is inconsistent at infinitely many coordinates.
+  * `exists_fixed_of_triangular_continuous`: continuous triangular maps always have a fixed
+    point, even without exclusivity. So Yablo's discontinuity is forced.
+  * `triangular_witness_of_finite_diff`: exclusivity is automatic for pairs that differ in
+    finitely many coordinates.
+  * `witness_good_bad` (any binary exclusive F): a witness k is consistent for exactly one of
+    the two histories. In particular, the pair (u, F(u)) needs some k ∈ bad(u) with
+    F(F(u))_k = F(u)_k.
+* **Search (evidence only).** I searched triangular maps of the form
+  β_k(a) = [a finitely supported] ⊕ g(a_{k+1}, a_{k+2}, a_{k+3}), with g a translation-invariant
+  window rule. FPF forces g(000) = 0 and the backward window map to have 000 as its only cycle.
+  Every such g fails exclusivity on eventually periodic test pairs with prefixes up to length 5
+  (0 survivors). In fact this window family is ruled out on paper: with g(000) = 1, which
+  finite supports need, some nonzero cycle gives an infinite-support fixed point. Script:
+  /tmp/tri/s.py (scratch).
+* **Status of class 1 / Borel triangular: still open [conjectural].** No construction, and no
+  proof that one is impossible.
+* **Lazy cloakroom [Lean, `lean/PFUL/LazyCloakroom.lean`]:** `lazy_unitary_all`,
+  `lazy_converse_fails`, `not_free_lazy`.
+* **H.19.4** was already in Lean from Round 13 (`isPureHilbert_of_isPure`, L-191). It covers
+  three binary parties and arbitrary Hilbert ancillas, with no separability assumption. The
+  "paper only" tags in lift.md (Round 12 history line) and graded.md §87 were stale and are now
+  updated.
