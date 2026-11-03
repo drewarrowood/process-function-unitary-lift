@@ -65,7 +65,7 @@ of the *conjugate* `x ⊕ f(x)`, which is exactly our `G`.
 
 2. **Boolean networks: the conjugate** [cited]. A. Richard, "A fixed point theorem for Boolean
    networks expressed in terms of forbidden subnetworks", https://arxiv.org/abs/1302.6346
-   (DMTCS, https://doi.org/10.46298/dmtcs.2978): "The conjugate of f is the network f̃ on V
+   (journal version: Theoretical Computer Science 583, 1–26 (2015), https://doi.org/10.1016/j.tcs.2015.03.038, per the author's publication list https://webusers.i3s.unice.fr/~richard/ and the publisher DOI record; arXiv title "Fixed point theorems for Boolean networks expressed in terms of forbidden subnetworks". An earlier version of this note wrongly gave DMTCS doi 10.46298/dmtcs.2978, which is a different paper): "The conjugate of f is the network f̃ on V
    defined by ∀x ∈ B^V, f̃(x) = f(x) ⊕ x", "f̃(x) = 0 if and only if x is a fixed point of f", and
    Remark 5: "Each subnetwork of f has a unique fixed point if and only if the conjugate of each
    subnetwork of f is a bijection" (attributed also to P. Ruet, "Local cycles and dynamical
