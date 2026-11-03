@@ -439,19 +439,29 @@ Continuous alphabets remain uncovered. <em>Independent read-only check (2026-11-
 <li>Construction: F is constant on E₀-classes, F(s) = rep(g([s])), where g : P(ℕ)/fin → P(ℕ)/fin satisfies g x ≠ x and, for x ≠ y, (x+y) ∧ ¬(gx+gy) ≠ 0.</li>
 <li>g is built by recursion of length 𝔠. At stage α each of the |α|+1 &lt; 𝔠 conditions forbids one meager set ⋃_n {z : z|<sub>R∖n</sub> = b|<sub>R∖n</sub>} (R infinite).</li>
 <li>Hence Con(ZF) ⇒ Con(ZFC + exclusive ⇏ PF for infinitely many parties).</li>
+<li><em>Superseded (Nov 3 2026)</em> by the ZFC construction below.</li>
 </ul>
 </li>
-<li><em>Open:</em> the ZFC status.
+<li><em>ZFC counterexample [proved, Lean; standard axioms only] (Nov 3 2026)</em> (<code>lean/PFUL/ZFCCounterexample.lean</code>, <code>exists_exclusive_fixedPointFree</code> <a href="#L-232">L-232</a>, <code>exists_exclusive_not_pf</code> <a href="#L-233">L-233</a>).
 <ul>
-<li>cov(M) &lt; 𝔠 is also consistent, and the construction says nothing there.</li>
-<li>The Borel and Baire-measurable cases are open. Generic ergodicity of E₀ gives no contradiction by itself.</li>
-<li>No ZFC construction is known; a sufficient one would be a non-surjective F₂-linear L with u ∧ Lu ≠ 0 for all u ≠ 0.</li>
+<li>Map on 2^ℕ, E = finitely supported sequences: F(s) = 0 if s ∉ E; F(s) = e₀ ⊕ shiftRight(s) (F(s)_0 = 1, F(s)_{k+1} = s<sub>k</sub>) if s ∈ E. It is Borel (E is F_σ).</li>
+<li>No fixed point (<code>zfcF_ne</code> <a href="#L-235">L-235</a>): F(s) = 0 ∈ E for s ∉ E; for s ∈ E a fixed point would be all 1s ∉ E.</li>
+<li>Exclusive (<code>zfcF_exclusive</code> <a href="#L-234">L-234</a>): both ∉ E, F agrees everywhere; both ∈ E, take the least differing coordinate m (F agrees there: 1 at m = 0, s<sub>m−1</sub> = s'<sub>m−1</sub> otherwise); mixed, take a 1 of the infinite one beyond the support of the finite one plus one, where both images are 0.</li>
+</ul>
+</li>
+<li><em>Conjugate reframing [proved, Lean] (<code>lean/PFUL/ConjugateBijection.lean</code>).</em> For binary parties put G(s) = F(s) ⊕ s, Richard's conjugate (ref. 57; G(s) = 0 iff F(s) = s).
+<ul>
+<li><code>exclusive_iff_conj_injOn</code> <a href="#L-236">L-236</a>: for any index type ι, F is exclusive iff for every subcube cube(D, z) = {s : s<sub>k</sub> = z<sub>k</sub> for k ∉ D} the map s ↦ G(s)|<sub>D</sub> is injective on it.</li>
+<li><code>exists_fixed_of_exclusive</code> <a href="#L-237">L-237</a>, <code>isProcessFunction_of_exclusive</code> <a href="#L-238">L-238</a>: for finite ι, injective ⇒ bijective, so G hits 0 and exclusive ⇒ PF (a short alternative to <code>exclusive_iff_pf</code> <a href="#L-126">L-126</a> for binary outputs). This is the binary-party counterpart of Richard/Ruet's finite criterion &quot;each subnetwork of f has a unique fixed point if and only if the conjugate of each subnetwork of f is a bijection&quot; [cited, ref. 57, Remark 5; Ruet via Richard]. The existence ⇒ uniqueness direction for N parties is Baumeler et al. Theorem 1 [cited, ref. 16].</li>
+<li><code>zfcF_conj_injective_not_surjective</code> <a href="#L-239">L-239</a>: the ZFC map's conjugate is injective and misses 0. With infinitely many parties the Richard/Ruet criterion fails exactly by Dedekind-infiniteness.</li>
+<li>Literature: no treatment of infinitely many parties was found (paper/notes/2026-11-03-zfc-infinite-parties.md).</li>
 </ul>
 </li>
 </ul>
 <h2>Appendix M. Lean results index (Nov 2 2026)</h2>
 <p>Every Lean theorem cited in this paper or in the gentle version (graded.md), with its index label, full Lean name, file in lean/PFUL, abridged hypotheses (explicit and instance binders; implicit type arguments omitted) and conclusion, and the axioms reported by <code>#print axioms</code>. The table is generated from the Lean sources: every cited name was resolved to its declaration, and <code>#print axioms</code> was run on all of them in one file importing the listed modules (Lean 4.34.1, Mathlib). No entry depends on <code>sorryAx</code>, <code>Lean.ofReduceBool</code> or any axiom beyond propext, Classical.choice and Quot.sound; &quot;none&quot; means no axioms at all. In the text a label such as [L-123] follows the Lean name it refers to. Signatures are abridged; the Lean file is authoritative.</p>
 <p>The results the main line rests on: the lift (<code>PFUL.induced_unitary</code> <a href="#L-229">L-229</a>, <code>PFUL.Choi.validity_package</code> <a href="#L-022">L-022</a>); the converse (<code>PFUL.CopyGadget.unitary_iff_pf</code> <a href="#L-066">L-066</a>, <code>PFUL.NoAncilla.unitary_noAncilla_iff_pf</code> <a href="#L-174">L-174</a>); the general-alphabet and bijection-law forms (<code>PFUL.General.exclusive_iff_pf</code> <a href="#L-126">L-126</a>, <code>PFUL.General.unitary_l2_iff_pf_any</code> <a href="#L-132">L-132</a>, <code>PFUL.General.unitary_l2_noAncilla_iff_pf_any</code> <a href="#L-133">L-133</a>, <code>PFUL.General.unitary_l2_iff_pf_σ</code> <a href="#L-017">L-017</a>, <code>PFUL.General.unitary_l2_noAncilla_iff_pf_σ</code> <a href="#L-018">L-018</a>); infinitely many parties (<code>PFUL.Infinite.exists_exclusive_not_pf_iff</code> <a href="#L-146">L-146</a>, <code>PFUL.Infinite.pf_of_exclusive_continuous</code> <a href="#L-134">L-134</a>, <code>PFUL.Infinite.exists_exclusive_fixedPointFree_of_covM</code> <a href="#L-117">L-117</a>, <code>PFUL.Infinite.exists_exclusive_not_pf_of_covM</code> <a href="#L-119">L-119</a>, <code>PFUL.Infinite.covMEqC_of_CH</code> <a href="#L-116">L-116</a>, <code>PFUL.Infinite.exists_exclusive_not_pf_of_CH</code> <a href="#L-118">L-118</a>, <code>PFUL.Infinite.forb_isMeagre</code> <a href="#L-120">L-120</a>); and the counterexample (<code>PFUL.Counterexample.purification_conjecture_false</code> <a href="#L-078">L-078</a>, <code>PFUL.Counterexample.purification_conjecture_false_choi</code> <a href="#L-092">L-092</a>, <code>PFUL.Counterexample.purification_conjecture_false_choiInf</code> <a href="#L-106">L-106</a>).</p>
+<p>Labels L-232–L-239 (Nov 3 2026: ZFCCounterexample.lean, ConjugateBijection.lean) are appended at the end of the table rather than interleaved, so that existing labels keep their numbers; their axioms were checked with <code>#print axioms</code>.</p>
 <table>
 <thead>
 <tr>
@@ -2312,6 +2322,70 @@ Continuous alphabets remain uncovered. <em>Independent read-only check (2026-11-
 <td><code>ValidWith w X Y</code></td>
 <td>propext,choice,Quot.sound</td>
 </tr>
+<tr>
+<td><a id="L-232"></a>L-232</td>
+<td><code>PFUL.Infinite.exists_exclusive_fixedPointFree</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/ZFCCounterexample.lean">ZFCCounterexample.lean</a></td>
+<td>—</td>
+<td><code>∃ F : (ℕ → Bool) → (ℕ → Bool), (∀ s, F s ≠ s) ∧ Exclusive F</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-233"></a>L-233</td>
+<td><code>PFUL.Infinite.exists_exclusive_not_pf</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/ZFCCounterexample.lean">ZFCCounterexample.lean</a></td>
+<td>—</td>
+<td><code>∃ (I : ℕ → Type) (w : (ℕ → Bool) → (∀ k, I k)), Exclusive w ∧ ¬ IsProcessFunction w</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-234"></a>L-234</td>
+<td><code>PFUL.Infinite.zfcF_exclusive</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/ZFCCounterexample.lean">ZFCCounterexample.lean</a></td>
+<td>—</td>
+<td><code>Exclusive zfcF</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-235"></a>L-235</td>
+<td><code>PFUL.Infinite.zfcF_ne</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/ZFCCounterexample.lean">ZFCCounterexample.lean</a></td>
+<td><code>(s : ℕ → Bool)</code></td>
+<td><code>zfcF s ≠ s</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-236"></a>L-236</td>
+<td><code>PFUL.Infinite.exclusive_iff_conj_injOn</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/ConjugateBijection.lean">ConjugateBijection.lean</a></td>
+<td><code>(F : (ι → Bool) → (ι → Bool))</code></td>
+<td><code>Exclusive F ↔ ∀ (D : Set ι) (z : ι → Bool), InjOn (fun s ⇒ fun k : D ⇒ conj F s k) (cube D z)</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-237"></a>L-237</td>
+<td><code>PFUL.Infinite.exists_fixed_of_exclusive</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/ConjugateBijection.lean">ConjugateBijection.lean</a></td>
+<td><code>[Finite ι] (h : Exclusive F)</code></td>
+<td><code>∃ s, F s = s</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-238"></a>L-238</td>
+<td><code>PFUL.Infinite.isProcessFunction_of_exclusive</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/ConjugateBijection.lean">ConjugateBijection.lean</a></td>
+<td><code>[Finite ι] (h : Exclusive w)</code></td>
+<td><code>IsProcessFunction w   (w : (ι → Bool) → (∀ k, I k))</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-239"></a>L-239</td>
+<td><code>PFUL.Infinite.zfcF_conj_injective_not_surjective</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/ConjugateBijection.lean">ConjugateBijection.lean</a></td>
+<td>—</td>
+<td><code>Function.Injective (conj zfcF) ∧ ∀ s, conj zfcF s ≠ fun _ ⇒ false</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
 </tbody>
 </table>
 <h2>References</h2>
@@ -2372,6 +2446,7 @@ Continuous alphabets remain uncovered. <em>Independent read-only check (2026-11-
 <li>E. B. Davies and J. T. Lewis, An operational approach to quantum probability, Communications in Mathematical Physics 17, 239 (1970). [Added for the glossary, Appendix K.]</li>
 <li>J. Wechs, A. A. Abbott and C. Branciard, On the definition and characterisation of multipartite causal (non)separability, New Journal of Physics 21, 013027 (2019). [Cited inline in H.1; numbered for the glossary, Appendix K.]</li>
 <li>K. Fang and H. Fawzi, The sum-of-squares hierarchy on the sphere and applications in quantum information theory, Mathematical Programming 190, 331–360 (2021), arXiv:1908.05155. [Cited in H.37.6.]</li>
+<li>A. Richard, A fixed point theorem for Boolean networks expressed in terms of forbidden subnetworks, Discrete Mathematics &amp; Theoretical Computer Science, https://doi.org/10.46298/dmtcs.2978, arXiv:1302.6346 (Remark 5 credits P. Ruet, Local cycles and dynamical properties of Boolean networks, Math. Struct. Comput. Sci.). [Cited in L.4(e).]</li>
 </ol>
 
 <footer>Source: <a href="https://github.com/drewarrowood/process-function-unitary-lift">github.com/drewarrowood/process-function-unitary-lift</a> · <a href="https://github.com/drewarrowood/process-function-unitary-lift/raw/main/paper/lift.pdf">PDF</a> · <a href="https://drewarrowood.github.io/process-function-unitary-lift/">Technical note</a> · <a href="https://drewarrowood.github.io/process-function-unitary-lift/graded.html">Gentle version</a></footer>

@@ -48,7 +48,7 @@ infinite-dimensional counterexample. The closest literature is the finite Boolea
 of the *conjugate* `x ⊕ f(x)`, which is exactly our `G`.
 
 1. **Process functions, finite parties only** [cited]. Baumeler–Wolf define process functions for
-   N parties by the unique-fixed-point condition. Baumeler, Costa, Ralph, Wolf, Araújo,
+   N parties by the unique-fixed-point condition. Baumeler, Costa, Ralph, Wolf, Zych,
    "Reversible time travel with freedom of choice", https://arxiv.org/abs/1703.00779 :
    "if w is a process function, then w∘f has a fixed point for every local operation f", and
    Theorem 1 (Unique fixed points): "Given a function w: O→I that satisfies condition (2), the fixed
@@ -103,3 +103,10 @@ conjugate-bijection criterion as the closest known analogue, of which ours is th
   counterexample" to "false in ZFC (explicit Borel counterexample); true for continuous w".
 - Possible sharpening (open, not attempted): exclusive ⇒ PF for Baire-class-1 / for w with
   finitely many outputs depending on finitely many inputs, etc.
+
+## Update (Nov 3): integrated
+Lean `lean/PFUL/ConjugateBijection.lean` proves the conjugate reframing (exclusive ⇔ conjugate
+injective on every subcube, any ι; finite ι ⇒ PF; ZFC map's conjugate injective, misses 0).
+lift.md (abstract, §0 item 6, §1 scope table, §5, §9, §10 items, L.4(e), Appendix M rows
+L-232–L-239, ref. 57) and graded.md (§126(d), Story 4 → Hilbert's hotel, open-problems list)
+updated. Fixed the author list of arXiv:1703.00779 above (Zych, not Araújo).
