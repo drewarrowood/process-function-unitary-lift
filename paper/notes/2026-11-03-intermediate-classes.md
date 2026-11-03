@@ -226,3 +226,33 @@ down to 2 bad pairs per 300k samples but never to 0.
 
 Status: the class-1 / Borel-triangular question is still **open**. Conjecture: an exclusive
 map that is constant off a countable closed set has a fixed point.
+
+## 9. Lean formalization of §8 items 1–2 (lean/PFUL/CountablePerturbation.lean)
+
+These are proved in Lean, with axioms propext, Classical.choice and Quot.sound only. Here
+F equals c off S, and the index type ι is general.
+* `const_mem_of_fpf` (L-265): if F has no fixed point, then c ∈ S.
+* `box_subset` (L-266): if F is exclusive, s ∈ S, and t differs from s only where F s differs
+  from c, then t ∈ S.
+* `finite_defect_of_countable` (L-267): if F is exclusive and S is countable, then
+  {k | F s k ≠ c k} is finite. The proof injects the cube over an infinite set into S and
+  then applies Cantor's theorem.
+* `baireOne_of_const_off_countable_closed` (L-268): on 2^ℕ, if S is countable and closed,
+  any F that equals c off S is BaireOne, for any target space. The proof enumerates
+  S = range e and takes g_n(x) = F(e_j), where j < n is the least index whose e_j shares x's
+  length-n prefix, and g_n(x) = c if there is none. Each g_n depends only on a prefix, so it
+  is continuous. g_n(x) → F(x) because S is closed (for x ∉ S) and by a least-index argument
+  (for x ∈ S).
+
+**The conjecture is still open.** The conjecture: exclusive plus constant off a countable
+closed set implies a fixed point. I found no proof. A Cantor–Bendixson attempt only showed
+this: if s is isolated in S via a depth-m cylinder, box closure forces supp z(s) ⊆ [0,m).
+That is not enough to induct. I also extended the SAT evidence to an unbounded-support
+countable closed family, S = {|supp s| ≤ min supp s + K}
+(code/pf_search/countable_closed_sat_growing.py). The results:
+* UNSAT for K=1, X ≤ 2 at N=5–7;
+* UNSAT for K=2, X=1 at N=5–7 and X=2 at N=6–7;
+* SAT for larger X at small N, so this is inconclusive.
+
+I did not attempt the Π⁰₂/Σ⁰₂ asymmetric zfcF variants or the perfect nowhere-dense
+discontinuity sets this round.
