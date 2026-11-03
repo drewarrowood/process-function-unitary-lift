@@ -45,7 +45,7 @@ def page(title, desc, url, og_image, nav, body):
 </style></head><body><main>
 {nav}
 {body}
-<footer>Source: <a href="{REPO}">github.com/drewarrowood/process-function-unitary-lift</a> · <a href="{REPO}/raw/main/paper/lift.pdf">PDF</a> · <a href="{BASE}">Technical note</a> · <a href="{BASE}graded.html">Gentle version</a></footer>
+<footer>Source: <a href="{REPO}">github.com/drewarrowood/process-function-unitary-lift</a> · <a href="{BASE}lift.pdf">PDF (technical note)</a> · <a href="{BASE}graded.pdf">PDF (gentle version)</a> · <a href="{BASE}">Technical note</a> · <a href="{BASE}graded.html">Gentle version</a></footer>
 </main></body></html>
 """
 
