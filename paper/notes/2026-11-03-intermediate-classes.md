@@ -277,6 +277,34 @@ discontinuity sets this round.
   case is **open**.
 * (b) One-sided levels: every coordinate of zfcF is Σ⁰₂ (L-273). The dual
   zfcD(s) = ¬zfcF(¬s) is exclusive and fixed-point free, and every coordinate is Π⁰₂
-  (L-274–L-276). So both asymmetric versions already have counterexamples. Only Δ⁰₂ is
-  open.
-* (c) I did not attempt perfect nowhere-dense discontinuity sets this round.
+  (L-274–L-276). So both asymmetric versions already have counterexamples. What remains
+  open at this Borel level is the two-sided Δ⁰₂ class, where class-1 maps live. The
+  countable-closed conjecture and the Borel-triangular question remain open as well.
+  This is not a census of every open question in the note.
+* (c) Perfect nowhere-dense discontinuity sets are treated in
+  paper/notes/2026-11-07-perfect-nowhere-dense.md and in `lean/PFUL/PerfectPad.lean`
+  (L-277–L-285).
+
+## 11. Perfect nowhere-dense padding (2026-11-07; lean/PFUL/PerfectPad.lean)
+
+P = {s | s(2j+1) = false for every j} is closed, perfect, and has empty interior
+(`isClosed_P` L-277, `interior_P` L-278, `perfect_P` L-279). `pad G` writes G(ev s)
+on the even coordinates when s ∈ P, and is the constant false sequence otherwise.
+Odd outputs are false even on P.
+
+* Exclusive and fixed-point-free pass from G to pad G (`pad_exclusive` L-280,
+  `pad_ne` L-281).
+* pad G is constant, hence continuous, off P (`pad_continuousAt` L-282). Every
+  discontinuity lies in P. The file does not prove the converse inclusion, and the
+  paper does not assert Disc(pad G) = P.
+* `baireOne_pad_iff` (L-283): BaireOne(pad G) ↔ BaireOne G.
+* `exists_exclusive_fpf_const_off_perfect` (L-284): pad zfcF is exclusive, has no
+  fixed point, is constant off P, is continuous off P, and is not Baire class 1.
+  So L-271 really uses countability of S. Here S = P is uncountable and closed.
+* `reduction` (L-285): an exclusive fixed-point-free Baire-one G pads to a map with
+  the same three properties that is also constant off P. Together with L-283, the
+  restricted fixed-point question is equivalent to the full Baire-class-1 question.
+  The padding is a reduction. The countable-closed conjecture of §9–§10 remains open.
+
+Axioms, from `#print axioms`: propext, Classical.choice, Quot.sound. No sorry.
+No new external citations.
