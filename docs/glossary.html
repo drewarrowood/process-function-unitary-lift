@@ -462,9 +462,11 @@ Continuous alphabets remain uncovered. <em>Independent read-only check (2026-11-
 <li>Splitting lemma: if every freezing of a finite T leaves a consistent history, an exclusive F has a fixed point (<code>exists_fixed_of_frozen</code> <a href="#L-243">L-243</a>). With compactness on subcubes (<code>exists_subcube_fixed</code> <a href="#L-250">L-250</a>) this gives: exclusive F continuous off a finite P, with F(p) ⊕ p finitely supported for p ∈ P, has a fixed point (<code>exists_fixed_of_finite_discontinuities</code> <a href="#L-251">L-251</a>); see also <a href="#L-252">L-252</a>.</li>
 <li>Any infinite party set admits an exclusive non-PF (<code>exists_exclusive_not_pf_of_infinite</code> <a href="#L-253">L-253</a>). The Yablo map (party k on iff all later parties off) is class 1 and fixed-point-free but not exclusive (<a href="#L-254">L-254</a>–<a href="#L-256">L-256</a>).</li>
 <li>Triangular maps (party k reads only parties j &gt; k, like Yablo's) [proved, Lean; <code>lean/PFUL/Triangular.lean</code>]: continuous ones always have a fixed point, exclusive or not (<code>exists_fixed_of_triangular_continuous</code> <a href="#L-264">L-264</a>); a fixed-point-free one is inconsistent at infinitely many coordinates of every history (<code>exists_fixed_of_eventually_good</code> <a href="#L-260">L-260</a>, <code>infinite_bad_of_fixedPointFree</code> <a href="#L-261">L-261</a>); for them exclusivity constrains only infinitely-differing pairs (<code>triangular_witness_of_finite_diff</code> <a href="#L-262">L-262</a>); and any exclusivity witness is consistent for exactly one of the two histories (<code>witness_good_bad</code> <a href="#L-263">L-263</a>).</li>
-<li>Maps constant off a set S [proved, Lean; <code>lean/PFUL/CountablePerturbation.lean</code>]: an exclusive fixed-point-free map that equals c off S has c ∈ S (<code>const_mem_of_fpf</code> <a href="#L-265">L-265</a>) and S contains every box s ⊕ cube{k | F s k ≠ c k} (<code>box_subset</code> <a href="#L-266">L-266</a>); if S is countable each defect is finite (<code>finite_defect_of_countable</code> <a href="#L-267">L-267</a>); if S is countable and closed, any such map is Baire class 1 (<code>baireOne_of_const_off_countable_closed</code> <a href="#L-268">L-268</a>). zfcF is this shape with S dense. A fixed point exists whenever the points of S that differ finitely from c accumulate only at such points (<code>exists_fixed_of_closure_finite_diff</code> <a href="#L-271">L-271</a>), and in particular when they differ from c in boundedly many places (<code>exists_fixed_of_bounded_diff</code> <a href="#L-272">L-272</a>); the proof solves the prefix problems (<code>exists_prefix_fixed</code> <a href="#L-269">L-269</a>) and passes to a cluster point (<code>fixed_of_prefix_agree</code> <a href="#L-270">L-270</a>). So a class-1 counterexample of this shape would need finitely supported points of S accumulating at an infinitely supported one, as the intervals [0,n) do at ℕ in zfcF; whether one exists for countable closed S is open [conjectural]. One-sided Borel levels do not suffice: every coordinate of zfcF is Σ⁰₂ (<code>zfcF_coord_sigma02</code> <a href="#L-273">L-273</a>), and its dual zfcD(s) = ¬zfcF(¬s) is exclusive, fixed-point free, and Π⁰₂ in every coordinate (<code>zfcD_ne</code>, <code>zfcD_exclusive</code>, <code>zfcD_coord_pi02</code> <a href="#L-274">L-274</a>–<a href="#L-276">L-276</a>; <code>lean/PFUL/BorelLevels.lean</code>). For these one-sided coordinate complexities, the two-sided Δ⁰₂ level, where class-1 maps live, remains open (L-268 gives one family of them).</li>
-<li>Perfect nowhere-dense padding [proved, Lean; <code>lean/PFUL/PerfectPad.lean</code>]: let P be the sequences with every odd coordinate false. P is closed (<code>isClosed_P</code> <a href="#L-277">L-277</a>), has empty interior (<code>interior_P</code> <a href="#L-278">L-278</a>) and is perfect (<code>perfect_P</code> <a href="#L-279">L-279</a>). Given G, <code>pad G</code> copies G onto the even coordinates when the input lies in P, and is the constant false sequence otherwise; odd outputs are false even on P. If G is exclusive then so is <code>pad G</code> (<code>pad_exclusive</code> <a href="#L-280">L-280</a>); if G has no fixed point then neither does <code>pad G</code> (<code>pad_ne</code> <a href="#L-281">L-281</a>); and <code>pad G</code> is continuous at every point off P (<code>pad_continuousAt</code> <a href="#L-282">L-282</a>), where it is constant. Every discontinuity therefore lies in P. The Lean file does not prove that every point of P is a discontinuity, and this note does not assert equality of the two sets. Padding <code>zfcF</code> gives an exclusive fixed-point-free map, constant off this closed perfect nowhere-dense set, and not Baire class 1 (<code>exists_exclusive_fpf_const_off_perfect</code> <a href="#L-284">L-284</a>). So continuity off such a set does not force a fixed point, and <code>exists_fixed_of_closure_finite_diff</code> <a href="#L-271">L-271</a> really uses countability of S: here the exceptional set is uncountable. Baire class 1 passes across the padding in both directions (<code>baireOne_pad_iff</code> <a href="#L-283">L-283</a>). An exclusive fixed-point-free Baire-one G therefore yields a map of the same three kinds that is also constant off P (<code>reduction</code> <a href="#L-285">L-285</a>), and dropping the extra constancy is the other direction. The restricted fixed-point question, exclusive and Baire class 1 and constant off a closed perfect nowhere-dense set, is equivalent to the full Baire-class-1 question. The padding is a reduction of one question to the other. The countable-closed conjecture, exclusive and constant off a countable closed set implies a fixed point, remains open [conjectural].</li>
-<li>Open [conjectural]: whether a Baire-class-1 exclusive map can be fixed-point-free; whether any Borel triangular exclusive map can; and whether an exclusive map that is constant off a countable closed set has a fixed point. These sit among the other open questions of the note (Section 10).</li>
+<li>Maps constant off a set S [proved, Lean; <code>lean/PFUL/CountablePerturbation.lean</code>]: an exclusive fixed-point-free map that equals c off S has c ∈ S (<code>const_mem_of_fpf</code> <a href="#L-265">L-265</a>) and S contains every box s ⊕ cube{k | F s k ≠ c k} (<code>box_subset</code> <a href="#L-266">L-266</a>); if S is countable each defect is finite (<code>finite_defect_of_countable</code> <a href="#L-267">L-267</a>); if S is countable and closed, any such map is Baire class 1 (<code>baireOne_of_const_off_countable_closed</code> <a href="#L-268">L-268</a>). zfcF is this shape with S dense. A fixed point exists whenever the points of S that differ finitely from c accumulate only at such points (<code>exists_fixed_of_closure_finite_diff</code> <a href="#L-271">L-271</a>), and in particular when they differ from c in boundedly many places (<code>exists_fixed_of_bounded_diff</code> <a href="#L-272">L-272</a>); the proof solves the prefix problems (<code>exists_prefix_fixed</code> <a href="#L-269">L-269</a>) and passes to a cluster point (<code>fixed_of_prefix_agree</code> <a href="#L-270">L-270</a>). So a class-1 counterexample of this shape would need finitely supported points of S accumulating at an infinitely supported one, as the intervals [0,n) do at ℕ in zfcF; for countable closed S it does not. The prefix boxes and their limits stay inside a closed S (<code>cluster_box_subset_of_prefix_fixed</code> <a href="#L-287">L-287</a>), and a countable set cannot contain an infinite coordinate box (<code>finite_diff_of_countable_box</code> <a href="#L-286">L-286</a>), so there is a unique fixed point (<code>exists_unique_fixed_of_const_off_countable_closed</code> <a href="#L-289">L-289</a>; <code>exists_fixed_of_const_off_countable_closed</code> <a href="#L-288">L-288</a>), finitely different from c (<code>fixed_finite_diff_of_const_off_countable</code> <a href="#L-290">L-290</a>; <code>lean/PFUL/CountableClosed.lean</code>). One-sided Borel levels do not suffice: every coordinate of zfcF is Σ⁰₂ (<code>zfcF_coord_sigma02</code> <a href="#L-273">L-273</a>), and its dual zfcD(s) = ¬zfcF(¬s) is exclusive, fixed-point free, and Π⁰₂ in every coordinate (<code>zfcD_ne</code>, <code>zfcD_exclusive</code>, <code>zfcD_coord_pi02</code> <a href="#L-274">L-274</a>–<a href="#L-276">L-276</a>; <code>lean/PFUL/BorelLevels.lean</code>). For these one-sided coordinate complexities, the two-sided Δ⁰₂ level, where class-1 maps live, remains open (L-268 gives one family of them).</li>
+<li>Perfect nowhere-dense padding [proved, Lean; <code>lean/PFUL/PerfectPad.lean</code>]: let P be the sequences with every odd coordinate false. P is closed (<code>isClosed_P</code> <a href="#L-277">L-277</a>), has empty interior (<code>interior_P</code> <a href="#L-278">L-278</a>) and is perfect (<code>perfect_P</code> <a href="#L-279">L-279</a>). Given G, <code>pad G</code> copies G onto the even coordinates when the input lies in P, and is the constant false sequence otherwise; odd outputs are false even on P. If G is exclusive then so is <code>pad G</code> (<code>pad_exclusive</code> <a href="#L-280">L-280</a>); if G has no fixed point then neither does <code>pad G</code> (<code>pad_ne</code> <a href="#L-281">L-281</a>); and <code>pad G</code> is continuous at every point off P (<code>pad_continuousAt</code> <a href="#L-282">L-282</a>), where it is constant. Every discontinuity therefore lies in P. The Lean file does not prove that every point of P is a discontinuity, and this note does not assert equality of the two sets. Padding <code>zfcF</code> gives an exclusive fixed-point-free map, constant off this closed perfect nowhere-dense set, and not Baire class 1 (<code>exists_exclusive_fpf_const_off_perfect</code> <a href="#L-284">L-284</a>). So continuity off such a set does not force a fixed point, and <code>exists_fixed_of_closure_finite_diff</code> <a href="#L-271">L-271</a> really uses countability of S: here the exceptional set is uncountable. Baire class 1 passes across the padding in both directions (<code>baireOne_pad_iff</code> <a href="#L-283">L-283</a>). An exclusive fixed-point-free Baire-one G therefore yields a map of the same three kinds that is also constant off P (<code>reduction</code> <a href="#L-285">L-285</a>), and dropping the extra constancy is the other direction. The restricted fixed-point question, exclusive and Baire class 1 and constant off a closed perfect nowhere-dense set, is equivalent to the full Baire-class-1 question. The padding is a reduction of one question to the other. The countable-closed case is the theorem <a href="#L-289">L-289</a>, not a conjecture.</li>
+<li>Countable G-delta exceptional sets [proved, Lean; <code>lean/PFUL/CountableGDelta.lean</code>]: G-delta is a property of the set S, not of the separate coordinate fibers. If S is countable and Gδ and F equals c off S, F has a unique fixed point (<code>exists_unique_fixed_of_const_off_countable_isGδ</code> <a href="#L-300">L-300</a>; <code>exists_fixed_of_const_off_countable_isGδ</code> <a href="#L-294">L-294</a>). No Cantor–Bendixson rank, continuity on S, or Baire class is assumed. The structural fact uses neither closedness nor Baire class: a fixed-point-free exclusive F constant off a countable S forces a point y of infinite defect from c such that every finite corner of the coordinate box K(c,y) lies in S (<code>exists_infinite_finite_corner_box_of_fpf_countable</code> <a href="#L-292">L-292</a>; the corner step is <code>finite_corners_subset_of_prefix_cluster</code> <a href="#L-291">L-291</a>). Those corners are dense in a perfect compact infinite product. A countable dense Gδ in that product is impossible (<code>finite_diff_of_countable_isGδ_finite_corners</code> <a href="#L-293">L-293</a>), so the actual exceptional set {x | F x ≠ c} is not Gδ (<code>not_isGδ_exceptional_of_fpf_countable</code> <a href="#L-295">L-295</a>). Separately, arbitrary values on a countable Gδ, and the constant elsewhere, are Baire class 1 (<code>baireOne_of_const_off_countable_isGδ</code> <a href="#L-298">L-298</a>). For a map constant off an arbitrary countable S, Baire class 1 is equivalent to every coordinate defect {x | F x k ≠ c k} being Gδ (<code>baireOne_iff_coordinate_defects_isGδ_of_const_off_countable</code> <a href="#L-299">L-299</a>; each fiber of a Baire-one Boolean map is Gδ, <code>isGδ_fiber_of_baireOne_bool</code> <a href="#L-296">L-296</a>, <code>isGδ_coordinate_defect_of_baireOne</code> <a href="#L-297">L-297</a>). A countable union of Gδ sets need not be Gδ, so this equivalence does not settle exclusive Baire class 1 on an arbitrary countable exceptional set, and it does not settle the unrestricted Baire-class-1 question. An example of a countable discrete Gδ whose closure contains a perfect set is given in paper/notes/2026-11-07-countable-gdelta-and-cubes.md. That example is an illustration. It is not a Lean declaration.</li>
+<li>Closed coordinate-box-thin sets [proved, Lean; <code>lean/PFUL/CubeThin.lean</code>]: S is coordinate-box thin when every full coordinate box inside S has only finitely many free coordinates. Countability implies this (<code>coordinateBoxThin_of_countable</code> <a href="#L-301">L-301</a>). Closed and box-thin already forces a fixed point, with no countability hypothesis (<code>exists_fixed_of_const_off_closed_coordinateBoxThin</code> <a href="#L-302">L-302</a>). Equivalently, a closed exceptional set for a fixed-point-free exclusive map contains a coordinate box with infinitely many free coordinates (<code>exists_infinite_box_of_fpf_const_off_closed</code> <a href="#L-303">L-303</a>). The padded set P of <a href="#L-284">L-284</a> contains the infinite even-coordinate cube, so it is not box-thin. An uncountable closed box-thin set, obtained by tying coordinates in pairs, is described in the same note. That set is an illustration. It is not a separate Lean declaration. Countability does not follow from closedness, and closedness does not follow from countability: the finite-support set of zfcF is countable and not closed.</li>
+<li>Open [conjectural]: whether a Baire-class-1 exclusive map can be fixed-point-free, including one that is constant off an arbitrary countable set; and whether any Borel triangular exclusive map can. Countable closed exceptional sets and countable G-delta exceptional sets are settled. These open questions sit among the other open questions of the note (Section 10).</li>
 <li>Literature: no treatment of infinitely many parties was found (paper/notes/2026-11-03-zfc-infinite-parties.md).</li>
 </ul>
 </li>
@@ -472,7 +474,7 @@ Continuous alphabets remain uncovered. <em>Independent read-only check (2026-11-
 <h2>Appendix M. Lean results index (Nov 2 2026)</h2>
 <p>Every Lean theorem cited in this paper or in the gentle version (graded.md), with its index label, full Lean name, file in lean/PFUL, abridged hypotheses (explicit and instance binders; implicit type arguments omitted) and conclusion, and the axioms reported by <code>#print axioms</code>. The table is generated from the Lean sources: every cited name was resolved to its declaration, and <code>#print axioms</code> was run on all of them in one file importing the listed modules (Lean 4.34.1, Mathlib). No entry depends on <code>sorryAx</code>, <code>Lean.ofReduceBool</code> or any axiom beyond propext, Classical.choice and Quot.sound; &quot;none&quot; means no axioms at all. In the text a label such as [L-123] follows the Lean name it refers to. Signatures are abridged; the Lean file is authoritative.</p>
 <p>The results the main line rests on: the lift (<code>PFUL.induced_unitary</code> <a href="#L-229">L-229</a>, <code>PFUL.Choi.validity_package</code> <a href="#L-022">L-022</a>); the converse (<code>PFUL.CopyGadget.unitary_iff_pf</code> <a href="#L-066">L-066</a>, <code>PFUL.NoAncilla.unitary_noAncilla_iff_pf</code> <a href="#L-174">L-174</a>); the general-alphabet and bijection-law forms (<code>PFUL.General.exclusive_iff_pf</code> <a href="#L-126">L-126</a>, <code>PFUL.General.unitary_l2_iff_pf_any</code> <a href="#L-132">L-132</a>, <code>PFUL.General.unitary_l2_noAncilla_iff_pf_any</code> <a href="#L-133">L-133</a>, <code>PFUL.General.unitary_l2_iff_pf_σ</code> <a href="#L-017">L-017</a>, <code>PFUL.General.unitary_l2_noAncilla_iff_pf_σ</code> <a href="#L-018">L-018</a>); infinitely many parties (<code>PFUL.Infinite.exists_exclusive_not_pf_iff</code> <a href="#L-146">L-146</a>, <code>PFUL.Infinite.pf_of_exclusive_continuous</code> <a href="#L-134">L-134</a>, <code>PFUL.Infinite.exists_exclusive_fixedPointFree_of_covM</code> <a href="#L-117">L-117</a>, <code>PFUL.Infinite.exists_exclusive_not_pf_of_covM</code> <a href="#L-119">L-119</a>, <code>PFUL.Infinite.covMEqC_of_CH</code> <a href="#L-116">L-116</a>, <code>PFUL.Infinite.exists_exclusive_not_pf_of_CH</code> <a href="#L-118">L-118</a>, <code>PFUL.Infinite.forb_isMeagre</code> <a href="#L-120">L-120</a>); and the counterexample (<code>PFUL.Counterexample.purification_conjecture_false</code> <a href="#L-078">L-078</a>, <code>PFUL.Counterexample.purification_conjecture_false_choi</code> <a href="#L-092">L-092</a>, <code>PFUL.Counterexample.purification_conjecture_false_choiInf</code> <a href="#L-106">L-106</a>).</p>
-<p>Labels L-232–L-239 (Nov 3 2026: ZFCCounterexample.lean, ConjugateBijection.lean) are appended at the end of the table rather than interleaved, so that existing labels keep their numbers; their axioms were checked with <code>#print axioms</code>. Labels L-240–L-256 (Nov 3 2026: IntermediateClasses.lean, BaireClasses.lean) are appended the same way. So are L-257–L-264 (LazyCloakroom.lean, Triangular.lean), L-265–L-276 (CountablePerturbation.lean, BorelLevels.lean) and L-277–L-285 (PerfectPad.lean).</p>
+<p>Labels L-232–L-239 (Nov 3 2026: ZFCCounterexample.lean, ConjugateBijection.lean) are appended at the end of the table rather than interleaved, so that existing labels keep their numbers; their axioms were checked with <code>#print axioms</code>. Labels L-240–L-256 (Nov 3 2026: IntermediateClasses.lean, BaireClasses.lean) are appended the same way. So are L-257–L-264 (LazyCloakroom.lean, Triangular.lean), L-265–L-276 (CountablePerturbation.lean, BorelLevels.lean), L-277–L-285 (PerfectPad.lean), and L-286–L-303 (CountableClosed.lean, CountableGDelta.lean, CubeThin.lean).</p>
 <table>
 <thead>
 <tr>
@@ -2763,6 +2765,150 @@ Continuous alphabets remain uncovered. <em>Independent read-only check (2026-11-
 <td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/PerfectPad.lean">PerfectPad.lean</a></td>
 <td><code>(hex : Exclusive G) (hfp : ∀ t, G t ≠ t) (hb : BaireOne G)</code></td>
 <td><code>Exclusive (pad G) ∧ (∀ s, pad G s ≠ s) ∧ BaireOne (pad G) ∧ (∀ s ∉ P, pad G s = fun _ ⇒ false)</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-286"></a>L-286</td>
+<td><code>PFUL.Infinite.finite_diff_of_countable_box</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CountableClosed.lean">CountableClosed.lean</a></td>
+<td><code>(hS : S.Countable) (hbox : the box between y and c lies in S)</code></td>
+<td><code>{k | y k ≠ c k}.Finite</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-287"></a>L-287</td>
+<td><code>PFUL.Infinite.cluster_box_subset_of_prefix_fixed</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CountableClosed.lean">CountableClosed.lean</a></td>
+<td><code>(hex) (hF) (hc : IsClosed S) (prefix solutions x) (hlim : x ∘ φ → y) (ht : t in the box of y,c)</code></td>
+<td><code>t ∈ S</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-288"></a>L-288</td>
+<td><code>PFUL.Infinite.exists_fixed_of_const_off_countable_closed</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CountableClosed.lean">CountableClosed.lean</a></td>
+<td><code>(hex) (hF : ∀ x ∉ S, F x = c) (hS : S.Countable) (hc : IsClosed S)</code></td>
+<td><code>∃ x, F x = x</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-289"></a>L-289</td>
+<td><code>PFUL.Infinite.exists_unique_fixed_of_const_off_countable_closed</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CountableClosed.lean">CountableClosed.lean</a></td>
+<td><code>(hex) (hF) (hS : S.Countable) (hc : IsClosed S)</code></td>
+<td><code>∃! x, F x = x</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-290"></a>L-290</td>
+<td><code>PFUL.Infinite.fixed_finite_diff_of_const_off_countable</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CountableClosed.lean">CountableClosed.lean</a></td>
+<td><code>(hex) (hF) (hS : S.Countable) (hx : F x = x)</code></td>
+<td><code>{k | x k ≠ c k}.Finite</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-291"></a>L-291</td>
+<td><code>PFUL.Infinite.finite_corners_subset_of_prefix_cluster</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CountableGDelta.lean">CountableGDelta.lean</a></td>
+<td><code>(hex) (hF) (prefix solutions) (hlim) (htfin : t differs finitely from c) (t in the box of y)</code></td>
+<td><code>t ∈ S</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-292"></a>L-292</td>
+<td><code>PFUL.Infinite.exists_infinite_finite_corner_box_of_fpf_countable</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CountableGDelta.lean">CountableGDelta.lean</a></td>
+<td><code>(hex) (hF) (hS : S.Countable) (hfp : ∀ x, F x ≠ x)</code></td>
+<td><code>∃ y, infinite defect and every finite corner of K(c,y) lies in S</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-293"></a>L-293</td>
+<td><code>PFUL.Infinite.finite_diff_of_countable_isGδ_finite_corners</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CountableGDelta.lean">CountableGDelta.lean</a></td>
+<td><code>(hS : S.Countable) (hG : IsGδ S) (every finite corner of K(c,y) lies in S)</code></td>
+<td><code>{k | y k ≠ c k}.Finite</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-294"></a>L-294</td>
+<td><code>PFUL.Infinite.exists_fixed_of_const_off_countable_isGδ</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CountableGDelta.lean">CountableGDelta.lean</a></td>
+<td><code>(hex) (hF) (hS : S.Countable) (hG : IsGδ S)</code></td>
+<td><code>∃ x, F x = x</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-295"></a>L-295</td>
+<td><code>PFUL.Infinite.not_isGδ_exceptional_of_fpf_countable</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CountableGDelta.lean">CountableGDelta.lean</a></td>
+<td><code>(hex) (hF) (hS : S.Countable) (hfp : ∀ x, F x ≠ x)</code></td>
+<td><code>¬ IsGδ {x | F x ≠ c}</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-296"></a>L-296</td>
+<td><code>PFUL.Infinite.isGδ_fiber_of_baireOne_bool</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CountableGDelta.lean">CountableGDelta.lean</a></td>
+<td><code>(hf : BaireOne f) (b : Bool)</code></td>
+<td><code>IsGδ {x | f x = b}</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-297"></a>L-297</td>
+<td><code>PFUL.Infinite.isGδ_coordinate_defect_of_baireOne</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CountableGDelta.lean">CountableGDelta.lean</a></td>
+<td><code>(hB : BaireOne F) (c) (k)</code></td>
+<td><code>IsGδ {x | F x k ≠ c k}</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-298"></a>L-298</td>
+<td><code>PFUL.Infinite.baireOne_of_const_off_countable_isGδ</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CountableGDelta.lean">CountableGDelta.lean</a></td>
+<td><code>(hS : S.Countable) (hG : IsGδ S) (hF : ∀ x ∉ S, F x = c)</code></td>
+<td><code>BaireOne F</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-299"></a>L-299</td>
+<td><code>PFUL.Infinite.baireOne_iff_coordinate_defects_isGδ_of_const_off_countable</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CountableGDelta.lean">CountableGDelta.lean</a></td>
+<td><code>(hF) (hS : S.Countable)</code></td>
+<td><code>BaireOne F ↔ ∀ k, IsGδ {x | F x k ≠ c k}</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-300"></a>L-300</td>
+<td><code>PFUL.Infinite.exists_unique_fixed_of_const_off_countable_isGδ</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CountableGDelta.lean">CountableGDelta.lean</a></td>
+<td><code>(hex) (hF) (hS : S.Countable) (hG : IsGδ S)</code></td>
+<td><code>∃! x, F x = x</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-301"></a>L-301</td>
+<td><code>PFUL.Infinite.coordinateBoxThin_of_countable</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CubeThin.lean">CubeThin.lean</a></td>
+<td><code>(hS : S.Countable)</code></td>
+<td><code>CoordinateBoxThin S</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-302"></a>L-302</td>
+<td><code>PFUL.Infinite.exists_fixed_of_const_off_closed_coordinateBoxThin</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CubeThin.lean">CubeThin.lean</a></td>
+<td><code>(hex) (hF) (hc : IsClosed S) (hthin : CoordinateBoxThin S)</code></td>
+<td><code>∃ x, F x = x</code></td>
+<td>propext,choice,Quot.sound</td>
+</tr>
+<tr>
+<td><a id="L-303"></a>L-303</td>
+<td><code>PFUL.Infinite.exists_infinite_box_of_fpf_const_off_closed</code></td>
+<td><a href="https://github.com/drewarrowood/process-function-unitary-lift/blob/main/lean/PFUL/CubeThin.lean">CubeThin.lean</a></td>
+<td><code>(hex) (hF) (hc : IsClosed S) (hfp : ∀ x, F x ≠ x)</code></td>
+<td><code>∃ s D, D.Infinite ∧ the D-box at s lies in S</code></td>
 <td>propext,choice,Quot.sound</td>
 </tr>
 </tbody>
