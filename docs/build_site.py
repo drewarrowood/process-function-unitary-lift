@@ -45,6 +45,7 @@ FOOT = (
     f'<a href="{BASE}pra.pdf">PDF (Physical Review A draft)</a> · '
     f'<a href="{BASE}bjps.pdf">PDF (BJPS draft)</a> · '
     f'<a href="{BASE}ejps.pdf">PDF (EJPS draft)</a> · '
+    f'<a href="{BASE}minds-machines.pdf">PDF (Minds and Machines draft)</a> · '
     f'<a href="{BASE}">Technical note</a> · '
     f'<a href="{BASE}graded.html">Gentle version</a> · '
     f'<a href="{BASE}foundations.html">Foundations draft</a> · '
@@ -58,7 +59,8 @@ FOOT = (
     f'<a href="{BASE}shps.html">Studies draft</a> · '
     f'<a href="{BASE}pra.html">Physical Review A draft</a> · '
     f'<a href="{BASE}bjps.html">BJPS draft</a> · '
-    f'<a href="{BASE}ejps.html">EJPS draft</a>'
+    f'<a href="{BASE}ejps.html">EJPS draft</a> · '
+    f'<a href="{BASE}minds-machines.html">Minds and Machines draft</a>'
 )
 
 def page(title, desc, url, og_image, nav, body):
@@ -112,7 +114,8 @@ nav = (f'<nav class="top"><a href="{BASE}graded.html">Gentle version</a> · '
        f'<a href="{BASE}shps.html">Studies draft</a> · '
        f'<a href="{BASE}pra.html">Physical Review A draft</a> · '
        f'<a href="{BASE}bjps.html">BJPS draft</a> · '
-       f'<a href="{BASE}ejps.html">EJPS draft</a> '
+       f'<a href="{BASE}ejps.html">EJPS draft</a> · '
+       f'<a href="{BASE}minds-machines.html">Minds and Machines draft</a> '
        '(separate articles; this page remains the technical archive).</nav>')
 (root / "docs/index.html").write_text(page(TITLE, DESC, BASE, BASE + "og.png", nav,
                                            render((root / "paper/lift.md").read_text(), LIFT_SUBS)))
@@ -136,7 +139,8 @@ gnav = (f'<nav class="top">Gentle version. The technical source of truth is the 
         f'<a href="{BASE}shps.html">Studies draft</a> · '
         f'<a href="{BASE}pra.html">Physical Review A draft</a> · '
         f'<a href="{BASE}bjps.html">BJPS draft</a> · '
-        f'<a href="{BASE}ejps.html">EJPS draft</a>.</nav>')
+        f'<a href="{BASE}ejps.html">EJPS draft</a> · '
+        f'<a href="{BASE}minds-machines.html">Minds and Machines draft</a>.</nav>')
 (root / "docs/graded.html").write_text(page(GTITLE, GDESC, BASE + "graded.html", BASE + "og-graded.png", gnav,
                                             render((root / "paper/graded.md").read_text(), GRADED_SUBS)))
 og_png(root / "docs/og-graded.png", ["Can every consistent loop", "live in a reversible world?"],
@@ -160,7 +164,8 @@ glnav = (f'<nav class="top">Glossary only (Appendix K). Full paper: <a href="{BA
          f'<a href="{BASE}shps.html">Studies draft</a> · '
          f'<a href="{BASE}pra.html">Physical Review A draft</a> · '
          f'<a href="{BASE}bjps.html">BJPS draft</a> · '
-         f'<a href="{BASE}ejps.html">EJPS draft</a>.</nav>')
+         f'<a href="{BASE}ejps.html">EJPS draft</a> · '
+        f'<a href="{BASE}minds-machines.html">Minds and Machines draft</a>.</nav>')
 (root / "docs/glossary.html").write_text(page(GLTITLE, GLDESC, BASE + "glossary.html", BASE + "og.png", glnav,
                                               render(_gl, LIFT_SUBS)))
 
@@ -265,7 +270,8 @@ _cross = (f'<a href="{BASE}">Technical note</a> · '
           f'<a href="{BASE}shps.html">Studies draft</a> · '
           f'<a href="{BASE}pra.html">Physical Review A draft</a> · '
           f'<a href="{BASE}bjps.html">BJPS draft</a> · '
-          f'<a href="{BASE}ejps.html">EJPS draft</a>')
+          f'<a href="{BASE}ejps.html">EJPS draft</a> · '
+          f'<a href="{BASE}minds-machines.html">Minds and Machines draft</a>')
 
 _reading_page(
     "jphil",
@@ -377,6 +383,17 @@ _reading_page(
     f'<a href="{BASE}ejps-title.pdf">Title page</a> · '
     f'<a href="{REPO}/blob/main/paper/ejps.tex">TeX</a>.</nav>',
     [("ejps.pdf", "ejps.pdf"), ("ejps-title.pdf", "ejps-title.pdf")],
+)
+_reading_page(
+    "minds-machines",
+    "A simulation of the test is not an implementation of the wiring",
+    "Draft in the style of Minds and Machines. Not submitted. Anonymity is not claimed. No consciousness claim is made.",
+    f'<nav class="top"><strong>Minds and Machines draft.</strong> Not a journal submission. '
+    f'The review text omits the author line. The title page is public, so anonymity is not claimed. '
+    f'{_cross} · <a href="{BASE}minds-machines.pdf">Review PDF</a> · '
+    f'<a href="{BASE}minds-title.pdf">Title page</a> · '
+    f'<a href="{REPO}/blob/main/paper/minds-machines.tex">TeX</a>.</nav>',
+    [("minds-machines.pdf", "minds-machines.pdf"), ("minds-title.pdf", "minds-title.pdf")],
 )
 
 (root / "docs/.nojekyll").write_text("")
