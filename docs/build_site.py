@@ -39,6 +39,9 @@ FOOT = (
     f'<a href="{BASE}mind.pdf">PDF (Mind draft)</a> · '
     f'<a href="{BASE}pop.pdf">PDF (Philosophy of Physics draft)</a> · '
     f'<a href="{BASE}quantum.pdf">PDF (Quantum-style note)</a> · '
+    f'<a href="{BASE}erkenn.pdf">PDF (Erkenntnis draft)</a> · '
+    f'<a href="{BASE}philsci.pdf">PDF (Philosophy of Science draft)</a> · '
+    f'<a href="{BASE}shps.pdf">PDF (Studies draft)</a> · '
     f'<a href="{BASE}">Technical note</a> · '
     f'<a href="{BASE}graded.html">Gentle version</a> · '
     f'<a href="{BASE}foundations.html">Foundations draft</a> · '
@@ -46,7 +49,10 @@ FOOT = (
     f'<a href="{BASE}jphil.html">Journal of Philosophy draft</a> · '
     f'<a href="{BASE}mind.html">Mind draft</a> · '
     f'<a href="{BASE}pop.html">Philosophy of Physics draft</a> · '
-    f'<a href="{BASE}quantum.html">Quantum-style note</a>'
+    f'<a href="{BASE}quantum.html">Quantum-style note</a> · '
+    f'<a href="{BASE}erkenn.html">Erkenntnis draft</a> · '
+    f'<a href="{BASE}philsci.html">Philosophy of Science draft</a> · '
+    f'<a href="{BASE}shps.html">Studies draft</a>'
 )
 
 def page(title, desc, url, og_image, nav, body):
@@ -94,7 +100,10 @@ nav = (f'<nav class="top"><a href="{BASE}graded.html">Gentle version</a> · '
        f'<a href="{BASE}jphil.html">Journal of Philosophy draft</a> · '
        f'<a href="{BASE}mind.html">Mind draft</a> · '
        f'<a href="{BASE}pop.html">Philosophy of Physics draft</a> · '
-       f'<a href="{BASE}quantum.html">Quantum-style note</a> '
+       f'<a href="{BASE}quantum.html">Quantum-style note</a> · '
+       f'<a href="{BASE}erkenn.html">Erkenntnis draft</a> · '
+       f'<a href="{BASE}philsci.html">Philosophy of Science draft</a> · '
+       f'<a href="{BASE}shps.html">Studies draft</a> '
        '(separate articles; this page remains the technical archive).</nav>')
 (root / "docs/index.html").write_text(page(TITLE, DESC, BASE, BASE + "og.png", nav,
                                            render((root / "paper/lift.md").read_text(), LIFT_SUBS)))
@@ -112,7 +121,10 @@ gnav = (f'<nav class="top">Gentle version. The technical source of truth is the 
         f'<a href="{BASE}jphil.html">Journal of Philosophy draft</a> · '
         f'<a href="{BASE}mind.html">Mind draft</a> · '
         f'<a href="{BASE}pop.html">Philosophy of Physics draft</a> · '
-        f'<a href="{BASE}quantum.html">Quantum-style note</a>.</nav>')
+        f'<a href="{BASE}quantum.html">Quantum-style note</a> · '
+        f'<a href="{BASE}erkenn.html">Erkenntnis draft</a> · '
+        f'<a href="{BASE}philsci.html">Philosophy of Science draft</a> · '
+        f'<a href="{BASE}shps.html">Studies draft</a>.</nav>')
 (root / "docs/graded.html").write_text(page(GTITLE, GDESC, BASE + "graded.html", BASE + "og-graded.png", gnav,
                                             render((root / "paper/graded.md").read_text(), GRADED_SUBS)))
 og_png(root / "docs/og-graded.png", ["Can every consistent loop", "live in a reversible world?"],
@@ -130,7 +142,10 @@ glnav = (f'<nav class="top">Glossary only (Appendix K). Full paper: <a href="{BA
          f'<a href="{BASE}jphil.html">Journal of Philosophy draft</a> · '
          f'<a href="{BASE}mind.html">Mind draft</a> · '
          f'<a href="{BASE}pop.html">Philosophy of Physics draft</a> · '
-         f'<a href="{BASE}quantum.html">Quantum-style note</a>.</nav>')
+         f'<a href="{BASE}quantum.html">Quantum-style note</a> · '
+         f'<a href="{BASE}erkenn.html">Erkenntnis draft</a> · '
+         f'<a href="{BASE}philsci.html">Philosophy of Science draft</a> · '
+         f'<a href="{BASE}shps.html">Studies draft</a>.</nav>')
 (root / "docs/glossary.html").write_text(page(GLTITLE, GLDESC, BASE + "glossary.html", BASE + "og.png", glnav,
                                               render(_gl, LIFT_SUBS)))
 
@@ -229,7 +244,10 @@ _cross = (f'<a href="{BASE}">Technical note</a> · '
           f'<a href="{BASE}jphil.html">Journal of Philosophy draft</a> · '
           f'<a href="{BASE}mind.html">Mind draft</a> · '
           f'<a href="{BASE}pop.html">Philosophy of Physics draft</a> · '
-          f'<a href="{BASE}quantum.html">Quantum-style note</a>')
+          f'<a href="{BASE}quantum.html">Quantum-style note</a> · '
+          f'<a href="{BASE}erkenn.html">Erkenntnis draft</a> · '
+          f'<a href="{BASE}philsci.html">Philosophy of Science draft</a> · '
+          f'<a href="{BASE}shps.html">Studies draft</a>')
 
 _reading_page(
     "jphil",
@@ -274,6 +292,40 @@ _reading_page(
     f'{_cross} · <a href="{BASE}quantum.pdf">PDF</a> · '
     f'<a href="{REPO}/blob/main/paper/quantum.tex">TeX</a>.</nav>',
     [("quantum.pdf", "quantum.pdf")],
+)
+_reading_page(
+    "erkenn",
+    "What universal consistency explains about composition",
+    "Draft in the style of Erkenntnis. Not submitted. Anonymity is not claimed.",
+    f'<nav class="top"><strong>Erkenntnis draft.</strong> Not a journal submission. '
+    f'The review text omits the author line. The separate title page is public, so anonymity is not claimed. '
+    f'{_cross} · <a href="{BASE}erkenn.pdf">Review PDF</a> · '
+    f'<a href="{BASE}erkenn-title.pdf">Title page</a> · '
+    f'<a href="{REPO}/blob/main/paper/erkenn.tex">TeX</a>.</nav>',
+    [("erkenn.pdf", "erkenn.pdf"), ("erkenn-title.pdf", "erkenn-title.pdf")],
+)
+_reading_page(
+    "philsci",
+    "An admissible model is not yet an explanation",
+    "Draft in the style of Philosophy of Science. Not submitted. Anonymity is not claimed.",
+    f'<nav class="top"><strong>Philosophy of Science draft.</strong> Not a journal submission. '
+    f'The review text omits the author line. A separate identity sheet is public, so anonymity is not claimed. '
+    f'{_cross} · <a href="{BASE}philsci.pdf">Review PDF</a> · '
+    f'<a href="{BASE}philsci-title.pdf">Identity sheet</a> · '
+    f'<a href="{REPO}/blob/main/paper/philsci.tex">TeX</a>.</nav>',
+    [("philsci.pdf", "philsci.pdf"), ("philsci-title.pdf", "philsci-title.pdf")],
+)
+_reading_page(
+    "shps",
+    "Succession is not a closed loop",
+    "Draft in the style of Studies in History and Philosophy of Science. Not submitted. Anonymity is not claimed.",
+    f'<nav class="top"><strong>Studies in History and Philosophy of Science draft.</strong> Not a journal submission. '
+    f'The Elsevier guide for authors was not retrieved. The review text omits the author line as a precaution. '
+    f'The identity sheet is public, so anonymity is not claimed. '
+    f'{_cross} · <a href="{BASE}shps.pdf">Review PDF</a> · '
+    f'<a href="{BASE}shps-title.pdf">Identity sheet</a> · '
+    f'<a href="{REPO}/blob/main/paper/shps.tex">TeX</a>.</nav>',
+    [("shps.pdf", "shps.pdf"), ("shps-title.pdf", "shps-title.pdf")],
 )
 
 (root / "docs/.nojekyll").write_text("")
