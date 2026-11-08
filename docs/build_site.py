@@ -1,8 +1,10 @@
 """Build the static site (no JS, Unicode math) from paper/lift.md and paper/graded.md.
 
-Outputs docs/index.html (technical note), docs/graded.html (gentle version), docs/og.png and docs/og-graded.png.
+Outputs docs/index.html (technical note), docs/graded.html (gentle version),
+docs/foundations.html (Foundations of Physics draft), docs/og.png and docs/og-graded.png.
+Copies paper/foundations.pdf to docs/foundations.pdf without rewriting it.
 """
-import pathlib, re, html
+import pathlib, re, html, shutil, subprocess
 from PIL import Image, ImageDraw, ImageFont
 root = pathlib.Path(__file__).resolve().parent.parent
 BASE = "https://drewarrowood.github.io/process-function-unitary-lift/"
@@ -25,6 +27,16 @@ from mdmath import LIFT_SUBS, GRADED_SUBS, render as _render
 def render(md, subs):
     return _render(md, subs, REPO)
 
+FOOT = (
+    f'Source: <a href="{REPO}">github.com/drewarrowood/process-function-unitary-lift</a> · '
+    f'<a href="{BASE}lift.pdf">PDF (technical note)</a> · '
+    f'<a href="{BASE}graded.pdf">PDF (gentle version)</a> · '
+    f'<a href="{BASE}foundations.pdf">PDF (Foundations draft)</a> · '
+    f'<a href="{BASE}">Technical note</a> · '
+    f'<a href="{BASE}graded.html">Gentle version</a> · '
+    f'<a href="{BASE}foundations.html">Foundations draft</a>'
+)
+
 def page(title, desc, url, og_image, nav, body):
     og = """<meta property="og:title" content="{t}"><meta property="og:description" content="{d}">
 <meta property="og:type" content="article"><meta property="og:url" content="{u}">
@@ -45,7 +57,7 @@ def page(title, desc, url, og_image, nav, body):
 </style></head><body><main>
 {nav}
 {body}
-<footer>Source: <a href="{REPO}">github.com/drewarrowood/process-function-unitary-lift</a> · <a href="{BASE}lift.pdf">PDF (technical note)</a> · <a href="{BASE}graded.pdf">PDF (gentle version)</a> · <a href="{BASE}">Technical note</a> · <a href="{BASE}graded.html">Gentle version</a></footer>
+<footer>{FOOT}</footer>
 </main></body></html>
 """
 
@@ -64,8 +76,9 @@ def og_png(path, lines, formula, tagline):
 TITLE = "Every process function lifts to a unitary process"
 DESC = ("Draft note: for every classical process function, the source-sink permutation unitary "
         "is a valid unitary quantum process. Short proof, Stinespring validity argument, Lean 4 check.")
-nav = (f'<nav class="top"><strong>New:</strong> <a href="{BASE}graded.html">Gentle version</a>, '
-       'a graded walk-through that starts with time-travel stories and explains the philosophy behind every symbol.</nav>')
+nav = (f'<nav class="top"><a href="{BASE}graded.html">Gentle version</a> · '
+       f'<a href="{BASE}foundations.html">Foundations of Physics draft</a> '
+       '(a separate short article; this page remains the technical archive).</nav>')
 (root / "docs/index.html").write_text(page(TITLE, DESC, BASE, BASE + "og.png", nav,
                                            render((root / "paper/lift.md").read_text(), LIFT_SUBS)))
 og_png(root / "docs/og.png", ["Every process function", "lifts to a unitary process"],
@@ -76,7 +89,8 @@ GTITLE = "Can every consistent time loop live in a reversible world? (Gentle ver
 GDESC = ("A graded, philosophically explained version of 'Every process function lifts to a unitary process': "
          "from time-travel stories to the main theorem, purification, random corners and the open conjecture.")
 gnav = (f'<nav class="top">Gentle version. The technical source of truth is the <a href="{BASE}">technical note</a> '
-        f'(<a href="{REPO}/blob/main/paper/lift.md">paper/lift.md</a>).</nav>')
+        f'(<a href="{REPO}/blob/main/paper/lift.md">paper/lift.md</a>). '
+        f'<a href="{BASE}foundations.html">Foundations of Physics draft</a>.</nav>')
 (root / "docs/graded.html").write_text(page(GTITLE, GDESC, BASE + "graded.html", BASE + "og-graded.png", gnav,
                                             render((root / "paper/graded.md").read_text(), GRADED_SUBS)))
 og_png(root / "docs/og-graded.png", ["Can every consistent loop", "live in a reversible world?"],
@@ -88,9 +102,53 @@ _gl = _lift[_lift.index("## Appendix K. Glossary"):]
 GLTITLE = "Glossary: Every process function lifts to a unitary process"
 GLDESC = "Technical definitions of the main terms in the paper (Appendix K), with the references they cite."
 glnav = (f'<nav class="top">Glossary only (Appendix K). Full paper: <a href="{BASE}">technical note</a> · '
-         f'<a href="{BASE}graded.html">gentle version</a>.</nav>')
+         f'<a href="{BASE}graded.html">gentle version</a> · '
+         f'<a href="{BASE}foundations.html">Foundations draft</a>.</nav>')
 (root / "docs/glossary.html").write_text(page(GLTITLE, GLDESC, BASE + "glossary.html", BASE + "og.png", glnav,
                                               render(_gl, LIFT_SUBS)))
+
+# Foundations of Physics draft (separate from the technical note and the gentle version).
+# HTML is a reading copy of paper/foundations.tex. Numbered references are in the PDF.
+_fn_body = subprocess.check_output(
+    ["pandoc", str(root / "paper/foundations.tex"), "-t", "html", "--mathml", "--wrap=none"],
+    text=True,
+)
+def _cite(m):
+    keys = [k for k in m.group(1).split() if k]
+    return "[" + "; ".join(keys) + "]" if keys else ""
+_fn_body = re.sub(r'<span class="citation" data-cites="([^"]*)">\s*</span>', _cite, _fn_body)
+# Pandoc's TeX reader rejects \Bigl in this one display. Keep the PDF untouched
+# and show the same identity as Unicode so the reading copy has no raw TeX.
+_STINE = (
+    '<span class="math display">'
+    'A<sub>k</sub>(ρ) = Tr<sub>E<sub>k</sub> E″<sub>k</sub></sub>'
+    '(V<sub>k</sub>(ρ ⊗ |0⟩⟨0|) V<sub>k</sub>†).'
+    '</span>'
+)
+_fn_body = re.sub(
+    r'<span class="math display">\$\$A_k\(\\rho\).*?\$\$</span>',
+    _STINE,
+    _fn_body,
+    count=1,
+    flags=re.S,
+)
+FTITLE = "Classical consistency and quantum purification without a fixed causal order"
+FDESC = ("Draft article in the style of Foundations of Physics: finite-alphabet unitary lift "
+         "and a three-party purifiable classical process outside the process-function hull. Not submitted.")
+fnav = (f'<nav class="top"><strong>Foundations of Physics draft.</strong> Not a journal submission. '
+        f'Author declarations are pending. '
+        f'<a href="{BASE}">Technical note</a> · '
+        f'<a href="{BASE}graded.html">Gentle version</a> · '
+        f'<a href="{BASE}foundations.pdf">PDF</a> · '
+        f'<a href="{REPO}/blob/main/paper/foundations.tex">TeX source</a> · '
+        f'<a href="{REPO}/blob/main/paper/foundations.md">Markdown source</a>.</nav>'
+        '<h1>Classical consistency and quantum purification without a fixed causal order</h1>'
+        '<p><strong>Draft for review. Not submitted.</strong> Drew Lamarr Arrowood. '
+        'Affiliation, correspondence, ORCID, funding, and competing interests are pending confirmation. '
+        'The typeset PDF is the reference copy; this HTML is a reading version of the same source.</p>')
+(root / "docs/foundations.html").write_text(page(
+    FTITLE, FDESC, BASE + "foundations.html", BASE + "og.png", fnav, _fn_body))
+shutil.copyfile(root / "paper/foundations.pdf", root / "docs/foundations.pdf")
 
 (root / "docs/.nojekyll").write_text("")
 print("ok")
