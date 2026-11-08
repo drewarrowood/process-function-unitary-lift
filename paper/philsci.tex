@@ -1,0 +1,159 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+\else
+  \usepackage{unicode-math}
+  \setmainfont{STIX Two Text}
+  \setmathfont{STIX Two Math}
+\fi
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\doublespacing
+\usepackage{microtype}
+\emergencystretch=2em
+\usepackage{xurl}
+\usepackage[authoryear,round]{natbib}
+\usepackage{hyperref}
+\hypersetup{hidelinks,pdftitle={An admissible model is not yet an explanation}}
+\title{An admissible model is not yet an explanation}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+\begin{abstract}
+A model can be admissible, in that every allowed local replacement still has one solution, without explaining a target process. Unique solvability constrains the model. A model explanation, on the account used here, also needs a match between the model's counterfactual pattern and the target, and a step that places the phenomenon in the model's domain. One finite extension shows that the same admissibility condition governs a quantum composition of the model. It does not supply that match. A finite table can be searched. The search is another model, not a speed-up and not an implementation of the wiring.
+\end{abstract}
+
+\section{The gap}
+\label{sec:gap}
+
+Scientists often treat a solved model as an explanation. The equations admit a unique trajectory, the device does something unique, and the uniqueness is offered as the reason. The inference is too quick. A constraint can make a model admissible and still fail to explain a target process. Admissibility, as the word is used here, is a fact about the model: every replacement in a stated class still has exactly one solution. Explanation of a phenomenon, where the explanation is supposed to be a model explanation, requires more than that fact. It requires a relation between the model and the target.
+
+The relation is not supplied by the mathematics of one particular model class, the process functions on finite alphabets \citep{baumeler2016}. Those rules are admissible, in the sense just given, precisely when every tuple of local functions has one history. A canonical quantum extension of the same rules stays unitary under every local unitary and every matched finite ancilla if and only if the rule is a process function. That equivalence is a precise fact about the model. It is not, by itself, an explanation of a laboratory, a computer, or a spacetime process.
+
+\citet{bokulich2011} gives a useful account of when a model explains, and it is the account engaged below. She does not discuss process functions. Nothing here is offered as a correction of her examples. The use of her account is local: it separates a structural constraint inside a model from an explanation of a phenomenon the model has been shown to cover. The same finite results appear in other unpublished drafts aimed at other questions. Those drafts are not independent studies. This one asks only when consistency is an admissibility constraint and when it would be an explanation.\footnote{Preparation of the draft, including wording of the informal proofs, was assisted by Grok Bot, a Cursor cloud agent. The assistance generated text and was not limited to spelling. No tool version is recorded, and none is invented. The assistant is not an author. Human verification is pending. The journal's instructions both omit acknowledgements from anonymous review and ask that generative text be declared as other writing assistance would be, in an acknowledgements section or a footnote. This footnote is the manuscript disclosure. Whether editors want it moved is unresolved.}
+
+\section{A model with three questions}
+\label{sec:model}
+
+The model is small enough to inspect. Each of several modules has a finite input alphabet and a finite output alphabet. A local replacement is any function from a module's inputs to its outputs. A substitution is a choice of one such function for every module. A wiring rule sends a tuple of outputs to a tuple of inputs. A history for a substitution is an output tuple that, sent through the wiring and then through the chosen functions, returns itself. The wiring is a process function when every substitution has exactly one history \citep{baumeler2016}.
+
+Three wirings show that existence, uniqueness, and order are different questions inside the model. They are not three names for one success.
+
+Take one module, let the wiring return the output unchanged as the input, and let the local function flip the bit. A history would have to equal its own negation. None exists. The function was allowed. The wiring cannot host it. The model is inadmissible for that replacement: the composition does not exist.
+
+Keep the wiring and let the local function copy its input. Then both bit values are histories. Solutions exist, and the model does not say which occurs. Uniqueness fails. Any further claim about which bit is seen has to come from outside the wiring.
+
+Now take three modules and the wiring
+\[
+w(a,b,c)=(\lnot b \land c,\ \lnot c \land a,\ \lnot a \land b).
+\]
+Each input depends on the other two outputs. There is no order of the modules in which each depends only on earlier ones. For the substitution in which every module copies its input, the only history is \((0,0,0)\). If the first output is \(1\), the third output is forced to be both \(1\) and \(0\). One substitution does not prove that every substitution has one history. It shows what a history is. The universal claim is part of the standing example \citep{baumeler2016,baumeler2019}. The dependence remains cyclic.
+
+The model therefore answers a question about itself. Relative to a fixed wiring and a fixed substitution, uniqueness says why this output tuple is the solution rather than another: the others fail the equation. Existence says whether there is anything to cite. Neither answer says why this wiring was the one written down. Neither answer says which module is upstream. The cyclic example has a unique copying history and no upstream module. The copying identity channel has every bit as a history and a perfectly trivial direction. Unique solvability is not a causal order inside the model, and a causal order is not unique solvability.
+
+An ordinary serial picture is a different model of a different dependence. Two gates in a row, each allowed to copy or to flip, constrain the wire values once the settings are chosen. If both copy, the wires carry the same bit. That constraint is not evidence of a cycle, and the cycle's constraint is not evidence that the three modules are two gates in a row. Sharing a prohibition on some value-assignments does not make the models the same model.
+
+\section{What would make the model explanatory}
+\label{sec:bok}
+
+\citet{bokulich2011} argues that idealized and even fictional models can explain, but not by being true in every detail. On the general account she states, a model explanation makes essential reference to a model, and the model explains by a counterfactual match: the pattern of dependence in the model is isomorphic, in the relevant respects, to the pattern of dependence in the target, so that the model says how the target would behave if elements were changed. A further justificatory step specifies the model's domain and shows that the phenomenon to be explained falls inside it. She distinguishes that step from mere empirical adequacy. It is what separates a model that only saves the phenomena from a model that explains. She also describes structural explanation, following other authors she cites, as showing that a fact is a consequence of a mathematical structure that limits what the theory admits. Structural explanation is still explanation of a phenomenon once that phenomenon has been placed against the structure. It is not a license to treat every constraint inside a formalism as an explanation of an unstated target.
+
+Apply the three conditions to the process-function model without pretending that she formulated them for this case.
+
+The first condition can be met inside pure modeling talk. One can explain why \((0,0,0)\) is the copying history of the three-bit rule by essential reference to that rule. The explanandum is a fact about the model. The explanation is structural in her broad sense: the solution is a consequence of the wiring. Nothing has yet been said about a device.
+
+The second condition is a match to a target. If there is no target, there is no isomorphism to assess. If the target is a laboratory, the match would say which physical changes correspond to which replacements of local functions, and which physical records correspond to which histories. The equations do not name those changes. A counterfactual in the model, ``had the first module flipped its bit, the history would have been a different triple,'' is a counterfactual about functions. The corresponding laboratory counterfactual is a claim about parts. The model does not establish the correspondence.
+
+The third condition is the justificatory step. It would show that some phenomenon sits in the domain where the model can be trusted. For these wirings, that step is not a calculation of a fixed point. It is an empirical or theoretical argument that the phenomenon is the sort of thing the wiring represents, at the grain the question requires. No such argument is included in the definition of a process function. Until it is given, the model explains features of itself. It does not explain a process in the world.
+
+This is not the claim that models explain only when they are true, which Bokulich denies, and it is not the claim that structural constraints never explain, which her discussion of structural explanation rejects. The claim is narrower. Unique solvability is a structural fact about which histories the model admits. Promoting that fact into an explanation of a target skips the match and the justificatory step. A model can be admissible, in the substitution sense, and still be waiting for both.
+
+\section{The quantum extension is still about the model}
+\label{sec:lift}
+
+One might hope that a quantum composition supplies the missing justificatory step, because unitarity sounds like physics. It supplies a further fact about the model.
+
+For every wiring, not only for process functions, there is a permutation
+\[
+U\lvert o\rangle\lvert e\rangle = \lvert w(o)+e\rangle\lvert o\rangle
+\]
+of a finite basis, with a source indexed by input tuples and a sink indexed by output tuples \citep{baumeler2019}. A finite permutation is unitary. The map exists for the identity channel, which is not uniquely solvable under a bit flip, and for the three-bit rule, which is a process function. Bare unitarity of \(U\) does not pick out admissible wirings. It is not an implementation and not a justificatory step.
+
+Insert local unitaries on finite ancillas whose dimensions match, so that a unitary from the input side to the output side can exist. The closed loop formed with the canonical \(U\) is unitary for every such insertion if and only if the wiring is a process function. The forward direction uses exclusivity: if two output strings differ and the wiring is a process function, some module has different outputs and the same input on those strings, and that factor of the Gram matrix vanishes. The converse uses a unitary that copies a bad substitution and counts its histories in a column norm. The details are the same finite-dimensional argument recorded with the model. They are not repeated as a spacetime construction.
+
+The equivalence says that the admissibility condition is stable under a change of the replacement class, from bit-functions to local unitaries. A wiring that is uniquely solvable for every local function remains well-composed when the modules insert unitaries. A wiring that is not uniquely solvable fails some unitary test. That is a theorem about operators associated with alphabets. It enlarges what the model can say about its own substitutions. It does not name a target, and it does not show that a phenomenon falls in a domain of applicability. A unitary equation can be the content of a structural explanation of a feature of the model. It becomes an explanation of a process only with the match and the justificatory step still missing.
+
+Instruments that are not unitary are reached by dilating each local map, applying the unitary result, and discarding an environment \citep{stinespring1955,oreshkov2012}. The discarded environment is a factor in the model. It is not a justificatory step relating the model to a laboratory.
+
+A different misreading says that if the quantum model is pure, the classical statistics must be a mixture of admissible deterministic wirings, and that mixture is the explanation of the record. Mixtures of process functions can indeed be written so that the loop stays unitary. The converse is false for one distribution, induced in the computational basis by a known board, with separating value \(\tfrac14-\tfrac{3}{16}\sqrt{2}<0\). The board is not new. The separation is one basis. It blocks a slogan inside the model: purity does not mean that the computational-basis record is ignorance over process functions. It does not put the record in the domain of a physical target. The full set of classical processes that arise from pure processes is not characterized here.
+
+Finite search is a third model, not a bridge. Given an explicit table and a substitution, the output tuples can be checked until the unique solution appears. The search explains, of itself, why a programmer who runs it obtains that tuple. It does not explain a target that was supposed to be the three modules, unless a justificatory step says that the target is the search. Usually it is not. The search has a first step and a list. The cyclic wiring has neither a first module nor a list of rejected candidates stored anywhere in the model. Treating the printout as the explanation of the wiring confuses two models that agree, on one substitution, about a single triple.
+
+No speed-up is claimed. Searchability is the denial of uncomputability for a finite explicit instance. It is not a complexity theorem and not a claim that the modules compute faster than the search.
+
+\section{Three models, one triple}
+\label{sec:three}
+
+The copying history of the three-bit rule is the triple \((0,0,0)\). At least three models can be associated with that triple, and they do not explain the same thing.
+
+The wiring model contains the rule \(w\) and the product of local functions. Its admissibility condition is that every substitution has one history. For the copying substitution it cites \((0,0,0)\) as the only solution. A counterfactual inside this model changes a local function and asks which history the new substitution has. That counterfactual stays inside the model. It becomes a counterfactual about a target only if the local function has been identified with a physical intervention and the history with a physical record.
+
+The search model contains a list of the eight output triples and a test of the fixed-point equation. It is admissible as a program: given the table, it halts with the unique solution if there is one. Its counterfactuals are about the list and the test. Had the table been a different wiring, the printout would have differed. Those counterfactuals match a programmer's machine. They match the three modules only under a correspondence that says the modules are the programmer. No such correspondence is part of either model. The search is finitely executable. That fact blocks any claim that the wiring's unique solution is uncomputable. It does not transfer the searcher's organization onto the wiring, and it does not yield a speed-up for the wiring.
+
+The serial model contains gates ordered in time. Its admissibility condition may also be unique solvability once the gates are set. Its counterfactuals run along the order: change the first gate and the later wire changes. The three-bit wiring does not have that order. A serial model that happens to print \((0,0,0)\) on one setting is not a model of the cyclic dependence. Using it to explain the cyclic rule would fail Bokulich's counterfactual match, because the pattern of dependence is different even if one output agrees.
+
+The canonical unitary extension is a fourth description, still of the wiring model rather than of a new target. It says which wirings remain admissible when the replacements are unitaries. A counterfactual in that description changes a local unitary and asks whether the loop stays unitary. For a process function it does. That is information about the model class. The justificatory step that would turn it into an explanation of a device is an argument that the device's interventions are those unitaries and that the device's records are the histories. The argument is not the theorem.
+
+The three models can be confused because they can be made to agree on one triple. Agreement on an output is not identity of counterfactual structure. Bokulich's second condition is a condition on that structure, not on a single actual value. Her third condition would still have to say which of the three models, if any, has the phenomenon in its domain. A laboratory that implements a search has the search model in its domain. A laboratory that implemented the cyclic wiring would be a different claim. The mathematics does not decide which laboratory, if either, exists.
+
+\section{Objections}
+\label{sec:obj}
+
+The first objection says that a unique solution just is the explanation of what the system does, so the extra conditions are pedantry. The objection is right about a question posed inside the model: relative to the wiring, the unique solution is why this tuple satisfies the equation. The objection is wrong about a question posed about a target. ``What the system does'' already assumes a system of which the wiring is the model. That assumption is the justificatory step, not a synonym for uniqueness. Bokulich's account makes the assumption visible. Dropping it does not follow from her claim that false models can explain. Those models still have a domain.
+
+The second objection says that the canonical unitary extension is the justificatory step, because it embeds the classical model in quantum theory. An embedding in a larger model is not a placement in the world. The larger model is still a model. Its unitary maps are further structure. They constrain which classical wirings remain admissible under a new class of replacements. They do not show that any laboratory is in the domain. A later construction might justify the domain. The equivalence is not that construction.
+
+The third objection says that ordinary scientific practice treats solved equations as explanations, and a philosophy that withholds the title ``explanation'' is changing the subject. Practice is not uniform, and the paper does not police the word. It distinguishes two jobs the word covers. One job is to show that a history is admissible in a model that stays solvable under local replacements. The other is to show that a phenomenon is the image of that history under a defended correspondence. Process-function theory does the first job exactly, for finite alphabets and for one quantum extension. Calling the first job the second job is the conflation. Scientists who have done the second job, for some other model, are not described here. The objection would land only if every solved equation in science came with no correspondence to a target. That is not the claim.
+
+The fourth objection says that if the model is not explanatory, it is scientifically idle. Admissibility constraints are not idle. They rule out wirings, such as the identity channel, that cannot host every local replacement. They rule in wirings, such as the three-bit rule, that can, even though they are cyclic. They tell a modeler what the uniqueness assumption commits her to when the replacements become unitary. Those are results about model-building. They are the results. They do not become thinner because they are not yet explanations of a named device.
+
+The fifth objection says that the basis-relative separation shows the model explains a nonclassical record, and so the justificatory step has been taken. The separation shows that one induced distribution is not a mixture of process functions. The distribution is an object in the model, computed from a stated source and a stated frame. Explaining a laboratory histogram would require a further argument that the histogram is that distribution. The paper does not contain that argument. The known board remains a known board.
+
+\section{What the modeler may conclude}
+\label{sec:may}
+
+The negative claim is easy to overdraw. It does not say that process-function models are useless in science, and it does not say that Bokulich's conditions can never be met by a model in this family. It says what has been shown and what has not.
+
+A modeler who has checked that every local replacement has one history may conclude that the wiring is admissible in the substitution sense. She may conclude, for the canonical extension, that the same check is the check for unitarity under local unitaries and matched ancillas. She may conclude that a finite explicit table can be searched, so the admissible history is not hidden behind an undecidable problem. She may conclude that a cyclic wiring and an ordered wiring are different models when their patterns of dependence differ, even if both can be associated with a triple such as \((0,0,0)\).
+
+She may not conclude, from those results alone, that a target process has been explained. The missing pieces are the ones Section~\ref{sec:bok} named. There is no stated map from local functions to physical interventions on a device. There is no stated map from histories to records the device produces. There is no argument that a phenomenon of interest lies in the domain where those maps can be trusted. Without them, the counterfactual structure that has been described is the structure of the model. Bokulich's isomorphism is a relation between two structures. One of them has not been given.
+
+She also may not conclude that the canonical extension is a physical computer, that it is faster than the search, or that the known-board distribution in one basis is a newly discovered piece of hardware. Those conclusions add premises about implementation, complexity, and experimental identification. The premises are not lemmas of the admissibility theorem. Other drafts of the same mathematics ask other questions, about causal order, spacetime embedding, and recombination of operations. Agreeing on the theorem is not agreeing on those questions, and reformatting the theorem is not a new empirical study.
+
+The positive claim is a rule for model criticism. When a paper says that a process is explained because the equations have a unique solution, ask whether the explanandum is a fact about the equations or a fact about a target. If it is a fact about the equations, uniqueness may be the explanation, and the explanation is structural. If it is a fact about a target, ask for the counterfactual match and the justificatory step. Universal consistency answers the first question for a specified class of wirings. It does not answer the second.
+
+\section{Conclusion}
+\label{sec:end}
+
+Global consistency, in the process-function sense, is an admissibility constraint on a model of composition. Every local replacement still has one history. Existence and uniqueness are parts of that constraint, and a directed order of the modules is not. The same constraint is necessary and sufficient for a canonical extension to stay unitary under every local unitary and every matched finite ancilla. The extension explains something about the model: which wirings survive the larger class of replacements. It does not, without a counterfactual match to a target and a justificatory step of the sort \citet{bokulich2011} requires, explain a physical or computational process. A search of a finite table is a different model that can find the same triple. Finding the triple is not implementing the wiring. The underlying mathematics is shared with other drafts. The question of this draft is the modeling question, and the answer stops at the missing correspondence.
+
+\begin{thebibliography}{99}
+\bibitem[Baumeler and Wolf(2016)]{baumeler2016}
+Baumeler, \"Amin, and Stefan Wolf. 2016. ``The Space of Logically Consistent Classical Processes without Causal Order.'' \emph{New Journal of Physics} 18: 013036. \url{https://doi.org/10.1088/1367-2630/18/1/013036}.
+
+\bibitem[Baumeler et~al.(2019)]{baumeler2019}
+Baumeler, \"Amin, Fabio Costa, Timothy C. Ralph, Stefan Wolf, and Magdalena Zych. 2019. ``Reversible Time Travel with Freedom of Choice.'' \emph{Classical and Quantum Gravity} 36: 224002. \url{https://doi.org/10.1088/1361-6382/ab4973}.
+
+\bibitem[Bokulich(2011)]{bokulich2011}
+Bokulich, Alisa. 2011. ``How Scientific Models Can Explain.'' \emph{Synthese} 180: 33--45. \url{https://doi.org/10.1007/s11229-009-9565-1}.
+
+\bibitem[Oreshkov et~al.(2012)]{oreshkov2012}
+Oreshkov, Ognyan, Fabio Costa, and \v{C}aslav Brukner. 2012. ``Quantum Correlations with No Causal Order.'' \emph{Nature Communications} 3: 1092. \url{https://doi.org/10.1038/ncomms2076}.
+
+\bibitem[Stinespring(1955)]{stinespring1955}
+Stinespring, W. F. 1955. ``Positive Functions on {$C^{*}$}-Algebras.'' \emph{Proceedings of the American Mathematical Society} 6: 211--16. \url{https://doi.org/10.1090/S0002-9939-1955-0069403-4}.
+\end{thebibliography}
+\end{document}
