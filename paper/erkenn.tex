@@ -1,0 +1,146 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+\else
+  \usepackage{unicode-math}
+  \setmainfont{STIX Two Text}
+  \setmathfont{STIX Two Math}
+\fi
+\usepackage[margin=1in]{geometry}
+\usepackage{microtype}
+\emergencystretch=3em
+\usepackage{xurl}
+\usepackage[authoryear,round]{natbib}
+\usepackage{hyperref}
+\hypersetup{hidelinks,pdftitle={What universal consistency explains about composition}}
+\title{What universal consistency explains about composition}
+\author{}
+\date{Draft for review. Not submitted.}
+\begin{document}
+\maketitle
+\begin{abstract}
+A compositional system can be modular in more than one sense. In the interventionist tradition, modularity is the invariance of some mechanisms when an intervention disrupts others, and the usual representation of that idea is a directed system of equations. A different condition, universal consistency, says that every replacement of the local maps still has exactly one global solution. That condition can hold when the dependence among the modules is cyclic, so it is not the same fact as the existence of a causal order. Existence of a solution and uniqueness of a solution are different explanatory jobs, and neither is an explanation of why the global rule obtains. For finite alphabets, the same existence-and-uniqueness condition is necessary and sufficient for one canonical quantum extension to stay unitary under every local unitary and every matched finite ancilla. The equivalence explains a composition of operators. It does not explain a spacetime process, a speed-up, or the metaphysical possibility of the modules.
+\end{abstract}
+
+\section{Three questions about a composite}
+\label{sec:three}
+
+Suppose several devices are wired so that what each receives depends on what others emit. Three questions are easy to treat as one. Does a global state exist? Is it the only one? Does the wiring put the devices in an order that explains which way the influence runs? A theory of composition should say which of these it has answered.
+
+The process-function formalism answers the first two together, and does not answer the third \citep{baumeler2016}. A rule from outputs to inputs is admitted only when every choice of local functions has exactly one solution. Call that universal consistency. It is a condition on modular replacement: swap any local map for any other map of the same type, and a unique history remains. The condition can hold when each module's input depends on another's output and no module is first. So the explanation it gives is not an explanation by causal order.
+
+A later equivalence, set out in Section~\ref{sec:lift} and proved in an unpublished technical note, says that for finite alphabets this same condition is necessary and sufficient for a canonical reversible extension to remain unitary under every local unitary on every matched finite ancilla. The payoff is limited and exact. Universal consistency explains when those local pieces compose, classically and in that quantum extension. It does not explain why the global rule is the one that obtains, and it does not put the modules into a productive causal order. Related drafts of the note are already public, so this manuscript does not claim that review anonymity is secure. The proofs the argument uses are written below. No address is given.
+
+An invented illustration will keep the three questions separate. It is not a report of a built machine. Three workshops each take a bit in and emit a bit. Each may install any function from a bit to a bit. A wiring rule sends the emitted bits back as inputs. The engineer asks which workshop causes which. The equations answer a different question: for this wiring, every installation still has one joint record, and the dependence is a cycle. The causal question is still open after the equations have been solved.
+
+\section{Directed modularity}
+\label{sec:hw}
+
+\citet{hausman1999} defend a connection between causation and manipulation that they formulate, for systems of equations, as invariance and modularity. They are explicit that they are not offering a reductive analysis of causation in terms of agency. An intervention on a variable \(X\), in their sketch, is an exogenous change in \(X\) that affects other variables in the system, if at all, only through \(X\). The connection to causation is counterfactual. It does not require that a human can in fact perform the intervention.
+
+Their modularity condition is stated for directed equations. In the linear example they use to introduce it, one equation gives \(Y\) as a function of \(X\) and an error, and a second gives \(Z\) as a function of \(X\), \(Y\), and another error. An intervention that sets \(Y\) is represented by replacing the first equation with an equation that sets \(Y\) to a constant. Modularity says that the second equation remains invariant under that replacement, within the relevant range. Graphically, they follow the idea that such an intervention breaks the arrows into the variable that is set and leaves the other arrows in place. Distinct equations are supposed to correspond to distinct mechanisms that can be disrupted independently.
+
+Two features of this package matter here, and neither should be exaggerated. First, the invariance is invariance of the untouched equations, not merely the continued existence of some solution of the whole system. When the equation for \(Y\) is replaced, the equation for \(Z\) still describes the same dependence. Second, the representation they rely on is directed. The arrows that break are incoming causal arrows. Their official illustrations are acyclic equation systems. They do not, in the text read for this paper, claim to have shown that no cyclic system can be modular, and this paper does not attribute that claim to them. What they do provide is a precise directed notion: mechanisms are separately disruptable, and the disruption is the breaking of incoming determination.
+
+That notion answers a causal question. If the equations are modular in their sense, an intervention picks out which mechanism was disrupted and which dependencies remain. The direction of the arrows is part of the answer to ``which way does the influence run?'' A system that cannot be written so that each equation is invariant under interventions on the others fails their test. The test is not the test used in the next section.
+
+\section{Solvability under every local replacement}
+\label{sec:sol}
+
+Let each module \(k\) have finite nonempty input and output alphabets \(I_k\) and \(O_k\). Let \(F_k\) be the set of all functions from \(I_k\) to \(O_k\). A substitution is an element of the product of the \(F_k\). A wiring rule \(w\) sends a tuple of outputs to a tuple of inputs. For a substitution \(f\) and a candidate output tuple \(o\), say that \(o\) is a history when \(o=f(w(o))\), with \(f\) acting componentwise. The rule is a process function when every substitution has exactly one history \citep{baumeler2016}.
+
+The quantifier is over replacements of maps, not over settings of a variable that break incoming arrows. Replacing \(f_k\) changes how module \(k\) answers its input. It does not, by itself, delete a causal arrow in a pre-existing directed graph. The condition that survives every such replacement is a fact about the solution set: its cardinality is one.
+
+Existence and uniqueness are different clauses inside that cardinality, and they explain different failures.
+
+If some substitution has no history, the chosen local maps and the wiring cannot be satisfied together. Composition, for that replacement, does not exist. The simplest case is a single module whose wiring is the identity channel and whose local map is a bit flip. The output would have to equal its own negation. No history exists. The local map was available. The wiring is what cannot host it. Universal consistency excludes this wiring because the existential demand fails for one substitution. The exclusion is not a ban on bit flips.
+
+If some substitution has two or more histories, composition exists in a weak sense: there are solutions. It does not determine which solution occurs. That is underdetermination, not a contradiction. A law can leave a parameter free. Universal consistency excludes this case as well, by a determination policy. The policy should not be described as the discovery that multiple solutions are impossible in every metaphysics. They are excluded from this class of wirings because the class was defined to demand a singleton.
+
+If every substitution has exactly one history, both demands are met. Relative to the wiring and the substitution, the equations explain why this output tuple is the record rather than another: it is the only solution. They do not explain why this wiring, rather than another, is the wiring that was installed. The contrast with a sufficient reason for the composite is immediate. Solving \(o=f(w(o))\) answers a question inside a fixed \(w\). It does not answer why \(w\) is the function it is.
+
+Three small wirings, two of them trivial, separate the clauses before the cyclic example is asked to do any work. First, let there be one module, let the wiring return the output as the input, and let the local map flip the bit. A history would satisfy \(o=\lnot o\). No solution exists. The local map was on the menu. The wiring cannot host it. Second, keep the same wiring and let the local map copy its input. Then \(o=o\) for both bit values. Solutions exist, and there are two of them. The wiring does not determine which bit occurs. Third, the three-bit rule \(w(a,b,c)=(\lnot b\land c,\lnot c\land a,\lnot a\land b)\) meets the singleton demand and has no order of the modules in which each depends only on earlier ones \citep{baumeler2016,baumeler2019}. For the substitution in which every module copies its input, the only history is \((0,0,0)\). The case \(a=1\) forces the third coordinate to be both \(1\) and \(0\). One substitution does not prove the universal claim. It shows the two clauses at work: a solution exists, and the other seven output triples do not. The dependence is cyclic. So existence and uniqueness of a history, for this substitution and, by the standing result, for every substitution, do not require a directed order of the modules.
+
+The three wirings do different explanatory work, and only the third bears on order. The identity channel with a bit flip explains an incompatibility: there is no history to cite. The identity channel with a copying map explains nothing about which bit occurs, because both bits are solutions; any further story about which bit appears must come from outside the wiring. The three-bit rule, for the copying substitution, explains which triple occurs: \((0,0,0)\) is the only solution, and the case \(a=1\) is not a solution. That explanation is internal to the equations. It still does not say which module is upstream, because each input depends on the other outputs. A theorist who treats every unique solution as a causal order has used the third wiring to answer a question the second wiring already shows is separate. Uniqueness can hold with a cycle and fail with a perfectly directed identity channel.
+
+This is the sense in which universal consistency is a modularity condition of its own. Call it solvability modularity. Every local replacement leaves the global problem uniquely solvable. What is invariant is not an untouched structural equation in Hausman and Woodward's sense. There may be no decomposition into separately disruptable directed mechanisms of that kind. What is invariant is the cardinality of the solution set. A theorist who uses ``modular'' for both ideas will treat a cyclic process function as if it had passed the arrow-breaking test, or treat a failure of arrow-breaking as if the local maps could not be replaced. Neither inference is valid. The maps in \(F_k\) can all be installed. The arrows of a causal graph may still be unavailable.
+
+The invented workshops are only this distinction in ordinary words. Each workshop may install any of the four bit-functions. The wiring admits every triple of installations and returns one record for each. The engineer who asks which workshop is upstream has asked the directed question. The equations have answered the solvability question. Keeping the answers distinct is the point of the example. It is not evidence that a workshop was built.
+
+\section{The same condition, for one quantum composition}
+\label{sec:lift}
+
+The classical condition talks about functions on finite sets. A natural further question is whether that condition is also what it takes for a particular quantum composition to be well-defined. The answer is yes for one extension and one class of tests, and the restriction is the result.
+
+For every wiring \(w\), process function or not, there is a permutation of a finite basis,
+\[
+U\lvert o\rangle\lvert e\rangle=\lvert w(o)+e\rangle\lvert o\rangle,
+\]
+with a source system indexed by input tuples and a sink indexed by output tuples, and with addition in each input alphabet read as a cyclic group \citep{baumeler2019}. A finite permutation is unitary. So the bare extension does not distinguish wirings that are uniquely solvable from wirings that are not. It is not an implementation of the workshops. It is a bookkeeping map that exists for the identity channel as well as for the three-bit rule.
+
+Insert local unitaries. Let each \(V_k\) be unitary from the input of module \(k\), tensored with a finite ancilla, to the output tensored with a finite ancilla, with the dimensions matched so that a unitary of that shape can exist. Wiring those unitaries into \(U\) defines a closed loop \(M\). Then \(M\) is unitary for every such choice if and only if \(w\) is a process function.
+
+The forward argument uses a combinatorial fact. If \(w\) is a process function and two output strings differ, some module has different outputs and the same input on those strings. Otherwise one substitution would have both strings as histories. The Gram matrix of \(M\) factorizes over modules. Where the inputs agree, a change of variables makes that factor an inner product of rows of \(V_k\). Where exclusivity supplies equal inputs and unequal outputs, the factor vanishes. So distinct rows of \(M\) are orthogonal. Matched dimensions make \(M\) square, hence unitary. The converse is a counting gadget. If some substitution has \(N\neq 1\) histories, those functions can be written as unitaries on a larger space, and a column of \(M\) has squared norm \(N\).
+
+The two directions explain different things, and collapsing them is a mistake. Orthogonality explains why a uniquely solvable wiring still composes when the modules insert unitaries that mix the basis the classical theory treated as distinct. The column norm explains why a wiring that fails existence or uniqueness is detected by some unitary insertion. Bare unitarity of \(U\) explains neither. It holds whether or not the solution set is a singleton.
+
+The ancillas are part of the test. They may be entangled in the incoming state. Entanglement is not an extra hypothesis on \(w\). The equivalence is not the claim that every dilation of every kind is unitary exactly for process functions. Instruments that are not unitary are a further class. A completely positive trace-preserving map on a finite system dilates to an isometry; finite padding extends it to a unitary; the lift applies; the environment is discarded \citep{stinespring1955}. The result is an operationally valid process under local instruments, in the sense of a trace-preserving completely positive composition \citep{oreshkov2012}. Discarding an environment is not a spacetime geometry.
+
+What the equivalence adds to the philosophical claim is that solvability modularity is not an artefact of using deterministic bit-functions. The same existence-and-uniqueness demand is the condition for this unitary composition. A wiring that is modular in the solvability sense remains modular when the replacements are local unitaries. A wiring that is not solvable in a unique way fails the unitary test for a corresponding reason. The explanation scales from one intervention class to another. It still does not supply a directed causal order. The three-bit rule remains cyclic after the lift. The unitary \(M\) realizes the cycle as a map from source to sink. It does not order the modules.
+
+\section{What is not explained}
+\label{sec:not}
+
+Causal order, in the directed sense of Section~\ref{sec:hw}, would say which mechanisms point which way and which equations survive an arrow-breaking intervention. Universal consistency does not say that. A cyclic process function has a unique history for every local replacement and no such order. An acyclic circuit can also be a process function. The solvability condition is common to both. It cannot be the explanation of the order, because the order is present in one case and absent in the other.
+
+Existence of the composite is a different unexplained item. The singleton condition says which wirings are admissible if every local map is to be installable. It does not say that any admissible wiring is installed. The identity channel is inadmissible with a bit flip. The three-bit rule is admissible. Nothing in the cardinality selects the second over the first as the wiring of an actual device. A modularity condition can explain an incompatibility. It is not, by itself, a reason the compatible system exists.
+
+A spacetime realization would add regions, a causal structure or a metric, and a dynamics of which the operators are a reduced description. None of these data are in \(U\) or in \(M\). \citet{vilasini2024} prove no-go results about embedding cyclic information-theoretic structures in acyclic spacetimes. The lift is not a counterexample to those results, because the lift is not an embedding. Nor do the results, which are not re-proved here, become a theorem that no operational process can ever be given a geometric model. They mark a question the operational equivalence does not close.
+
+Computational resources are likewise untouched. For a finite explicit table and a chosen substitution, the output tuples can be listed and tested. The search ends. That shows that unique solvability of a finite instance is not uncomputability. It does not show that the search is an efficient uniform simulation, a speed-up, or the same organization as the modules. A searcher who holds the table computes a predicate. The modules, if they were a device, would be a different partition. Universal consistency does not choose between those descriptions.
+
+One limit on a further misreading should be recorded and then left small. Mixtures of process functions can be written with a control register so that the closed loop stays unitary. So unique solvability of each component is compatible with a probabilistic mixture. The converse fails for one computational-basis distribution induced by a known board, with separating value \(\tfrac14-\tfrac{3}{16}\sqrt{2}<0\) on an inequality that is nonnegative on every three-bit process function. The board is not a new quantum process. The separation is basis-relative. It shows that purity of the quantum composition does not mean the classical record is a mixture of uniquely solvable deterministic wirings. It does not show that the record is a spacetime process, and it is not needed for the modularity distinction above.
+
+A boundary note keeps the finite hypothesis visible.\footnote{With infinitely many modules, pairwise exclusivity of histories still yields at most one solution, while existence can fail without a continuity assumption. Whether every exclusive map of Baire class one on the space of infinite binary sequences has a fixed point is open. The equivalence in Section~\ref{sec:lift} is for finite alphabets and finite ancillas. It does not use that question.}
+
+\section{Objections}
+\label{sec:obj}
+
+The first objection says that solvability modularity is just Hausman and Woodward's modularity written without arrows, so the distinction is verbal. The objection misses the invariant. In their condition, an intervention that sets one variable leaves the other structural equations in place. The invariant is a mechanism that was not disrupted. In the process-function condition, a replacement of a local map leaves the cardinality of the global solution set equal to one. The invariant is unique solvability, which can be stated without a residual directed equation. The three-bit rule is a witness that the second invariant does not require the representation used for the first. If a future theorem shows that every process function can be rewritten as a modular directed system in their sense, that theorem is not the definition. It has not been assumed here, and their 1999 text does not supply it.
+
+The second objection says that a cyclic dependence is already a causal order, only a cyclic one, so the paper's contrast is empty. ``Order'' can mean a binary relation of functional dependence, and in that thin sense the three-bit rule has an order: it is a cycle. ``Order'' in the explanatory sense at issue in Section~\ref{sec:hw} means a direction that supports arrow-breaking interventions and tells which equation survives. A cycle of functional dependence does not by itself provide that. One can define interventions on cyclic causal models. Doing so is further work. The process-function condition does not do it, and it should not be credited with having done it. The thin dependence relation explains which input is a function of which outputs. It does not explain which module is the cause in the interventionist sense Hausman and Woodward isolate.
+
+The third objection says that uniqueness is doing no explanatory work beyond existence, because a non-unique system can be refined until it is unique. Refinement is a new theory. Inside a fixed wiring, existence says there is a history and uniqueness says which history the wiring determines. A wiring with two histories is compatible with both of them. Citing existence does not say why one rather than the other occurs. Citing uniqueness does. The explanatory gain is local to the solution problem. It is not a gain about why the wiring exists. The objection is right if it warns against promoting uniqueness into a sufficient reason for the composite. It is wrong if it treats the two clauses as the same clause.
+
+The fourth objection says that the quantum equivalence shows the modules were causally ordered after all, because a unitary process is a physical process and physical processes have causal order. Unitarity of \(M\) is invertibility of a linear map between finite-dimensional spaces. Operational validity under instruments is complete positivity and trace preservation of a composition \citep{oreshkov2012}. Neither property names a causal arrow among the modules. The three-bit example remains cyclic after the lift. A physical reading that adds spacetime structure is an additional model, assessed by whether it can be built, not by whether \(MM^{\dagger}=1\).
+
+The fifth objection says that if every local replacement has a unique solution, then the local maps were never independent, because the solution constrains them. The constraint is on the history, not on the menu of maps. Every function in each \(F_k\) remains in the domain. For each full substitution, one output tuple solves the equation. The solution does not strike a function off the menu. Independence of the available replacements and uniqueness of the resulting history are the two halves of solvability modularity. Treating the second as a cancellation of the first is the confusion this paper is written to stop.
+
+\section{Conclusion}
+\label{sec:end}
+
+Universal consistency explains a composition. It says that the modules may be replaced arbitrarily inside their type and the composite still has exactly one history. Existence and uniqueness are both part of that explanation, and they fail differently. Neither is a directed causal order in the interventionist sense, and neither is a reason the wiring obtains. For finite alphabets, the same pair of demands is necessary and sufficient for one canonical extension to stay unitary under every local unitary and every matched finite ancilla. That extends the compositional explanation to a class of quantum replacements. It does not extend it to spacetime, to computational speed, or to the existence of the modules. The three-bit rule remains the reminder: the equations can be uniquely solvable for every local replacement, and the engineer can still lack an answer to which way the influence runs.
+
+\section*{Statements and declarations}
+Competing interests have not been confirmed. No declaration of the absence of a conflict should be inferred. Funding has not been confirmed.
+
+\section*{Assistance}
+Preparation of this draft, including the organization of the argument and the wording of the proofs, was assisted by Grok Bot, a Cursor cloud agent. The assistance included generative composition and was not limited to copy editing. No version identifier for the tool is recorded, and none is invented. The assistant is not an author. Human verification of the draft is pending. This section is the disclosure in the manuscript. Acknowledgements and the author's identity are on the separate title page.
+
+\begin{thebibliography}{99}
+\bibitem[Baumeler and Wolf(2016)]{baumeler2016}
+Baumeler, {\"A}min, and Stefan Wolf 2016: ``The space of logically consistent classical processes without causal order.'' \emph{New Journal of Physics}, 18, 013036. \url{https://doi.org/10.1088/1367-2630/18/1/013036}.
+\bibitem[Baumeler et~al.(2019)]{baumeler2019}
+Baumeler, {\"A}min, Fabio Costa, Timothy C. Ralph, Stefan Wolf, and Magdalena Zych 2019: ``Reversible time travel with freedom of choice.'' \emph{Classical and Quantum Gravity}, 36(22), 224002. \url{https://doi.org/10.1088/1361-6382/ab4973}.
+\bibitem[Hausman and Woodward(1999)]{hausman1999}
+Hausman, Daniel M., and James Woodward 1999: ``Independence, invariance and the causal {M}arkov condition.'' \emph{The British Journal for the Philosophy of Science}, 50(4), pp. 521--583. \url{https://doi.org/10.1093/bjps/50.4.521}.
+\bibitem[Oreshkov et~al.(2012)]{oreshkov2012}
+Oreshkov, Ognyan, Fabio Costa, and {\v C}aslav Brukner 2012: ``Quantum correlations with no causal order.'' \emph{Nature Communications}, 3, 1092. \url{https://doi.org/10.1038/ncomms2076}.
+\bibitem[Stinespring(1955)]{stinespring1955}
+Stinespring, W.~F. 1955: ``Positive functions on {$C^{*}$}-algebras.'' \emph{Proceedings of the American Mathematical Society}, 6, pp. 211--216. \url{https://doi.org/10.1090/S0002-9939-1955-0069403-4}.
+\bibitem[Vilasini and Renner(2024)]{vilasini2024}
+Vilasini, V., and Renato Renner 2024: ``Embedding cyclic information-theoretic structures in acyclic space-times: No-go results for indefinite causality.'' \emph{Physical Review A}, 110, 022227. \url{https://doi.org/10.1103/PhysRevA.110.022227}.
+\end{thebibliography}
+\end{document}
