@@ -1,0 +1,41 @@
+::: center
+Consistency, reversibility, and the limits of causal-loop explanation
+
+Title page for a review draft
+
+Draft, 8 November 2026. Not submitted. Not a journal publication.
+:::
+
+# Author {#author .unnumbered}
+
+Drew Lamarr Arrowood.
+
+Affiliation: pending confirmation by the author. No institution, city, or country is invented here.
+
+Corresponding email: pending confirmation by the author. None is invented here.
+
+ORCID: not recorded in the source manuscript.
+
+This page is the author page. The review manuscript omits this identity. It refers to the unpublished technical note in the third person and does not contain archive or website addresses.
+
+# Acknowledgements {#acknowledgements .unnumbered}
+
+Pending the author's text. None are invented here.
+
+# Statements and declarations {#statements-and-declarations .unnumbered}
+
+Funding. Not yet confirmed by the author. No funding statement should be inferred.
+
+Competing interests. Not yet confirmed by the author. No declaration of the absence of a conflict should be inferred.
+
+Ethics approval and consent. Not applicable. The work is theoretical.
+
+Author contribution and verification. The mathematical results used in the review manuscript are those of the unpublished technical note by Drew Lamarr Arrowood. This philosophical draft was prepared with generative assistance, disclosed in the review manuscript, and awaits the author's verification. Verification is not claimed on this page.
+
+Data, materials, and code. The review manuscript's appendix states the mathematical content on which the argument depends. A supplementary link with the author's name masked has not been prepared. This page does not supply a substitute address, and it does not claim that anonymized provenance has been arranged.
+
+Use of generative assistance. Preparation of the review draft, including organization of the argument and wording of the appendix, was assisted by Grok Bot, a Cursor cloud agent. The assistance was not limited to copy editing and included generative drafting. The assistant is not an author. The underlying model and provider, beyond that description, are not recorded here. The human author remains responsible for a final text. That verification is pending.
+
+# Relation to other drafts {#relation-to-other-drafts .unnumbered}
+
+The same finite-alphabet lifting theorem, the same restricted converse, and the same computational-basis witness are stated in a separate physics-style manuscript and in the technical note. Those are alternative treatments of one body of research. This title page does not claim that either manuscript is unique, and it does not request or record a submission.
