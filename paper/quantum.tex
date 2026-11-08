@@ -1,0 +1,202 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,booktabs}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\usepackage[margin=1in]{geometry}
+\usepackage{microtype}
+\usepackage{xurl}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{hyperref}
+\hypersetup{hidelinks,pdftitle={The canonical unitary lift of a finite process function},pdfauthor={Drew Lamarr Arrowood}}
+\title{The canonical unitary lift of a finite process function}
+\author{Drew Lamarr Arrowood\thanks{Affiliation pending confirmation by the author. Correspondence and ORCID are not recorded. This draft has not been submitted and has not been uploaded to the arXiv. The \texttt{quantumarticle} class (v6.1) was bundled for reproducibility but does not compile on this TeX~Live: \texttt{nameref} applies a \texttt{begindocument} hook rule too late. Quantum encourages that class and does not require it. This file is set with the standard article class. DOI hyperlinks are in the bibliography.}}
+\date{Draft. Not submitted. No arXiv upload.}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+For finite alphabets, a classical rule is a process function if and only if its canonical source-sink extension remains unitary after every local unitary on every matched finite ancilla is inserted. The bare extension is a basis permutation for every rule, including rules that are not process functions. Mixtures of process functions are purifiable by a coherent label. The converse fails for one three-party binary distribution, induced in the computational basis by a known board, which violates a linear inequality satisfied by every process function. The purity check that uses a large cyclotomic cancellation is a finite verification in the technical note and is not reproduced coefficient by coefficient here. No claim is made about infinite parties, computational speedup, or a spacetime realization. The manuscript has not been posted to the arXiv and has not been submitted.
+\end{abstract}
+
+\section{Contributions}
+\label{sec:contrib}
+The main result is Theorem~\ref{thm:iff}: for finite alphabets, and for the canonical extension \(U\) defined in Eq.~\eqref{eq:U}, the closed loop is unitary for every local unitary and every finite ancilla of matching dimension if and only if the classical rule is a process function. Theorem~\ref{thm:lift} is the forward half. The witness in Theorem~\ref{thm:sep} is a separation \(\operatorname{conv}(\mathrm{PF})\subsetneq\mathrm{Purif}\) in one named basis. Assumptions are finite nonempty alphabets, finite-dimensional ancillas, and the link product written in Eq.~\eqref{eq:M}. The board in Theorem~\ref{thm:sep} is not new; it is a frame-rotated time reverse of a known Lugano purification \cite{guerin2018}.
+
+\section{Definitions}
+\label{sec:def}
+Parties \(k\in\{1,\ldots,n\}\) have finite nonempty alphabets \(I_k\) and \(O_k\). Write \(I=\prod_k I_k\) and \(O=\prod_k O_k\). For the permutation form, identify \(I_k\) with the cyclic group of order \(|I_k|\).
+
+\begin{definition}[Process function]
+A map \(w=(w_k):O\to I\) is a process function when, for every tuple of functions \(f_k:I_k\to O_k\), the self-map \(o\mapsto (f_k(w_k(o)))_k\) of \(O\) has exactly one fixed point \cite{baumeler2016}.
+\end{definition}
+
+A fixed point is a history for that intervention. Acyclic deterministic circuits are process functions. They are not all of them. The Lugano rule \(w(a,b,c)=(\lnot b\land c,\lnot c\land a,\lnot a\land b)\) is cyclic and is a process function \cite{baumeler2016,araujo2017}. For the identity intervention the only solution is \((0,0,0)\). If \(a=1\), then \(b=0\) and \(c=1\), but the third coordinate requires \(c=0\).
+
+\begin{definition}[Canonical extension]
+For every map \(w:O\to I\), not only for process functions,
+\begin{equation}
+\label{eq:U}
+U\lvert o\rangle_O\lvert e\rangle_P=\lvert w(o)+e\rangle_I\lvert o\rangle_F.
+\end{equation}
+\(U\) is a permutation of a finite basis, hence unitary \cite{baumeler2019}.
+\end{definition}
+
+\begin{definition}[Closed loop]
+Let \(V_k\) be unitary from \(I_k\otimes X_k\) to \(O_k\otimes Y_k\) with \(|I_k|\,|X_k|=|O_k|\,|Y_k|\) and \(X_k,Y_k\) finite-dimensional. The closed loop \(M\) from \(P\otimes\bigotimes_k X_k\) to \(F\otimes\bigotimes_k Y_k\) has
+\begin{equation}
+\label{eq:M}
+M\bigl[(s,y),(e,x)\bigr]
+=\prod_k V_k\bigl[(s_k,y_k),(w_k(s)+e_k,x_k)\bigr].
+\end{equation}
+\end{definition}
+
+Following Ara\'ujo, Feix, Navascu\'es, and Brukner, call the process pure when every such \(M\) is unitary \cite{araujo2017}. A classical process is purifiable when it is induced by a pure process from a source state by measuring in a stated orthonormal frame and discarding the sink. Unless a frame is named, the frame is the computational basis.
+
+\section{The equivalence}
+\label{sec:eq}
+
+\begin{lemma}[Exclusivity]
+\label{lem:ex}
+If \(w\) is a process function and \(s\neq s'\) in \(O\), some party \(k\) has \(s_k\neq s'_k\) and \(w_k(s)=w_k(s')\).
+\end{lemma}
+
+\begin{proof}
+Otherwise \(w_k(s)=w_k(s')\) implies \(s_k=s'_k\) for every \(k\). Define \(f_k(x)=s_k\) if \(x=w_k(s)\) and \(f_k(x)=s'_k\) if \(x=w_k(s')\), and define \(f_k\) arbitrarily elsewhere. The two clauses agree on the overlap. Then \(s\) and \(s'\) are distinct fixed points of one intervention.
+\end{proof}
+
+\begin{theorem}[Unitary lift]
+\label{thm:lift}
+If \(w\) is a process function, then for every choice of local unitaries and matched finite ancillas, \(M\) is unitary.
+\end{theorem}
+
+\begin{proof}
+For rows \((s,y)\) and \((s',y')\),
+\begin{equation}
+\label{eq:gram}
+\bigl(MM^{\dagger}\bigr)\bigl[(s,y),(s',y')\bigr]
+=\prod_k\sum_{e_k,x_k}
+V_k\bigl[(s_k,y_k),(w_k(s)+e_k,x_k)\bigr]\,
+\overline{V_k\bigl[(s'_k,y'_k),(w_k(s')+e_k,x_k)\bigr]}.
+\end{equation}
+If \(w_k(s)=w_k(s')\), the substitution \(i=w_k(s)+e_k\) makes the \(k\)-th factor the inner product of two rows of the unitary \(V_k\). If \(s=s'\), every factor is of this kind and the product is \(\delta_{y,y'}\). If \(s\neq s'\), Lemma~\ref{lem:ex} supplies a party whose factor vanishes. Thus \(MM^{\dagger}=1\). The dimension hypothesis makes \(M\) square, so \(M\) is unitary.
+\end{proof}
+
+Column norms are not a substitute: unit-norm columns need not be orthogonal. The ancilla dimensions enter Theorem~\ref{thm:lift} only through squareness.
+
+\begin{theorem}[Canonical equivalence]
+\label{thm:iff}
+Let \(w:O\to I\) be any map between finite alphabets, with each \(I_k\) a cyclic group as above. The closed loop \(M\) is unitary for every local unitary and every matched finite ancilla if and only if \(w\) is a process function.
+\end{theorem}
+
+\begin{proof}
+The forward direction is Theorem~\ref{thm:lift}. Conversely, suppose an intervention \(f\) has \(N\neq 1\) fixed points. Take \(X_k=O_k\), \(Y_k=I_k\), and \(V_k\lvert i,x\rangle=\lvert f_k(i)+x,\,i\rangle\). This is a permutation, hence unitary. The entries of column \((0,0)\) of \(M\) are
+\[
+M\bigl[(s,y),(0,0)\bigr]
+=\prod_k [s_k=f_k(w_k(s))]\,[y_k=w_k(s)],
+\]
+so the squared norm of that column equals \(N\). Hence \(M\) is not an isometry.
+\end{proof}
+
+The converse uses one family of unitaries. It does not say that an arbitrary dilation is unitary only for process functions. Equation~\eqref{eq:U} is unitary for every \(w\). The parties are allowed to insert unitaries that are not diagonal in the computational basis. That is the test Theorem~\ref{thm:iff} quantifies over.
+
+\begin{lemma}[Instruments]
+\label{lem:valid}
+If \(M\) is unitary whenever every local map is a unitary on a matched finite ancilla, then the induced process is valid under every tuple of local finite-dimensional instruments.
+\end{lemma}
+
+\begin{proof}
+A local completely positive trace-preserving map dilates to an isometry \cite{stinespring1955}. Pad with finite junk spaces so both sides of the dilated map have equal finite dimension, and extend the isometry to a unitary. Theorem~\ref{thm:lift} gives a unitary on the enlarged loop. Discard the environments. Partial trace and a fixed ancilla state preserve complete positivity and the trace, and the link product is multilinear, so the original instruments yield a trace-preserving completely positive map from the source side to the sink side.
+\end{proof}
+
+The argument uses finite dimension to complete the isometry. It is not a claim about continuous alphabets or about arbitrary infinitely many parties. With infinitely many parties, exclusivity still yields at most one fixed point, while existence can fail. Whether every exclusive Baire-class-one self-map of \(\{0,1\}^{\mathbb{N}}\) has a fixed point is open. That question is not used in Theorems~\ref{thm:lift}--\ref{thm:sep}.
+
+\section{A distribution outside the hull}
+\label{sec:sep}
+
+Mixtures of process functions are purifiable. Prepare a control register in \(\sum_j\sqrt{\lambda_j}\lvert j\rangle\), apply the reversible extension of the selected process function controlled on \(j\), and route the control to the sink. The loop is block diagonal with unitary blocks. Reading the computational basis and discarding the sink leaves the mixture.
+
+\begin{theorem}
+\label{thm:sep}
+There is a valid classical process \(p\) on three binary parties, induced in the computational basis by a pure process with a finite source, such that
+\begin{equation}
+\label{eq:L}
+L(p)=\frac14-\frac{3}{16}\sqrt{2}<0,
+\end{equation}
+while \(L\geq 0\) on every three-bit process function. Thus \(\operatorname{conv}(\mathrm{PF})\) is a proper subset of the purifiable classical processes in this sense.
+\end{theorem}
+
+The board is a family of three-qubit unitaries, one for each output string \(o\in\{0,1\}^3\). Let \(H\) be the three-qubit Hadamard and let \(m_o(z)\in\{0,1,2,3\}\) be Table~\ref{tab:m}, with \(z\) in binary order. Set \(U_o=H\,\mathrm{diag}(i^{m_o(z)})\,H\). The source vector is
+\begin{equation}
+\label{eq:phi}
+\phi=\frac{\lvert 011\rangle+e^{-i\pi/4}\lvert 100\rangle}{\sqrt{2}},
+\end{equation}
+and \(p(i\mid o)=\lvert\langle i\rvert U_o\phi\rvert^2\).
+
+Three checks are distinct, and they are not equally self-contained in this text.
+
+Validity of \(p\), meaning nonnegativity and total probability one under every product of local stochastic maps, is a finite multilinear identity on the sixty-four deterministic local functions, extended by multilinearity. The identity is an exact finite check in the technical note. The arithmetic is not expanded here. This is a gap in the present write-up, not a gap in the claim's intended proof: the check is finite and has been recorded elsewhere, but a reader of this file alone cannot inspect every term.
+
+Purity of the switchboard is, in one archive route, the vanishing of \(2232\) Pauli coefficients in the cyclotomic field \(\mathbb{Q}(\zeta_8)\), together with a lemma that finite ancillas do not create new failures for this shape of board. Those coefficients are not listed here. A second archive route reduces \(MM^{\dagger}=1\) to finitely many local slots by multilinearity. Neither expansion is copied into this manuscript. Theorem~\ref{thm:sep} therefore depends, for purity, on that external finite verification. The dependence is flagged so that it is not mistaken for a proof written above.
+
+Non-membership in the convex hull, given \(p\), is the sign of \(L\). Table~\ref{tab:g} is the integer kernel, copied from the formalization's table \(g\), with rows \(i\) and columns \(o\). The note records the evaluation identity \(\sum g_{io}p_N=32\) and \(\sum g_{io}p_M=-24\) when \(p=(p_N+p_M\sqrt{2})/128\), which is Eq.~\eqref{eq:L}. Recomputing \(p\) from Eq.~\eqref{eq:phi} and Table~\ref{tab:m} is a finite arithmetic task. It is not carried out line by line in this file.
+
+The board is not a new quantum process in every frame. Up to a local frame it is a time-reversed variant of a Lugano purification in the family of \cite{guerin2018}, with one conditional bit flip replaced by a square root of that flip. Read in the computational basis, the induced classical process lies outside the hull. Read in another basis, a pure process of this family can induce a mixture. The separation is about a named frame.
+
+Nonnegativity of \(L\) on process functions is a finite check of the \(744\) binary three-party process functions. The count \(744\) is the exhaustive enumeration of the definition on three bits in the technical note. This manuscript does not repeat the enumeration. A reader who does not grant that enumeration does not yet have, from this file alone, the proof that \(L\geq 0\) on every process function. The case split used in the formalization is: either five relevant output strings already make \(L\geq 0\), or one of four explicit interventions has two fixed points among them. That case split is not re-encoded here. The gap is the same kind as the purity gap: finite, external, and not rhetorical.
+
+\begin{table}[t]
+\centering
+\caption{Exponents \(m_o(z)\in\{0,1,2,3\}\). Rows are output strings \(o\). Columns are \(z=000,\ldots,111\).}
+\label{tab:m}
+\begin{tabular}{c@{\quad}cccccccc}
+\toprule
+\(o\) & \multicolumn{8}{c}{\(m_o(z)\)}\\
+\midrule
+000 & 0 & 3 & 0 & 0 & 2 & 0 & 3 & 0\\
+001 & 0 & 3 & 2 & 2 & 2 & 0 & 3 & 0\\
+010 & 0 & 3 & 0 & 0 & 2 & 1 & 3 & 1\\
+011 & 0 & 3 & 2 & 2 & 2 & 1 & 3 & 1\\
+100 & 0 & 1 & 2 & 2 & 2 & 2 & 1 & 2\\
+101 & 0 & 1 & 0 & 0 & 2 & 2 & 1 & 2\\
+110 & 0 & 1 & 2 & 2 & 2 & 3 & 1 & 3\\
+111 & 0 & 1 & 0 & 0 & 2 & 3 & 1 & 3\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{Coefficients \(g_{io}\) of \(L\). Row \(i\), column \(o\), binary order.}
+\label{tab:g}
+\begin{tabular}{c@{\quad}rrrrrrrr}
+\toprule
+\(i\backslash o\) & 000 & 001 & 010 & 011 & 100 & 101 & 110 & 111\\
+\midrule
+000 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+001 & 1 & $-1$ & 0 & 0 & 0 & 0 & 0 & 0\\
+010 & 1 & 0 & $-1$ & 0 & 0 & 0 & 0 & 0\\
+011 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+100 & 1 & 0 & 0 & 0 & $-1$ & 0 & 0 & 0\\
+101 & 2 & 0 & 0 & 0 & $-1$ & 0 & 0 & 0\\
+110 & 1 & 0 & 0 & 0 & 0 & 0 & $-1$ & 0\\
+111 & 2 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Relation to prior work and limits}
+\label{sec:prior}
+\citet{baumeler2019} give a reversible realization of deterministic classical processes compatible with arbitrary local operations, and leave the general quantization of that bijection as a further question relative to the process theory. Theorem~\ref{thm:iff} is a quantization statement for one canonical extension and one class of tests, not for every unitary dilation. \citet{araujo2017} define purity as unitarity under local unitaries. The lift says which classical rules meet that definition for \(U\). It does not say that purity restores a mixture of process functions. Theorem~\ref{thm:sep} is the counterexample in one basis. It is not a new causal inequality and not a speedup theorem. No complexity class is claimed. Finite explicit tables can be searched by enumerating output tuples. That fact is not a uniform simulation theorem and not a spacetime realization.
+
+Two-party valid classical processes are mixtures of causally ordered process functions; the interesting separation uses three parties \cite{oreshkov2012}. The present text does not re-prove the bipartite classification.
+
+\section*{Author contributions and assistance}
+The mathematical results are those of the unpublished technical note by Drew Lamarr Arrowood. This condensation was drafted with generative assistance from Grok Bot, a Cursor cloud agent, beyond copy editing, including wording of the proofs as reproduced here. No model version identifier is recorded, and none is invented. The assistant is not an author. The human author remains responsible for the text. Author verification of this condensation is pending. Funding and competing interests have not been confirmed. No declaration of the absence of a conflict should be inferred.
+
+There is no quant-ph arXiv identifier because this manuscript has not been uploaded to the arXiv. Quantum's submission rules require such a preprint before submission. This file is not a submission.
+
+\bibliographystyle{plainnat}
+\bibliography{quantum}
+\end{document}

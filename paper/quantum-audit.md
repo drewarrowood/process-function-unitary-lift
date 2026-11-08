@@ -1,0 +1,9 @@
+# Audit: Quantum-style technical draft
+
+Not a submission and not an arXiv upload. Quantum's author instructions (https://quantum-journal.org/instructions/authors/) require a quant-ph arXiv preprint before submission and ask that AI use be disclosed in the author-contribution statement. Editorial policy (https://quantum-journal.org/editorial-policies/) states single-blind review and that a quant-ph arXiv version is necessary for consideration. This file has neither been uploaded nor submitted.
+
+The class `quantumarticle` v6.1 was downloaded from CTAN (LPPL) and bundled as `paper/quantumarticle.cls`. On this TeX Live it aborts: `nameref` applies a `begindocument` hook rule too late (`showkeys`/`nameref`). The class is encouraged, not required. The built PDF uses the standard `article` class, 11 pt, with DOI links in the bibliography. The author name is on the manuscript because review is single-blind.
+
+Theorems 1 and 2 (lift and canonical equivalence) and the instrument lemma are proved in the file. Theorem 3 states the computational-basis separation. Gaps flagged in the text, not filled by rhetoric: the 2232 Pauli coefficients for purity are not listed; the 744-process-function enumeration behind \(L\geq 0\) is not repeated; the multilinear expansion of classical validity is not expanded. The exponent table, the coefficient table, and the source state are included so the classical distribution is a finite computation from the file. The board is identified as a known frame-rotated Lugano purification, not a new process. Baire class one is open and not used. No speedup and no spacetime realization are claimed.
+
+Affiliation, email, ORCID, funding, and conflicts are pending. Assistance: Grok Bot, a Cursor cloud agent, generative drafting beyond copy editing. No model version is invented. Author verification is pending.
