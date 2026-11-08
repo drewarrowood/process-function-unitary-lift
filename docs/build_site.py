@@ -35,10 +35,18 @@ FOOT = (
     f'<a href="{BASE}graded.pdf">PDF (gentle version)</a> · '
     f'<a href="{BASE}foundations.pdf">PDF (Foundations draft)</a> · '
     f'<a href="{BASE}synthese.pdf">PDF (Synthese draft)</a> · '
+    f'<a href="{BASE}jphil.pdf">PDF (Journal of Philosophy draft)</a> · '
+    f'<a href="{BASE}mind.pdf">PDF (Mind draft)</a> · '
+    f'<a href="{BASE}pop.pdf">PDF (Philosophy of Physics draft)</a> · '
+    f'<a href="{BASE}quantum.pdf">PDF (Quantum-style note)</a> · '
     f'<a href="{BASE}">Technical note</a> · '
     f'<a href="{BASE}graded.html">Gentle version</a> · '
     f'<a href="{BASE}foundations.html">Foundations draft</a> · '
-    f'<a href="{BASE}synthese.html">Synthese draft</a>'
+    f'<a href="{BASE}synthese.html">Synthese draft</a> · '
+    f'<a href="{BASE}jphil.html">Journal of Philosophy draft</a> · '
+    f'<a href="{BASE}mind.html">Mind draft</a> · '
+    f'<a href="{BASE}pop.html">Philosophy of Physics draft</a> · '
+    f'<a href="{BASE}quantum.html">Quantum-style note</a>'
 )
 
 def page(title, desc, url, og_image, nav, body):
@@ -82,7 +90,11 @@ DESC = ("Draft note: for every classical process function, the source-sink permu
         "is a valid unitary quantum process. Short proof, Stinespring validity argument, Lean 4 check.")
 nav = (f'<nav class="top"><a href="{BASE}graded.html">Gentle version</a> · '
        f'<a href="{BASE}foundations.html">Foundations of Physics draft</a> · '
-       f'<a href="{BASE}synthese.html">Synthese-style draft</a> '
+       f'<a href="{BASE}synthese.html">Synthese-style draft</a> · '
+       f'<a href="{BASE}jphil.html">Journal of Philosophy draft</a> · '
+       f'<a href="{BASE}mind.html">Mind draft</a> · '
+       f'<a href="{BASE}pop.html">Philosophy of Physics draft</a> · '
+       f'<a href="{BASE}quantum.html">Quantum-style note</a> '
        '(separate articles; this page remains the technical archive).</nav>')
 (root / "docs/index.html").write_text(page(TITLE, DESC, BASE, BASE + "og.png", nav,
                                            render((root / "paper/lift.md").read_text(), LIFT_SUBS)))
@@ -96,7 +108,11 @@ GDESC = ("A graded, philosophically explained version of 'Every process function
 gnav = (f'<nav class="top">Gentle version. The technical source of truth is the <a href="{BASE}">technical note</a> '
         f'(<a href="{REPO}/blob/main/paper/lift.md">paper/lift.md</a>). '
         f'<a href="{BASE}foundations.html">Foundations of Physics draft</a> · '
-        f'<a href="{BASE}synthese.html">Synthese-style draft</a>.</nav>')
+        f'<a href="{BASE}synthese.html">Synthese-style draft</a> · '
+        f'<a href="{BASE}jphil.html">Journal of Philosophy draft</a> · '
+        f'<a href="{BASE}mind.html">Mind draft</a> · '
+        f'<a href="{BASE}pop.html">Philosophy of Physics draft</a> · '
+        f'<a href="{BASE}quantum.html">Quantum-style note</a>.</nav>')
 (root / "docs/graded.html").write_text(page(GTITLE, GDESC, BASE + "graded.html", BASE + "og-graded.png", gnav,
                                             render((root / "paper/graded.md").read_text(), GRADED_SUBS)))
 og_png(root / "docs/og-graded.png", ["Can every consistent loop", "live in a reversible world?"],
@@ -110,7 +126,11 @@ GLDESC = "Technical definitions of the main terms in the paper (Appendix K), wit
 glnav = (f'<nav class="top">Glossary only (Appendix K). Full paper: <a href="{BASE}">technical note</a> · '
          f'<a href="{BASE}graded.html">gentle version</a> · '
          f'<a href="{BASE}foundations.html">Foundations draft</a> · '
-         f'<a href="{BASE}synthese.html">Synthese draft</a>.</nav>')
+         f'<a href="{BASE}synthese.html">Synthese draft</a> · '
+         f'<a href="{BASE}jphil.html">Journal of Philosophy draft</a> · '
+         f'<a href="{BASE}mind.html">Mind draft</a> · '
+         f'<a href="{BASE}pop.html">Philosophy of Physics draft</a> · '
+         f'<a href="{BASE}quantum.html">Quantum-style note</a>.</nav>')
 (root / "docs/glossary.html").write_text(page(GLTITLE, GLDESC, BASE + "glossary.html", BASE + "og.png", glnav,
                                               render(_gl, LIFT_SUBS)))
 
@@ -190,6 +210,71 @@ snav = (f'<nav class="top"><strong>Synthese-style draft.</strong> Not a journal 
     STITLE, SDESC, BASE + "synthese.html", BASE + "og.png", snav, _syn_body))
 shutil.copyfile(root / "paper/synthese.pdf", root / "docs/synthese.pdf")
 shutil.copyfile(root / "paper/synthese-title.pdf", root / "docs/synthese-title.pdf")
+
+def _reading_page(stem, title, desc, banner, copies):
+    body = subprocess.check_output(
+        ["pandoc", str(root / "paper" / f"{stem}.tex"), "-t", "html", "--mathml", "--wrap=none"],
+        text=True,
+    )
+    body = re.sub(r'<span class="citation" data-cites="([^"]*)">\s*</span>', _cite, body)
+    (root / "docs" / f"{stem}.html").write_text(page(
+        title, desc, BASE + f"{stem}.html", BASE + "og.png", banner + f"<h1>{html.escape(title)}</h1>", body))
+    for src, dst in copies:
+        shutil.copyfile(root / "paper" / src, root / "docs" / dst)
+
+_cross = (f'<a href="{BASE}">Technical note</a> · '
+          f'<a href="{BASE}graded.html">Gentle version</a> · '
+          f'<a href="{BASE}foundations.html">Foundations draft</a> · '
+          f'<a href="{BASE}synthese.html">Synthese draft</a> · '
+          f'<a href="{BASE}jphil.html">Journal of Philosophy draft</a> · '
+          f'<a href="{BASE}mind.html">Mind draft</a> · '
+          f'<a href="{BASE}pop.html">Philosophy of Physics draft</a> · '
+          f'<a href="{BASE}quantum.html">Quantum-style note</a>')
+
+_reading_page(
+    "jphil",
+    "A Computer without a First Step?",
+    "Draft in the style of the Journal of Philosophy. Not submitted. Anonymity is not claimed.",
+    f'<nav class="top"><strong>Journal of Philosophy draft.</strong> Not a journal submission. '
+    f'The review text omits the author line. The separate title page is public, so anonymity is not claimed. '
+    f'{_cross} · <a href="{BASE}jphil.pdf">Review PDF</a> · '
+    f'<a href="{BASE}jphil-title.pdf">Title page</a> · '
+    f'<a href="{REPO}/blob/main/paper/jphil.tex">TeX</a>.</nav>',
+    [("jphil.pdf", "jphil.pdf"), ("jphil-title.pdf", "jphil-title.pdf")],
+)
+_reading_page(
+    "mind",
+    "Independent Operations, Dependent Histories",
+    "Draft in the style of Mind. Not submitted. Anonymity is not claimed.",
+    f'<nav class="top"><strong>Mind draft.</strong> Not a journal submission. '
+    f'Official initial placement of the assistance disclosure was not fully verified. '
+    f'The declarations sheet is public, so anonymity is not claimed. '
+    f'{_cross} · <a href="{BASE}mind.pdf">Review PDF</a> · '
+    f'<a href="{BASE}mind-title.pdf">Declarations sheet</a> · '
+    f'<a href="{REPO}/blob/main/paper/mind.tex">TeX</a>.</nav>',
+    [("mind.pdf", "mind.pdf"), ("mind-title.pdf", "mind-title.pdf")],
+)
+_reading_page(
+    "pop",
+    "Operational validity is not a spacetime embedding",
+    "Draft in the style of Philosophy of Physics. Not submitted. Anonymity is not claimed.",
+    f'<nav class="top"><strong>Philosophy of Physics draft.</strong> Not a journal submission. '
+    f'A public preprint can defeat anonymity, and related drafts are already public. '
+    f'{_cross} · <a href="{BASE}pop.pdf">Review PDF</a> · '
+    f'<a href="{BASE}pop-title.pdf">Declarations sheet</a> · '
+    f'<a href="{REPO}/blob/main/paper/pop.tex">TeX</a>.</nav>',
+    [("pop.pdf", "pop.pdf"), ("pop-title.pdf", "pop-title.pdf")],
+)
+_reading_page(
+    "quantum",
+    "The canonical unitary lift of a finite process function",
+    "Technical draft in the style of Quantum. Not submitted and not uploaded to the arXiv.",
+    f'<nav class="top"><strong>Quantum-style technical note.</strong> Not a journal submission and not an arXiv upload. '
+    f'Single-blind style: the author line is on the PDF. Declarations are pending. '
+    f'{_cross} · <a href="{BASE}quantum.pdf">PDF</a> · '
+    f'<a href="{REPO}/blob/main/paper/quantum.tex">TeX</a>.</nav>',
+    [("quantum.pdf", "quantum.pdf")],
+)
 
 (root / "docs/.nojekyll").write_text("")
 print("ok")
