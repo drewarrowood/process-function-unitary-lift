@@ -1,8 +1,10 @@
 """Build the static site (no JS, Unicode math) from paper/lift.md and paper/graded.md.
 
 Outputs docs/index.html (technical note), docs/graded.html (gentle version),
-docs/foundations.html (Foundations of Physics draft), docs/og.png and docs/og-graded.png.
-Copies paper/foundations.pdf to docs/foundations.pdf without rewriting it.
+docs/foundations.html (Foundations of Physics draft), docs/synthese.html
+(Synthese-style draft), docs/og.png and docs/og-graded.png.
+Copies paper/foundations.pdf, paper/synthese.pdf, and paper/synthese-title.pdf
+into docs/ without rewriting them.
 """
 import pathlib, re, html, shutil, subprocess
 from PIL import Image, ImageDraw, ImageFont
@@ -32,9 +34,11 @@ FOOT = (
     f'<a href="{BASE}lift.pdf">PDF (technical note)</a> · '
     f'<a href="{BASE}graded.pdf">PDF (gentle version)</a> · '
     f'<a href="{BASE}foundations.pdf">PDF (Foundations draft)</a> · '
+    f'<a href="{BASE}synthese.pdf">PDF (Synthese draft)</a> · '
     f'<a href="{BASE}">Technical note</a> · '
     f'<a href="{BASE}graded.html">Gentle version</a> · '
-    f'<a href="{BASE}foundations.html">Foundations draft</a>'
+    f'<a href="{BASE}foundations.html">Foundations draft</a> · '
+    f'<a href="{BASE}synthese.html">Synthese draft</a>'
 )
 
 def page(title, desc, url, og_image, nav, body):
@@ -77,8 +81,9 @@ TITLE = "Every process function lifts to a unitary process"
 DESC = ("Draft note: for every classical process function, the source-sink permutation unitary "
         "is a valid unitary quantum process. Short proof, Stinespring validity argument, Lean 4 check.")
 nav = (f'<nav class="top"><a href="{BASE}graded.html">Gentle version</a> · '
-       f'<a href="{BASE}foundations.html">Foundations of Physics draft</a> '
-       '(a separate short article; this page remains the technical archive).</nav>')
+       f'<a href="{BASE}foundations.html">Foundations of Physics draft</a> · '
+       f'<a href="{BASE}synthese.html">Synthese-style draft</a> '
+       '(separate articles; this page remains the technical archive).</nav>')
 (root / "docs/index.html").write_text(page(TITLE, DESC, BASE, BASE + "og.png", nav,
                                            render((root / "paper/lift.md").read_text(), LIFT_SUBS)))
 og_png(root / "docs/og.png", ["Every process function", "lifts to a unitary process"],
@@ -90,7 +95,8 @@ GDESC = ("A graded, philosophically explained version of 'Every process function
          "from time-travel stories to the main theorem, purification, random corners and the open conjecture.")
 gnav = (f'<nav class="top">Gentle version. The technical source of truth is the <a href="{BASE}">technical note</a> '
         f'(<a href="{REPO}/blob/main/paper/lift.md">paper/lift.md</a>). '
-        f'<a href="{BASE}foundations.html">Foundations of Physics draft</a>.</nav>')
+        f'<a href="{BASE}foundations.html">Foundations of Physics draft</a> · '
+        f'<a href="{BASE}synthese.html">Synthese-style draft</a>.</nav>')
 (root / "docs/graded.html").write_text(page(GTITLE, GDESC, BASE + "graded.html", BASE + "og-graded.png", gnav,
                                             render((root / "paper/graded.md").read_text(), GRADED_SUBS)))
 og_png(root / "docs/og-graded.png", ["Can every consistent loop", "live in a reversible world?"],
@@ -103,7 +109,8 @@ GLTITLE = "Glossary: Every process function lifts to a unitary process"
 GLDESC = "Technical definitions of the main terms in the paper (Appendix K), with the references they cite."
 glnav = (f'<nav class="top">Glossary only (Appendix K). Full paper: <a href="{BASE}">technical note</a> · '
          f'<a href="{BASE}graded.html">gentle version</a> · '
-         f'<a href="{BASE}foundations.html">Foundations draft</a>.</nav>')
+         f'<a href="{BASE}foundations.html">Foundations draft</a> · '
+         f'<a href="{BASE}synthese.html">Synthese draft</a>.</nav>')
 (root / "docs/glossary.html").write_text(page(GLTITLE, GLDESC, BASE + "glossary.html", BASE + "og.png", glnav,
                                               render(_gl, LIFT_SUBS)))
 
@@ -139,6 +146,7 @@ fnav = (f'<nav class="top"><strong>Foundations of Physics draft.</strong> Not a 
         f'Author declarations are pending. '
         f'<a href="{BASE}">Technical note</a> · '
         f'<a href="{BASE}graded.html">Gentle version</a> · '
+        f'<a href="{BASE}synthese.html">Synthese-style draft</a> · '
         f'<a href="{BASE}foundations.pdf">PDF</a> · '
         f'<a href="{REPO}/blob/main/paper/foundations.tex">TeX source</a> · '
         f'<a href="{REPO}/blob/main/paper/foundations.md">Markdown source</a>.</nav>'
@@ -149,6 +157,39 @@ fnav = (f'<nav class="top"><strong>Foundations of Physics draft.</strong> Not a 
 (root / "docs/foundations.html").write_text(page(
     FTITLE, FDESC, BASE + "foundations.html", BASE + "og.png", fnav, _fn_body))
 shutil.copyfile(root / "paper/foundations.pdf", root / "docs/foundations.pdf")
+
+# Synthese-style draft. The review manuscript and the title page stay separate.
+# docs/synthese.pdf is the review PDF, copied byte-for-byte. The HTML is a
+# reading copy of that manuscript. It does not assert journal submission or
+# that public hosting has anonymized the author.
+_syn_body = subprocess.check_output(
+    ["pandoc", str(root / "paper/synthese.tex"), "-t", "html", "--mathml", "--wrap=none"],
+    text=True,
+)
+_syn_body = re.sub(r'<span class="citation" data-cites="([^"]*)">\s*</span>', _cite, _syn_body)
+STITLE = "Consistency, reversibility, and the limits of causal-loop explanation"
+SDESC = ("Draft article in the style of Synthese: local consistency without a fixed causal order, "
+         "and why a reversible extension is not a time-travel claim. Not submitted.")
+snav = (f'<nav class="top"><strong>Synthese-style draft.</strong> Not a journal submission. '
+        f'The review text keeps the author line off this page. The separate title page is published '
+        f'beside it, so anonymity is not claimed. Author declarations remain pending. '
+        f'<a href="{BASE}">Technical note</a> · '
+        f'<a href="{BASE}graded.html">Gentle version</a> · '
+        f'<a href="{BASE}foundations.html">Foundations draft</a> · '
+        f'<a href="{BASE}synthese.pdf">Review PDF</a> · '
+        f'<a href="{BASE}synthese-title.pdf">Title page PDF</a> · '
+        f'<a href="{REPO}/blob/main/paper/synthese.tex">TeX source</a> · '
+        f'<a href="{REPO}/blob/main/paper/synthese.md">Markdown source</a> · '
+        f'<a href="{REPO}/blob/main/paper/synthese-title.tex">Title-page source</a>.</nav>'
+        f'<h1>{STITLE}</h1>'
+        '<p><strong>Draft for review. Not submitted.</strong> '
+        'This HTML follows the review manuscript. Affiliation, correspondence, ORCID, funding, '
+        'and competing interests are pending confirmation on the title page. '
+        'The review PDF is the reference copy.</p>')
+(root / "docs/synthese.html").write_text(page(
+    STITLE, SDESC, BASE + "synthese.html", BASE + "og.png", snav, _syn_body))
+shutil.copyfile(root / "paper/synthese.pdf", root / "docs/synthese.pdf")
+shutil.copyfile(root / "paper/synthese-title.pdf", root / "docs/synthese-title.pdf")
 
 (root / "docs/.nojekyll").write_text("")
 print("ok")
