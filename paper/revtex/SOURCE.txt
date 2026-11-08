@@ -1,0 +1,1 @@
+REVTeX 4.2f runtime files unpacked from the LPPL dtx sources so this draft builds where the class is not installed. See https://journals.aps.org/revtex/.
